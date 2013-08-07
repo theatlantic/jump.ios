@@ -268,6 +268,24 @@
     [JREngage showSharingDialogWithActivity:t];
 }
 
+- (IBAction)forgotPasswordButtonPressed:(id)sender {
+    void (^completion)(UIAlertView *, BOOL, NSInteger) =
+            ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+                if (buttonIndex != alertView.cancelButtonIndex) {
+                    NSString *emailAddress = [alertView textFieldAtIndex:0].text;
+                    [JRCapture startForgottenPasswordRecoveryForEmailAddress:emailAddress redirectUri:nil
+                                                                    delegate:self context:nil ];
+                }
+            };
+
+
+    [[[AlertViewWithBlocks alloc] initWithTitle:@"Create a new password"
+                                        message:@"We'll send you a link to create a new password."
+                                     completion:completion
+                                          style:UIAlertViewStylePlainTextInput
+                              cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil] show];
+}
+
 - (void)configureUserLabelAndIcon
 {
     if (appDelegate.captureUser)
@@ -487,6 +505,20 @@
     //appDelegate.engageSignInWasCanceled = NO;
 }
 
+- (void)forgottenPasswordRecoveryDidSucceedWithContext:(id <NSObject>)context
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error context:(id <NSObject>)context
+{
+    [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
+                                        message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                              cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
 + (void)showProfileForm:(UINavigationController *)controller
 {
     CaptureProfileViewController *viewController = [[CaptureProfileViewController alloc]
@@ -499,6 +531,7 @@
     [self setTradAuthButton:nil];
     [self setDirectFacebookAuthButton:nil];
     [self setRefetchButton:nil];
+    [self setForgotPasswordButton:nil];
     [super viewDidUnload];
 }
 @end

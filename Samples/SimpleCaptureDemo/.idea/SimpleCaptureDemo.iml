@@ -13,6 +13,24 @@
     <content url="file://$MODULE_DIR$/../../../Social Framework Test/Janrain/JREngage/Classes/JRNativeAuth.m">
       <sourceFolder url="file://$MODULE_DIR$/../../../Social Framework Test/Janrain/JREngage/Classes/JRNativeAuth.m" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/CaptureDynamicForm.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/CaptureDynamicForm.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/CaptureDynamicForm.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/CaptureDynamicForm.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/PickerViewController.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/PickerViewController.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/PickerViewController.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/PickerViewController.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.h">
+      <sourceFolder url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.m">
+      <sourceFolder url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.m" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Janrain">
       <sourceFolder url="file://$MODULE_DIR$/../../Janrain" isTestSource="false" />
     </content>

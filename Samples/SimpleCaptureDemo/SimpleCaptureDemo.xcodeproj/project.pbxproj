@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19BC0273946224097507522B /* JRCaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FCAB908800A9FF445D4B /* Upgrade Guide.md */; };
 		6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */; };
 		6706F0548CC1DBB6CEC0407D /* JRCurrentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F48794E72EF1AAA12F65 /* JRCurrentLocation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -287,6 +288,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureConfig.m; sourceTree = "<group>"; };
+		19BC0C91C468544CC1764EEB /* JRCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureConfig.h; sourceTree = "<group>"; };
 		6706F004B5721D364A0105AB /* JRObjectLevelTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRObjectLevelTwo.m; sourceTree = "<group>"; };
 		6706F011CCEAA27C898AC307 /* JRPluralLevelTwoElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPluralLevelTwoElement.m; sourceTree = "<group>"; };
 		6706F01AA24E373956F9C20D /* JRProfilePhotosElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProfilePhotosElement.h; sourceTree = "<group>"; };
@@ -945,6 +948,8 @@
 				DF39E02917A9887300FDA67A /* JRTraditionalSigninViewController.m */,
 				DF39E02A17A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.h */,
 				DF39E02B17A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m */,
+				19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */,
+				19BC0C91C468544CC1764EEB /* JRCaptureConfig.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1663,6 +1668,7 @@
 				DFEFE4B117A9915200760FEE /* JRUserLandingController.m in Sources */,
 				DFEFE4B217A9915200760FEE /* JRWebViewController.m in Sources */,
 				DFEFE4B417A9915200760FEE /* JREngagePlugin.js in Sources */,
+				19BC0273946224097507522B /* JRCaptureConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
