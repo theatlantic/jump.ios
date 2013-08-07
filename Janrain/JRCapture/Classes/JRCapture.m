@@ -46,12 +46,19 @@
 #import "JRCaptureError.h"
 #import "JRCaptureUser+Extras.h"
 #import "JRConnectionManager.h"
+#import "JRCaptureConfig.h"
 
 @implementation JRCapture
 
 + (void)setBackplaneChannelUrl:(NSString *)backplaneChannelUrl
 {
     [JRCaptureData sharedCaptureData].bpChannelUrl = backplaneChannelUrl;
+}
+
++ (void)setCaptureConfig:(JRCaptureConfig *)config
+{
+    [JRCaptureData setCaptureConfig:config];
+    [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
@@ -65,14 +72,21 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
      captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
                           captureAppId:(NSString *)captureAppId
 {
-    [JRCaptureData setCaptureDomain:captureDomain captureClientId:clientId captureLocale:captureLocale
-   captureTraditionalSignInFormName:captureSignInFormName captureFlowName:captureFlowName
-         captureEnableThinRegistration:enableThinRegistration
-captureTraditionalRegistrationFormName:captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:captureSocialRegistrationFormName
-                    captureFlowVersion:captureFlowVersion captureAppId:captureAppId];
+    JRCaptureConfig *config = [[JRCaptureConfig alloc] init];
+    config.captureDomain = captureDomain;
+    config.captureClientId = clientId;
+    config.captureLocale = captureLocale;
+    config.captureSignInFormName = captureSignInFormName;
+    config.captureFlowName = captureFlowName;
+    config.enableThinRegistration = enableThinRegistration;
+    config.captureTraditionalRegistrationFormName = captureTraditionalRegistrationFormName;
+    config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
+    config.captureFlowVersion = captureFlowVersion;
+    config.captureAppId = captureAppId;
 
-    [JREngageWrapper configureEngageWithAppId:engageAppId customIdentityProviders:customProviders];
+    [JRCapture setCaptureConfig:config];
+
+    [config release];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
@@ -341,6 +355,64 @@ captureTraditionalRegistrationFormName:nil
         }
     }];
 }
+
++ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress redirectUri:(NSString *)redirectUri
+                                             delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context {
+    NSLog(@"startForgottenPasswordRecoveryForEmailAddress %@", emailAddress);
+
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *Url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
+
+    if (!redirectUri) redirectUri = [data redirectUri];
+
+    void (^triggerInvalidArgumentError)(NSString *) = ^(NSString *argument) {
+        JRCaptureError *captureError = [JRCaptureError invalidArgumentErrorWithParameterName:argument];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:) forDelegate:delegate
+                    withArg:captureError withArg:context];
+    };
+
+    if (!data.captureForgottenPasswordFormName) {
+        triggerInvalidArgumentError(@"forgottenPasswordFormName");
+        return;
+    }
+    if (!emailAddress || [emailAddress isEqualToString:@""]) {
+        triggerInvalidArgumentError(@"emailAddress");
+        return;
+    }
+
+    NSDictionary *params = @{
+            @"client_id" : data.clientId,
+            @"locale" : data.captureLocale,
+            @"response_type" : @"token",
+            @"redirect_uri" : redirectUri,
+            @"form" : data.captureForgottenPasswordFormName,
+            @"flow" : data.captureFlowName,
+            @"flow_version" : data.downloadedFlowVersion,
+            @"email" : emailAddress
+    };
+
+    [JRConnectionManager jsonRequestToUrl:Url params:params completionHandler:^(id result, NSError *error)
+    {
+        if (error) {
+            ALog("Failure initiating forgotten password flow: %@", error);
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:)
+                    forDelegate:delegate withArg:error withArg:context];
+
+        } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+            DLog(@"Forgotten password flow started successfully");
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidSucceedWithContext:) forDelegate:delegate
+                        withArg:context];
+
+        } else {
+            JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:)
+                    forDelegate:delegate withArg:captureError withArg:context];
+        }
+    }];
+}
+
+
 
 + (NSString *)utcTimeString
 {

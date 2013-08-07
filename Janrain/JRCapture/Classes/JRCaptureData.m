@@ -32,6 +32,7 @@
 #import "JRCaptureData.h"
 #import "SFHFKeychainUtils.h"
 #import "NSDictionary+JRQueryParams.h"
+#import "JRCaptureConfig.h"
 
 #define cJRCaptureKeychainIdentifier @"capture_tokens.janrain"
 #define cJRCaptureKeychainUserName @"capture_user"
@@ -82,6 +83,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic, retain) NSString *captureSignInFormName;
 @property(nonatomic, retain) NSString *captureTraditionalRegistrationFormName;
 @property(nonatomic, retain) NSString *captureSocialRegistrationFormName;
+@property(nonatomic, retain) NSString *captureForgottenPasswordFormName;
 
 //@property(nonatomic) JRTraditionalSignInType captureTradSignInType;
 @property(nonatomic) BOOL captureEnableThinRegistration;
@@ -104,6 +106,7 @@ static JRCaptureData *singleton = nil;
 @synthesize captureFlowName;
 @synthesize captureTraditionalRegistrationFormName;
 @synthesize captureSocialRegistrationFormName;
+@synthesize captureForgottenPasswordFormName;
 @synthesize captureFlowVersion;
 @synthesize captureAppId;
 @synthesize captureFlow;
@@ -227,13 +230,7 @@ static JRCaptureData *singleton = nil;
     return [NSString stringWithFormat:@"%@/cmeu", singleton.captureBaseUrl];
 }
 
-+ (void)setCaptureDomain:(NSString *)captureDomain captureClientId:(NSString *)clientId
-           captureLocale:(NSString *)captureLocale captureTraditionalSignInFormName:(NSString *)captureSignInFormName
-                                                                    captureFlowName:(NSString *)captureFlowName
-         captureEnableThinRegistration:(BOOL)enableThinRegistration
-captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
-                    captureFlowVersion:(NSString *)captureFlowVersion captureAppId:(NSString *)captureAppId
++ (void)setCaptureConfig:(JRCaptureConfig *)config
 {
     JRCaptureData *captureDataInstance = [JRCaptureData sharedCaptureData];
     if (captureDataInstance.initialized)
@@ -242,17 +239,18 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
                 "initialization of JRCapture is unsafe"];
     }
     captureDataInstance.initialized = YES;
-    captureDataInstance.captureBaseUrl = [captureDomain urlStringFromBaseDomain];
-    captureDataInstance.clientId = clientId;
-    captureDataInstance.captureLocale = captureLocale;
-    captureDataInstance.captureSignInFormName = captureSignInFormName;
-    captureDataInstance.captureFlowName = captureFlowName;
-    captureDataInstance.captureEnableThinRegistration = enableThinRegistration;
+    captureDataInstance.captureBaseUrl = [config.captureDomain urlStringFromBaseDomain];
+    captureDataInstance.clientId = config.captureClientId;
+    captureDataInstance.captureLocale = config.captureLocale;
+    captureDataInstance.captureSignInFormName = config.captureSignInFormName;
+    captureDataInstance.captureFlowName = config.captureFlowName;
+    captureDataInstance.captureEnableThinRegistration = config.enableThinRegistration;
     //captureDataInstance.captureTradSignInType = tradSignInType;
-    captureDataInstance.captureTraditionalRegistrationFormName = captureTraditionalRegistrationFormName;
-    captureDataInstance.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
-    captureDataInstance.captureFlowVersion = captureFlowVersion;
-    captureDataInstance.captureAppId = captureAppId;
+    captureDataInstance.captureTraditionalRegistrationFormName = config.captureTraditionalRegistrationFormName;
+    captureDataInstance.captureSocialRegistrationFormName = config.captureSocialRegistrationFormName;
+    captureDataInstance.captureFlowVersion = config.captureFlowVersion;
+    captureDataInstance.captureAppId = config.captureAppId;
+    captureDataInstance.captureForgottenPasswordFormName = config.forgottenPasswordFormName;
 
     if ([captureDataInstance.captureLocale length] &&
             [captureDataInstance.captureFlowName length] && [captureDataInstance.captureAppId length])
@@ -260,6 +258,32 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
         [captureDataInstance loadFlow];
         [captureDataInstance downloadFlow];
     }
+}
+
++ (void)setCaptureDomain:(NSString *)captureDomain captureClientId:(NSString *)clientId
+           captureLocale:(NSString *)captureLocale captureTraditionalSignInFormName:(NSString *)captureSignInFormName
+                                                                    captureFlowName:(NSString *)captureFlowName
+         captureEnableThinRegistration:(BOOL)enableThinRegistration
+captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
+     captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
+                    captureFlowVersion:(NSString *)captureFlowVersion captureAppId:(NSString *)captureAppId
+{
+    JRCaptureConfig *config = [[JRCaptureConfig alloc] init];
+    config.captureDomain = captureDomain;
+    config.captureClientId = clientId;
+    config.captureLocale = captureLocale;
+    config.captureSignInFormName = captureSignInFormName;
+    config.captureFlowName = captureFlowName;
+    config.enableThinRegistration = enableThinRegistration;
+    //captureDataInstance.captureTradSignInType = tradSignInType;
+    config.captureTraditionalRegistrationFormName = captureTraditionalRegistrationFormName;
+    config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
+    config.captureFlowVersion = captureFlowVersion;
+    config.captureAppId = captureAppId;
+
+    [JRCaptureData setCaptureConfig:config];
+
+    [config release];
 }
 
 - (void)loadFlow
@@ -408,6 +432,7 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
     [refreshSecret release];
     [captureRedirectUri release];
     [captureSocialRegistrationFormName release];
+    [captureForgottenPasswordFormName release];
     [super dealloc];
 }
 

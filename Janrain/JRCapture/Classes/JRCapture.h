@@ -36,6 +36,7 @@
 #import "JRCaptureTypes.h"
 
 @class JRCaptureUser;
+@class JRCaptureConfig;
 
 #define engageSigninDialogDidFailToShowWithError engageAuthenticationDialogDidFailToShowWithError
 #define engageSigninDidNotComplete engageAuthenticationDidCancel
@@ -300,6 +301,24 @@
  *   The context supplied when initiating the token refresh
  */
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context;
+
+/**
+ * Sent when the forgotten password recovery flow is successfully initiated
+ * @param context
+ *   The context supplied when initiating the forgot password flow
+ */
+- (void)forgottenPasswordRecoveryDidSucceedWithContext:(id <NSObject>)context;
+
+/**
+ * Sent when the forgotten password recovery flow fails
+ * @param error
+ *   The error that caused the failure.
+ *
+ * @param context
+ *   The context supplied when initiating the forgot password flow
+ */
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error context:(id <NSObject>) context;
+
 @end
 
 /**
@@ -322,6 +341,14 @@
  * integrations
  */
 + (void)setBackplaneChannelUrl:(NSString *)backplaneChannelUrl __unused;
+
+/**
+ * Method for configuring the library ot work with your Janrain Capture and Engage applications.
+ *
+ * @param config
+ *   An instance of JRCaptureConfig that contains your configuration values.
+ */
++ (void)setCaptureConfig:(JRCaptureConfig *)config;
 
 /**
  * Method for configuring the library to work with your Janrain Capture and Engage applications.
@@ -635,6 +662,24 @@ captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInTy
  * Signs the currently-signed-in user, if any, out.
  */
 + (void)clearSignInState __unused;
+
+/**
+ *  Starts the forgotten password flow for a user.
+ *
+ *  A successful call will cause an email to be sent to the provided email address with instructions to create a new
+ *  password. The existing password will not be changed until the steps outlined in the email have been completed.
+ *
+ *  @param emailAddress
+ *    The email address of the user who has forgotten their password
+ *  @param redirectUri
+ *    The redirect URI that will be used in the emails generated as a consequence of the forgotten password API call.
+ *  @param delegate
+ *    The JRCaptureDelegate object that wishes to receive messages regarding user authentication.
+ * @param context
+ *    The context supplied when initiating the recover password flow.
+ */
++ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress redirectUri:(NSString *)redirectUri
+                                             delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context;
 
 @end
 

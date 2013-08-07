@@ -28,6 +28,8 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+@class JRCaptureConfig;
+
 /**
  * @internal
  */
@@ -47,11 +49,14 @@
 @property(nonatomic, readonly, retain) NSString *captureFlowVersion;
 @property(nonatomic, readonly, retain) NSString *captureAppId;
 @property(nonatomic, readonly, retain) NSDictionary *captureFlow;
+@property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic) BOOL flowUsesTestingCdn;
 
 + (void)setAccessToken:(NSString *)token;
 
 + (void)setCaptureRedirectUri:(NSString *)redirectUri;
+
++ (void)setCaptureConfig:(JRCaptureConfig *)config;
 
 + (void)setCaptureDomain:(NSString *)captureDomain captureClientId:(NSString *)clientId
            captureLocale:(NSString *)captureLocale captureTraditionalSignInFormName:(NSString *)captureSignInFormName
