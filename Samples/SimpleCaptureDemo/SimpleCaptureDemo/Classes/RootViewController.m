@@ -273,7 +273,7 @@
             ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
                 if (buttonIndex != alertView.cancelButtonIndex) {
                     NSString *emailAddress = [alertView textFieldAtIndex:0].text;
-                    [JRCapture startForgottenPasswordRecoveryForEmailAddress:emailAddress redirectUri:nil
+                    [JRCapture startForgottenPasswordRecoveryForEmailAddress:emailAddress recoverUri:nil
                                                                     delegate:self context:nil ];
                 }
             };
