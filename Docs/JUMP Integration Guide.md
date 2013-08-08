@@ -141,7 +141,7 @@ Copy and paste this block into `-[AppDelegate application:didFinishLaunchingWith
     {
         // ... Your existing initialization logic here
 
-        JRCaptureConfig *config = [[JRCaptureConfig alloc] init];
+        JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
         config.engageAppId = @"your_engage_app_id";
         config.captureDomain = @"your_capture_ui_base_url";
         config.captureClientId = @"your_capture_client_id";

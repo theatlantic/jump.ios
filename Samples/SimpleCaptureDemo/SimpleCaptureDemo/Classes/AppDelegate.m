@@ -86,7 +86,7 @@ AppDelegate *appDelegate = nil;
 
     [self loadDemoConfigFromPlist];
 
-    JRCaptureConfig *config = [[JRCaptureConfig alloc] init];
+    JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
     config.engageAppId = engageAppId;
     config.captureDomain = captureDomain;
     config.captureClientId = captureClientId;

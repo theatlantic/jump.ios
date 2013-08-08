@@ -103,4 +103,6 @@
  */
 @property (nonatomic, retain) NSString *passwordRecoverUri;
 
++ (JRCaptureConfig *)emptyCaptureConfig;
+
 @end

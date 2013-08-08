@@ -51,6 +51,10 @@
 @synthesize forgottenPasswordFormName;
 @synthesize passwordRecoverUri;
 
++ (JRCaptureConfig *)emptyCaptureConfig {
+    return [[[JRCaptureConfig alloc] init] autorelease];
+}
+
 - (void)dealloc
 {
     [engageAppId release];

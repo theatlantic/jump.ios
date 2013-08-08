@@ -72,7 +72,7 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
      captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
                           captureAppId:(NSString *)captureAppId
 {
-    JRCaptureConfig *config = [[JRCaptureConfig alloc] init];
+    JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
     config.captureDomain = captureDomain;
     config.captureClientId = clientId;
     config.captureLocale = captureLocale;
