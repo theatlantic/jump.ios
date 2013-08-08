@@ -49,6 +49,7 @@
 @synthesize captureSocialRegistrationFormName;
 @synthesize captureAppId;
 @synthesize forgottenPasswordFormName;
+@synthesize passwordRecoverUri;
 
 - (void)dealloc
 {
@@ -64,6 +65,7 @@
     [captureSocialRegistrationFormName release];
     [captureAppId release];
     [forgottenPasswordFormName release];
+    [passwordRecoverUri release];
 
     [super dealloc];
 }

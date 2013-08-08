@@ -95,8 +95,12 @@
  **/
 @property (nonatomic, retain) NSString *captureAppId;
 /**
-*   The name of the form (from your flow) used for recovering forgotten passwords
-**/
+ *   The name of the form (from your flow) used for recovering forgotten passwords
+ **/
 @property (nonatomic, retain) NSString *forgottenPasswordFormName;
+/**
+ *  The base uri for creating the link in a password recovery email.
+ */
+@property (nonatomic, retain) NSString *passwordRecoverUri;
 
 @end

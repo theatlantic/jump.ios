@@ -76,6 +76,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic, retain) NSString *clientId;
 @property(nonatomic, retain) NSString *captureAppId;
 @property(nonatomic, retain) NSString *captureRedirectUri;
+@property(nonatomic, retain) NSString *passwordRecoverUri;
 
 @property(nonatomic, retain) NSString *captureFlowName;
 @property(nonatomic, retain) NSString *captureFlowVersion;
@@ -111,6 +112,7 @@ static JRCaptureData *singleton = nil;
 @synthesize captureAppId;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
+@synthesize passwordRecoverUri;
 
 - (JRCaptureData *)init
 {
@@ -251,6 +253,7 @@ static JRCaptureData *singleton = nil;
     captureDataInstance.captureFlowVersion = config.captureFlowVersion;
     captureDataInstance.captureAppId = config.captureAppId;
     captureDataInstance.captureForgottenPasswordFormName = config.forgottenPasswordFormName;
+    captureDataInstance.passwordRecoverUri = config.passwordRecoverUri;
 
     if ([captureDataInstance.captureLocale length] &&
             [captureDataInstance.captureFlowName length] && [captureDataInstance.captureAppId length])
@@ -431,6 +434,7 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
     [captureFlow release];
     [refreshSecret release];
     [captureRedirectUri release];
+    [passwordRecoverUri release];
     [captureSocialRegistrationFormName release];
     [captureForgottenPasswordFormName release];
     [super dealloc];

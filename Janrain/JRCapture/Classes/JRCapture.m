@@ -356,27 +356,30 @@ captureTraditionalRegistrationFormName:nil
     }];
 }
 
-+ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress redirectUri:(NSString *)redirectUri
++ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress recoverUri:(NSString *)recoverUri
                                              delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context {
     NSLog(@"startForgottenPasswordRecoveryForEmailAddress %@", emailAddress);
 
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
     NSString *Url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
 
-    if (!redirectUri) redirectUri = [data redirectUri];
-
-    void (^triggerInvalidArgumentError)(NSString *) = ^(NSString *argument) {
-        JRCaptureError *captureError = [JRCaptureError invalidArgumentErrorWithParameterName:argument];
+    if (!recoverUri) recoverUri = data.passwordRecoverUri;
+    if (!recoverUri) {
+        JRCaptureError *captureError =
+                [JRCaptureError invalidArgumentErrorWithParameterName:@"recoverUri"];
         [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:) forDelegate:delegate
                     withArg:captureError withArg:context];
-    };
 
-    if (!data.captureForgottenPasswordFormName) {
-        triggerInvalidArgumentError(@"forgottenPasswordFormName");
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing argument/setting passwordRecoverUri"];
         return;
     }
-    if (!emailAddress || [emailAddress isEqualToString:@""]) {
-        triggerInvalidArgumentError(@"emailAddress");
+
+    if (!data.captureForgottenPasswordFormName) {
+        JRCaptureError *captureError =
+            [JRCaptureError invalidArgumentErrorWithParameterName:@"forgottenPasswordFormName"];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:) forDelegate:delegate
+                    withArg:captureError withArg:context];
         return;
     }
 
@@ -384,7 +387,7 @@ captureTraditionalRegistrationFormName:nil
             @"client_id" : data.clientId,
             @"locale" : data.captureLocale,
             @"response_type" : @"token",
-            @"redirect_uri" : redirectUri,
+            @"redirect_uri" : recoverUri,
             @"form" : data.captureForgottenPasswordFormName,
             @"flow" : data.captureFlowName,
             @"flow_version" : data.downloadedFlowVersion,

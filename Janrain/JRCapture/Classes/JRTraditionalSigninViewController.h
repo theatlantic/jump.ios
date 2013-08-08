@@ -38,7 +38,7 @@
 @protocol JRExternalDialogControllerDelegate, JRCaptureInternalDelegate;
 
 @interface JRTraditionalSignInViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,
-        UITextFieldDelegate, JRCaptureInternalDelegate>
+        UITextFieldDelegate, UIAlertViewDelegate, JRCaptureInternalDelegate>
 {
     UITableView *myTableView;
 }

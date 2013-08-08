@@ -678,7 +678,7 @@ captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInTy
  * @param context
  *    The context supplied when initiating the recover password flow.
  */
-+ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress redirectUri:(NSString *)redirectUri
++ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress recoverUri:(NSString *)recoverUri
                                              delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context;
 
 @end

@@ -39,6 +39,13 @@
 #import "JREngageWrapper.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JRCaptureData.h"
+#import "JRCapture.h"
+
+typedef enum
+{
+    JRIncorrectUserOrPasswordAlertViewTag,
+    JRForgotPasswordAlertViewTag
+};
 
 @interface JREngageWrapper (JREngageWrapper_InternalMethods)
 - (void)authenticationDidReachTokenUrl:(NSString *)tokenUrl withResponse:(NSURLResponse *)response
@@ -271,14 +278,64 @@
     //NSString *const message = [result objectForKey:@"error"];
     UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:title
                                                          message:nil // MOB-73
-                                                        delegate:nil
+                                                        delegate:self
                                                cancelButtonTitle:@"Dismiss"
-                                               otherButtonTitles:nil] autorelease];
+                                               otherButtonTitles:@"Forgot Password", nil] autorelease];
+    alertView.tag = JRIncorrectUserOrPasswordAlertViewTag;
     [alertView show];
 
     [delegate hideLoading];
     // XXX hack to skirt the side effects thrown off by the client's sign-in APIs:
     [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil]];
+}
+
+- (void)showForgottenPasswordAlert
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirm Your Email Address"
+                                                        message:@"We'll send you a link to create a new password."
+                                                       delegate:self cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Send", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alertView.tag = JRForgotPasswordAlertViewTag;
+
+    UITableViewCell *nameCell = [myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSString *nameOrEmail = ((UITextField *) [nameCell viewWithTag:NAME_TEXTFIELD_TAG]).text;
+
+    if (self.signInType == JRTraditionalSignInEmailPassword && nameOrEmail && ![nameOrEmail isEqualToString:@""]) {
+        [alertView textFieldAtIndex:0].text = nameOrEmail;
+    } else {
+        [alertView textFieldAtIndex:0].placeholder = @"Enter your email";
+    }
+
+    [alertView show];
+    [alertView autorelease];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == JRIncorrectUserOrPasswordAlertViewTag && buttonIndex == 1) {
+        [self showForgottenPasswordAlert];
+    } else if (alertView.tag == JRForgotPasswordAlertViewTag && buttonIndex == 1) {
+        [JRCapture startForgottenPasswordRecoveryForEmailAddress:[alertView textFieldAtIndex:0].text
+                                                      recoverUri:nil delegate:self context:nil];
+    }
+}
+
+- (void)forgottenPasswordRecoveryDidSucceedWithContext:(id <NSObject>)context
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
+    [alertView autorelease];
+}
+
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error context:(id <NSObject>)context
+{
+    NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Could Not Reset Password"
+                                                        message:errorMessage delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
+    [alertView autorelease];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
