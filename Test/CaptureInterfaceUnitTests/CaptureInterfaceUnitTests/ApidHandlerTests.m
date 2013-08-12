@@ -39,7 +39,6 @@
 #import <GHUnitIOS/GHUnit.h>
 #import "SharedData.h"
 #import "JRCaptureObject+Internal.h"
-#import "JSONKit.h"
 
 #define _sel       NSStringFromSelector(_cmd)
 #define _csel      [NSString stringWithFormat:@"%@%@%@", @"continue", @".", _sel]
@@ -2705,16 +2704,5 @@ typedef enum
             originalTest:[self getTestSelectorStringFromContext:context]];
 }
 
-
-- (void)dealloc
-{
-    [captureUser release];
-    [defaultContext release];
-    [defaultArrayContext release];
-    [defaultStringArrayContext release];
-    [finisherArguments release];
-    [defaultGetObjectContext release];
-    [super dealloc];
-}
 @end
 

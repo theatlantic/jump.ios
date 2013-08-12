@@ -2,7 +2,6 @@
 #import <GHUnitIOS/GHUnit.h>
 #import "SharedData.h"
 #import "JRCaptureObject+Internal.h"
-#import "JSONKit.h"
 
 @interface z1_PluralTests : GHAsyncTestCase <JRCaptureObjectTesterDelegate>
 {
@@ -47,7 +46,6 @@
     updateCallback = [updateCallback copy];
     [captureUser updateOnCaptureForDelegate:self context:updateCallback];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
-    [updateCallback release];
 }
 
 - (void)test_z101_replaceInvalidPluralElements
@@ -60,9 +58,8 @@
         [self notify:kGHUnitWaitStatusSuccess forSelector:_cmd];
     };
     replaceCallback = [replaceCallback copy];
-    [captureUser replaceBasicPluralArrayOnCaptureForDelegate:self withContext:replaceCallback];
+    [captureUser replaceBasicPluralArrayOnCaptureForDelegate:self context:replaceCallback];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
-    [replaceCallback release];
 }
 
 - (void)replaceArrayDidFailForObject:(JRCaptureObject *)object arrayNamed:(NSString *)arrayName
@@ -115,9 +112,4 @@
     GHFail(nil);
 }
 
-- (void)dealloc
-{
-    [captureUser release];
-    [super dealloc];
-}
 @end

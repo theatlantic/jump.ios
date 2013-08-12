@@ -39,7 +39,8 @@
 #import <GHUnitIOS/GHUnit.h>
 #import "SharedData.h"
 #import "JRCaptureObject+Internal.h"
-#import "JSONKit.h"
+#import "JRJsonUtils.h"
+
 
 @interface c2_OtherAttributesTests : GHAsyncTestCase <JRCaptureObjectTesterDelegate>
 {
@@ -89,7 +90,7 @@
 
 - (void)updateCaptureObject:(JRCaptureObject *)object didSucceedWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSDictionary *resultDictionary = [result objectFromJSONString];
+    NSDictionary *resultDictionary = [result JR_objectFromJSONString];
     NSDictionary *captureProfile   = [resultDictionary objectForKey:@"result"];
 
     JRCaptureUser *newUser = [JRCaptureUser captureUserObjectFromDictionary:captureProfile];
@@ -123,9 +124,4 @@
     [self notify:kGHUnitWaitStatusFailure forSelector:NSSelectorFromString(testSelectorString)];
 }
 
-- (void)dealloc
-{
-    [captureUser release];
-    [super dealloc];
-}
 @end

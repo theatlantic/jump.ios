@@ -45,7 +45,7 @@ static SharedData *singleton = nil;
 
 static NSString *captureApidDomain  = @"mobile.dev.janraincapture.com";
 static NSString *clientId           = @"njzvdpmsamrm339qwyr5gcray9h49ahj";
-static NSString *accessToken        = @"zsa7a43a99yaw3gv";
+static NSString *accessToken        = @"urvjx2y76k2epsfs";
 
 - (id)init
 {
@@ -78,7 +78,7 @@ static NSString *accessToken        = @"zsa7a43a99yaw3gv";
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self sharedData] retain];
+    return [self sharedData];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -133,10 +133,4 @@ static NSString *accessToken        = @"zsa7a43a99yaw3gv";
     return captureUser;
 }
 
-- (void)dealloc
-{
-    [captureUser release];
-    [delegate release];
-    [super dealloc];
-}
 @end

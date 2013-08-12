@@ -69,9 +69,10 @@
 
 - (void)test_d101_fetchLastUpdated
 {
-    [self prepare];
-    [captureUser fetchLastUpdatedFromServerForDelegate:self context:nil];
-    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+    GHAssertTrue(NO, @"Method fetchLastUpdatedFromServerForDelegate:context doesn't exist. Fix this test!");
+//    [self prepare];
+//    [captureUser fetchLastUpdatedFromServerForDelegate:self context:nil];
+//    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
 }
 
 - (void)test_d111_codingEmptyUser
@@ -104,7 +105,6 @@
     t = [t copy];
     [JRCaptureUser fetchCaptureUserFromServerForDelegate:self context:t];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
-    [t release];
     DLog("finished");
 }
 
@@ -141,7 +141,7 @@ JRCaptureUser *originalUser, *modifiedUser;
         if (u)
         {
             self.captureUser = u;
-            originalUser = [copyUserDirtyHack(u) retain];
+            originalUser = copyUserDirtyHack(u);
             captureUser.basicDecimal = [NSNumber numberWithDouble:NAN];
             GHAssertFalse([originalUser isEqualByPrivateProperties:self.captureUser], nil);
             [captureUser updateOnCaptureForDelegate:self context:updateCallback];
@@ -152,9 +152,7 @@ JRCaptureUser *originalUser, *modifiedUser;
 
     [JRCaptureUser fetchCaptureUserFromServerForDelegate:self context:fetchCallback];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
-    [originalUser release]; originalUser = nil;
-    [updateCallback release];
-    [fetchCallback release];
+    originalUser = nil;
 }
 
 - (void)test_d131_dirtyFlagsInPlurals
@@ -178,12 +176,12 @@ JRCaptureUser *originalUser, *modifiedUser;
         if (u)
         {
             self.captureUser = u;
-            originalUser = [copyUserDirtyHack(u) retain];
+            originalUser = copyUserDirtyHack(u);
             captureUser.oinoinoL1Object.string1 = @"sadasdf99f";
             captureUser.oinoinoL1Object.oinoinoL2Object.string2 = @"asdlfkjaslfkdj";
             captureUser.oinoinoL1Object.oinoinoL2Object.oinoinoL3Object.string1 = @"asdlkfjaslkjf2";
             captureUser.basicDecimal = [NSNumber numberWithDouble:NAN];
-            modifiedUser = [copyUserDirtyHack(captureUser) retain];
+            modifiedUser = copyUserDirtyHack(captureUser);
 
             GHAssertFalse([originalUser isEqualByPrivateProperties:self.captureUser], nil);
             [captureUser updateOnCaptureForDelegate:self context:updateCallback];
@@ -194,10 +192,8 @@ JRCaptureUser *originalUser, *modifiedUser;
 
     [JRCaptureUser fetchCaptureUserFromServerForDelegate:self context:fetchCallback];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
-    [originalUser release]; originalUser = nil;
-    [modifiedUser release]; modifiedUser = nil;
-    [updateCallback release];
-    [fetchCallback release];
+    originalUser = nil;
+    modifiedUser = nil;
 }
 
 - (void)test_d140_stringEquality
@@ -279,9 +275,4 @@ JRCaptureUser *originalUser, *modifiedUser;
     [self notify:kGHUnitWaitStatusFailure];
 }
 
-- (void)dealloc
-{
-    [captureUser release];
-    [super dealloc];
-}
 @end

@@ -48,7 +48,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import "SharedData.h"
 #import "JRCaptureObject+Internal.h"
-#import "JSONKit.h"
+#import "JRJsonUtils.h"
 
 @interface b1_StringPluralTests : GHAsyncTestCase <JRCaptureObjectTesterDelegate>
 {
@@ -110,7 +110,7 @@
     for (NSUInteger i = 0; i < 3; i++)
         [array addObject:[NSString stringWithString:[fillerFodder objectAtIndex:i+offset]]];
 
-    return [[array copy] autorelease];
+    return [array copy];
 }
 
 /* Make an array of strings */
@@ -469,7 +469,7 @@
 - (void)replaceArray:(NSArray *)newArray named:(NSString *)arrayName onCaptureObject:(JRCaptureObject *)object
 didSucceedWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSDictionary *resultDictionary = [result objectFromJSONString];
+    NSDictionary *resultDictionary = [result JR_objectFromJSONString];
     NSArray      *resultArray      = [resultDictionary objectForKey:@"result"];
 
     NSDictionary *arguments = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -510,7 +510,6 @@ didSucceedWithResult:(NSString *)result context:(NSObject *)context
 - (void)replaceArrayNamed:(NSString *)arrayName onCaptureObject:(JRCaptureObject *)object
         didFailWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSString *nextMethodPrefix   = [[((NSString *)context) componentsSeparatedByString:@"."] objectAtIndex:0];
     NSString *testSelectorString = [[((NSString *)context) componentsSeparatedByString:@"."] objectAtIndex:1];
 
     GHTestLog(@"%@ %@", NSStringFromSelector(_cmd), result);
@@ -526,7 +525,7 @@ didSucceedWithResult:(NSString *)result context:(NSObject *)context
 
 - (void)updateCaptureObject:(JRCaptureObject *)object didSucceedWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSDictionary *resultDictionary        = [result objectFromJSONString];
+    NSDictionary *resultDictionary        = [result JR_objectFromJSONString];
     NSDictionary *captureObjectDictionary = [resultDictionary objectForKey:@"result"];
 
     NSDictionary *arguments = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -565,7 +564,6 @@ didSucceedWithResult:(NSString *)result context:(NSObject *)context
 
 - (void)updateCaptureObject:(JRCaptureObject *)object didFailWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSString *nextMethodPrefix   = [[((NSString *)context) componentsSeparatedByString:@"."] objectAtIndex:0];
     NSString *testSelectorString = [[((NSString *)context) componentsSeparatedByString:@"."] objectAtIndex:1];
 
     GHTestLog(@"%@ %@", NSStringFromSelector(_cmd), result);
@@ -581,7 +579,7 @@ didSucceedWithResult:(NSString *)result context:(NSObject *)context
 
 - (void)replaceCaptureObject:(JRCaptureObject *)object didSucceedWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSDictionary *resultDictionary        = [result objectFromJSONString];
+    NSDictionary *resultDictionary        = [result JR_objectFromJSONString];
     NSDictionary *captureObjectDictionary = [resultDictionary objectForKey:@"result"];
 
     NSDictionary *arguments = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -628,12 +626,4 @@ didSucceedWithResult:(NSString *)result context:(NSObject *)context
     [self notify:kGHUnitWaitStatusFailure forSelector:NSSelectorFromString(testSelectorString)];
 }
 
-- (void)dealloc
-{
-    [captureUser release];
-    [currentPlural release];
-    [fillerFodder release];
-    [previousPlural release];
-    [super dealloc];
-}
 @end

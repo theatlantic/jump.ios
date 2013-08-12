@@ -31,15 +31,11 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import "SharedData.h"
-#import "JRCaptureObject+Internal.h"
 #import "debug_log.h"
 #import "JRCaptureApidInterface.h"
 
 @interface zz1_CaptureSignInTests : GHAsyncTestCase <JRCaptureInterfaceDelegate>
-//{
-//    JRCaptureUser *captureUser;
-//}
-@property(retain) JRCaptureUser *captureUser;
+@property (retain) JRCaptureUser *captureUser;
 @end
 
 @interface TestContinuationContext : NSObject
@@ -87,15 +83,15 @@
                                                       @"aaaaaa", @"password",
                                                       nil];
 
-    TestContinuationContext *c = [[[TestContinuationContext alloc] init] autorelease];
+    TestContinuationContext *c = [[TestContinuationContext alloc] init];
     c.forTest = _cmd;
 
-    [JRCaptureApidInterface signinCaptureUserWithCredentials:credentials ofType:@"email" forDelegate:self
-                                                 withContext:c];
+    [JRCaptureApidInterface signInCaptureUserWithCredentials:credentials ofType:@"email" forDelegate:self withContext:c];
 
     [self prepare];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
 }
+
 
 - (void)signinCaptureUserDidSucceedWithResult:(NSString *)result context:(NSObject *)context
 {
@@ -143,12 +139,11 @@
                                                       @"aaaaa", @"password",
                                                       nil];
 
-    TestContinuationContext *c = [[[TestContinuationContext alloc] init] autorelease];
+    TestContinuationContext *c = [[TestContinuationContext alloc] init];
     c.forTest = _cmd;
     c.continuation = @selector(test_zz101_SignInUser_FailCase_ContinueWithContext:);
 
-    [JRCaptureApidInterface signinCaptureUserWithCredentials:credentials ofType:@"email" forDelegate:self
-                                                 withContext:c];
+    [JRCaptureApidInterface signInCaptureUserWithCredentials:credentials ofType:@"email" forDelegate:self withContext:c];
 
     [self prepare];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
@@ -161,9 +156,4 @@
 //    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
 //}
 
-- (void)dealloc
-{
-    [captureUser release];
-    [super dealloc];
-}
 @end

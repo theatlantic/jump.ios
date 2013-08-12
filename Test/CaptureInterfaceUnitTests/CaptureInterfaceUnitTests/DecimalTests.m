@@ -39,7 +39,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import "SharedData.h"
 #import "JRCaptureObject+Internal.h"
-#import "JSONKit.h"
+#import "JRJsonUtils.h"
 
 @interface a4_DecimalTests : GHAsyncTestCase <JRCaptureObjectTesterDelegate>
 {
@@ -190,7 +190,7 @@
 
 - (void)updateCaptureObject:(JRCaptureObject *)object didSucceedWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSDictionary *resultDictionary = [result objectFromJSONString];
+    NSDictionary *resultDictionary = [result JR_objectFromJSONString];
     NSDictionary *captureProfile   = [resultDictionary objectForKey:@"result"];
 
     JRCaptureUser *newUser = [JRCaptureUser captureUserObjectFromDictionary:captureProfile];
@@ -248,7 +248,7 @@
 
 - (void)updateCaptureObject:(JRCaptureObject *)object didFailWithResult:(NSString *)result context:(NSObject *)context
 {
-    NSDictionary *resultDictionary = [result objectFromJSONString];
+    NSDictionary *resultDictionary = [result JR_objectFromJSONString];
     NSString     *error            = [resultDictionary objectForKey:@"error"];
     NSNumber     *code             = [resultDictionary objectForKey:@"code"];
 
@@ -266,9 +266,4 @@
     [self notify:kGHUnitWaitStatusFailure forSelector:NSSelectorFromString(testSelectorString)];
 }
 
-- (void)dealloc
-{
-    [captureUser release];
-    [super dealloc];
-}
 @end
