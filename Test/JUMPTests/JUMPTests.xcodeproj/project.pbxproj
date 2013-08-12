@@ -1184,7 +1184,7 @@
 				D8DABC5917B94F8800F31953 /* Janrain */,
 				DDE0B9A67F00A1DC4B6DFBA9 /* Products */,
 				DDE0B9A67F00A1DC4B6DFBB4 /* Frameworks */,
-				DDE0B9A67F00A1DC4B6DFBBB /* CaptureInterfaceUnitTests */,
+				DDE0B9A67F00A1DC4B6DFBBB /* JUMPTests */,
 				C14242CC7DD1E002C4EA6B58 /* JRCapture */,
 			);
 			sourceTree = "<group>";
@@ -1211,7 +1211,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DDE0B9A67F00A1DC4B6DFBBB /* CaptureInterfaceUnitTests */ = {
+		DDE0B9A67F00A1DC4B6DFBBB /* JUMPTests */ = {
 			isa = PBXGroup;
 			children = (
 				DDE0B9A67F00A1DC4B6DFC37 /* CaptureSignInTests.m */,
@@ -1239,7 +1239,7 @@
 				DDE0B9A67F00A1DC4B6DFBCF /* ContraintsTests.m */,
 				DDE0B9A67F00A1DC4B6DFBBC /* Supporting Files */,
 			);
-			path = CaptureInterfaceUnitTests;
+			path = JUMPTests;
 			sourceTree = "<group>";
 		};
 		DDE0B9A67F00A1DC4B6DFBBC /* Supporting Files */ = {
@@ -1648,12 +1648,12 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CaptureInterfaceUnitTests/JUMPTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "JUMPTests/JUMPTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"JRCAPTURE_ACCESS_TOKEN_CONTROL=1",
 					"JRCAPTURE_FETCH_LAST_UPDATED=1",
 				);
-				INFOPLIST_FILE = "CaptureInterfaceUnitTests/JUMPTests-Info.plist";
+				INFOPLIST_FILE = "JUMPTests/JUMPTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1672,13 +1672,13 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CaptureInterfaceUnitTests/JUMPTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "JUMPTests/JUMPTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"JRCAPTURE_ACCESS_TOKEN_CONTROL=1",
 					"JRCAPTURE_FETCH_LAST_UPDATED=1",
 				);
-				INFOPLIST_FILE = "CaptureInterfaceUnitTests/JUMPTests-Info.plist";
+				INFOPLIST_FILE = "JUMPTests/JUMPTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
