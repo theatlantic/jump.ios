@@ -186,6 +186,31 @@ captureTraditionalRegistrationFormName:nil
                customIdentityProviders:customProviders];
 }
 
++ (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
+          captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
+          captureFlowName:(NSString *)captureFlowName
+    captureSignInFormName:(NSString *)captureFormName
+captureEnableThinRegistration:(BOOL)enableThinRegistration
+captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType
+       captureFlowVersion:(NSString *)captureFlowVersion
+captureRegistrationFormName:(NSString *)captureRegistrationFormName
+             captureAppId:(NSString *)captureAppId
+{
+    JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+    config.engageAppId = engageAppId;
+    config.captureDomain = captureDomain;
+    config.captureClientId = clientId;
+    config.captureLocale = captureLocale;
+    config.captureTraditionalSignInType = captureFormName;
+    config.captureFlowName = captureFlowName;
+    config.enableThinRegistration = enableThinRegistration;
+    config.captureSocialRegistrationFormName = captureRegistrationFormName;
+    config.captureFlowVersion = captureFlowVersion;
+    config.captureAppId = captureAppId;
+    config.captureTraditionalSignInType = captureTraditionalSignInType;
+
+    [JRCapture setCaptureConfig:config];
+}
 
 + (NSString *)captureMobileEndpointUrl __unused
 {
@@ -356,12 +381,13 @@ captureTraditionalRegistrationFormName:nil
     }];
 }
 
-+ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress recoverUri:(NSString *)recoverUri
-                                             delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context {
-    NSLog(@"startForgottenPasswordRecoveryForEmailAddress %@", emailAddress);
++ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
+                                      delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context {
+    NSLog(@"startForgottenPasswordRecoveryForEmailAddress %@", fieldValue);
 
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
-    NSString *Url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
+    NSString *fieldName = [data getForgottenPasswordFieldName];
 
     if (!recoverUri) recoverUri = data.passwordRecoverUri;
     if (!recoverUri) {
@@ -391,21 +417,19 @@ captureTraditionalRegistrationFormName:nil
             @"form" : data.captureForgottenPasswordFormName,
             @"flow" : data.captureFlowName,
             @"flow_version" : data.downloadedFlowVersion,
-            @"email" : emailAddress
+            fieldName : fieldValue
     };
 
-    [JRConnectionManager jsonRequestToUrl:Url params:params completionHandler:^(id result, NSError *error)
+    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error)
     {
         if (error) {
             ALog("Failure initiating forgotten password flow: %@", error);
             [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:)
                     forDelegate:delegate withArg:error withArg:context];
-
         } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
             DLog(@"Forgotten password flow started successfully");
             [self maybeDispatch:@selector(forgottenPasswordRecoveryDidSucceedWithContext:) forDelegate:delegate
                         withArg:context];
-
         } else {
             JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
 
@@ -414,8 +438,6 @@ captureTraditionalRegistrationFormName:nil
         }
     }];
 }
-
-
 
 + (NSString *)utcTimeString
 {

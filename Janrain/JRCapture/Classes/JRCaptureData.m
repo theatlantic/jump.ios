@@ -31,8 +31,8 @@
 #import "debug_log.h"
 #import "JRCaptureData.h"
 #import "SFHFKeychainUtils.h"
-#import "NSDictionary+JRQueryParams.h"
 #import "JRCaptureConfig.h"
+#import "NSDictionary+JRQueryParams.h"
 
 #define cJRCaptureKeychainIdentifier @"capture_tokens.janrain"
 #define cJRCaptureKeychainUserName @"capture_user"
@@ -263,37 +263,36 @@ static JRCaptureData *singleton = nil;
     }
 }
 
-+ (void)setCaptureDomain:(NSString *)captureDomain captureClientId:(NSString *)clientId
-           captureLocale:(NSString *)captureLocale captureTraditionalSignInFormName:(NSString *)captureSignInFormName
-                                                                    captureFlowName:(NSString *)captureFlowName
-         captureEnableThinRegistration:(BOOL)enableThinRegistration
-captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
-                    captureFlowVersion:(NSString *)captureFlowVersion captureAppId:(NSString *)captureAppId
-{
-    JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
-    config.captureDomain = captureDomain;
-    config.captureClientId = clientId;
-    config.captureLocale = captureLocale;
-    config.captureSignInFormName = captureSignInFormName;
-    config.captureFlowName = captureFlowName;
-    config.enableThinRegistration = enableThinRegistration;
-    //captureDataInstance.captureTradSignInType = tradSignInType;
-    config.captureTraditionalRegistrationFormName = captureTraditionalRegistrationFormName;
-    config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
-    config.captureFlowVersion = captureFlowVersion;
-    config.captureAppId = captureAppId;
-
-    [JRCaptureData setCaptureConfig:config];
-
-    [config release];
-}
-
 - (void)loadFlow
 {
     self.captureFlow =
             [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:FLOW_KEY]];
 }
+
+- (NSString *)getForgottenPasswordFieldName {
+    if (!self.captureForgottenPasswordFormName) return nil;
+    if (!self.captureForgottenPasswordFormName) {
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing capture configuration setting forgottenPasswordFormName"];
+    }
+
+    NSDictionary *fields = [self.captureFlow objectForKey:@"fields"];
+    NSDictionary *form = [fields objectForKey:self.captureForgottenPasswordFormName];
+
+    NSArray *formFields = [form objectForKey:@"fields"];
+
+    for (NSString *fieldName in formFields) {
+        NSDictionary *field = [fields objectForKey:fieldName];
+        NSString * type = [field objectForKey:@"type"];
+
+        if ([type isEqualToString:@"email"] || [type isEqualToString:@"text"]) {
+            return fieldName;
+        }
+    }
+
+    return nil;
+}
+
 
 - (void)downloadFlow
 {

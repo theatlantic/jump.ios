@@ -31,6 +31,15 @@
     <content url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.m">
       <sourceFolder url="file://$MODULE_DIR$/../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.m" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../Docs/Engage Custom Provider Guide.md">
+      <sourceFolder url="file://$MODULE_DIR$/../../Docs/Engage Custom Provider Guide.md" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Docs/Engage-Only Integration Guide.md">
+      <sourceFolder url="file://$MODULE_DIR$/../../Docs/Engage-Only Integration Guide.md" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Docs/JUMP Integration Guide.md">
+      <sourceFolder url="file://$MODULE_DIR$/../../Docs/JUMP Integration Guide.md" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Janrain">
       <sourceFolder url="file://$MODULE_DIR$/../../Janrain" isTestSource="false" />
     </content>

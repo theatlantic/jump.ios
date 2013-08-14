@@ -456,6 +456,19 @@ captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInTy
      customIdentityProviders:(NSDictionary *)customProviders;
 
 /**
+ * @deprecated
+ */
++ (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
+       captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
+       captureFlowName:(NSString *)captureFlowName
+ captureSignInFormName:(NSString *)captureFormName
+captureEnableThinRegistration:(BOOL)enableThinRegistration
+captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType
+    captureFlowVersion:(NSString *)captureFlowVersion
+captureRegistrationFormName:(NSString *)captureRegistrationFormName
+          captureAppId:(NSString *)captureAppId;
+
+/**
  * Set the Capture access token for an authenticated user
  **/
 + (void)setAccessToken:(NSString *)newAccessToken __unused;
@@ -678,8 +691,8 @@ captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInTy
  * @param context
  *    The context supplied when initiating the recover password flow.
  */
-+ (void)startForgottenPasswordRecoveryForEmailAddress:(NSString *)emailAddress recoverUri:(NSString *)recoverUri
-                                             delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context;
++ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
+                                      delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context;
 
 @end
 

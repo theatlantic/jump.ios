@@ -59,14 +59,6 @@
 
 + (void)setCaptureConfig:(JRCaptureConfig *)config;
 
-+ (void)setCaptureDomain:(NSString *)captureDomain captureClientId:(NSString *)clientId
-           captureLocale:(NSString *)captureLocale captureTraditionalSignInFormName:(NSString *)captureSignInFormName
-                                                                    captureFlowName:(NSString *)captureFlowName
-         captureEnableThinRegistration:(BOOL)enableThinRegistration
-captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
-                    captureFlowVersion:(NSString *)captureFlowVersion captureAppId:(NSString *)captureAppId;
-
 + (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken;
 
 + (void)clearSignInState;
@@ -82,6 +74,8 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
 - (NSString *)redirectUri;
 
 - (void)loadFlow;
+
+- (NSString *)getForgottenPasswordFieldName;
 
 - (NSMutableURLRequest *)urlForPath:(NSString *)path;
 @end

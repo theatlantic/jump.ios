@@ -87,6 +87,7 @@
         self.signOutButton.hidden = NO;
         self.shareButton.hidden = NO;
         self.refetchButton.hidden = NO;
+        self.forgotPasswordButton.hidden = YES;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Update" forState:UIControlStateNormal];
@@ -103,6 +104,7 @@
         self.signOutButton.hidden = YES;
         self.shareButton.hidden = YES;
         self.refetchButton.hidden = YES;
+        self.forgotPasswordButton.hidden = NO;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Traditional Registration" forState:UIControlStateNormal];
@@ -124,7 +126,7 @@
                         self.shareButton.enabled = self.directFacebookAuthButton.enabled = b;
     self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha =
                 self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha =
-                        self.directFacebookAuthButton.alpha  = 0.5 + b * 0.5;
+                self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha = 0.5 + b * 0.5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -273,8 +275,8 @@
             ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
                 if (buttonIndex != alertView.cancelButtonIndex) {
                     NSString *emailAddress = [alertView textFieldAtIndex:0].text;
-                    [JRCapture startForgottenPasswordRecoveryForEmailAddress:emailAddress recoverUri:nil
-                                                                    delegate:self context:nil];
+                    [JRCapture startForgottenPasswordRecoveryForField:emailAddress recoverUri:nil
+                                                             delegate:self context:nil];
                 }
             };
 

@@ -32,24 +32,7 @@
 
 #import "JRCaptureConfig.h"
 
-
-@implementation JRCaptureConfig {
-
-}
-
-@synthesize engageAppId;
-@synthesize captureDomain;
-@synthesize captureClientId;
-@synthesize captureLocale;
-@synthesize captureFlowName;
-@synthesize captureFlowVersion;
-@synthesize captureSignInFormName;
-@synthesize customProviders;
-@synthesize captureTraditionalRegistrationFormName;
-@synthesize captureSocialRegistrationFormName;
-@synthesize captureAppId;
-@synthesize forgottenPasswordFormName;
-@synthesize passwordRecoverUri;
+@implementation JRCaptureConfig
 
 + (JRCaptureConfig *)emptyCaptureConfig {
     return [[[JRCaptureConfig alloc] init] autorelease];
@@ -57,21 +40,23 @@
 
 - (void)dealloc
 {
-    [engageAppId release];
-    [captureDomain release];
-    [captureClientId release];
-    [captureLocale release];
-    [captureFlowName release];
-    [captureFlowVersion release];
-    [captureSignInFormName release];
-    [customProviders release];
-    [captureTraditionalRegistrationFormName release];
-    [captureSocialRegistrationFormName release];
-    [captureAppId release];
-    [forgottenPasswordFormName release];
-    [passwordRecoverUri release];
+#if !__has_feature(objc_arc)
+    [self.engageAppId release];
+    [self.captureDomain release];
+    [self.captureClientId release];
+    [self.captureLocale release];
+    [self.captureFlowName release];
+    [self.captureFlowVersion release];
+    [self.captureSignInFormName release];
+    [self.customProviders release];
+    [self.captureTraditionalRegistrationFormName release];
+    [self.captureSocialRegistrationFormName release];
+    [self.captureAppId release];
+    [self.forgottenPasswordFormName release];
+    [self.passwordRecoverUri release];
 
     [super dealloc];
+#endif
 }
 
 @end

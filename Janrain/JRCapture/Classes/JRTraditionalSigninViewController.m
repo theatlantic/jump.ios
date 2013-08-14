@@ -45,7 +45,7 @@ typedef enum
 {
     JRIncorrectUserOrPasswordAlertViewTag,
     JRForgotPasswordAlertViewTag
-};
+} JRUIViewTag;
 
 @interface JREngageWrapper (JREngageWrapper_InternalMethods)
 - (void)authenticationDidReachTokenUrl:(NSString *)tokenUrl withResponse:(NSURLResponse *)response
@@ -301,10 +301,16 @@ typedef enum
     UITableViewCell *nameCell = [myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     NSString *nameOrEmail = ((UITextField *) [nameCell viewWithTag:NAME_TEXTFIELD_TAG]).text;
 
-    if (self.signInType == JRTraditionalSignInEmailPassword && nameOrEmail && ![nameOrEmail isEqualToString:@""]) {
+    if (nameOrEmail && ![nameOrEmail isEqualToString:@""]) {
         [alertView textFieldAtIndex:0].text = nameOrEmail;
     } else {
-        [alertView textFieldAtIndex:0].placeholder = @"Enter your email";
+        JRCaptureData *data = [JRCaptureData sharedCaptureData];
+        NSString *fieldName = [data getForgottenPasswordFieldName];
+        NSDictionary *field = [[data.captureFlow objectForKey:@"fields"] objectForKey:fieldName];
+        NSString *placeholder = [field objectForKey:@"placeholder"];
+        if (!placeholder) placeholder =  self.signInType == JRTraditionalSignInEmailPassword ? @"email" : @"username";
+
+        [alertView textFieldAtIndex:0].placeholder = [NSString stringWithFormat:@"Enter your %@", placeholder];
     }
 
     [alertView show];
@@ -315,13 +321,15 @@ typedef enum
     if (alertView.tag == JRIncorrectUserOrPasswordAlertViewTag && buttonIndex == 1) {
         [self showForgottenPasswordAlert];
     } else if (alertView.tag == JRForgotPasswordAlertViewTag && buttonIndex == 1) {
-        [JRCapture startForgottenPasswordRecoveryForEmailAddress:[alertView textFieldAtIndex:0].text
-                                                      recoverUri:nil delegate:self context:nil];
+        [delegate showLoading];
+        [JRCapture startForgottenPasswordRecoveryForField:[alertView textFieldAtIndex:0].text
+                                               recoverUri:nil delegate:self context:nil];
     }
 }
 
 - (void)forgottenPasswordRecoveryDidSucceedWithContext:(id <NSObject>)context
 {
+    [delegate hideLoading];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
@@ -330,6 +338,7 @@ typedef enum
 
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error context:(id <NSObject>)context
 {
+    [delegate hideLoading];
     NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Could Not Reset Password"
                                                         message:errorMessage delegate:nil
