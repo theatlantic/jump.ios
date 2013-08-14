@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19BC039C16438228AF2F5E32 /* JRCaptureDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0A0D53A68BDBB3486936 /* JRCaptureDataTests.m */; };
+		19BC06BC359ED6E1D914EDC2 /* JRCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC044CABA1F8B5E2A87965 /* JRCaptureTests.m */; };
 		9FEB3888158130E1007706DC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEB3886158130E1007706DC /* MessageUI.framework */; };
 		9FEB3889158130E1007706DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEB3887158130E1007706DC /* Security.framework */; };
 		C142400954EAC419CA272B6B /* JRPinonipL2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = C14243B5A0B7EE02DC53260D /* JRPinonipL2Object.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -257,6 +259,7 @@
 		D8DABE2E17B94F8800F31953 /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8DABD5D17B94F8800F31953 /* JRWebViewController.xib */; };
 		D8DABE2F17B94F8800F31953 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DABD6017B94F8800F31953 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8DABE3117B99F2700F31953 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DABE3017B99F2700F31953 /* GHUnitIOS.framework */; };
+		D8FC6F8F17BAA7960001650F /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FC6F8E17BAA7960001650F /* libOCMock.a */; };
 		DDE0B9A67F00A1DC4B6DFBB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE0B9A67F00A1DC4B6DFBB5 /* UIKit.framework */; };
 		DDE0B9A67F00A1DC4B6DFBB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE0B9A67F00A1DC4B6DFBB7 /* Foundation.framework */; };
 		DDE0B9A67F00A1DC4B6DFBBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE0B9A67F00A1DC4B6DFBB9 /* CoreGraphics.framework */; };
@@ -286,6 +289,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19BC044CABA1F8B5E2A87965 /* JRCaptureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureTests.m; sourceTree = "<group>"; };
+		19BC0A0D53A68BDBB3486936 /* JRCaptureDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureDataTests.m; sourceTree = "<group>"; };
 		9FEB3886158130E1007706DC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9FEB3887158130E1007706DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C1424009BA7F4A348ED647DC /* JRPinapinoL1Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinapinoL1Object.m; sourceTree = "<group>"; };
@@ -609,6 +614,7 @@
 		D8DABD5F17B94F8800F31953 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		D8DABD6017B94F8800F31953 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		D8DABE3017B99F2700F31953 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnitIOS.framework; sourceTree = "<group>"; };
+		D8FC6F8E17BAA7960001650F /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = usr/lib/libOCMock.a; sourceTree = "<group>"; };
 		DDE0B9A67F00A1DC4B6DFBAC /* JUMPTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUMPTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE0B9A67F00A1DC4B6DFBB5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDE0B9A67F00A1DC4B6DFBB7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -647,6 +653,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8FC6F8F17BAA7960001650F /* libOCMock.a in Frameworks */,
 				9FEB3888158130E1007706DC /* MessageUI.framework in Frameworks */,
 				9FEB3889158130E1007706DC /* Security.framework in Frameworks */,
 				DDE0B9A67F00A1DC4B6DFBB6 /* UIKit.framework in Frameworks */,
@@ -1181,6 +1188,7 @@
 		DDE0B9A67F00A1DC4B6DFBA8 = {
 			isa = PBXGroup;
 			children = (
+				D8FC6F8E17BAA7960001650F /* libOCMock.a */,
 				D8DABC5917B94F8800F31953 /* Janrain */,
 				DDE0B9A67F00A1DC4B6DFBA9 /* Products */,
 				DDE0B9A67F00A1DC4B6DFBB4 /* Frameworks */,
@@ -1238,6 +1246,8 @@
 				DDE0B9A67F00A1DC4B6DFBD5 /* OtherAttributesTests.m */,
 				DDE0B9A67F00A1DC4B6DFBCF /* ContraintsTests.m */,
 				DDE0B9A67F00A1DC4B6DFBBC /* Supporting Files */,
+				19BC0A0D53A68BDBB3486936 /* JRCaptureDataTests.m */,
+				19BC044CABA1F8B5E2A87965 /* JRCaptureTests.m */,
 			);
 			path = JUMPTests;
 			sourceTree = "<group>";
@@ -1579,6 +1589,8 @@
 				D8DABD8A17B94F8800F31953 /* JRWebViewController.m in Sources */,
 				D8DABD8C17B94F8800F31953 /* JREngagePlugin.js in Sources */,
 				D8DABE2F17B94F8800F31953 /* SFHFKeychainUtils.m in Sources */,
+				19BC039C16438228AF2F5E32 /* JRCaptureDataTests.m in Sources */,
+				19BC06BC359ED6E1D914EDC2 /* JRCaptureTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1653,10 +1665,18 @@
 					"JRCAPTURE_ACCESS_TOKEN_CONTROL=1",
 					"JRCAPTURE_FETCH_LAST_UPDATED=1",
 				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/usr/include\"";
 				INFOPLIST_FILE = "JUMPTests/JUMPTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/lib\"",
+					"\"$(SRCROOT)/usr/lib\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
 				);
 				PRODUCT_NAME = JUMPTests;
 				WRAPPER_EXTENSION = app;
@@ -1678,10 +1698,18 @@
 					"JRCAPTURE_ACCESS_TOKEN_CONTROL=1",
 					"JRCAPTURE_FETCH_LAST_UPDATED=1",
 				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/usr/include\"";
 				INFOPLIST_FILE = "JUMPTests/JUMPTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/lib\"",
+					"\"$(SRCROOT)/usr/lib\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
 				);
 				PRODUCT_NAME = JUMPTests;
 				WRAPPER_EXTENSION = app;

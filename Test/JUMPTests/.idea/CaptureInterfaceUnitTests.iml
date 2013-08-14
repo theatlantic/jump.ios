@@ -316,9 +316,6 @@
     <content url="file://$MODULE_DIR$/../../Janrain/Security/SFHFKeychainUtils.m">
       <sourceFolder url="file://$MODULE_DIR$/../../Janrain/Security/SFHFKeychainUtils.m" isTestSource="false" />
     </content>
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
-    </content>
     <content url="file://$MODULE_DIR$/../JRCapture/UnitTestCaptureFiles/JRCapture/JRBasicObject.h">
       <sourceFolder url="file://$MODULE_DIR$/../JRCapture/UnitTestCaptureFiles/JRCapture/JRBasicObject.h" isTestSource="false" />
     </content>
@@ -600,6 +597,9 @@
     </content>
     <content url="file://$MODULE_DIR$/../JRCapture/UnitTestCaptureFiles/JRCapture/JRStringPluralElement.m">
       <sourceFolder url="file://$MODULE_DIR$/../JRCapture/UnitTestCaptureFiles/JRCapture/JRStringPluralElement.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
