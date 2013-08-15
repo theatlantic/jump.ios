@@ -49,6 +49,7 @@ typedef enum
 @property(retain) JRTraditionalSignInViewController *nativeSignInViewController;
 @property(retain) id <JRCaptureDelegate> delegate;
 @property JREngageDialogState dialogState;
+@property bool didTearDownViewControllers;
 @end
 
 @implementation JREngageWrapper
@@ -62,9 +63,8 @@ static JREngageWrapper *singleton = nil;
 - (JREngageWrapper *)init
 {
     if ((self = [super init])) {
-        [[NSNotificationCenter defaultCenter]
-            addObserver:self selector:@selector(tearingDownViewControllers:)
-                   name:@"JRTearingDownViewControllers" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tearingDownViewControllers:)
+                                                     name:@"JRTearingDownViewControllers" object:nil];
 
         self.didTearDownViewControllers = NO;
 
@@ -180,18 +180,20 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
 }
 
 - (void)tearingDownViewControllers:(NSNotification *)notification {
+    DLog();
     self.didTearDownViewControllers = YES;
 }
 
 - (void)engageLibraryTearDown
 {
+    DLog();
     if (self.didTearDownViewControllers) {
+        DLog();
         [JREngage updateTokenUrl:nil];
         self.delegate = nil;
         self.nativeSignInViewController = nil;
         self.engageToken = nil;
         self.didTearDownViewControllers = NO;
-
     }
 }
 

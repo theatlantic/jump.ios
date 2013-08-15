@@ -1,3 +1,14 @@
+v3.3.6
+ - Fixes an unitialized variable error which causes erroneous JSON parsing errors
+ - Factors Capture delegate protocols into a separate class in SimpleCaptureDemo in
+   order to clarify what delegate messages, exactly, need to be responded to.
+v3.3.5
+ - Adds additional debug logging for troubleshooting UI state transitions
+v3.3.4
+ - Fixes flow_version parameter passing for traditional authentication
+v3.3.3
+ - Fixes another state transition bug, enlarges cookie-clearing-conditions (to cover
+   the direct-to-provider auth flows)
 v3.3.2
  - Fixes some UI state transition bugs involving provider-direct authentication flows
 v3.3.1

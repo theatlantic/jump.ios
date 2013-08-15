@@ -311,10 +311,14 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
             traditionalSignInTypeSignInType == JRTraditionalSignInUsernamePassword ? @"username" : nil;
     if (!attrName) return;
 
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+
     NSMutableDictionary *creds = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                               user, attrName,
                                                               password, @"password", nil];
     if (mergeToken) [creds setObject:mergeToken forKey:@"merge_token"];
+    NSString *flowVersion = data.downloadedFlowVersion;
+    if (flowVersion) [creds setObject:flowVersion forKey:@"flow_version"];
 
     [JRCaptureApidInterface signInCaptureUserWithCredentials:creds ofType:attrName forDelegate:delegate
                                                  withContext:nil];
@@ -576,6 +580,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 + (void)maybeDispatch:(SEL)pSelector forDelegate:(id <JRCaptureDelegate>)delegate withArg:(id)arg1
               withArg:(id)arg2
 {
+    DLog(@"Dispatching %@ with %@, %@", NSStringFromSelector(pSelector), arg1, arg2);
     if ([delegate respondsToSelector:pSelector])
     {
         [delegate performSelector:pSelector withObject:arg1 withObject:arg2];
@@ -584,6 +589,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
 + (void)maybeDispatch:(SEL)pSelector forDelegate:(id <JRCaptureDelegate>)delegate withArg:(id)arg
 {
+    DLog(@"Dispatching %@ with %@", NSStringFromSelector(pSelector), arg);
     if ([delegate respondsToSelector:pSelector])
     {
         [delegate performSelector:pSelector withObject:arg];

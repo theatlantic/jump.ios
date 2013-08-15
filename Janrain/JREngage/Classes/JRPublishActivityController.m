@@ -409,7 +409,13 @@ or opacity of our rounded rectangle. */
 //    UILabel *mySharedLabel;
 //}
 @synthesize selectedProvider;
-@synthesize myBackgroundView, myTabBar, myLoadingLabel, myLoadingActivitySpinner, myLoadingGrayView, myPadGrayEditingViewTop, myPadGrayEditingViewMiddle, myPadGrayEditingViewBottom, myContentView, myScrollView, myUserCommentTextView, myUserCommentBoundingBox, myRemainingCharactersLabel, myEntirePreviewContainer, myPreviewContainerRoundedRect, myPreviewOfTheUserCommentLabel, myRichDataContainer, myMediaThumbnailView, myMediaThumbnailActivityIndicator, myTitleLabel, myDescriptionLabel, myInfoButton, myPoweredByLabel, myProviderIcon, myShareToView, myTriangleIcon, myConnectAndShareButton, myJustShareButton, myProfilePic, myProfilePicActivityIndicator, myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
+@synthesize myBackgroundView, myTabBar, myLoadingLabel, myLoadingActivitySpinner, myLoadingGrayView,
+myPadGrayEditingViewTop, myPadGrayEditingViewMiddle, myPadGrayEditingViewBottom, myContentView, myScrollView,
+myUserCommentTextView, myUserCommentBoundingBox, myRemainingCharactersLabel, myEntirePreviewContainer,
+myPreviewContainerRoundedRect, myPreviewOfTheUserCommentLabel, myRichDataContainer, myMediaThumbnailView,
+myMediaThumbnailActivityIndicator, myTitleLabel, myDescriptionLabel, myInfoButton, myPoweredByLabel, myProviderIcon,
+myShareToView, myTriangleIcon, myConnectAndShareButton, myJustShareButton, myProfilePic, myProfilePicActivityIndicator,
+myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
    andCustomInterface:(NSDictionary *)theCustomInterface
@@ -1735,11 +1741,9 @@ or opacity of our rounded rectangle. */
             JRUserLandingController *landing = [JRUserInterfaceMaestro sharedMaestro].myUserLandingController;
             [[self navigationController] pushViewController:landing animated:YES];
         }
-                /* Otherwise, go straight to the web view. */
-        else
+        else /* Otherwise, go straight to the web view. */
         {
-            [[self navigationController] pushViewController:[JRUserInterfaceMaestro sharedMaestro].myWebViewController
-                                                   animated:YES];
+            [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
         }
     }
     else

@@ -192,7 +192,8 @@ static JREngage* singleton = nil;
     if (sessionData.dialogIsShowing)
     {
         [self engageDidFailWithError:
-                      [JREngageError errorWithMessage:@"The dialog failed to show because there is already a JREngage dialog loaded."
+                      [JREngageError errorWithMessage:@"The dialog failed to show because there is already a JREngage "
+                              "dialog loaded."
                                               andCode:JRDialogShowingError]];
         return;
     }
@@ -226,8 +227,7 @@ static JREngage* singleton = nil;
         }
         else
         {
-            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides
-                                                     provider:provider];
+            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
         }
     }];
 }
@@ -285,17 +285,17 @@ static JREngage* singleton = nil;
 {
     ALog (@"");
 
- /* If there was error configuring the library, sessionData.error will not be null. */
+    /* If there was error configuring the library, sessionData.error will not be null. */
     if (sessionData.error)
     {
 
     /* Since configuration should happen long before the user attempts to use the library and because the user may not
-        attempt to use the library at all, we shouldn’t notify the calling application of the error until the library
+        attempt to use the library at all, we shouldn't notify the calling application of the error until the library
         is actually needed.  Additionally, since many configuration issues could be temporary (e.g., network issues),
         a subsequent attempt to reconfigure the library could end successfully.  The calling application could alert the
         user of the issue (with a pop-up dialog, for example) right when the user wants to use it (and not before).
-        This gives the calling application an ad hoc way to reconfigure the library, and doesn’t waste the limited
-        resources by trying to reconfigure itself if it doesn’t know if it’s actually needed. */
+        This gives the calling application an ad hoc way to reconfigure the library, and doesn't waste the limited
+        resources by trying to reconfigure itself if it doesn't know if it’s actually needed. */
 
         if (sessionData.error.code / 100 == ConfigurationError)
         {
@@ -314,7 +314,8 @@ static JREngage* singleton = nil;
     if (sessionData.dialogIsShowing)
     {
         [self engageDidFailWithError:
-                      [JREngageError errorWithMessage:@"The dialog failed to show because there is already a JREngage dialog loaded."
+                      [JREngageError errorWithMessage:@"The dialog failed to show because there is already a JREngage "
+                              "dialog loaded."
                                               andCode:JRDialogShowingError]];
         return;
     }

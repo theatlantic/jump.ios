@@ -39,34 +39,19 @@
 #import "JRWebViewController.h"
 #import "debug_log.h"
 
-//#define frame_x(a) a.frame.origin.x
-//#define frame_y(a) a.frame.origin.y
 #define frame_w(a) a.frame.size.width
 #define frame_h(a) a.frame.size.height
-
-//#define frame_a(a) frame_x(a), frame_y(a), frame_w(a), frame_h(a)
-
-@interface JREngageError (JREngageError_setError)
-+ (NSError*)errorWithMessage:(NSString *)message andCode:(NSInteger)code;
-@end
-
-@interface JRUserLandingController ()
-- (NSString*)customTitle;
-- (void)callWebView:(UITextField*)textField;
-- (UITextField*)getTextField:(UITableViewCell*)cell;
-- (UITableViewCell*)getTableCell;
-- (void)adjustTableViewFrame;
-@end
 
 @implementation JRUserLandingController
 @synthesize myBackgroundView;
 @synthesize myTableView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andCustomInterface:(NSDictionary*)theCustomInterface
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+   andCustomInterface:(NSDictionary *)theCustomInterface
 {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
-        sessionData     = [JRSessionData jrSessionData];
+        sessionData = [JRSessionData jrSessionData];
         customInterface = [theCustomInterface retain];
 
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -96,7 +81,7 @@
     if (!infoBar)
     {
         infoBar = [[JRInfoBar alloc] initWithFrame:CGRectMake(0, frame_h(self.view) - 30, frame_w(self.view), 30)
-                                          andStyle:((JRInfoBarStyle)[sessionData hidePoweredBy])];
+                                          andStyle:((JRInfoBarStyle) [sessionData hidePoweredBy])];
 
         [self.view addSubview:infoBar];
     }
@@ -104,13 +89,13 @@
     if (!self.navigationController.navigationBar.backItem)
     {
         UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
-                            initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                 target:sessionData
-                                                 action:@selector(triggerAuthenticationDidCancel:)] autorelease];
+                initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                     target:sessionData
+                                     action:@selector(triggerAuthenticationDidCancel:)] autorelease];
 
-        self.navigationItem.rightBarButtonItem         = cancelButton;
+        self.navigationItem.rightBarButtonItem = cancelButton;
         self.navigationItem.rightBarButtonItem.enabled = YES;
-        self.navigationItem.rightBarButtonItem.style   = UIBarButtonItemStyleBordered;
+        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleBordered;
     }
     else
     {
@@ -119,7 +104,7 @@
     }
 }
 
-- (NSString*)customTitle
+- (NSString *)customTitle
 {
     DLog(@"");
     if (!sessionData.currentProvider.requiresInput) return @"Welcome Back!";
@@ -132,7 +117,7 @@
     DLog(@"");
     [super viewWillAppear:animated];
 
-   /* Load the custom background view, if there is one. */
+    /* Load the custom background view, if there is one. */
     if ([customInterface objectForKey:kJRAuthenticationBackgroundImageView])
         [myBackgroundView addSubview:[customInterface objectForKey:kJRAuthenticationBackgroundImageView]];
 
@@ -149,15 +134,15 @@
 
     if (!titleView)
     {
-        titleView                 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 156, 44)] autorelease];
+        titleView = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 156, 44)] autorelease];
         titleView.backgroundColor = [UIColor clearColor];
-        titleView.font            = [UIFont boldSystemFontOfSize:20.0];
-        titleView.shadowColor     = [UIColor colorWithWhite:0.0 alpha:0.5];
-        titleView.textAlignment   = JR_TEXT_ALIGN_CENTER;
-        titleView.textColor       = [UIColor whiteColor];
+        titleView.font = [UIFont boldSystemFontOfSize:20.0];
+        titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        titleView.textAlignment = JR_TEXT_ALIGN_CENTER;
+        titleView.textColor = [UIColor whiteColor];
     }
 
-    titleView.text                = [NSString stringWithString:sessionData.currentProvider.friendlyName];
+    titleView.text = [NSString stringWithString:sessionData.currentProvider.friendlyName];
     self.navigationItem.titleView = titleView;
 
     [myTableView reloadData];
@@ -172,7 +157,7 @@
     self.contentSizeForViewInPopover = self.view.frame.size;
 
     UITableViewCell *cell = [self getTableCell];
-    UITextField     *textField = [self getTextField:cell];
+    UITextField *textField = [self getTextField:cell];
 
     // Only make the cell's text field the first responder (and show the keyboard) in certain situations
     if ([sessionData weShouldBeFirstResponder] && !textField.text)
@@ -190,7 +175,9 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex { }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+}
 
 #pragma mark Table view methods
 
@@ -227,20 +214,20 @@ enum
 #define BACK_TO_PROVIDERS_BUTTON_FRAME  0,      0,      135,    40
 #define SMALL_SIGN_IN_BUTTON_FRAME      145,    0,      135,    40
 
-- (UITableViewCell*)getTableCell
+- (UITableViewCell *)getTableCell
 {
     return [myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
-- (UIImageView*)getLogo:(UITableViewCell*)cell
+- (UIImageView *)getLogo:(UITableViewCell *)cell
 {
     if (cell)
-        return (UIImageView*)[cell.contentView viewWithTag:LOGO_TAG];
+        return (UIImageView *) [cell.contentView viewWithTag:LOGO_TAG];
 
     UIImageView *logo = [[[UIImageView alloc] initWithFrame:CGRectMake(LOGO_FRAME)] autorelease];
 
     logo.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |
-                            UIViewAutoresizingFlexibleLeftMargin;
+            UIViewAutoresizingFlexibleLeftMargin;
 
     logo.tag = LOGO_TAG;
 
@@ -250,17 +237,17 @@ enum
 - (UILabel *)getWelcomeLabel:(UITableViewCell *)cell
 {
     if (cell)
-        return (UILabel*)[cell.contentView viewWithTag:WELCOME_LABEL_TAG];
+        return (UILabel *) [cell.contentView viewWithTag:WELCOME_LABEL_TAG];
 
     UILabel *welcomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(WELCOME_LABEL_FRAME)] autorelease];
 
-    welcomeLabel.font                      = [UIFont boldSystemFontOfSize:20.0];
+    welcomeLabel.font = [UIFont boldSystemFontOfSize:20.0];
 
     welcomeLabel.adjustsFontSizeToFitWidth = YES;
-    welcomeLabel.textColor                 = [UIColor blackColor];
-    welcomeLabel.backgroundColor           = [UIColor clearColor];
-    welcomeLabel.autoresizingMask          = UIViewAutoresizingFlexibleRightMargin |
-                                             UIViewAutoresizingFlexibleLeftMargin;
+    welcomeLabel.textColor = [UIColor blackColor];
+    welcomeLabel.backgroundColor = [UIColor clearColor];
+    welcomeLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |
+            UIViewAutoresizingFlexibleLeftMargin;
 
     welcomeLabel.tag = WELCOME_LABEL_TAG;
 
@@ -270,28 +257,28 @@ enum
 - (UITextField *)getTextField:(UITableViewCell *)cell
 {
     if (cell)
-        return (UITextField*)[cell.contentView viewWithTag:TEXT_FIELD_TAG];
+        return (UITextField *) [cell.contentView viewWithTag:TEXT_FIELD_TAG];
 
     UITextField *textField = [[[UITextField alloc] initWithFrame:CGRectMake(TEXT_FIELD_FRAME)] autorelease];
 
     textField.font = [UIFont systemFontOfSize:15.0];
 
-    textField.adjustsFontSizeToFitWidth     = YES;
-    textField.textColor                     = [UIColor blackColor];
-    textField.borderStyle                   = UITextBorderStyleRoundedRect;
-    textField.contentVerticalAlignment      = UIControlContentVerticalAlignmentCenter;
-    textField.clearsOnBeginEditing          = YES;
-    textField.clearButtonMode               = UITextFieldViewModeWhileEditing;
-    textField.autocorrectionType            = UITextAutocorrectionTypeNo;
-    textField.autocapitalizationType        = UITextAutocapitalizationTypeNone;
-    textField.keyboardType                  = UIKeyboardTypeURL;
-    textField.returnKeyType                 = UIReturnKeyDone;
+    textField.adjustsFontSizeToFitWidth = YES;
+    textField.textColor = [UIColor blackColor];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    textField.clearsOnBeginEditing = YES;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.keyboardType = UIKeyboardTypeURL;
+    textField.returnKeyType = UIReturnKeyDone;
     textField.enablesReturnKeyAutomatically = YES;
-    textField.autoresizingMask              = UIViewAutoresizingFlexibleRightMargin |
-                                              UIViewAutoresizingFlexibleLeftMargin;
+    textField.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |
+            UIViewAutoresizingFlexibleLeftMargin;
 
     textField.delegate = self;
-    textField.tag      = TEXT_FIELD_TAG;
+    textField.tag = TEXT_FIELD_TAG;
 
     [textField setHidden:YES];
 
@@ -301,7 +288,7 @@ enum
 - (UIButton *)getSignInButton:(UITableViewCell *)cell
 {
     if (cell)
-        return (UIButton*)[cell.contentView viewWithTag:SIGN_IN_BUTTON_TAG];
+        return (UIButton *) [cell.contentView viewWithTag:SIGN_IN_BUTTON_TAG];
 
     UIButton *signInButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
@@ -329,7 +316,7 @@ enum
 - (UIButton *)getBackToProvidersButton:(UITableViewCell *)cell
 {
     if (cell)
-        return (UIButton*)[cell.contentView viewWithTag:BACK_TO_PROVIDERS_BUTTON_TAG];
+        return (UIButton *) [cell.contentView viewWithTag:BACK_TO_PROVIDERS_BUTTON_TAG];
 
     UIButton *backToProvidersButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
@@ -357,7 +344,7 @@ enum
 - (UIButton *)getBigSignInButton:(UITableViewCell *)cell
 {
     if (cell)
-        return (UIButton*)[cell.contentView viewWithTag:BIG_SIGN_IN_BUTTON_TAG];
+        return (UIButton *) [cell.contentView viewWithTag:BIG_SIGN_IN_BUTTON_TAG];
 
     UIButton *bigSignInButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
@@ -399,7 +386,7 @@ enum
         UIView *buttonSubview = [[[UIView alloc] initWithFrame:CGRectMake(BUTTON_SUBVIEW_FRAME)] autorelease];
 
         [buttonSubview setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin |
-                                           UIViewAutoresizingFlexibleLeftMargin];
+                UIViewAutoresizingFlexibleLeftMargin];
 
         [buttonSubview addSubview:[self getSignInButton:nil]];
         [buttonSubview addSubview:[self getBackToProvidersButton:nil]];
@@ -412,16 +399,16 @@ enum
         [cell.contentView addSubview:buttonSubview];
 
         cell.backgroundColor = [UIColor whiteColor];
-        cell.selectionStyle  = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
     NSString *imagePath = [NSString stringWithFormat:@"logo_%@_280x65.png", sessionData.currentProvider.name];
 
     [self getLogo:cell].image = [UIImage imageNamed:imagePath];
 
-    UITextField *textField       = [self getTextField:cell];
-    UIButton    *bigSignInButton = [self getBigSignInButton:cell];
-    UILabel     *welcomeLabel    = [self getWelcomeLabel:cell];
+    UITextField *textField = [self getTextField:cell];
+    UIButton *bigSignInButton = [self getBigSignInButton:cell];
+    UILabel *welcomeLabel = [self getWelcomeLabel:cell];
 
     /* If the provider requires input, we need to enable the textField, and set the text/placeholder text to the
     appropriate string */
@@ -516,9 +503,15 @@ enum
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
-                                                       replacementString:(NSString *)string { return YES; }
+replacementString:(NSString *)string
+{
+    return YES;
+}
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField { return YES; }
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -550,7 +543,8 @@ enum
         else
         {
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                             message:@"The input you have entered is not valid. Please try again."
+                                                             message:@"The input you have entered is not valid. Please "
+                                                                     "try again."
                                                             delegate:self
                                                    cancelButtonTitle:@"OK"
                                                    otherButtonTitles:nil] autorelease];
@@ -559,8 +553,7 @@ enum
         }
     }
 
-    JRWebViewController *webViewController = [JRUserInterfaceMaestro sharedMaestro].myWebViewController;
-    [[self navigationController] pushViewController:webViewController animated:YES];
+    [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -583,14 +576,19 @@ enum
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
-- (void)signInButtonTouchUpInside:(UIButton*)button
+- (void)signInButtonTouchUpInside:(UIButton *)button
 {
     DLog(@"");
     [self callWebView:[self getTextField:[self getTableCell]]];
 }
 
-- (void)userInterfaceWillClose { }
-- (void)userInterfaceDidClose  { }
+- (void)userInterfaceWillClose
+{
+}
+
+- (void)userInterfaceDidClose
+{
+}
 
 - (void)dealloc
 {

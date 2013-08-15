@@ -100,9 +100,27 @@ static NSString *applicationBundleDisplayName()
     return [infoPlist objectForKey:@"CFBundleDisplayName"];
 }
 
-#pragma mark JREngageError ()
-@interface JREngageError (JREngageError_setError)
-@end
+static void deleteWebViewCookiesForDomains(NSArray *domains)
+{
+    if (!domains) return;
+    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+
+    NSArray* cookiesWithDomain;
+    for (NSString *domain in domains)
+    {
+        /* http:// */
+        NSString *domainBaseUrl = [NSString stringWithFormat:@"http://%@", domain];
+        cookiesWithDomain = [cookies cookiesForURL:[NSURL URLWithString:domainBaseUrl]];
+        for (NSHTTPCookie* cookie in cookiesWithDomain)
+            [cookies deleteCookie:cookie];
+
+        /* https:// */
+        domainBaseUrl = [NSString stringWithFormat:@"https://%@", domain];
+        cookiesWithDomain = [cookies cookiesForURL:[NSURL URLWithString:domainBaseUrl]];
+        for (NSHTTPCookie* cookie in cookiesWithDomain)
+            [cookies deleteCookie:cookie];
+    }
+}
 
 #pragma mark JRActivityObject ()
 @interface JRActivityObject (JRActivityObject_shortenedUrl)
@@ -270,11 +288,11 @@ static NSString *applicationBundleDisplayName()
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)setForceReauth:(BOOL)forceReauth
+- (void)setForceReauthStartUrlFlag:(BOOL)forceReauthStartUrlFlag
 {
-    _forceReauth = forceReauth;
+    _forceReauthStartUrlFlag = forceReauthStartUrlFlag;
 
-    [[NSUserDefaults standardUserDefaults] setBool:_forceReauth
+    [[NSUserDefaults standardUserDefaults] setBool:_forceReauthStartUrlFlag
                                             forKey:[NSString stringWithFormat:cJRProviderForceReauth, self.name]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -283,7 +301,7 @@ static NSString *applicationBundleDisplayName()
 {
     _userInput     = [[[NSUserDefaults standardUserDefaults]
                        stringForKey:[NSString stringWithFormat:cJRProviderUserInput, _name]] retain];
-    _forceReauth   =  [[NSUserDefaults standardUserDefaults]
+    _forceReauthStartUrlFlag =  [[NSUserDefaults standardUserDefaults]
                        boolForKey:[NSString stringWithFormat:cJRProviderForceReauth, _name]];
 }
 
@@ -390,6 +408,13 @@ static NSString *applicationBundleDisplayName()
     return NO;
 }
 
+- (void)clearCookiesOnCookieDomains
+{
+    if ([self.cookieDomains count])
+        deleteWebViewCookiesForDomains(self.cookieDomains);
+}
+
+
 - (void)dealloc
 {
     [_name release];
@@ -403,6 +428,13 @@ static NSString *applicationBundleDisplayName()
     [_cookieDomains release];
     [customUserAgentString release];
     [super dealloc];
+}
+
+- (void)forceReauth
+{
+    if ([self.cookieDomains count])
+        [self clearCookiesOnCookieDomains];
+    else self.forceReauthStartUrlFlag = YES; // MOB-135
 }
 @end
 
@@ -825,11 +857,10 @@ static JRSessionData *singleton = nil;
 
     if (!providerName) return;
     JRProvider* provider = [engageProviders objectForKey:providerName];
-    if (!provider) return;
-    if ([provider.cookieDomains count])
-        [self deleteWebViewCookiesForDomains:provider.cookieDomains];
-    else provider.forceReauth = YES; // MOB-135
 
+    if (!provider) return;
+
+    [provider forceReauth];
     [authenticatedUsersByProvider removeObjectForKey:providerName];
     NSData *usersData = [NSKeyedArchiver archivedDataWithRootObject:authenticatedUsersByProvider];
     [[NSUserDefaults standardUserDefaults] setObject:usersData forKey:cJRAuthenticatedUsersByProvider];
@@ -919,28 +950,6 @@ static JRSessionData *singleton = nil;
     return nil;
 }
 
-- (void)deleteWebViewCookiesForDomains:(NSArray *)domains
-{
-    if (!domains) return;
-    NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-
-    NSArray* cookiesWithDomain;
-    for (NSString *domain in domains)
-    {
-        /* http:// */
-        NSString *domainBaseUrl = [NSString stringWithFormat:@"http://%@", domain];
-        cookiesWithDomain = [cookies cookiesForURL:[NSURL URLWithString:domainBaseUrl]];
-        for (NSHTTPCookie* cookie in cookiesWithDomain)
-            [cookies deleteCookie:cookie];
-
-        /* https:// */
-        domainBaseUrl = [NSString stringWithFormat:@"https://%@", domain];
-        cookiesWithDomain = [cookies cookiesForURL:[NSURL URLWithString:domainBaseUrl]];
-        for (NSHTTPCookie* cookie in cookiesWithDomain)
-            [cookies deleteCookie:cookie];
-    }
-}
-
 - (NSURL *)startUrlForCurrentProvider
 {
     return [self startUrlForProvider:self.currentProvider];
@@ -975,16 +984,17 @@ static JRSessionData *singleton = nil;
 
     NSString *uuid = [[self deviceIdentifier] stringByAddingUrlPercentEscapes];
 
-    BOOL forceReauth = (alwaysForceReauth || currentProvider.forceReauth) ? YES : NO;
+    BOOL forceReauthFlag = (alwaysForceReauth || currentProvider.forceReauthStartUrlFlag) ? YES : NO;
 
-    if (forceReauth)
-        [self deleteWebViewCookiesForDomains:provider.cookieDomains];
+    if (forceReauthFlag)
+        deleteWebViewCookiesForDomains(provider.cookieDomains);
 
     NSString *urlString = [NSString stringWithFormat:@"%@%@?%@%@device=%@&extended=true&installation_id=%@",
                                                      baseUrl, provider.relativeUrl, extraParamString,
-                                                     forceReauth ? @"force_reauth=true&" : @"", [self device], uuid];
+                                                     forceReauthFlag ? @"force_reauth=true&" : @"",
+                                                     [self device], uuid];
 
-    provider.forceReauth = NO;
+    provider.forceReauthStartUrlFlag = NO;
     ALog (@"Starting authentication for %@:\n%@", provider.name, urlString);
     return [NSURL URLWithString:urlString];
 }

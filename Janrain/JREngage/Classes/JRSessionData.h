@@ -69,7 +69,7 @@
 @property(nonatomic, readonly) NSString *shortText;
 @property(nonatomic, readonly) NSString *placeholderText;
 @property(nonatomic, readonly) BOOL requiresInput;
-@property(nonatomic) BOOL forceReauth;
+@property(nonatomic) BOOL forceReauthStartUrlFlag;
 @property(nonatomic, retain) NSString *userInput;
 @property(nonatomic, readonly) NSDictionary *socialSharingProperties;
 @property(nonatomic, readonly) NSArray *cookieDomains;
@@ -80,6 +80,9 @@
 @property(nonatomic, retain) NSString *opxBlob; // already URL encoded
 
 - (BOOL)isEqualToReturningProvider:(NSString *)returningProvider;
+- (void)clearCookiesOnCookieDomains;
+
+- (void)forceReauth;
 @end
 
 @protocol JRSessionDelegate <NSObject>
@@ -133,8 +136,6 @@
 
 @property(readonly) BOOL hidePoweredBy;
 @property BOOL alwaysForceReauth;
-//@property            BOOL forceReauthJustThisTime;
-//@property            BOOL authenticatingDirectlyOnThisProvider;
 @property BOOL socialSharing;
 @property BOOL dialogIsShowing;
 @property(retain, readonly) NSError *error;

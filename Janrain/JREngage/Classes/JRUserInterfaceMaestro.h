@@ -77,8 +77,6 @@ typedef enum
 @protocol JRExternalDialogControllerDelegate <NSObject>
 @optional
 - (void)authenticationDidComplete;
-//- (void)authenticationDidCancel;
-//- (void)authenticationDidFail;
 - (void)showLoading;
 - (void)hideLoading;
 @end
@@ -98,19 +96,19 @@ typedef enum
 - (void)authenticationCompleted;
 - (void)authenticationFailed;
 - (void)authenticationCanceled;
-//- (void)publishingRestarted;
 - (void)publishingCompleted;
 - (void)publishingCanceled;
-//- (void)publishingFailed;
 
 - (void)startWebAuthWithCustomInterface:(NSDictionary *)customInterfaceOverrides provider:(NSString *)provider;
+
+- (void)pushWebViewFromViewController:(UIViewController *)viewController;
 
 @property(copy) NSMutableDictionary *customInterfaceDefaults;
 @property(readonly) JRProvidersController *myProvidersController;
 @property(readonly) JRUserLandingController *myUserLandingController;
 @property(readonly) JRWebViewController *myWebViewController;
 @property(readonly) JRPublishActivityController *myPublishActivityController;
-@property(copy) NSString *directProvider;
+@property(copy) NSString *directProviderName;
 
 - (void)buildCustomInterface:(NSDictionary *)customizations;
 

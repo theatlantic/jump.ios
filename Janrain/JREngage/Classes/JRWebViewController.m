@@ -39,23 +39,19 @@
 #import "JRUserInterfaceMaestro.h"
 #import "JRJsonUtils.h"
 
-@interface JREngageError (JREngageError_setError)
-+ (NSError*)errorWithMessage:(NSString *)message andCode:(NSInteger)code;
-@end
-
 @interface JRWebViewController ()
-- (void)webViewWithUrl:(NSURL*)url;
+- (void)loadUrlInWebView:(NSURL *)url;
 @end
 
 @implementation JRWebViewController
 {
-    JRSessionData   *sessionData;
-    NSDictionary    *customInterface;
+    JRSessionData *sessionData;
+    NSDictionary *customInterface;
 
-    UIView    *myBackgroundView;
+    UIView *myBackgroundView;
     UIWebView *myWebView;
 
-    JRInfoBar   *infoBar;
+    JRInfoBar *infoBar;
 
     BOOL keepProgress;
     BOOL userHitTheBackButton;
@@ -68,11 +64,11 @@
 #pragma mark UIView overrides
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-   andCustomInterface:(NSDictionary*)theCustomInterface
+   andCustomInterface:(NSDictionary *)theCustomInterface
 {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
-        sessionData     = [JRSessionData jrSessionData];
+        sessionData = [JRSessionData jrSessionData];
         customInterface = [theCustomInterface retain];
     }
 
@@ -88,19 +84,6 @@
 
     self.navigationItem.backBarButtonItem.target = sessionData;
     self.navigationItem.backBarButtonItem.action = @selector(triggerAuthenticationDidStartOver:);
-
-    if (!self.navigationController.navigationBar.backItem && !sessionData.socialSharing)
-    {
-        UIBarButtonItem *cancelButton =
-                [[[UIBarButtonItem alloc]
-                        initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                             target:sessionData
-                                             action:@selector(triggerAuthenticationDidCancel:)] autorelease];
-
-        self.navigationItem.rightBarButtonItem         = cancelButton;
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-        self.navigationItem.rightBarButtonItem.style   = UIBarButtonItemStyleBordered;
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -118,9 +101,9 @@
 
         if ([sessionData hidePoweredBy] == JRInfoBarStyleShowPoweredBy)
             [myWebView setFrame:CGRectMake(myWebView.frame.origin.x,
-                                           myWebView.frame.origin.y,
-                                           myWebView.frame.size.width,
-                                           myWebView.frame.size.height - infoBar.frame.size.height)];
+                    myWebView.frame.origin.y,
+                    myWebView.frame.size.width,
+                    myWebView.frame.size.height - infoBar.frame.size.height)];
 
         [self.view addSubview:infoBar];
     }
@@ -136,10 +119,9 @@
     }
     else if (IS_IPAD && (sessionData.currentProvider.usesPhoneUserAgentString ||
             [sessionData.currentProvider.name isEqualToString:@"facebook"] ||
-            [sessionData.currentProvider.name isEqualToString:@"yahoo"]
-    ))
+            [sessionData.currentProvider.name isEqualToString:@"yahoo"]))
     {
-        UIWebView *dummy = [[[UIWebView alloc] initWithFrame:CGRectMake(0,0,0,0)] autorelease];
+        UIWebView *dummy = [[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)] autorelease];
         NSString *padUa = [dummy stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
         customUa = [padUa stringByReplacingOccurrencesOfString:@"iPad" withString:@"iPhone"
                                                        options:NSCaseInsensitiveSearch
@@ -148,8 +130,27 @@
     return customUa;
 }
 
+- (void)maybeAddCancelButton
+{
+    // Add a cancel button if there's no back button
+    if (!self.navigationController.navigationBar.backItem && !sessionData.socialSharing)
+    {
+        UIBarButtonItem *cancelButton =
+                [[[UIBarButtonItem alloc]
+                        initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                             target:self
+                                             action:@selector(cancelButtonPressed:)] autorelease];
+
+        self.navigationItem.rightBarButtonItem = cancelButton;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleBordered;
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self maybeAddCancelButton];
+
     DLog(@"%@", [myWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"]);
     [super viewDidAppear:animated];
 
@@ -168,7 +169,7 @@
         return;
     }
 
-    [self webViewWithUrl:[sessionData startUrlForCurrentProvider]];
+    [self loadUrlInWebView:[sessionData startUrlForCurrentProvider]];
     [myWebView becomeFirstResponder];
 }
 
@@ -215,7 +216,7 @@
     {
         if ([sessionData socialSharing])
             [sessionData triggerAuthenticationDidStartOver:nil];
-        else if ([JRUserInterfaceMaestro sharedMaestro].directProvider)
+        else if ([JRUserInterfaceMaestro sharedMaestro].directProviderName)
             [sessionData triggerAuthenticationDidCancel];
     }
 
@@ -239,14 +240,14 @@
     if (!IS_IPAD) return;
 
     if (!([sessionData.currentProvider.name isEqualToString:@"google"] ||
-          [sessionData.currentProvider.name isEqualToString:@"yahoo"])) return;
+            [sessionData.currentProvider.name isEqualToString:@"yahoo"]))
+        return;
 
     /* This fixes the UIWebView's display of IDP sign-in pages to make them fit the iPhone sized dialog on the iPad.
      * It's broken up into separate JS injections in case one statement fails (e.g. there is no document element),
      * so that the others execute. */
     [myWebView stringByEvaluatingJavaScriptFromString:@""
             "window.innerHeight = 480; window.innerWidth = 320;"
-            //"window.screen.height = 480; window.screen.width = 320;"
             "document.documentElement.clientWidth = 320; document.documentElement.clientHeight = 480;"
             "document.body.style.minWidth = \"320px\";"
             "document.body.style.width = \"auto\";"
@@ -254,7 +255,7 @@
             "document.body.style.height = \"auto\";"
             "document.body.children[0].style.minHeight = \"0px\";"];
 
-    [myWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@""
+    NSString *jsString = [NSString stringWithFormat:@""
             "(function(){"
               "var m = document.querySelector('meta[name=viewport]');"
               "if (m === null) { m = document.createElement('meta'); document.head.appendChild(m); }"
@@ -262,19 +263,19 @@
               "m.content = 'width=%i, height=%i';"
             "})()",
             (int) myWebView.frame.size.width,
-            (int) myWebView.frame.size.height]];
+            (int) myWebView.frame.size.height];
+    [myWebView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
-//- (void)cancelButtonPressed:(id)sender
-//{
-//    userHitTheBackButton = NO;
-//    [sessionData triggerAuthenticationDidStartOver:sender];
-//}
+- (void)cancelButtonPressed:(id)sender
+{
+    userHitTheBackButton = NO;
+    [sessionData triggerAuthenticationDidCancel];
+}
 
 - (void)startProgress
 {
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = YES;
+    ([UIApplication sharedApplication]).networkActivityIndicatorVisible = YES;
     [infoBar startProgress];
 }
 
@@ -282,8 +283,7 @@
 {
     if ([JRConnectionManager openConnections] == 0)
     {
-        UIApplication* app = [UIApplication sharedApplication];
-        app.networkActivityIndicatorVisible = NO;
+        ([UIApplication sharedApplication]).networkActivityIndicatorVisible = NO;
     }
 
     keepProgress = NO;
@@ -292,12 +292,10 @@
 
 #pragma mark JRConnectionManagerDelegate implementation
 
-- (void)connectionDidFinishLoadingWithPayload:(NSString*)payload request:(NSURLRequest*)request andTag:(id)userdata
+- (void)connectionDidFinishLoadingWithPayload:(NSString *)payload request:(NSURLRequest *)request andTag:(id)tag
 {
     DLog(@"");
     [self stopProgress];
-
-    NSString* tag = (NSString*)userdata;
 
     if ([tag isEqualToString:MEU_CONNECTION_TAG])
     {
@@ -306,11 +304,10 @@
 
         NSDictionary *payloadDict = [payload JR_objectFromJSONString];
 
-        if(!payloadDict)
+        NSString *errorMessage = [NSString stringWithFormat:@"Authentication failed: %@", payload];
+        if (!payloadDict)
         {
-            NSError *error = [JREngageError errorWithMessage:[NSString stringWithFormat:@"Authentication failed: %@",
-                                                                                        payload]
-                                                     andCode:JRAuthenticationFailedError];
+            NSError *error = [JREngageError errorWithMessage:errorMessage andCode:JRAuthenticationFailedError];
 
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Log In Failed"
                                                              message:@"An error occurred while attempting to sign you "
@@ -323,28 +320,27 @@
             userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
             [sessionData triggerAuthenticationDidFailWithError:error];
         }
-        else if ([((NSString*)[((NSDictionary*)[payloadDict objectForKey:@"rpx_result"]) objectForKey:@"stat"])
-                isEqualToString:@"ok"])
+        else if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"stat"] isEqualToString:@"ok"])
         {
             userHitTheBackButton = NO; /* Because authentication completed successfully. */
             [sessionData triggerAuthenticationDidCompleteWithPayload:payloadDict];
         }
         else
         {
-            if ([((NSString*)[((NSDictionary*)[payloadDict objectForKey:@"rpx_result"]) objectForKey:@"error"])
+            if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"error"]
                     isEqualToString:@"Discovery failed for the OpenID you entered"])
             {
-                NSString *message;
+                NSString *alertMessage;
                 if (sessionData.currentProvider.requiresInput)
-                    message = [NSString stringWithFormat:@"The %@ you entered was not valid. Please try again.",
-                                        sessionData.currentProvider.shortText];
+                    alertMessage = [NSString stringWithFormat:@"The %@ you entered was not valid. Please try again.",
+                                                              sessionData.currentProvider.shortText];
                 else
-                    message = @"There was a problem authenticating with this provider. Please try again.";
+                    alertMessage = @"There was a problem authenticating with this provider. Please try again.";
 
-                DLog(@"Discovery failed for the OpenID you entered: %@", message);
+                DLog(@"Discovery failed for the OpenID you entered: %@", alertMessage);
 
                 UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                                 message:message
+                                                                 message:alertMessage
                                                                 delegate:nil
                                                        cancelButtonTitle:@"OK"
                                                        otherButtonTitles:nil] autorelease];
@@ -354,21 +350,21 @@
 
                 [alert show];
             }
-            else if ([((NSString*)[((NSDictionary*)[payloadDict objectForKey:@"rpx_result"]) objectForKey:@"error"])
+            else if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"error"]
                     isEqualToString:@"The URL you entered does not appear to be an OpenID"])
             {
-                NSString *message;
+                NSString *alertMessage;
                 if (sessionData.currentProvider.requiresInput)
-                    message = [NSString stringWithFormat:@"The %@ you entered was not valid. Please try again.",
-                                        sessionData.currentProvider.shortText];
+                    alertMessage = [NSString stringWithFormat:@"The %@ you entered was not valid. Please try again.",
+                                                              sessionData.currentProvider.shortText];
                 else
-                    message = @"There was a problem authenticating with this provider. Please try again.";
+                    alertMessage = @"There was a problem authenticating with this provider. Please try again.";
 
-                DLog(@"The URL you entered does not appear to be an OpenID: %@", message);
+                DLog(@"The URL you entered does not appear to be an OpenID: %@", alertMessage);
 
                 UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                                 message:message
-                                                                delegate:self
+                                                                 message:alertMessage
+                                                                delegate:nil
                                                        cancelButtonTitle:@"OK"
                                                        otherButtonTitles:nil] autorelease];
 
@@ -377,24 +373,20 @@
 
                 [alert show];
             }
-            else if ([((NSString*)[((NSDictionary*)[payloadDict objectForKey:@"rpx_result"]) objectForKey:@"error"])
+            else if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"error"]
                     isEqualToString:@"Please enter your OpenID"])
             {
-                NSError *error = [JREngageError errorWithMessage:[NSString stringWithFormat:@"Authentication failed: %@",
-                                                                                            payload]
-                                                         andCode:JRAuthenticationFailedError];
+                NSError *error = [JREngageError errorWithMessage:errorMessage andCode:JRAuthenticationFailedError];
 
                 userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
                 [sessionData triggerAuthenticationDidFailWithError:error];
             }
             else
             {
-                NSError *error = [JREngageError errorWithMessage:[NSString stringWithFormat:@"Authentication failed: %@",
-                                                                                            payload]
-                                                         andCode:JRAuthenticationFailedError];
-
+                NSError *error = [JREngageError errorWithMessage:errorMessage andCode:JRAuthenticationFailedError];
                 UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                                                 message:@"An error occurred while attempting to sign you in.  Please try again."
+                                                                 message:@"An error occurred while attempting to sign "
+                                                                         "you in.  Please try again."
                                                                 delegate:nil
                                                        cancelButtonTitle:@"OK"
                                                        otherButtonTitles:nil] autorelease];
@@ -407,16 +399,13 @@
     }
     else if ([tag isEqualToString:WINDOWS_LIVE_LOAD])
     {
-        //connectionDataAlreadyDownloadedThis = YES;
         [myWebView loadHTMLString:payload baseURL:[request URL]];
     }
 }
 
-- (void)connectionDidFailWithError:(NSError*)error request:(NSURLRequest*)request andTag:(id)userdata
+- (void)connectionDidFailWithError:(NSError *)error request:(NSURLRequest *)request andTag:(id)tag
 {
-    DLog(@"");
-    NSString* tag = (NSString*)userdata;
-    DLog(@"tag:     %@", tag);
+    DLog(@"tag: %@", tag);
 
     [self stopProgress];
 
@@ -432,19 +421,22 @@
     }
 }
 
-- (void)connectionWasStoppedWithTag:(id)userdata { }
+- (void)connectionWasStoppedWithTag:(id)tag
+{
+}
 
 #pragma mark UIWebViewDelegate implementation
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
-                                                 navigationType:(UIWebViewNavigationType)navigationType
+ navigationType:(UIWebViewNavigationType)navigationType
 {
     DLog(@"request: %@", [[request URL] absoluteString]);
 
     NSString *customUa = [JRWebViewController getCustomUa];
     if (customUa)
     {
-        if ([request respondsToSelector:@selector(setValue:forHTTPHeaderField:)]) {
+        if ([request respondsToSelector:@selector(setValue:forHTTPHeaderField:)])
+        {
             [((NSMutableURLRequest *) request) setValue:customUa forHTTPHeaderField:@"User-Agent"];
         }
     }
@@ -503,17 +495,23 @@
     }
 }
 
-- (void)webViewWithUrl:(NSURL*)url
+- (void)loadUrlInWebView:(NSURL *)url
 {
     DLog(@"");
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [myWebView loadRequest:request];
 }
 
-- (void)userInterfaceWillClose { }
-- (void)userInterfaceDidClose  { }
+- (void)userInterfaceWillClose
+{
+}
 
-- (void)dealloc {
+- (void)userInterfaceDidClose
+{
+}
+
+- (void)dealloc
+{
     DLog(@"");
     // Must set delegate to nil to avoid this controller being called after
     // it has been freed by the web view.

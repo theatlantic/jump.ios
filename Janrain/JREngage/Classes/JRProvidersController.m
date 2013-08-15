@@ -39,7 +39,6 @@
 #import "JRProvidersController.h"
 #import "JRInfoBar.h"
 #import "JRUserLandingController.h"
-#import "JRWebViewController.h"
 #import "JRNativeAuth.h"
 #import "JREngageError.h"
 
@@ -538,7 +537,7 @@
 
     // TODO: Change me (comment)!
     if (provider.requiresInput || ([sessionData authenticatedUserForProvider:provider]
-            && !(provider.forceReauth || sessionData.alwaysForceReauth)))
+            && !(provider.forceReauthStartUrlFlag || sessionData.alwaysForceReauth)))
     {
         // If the selected provider requires input from the user, to the user landing view.
         // Or if the user started on the user landing page, went back to the list of providers, then selected
@@ -549,8 +548,7 @@
     else
     {
         // Otherwise, straight to the web view.
-        [[self navigationController] pushViewController:[JRUserInterfaceMaestro sharedMaestro].myWebViewController
-                                               animated:YES];
+        [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
     }
 
 }

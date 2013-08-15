@@ -34,7 +34,7 @@
 #import "BackplaneUtils.h"
 #import "JRCaptureObject.h"
 
-@interface RootViewController : UIViewController <JRCaptureDelegate, JRCaptureObjectDelegate, UIAlertViewDelegate>
+@interface RootViewController : UIViewController
 - (IBAction)browseButtonPressed:(id)sender;
 - (IBAction)updateButtonPressed:(id)sender;
 - (IBAction)refreshButtonPressed:(id)sender;
