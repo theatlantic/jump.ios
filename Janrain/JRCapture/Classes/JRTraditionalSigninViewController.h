@@ -33,12 +33,13 @@
 
 #import <UIKit/UIKit.h>
 #import "JRCaptureTypes.h"
+#import "JRCapture.h"
 
 @class JREngageWrapper;
 @protocol JRExternalDialogControllerDelegate, JRCaptureInternalDelegate;
 
 @interface JRTraditionalSignInViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,
-        UITextFieldDelegate, UIAlertViewDelegate, JRCaptureInternalDelegate>
+        UITextFieldDelegate, JRCaptureInternalDelegate>
 {
     UITableView *myTableView;
 }

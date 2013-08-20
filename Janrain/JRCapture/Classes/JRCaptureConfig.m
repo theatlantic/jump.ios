@@ -35,7 +35,11 @@
 @implementation JRCaptureConfig
 
 + (JRCaptureConfig *)emptyCaptureConfig {
+#if __has_feature(objc_arc)
+    return [[JRCaptureConfig alloc] init];
+#else
     return [[[JRCaptureConfig alloc] init] autorelease];
+#endif
 }
 
 - (void)dealloc

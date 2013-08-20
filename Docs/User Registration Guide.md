@@ -114,14 +114,14 @@ errors.
 
 ## Forgotten Passwords
 
-When a user submits an incorrect email address or password in a traditional registration login from the
+When a user submits an incorrect email address or password in a traditional registration sign-in from the
 provider list, they are given the option to create new password. The UIAlertView that informs the user of the failed
-login has a button to begin the forgotten password flow. Once the user taps "Forgot Password," another UIAlertView is
+sign-in has a button to begin the forgotten password flow. Once the user taps "Forgot Password," another UIAlertView is
 presented asking the user to confirm their email address. If the user taps "Send," then an API call will be made to
 Capture that will trigger an email with instructions on how the user can reset their password.
 
 If you would like to trigger the forgotten password flow directly call
-`+[JRCapture startForgottenPasswordRecoveryForEmailAddress:recoverUri:delegate:context:]`.
+`+[JRCapture startForgottenPasswordRecoveryForEmailAddress:recoverUri:delegate]`.
 
 ## Example
 

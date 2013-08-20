@@ -249,10 +249,9 @@
                 if (buttonIndex != alertView.cancelButtonIndex) {
                     NSString *emailAddress = [alertView textFieldAtIndex:0].text;
                     [JRCapture startForgottenPasswordRecoveryForField:emailAddress recoverUri:nil
-                                                             delegate:self.captureDelegate context:nil];
+                                                             delegate:self.captureDelegate];
                 }
             };
-
 
     [[[AlertViewWithBlocks alloc] initWithTitle:@"Create a new password"
                                         message:@"We'll send you a link to create a new password."
@@ -518,14 +517,13 @@
     }
 }
 
-- (void)forgottenPasswordRecoveryDidSucceedWithContext:(id <NSObject>)context
-{
+- (void)forgottenPasswordRecoveryDidSucceed {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
 }
 
-- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error context:(id <NSObject>)context
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
 {
     [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
                                         message:[NSString stringWithFormat:@"%@", error] delegate:nil

@@ -40,7 +40,6 @@
 #import "SharedData.h"
 #import "JRCaptureObject+Internal.h"
 #import "JRJsonUtils.h"
-//#import "JSONKit.h"
 
 @interface a1_BooleanTests : GHAsyncTestCase <JRCaptureObjectTesterDelegate>
 {

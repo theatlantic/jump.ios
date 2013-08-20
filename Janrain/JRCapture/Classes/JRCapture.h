@@ -307,7 +307,7 @@
  * @param context
  *   The context supplied when initiating the forgot password flow
  */
-- (void)forgottenPasswordRecoveryDidSucceedWithContext:(id <NSObject>)context;
+- (void)forgottenPasswordRecoveryDidSucceed;
 
 /**
  * Sent when the forgotten password recovery flow fails
@@ -317,7 +317,7 @@
  * @param context
  *   The context supplied when initiating the forgot password flow
  */
-- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error context:(id <NSObject>) context;
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error;
 
 @end
 
@@ -692,7 +692,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  *    The context supplied when initiating the recover password flow.
  */
 + (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
-                                      delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context;
+                                      delegate:(id <JRCaptureDelegate>)delegate;
 
 @end
 

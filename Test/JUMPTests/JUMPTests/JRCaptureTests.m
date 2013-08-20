@@ -80,7 +80,7 @@
 
     id connectionManager = [OCMockObject mockForClass:[JRConnectionManager class]];
     [[connectionManager expect] jsonRequestToUrl:expectedUri params:expectedParams completionHandler:[OCMArg any]];
-    [JRCapture startForgottenPasswordRecoveryForField:@"me@mydomain.name" recoverUri:nil delegate:nil context:nil];
+    [JRCapture startForgottenPasswordRecoveryForField:@"me@mydomain.name" recoverUri:nil delegate:nil];
     [connectionManager verify];
 }
 

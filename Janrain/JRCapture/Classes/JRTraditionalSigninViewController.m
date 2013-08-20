@@ -52,7 +52,7 @@ typedef enum
                             andPayload:(NSData *)tokenUrlPayload forProvider:(NSString *)provider;
 @end
 
-@interface JRTraditionalSignInViewController ()
+@interface JRTraditionalSignInViewController () <UIAlertViewDelegate,  JRCaptureDelegate>
 @property (retain) NSString *titleString;
 @property (retain) UIView   *titleView;
 @property JRTraditionalSignInType signInType;
@@ -323,11 +323,11 @@ typedef enum
     } else if (alertView.tag == JRForgotPasswordAlertViewTag && buttonIndex == 1) {
         [delegate showLoading];
         [JRCapture startForgottenPasswordRecoveryForField:[alertView textFieldAtIndex:0].text
-                                               recoverUri:nil delegate:self context:nil];
+                                               recoverUri:nil delegate:self];
     }
 }
 
-- (void)forgottenPasswordRecoveryDidSucceedWithContext:(id <NSObject>)context
+- (void)forgottenPasswordRecoveryDidSucceed
 {
     [delegate hideLoading];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
@@ -336,7 +336,7 @@ typedef enum
     [alertView autorelease];
 }
 
-- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error context:(id <NSObject>)context
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
 {
     [delegate hideLoading];
     NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey];

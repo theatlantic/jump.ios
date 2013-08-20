@@ -201,7 +201,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     config.captureDomain = captureDomain;
     config.captureClientId = clientId;
     config.captureLocale = captureLocale;
-    config.captureTraditionalSignInType = captureFormName;
+    config.captureSignInFormName = captureFormName;
     config.captureFlowName = captureFlowName;
     config.enableThinRegistration = enableThinRegistration;
     config.captureSocialRegistrationFormName = captureRegistrationFormName;
@@ -386,9 +386,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 }
 
 + (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
-                                      delegate:(id <JRCaptureDelegate>)delegate context:(id <NSObject>)context {
-    NSLog(@"startForgottenPasswordRecoveryForEmailAddress %@", fieldValue);
-
+                                      delegate:(id <JRCaptureDelegate>)delegate {
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
     NSString *url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
     NSString *fieldName = [data getForgottenPasswordFieldName];
@@ -397,19 +395,27 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     if (!recoverUri) {
         JRCaptureError *captureError =
                 [JRCaptureError invalidArgumentErrorWithParameterName:@"recoverUri"];
-        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:) forDelegate:delegate
-                    withArg:captureError withArg:context];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
 
         [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
                                     format:@"Missing argument/setting passwordRecoverUri"];
         return;
     }
 
+    if (!fieldValue) {
+        JRCaptureError *captureError =
+                [JRCaptureError invalidArgumentErrorWithParameterName:@"fieldValue"];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
+        return;
+    }
+
     if (!data.captureForgottenPasswordFormName) {
         JRCaptureError *captureError =
             [JRCaptureError invalidArgumentErrorWithParameterName:@"forgottenPasswordFormName"];
-        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:) forDelegate:delegate
-                    withArg:captureError withArg:context];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
         return;
     }
 
@@ -428,17 +434,16 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     {
         if (error) {
             ALog("Failure initiating forgotten password flow: %@", error);
-            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:)
-                    forDelegate:delegate withArg:error withArg:context];
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:)
+                    forDelegate:delegate withArg:error];
         } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
             DLog(@"Forgotten password flow started successfully");
-            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidSucceedWithContext:) forDelegate:delegate
-                        withArg:context];
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidSucceed) forDelegate:delegate];
         } else {
             JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
 
-            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:context:)
-                    forDelegate:delegate withArg:captureError withArg:context];
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:)
+                    forDelegate:delegate withArg:captureError];
         }
     }];
 }
@@ -593,6 +598,15 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     if ([delegate respondsToSelector:pSelector])
     {
         [delegate performSelector:pSelector withObject:arg];
+    }
+}
+
++ (void)maybeDispatch:(SEL)pSelector forDelegate:(id <JRCaptureDelegate>)delegate
+{
+    DLog(@"Dispatching %@", NSStringFromSelector(pSelector));
+    if ([delegate respondsToSelector:pSelector])
+    {
+        [delegate performSelector:pSelector];
     }
 }
 

@@ -278,7 +278,6 @@ static JRCaptureData *singleton = nil;
 
     NSDictionary *fields = [self.captureFlow objectForKey:@"fields"];
     NSDictionary *form = [fields objectForKey:self.captureForgottenPasswordFormName];
-
     NSArray *formFields = [form objectForKey:@"fields"];
 
     for (NSString *fieldName in formFields) {
@@ -292,7 +291,6 @@ static JRCaptureData *singleton = nil;
 
     return nil;
 }
-
 
 - (void)downloadFlow
 {
