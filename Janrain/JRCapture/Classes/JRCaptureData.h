@@ -60,7 +60,7 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
      captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
                     captureFlowVersion:(NSString *)captureFlowVersion captureAppId:(NSString *)captureAppId;
 
-+ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken;
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken delegate:(id)delegate;
 
 + (void)clearSignInState;
 
@@ -76,4 +76,5 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
 
 - (void)loadFlow;
 
+- (NSString *)responseType:(id)delegate;
 @end

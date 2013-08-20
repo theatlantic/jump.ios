@@ -116,5 +116,6 @@ NSString *const kJRTradAuthUrlPath;
                 forDelegate:(id <JRCaptureInternalDelegate>)delegate
                 withContext:(NSObject *)context;
 
-+ (NSMutableDictionary *)tradAuthParamsWithParams:(NSDictionary *)paramsDict refreshSecret:(NSString *)refreshSecret;
++ (NSMutableDictionary *)tradAuthParamsWithParams:(NSDictionary *)paramsDict refreshSecret:(NSString *)refreshSecret
+                                         delegate:(id)delegate;
 @end
