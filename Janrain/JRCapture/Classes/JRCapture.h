@@ -304,8 +304,6 @@
 
 /**
  * Sent when the forgotten password recovery flow is successfully initiated
- * @param context
- *   The context supplied when initiating the forgot password flow
  */
 - (void)forgottenPasswordRecoveryDidSucceed;
 
@@ -313,9 +311,6 @@
  * Sent when the forgotten password recovery flow fails
  * @param error
  *   The error that caused the failure.
- *
- * @param context
- *   The context supplied when initiating the forgot password flow
  */
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error;
 
@@ -688,8 +683,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  *    The redirect URI that will be used in the emails generated as a consequence of the forgotten password API call.
  *  @param delegate
  *    The JRCaptureDelegate object that wishes to receive messages regarding user authentication.
- * @param context
- *    The context supplied when initiating the recover password flow.
  */
 + (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
                                       delegate:(id <JRCaptureDelegate>)delegate;
