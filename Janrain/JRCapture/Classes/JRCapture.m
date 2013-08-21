@@ -73,12 +73,14 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
                           captureAppId:(NSString *)captureAppId
 {
     JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+    config.engageAppId = engageAppId;
     config.captureDomain = captureDomain;
     config.captureClientId = clientId;
     config.captureLocale = captureLocale;
     config.captureSignInFormName = captureSignInFormName;
     config.captureFlowName = captureFlowName;
     config.enableThinRegistration = enableThinRegistration;
+    config.customProviders = customProviders;
     config.captureTraditionalRegistrationFormName = captureTraditionalRegistrationFormName;
     config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
     config.captureFlowVersion = captureFlowVersion;
