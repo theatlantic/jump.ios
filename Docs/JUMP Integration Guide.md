@@ -254,6 +254,10 @@ Your application should update its state to reflect the user being signed-in.
 created. (This is called "thin registration.") Because this is a new user, your application may wish to collect
 additional profile information and push that information back to Capture.
 
+Optionally, your delegate can receive `captureDidSucceedWithCode:`. When the sign-in has succeeded, this is called with
+a Capture OAuth Authorization Code that can be used by a server side application, such as the Capture Drupal Plugin,
+to retrieve an Access Token.
+
 ### Traditional Sign-In and Social Sign-In
 
 The Capture part of the SDK supports both social sign-in via Engage (e.g. Facebook) as well as traditional sign-in
