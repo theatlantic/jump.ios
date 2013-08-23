@@ -601,6 +601,7 @@ typedef enum CaptureInterfaceStatEnum
     [signInParams JR_maybeSetObject:[JRCaptureData sharedCaptureData].bpChannelUrl forKey:@"bp_channel"];
     [signInParams JR_maybeSetObject:[JRCaptureData sharedCaptureData].captureFlowName forKey:@"flow"];
     [signInParams JR_maybeSetObject:[JRCaptureData sharedCaptureData].downloadedFlowVersion forKey:@"flow_version"];
+    [signInParams JR_maybeSetObject:[paramsDict objectForKey:@"merge_token"] forKey:@"merge_token"];
     return signInParams;
 }
 
