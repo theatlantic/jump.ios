@@ -1098,7 +1098,7 @@ static JRUserInterfaceMaestro *singleton = nil;
 - (void)unloadUserInterfaceWithTransitionStyle:(UIModalTransitionStyle)style
 {
     DLog(@"");
-    if (!sessionData.authenticationFlowIsInFlight)
+    if (!(sessionData.authenticationFlowIsInFlight || [sessionData socialSharing]))
         return;
 
     if ([sessionData socialSharing])
