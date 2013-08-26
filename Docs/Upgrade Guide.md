@@ -1,6 +1,88 @@
-# Upgrade Guide
+# JUMP iOS Upgrade Guide
 
 This guide describes the steps required to upgrade from different versions of the library.
+
+## From v2.2.0
+
+1. Delete the JREngage group from Xcode.
+2. Get the latest version of the SDK from GitHub `git clone https://github.com/janrain/jump.ios.git`
+3. Make sure that the **Project Navigator** pane is showing.
+4. Open **Finder** and navigate to the location where you cloned the `jump.ios` repository. Drag the **Janrain**
+   folder into your Xcode project's **Project Navigator** and drop it below the root project node.
+
+       **Warning**: Do not drag the **jump.ios** folder into your project, drag the **Janrain** folder in.
+5. In the dialog, do **not** check the **Copy items is not destination group's folder (if needed)**. Ensure that the
+   **Create groups for any added folders** radio button is selected, and that the **Add to targets** check box is
+   selected for you application's target.
+6. v2.2.0 did support Capture so you need to remove the **JRCapture** project group from the **Janrain** project
+   group.
+7. You must also add the **QuartzCore** framework, and the **MessageUI** framework to your project.  As the
+   **MessageUI** framework is not available on all iOS devices and versions, you must designate the framework as
+   "optional."
+8. Ensure that your **Deployment Target** is *iOS 5.0* or higher.
+
+### Solutions
+
+* **Delegate methods are not being called**
+
+    Delegate method names are no longer prepended with 'jr'. For example:
+
+    * `jrEngageDialogDidFailToShowWithError:` has been replaced with `engageDialogDidFailToShowWithError:`
+    * `jrAuthenticationDidSucceedForUser:forProvider` has been replaced with
+      `authenticationDidSucceedForUser:forProvider:`
+    * `jrAuthenticationDidReachTokenUrl:withPayload:forProvider:` has been replaced with
+      `authenticationDidReachTokenUrl:withResponse:andPayload:forProvider:`
+    * `jrAuthenticationDidNotComplete` has been replaced with `authenticationDidNotComplete`
+    * `jrAuthenticationDidFailWithError:forProvider:` has been replaced with
+      `authenticationDidFailWithError:forProvider:`
+    * `jrAuthenticationCallToTokenUrl:didFailWithError:forProvider:` has been replaced with
+      `authenticationCallToTokenUrl:didFailWithError:forProvider:`
+
+
+* **Use of undeclared identifier 'JRDialogShowingError'**
+
+    Import `JREngageError.h`
+
+
+* **Instance method '-setCustomNavigationController:' not found (return type defaults to 'id')**
+
+    **Instance method '-setCustomInterfaceDefaults:' not found (return type defaults to 'id')**
+
+    Use `+[JREngage showAuthenticationDialogWithCustomInterfaceOverrides:]` instead. For example if you had:
+
+            NSDictionary *myCustomInterface = @{
+                    kJRProviderTableHeaderView : embeddedTable.view,
+                    kJRProviderTableSectionHeaderTitleString : @"Sign in with a social provider"
+            };
+            [myJREngageInstance setCustomNavigationController:myNavigationController]
+            [customInterface addEntriesFromDictionary:myCustomInterface];
+            [myJREngageInstance setCustomInterfaceDefaults:customInterface];
+            [myJREngageInstance showAuthenticationDialog];
+
+    Then do the following:
+
+            NSDictionary *myCustomInterface = @{
+                    kJRProviderTableHeaderView : embeddedTable.view,
+                    kJRProviderTableSectionHeaderTitleString : @"Sign in with a social provider",
+                    kJRApplicationNavigationController : myNavigationController
+            };
+            [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:myCustomInterface];
+
+
+* **class method '+jrEngage' not found (return type defaults to 'id')**
+
+    This method has been removed some of the instance methods that you might be trying to use have been replaced with
+    class methods.
+
+
+* **Instance method '-authenticationDidCancel' not found (return type defaults to 'id')**
+
+    Use the class method `+[JREngage cancelAuthentication]` instead
+
+
+* **instance method '-cancelPublishing' not found (return type defaults to 'id')**
+    Use the class method `+[JREngage cancelSharing]` instead
+
 
 ## 3.0.x -> 3.1
 

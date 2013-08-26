@@ -102,6 +102,13 @@ static JREngage* singleton = nil;
     [[JREngage singletonInstance] setEngageAppID:appId tokenUrl:tokenUrl andDelegate:delegate];
 }
 
++ (JREngage *)jrEngageWithAppId:(NSString *)appId andTokenUrl:(NSString *)tokenUrl
+                       delegate:(id <JREngageSigninDelegate>)delegate {
+    [JREngage setEngageAppId:appId tokenUrl:tokenUrl andDelegate:delegate];
+
+    return [JREngage singletonInstance];
+}
+
 - (id)copyWithZone:(__unused NSZone *)zone __unused
 {
     return self;
