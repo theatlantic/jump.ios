@@ -585,7 +585,7 @@ typedef enum CaptureInterfaceStatEnum
 }
 
 + (NSMutableDictionary *)tradAuthParamsWithParams:(NSDictionary *)paramsDict refreshSecret:(NSString *)refreshSecret
-                                         delegate:(id)delegate {
+                                         delegate:(id <JRCaptureDelegate>)delegate {
     NSDictionary *flowCreds = [self flowCredentialsFromStaticCredentials:paramsDict];
     NSDictionary *credsParams = flowCreds ? flowCreds : paramsDict;
     JRCaptureData *captureData = [JRCaptureData sharedCaptureData];

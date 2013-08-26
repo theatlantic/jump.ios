@@ -107,6 +107,10 @@ static NSMutableDictionary *identifierMap = nil;
     [Utils handleSuccessWithTitle:@"Registration Complete" message:nil forVc:self];
 }
 
+- (void)captureDidSucceedWithCode:(NSString *)code {
+    DLog(@"Authorization Code: %@",code);
+}
+
 - (void)registerUserDidFailWithError:(NSError *)error
 {
     self.registerButton.enabled = YES;

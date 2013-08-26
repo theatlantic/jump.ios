@@ -293,8 +293,8 @@
 		6706F0B859D457B27C961482 /* JROrganizationsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROrganizationsElement.m; sourceTree = "<group>"; };
 		6706F0F2E34793CE47A59E50 /* JROnipLevelThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROnipLevelThree.h; sourceTree = "<group>"; };
 		6706F14EBCBB93C923B336B4 /* JRLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRLocation.m; sourceTree = "<group>"; };
-		6706F177967F38CF7CA5D0FC /* CaptureDynamicForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureDynamicForm.h; path = ../../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/CaptureDynamicForm.h; sourceTree = "<group>"; };
-		6706F1A44624C7575D0E75DA /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = ../../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.m; sourceTree = "<group>"; };
+		6706F177967F38CF7CA5D0FC /* CaptureDynamicForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureDynamicForm.h; path = Classes/CaptureDynamicForm.h; sourceTree = "<group>"; };
+		6706F1A44624C7575D0E75DA /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Classes/Utils.m; sourceTree = "<group>"; };
 		6706F1D869841D7DDAD98738 /* JRBestHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBestHand.m; sourceTree = "<group>"; };
 		6706F1FB3600926EFC36AB15 /* JRPinoLevelOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPinoLevelOne.h; sourceTree = "<group>"; };
 		6706F24261C9D663CA951A9E /* JRTournamentsPlayedElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTournamentsPlayedElement.h; sourceTree = "<group>"; };
@@ -306,10 +306,10 @@
 		6706F30EA0F737DBFDF9E837 /* JRProfilesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProfilesElement.h; sourceTree = "<group>"; };
 		6706F3299EC3D64CF869984F /* JRObjectLevelThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRObjectLevelThree.m; sourceTree = "<group>"; };
 		6706F34BD9C908B2B6137E62 /* JRPinoLevelThreeElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinoLevelThreeElement.m; sourceTree = "<group>"; };
-		6706F39D56CA252D2415997F /* CaptureDynamicForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureDynamicForm.m; path = ../../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/CaptureDynamicForm.m; sourceTree = "<group>"; };
+		6706F39D56CA252D2415997F /* CaptureDynamicForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureDynamicForm.m; path = Classes/CaptureDynamicForm.m; sourceTree = "<group>"; };
 		6706F40DA995CA1DAA080E39 /* JRGamesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRGamesElement.h; sourceTree = "<group>"; };
 		6706F42689C7837218A338C5 /* JRPluralLevelOneElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPluralLevelOneElement.h; sourceTree = "<group>"; };
-		6706F4723D28D385805BF6B3 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/Utils.h; sourceTree = "<group>"; };
+		6706F4723D28D385805BF6B3 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Classes/Utils.h; sourceTree = "<group>"; };
 		6706F48794E72EF1AAA12F65 /* JRCurrentLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCurrentLocation.m; sourceTree = "<group>"; };
 		6706F48EF1DDDD75A9A55C71 /* JRBodyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBodyType.m; sourceTree = "<group>"; };
 		6706F4BDF9449AE3353A78B2 /* JRName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRName.m; sourceTree = "<group>"; };
@@ -336,7 +336,7 @@
 		6706F820C3C8CE99DFB170A7 /* JRPhotosElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPhotosElement.m; sourceTree = "<group>"; };
 		6706F87C6A4B4FD6C8CC8A21 /* JRPrimaryAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPrimaryAddress.h; sourceTree = "<group>"; };
 		6706F8B2DA7DCD60A3C52709 /* JRPluralLevelTwoElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPluralLevelTwoElement.h; sourceTree = "<group>"; };
-		6706F8DC7856E86A423C2108 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerViewController.m; path = ../../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/PickerViewController.m; sourceTree = "<group>"; };
+		6706F8DC7856E86A423C2108 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerViewController.m; path = Classes/PickerViewController.m; sourceTree = "<group>"; };
 		6706F920C40BBE03BA15B200 /* JRObjectLevelTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRObjectLevelTwo.h; sourceTree = "<group>"; };
 		6706F93CA7BAF08BF58DBCC7 /* JRBestHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBestHand.h; sourceTree = "<group>"; };
 		6706F95D30DAADB12FD4D8E9 /* JRProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRProfile.m; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 		6706FD89BB92021A24CEE04F /* JRCurrentLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCurrentLocation.h; sourceTree = "<group>"; };
 		6706FDE35290E73F4513572D /* JUMP Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "JUMP Integration Guide.md"; path = "../../../jump.ios/Docs/JUMP Integration Guide.md"; sourceTree = "<group>"; };
 		6706FE4A749862BF082D2831 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
-		6706FE4C14414AE4B30F1878 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerViewController.h; path = ../../../../jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/PickerViewController.h; sourceTree = "<group>"; };
+		6706FE4C14414AE4B30F1878 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerViewController.h; path = Classes/PickerViewController.h; sourceTree = "<group>"; };
 		6706FE7192712069057BD307 /* JRTournamentsPlayedElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTournamentsPlayedElement.m; sourceTree = "<group>"; };
 		6706FED5FA5CCDE99072925C /* JRObjectLevelOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRObjectLevelOne.m; sourceTree = "<group>"; };
 		6706FF3CCE2C8CFDA5DDE468 /* JRStatusesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStatusesElement.m; sourceTree = "<group>"; };
