@@ -263,6 +263,15 @@
                                 status:(JRCaptureRecordStatus)captureRecordStatus;
 
 /**
+ * Sent after authentication has successfully reached the Capture server.
+ *
+ * @param code
+ *   A Capture OAuth Authentication Code, this short lived code can be used to get an Access Token for use with a
+ *   server side application like the Capture Drupal plugin.
+ */
+- (void)captureDidSucceedWithCode:(NSString *)code;
+
+/**
  * Sent when the call to the Capture server has failed.
  *
  * @param error

@@ -273,12 +273,21 @@
 
     [delegate hideLoading];
     // XXX hack to skirt the side effects thrown off by the client's sign-in APIs:
-    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil]];
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:self]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if ([super respondsToSelector:aSelector]) {
+        return YES;
+    } else if (@selector(captureDidSucceedWithCode:) == aSelector) {
+        return [[JREngageWrapper getDelegate] respondsToSelector:aSelector];
+    }
+    return NO;
 }
 
 - (void)dealloc

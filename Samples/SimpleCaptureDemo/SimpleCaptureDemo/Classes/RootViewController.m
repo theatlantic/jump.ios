@@ -503,6 +503,10 @@
     }
 }
 
+- (void)captureDidSucceedWithCode:(NSString *)code {
+    DLog(@"Authorization Code: %@",code);
+}
+
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description]

@@ -32,6 +32,7 @@
 #import "JRCaptureData.h"
 #import "SFHFKeychainUtils.h"
 #import "NSDictionary+JRQueryParams.h"
+#import "JREngageWrapper.h"
 
 #define cJRCaptureKeychainIdentifier @"capture_tokens.janrain"
 #define cJRCaptureKeychainUserName @"capture_user"
@@ -164,8 +165,7 @@ static JRCaptureData *singleton = nil;
     return self;
 }
 
-+ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken
-{
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken delegate:(id)delegate {
     JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
     NSString *redirectUri = [singleton redirectUri];
     NSString *thinReg = [JRCaptureData sharedCaptureData].captureEnableThinRegistration ? @"true" : @"false";
@@ -173,7 +173,7 @@ static JRCaptureData *singleton = nil;
             @{
                     @"client_id" : captureData.clientId,
                     @"locale" : captureData.captureLocale,
-                    @"response_type" : @"token",
+                    @"response_type" : [captureData responseType:delegate],
                     @"redirect_uri" : redirectUri,
                     @"thin_registration" : thinReg,
                     @"refresh_secret" : [self generateAndStoreRefreshSecret],
@@ -430,5 +430,12 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
 + (void)setBackplaneChannelUrl:(NSString *)bpChannelUrl __unused
 {
     [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
+}
+
+- (NSString *)responseType:(id)delegate {
+    if ([delegate respondsToSelector:@selector(captureDidSucceedWithCode:)]) {
+        return @"code_and_token";
+    }
+    return @"token";
 }
 @end
