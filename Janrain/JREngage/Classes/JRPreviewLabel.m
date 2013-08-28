@@ -37,32 +37,14 @@
 #import "JRUserInterfaceMaestro.h"
 
 @interface NSString (visibleText)
-//- (NSString *)stringVisibleInRect:(CGRect)rect withFont:(UIFont *)font;
-
 - (NSUInteger)lengthOfStringVisibleInSize:(CGSize)size withFont:(UIFont *)font
-                         andLineBreakMode:(UILineBreakMode)lineBreakMode;
+                         andLineBreakMode:(JRLineBreakMode)lineBreakMode;
 @end
 
 @implementation NSString (visibleText)
 
-//- (NSString*)stringVisibleInRect:(CGRect)rect withFont:(UIFont*)font
-//{
-//    NSString *visibleString = @"";
-//    for (NSUInteger i = 1; i <= self.length; i++)
-//    {
-//        NSString *testString = [self substringToIndex:i];
-//        CGSize stringSize = [testString sizeWithFont:font];
-//        if (stringSize.height > rect.size.height || stringSize.width > rect.size.width)
-//            break;
-//
-//        visibleString = testString;
-//    }
-//
-//    return visibleString;
-//}
-
 - (NSUInteger)lengthOfStringVisibleInSize:(CGSize)size withFont:(UIFont *)font
-                         andLineBreakMode:(UILineBreakMode)lineBreakMode
+                         andLineBreakMode:(JRLineBreakMode)lineBreakMode
 {
     if (self.length == 0)
         return 0;
@@ -82,7 +64,7 @@
 
         CGSize stringSize = [testString sizeWithFont:font
                                    constrainedToSize:CGSizeMake(size.width, size.height + lineHeight)
-                                       lineBreakMode:lineBreakMode];
+                                       lineBreakMode:(int)lineBreakMode];
 
         if (stringSize.height > size.height || stringSize.width > size.width)
             break;
@@ -119,19 +101,12 @@
     CGFloat contentHeight;
 }
 
-//@property (retain) UIFont *font;
-//@property (retain) UIFont *boldFont;
 - (void)rebuildText;
 @end
 
 @implementation JRPreviewLabel
-//@dynamic username;
-//@dynamic url;
 @synthesize userText;
-//@synthesize fontSize;
 @synthesize text;
-//@synthesize font;
-//@synthesize boldFont;
 @synthesize delegate;
 
 - (void)finishInitWithDefaultUsername:(NSString*)defaultUsername defaultUsertext:(NSString*)defaultUserText
@@ -267,19 +242,19 @@
     CGSize sizeOfUrl = (!url) ? CGSizeMake(0, 0) :
                                 [url sizeWithFont:font
                                 constrainedToSize:CGSizeMake(urlMaxWidth, lineHeight)
-                                    lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+                                    lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
 
     CGSize sizeOfUsername = (!username) ? CGSizeMake(0, 0):
                                           [username sizeWithFont:boldFont
                                                constrainedToSize:CGSizeMake(usernameMaxWidth, lineHeight)
-                                                   lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+                                                   lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
 
 
     CGFloat remainingLineOneWidth = lineWidth - sizeOfUsername.width - usernamePadding;
 
     sizeOfFirstLineOfText = [userText sizeWithFont:font
                                  constrainedToSize:CGSizeMake(remainingLineOneWidth, superviewHeight)
-                                     lineBreakMode:JR_LINE_BREAK_MODE_WORD_WRAP];
+                                     lineBreakMode:(int)JR_LINE_BREAK_MODE_WORD_WRAP];
 
     if (sizeOfFirstLineOfText.height <= lineHeight)
     {
@@ -292,7 +267,7 @@
 
         lengthOfFirstLineOfText = [userText lengthOfStringVisibleInSize:CGSizeMake(sizeOfFirstLineOfText.width, lineHeight)
                                                                withFont:font
-                                                       andLineBreakMode:JR_LINE_BREAK_MODE_WORD_WRAP];
+                                                       andLineBreakMode:(int)JR_LINE_BREAK_MODE_WORD_WRAP];
 
         firstLineOfText = [userText substringToIndex:lengthOfFirstLineOfText];
 
@@ -301,7 +276,7 @@
 
         sizeOfSecondLineOfText = [remainingText sizeWithFont:font
                                            constrainedToSize:CGSizeMake(lineWidth, superviewHeight)
-                                               lineBreakMode:JR_LINE_BREAK_MODE_WORD_WRAP];
+                                               lineBreakMode:(int)JR_LINE_BREAK_MODE_WORD_WRAP];
 
         if (sizeOfSecondLineOfText.height <= lineHeight)
         {
@@ -314,7 +289,7 @@
 
             lengthOfSecondLineOfText = [remainingText lengthOfStringVisibleInSize:CGSizeMake(sizeOfSecondLineOfText.width, lineHeight)
                                                                 withFont:font
-                                                        andLineBreakMode:JR_LINE_BREAK_MODE_WORD_WRAP];
+                                                        andLineBreakMode:(int)JR_LINE_BREAK_MODE_WORD_WRAP];
 
             secondLineOfText = [remainingText substringToIndex:lengthOfSecondLineOfText];
 
@@ -323,7 +298,7 @@
 
             sizeOfThirdLineOfText = [thirdLineOfText sizeWithFont:font
                                                 constrainedToSize:CGSizeMake(lineWidth - sizeOfUrl.width - urlPadding, lineHeight)
-                                                    lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+                                                    lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
         }
     }
 
@@ -442,7 +417,6 @@
 }
 
 - (NSString*)username { return [[username copy] autorelease]; }
-//- (NSString*)userText { return [[userText copy] autorelease]; }
 - (NSString*)url      { return [[url copy] autorelease]; }
 
 - (void)setUsername:(NSString*)newUsername
@@ -484,24 +458,6 @@
     [self setNeedsLayout];
 }
 
-//- (CGFloat)fontSize { return fontSize; }
-
-//- (void)setFontSize:(CGFloat)newFontSize
-//{
-//    fontSize = newFontSize;
-//
-//    self.font     = [UIFont systemFontOfSize:fontSize];
-//    //self.boldFont = [UIFont boldSystemFontOfSize:fontSize];
-//
-//    usernameLabel.font = boldFont;
-//    textLabelLine1.font = font;
-//    textLabelLine2.font = font;
-//    textLabelLine3.font = font;
-//    urlLabel.font = font;
-//
-//    [self setNeedsLayout];
-//}
-
 - (void)dealloc
 {
     [usernameLabel release];
@@ -520,8 +476,3 @@
     [super dealloc];
 }
 @end
-
-
-
-
-
