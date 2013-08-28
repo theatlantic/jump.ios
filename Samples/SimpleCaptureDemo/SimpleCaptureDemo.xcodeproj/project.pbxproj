@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19BC00CC7CE1407ECD3FCEA9 /* icon_amazon_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */; };
+		19BC00F96A6F3733F91354AC /* icon_amazon_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */; };
+		19BC01E36A31424334D83559 /* icon_bw_amazon_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */; };
+		19BC038695E3F63ED3DAF62B /* icon_bw_amazon_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */; };
+		19BC04A025012377EE30F823 /* logo_amazon_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */; };
+		19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */; };
 		6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FCAB908800A9FF445D4B /* Upgrade Guide.md */; };
 		6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */; };
 		6706F0548CC1DBB6CEC0407D /* JRCurrentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F48794E72EF1AAA12F65 /* JRCurrentLocation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -287,6 +293,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_amazon_280x65@2x.png"; sourceTree = "<group>"; };
+		19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_amazon_30x30@2x.png"; sourceTree = "<group>"; };
+		19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_amazon_30x30@2x.png"; sourceTree = "<group>"; };
+		19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_amazon_30x30.png; sourceTree = "<group>"; };
+		19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_amazon_280x65.png; sourceTree = "<group>"; };
+		19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amazon_30x30.png; sourceTree = "<group>"; };
 		6706F004B5721D364A0105AB /* JRObjectLevelTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRObjectLevelTwo.m; sourceTree = "<group>"; };
 		6706F011CCEAA27C898AC307 /* JRPluralLevelTwoElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPluralLevelTwoElement.m; sourceTree = "<group>"; };
 		6706F01AA24E373956F9C20D /* JRProfilePhotosElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProfilePhotosElement.h; sourceTree = "<group>"; };
@@ -1105,6 +1117,7 @@
 				DFEFE41D17A9915200760FEE /* icon_vzn_30x30.png */,
 				DFEFE41E17A9915200760FEE /* icon_wordpress_30x30.png */,
 				DFEFE41F17A9915200760FEE /* icon_yahoo_30x30.png */,
+				19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */,
 			);
 			path = icons;
 			sourceTree = "<group>";
@@ -1120,6 +1133,7 @@
 				DFEFE42617A9915200760FEE /* icon_bw_sms_30x30.png */,
 				DFEFE42717A9915200760FEE /* icon_bw_twitter_30x30.png */,
 				DFEFE42817A9915200760FEE /* icon_bw_yahoo_30x30.png */,
+				19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */,
 			);
 			path = icons_bw;
 			sourceTree = "<group>";
@@ -1150,6 +1164,7 @@
 				DFEFE43E17A9915200760FEE /* logo_verisign_280x65.png */,
 				DFEFE43F17A9915200760FEE /* logo_vzn_280x65.png */,
 				DFEFE44017A9915200760FEE /* logo_yahoo_280x65.png */,
+				19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */,
 			);
 			path = logos;
 			sourceTree = "<group>";
@@ -1231,6 +1246,7 @@
 				DFEFE47217A9915200760FEE /* icon_vzn_30x30@2x.png */,
 				DFEFE47317A9915200760FEE /* icon_wordpress_30x30@2x.png */,
 				DFEFE47417A9915200760FEE /* icon_yahoo_30x30@2x.png */,
+				19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */,
 			);
 			path = icons;
 			sourceTree = "<group>";
@@ -1246,6 +1262,7 @@
 				DFEFE47B17A9915200760FEE /* icon_bw_sms_30x30@2x.png */,
 				DFEFE47C17A9915200760FEE /* icon_bw_twitter_30x30@2x.png */,
 				DFEFE47D17A9915200760FEE /* icon_bw_yahoo_30x30@2x.png */,
+				19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */,
 			);
 			path = icons_bw;
 			sourceTree = "<group>";
@@ -1276,6 +1293,7 @@
 				DFEFE49317A9915200760FEE /* logo_verisign_280x65@2x.png */,
 				DFEFE49417A9915200760FEE /* logo_vzn_280x65@2x.png */,
 				DFEFE49517A9915200760FEE /* logo_yahoo_280x65@2x.png */,
+				19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */,
 			);
 			path = logos;
 			sourceTree = "<group>";
@@ -1555,6 +1573,12 @@
 				DFEFE55417A9915300760FEE /* JRPublishActivityController.xib in Resources */,
 				DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */,
 				DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */,
+				19BC00CC7CE1407ECD3FCEA9 /* icon_amazon_30x30.png in Resources */,
+				19BC038695E3F63ED3DAF62B /* icon_bw_amazon_30x30.png in Resources */,
+				19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */,
+				19BC00F96A6F3733F91354AC /* icon_amazon_30x30@2x.png in Resources */,
+				19BC01E36A31424334D83559 /* icon_bw_amazon_30x30@2x.png in Resources */,
+				19BC04A025012377EE30F823 /* logo_amazon_280x65@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
