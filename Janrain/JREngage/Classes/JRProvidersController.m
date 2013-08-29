@@ -130,8 +130,11 @@
             [customInterface objectForKey:kJRProviderTableTitleString] : @"Sign in with...";
         self.navigationItem.title = NSLocalizedString(l10n, @"");
     }
+
     myTableView.tableHeaderView = [customInterface objectForKey:kJRProviderTableHeaderView];
     myTableView.tableFooterView = [customInterface objectForKey:kJRProviderTableFooterView];
+
+    [self resizeTableHeaderView];
 
     id const maybeCaptureSignInVc = [customInterface objectForKey:kJRCaptureTraditionalSignInViewController];
     if ([maybeCaptureSignInVc isKindOfClass:NSClassFromString(@"JRTraditionalSignInViewController")])
@@ -160,6 +163,23 @@
         infoBar = [[JRInfoBar alloc] initWithFrame:frame andStyle:(JRInfoBarStyle) [sessionData hidePoweredBy]];
 
         [self.view addSubview:infoBar];
+    }
+}
+
+- (void)resizeTableHeaderView {
+    if (myTableView.tableHeaderView && [myTableView.tableHeaderView isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *tableHeaderView = (UIScrollView *)myTableView.tableHeaderView;
+
+        CGFloat height = tableHeaderView.contentSize.height;
+        CGFloat maxHeight = tableHeaderView.superview.frame.size.height - tableHeaderView.frame.origin.y;
+        if (height > maxHeight) height = maxHeight;
+
+        CGRect frame = tableHeaderView.frame;
+        frame.size.height = height;
+        myTableView.tableHeaderView.frame = frame;
+
+        // Force the tableHeaderView to be redrawn
+        myTableView.tableHeaderView = myTableView.tableHeaderView;
     }
 }
 
