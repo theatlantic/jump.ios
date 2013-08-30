@@ -253,7 +253,7 @@
                 }
             };
 
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Create a new password"
+    [[[AlertViewWithBlocks alloc] initWithTitle:@"Please confirm your email"
                                         message:@"We'll send you a link to create a new password."
                                      completion:completion
                                           style:UIAlertViewStylePlainTextInput
