@@ -6,7 +6,6 @@
 
 
 #import "AppDelegate.h"
-#import "CaptureProfileViewController.h"
 #import "Utils.h"
 
 Class getPluralClassFromKey(NSString *key)

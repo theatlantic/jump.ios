@@ -38,6 +38,9 @@
 
 @property(nonatomic, retain) IBOutlet UILabel *myFormTitle;
 @property(nonatomic, retain) IBOutlet UITextField *myEmailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *myDisplayNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *myFirstNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *myLastNameTextField;
 @property(nonatomic, retain) IBOutlet UISegmentedControl *myGenderIdentitySegControl;
 @property(nonatomic, retain) IBOutlet UIButton *myBirthdayButton;
 @property(nonatomic, retain) IBOutlet UIDatePicker *myBirthdayPicker;
@@ -49,6 +52,12 @@
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *myDoneButton;
 
 - (IBAction)emailTextFieldClicked:(id)sender;
+
+- (IBAction)displayNameFieldClicked:(id)sender;
+
+- (IBAction)firstNameFieldClicked:(id)sender;
+
+- (IBAction)lastNameFieldClicked:(id)sender;
 
 - (IBAction)birthdayButtonClicked:(id)sender;
 
