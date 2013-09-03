@@ -2,7 +2,7 @@
 
 This guide describes the steps required to upgrade from different versions of the library.
 
-## From v2.2.0
+## From v2.2.0-v2.3.x to v3.3.9
 
 1. Delete the JREngage group from Xcode.
 2. Get the latest version of the SDK from GitHub `git clone https://github.com/janrain/jump.ios.git`
@@ -14,7 +14,7 @@ This guide describes the steps required to upgrade from different versions of th
 5. In the dialog, do **not** check the **Copy items is not destination group's folder (if needed)**. Ensure that the
    **Create groups for any added folders** radio button is selected, and that the **Add to targets** check box is
    selected for you application's target.
-6. v2.2.0 did support Capture so you need to remove the **JRCapture** project group from the **Janrain** project
+6. v2.2.0 and v2.3.0 did support Capture so you need to remove the **JRCapture** project group from the **Janrain** project
    group.
 7. You must also add the **QuartzCore** framework, and the **MessageUI** framework to your project.  As the
    **MessageUI** framework is not available on all iOS devices and versions, you must designate the framework as
@@ -32,17 +32,32 @@ This guide describes the steps required to upgrade from different versions of th
       `authenticationDidSucceedForUser:forProvider:`
     * `jrAuthenticationDidReachTokenUrl:withPayload:forProvider:` has been replaced with
       `authenticationDidReachTokenUrl:withResponse:andPayload:forProvider:`
+    * `jrAuthenticationDidReachTokenUrl:withResponse:andPayload:forProvider:` has been replaced with
+      `authenticationDidReachTokenUrl:withResponse:andPayload:forProvider:`
     * `jrAuthenticationDidNotComplete` has been replaced with `authenticationDidNotComplete`
     * `jrAuthenticationDidFailWithError:forProvider:` has been replaced with
       `authenticationDidFailWithError:forProvider:`
     * `jrAuthenticationCallToTokenUrl:didFailWithError:forProvider:` has been replaced with
       `authenticationCallToTokenUrl:didFailWithError:forProvider:`
 
-
 * **Use of undeclared identifier 'JRDialogShowingError'**
 
     Import `JREngageError.h`
 
+* **class method '+jrEngage' not found (return type defaults to 'id')**
+
+    This method has been removed some of the instance methods that you might be trying to use have been replaced with
+    class methods.
+
+* **Instance method '-authenticationDidCancel' not found (return type defaults to 'id')**
+
+    Use the class method `+[JREngage cancelAuthentication]` instead
+
+* **instance method '-cancelPublishing' not found (return type defaults to 'id')**
+    Use the class method `+[JREngage cancelSharing]` instead
+
+
+### v2.2.0 Solutions
 
 * **Instance method '-setCustomNavigationController:' not found (return type defaults to 'id')**
 
@@ -69,19 +84,11 @@ This guide describes the steps required to upgrade from different versions of th
             [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:myCustomInterface];
 
 
-* **class method '+jrEngage' not found (return type defaults to 'id')**
+### v2.3.0 Solutions
 
-    This method has been removed some of the instance methods that you might be trying to use have been replaced with
-    class methods.
+* **Instance method '-showAuthenticationDialogWithCustomInterfaceOverrides:' not found (return type defaults to 'id')**
 
-
-* **Instance method '-authenticationDidCancel' not found (return type defaults to 'id')**
-
-    Use the class method `+[JREngage cancelAuthentication]` instead
-
-
-* **instance method '-cancelPublishing' not found (return type defaults to 'id')**
-    Use the class method `+[JREngage cancelSharing]` instead
+    Use `+[JREngage showAuthenticationDialogWithCustomInterfaceOverrides:]` instead.
 
 
 ## 3.0.x -> 3.1
