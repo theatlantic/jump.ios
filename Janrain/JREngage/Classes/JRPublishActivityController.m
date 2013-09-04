@@ -885,9 +885,13 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         if (![self.customInterface objectForKey:kJRSocialSharingTitleString] &&
                 ![self.customInterface objectForKey:kJRSocialSharingTitleView])
         {
-            ((UILabel *) self.titleView).text = [NSString stringWithFormat:@"%@ %@",
-                                                                           NSLocalizedString(@"Share on", @""),
-                                                                           selectedProvider.friendlyName];
+            NSString *newText = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Share on", @""),
+                                                                     selectedProvider.friendlyName];
+            if (self.titleView) {
+                 ((UILabel *) self.titleView).text = newText;
+            } else {
+                self.navigationItem.title = newText;
+            }
         }
 ;
 
