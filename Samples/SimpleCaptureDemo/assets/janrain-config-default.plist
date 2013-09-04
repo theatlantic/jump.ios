@@ -31,6 +31,8 @@
         <string>rz47skmnm48jpcv3bh4eguv4b8</string>
         <key>bpBusUrlString</key>
         <string>https://backplane1.janrainbackplane.com/v1.2/bus/nathan-janrain</string>
+        <key>captureForgottenPasswordFormName</key>
+        <string>recoverPassword</string>
         <key>liveFyreNetwork</key>
         <string></string>
         <key>liveFyreSiteId</key>

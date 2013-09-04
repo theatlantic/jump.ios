@@ -38,7 +38,6 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>
 #import "JRCapture.h"
-#import "JREngage.h"
 #import "JREngageWrapper.h"
 #import "JRCaptureData.h"
 #import "debug_log.h"
@@ -46,6 +45,7 @@
 #import "JRCaptureError.h"
 #import "JRCaptureUser+Extras.h"
 #import "JRConnectionManager.h"
+#import "JRCaptureConfig.h"
 #import "NSMutableDictionary+JRDictionaryUtils.h"
 
 @implementation JRCapture
@@ -53,6 +53,12 @@
 + (void)setBackplaneChannelUrl:(NSString *)backplaneChannelUrl
 {
     [JRCaptureData sharedCaptureData].bpChannelUrl = backplaneChannelUrl;
+}
+
++ (void)setCaptureConfig:(JRCaptureConfig *)config
+{
+    [JRCaptureData setCaptureConfig:config];
+    [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
@@ -66,14 +72,23 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
      captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
                           captureAppId:(NSString *)captureAppId
 {
-    [JRCaptureData setCaptureDomain:captureDomain captureClientId:clientId captureLocale:captureLocale
-   captureTraditionalSignInFormName:captureSignInFormName captureFlowName:captureFlowName
-         captureEnableThinRegistration:enableThinRegistration
-captureTraditionalRegistrationFormName:captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:captureSocialRegistrationFormName
-                    captureFlowVersion:captureFlowVersion captureAppId:captureAppId];
+    JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+    config.engageAppId = engageAppId;
+    config.captureDomain = captureDomain;
+    config.captureClientId = clientId;
+    config.captureLocale = captureLocale;
+    config.captureSignInFormName = captureSignInFormName;
+    config.captureFlowName = captureFlowName;
+    config.enableThinRegistration = enableThinRegistration;
+    config.customProviders = customProviders;
+    config.captureTraditionalRegistrationFormName = captureTraditionalRegistrationFormName;
+    config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
+    config.captureFlowVersion = captureFlowVersion;
+    config.captureAppId = captureAppId;
 
-    [JREngageWrapper configureEngageWithAppId:engageAppId customIdentityProviders:customProviders];
+    [JRCapture setCaptureConfig:config];
+
+    [config release];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
@@ -171,6 +186,32 @@ captureTraditionalRegistrationFormName:nil
      captureSocialRegistrationFormName:nil
                           captureAppId:nil
                customIdentityProviders:customProviders];
+}
+
++ (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
+          captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
+          captureFlowName:(NSString *)captureFlowName
+    captureSignInFormName:(NSString *)captureFormName
+captureEnableThinRegistration:(BOOL)enableThinRegistration
+captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType
+       captureFlowVersion:(NSString *)captureFlowVersion
+captureRegistrationFormName:(NSString *)captureRegistrationFormName
+             captureAppId:(NSString *)captureAppId
+{
+    JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+    config.engageAppId = engageAppId;
+    config.captureDomain = captureDomain;
+    config.captureClientId = clientId;
+    config.captureLocale = captureLocale;
+    config.captureSignInFormName = captureFormName;
+    config.captureFlowName = captureFlowName;
+    config.enableThinRegistration = enableThinRegistration;
+    config.captureSocialRegistrationFormName = captureRegistrationFormName;
+    config.captureFlowVersion = captureFlowVersion;
+    config.captureAppId = captureAppId;
+    config.captureTraditionalSignInType = captureTraditionalSignInType;
+
+    [JRCapture setCaptureConfig:config];
 }
 
 /**
@@ -387,6 +428,69 @@ captureTraditionalRegistrationFormName:nil
     }];
 }
 
++ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
+                                      delegate:(id <JRCaptureDelegate>)delegate {
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
+    NSString *fieldName = [data getForgottenPasswordFieldName];
+
+    if (!recoverUri) recoverUri = data.passwordRecoverUri;
+    if (!recoverUri) {
+        JRCaptureError *captureError =
+                [JRCaptureError invalidArgumentErrorWithParameterName:@"recoverUri"];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
+
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing argument/setting passwordRecoverUri"];
+        return;
+    }
+
+    if (!fieldValue) {
+        JRCaptureError *captureError =
+                [JRCaptureError invalidArgumentErrorWithParameterName:@"fieldValue"];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
+        return;
+    }
+
+    if (!data.captureForgottenPasswordFormName) {
+        JRCaptureError *captureError =
+            [JRCaptureError invalidArgumentErrorWithParameterName:@"forgottenPasswordFormName"];
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
+        return;
+    }
+
+    NSDictionary *params = @{
+            @"client_id" : data.clientId,
+            @"locale" : data.captureLocale,
+            @"response_type" : @"token",
+            @"redirect_uri" : recoverUri,
+            @"form" : data.captureForgottenPasswordFormName,
+            @"flow" : data.captureFlowName,
+            @"flow_version" : data.downloadedFlowVersion,
+            fieldName : fieldValue
+    };
+
+    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error)
+    {
+        if (error) {
+            ALog("Failure initiating forgotten password flow: %@", error);
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:)
+                    forDelegate:delegate withArg:error];
+        } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+            DLog(@"Forgotten password flow started successfully");
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidSucceed) forDelegate:delegate];
+        } else {
+            JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+
+            [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:)
+                    forDelegate:delegate withArg:captureError];
+        }
+    }];
+}
+
 + (NSString *)utcTimeString
 {
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -534,6 +638,15 @@ captureTraditionalRegistrationFormName:nil
     if ([delegate respondsToSelector:pSelector])
     {
         [delegate performSelector:pSelector withObject:arg];
+    }
+}
+
++ (void)maybeDispatch:(SEL)pSelector forDelegate:(id <JRCaptureDelegate>)delegate
+{
+    DLog(@"Dispatching %@", NSStringFromSelector(pSelector));
+    if ([delegate respondsToSelector:pSelector])
+    {
+        [delegate performSelector:pSelector];
     }
 }
 

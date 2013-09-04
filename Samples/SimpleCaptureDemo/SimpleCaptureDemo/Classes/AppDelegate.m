@@ -35,6 +35,7 @@
 #import "debug_log.h"
 #import "JRSessionData.h"
 #import "JRCaptureData.h"
+#import "JRCaptureConfig.h"
 
 #ifdef JR_FACEBOOK_SDK_TEST
 #  import "FacebookSDK/FacebookSDK.h"
@@ -64,6 +65,7 @@ AppDelegate *appDelegate = nil;
 @synthesize captureSocialRegistrationFormName;
 @synthesize captureAppId;
 @synthesize customProviders;
+@synthesize captureForgottenPasswordFormName;
 
 // Backplane / LiveFyre stuff:
 @synthesize bpChannelUrl;
@@ -84,15 +86,24 @@ AppDelegate *appDelegate = nil;
 
     [self loadDemoConfigFromPlist];
 
-    [JRCapture setEngageAppId:engageAppId captureDomain:captureDomain captureClientId:captureClientId
-                captureLocale:captureLocale captureFlowName:captureFlowName
-           captureFlowVersion:captureFlowVersion captureTraditionalSignInFormName:captureTraditionalSignInFormName
- captureTraditionalSignInType:JRTraditionalSignInEmailPassword
-captureEnableThinRegistration:captureEnableThinRegistration
-               customIdentityProviders:customProviders
-captureTraditionalRegistrationFormName:captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:captureSocialRegistrationFormName
-                          captureAppId:captureAppId];
+    JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+    config.engageAppId = engageAppId;
+    config.captureDomain = captureDomain;
+    config.captureClientId = captureClientId;
+    config.captureLocale = captureLocale;
+    config.captureFlowName = captureFlowName;
+    config.captureFlowVersion = captureFlowVersion;
+    config.captureSignInFormName = captureTraditionalSignInFormName;
+    config.captureTraditionalSignInType = JRTraditionalSignInEmailPassword;
+    config.enableThinRegistration = captureEnableThinRegistration;
+    config.customProviders = customProviders;
+    config.captureTraditionalRegistrationFormName = captureTraditionalRegistrationFormName;
+    config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
+    config.captureAppId = captureAppId;
+    config.forgottenPasswordFormName = captureForgottenPasswordFormName;
+    config.passwordRecoverUri = @"http://not-a-real-uri.janrain.com/forgotten_password.html";
+
+    [JRCapture setCaptureConfig:config];
 
     [BackplaneUtils asyncFetchNewBackplaneChannelWithBus:bpBusUrlString
                                               completion:^(NSString *newChannel, NSError *error)
@@ -210,6 +221,8 @@ captureTraditionalRegistrationFormName:captureTraditionalRegistrationFormName
         self.captureAppId = [cfg objectForKey:@"captureAppId"];
     if ([cfg objectForKey:@"engageAppId"])
         self.engageAppId = [cfg objectForKey:@"engageAppId"];
+    if ([cfg objectForKey:@"captureForgottenPasswordFormName"])
+        self.captureForgottenPasswordFormName = [cfg objectForKey:@"captureForgottenPasswordFormName"];
     if ([cfg objectForKey:@"bpBusUrlString"])
         self.bpBusUrlString = [cfg objectForKey:@"bpBusUrlString"];
     if ([cfg objectForKey:@"bpChannelUrl"])

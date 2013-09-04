@@ -10,6 +10,7 @@
 		19BC00CC7CE1407ECD3FCEA9 /* icon_amazon_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */; };
 		19BC00F96A6F3733F91354AC /* icon_amazon_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */; };
 		19BC01E36A31424334D83559 /* icon_bw_amazon_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */; };
+		19BC0273946224097507522B /* JRCaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC038695E3F63ED3DAF62B /* icon_bw_amazon_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */; };
 		19BC04A025012377EE30F823 /* logo_amazon_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */; };
 		19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */; };
@@ -294,10 +295,12 @@
 
 /* Begin PBXFileReference section */
 		19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_amazon_280x65@2x.png"; sourceTree = "<group>"; };
+		19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureConfig.m; sourceTree = "<group>"; };
 		19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_amazon_30x30@2x.png"; sourceTree = "<group>"; };
 		19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_amazon_30x30@2x.png"; sourceTree = "<group>"; };
 		19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_amazon_30x30.png; sourceTree = "<group>"; };
 		19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_amazon_280x65.png; sourceTree = "<group>"; };
+		19BC0C91C468544CC1764EEB /* JRCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureConfig.h; sourceTree = "<group>"; };
 		19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amazon_30x30.png; sourceTree = "<group>"; };
 		6706F004B5721D364A0105AB /* JRObjectLevelTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRObjectLevelTwo.m; sourceTree = "<group>"; };
 		6706F011CCEAA27C898AC307 /* JRPluralLevelTwoElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPluralLevelTwoElement.m; sourceTree = "<group>"; };
@@ -310,7 +313,7 @@
 		6706F1D869841D7DDAD98738 /* JRBestHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBestHand.m; sourceTree = "<group>"; };
 		6706F1FB3600926EFC36AB15 /* JRPinoLevelOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPinoLevelOne.h; sourceTree = "<group>"; };
 		6706F24261C9D663CA951A9E /* JRTournamentsPlayedElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTournamentsPlayedElement.h; sourceTree = "<group>"; };
-		6706F243FF1B1D4DBFCE6B5D /* Engage-Only Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Engage-Only Integration Guide.md"; path = "../../../jump.ios/Docs/Engage-Only Integration Guide.md"; sourceTree = "<group>"; };
+		6706F243FF1B1D4DBFCE6B5D /* Engage-Only Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Engage-Only Integration Guide.md"; path = "../../Docs/Engage-Only Integration Guide.md"; sourceTree = "<group>"; };
 		6706F258F34EC9D14EEFD739 /* JRAccountsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAccountsElement.h; sourceTree = "<group>"; };
 		6706F2B069F76782B811AC30 /* JRGamesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRGamesElement.m; sourceTree = "<group>"; };
 		6706F30335F684F1277A129B /* JRPrimaryAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPrimaryAddress.m; sourceTree = "<group>"; };
@@ -333,7 +336,7 @@
 		6706F5A485C883A6BE20BF64 /* JROnipLevelOneElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROnipLevelOneElement.m; sourceTree = "<group>"; };
 		6706F5D31EC62921D7227C7B /* JRPluralLevelThreeElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPluralLevelThreeElement.m; sourceTree = "<group>"; };
 		6706F60D862784133EAE27EA /* JRName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRName.h; sourceTree = "<group>"; };
-		6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Engage Custom Provider Guide.md"; path = "../../../jump.ios/Docs/Engage Custom Provider Guide.md"; sourceTree = "<group>"; };
+		6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Engage Custom Provider Guide.md"; path = "../../Docs/Engage Custom Provider Guide.md"; sourceTree = "<group>"; };
 		6706F639039C6875E7613160 /* JRAddressesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAddressesElement.m; sourceTree = "<group>"; };
 		6706F66DAF1046F0D6D2B767 /* JRPinoLevelTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPinoLevelTwo.h; sourceTree = "<group>"; };
 		6706F701AE45C5BFE44B52B5 /* JRImsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRImsElement.m; sourceTree = "<group>"; };
@@ -371,7 +374,7 @@
 		6706FCDF3C4BFCE94A74821A /* JRPhoneNumbersElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPhoneNumbersElement.m; sourceTree = "<group>"; };
 		6706FCFBFA792CAA28DC7B1F /* JROrganizationsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROrganizationsElement.h; sourceTree = "<group>"; };
 		6706FD89BB92021A24CEE04F /* JRCurrentLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCurrentLocation.h; sourceTree = "<group>"; };
-		6706FDE35290E73F4513572D /* JUMP Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "JUMP Integration Guide.md"; path = "../../../jump.ios/Docs/JUMP Integration Guide.md"; sourceTree = "<group>"; };
+		6706FDE35290E73F4513572D /* JUMP Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = "JUMP Integration Guide.md"; path = "../../Docs/JUMP Integration Guide.md"; sourceTree = "<group>"; };
 		6706FE4A749862BF082D2831 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		6706FE4C14414AE4B30F1878 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerViewController.h; path = Classes/PickerViewController.h; sourceTree = "<group>"; };
 		6706FE7192712069057BD307 /* JRTournamentsPlayedElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTournamentsPlayedElement.m; sourceTree = "<group>"; };
@@ -957,6 +960,8 @@
 				DF39E02917A9887300FDA67A /* JRTraditionalSigninViewController.m */,
 				DF39E02A17A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.h */,
 				DF39E02B17A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m */,
+				19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */,
+				19BC0C91C468544CC1764EEB /* JRCaptureConfig.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1687,6 +1692,7 @@
 				DFEFE4B117A9915200760FEE /* JRUserLandingController.m in Sources */,
 				DFEFE4B217A9915200760FEE /* JRWebViewController.m in Sources */,
 				DFEFE4B417A9915200760FEE /* JREngagePlugin.js in Sources */,
+				19BC0273946224097507522B /* JRCaptureConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
