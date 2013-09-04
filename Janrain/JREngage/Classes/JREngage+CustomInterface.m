@@ -31,32 +31,3 @@
  Author: Lilli Szafranski - lilli@janrain.com, lillialexis@gmail.com
  Date:   Friday, January 21, 2011
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-
-#import "JREngage+CustomInterface.h"
-//@interface JREngage ()
-//{
-//    JRUserInterfaceMaestro *_interfaceMaestro;
-//}
-//@end
-//
-//@implementation JREngage (CustomInterface)
-//- (void)setCustomInterfaceDefaults:(NSMutableDictionary*)customInterfaceDefaults
-//{
-//    [_interfaceMaestro setCustomInterfaceDefaults:customInterfaceDefaults];
-//}
-//
-//+ (void)setCustomInterfaceDefaults:(NSMutableDictionary*)customInterfaceDefaults
-//{
-//
-//}
-
-//- (void)setCustomInterface:(NSMutableDictionary*)customizations
-//{
-//ALog (
-//@"This function has been deprecated and will not do anything.\
-//  Please use - (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary*)customInterfaceOverrides"
-//     );
-//}
-//@end

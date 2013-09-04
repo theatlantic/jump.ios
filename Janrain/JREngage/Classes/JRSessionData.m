@@ -458,7 +458,7 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
     BOOL alwaysForceReauth;
 
     BOOL socialSharing;
-    BOOL dialogIsShowing;
+    BOOL authenticationFlowIsInFlight;
     BOOL stillNeedToShortenUrls;
 
     NSError *error;
@@ -534,24 +534,24 @@ static JRSessionData *singleton = nil;
 - (id)autorelease           { return self; }
 
 #pragma mark accessors
-- (BOOL)dialogIsShowing
+- (BOOL)authenticationFlowIsInFlight
 {
-    return dialogIsShowing;
+    return authenticationFlowIsInFlight;
 }
 
-- (void)setDialogIsShowing:(BOOL)isShowing
+- (void)setAuthenticationFlowIsInFlight:(BOOL)isInFlight
 {
     /* If we found out that the configuration changed while a dialog was showing, we saved it until the dialog wasn't
     showing since the dialogs dynamically load our data. Now that the dialog isn't showing, load the saved
     configuration information. */
-    if (!isShowing && savedConfigurationBlock)
+    if (!isInFlight && savedConfigurationBlock)
         self.error = [self updateConfig:savedConfigurationBlock];
 
     /* If the dialog is going away, then we don't still need to shorten the urls */
-    if (!isShowing)
+    if (!isInFlight)
         stillNeedToShortenUrls = NO;
 
-    dialogIsShowing = isShowing;
+    authenticationFlowIsInFlight = isInFlight;
 }
 
 - (JRActivityObject *)activity
@@ -797,7 +797,7 @@ static JRSessionData *singleton = nil;
     indicator and a loading message, as they wait for the lists of providers to download, so we can go ahead and
     update the configuration information here, too. The dialogs won't try and do anything until we're done updating
     the lists. */
-    if (!dialogIsShowing
+    if (!authenticationFlowIsInFlight
             || ([engageAuthenticationProviders count] == 0 && !socialSharing)
             || ([sharingProviders count] == 0 && socialSharing))
     {
@@ -854,8 +854,6 @@ static JRSessionData *singleton = nil;
 - (void)forgetAuthenticatedUserForProvider:(NSString *)providerName
 {
     DLog (@"");
-
-    if (!providerName) return;
     JRProvider* provider = [engageProviders objectForKey:providerName];
 
     if (!provider) return;

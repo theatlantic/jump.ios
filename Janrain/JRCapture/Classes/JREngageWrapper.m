@@ -34,17 +34,19 @@
 #import "JRCaptureData.h"
 #import "JREngage+CustomInterface.h"
 #import "JRCaptureError.h"
-#import "JRCaptureApidInterface.h"
 #import "JRTraditionalSigninViewController.h"
 #import "JRCapture.h"
 #import "JRJsonUtils.h"
 
-typedef enum
-{
+typedef enum {
     JREngageDialogStateAuthentication,
 } JREngageDialogState;
 
-@interface JREngageWrapper ()
+@interface JRCapture (Internal)
++ (void)signInHandler:(id)json error:(NSError *)error delegate:(id <JRCaptureDelegate>)delegate;
+@end
+
+@interface JREngageWrapper () <JREngageSigninDelegate>
 @property(retain) NSString *engageToken;
 @property(retain) JRTraditionalSignInViewController *nativeSignInViewController;
 @property(retain) id <JRCaptureDelegate> delegate;
@@ -109,6 +111,10 @@ static JREngageWrapper *singleton = nil;
     return self;
 }
 
++ (id)getDelegate {
+    return [JREngageWrapper singletonInstance].delegate;
+}
+
 + (void)configureEngageWithAppId:(NSString *)appId customIdentityProviders:(NSDictionary *)customProviders
 {
     [JREngage setEngageAppId:appId tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
@@ -119,7 +125,7 @@ static JREngageWrapper *singleton = nil;
                            andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                            forDelegate:(id <JRCaptureDelegate>)delegate
 {
-    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil]];
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:delegate ]];
 
     JREngageWrapper *wrapper = [JREngageWrapper singletonInstance];
     [wrapper setDelegate:delegate];
@@ -171,7 +177,7 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
                                  mergeToken:(NSString *)mergeToken
                                 forDelegate:(id <JRCaptureDelegate>)delegate
 {
-    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:mergeToken]];
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:mergeToken delegate:delegate]];
 
     [[JREngageWrapper singletonInstance] setDelegate:delegate];
     [[JREngageWrapper singletonInstance] setDialogState:JREngageDialogStateAuthentication];
@@ -246,14 +252,7 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
         return;
     }
 
-    FinishSignInError error = [JRCaptureApidInterface finishSignInWithPayload:payloadDict forDelegate:delegate];
-
-    if (error == cJRInvalidResponse || error == cJRInvalidCaptureUser)
-    {
-        [self authenticationCallToTokenUrl:tokenUrl
-                          didFailWithError:[JRCaptureError invalidApiResponseErrorWithString:payload]
-                               forProvider:provider];
-    }
+    [JRCapture signInHandler:payloadDict error:nil delegate:delegate];
 
     [self engageLibraryTearDown];
 }

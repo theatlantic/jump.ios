@@ -38,6 +38,9 @@
 #import "JRConnectionManager.h"
 #import "JRSessionData.h"
 #import "JREngageError.h"
+#ifdef JR_FACEBOOK_SDK_TEST
+#   import "FacebookSDK/FacebookSDK.h"
+#endif
 
 @implementation JRNativeAuth
 static Class fbSession = nil;
@@ -79,10 +82,13 @@ static SEL fbErrorCategoryForErrorSel = nil;
 
 + (void)startAuthOnProvider:(NSString *)provider completion:(void (^)(NSError *))completion
 {
-    if ([provider isEqual:@"facebook"])
-    {
+    if ([provider isEqual:@"facebook"]) {
+        [JRSessionData jrSessionData].authenticationFlowIsInFlight = YES;
         [self fbNativeAuthWithCompletion:completion];
+        return;
     }
+
+    [NSException raiseJRDebugException:@"unexpected native auth provider" format:provider];
 }
 
 + (void)fbNativeAuthWithCompletion:(void (^)(NSError *))completion
@@ -115,8 +121,15 @@ static SEL fbErrorCategoryForErrorSel = nil;
                     }
                     else
                     {
-                        id accessToken = [self getAccessToken:session];
-                        [self getAuthInfoTokenForAccessToken:accessToken onProvider:@"facebook" completion:completion];
+                        static id accessToken = nil;
+                        id accessToken_ = [self getAccessToken:session];
+
+                        // XXX horrible hack to avoid session.fbAccessTokenData being null for auth flows subsequent
+                        // to the first. Seems to have something to do with caching.
+                        if (accessToken_) accessToken = accessToken_;
+                        else accessToken_ = accessToken;
+
+                        [self getAuthInfoTokenForAccessToken:accessToken_ onProvider:@"facebook" completion:completion];
                     }
                 };
         objc_msgSend(fbSession, openActiveSessionWithReadPermissionsSel, @[], YES, handler);
@@ -160,8 +173,10 @@ static SEL fbErrorCategoryForErrorSel = nil;
         JRSessionData *sessionData = [JRSessionData jrSessionData];
         [sessionData setCurrentProvider:[sessionData getProviderNamed:provider]];
         [sessionData triggerAuthenticationDidCompleteWithPayload:@{
-                @"rpx_result" : @{@"token" : authInfoToken},
-                @"auth_info" : @{}
+                @"rpx_result" : @{
+                        @"token" : authInfoToken,
+                        @"auth_info" : @{}
+                },
         }];
 
         completion(nil);

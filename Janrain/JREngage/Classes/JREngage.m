@@ -189,7 +189,7 @@ static JREngage* singleton = nil;
         }
     }
 
-    if (sessionData.dialogIsShowing)
+    if (sessionData.authenticationFlowIsInFlight)
     {
         [self engageDidFailWithError:
                       [JREngageError errorWithMessage:@"The dialog failed to show because there is already a JREngage "
@@ -311,7 +311,7 @@ static JREngage* singleton = nil;
         }
     }
 
-    if (sessionData.dialogIsShowing)
+    if (sessionData.authenticationFlowIsInFlight)
     {
         [self engageDidFailWithError:
                       [JREngageError errorWithMessage:@"The dialog failed to show because there is already a JREngage "

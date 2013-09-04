@@ -327,7 +327,6 @@ static JRConnectionManager *singleton = nil;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    //DLog(@"");
     [[(ConnectionData *) CFDictionaryGetValue(connectionBuffers, connection) response] appendData:data];
 }
 

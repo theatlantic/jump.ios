@@ -533,9 +533,6 @@
 {
     [sessionData setCurrentProvider:provider];
 
-    DLog(@"cell for %@ was selected", provider);
-
-    // TODO: Change me (comment)!
     if (provider.requiresInput || ([sessionData authenticatedUserForProvider:provider]
             && !(provider.forceReauthStartUrlFlag || sessionData.alwaysForceReauth)))
     {

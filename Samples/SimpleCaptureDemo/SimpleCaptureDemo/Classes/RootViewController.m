@@ -128,10 +128,12 @@
 {
     self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled =
                 self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled =
-                        self.shareButton.enabled = self.directFacebookAuthButton.enabled = b;
+                        self.shareButton.enabled = self.directFacebookAuthButton.enabled = self.tradAuthButton.enabled
+                                = b;
     self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha =
                 self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha =
-                self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha = 0.5 + b * 0.5;
+                self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha =
+                self.tradAuthButton.alpha = 0.5 + b * 0.5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -197,8 +199,8 @@
 
 - (IBAction)facebookAuthButtonPressed:(id)sender
 {
-    //[self startSignInForProvider:@"facebook"];
-    [JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
+    [self startSignInForProvider:@"facebook"];
+    //[JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
 }
 
 - (void)startSignInForProvider:(NSString *)provider
@@ -289,11 +291,17 @@
     [alertView show];
 }
 
-- (void)handleBadPasswordError
+- (void)handleBadPasswordError:(NSError *)error
 {
-    [[[UIAlertView alloc] initWithTitle:@"Access Denied" message:@"Invalid password for email@address.com"
-                               delegate:nil cancelButtonTitle:@"Dismiss"
-                      otherButtonTitles:nil] show];
+    void (^t)(UIAlertView *, BOOL, NSInteger) = ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+        [self configureViewsWithDisableOverride:NO];
+    };
+
+    [[[AlertViewWithBlocks alloc] initWithTitle:@"Access Denied" message:@"Invalid password for email@address.com"
+                                     completion:t
+                                          style:UIAlertViewStyleDefault
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles:nil] show];
 }
 
 - (void)handleMergeFlowError:(NSError *)error
@@ -326,11 +334,13 @@
     void (^signInCompletion)(UIAlertView *, BOOL, NSInteger) =
             ^(UIAlertView *alertView_, BOOL cancelled_, NSInteger buttonIndex_)
             {
-                if (cancelled_) return;
+                if (cancelled_) {
+                    [self configureViewsWithDisableOverride:NO];
+                    return;
+                }
                 NSString *user = [[alertView_ textFieldAtIndex:0] text];
                 NSString *password = [[alertView_ textFieldAtIndex:1] text];
                 [JRCapture startCaptureTraditionalSignInForUser:user withPassword:password
-                                                 withSignInType:JRTraditionalSignInEmailPassword
                                                      mergeToken:mergeToken
                                                     forDelegate:self.captureDelegate];
             };
@@ -338,6 +348,7 @@
     [[[AlertViewWithBlocks alloc] initWithTitle:@"Sign in" message:nil completion:signInCompletion
                                           style:UIAlertViewStyleLoginAndPasswordInput cancelButtonTitle:@"Cancel"
                               otherButtonTitles:@"Sign in", nil] show];
+    [self configureViewsWithDisableOverride:YES];
 }
 
 - (void)showMergeAlertDialog:(NSString *)existingAccountProvider
@@ -388,8 +399,6 @@
 
     [appDelegate.prefs setObject:nil forKey:cJRCurrentProvider];
     [appDelegate.prefs setObject:nil forKey:cJRCaptureUser];
-
-    //appDelegate.engageSignInWasCanceled = NO;
 
     [JRCapture clearSignInState];
 }
@@ -463,29 +472,26 @@
 
 - (void)captureSignInDidFailWithError:(NSError *)error
 {
+    [self.rvc configureViewsWithDisableOverride:NO];
     [self.rvc setProviderAndConfigureIcon:nil];
 
     DLog(@"error: %@", [error description]);
-    if ([error code] == JRCaptureErrorGenericBadPassword)
-    {
-        [self.rvc handleBadPasswordError];
-    }
-    else if ([error isJRMergeFlowError])
-    {
+    if ([error code] == JRCaptureErrorGenericBadPassword) {
+        [self.rvc handleBadPasswordError:error];
+    } else if ([error isJRMergeFlowError]) {
         [self.rvc handleMergeFlowError:error];
-    }
-    else if ([error isJRTwoStepRegFlowError])
-    {
+    } else if ([error isJRTwoStepRegFlowError]) {
         [self.rvc handleTwoStepRegFlowError:error];
-    }
-    else
-    {
-        DLog(@"error: %@", [error description]);
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:[error description]
-                                                           delegate:nil cancelButtonTitle:@"Dismiss"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+    } else {
+        void (^t)(UIAlertView *, BOOL, NSInteger) = ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+            [self.rvc configureViewsWithDisableOverride:NO];
+        };
+
+        [[[AlertViewWithBlocks alloc] initWithTitle:@"Error" message:[error description]
+                                         completion:t
+                                              style:UIAlertViewStyleDefault
+                                  cancelButtonTitle:@"Dismiss"
+                                  otherButtonTitles:nil] show];
     }
 }
 
@@ -528,6 +534,10 @@
     [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
                                         message:[NSString stringWithFormat:@"%@", error] delegate:nil
                               cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
+- (void)captureDidSucceedWithCode:(NSString *)code {
+    DLog(@"Authorization Code: %@",code);
 }
 
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context

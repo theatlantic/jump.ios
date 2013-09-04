@@ -33,6 +33,7 @@
 #import "SFHFKeychainUtils.h"
 #import "JRCaptureConfig.h"
 #import "NSDictionary+JRQueryParams.h"
+#import "JREngageWrapper.h"
 
 #define cJRCaptureKeychainIdentifier @"capture_tokens.janrain"
 #define cJRCaptureKeychainUserName @"capture_user"
@@ -81,7 +82,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic, retain) NSString *captureFlowName;
 @property(nonatomic, retain) NSString *captureFlowVersion;
 @property(nonatomic, retain) NSString *captureLocale;
-@property(nonatomic, retain) NSString *captureSignInFormName;
+@property(nonatomic, retain) NSString *captureTraditionalSignInFormName;
 @property(nonatomic, retain) NSString *captureTraditionalRegistrationFormName;
 @property(nonatomic, retain) NSString *captureSocialRegistrationFormName;
 @property(nonatomic, retain) NSString *captureForgottenPasswordFormName;
@@ -102,7 +103,7 @@ static JRCaptureData *singleton = nil;
 @synthesize refreshSecret;
 @synthesize bpChannelUrl;
 @synthesize captureLocale;
-@synthesize captureSignInFormName;
+@synthesize captureTraditionalSignInFormName;
 //@synthesize captureTradSignInType;
 @synthesize captureFlowName;
 @synthesize captureTraditionalRegistrationFormName;
@@ -169,8 +170,7 @@ static JRCaptureData *singleton = nil;
     return self;
 }
 
-+ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken
-{
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken delegate:(id)delegate {
     JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
     NSString *redirectUri = [singleton redirectUri];
     NSString *thinReg = [JRCaptureData sharedCaptureData].captureEnableThinRegistration ? @"true" : @"false";
@@ -178,7 +178,7 @@ static JRCaptureData *singleton = nil;
             @{
                     @"client_id" : captureData.clientId,
                     @"locale" : captureData.captureLocale,
-                    @"response_type" : @"token",
+                    @"response_type" : [captureData responseType:delegate],
                     @"redirect_uri" : redirectUri,
                     @"thin_registration" : thinReg,
                     @"refresh_secret" : [self generateAndStoreRefreshSecret],
@@ -244,10 +244,9 @@ static JRCaptureData *singleton = nil;
     captureDataInstance.captureBaseUrl = [config.captureDomain urlStringFromBaseDomain];
     captureDataInstance.clientId = config.captureClientId;
     captureDataInstance.captureLocale = config.captureLocale;
-    captureDataInstance.captureSignInFormName = config.captureSignInFormName;
+    captureDataInstance.captureTraditionalSignInFormName = config.captureSignInFormName;
     captureDataInstance.captureFlowName = config.captureFlowName;
     captureDataInstance.captureEnableThinRegistration = config.enableThinRegistration;
-    //captureDataInstance.captureTradSignInType = tradSignInType;
     captureDataInstance.captureTraditionalRegistrationFormName = config.captureTraditionalRegistrationFormName;
     captureDataInstance.captureSocialRegistrationFormName = config.captureSocialRegistrationFormName;
     captureDataInstance.captureFlowVersion = config.captureFlowVersion;
@@ -420,7 +419,7 @@ static JRCaptureData *singleton = nil;
     [captureBaseUrl release];
     [captureFlowName release];
     [captureLocale release];
-    [captureSignInFormName release];
+    [captureTraditionalSignInFormName release];
     [bpChannelUrl release];
     [captureTraditionalRegistrationFormName release];
     [captureFlowVersion release];
@@ -447,17 +446,20 @@ static JRCaptureData *singleton = nil;
 
 + (NSMutableURLRequest *)requestWithPath:(NSString *)path
 {
-    return [[JRCaptureData sharedCaptureData] urlForPath:path];
-}
-
-- (NSMutableURLRequest *)urlForPath:(NSString *)path
-{
-    NSString *urlString = [[self captureBaseUrl] stringByAppendingString:path];
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *urlString = [[data captureBaseUrl] stringByAppendingString:path];
     return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 }
 
 + (void)setBackplaneChannelUrl:(NSString *)bpChannelUrl __unused
 {
     [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
+}
+
+- (NSString *)responseType:(id)delegate {
+    if ([delegate respondsToSelector:@selector(captureDidSucceedWithCode:)]) {
+        return @"code_and_token";
+    }
+    return @"token";
 }
 @end

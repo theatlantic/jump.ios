@@ -34,6 +34,7 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import "JRCaptureTypes.h"
+#import "JRCaptureApidInterface.h"
 
 @class JRCaptureUser;
 @class JRCaptureConfig;
@@ -263,6 +264,15 @@
                                 status:(JRCaptureRecordStatus)captureRecordStatus;
 
 /**
+ * Sent after authentication has successfully reached the Capture server.
+ *
+ * @param code
+ *   A Capture OAuth Authentication Code, this short lived code can be used to get an Access Token for use with a
+ *   server side application like the Capture Drupal plugin.
+ */
+- (void)captureDidSucceedWithCode:(NSString *)code;
+
+/**
  * Sent when the call to the Capture server has failed.
  *
  * @param error
@@ -419,7 +429,7 @@ captureTraditionalSignInFormName:(NSString *)captureSignInFormName
           captureTraditionalSignInType:(__unused JRTraditionalSignInType)captureTraditionalSignInType
 captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
      captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
-                          captureAppId:(NSString *)captureAppId;
+                          captureAppId:(NSString *)captureAppId __attribute__((deprecated));
 
 /**
  * @deprecated
@@ -430,7 +440,8 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
               captureFlowVersion:(NSString *)captureFlowVersion
 captureTraditionalSignInFormName:(NSString *)captureSignInFormName
     captureTraditionalSignInType:(__unused JRTraditionalSignInType)captureTraditionalSignInType
-                    captureAppId:(NSString *)captureAppId customIdentityProviders:(NSDictionary *)customProviders;
+                    captureAppId:(NSString *)captureAppId customIdentityProviders:(NSDictionary *)customProviders
+__attribute__((deprecated));
 
 /**
  * @deprecated
@@ -439,7 +450,7 @@ captureTraditionalSignInFormName:(NSString *)captureSignInFormName
        captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
        captureFlowName:(NSString *)captureFlowName
              captureFormName:(NSString *)captureFormName
-captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType;
+captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType __attribute__((deprecated));
 
 /**
  * @deprecated
@@ -448,7 +459,7 @@ captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInTy
        captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
              captureFlowName:(NSString *)captureFlowName captureFormName:(NSString *)captureFormName
 captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType
-     customIdentityProviders:(NSDictionary *)customProviders;
+     customIdentityProviders:(NSDictionary *)customProviders __attribute__((deprecated));
 
 /**
  * @deprecated
@@ -498,7 +509,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 /**
  * @deprecated
  */
-+ (void)startEngageSignInForDelegate:(id <JRCaptureDelegate>)controller;
++ (void)startEngageSignInForDelegate:(id <JRCaptureDelegate>)controller __attribute__((deprecated));
 
 /**
  * Begin authentication for one specific provider. The library will
@@ -541,7 +552,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 + (void)startEngageSignInDialogOnProvider:(NSString *)provider
              withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                               forDelegate:(id <JRCaptureDelegate>)delegate __unused;
-
 
 /**
  * Begin authentication for one specific provider. The library will
@@ -613,33 +623,35 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 /**
  * Signs a user in via traditional (username/email and password) authentication on Capture.
  *
- * @param user
- *  The username or the email address
- * @param password
- *  The password
- * @param traditionalSignInTypeSignInType
- *  A JRTraditionalSignInType value used to indicate whether the user parameter is a username or an email address
- * @param mergeToken
- *  The Engage token to merge with, retrieved from the merge error
- */
-+ (void)startCaptureTraditionalSignInForUser:(NSString *)user withPassword:(NSString *)password
-                              withSignInType:(JRTraditionalSignInType)traditionalSignInTypeSignInType
-                                  mergeToken:(NSString *)mergeToken
-                                 forDelegate:(id <JRCaptureDelegate>)delegate;
-
-/**
- * Signs a user in via traditional (username/email and password) authentication on Capture.
+ * Requires that the flow name and Capture app ID be configured.
  *
  * @param user
  *  The username or the email address
  * @param password
  *  The password
- * @param traditionalSignInTypeSignInType
- *  A JRTraditionalSignInType value used to indicate whether the user parameter is a username or an email address
+ * @param mergeToken
+ *  The Engage token to merge with, retrieved from the merge error, or nil for none
+ */
++ (void)startCaptureTraditionalSignInForUser:(NSString *)user withPassword:(NSString *)password
+                                  mergeToken:(NSString *)mergeToken
+                                 forDelegate:(id <JRCaptureDelegate>)delegate;
+
+/**
+ * @deprecated
+ * Use +[JRCapture startCaptureTraditionalSignInForUser:withPassword:mergeToken:forDelegate:] instead
  */
 + (void)startCaptureTraditionalSignInForUser:(NSString *)user withPassword:(NSString *)password
                               withSignInType:(JRTraditionalSignInType)traditionalSignInTypeSignInType
-                                 forDelegate:(id <JRCaptureDelegate>)delegate __unused;
+                                  mergeToken:(NSString *)mergeToken
+                                 forDelegate:(id <JRCaptureDelegate>)delegate __attribute__((deprecated));
+
+/**
+ * @deprecated
+ * Use +[JRCapture startCaptureTraditionalSignInForUser:withPassword:mergeToken:forDelegate:] instead
+ */
++ (void)startCaptureTraditionalSignInForUser:(NSString *)user withPassword:(NSString *)password
+                              withSignInType:(JRTraditionalSignInType)traditionalSignInTypeSignInType
+                                 forDelegate:(id <JRCaptureDelegate>)delegate __attribute__((deprecated));
 
 /**
  * Refreshes the signed-in user's access token

@@ -52,7 +52,7 @@ typedef enum
                             andPayload:(NSData *)tokenUrlPayload forProvider:(NSString *)provider;
 @end
 
-@interface JRTraditionalSignInViewController () <UIAlertViewDelegate,  JRCaptureDelegate>
+@interface JRTraditionalSignInViewController () <JRCaptureInternalDelegate, UIAlertViewDelegate,  JRCaptureDelegate>
 @property (retain) NSString *titleString;
 @property (retain) UIView   *titleView;
 @property JRTraditionalSignInType signInType;
@@ -239,20 +239,15 @@ typedef enum
 {
     UITableViewCell *nameCell = [myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     UITableViewCell *pwdCell  = [myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    NSString *nameOrEmail = ((UITextField *) [nameCell viewWithTag:NAME_TEXTFIELD_TAG]).text;
+    NSString *user = ((UITextField *) [nameCell viewWithTag:NAME_TEXTFIELD_TAG]).text;
     NSString *password = ((UITextField *) [pwdCell viewWithTag:PWD_TEXTFIELD_TAG]).text;
-    if (!nameOrEmail) nameOrEmail = @"";
+    if (!user) user = @"";
     if (!password) password = @"";
 
-    NSString *const signInTypeString = (self.signInType == JRTraditionalSignInEmailPassword) ? @"email" : @"username";
-    NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                      nameOrEmail, signInTypeString,
-                                                      password, @"password", nil];
+    NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:user, @"user",
+                                                                           password, @"password", nil];
 
-    [JRCaptureApidInterface signInCaptureUserWithCredentials:credentials
-                                                      ofType:signInTypeString
-                                                 forDelegate:self
-                                                 withContext:nil];
+    [JRCaptureApidInterface signInCaptureUserWithCredentials:credentials forDelegate:self withContext:nil];
 
     [self.firstResponder resignFirstResponder];
     [self setFirstResponder:nil];
@@ -286,7 +281,7 @@ typedef enum
 
     [delegate hideLoading];
     // XXX hack to skirt the side effects thrown off by the client's sign-in APIs:
-    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil]];
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:self]];
 }
 
 - (void)showForgottenPasswordAlert
@@ -350,6 +345,15 @@ typedef enum
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if ([super respondsToSelector:aSelector]) {
+        return YES;
+    } else if (@selector(captureDidSucceedWithCode:) == aSelector) {
+        return [[JREngageWrapper getDelegate] respondsToSelector:aSelector];
+    }
+    return NO;
 }
 
 - (void)dealloc

@@ -42,9 +42,8 @@
 @property(nonatomic, readonly, retain) NSString *accessToken;
 @property(nonatomic, readonly, retain) NSString *refreshSecret;
 @property(nonatomic, readonly, retain) NSString *captureLocale;
-@property(nonatomic, readonly, retain) NSString *captureSignInFormName;
+@property(nonatomic, readonly, retain) NSString *captureTraditionalSignInFormName;
 @property(nonatomic, readonly, retain) NSString *captureFlowName;
-//@property(nonatomic, readonly) JRTraditionalSignInType captureTradSignInType;
 @property(nonatomic, readonly, retain) NSString *captureTraditionalRegistrationFormName;
 @property(nonatomic, readonly, retain) NSString *captureSocialRegistrationFormName;
 @property(nonatomic, readonly, retain) NSString *captureFlowVersion;
@@ -59,7 +58,7 @@
 
 + (void)setCaptureConfig:(JRCaptureConfig *)config;
 
-+ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken;
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken delegate:(id)delegate;
 
 + (void)clearSignInState;
 
@@ -77,5 +76,5 @@
 
 - (NSString *)getForgottenPasswordFieldName;
 
-- (NSMutableURLRequest *)urlForPath:(NSString *)path;
+- (NSString *)responseType:(id)delegate;
 @end

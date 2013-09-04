@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 source require_clean_work_tree.sh
 require_clean_work_tree
 
@@ -11,4 +13,9 @@ then
   exit 1
 fi
 
-git tag -a "$1" -m "$1" && git commit --allow-empty -m "$1"
+# TODO check that the pre-commit hook is set up.
+
+git tag -a "$1" -m "$1"
+
+# Runs the pre-commit hook to put the release version in JREngage-Info.plist.
+git commit --allow-empty -m "$1"

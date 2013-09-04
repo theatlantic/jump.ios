@@ -1,3 +1,15 @@
+v3.3.9
+ - Adds friendly fast failure for unsupported trad auth forms
+v3.3.8
+ - Updates traditional sign-in APIs to be compatible with Janrain's "standard
+   user registration flow".
+ - Traditional sign-in APIs now require a Capture app ID and flow name to be
+   configured, so that a local copy of the flow can be downloaded by the SDK.
+v3.3.7
+ - Fixes a bug in native authentication, which rendered it incompatible with 
+   registration
+ - Fixes a bug in native authentication flows subsequent to the first
+ - Fixes a bug in native authnetication allowing a concurrent web-based auth
 v3.3.6
  - Fixes an unitialized variable error which causes erroneous JSON parsing errors
  - Factors Capture delegate protocols into a separate class in SimpleCaptureDemo in

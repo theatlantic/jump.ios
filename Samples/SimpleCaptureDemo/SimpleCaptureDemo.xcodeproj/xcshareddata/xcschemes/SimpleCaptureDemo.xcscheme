@@ -7,10 +7,10 @@
             buildForRunning = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "90C36B6B7717AA0C893E08E1"
                BuildableName = "SimpleCaptureDemo.app"
                BlueprintName = "SimpleCaptureDemo"
-               ReferencedContainer = "container:SimpleCaptureDemo.xcodeproj">
+               ReferencedContainer = "container:SimpleCaptureDemo.xcodeproj"
+               BlueprintIdentifier = "90C36B6B7717AA0C893E08E1">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -21,10 +21,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "90C36B6B7717AA0C893E08E1"
             BuildableName = "SimpleCaptureDemo.app"
             BlueprintName = "SimpleCaptureDemo"
-            ReferencedContainer = "container:SimpleCaptureDemo.xcodeproj">
+            ReferencedContainer = "container:SimpleCaptureDemo.xcodeproj"
+            BlueprintIdentifier = "90C36B6B7717AA0C893E08E1">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>

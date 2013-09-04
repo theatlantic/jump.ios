@@ -137,7 +137,7 @@
 @property(readonly) BOOL hidePoweredBy;
 @property BOOL alwaysForceReauth;
 @property BOOL socialSharing;
-@property BOOL dialogIsShowing;
+@property BOOL authenticationFlowIsInFlight;
 @property(retain, readonly) NSError *error;
 
 + (JRSessionData *)jrSessionData;
