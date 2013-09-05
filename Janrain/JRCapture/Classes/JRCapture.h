@@ -47,6 +47,7 @@
 #define captureAuthenticationDidFailWithError captureSignInDidFailWithError
 
 #define JRCaptureSigninDelegate JRCaptureDelegate
+#define JRCaptureSignInDelegate JRCaptureDelegate
 #define startEngageSigninForDelegate startEngageSignInForDelegate
 
 #define startEngageSigninDialogForDelegate startEngageSignInDialogForDelegate

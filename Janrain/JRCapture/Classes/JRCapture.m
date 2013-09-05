@@ -87,8 +87,6 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
     config.captureAppId = captureAppId;
 
     [JRCapture setCaptureConfig:config];
-
-    [config release];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain

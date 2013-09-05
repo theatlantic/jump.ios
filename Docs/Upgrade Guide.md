@@ -2,26 +2,18 @@
 
 This guide describes the steps required to upgrade from different versions of the library.
 
-## Upgrading from v2.5.2 to v3.4.0
+## Generalized Upgrade Process
 
-1. Remove existing **Janrain** project groups from Xcode.
-2. Remove generated Capture user model project groups (generally **JRCapture**).
-3. Follow the process described in `Xcode Project Setup.md`
+A less desirable but more reliable and more general upgrade strategy:
 
-### Solutions
+1. Remove existing Janrain project groups
+2. Remove generated Capture user model project groups
+3. Follow the process described JUMP Integration Guide
+
+
+### Solutions for upgrading from v2.5.2-v3.1.4 to v3.4.0
 * **'JSONKit.h' file not found**
     Remove `#import "JSONKit.h` it is no longer required for JUMP.
-
-* **no visible @interface for 'JRCaptureUser' declares the selector 'createOnCaptureForDelegate:context:'**
-    Use `+[JRCapture registerNewUser:socialRegistrationToken:forDelegate:]` instead
-
-* **Use of undeclared identifier 'JRCaptureErrorGenericBadPassword'**
-
-    Import `JREngageError.h`
-
-* **use of undeclared identifier 'JRCaptureRecordMissingRequiredFields'**
-
-    `JRCaptureRecordMissingRequiredFields` has been removed.
 
 * **no visible @interface for 'NSDictionary' declares the selector 'JSONString'**
 
@@ -34,6 +26,38 @@ This guide describes the steps required to upgrade from different versions of th
 * **no visible @interface for 'NSString' declares the selector 'objectFromJSONString'**
 
     Import `JRJsonUtils.h` and change `objectFromJSONString` to `JR_objectFromJSONString`
+
+
+### Solutions for upgrading v3.1.4 to v3.4.0
+* **no visible @interface for 'NSError' declares the selector 'JRMergeFlowExistingProvider'**
+
+    Import `JREngageError.h`
+
+* **no visible @interface for 'NSError' declares the selector 'JRMergeToken'**
+
+    Import `JREngageError.h`
+
+* **no visible @interface for 'NSError' declares the selector 'isJRMergeFlowError'**
+
+    Import `JREngageError.h`
+
+* **use of undeclared identifier 'JRCaptureErrorGenericBadPassword'**
+
+    Import `JREngageError.h`
+
+
+### Solutions for upgrading v2.5.2 to v3.4.0
+
+* **no visible @interface for 'JRCaptureUser' declares the selector 'createOnCaptureForDelegate:context:'**
+    Use `+[JRCapture registerNewUser:socialRegistrationToken:forDelegate:]` instead
+
+* **Use of undeclared identifier 'JRCaptureErrorGenericBadPassword'**
+
+    Import `JREngageError.h`
+
+* **use of undeclared identifier 'JRCaptureRecordMissingRequiredFields'**
+
+    `JRCaptureRecordMissingRequiredFields` has been removed.
 
 * **no known class method for selector 'setEngageAppId:captureApidDomain:captureUIDomain:clientId:andEntityTypeName:'**
 
@@ -71,7 +95,7 @@ This guide describes the steps required to upgrade from different versions of th
    "optional."
 8. Ensure that your **Deployment Target** is *iOS 5.0* or higher.
 
-### Solutions
+### Solutions for upgrading from v2.2.0-v2.3.x to v3.4.0
 
 * **Delegate methods are not being called**
 
@@ -107,7 +131,14 @@ This guide describes the steps required to upgrade from different versions of th
     Use the class method `+[JREngage cancelSharing]` instead
 
 
-### v2.2.0 Solutions
+### Solutions for upgrading v2.3.x to v3.4.0
+
+* **Instance method '-showAuthenticationDialogWithCustomInterfaceOverrides:' not found (return type defaults to 'id')**
+
+    Use `+[JREngage showAuthenticationDialogWithCustomInterfaceOverrides:]` instead.
+
+
+### Solutions for upgrading v2.2.0 to v3.4.0
 
 * **Instance method '-setCustomNavigationController:' not found (return type defaults to 'id')**
 
@@ -134,28 +165,13 @@ This guide describes the steps required to upgrade from different versions of th
             [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:myCustomInterface];
 
 
-### v2.3.x Solutions
-
-* **Instance method '-showAuthenticationDialogWithCustomInterfaceOverrides:' not found (return type defaults to 'id')**
-
-    Use `+[JREngage showAuthenticationDialogWithCustomInterfaceOverrides:]` instead.
-
-
-## 3.0.x -> 3.1
+## Upgrading from 3.0.x to 3.1
 
 The signature to the JRCapture initialization method added a new parameter to its selector, `customIdentityProviders:`,
 which describes custom identity providers to configure the library with. See `Engage Custom Provider Guide.md` for more
 details.
 
-## 3.1.x -> 3.2
+## Upgrading from 3.1.x to 3.2
 
 The signature to the JRCapture initialization method added several new parameters to its selector.  See the selector
 in `JRCapture.h` which begins "setEngageAppId:" for the current list of parameters.
-
-## Generalized Process
-
-A less desirable but more reliable and more general upgrade strategy:
-
-1. Remove existing Janrain project groups
-2. Remove generated Capture user model project groups
-3. Follow the process described JUMP Integration Guide
