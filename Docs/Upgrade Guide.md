@@ -2,9 +2,59 @@
 
 This guide describes the steps required to upgrade from different versions of the library.
 
-## From v2.2.0-v2.3.x to v3.3.9
+## Upgrading from v2.5.2 to v3.4.0
 
-1. Delete the JREngage group from Xcode.
+1. Remove existing **Janrain** project groups from Xcode.
+2. Remove generated Capture user model project groups (generally **JRCapture**).
+3. Follow the process described in `Xcode Project Setup.md`
+
+### Solutions
+* **'JSONKit.h' file not found**
+    Remove `#import "JSONKit.h` it is no longer required for JUMP.
+
+* **no visible @interface for 'JRCaptureUser' declares the selector 'createOnCaptureForDelegate:context:'**
+    Use `+[JRCapture registerNewUser:socialRegistrationToken:forDelegate:]` instead
+
+* **Use of undeclared identifier 'JRCaptureErrorGenericBadPassword'**
+
+    Import `JREngageError.h`
+
+* **use of undeclared identifier 'JRCaptureRecordMissingRequiredFields'**
+
+    `JRCaptureRecordMissingRequiredFields` has been removed.
+
+* **no visible @interface for 'NSDictionary' declares the selector 'JSONString'**
+
+    Import `JRJsonUtils.h` and change `JSONString` to `JR_jsonString`.
+
+* **no visible @interface for 'NSArray' declares the selector 'JSONString'**
+
+    Import `JRJsonUtils.h` and change `JSONString` to `JR_jsonString`.
+
+* **no visible @interface for 'NSString' declares the selector 'objectFromJSONString'**
+
+    Import `JRJsonUtils.h` and change `objectFromJSONString` to `JR_objectFromJSONString`
+
+* **no known class method for selector 'setEngageAppId:captureApidDomain:captureUIDomain:clientId:andEntityTypeName:'**
+
+    Use `+[JRCapture +setCaptureConfig:]` instead. For example, if you had:
+
+            [JRCapture setEngageAppId:engageAppId captureApidDomain:captureApidDomain
+                      captureUIDomain:captureUIDomain clientId:captureClientId andEntityTypeName:nil];
+
+    Then do the following instead:
+
+            JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+            config.engageAppId = engageAppId;
+            config.captureDomain = captureDomain;
+            config.captureClientId = captureClientId;
+            config.captureLocale = @"en-US";
+            [JRCapture setCaptureConfig:config];
+
+
+## Upgrading from v2.2.0-v2.3.x to v3.4.0
+
+1. Delete the **JREngage** group from Xcode.
 2. Get the latest version of the SDK from GitHub `git clone https://github.com/janrain/jump.ios.git`
 3. Make sure that the **Project Navigator** pane is showing.
 4. Open **Finder** and navigate to the location where you cloned the `jump.ios` repository. Drag the **Janrain**
@@ -14,8 +64,8 @@ This guide describes the steps required to upgrade from different versions of th
 5. In the dialog, do **not** check the **Copy items is not destination group's folder (if needed)**. Ensure that the
    **Create groups for any added folders** radio button is selected, and that the **Add to targets** check box is
    selected for you application's target.
-6. v2.2.0 and v2.3.0 did support Capture so you need to remove the **JRCapture** project group from the **Janrain** project
-   group.
+6. v2.2.0 and v2.3.0 did support Capture so you need to remove the **JRCapture** project group from the **Janrain**
+   project group.
 7. You must also add the **QuartzCore** framework, and the **MessageUI** framework to your project.  As the
    **MessageUI** framework is not available on all iOS devices and versions, you must designate the framework as
    "optional."
@@ -84,7 +134,7 @@ This guide describes the steps required to upgrade from different versions of th
             [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:myCustomInterface];
 
 
-### v2.3.0 Solutions
+### v2.3.x Solutions
 
 * **Instance method '-showAuthenticationDialogWithCustomInterfaceOverrides:' not found (return type defaults to 'id')**
 
