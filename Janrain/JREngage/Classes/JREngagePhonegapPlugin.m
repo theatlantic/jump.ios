@@ -39,7 +39,7 @@
 #import "JRActivityObject.h"
 #import "JRConnectionManager.h"
 #import "debug_log.h"
-#import "JSONKit.h"
+#import "CDVJSON.h"
 
 @interface JREngagePhonegapPlugin ()
 @property(nonatomic, retain) NSMutableDictionary *fullAuthenticationResponse;
@@ -71,7 +71,7 @@
 
     DLog(@"print arguments: %@", command);
 
-    NSString *printString = [command argumentAtIndex:0];
+    NSString *printString = [command.arguments objectAtIndex:0];
 
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                       messageAsString:printString];
@@ -144,7 +144,7 @@
 
     self.callbackID = command.callbackId;
 
-    NSString *engageAppId = [command argumentAtIndex:0];
+    NSString *engageAppId = [command.arguments objectAtIndex:0];
 
     if (!engageAppId)
     {
@@ -152,8 +152,8 @@
                                                  andMessage:@"Missing appId in call to initialize"]];
         return;
     }
-
-    NSString *tokenUrl = [command argumentAtIndex:1];
+    
+    NSString *tokenUrl = ((id)[command.arguments objectAtIndex:1] == [NSNull null]) ? nil : [command.arguments objectAtIndex:1];
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/JREngage-Info.plist"];
     NSMutableDictionary *infoPlist =
             [NSMutableDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
@@ -187,7 +187,7 @@
     self.callbackID = command.callbackId;
     self.shareInProgress = YES;
 
-    NSDictionary *activity = [command argumentAtIndex:0];
+    NSDictionary *activity = [command.arguments objectAtIndex:0];
     if (!activity)
     {
         [self finishWithFailureMessage:[self stringFromCode:JRPublishErrorActivityNil

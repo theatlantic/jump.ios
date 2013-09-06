@@ -133,7 +133,8 @@ typedef enum CaptureInterfaceStatEnum
     }
 
     NSMutableDictionary *signInParams = [[JRCaptureApidInterface class] tradAuthParamsWithParams:credentials
-                                                                                   refreshSecret:refreshSecret];
+                                                                                   refreshSecret:refreshSecret
+                                                                                        delegate:delegate];
     NSMutableURLRequest *request = [JRCaptureData requestWithPath:kJRTradAuthUrlPath];
     [request JR_setBodyWithParams:signInParams];
     [self startTradAuthForDelegate:delegate context:context request:request];
@@ -584,16 +585,17 @@ typedef enum CaptureInterfaceStatEnum
 }
 
 + (NSMutableDictionary *)tradAuthParamsWithParams:(NSDictionary *)paramsDict refreshSecret:(NSString *)refreshSecret
-{
+                                         delegate:(id <JRCaptureDelegate>)delegate {
     NSDictionary *flowCreds = [self flowCredentialsFromStaticCredentials:paramsDict];
     NSDictionary *credsParams = flowCreds ? flowCreds : paramsDict;
+    JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
 
     NSMutableDictionary *signInParams = [[@{
-            @"client_id" : [JRCaptureData sharedCaptureData].clientId,
-            @"locale" : [JRCaptureData sharedCaptureData].captureLocale,
-            @"form" : [JRCaptureData sharedCaptureData].captureTraditionalSignInFormName,
-            @"redirect_uri" : [[JRCaptureData sharedCaptureData] redirectUri],
-            @"response_type" : @"token",
+            @"client_id" : captureData.clientId,
+            @"locale" : captureData.captureLocale,
+            @"form" : captureData.captureTraditionalSignInFormName,
+            @"redirect_uri" : [captureData redirectUri],
+            @"response_type" : [captureData responseType:delegate],
             @"refresh_secret" : refreshSecret
     } mutableCopy] autorelease];
 

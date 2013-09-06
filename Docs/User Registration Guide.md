@@ -112,6 +112,17 @@ record, and pass the social registration token in with the registration message.
 Social registration form validation errors can be handled in the same way as traditional registration form validation
 errors.
 
+## Forgotten Passwords
+
+When a user submits an incorrect email address or password in a traditional registration sign-in from the
+provider list, they are given the option to create new password. The UIAlertView that informs the user of the failed
+sign-in has a button to begin the forgotten password flow. Once the user taps "Forgot Password," another UIAlertView is
+presented asking the user to confirm their email address. If the user taps "Send," then an API call will be made to
+Capture that will trigger an email with instructions on how the user can reset their password.
+
+If you would like to trigger the forgotten password flow directly call
+`+[JRCapture startForgottenPasswordRecoveryForEmailAddress:recoverUri:delegate]`.
+
 ## Example
 
 In `Samples/SimpleCaptureDemo` see the `RootViewController` for an example of the `JRCaptureSigninDelegate`, and see

@@ -30,10 +30,9 @@
 
 #import "JRCaptureTypes.h"
 
-@protocol JREngageSigninDelegate;
 @protocol JRCaptureDelegate;
 
-@interface JREngageWrapper : NSObject <JREngageSigninDelegate>
+@interface JREngageWrapper : NSObject
 
 + (void)configureEngageWithAppId:(NSString *)appId customIdentityProviders:(NSDictionary *)customProviders;
 
@@ -45,4 +44,6 @@
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                  mergeToken:(NSString *)mergeToken
                                 forDelegate:(id <JRCaptureDelegate>)delegate;
+
++ (id)getDelegate;
 @end

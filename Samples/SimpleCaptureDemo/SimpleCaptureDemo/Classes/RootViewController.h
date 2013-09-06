@@ -44,6 +44,7 @@
 - (IBAction)signOutButtonPressed:(id)sender;
 - (IBAction)shareButtonPressed:(id)sender;
 - (IBAction)refetchButtonPressed:(id)sender;
+- (IBAction)forgotPasswordButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak) IBOutlet UILabel *currentUserLabel;
 @property (weak) IBOutlet UIImageView *currentUserProviderIcon;
@@ -55,5 +56,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *directFacebookAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;
+@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property(nonatomic, strong) NSDictionary *customUi;
 @end

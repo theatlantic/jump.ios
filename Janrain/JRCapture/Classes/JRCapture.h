@@ -37,6 +37,7 @@
 #import "JRCaptureApidInterface.h"
 
 @class JRCaptureUser;
+@class JRCaptureConfig;
 
 #define engageSigninDialogDidFailToShowWithError engageAuthenticationDialogDidFailToShowWithError
 #define engageSigninDidNotComplete engageAuthenticationDidCancel
@@ -263,6 +264,15 @@
                                 status:(JRCaptureRecordStatus)captureRecordStatus;
 
 /**
+ * Sent after authentication has successfully reached the Capture server.
+ *
+ * @param code
+ *   A Capture OAuth Authentication Code, this short lived code can be used to get an Access Token for use with a
+ *   server side application like the Capture Drupal plugin.
+ */
+- (void)captureDidSucceedWithCode:(NSString *)code;
+
+/**
  * Sent when the call to the Capture server has failed.
  *
  * @param error
@@ -301,6 +311,19 @@
  *   The context supplied when initiating the token refresh
  */
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context;
+
+/**
+ * Sent when the forgotten password recovery flow is successfully initiated
+ */
+- (void)forgottenPasswordRecoveryDidSucceed;
+
+/**
+ * Sent when the forgotten password recovery flow fails
+ * @param error
+ *   The error that caused the failure.
+ */
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error;
+
 @end
 
 /**
@@ -323,6 +346,14 @@
  * integrations
  */
 + (void)setBackplaneChannelUrl:(NSString *)backplaneChannelUrl __unused;
+
+/**
+ * Method for configuring the library ot work with your Janrain Capture and Engage applications.
+ *
+ * @param config
+ *   An instance of JRCaptureConfig that contains your configuration values.
+ */
++ (void)setCaptureConfig:(JRCaptureConfig *)config;
 
 /**
  * Method for configuring the library to work with your Janrain Capture and Engage applications.
@@ -429,6 +460,19 @@ captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInTy
              captureFlowName:(NSString *)captureFlowName captureFormName:(NSString *)captureFormName
 captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType
      customIdentityProviders:(NSDictionary *)customProviders __attribute__((deprecated));
+
+/**
+ * @deprecated
+ */
++ (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
+       captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
+       captureFlowName:(NSString *)captureFlowName
+ captureSignInFormName:(NSString *)captureFormName
+captureEnableThinRegistration:(BOOL)enableThinRegistration
+captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInType
+    captureFlowVersion:(NSString *)captureFlowVersion
+captureRegistrationFormName:(NSString *)captureRegistrationFormName
+          captureAppId:(NSString *)captureAppId;
 
 /**
  * Set the Capture access token for an authenticated user
@@ -638,6 +682,22 @@ captureTraditionalSignInType:(JRTraditionalSignInType)captureTraditionalSignInTy
  * Signs the currently-signed-in user, if any, out.
  */
 + (void)clearSignInState __unused;
+
+/**
+ *  Starts the forgotten password flow for a user.
+ *
+ *  A successful call will cause an email to be sent to the provided email address with instructions to create a new
+ *  password. The existing password will not be changed until the steps outlined in the email have been completed.
+ *
+ *  @param emailAddress
+ *    The email address of the user who has forgotten their password
+ *  @param redirectUri
+ *    The redirect URI that will be used in the emails generated as a consequence of the forgotten password API call.
+ *  @param delegate
+ *    The JRCaptureDelegate object that wishes to receive messages regarding user authentication.
+ */
++ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
+                                      delegate:(id <JRCaptureDelegate>)delegate;
 
 @end
 

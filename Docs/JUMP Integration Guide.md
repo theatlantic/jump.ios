@@ -114,6 +114,7 @@ object that manages your application's state model.
 1. In the chosen class's header, import the Capture library header:
 
         #import "JRCapture.h"
+        #import "JRCaptureConfig.h"
 
 2. Modify your class's interface declaration to declare conformation to the protocol. (All of the messages of the
    protocol are optional.) So, for example, start your AppDelegate's interface declaration like this:
@@ -140,30 +141,24 @@ Copy and paste this block into `-[AppDelegate application:didFinishLaunchingWith
     {
         // ... Your existing initialization logic here
 
-        NSString *engageAppId = @"your_engage_app_id";
-        NSString *captureDomain = @"your_capture_ui_base_url";
-        NSString *captureClientId = @"your_capture_client_id";
-        NSString *captureLocale = @"en-US"; // e.g.
-        NSString *captureFlowName = @"signIn"; // e.g.
-        NSString *captureTraditionalSignInFormName = @"signinForm"; // e.g.
-        BOOL captureEnableThinRegistration = YES;
-        NSString *captureFlowVersion = nil;
-        NSString *captureTraditionalRegistrationFormName = @"registrationForm"; // e.g.
-        NSString *captureSocialRegistrationFormName = @"socialRegistrationForm"; // e.g.
-        NSString *captureAppId = @"your_capture_app_id";
-        NSDictionary *customProviders = nil;
+        JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+        config.engageAppId = @"your_engage_app_id";
+        config.captureDomain = @"your_capture_ui_base_url";
+        config.captureClientId = @"your_capture_client_id";
+        config.captureLocale = @"en-US"; // e.g.
+        config.captureFlowName = nil; // e.g.
+        config.captureFlowVersion = nil; // e.g.
+        config.captureSignInFormName = @"signinForm";
+        config.captureTraditionalSignInType = JRTraditionalSignInEmailPassword;
+        config.enableThinRegistration = YES;
+        config.customProviders = nil;
+        config.captureTraditionalRegistrationFormName = @"registrationForm"; // e.g.
+        config.captureSocialRegistrationFormName = @"socialRegistrationForm"; // e.g.
+        config.captureAppId = @"your_capture_app_id";
+        config.forgottenPasswordFormName = @"forgotPasswordForm"; // e.g.
+        config.passwordRecoverUri = @"your_password_recovery_uri";
 
-        JRTraditionalSignInType captureTraditionalSignInType = JRTraditionalSignInEmailPassword; // e.g.
-
-        [JRCapture setEngageAppId:engageAppId captureDomain:captureDomain
-                  captureClientId:captureClientId captureLocale:captureLocale
-                     captureFlowName:captureFlowName captureFlowVersion:captureFlowVersion
-    captureTraditionalSignInFormName:captureTraditionalSignInFormName
-       captureEnableThinRegistration:captureEnableThinRegistration
-              captureTraditionalSignInType:captureTraditionalSignInType
-    captureTraditionalRegistrationFormName:captureTraditionalRegistrationFormName
-         captureSocialRegistrationFormName:captureSocialRegistrationFormName
-                              captureAppId:captureAppId];
+        [JRCapture setCaptureConfig:config];
     }
 
 ## Start the User Sign-In Flow
@@ -253,6 +248,10 @@ Your application should update its state to reflect the user being signed-in.
 `JRCaptureRecordNewlyCreated` indicates that this is a new user and that a new Capture record has been automatically
 created. (This is called "thin registration.") Because this is a new user, your application may wish to collect
 additional profile information and push that information back to Capture.
+
+Optionally, your delegate can receive `captureDidSucceedWithCode:`. When the sign-in has succeeded, this is called with
+a Capture OAuth Authorization Code that can be used by a server side application, such as the Capture Drupal Plugin,
+to retrieve an Access Token.
 
 ### Traditional Sign-In and Social Sign-In
 

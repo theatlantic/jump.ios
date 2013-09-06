@@ -28,6 +28,8 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+@class JRCaptureConfig;
+
 /**
  * @internal
  */
@@ -35,6 +37,7 @@
 @property(nonatomic, retain) NSString *bpChannelUrl;
 @property(nonatomic, readonly, retain) NSString *captureBaseUrl;
 @property(nonatomic, readonly, retain) NSString *captureRedirectUri;
+@property(nonatomic, readonly, retain) NSString *passwordRecoverUri;
 @property(nonatomic, readonly, retain) NSString *clientId;
 @property(nonatomic, readonly, retain) NSString *accessToken;
 @property(nonatomic, readonly, retain) NSString *refreshSecret;
@@ -46,21 +49,16 @@
 @property(nonatomic, readonly, retain) NSString *captureFlowVersion;
 @property(nonatomic, readonly, retain) NSString *captureAppId;
 @property(nonatomic, readonly, retain) NSDictionary *captureFlow;
+@property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic) BOOL flowUsesTestingCdn;
 
 + (void)setAccessToken:(NSString *)token;
 
 + (void)setCaptureRedirectUri:(NSString *)redirectUri;
 
-+ (void)setCaptureDomain:(NSString *)captureDomain captureClientId:(NSString *)clientId
-           captureLocale:(NSString *)captureLocale captureTraditionalSignInFormName:(NSString *)captureTraditionalSignInFormName
-                                                                    captureFlowName:(NSString *)captureFlowName
-         captureEnableThinRegistration:(BOOL)enableThinRegistration
-captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
-                    captureFlowVersion:(NSString *)captureFlowVersion captureAppId:(NSString *)captureAppId;
++ (void)setCaptureConfig:(JRCaptureConfig *)config;
 
-+ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken;
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken delegate:(id)delegate;
 
 + (void)clearSignInState;
 
@@ -76,4 +74,7 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
 
 - (void)loadFlow;
 
+- (NSString *)getForgottenPasswordFieldName;
+
+- (NSString *)responseType:(id)delegate;
 @end

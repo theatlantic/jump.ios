@@ -92,6 +92,7 @@
         self.signOutButton.hidden = NO;
         self.shareButton.hidden = NO;
         self.refetchButton.hidden = NO;
+        self.forgotPasswordButton.hidden = YES;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Update" forState:UIControlStateNormal];
@@ -108,6 +109,7 @@
         self.signOutButton.hidden = YES;
         self.shareButton.hidden = YES;
         self.refetchButton.hidden = YES;
+        self.forgotPasswordButton.hidden = NO;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Traditional Registration" forState:UIControlStateNormal];
@@ -130,7 +132,8 @@
                                 = b;
     self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha =
                 self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha =
-                        self.directFacebookAuthButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
+                self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha =
+                self.tradAuthButton.alpha = 0.5 + b * 0.5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -240,6 +243,23 @@
     t.email = [JREmailObject emailObjectWithSubject:@"test" andMessageBody:@"test"
                                              isHtml:NO andUrlsToBeShortened:nil];
     [JREngage showSharingDialogWithActivity:t];
+}
+
+- (IBAction)forgotPasswordButtonPressed:(id)sender {
+    void (^completion)(UIAlertView *, BOOL, NSInteger) =
+            ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+                if (buttonIndex != alertView.cancelButtonIndex) {
+                    NSString *emailAddress = [alertView textFieldAtIndex:0].text;
+                    [JRCapture startForgottenPasswordRecoveryForField:emailAddress recoverUri:nil
+                                                             delegate:self.captureDelegate];
+                }
+            };
+
+    [[[AlertViewWithBlocks alloc] initWithTitle:@"Please confirm your email"
+                                        message:@"We'll send you a link to create a new password."
+                                     completion:completion
+                                          style:UIAlertViewStylePlainTextInput
+                              cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil] show];
 }
 
 - (void)configureUserLabelAndIcon
@@ -501,6 +521,23 @@
     {
         [RootViewController showProfileForm:self.rvc.navigationController];
     }
+}
+
+- (void)forgottenPasswordRecoveryDidSucceed {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
+{
+    [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
+                                        message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                              cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
+- (void)captureDidSucceedWithCode:(NSString *)code {
+    DLog(@"Authorization Code: %@",code);
 }
 
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context
