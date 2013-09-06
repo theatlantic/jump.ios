@@ -54,11 +54,15 @@
 //#define IS_LANDSCAPE (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+    typedef NSLineBreakMode JRLineBreakMode;
+
 #  define JR_TEXT_ALIGN_CENTER (NSTextAlignmentCenter)
 #  define JR_TEXT_ALIGN_LEFT (NSTextAlignmentLeft)
 #  define JR_LINE_BREAK_MODE_TAIL_TRUNCATION (NSLineBreakByTruncatingTail)
 #  define JR_LINE_BREAK_MODE_WORD_WRAP (NSLineBreakByWordWrapping)
 #else
+    typedef UILineBreakMode JRLineBreakMode;
+
 #  define JR_TEXT_ALIGN_CENTER (UITextAlignmentCenter)
 #  define JR_TEXT_ALIGN_LEFT (UITextAlignmentLeft)
 #  define JR_LINE_BREAK_MODE_TAIL_TRUNCATION (UILineBreakModeTailTruncation)

@@ -29,6 +29,8 @@
     [super viewDidLoad];
 
     myPickerViewGroup = [[UIView alloc] initWithFrame:CGRectZero];
+    myPickerViewGroup.backgroundColor = [UIColor whiteColor];
+    myPickerViewGroup.opaque = YES;
 
     pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
     NSMutableArray *items = [[NSMutableArray alloc] init];

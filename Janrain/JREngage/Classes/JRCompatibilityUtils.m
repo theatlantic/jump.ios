@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2012, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -27,41 +27,34 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
- Author: Lilli Szafranski - lilli@janrain.com, lillialexis@gmail.com
- Date:   Thursday, January 26, 2012
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import <UIKit/UIKit.h>
-#import "PickerViewController.h"
+#import "JRCompatibilityUtils.h"
 
-@interface CaptureProfileViewController : PickerViewController
 
-@property(nonatomic, retain) IBOutlet UILabel *myFormTitle;
-@property(nonatomic, retain) IBOutlet UITextField *myEmailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *myDisplayNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *myFirstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *myLastNameTextField;
-@property(nonatomic, retain) IBOutlet UISegmentedControl *myGenderIdentitySegControl;
-@property(nonatomic, retain) IBOutlet UIButton *myBirthdayButton;
-@property(nonatomic, retain) IBOutlet UIDatePicker *myBirthdayPicker;
-@property(nonatomic, retain) IBOutlet UIToolbar *myPickerToolbar;
-@property(nonatomic, retain) IBOutlet UITextView *myAboutMeTextView;
-@property(nonatomic, retain) IBOutlet UIView *myPickerView;
-@property(nonatomic, retain) IBOutlet UIScrollView *myScrollView;
-@property(nonatomic, retain) IBOutlet UIToolbar *myKeyboardToolbar;
-@property(weak, nonatomic) IBOutlet UIBarButtonItem *myDoneButton;
+@implementation JRCompatibilityUtils {
 
-- (IBAction)emailTextFieldClicked:(id)sender;
+}
+@end
 
-- (IBAction)displayNameFieldClicked:(id)sender;
+@implementation UIViewController (JRCompatibilityUtils)
 
-- (IBAction)firstNameFieldClicked:(id)sender;
+-(void)jrPresentViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([self respondsToSelector:@selector(presentViewController:animated:completion:)]) {
+        [self presentViewController:viewController animated:animated completion:NULL];
+    } else {
+        [self performSelector:@selector(presentModalViewController:animated:)
+            withObject:viewController withObject:[NSNumber numberWithBool:animated]];
+    }
+}
 
-- (IBAction)lastNameFieldClicked:(id)sender;
+-(void)jrDismissViewControllerAnimated:(BOOL)animated {
+    if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
+        [self dismissViewControllerAnimated:animated completion:NULL];
+    } else {
+        [self performSelector:@selector(dismissModalViewControllerAnimated:)
+                   withObject:[NSNumber numberWithBool:animated]];
+    }
+}
 
-- (IBAction)birthdayButtonClicked:(id)sender;
-
-- (IBAction)doneButtonPressed:(id)sender;
-
-- (IBAction)doneEditingButtonPressed:(id)sender;
 @end

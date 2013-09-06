@@ -151,7 +151,11 @@ typedef enum
     if (titleView)
         return titleView.frame.size.height;
 
-    return 40;
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        return 40;
+    } else {
+        return 25;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

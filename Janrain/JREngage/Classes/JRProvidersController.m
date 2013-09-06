@@ -123,25 +123,18 @@
 
     titleView = [customInterface objectForKey:kJRProviderTableTitleView];
 
-    if (!titleView)
-    {
-        UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 44)] autorelease];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
-        titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        titleLabel.textAlignment = JR_TEXT_ALIGN_CENTER;
-        titleLabel.textColor = [UIColor whiteColor];
-
+    if (titleView) {
+        self.navigationItem.titleView = titleView;
+    } else {
         NSString *l10n = ([customInterface objectForKey:kJRProviderTableTitleString]) ?
             [customInterface objectForKey:kJRProviderTableTitleString] : @"Sign in with...";
-        titleLabel.text = NSLocalizedString(l10n, @"");
-
-        titleView = titleLabel;
+        self.navigationItem.title = NSLocalizedString(l10n, @"");
     }
 
-    self.navigationItem.titleView = titleView;
     myTableView.tableHeaderView = [customInterface objectForKey:kJRProviderTableHeaderView];
     myTableView.tableFooterView = [customInterface objectForKey:kJRProviderTableFooterView];
+
+    [self resizeTableHeaderView];
 
     id const maybeCaptureSignInVc = [customInterface objectForKey:kJRCaptureTraditionalSignInViewController];
     if ([maybeCaptureSignInVc isKindOfClass:NSClassFromString(@"JRTraditionalSignInViewController")])
@@ -170,6 +163,23 @@
         infoBar = [[JRInfoBar alloc] initWithFrame:frame andStyle:(JRInfoBarStyle) [sessionData hidePoweredBy]];
 
         [self.view addSubview:infoBar];
+    }
+}
+
+- (void)resizeTableHeaderView {
+    if (myTableView.tableHeaderView && [myTableView.tableHeaderView isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *tableHeaderView = (UIScrollView *)myTableView.tableHeaderView;
+
+        CGFloat height = tableHeaderView.contentSize.height;
+        CGFloat maxHeight = tableHeaderView.superview.frame.size.height - tableHeaderView.frame.origin.y;
+        if (height > maxHeight) height = maxHeight;
+
+        CGRect frame = tableHeaderView.frame;
+        frame.size.height = height;
+        myTableView.tableHeaderView.frame = frame;
+
+        // Force the tableHeaderView to be redrawn
+        myTableView.tableHeaderView = myTableView.tableHeaderView;
     }
 }
 
@@ -347,7 +357,7 @@
 
     [loadingLabel setText:@"Completing Sign-In..."];
     [loadingLabel setFont:[UIFont systemFontOfSize:20.0]];
-    [loadingLabel setTextAlignment:JR_TEXT_ALIGN_CENTER];
+    [loadingLabel setTextAlignment:(int)JR_TEXT_ALIGN_CENTER];
     [loadingLabel setTextColor:[UIColor whiteColor]];
     [loadingLabel setBackgroundColor:[UIColor clearColor]];
     [loadingLabel setAutoresizingMask:UIViewAutoresizingNone |

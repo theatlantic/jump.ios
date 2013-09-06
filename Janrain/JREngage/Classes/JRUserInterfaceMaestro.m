@@ -44,6 +44,7 @@
 #import "JRUserLandingController.h"
 #import "JRWebViewController.h"
 #import "JRPublishActivityController.h"
+#import "JRCompatibilityUtils.h"
 
 static void handleCustomInterfaceException(NSException* exception, NSString* kJRKeyString)
 {
@@ -331,8 +332,8 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 {
     DLog(@"");
     // http://stackoverflow.com/questions/8594111/forcing-orientation-change
-    [self.jrPresentingViewController dismissModalViewControllerAnimated:NO];
-    [self.jrPresentingViewController presentModalViewController:self animated:NO];
+    [self.jrPresentingViewController jrDismissViewControllerAnimated:NO];
+    [self.jrPresentingViewController jrPresentViewController:self animated:NO];
 }
 
 - (BOOL)shouldAutomaticallyForwardRotationMethods
@@ -568,7 +569,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
     }
     animationController.jrPresentingViewController = vcToPresentFrom;
 
-    [vcToPresentFrom presentModalViewController:vcToPresent animated:!IS_IPAD];
+    [vcToPresentFrom jrPresentViewController:vcToPresent animated:!IS_IPAD];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -592,7 +593,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
     else
     {
         animationController.modalTransitionStyle = myNavigationController.modalTransitionStyle = style;
-        [animationController.jrPresentingViewController dismissModalViewControllerAnimated:YES];
+        [animationController.jrPresentingViewController jrDismissViewControllerAnimated:YES];
     }
 
     shouldUnloadSubviews = YES;
@@ -638,6 +639,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
     PadPopoverMode padPopoverMode;
     // Pushing JUMP dialog VCs onto the host application's UINavigationController
     BOOL usingAppNav;
+    BOOL isAppNavTranslucent;
     // Presenting custom UINavigationController and pushing JUMP dialog VCs onto it
     BOOL usingCustomNav;
     UIViewController *viewControllerToPopTo;
@@ -747,8 +749,7 @@ static JRUserInterfaceMaestro *singleton = nil;
     self.customInterface = [NSDictionary dictionaryWithDictionary:dict];
 }
 
-- (void)setUpDialogPresentation
-{
+- (void)setUpDialogPresentation {
     if ([customInterface objectForKey:kJRApplicationNavigationController])
         self.applicationNavigationController = [customInterface objectForKey:kJRApplicationNavigationController];
 
@@ -760,8 +761,7 @@ static JRUserInterfaceMaestro *singleton = nil;
         self.customModalNavigationController = [customInterface objectForKey:kJRCustomModalNavigationController];
 
     usingAppNav = NO, usingCustomNav = NO;
-    if (IS_IPAD)
-    {
+    if (IS_IPAD) {
         if ([customInterface objectForKey:kJRPopoverPresentationBarButtonItem])
             padPopoverMode = PadPopoverFromBar;
         else if ([customInterface objectForKey:kJRPopoverPresentationFrameValue])
@@ -777,15 +777,15 @@ static JRUserInterfaceMaestro *singleton = nil;
         } @catch (NSException *exception) {
             handleCustomInterfaceException(exception, @"kJRUseCustomModalNavigationController");
         }
-    }
-    else
-    {
-        @try
-        {
-            if (applicationNavigationController && [applicationNavigationController isViewLoaded])
+    } else {
+        @try {
+            if (applicationNavigationController && [applicationNavigationController isViewLoaded]) {
                 usingAppNav = YES;
-            else if (customModalNavigationController)
+                isAppNavTranslucent = applicationNavigationController.navigationBar.translucent;
+                applicationNavigationController.navigationBar.translucent = NO;
+            } else if (customModalNavigationController) {
                 usingCustomNav = YES;
+            }
         }
         @catch (NSException *exception)
         { handleCustomInterfaceException(exception, @"kJRUseApplicationNavigationController"); }
@@ -799,6 +799,9 @@ static JRUserInterfaceMaestro *singleton = nil;
 
 - (void)tearDownDialogPresentation
 {
+    if (usingAppNav) {
+        applicationNavigationController.navigationBar.translucent = isAppNavTranslucent;
+    }
     padPopoverMode = PadPopoverModeNone;
     usingAppNav = NO, usingCustomNav = NO;
 
@@ -901,7 +904,8 @@ static JRUserInterfaceMaestro *singleton = nil;
 {
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:root];
     [navigationController autorelease];
-    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    navigationController.navigationBar.translucent = NO;
     navigationController.navigationBar.clipsToBounds = YES;
 
     navigationController.view.autoresizingMask =

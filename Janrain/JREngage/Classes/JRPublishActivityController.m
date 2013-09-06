@@ -40,6 +40,7 @@
 #import "JREngageError.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JRUserLandingController.h"
+#import "JRCompatibilityUtils.h"
 
 #define JRR_OUTER_STROKE_COLOR    [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]
 #define JRR_INNER_STROKE_COLOR    JANRAIN_BLUE
@@ -328,86 +329,6 @@ or opacity of our rounded rectangle. */
 @end
 
 @implementation JRPublishActivityController
-//{
-//    JRSessionData *sessionData;
-//    JRActivityObject *currentActivity;
-//
-//    JRProvider *selectedProvider;
-//    JRAuthenticatedUser *loggedInUser;
-//
-//    //BOOL hidesCancelButton;
-//    //BOOL hasCoreText;
-//
-//    EmailOrSms emailAndOrSmsIndex;
-//    NSUInteger selectedTab;
-//
-//    NSString *shortenedActivityUrl;
-//    NSInteger maxCharacters;
-//
-//    NSMutableDictionary *cachedProfilePics;
-//    NSMutableSet *alreadyShared;
-//
-//    BOOL weAreStillWaitingOnSocialProviders;
-//    BOOL weHaveJustAuthenticated;
-//    BOOL weAreCurrentlyPostingSomething;
-//    BOOL weAreCurrentlyEditing;
-//    BOOL hasEditedUserContentForActivityAlready;
-//    BOOL userIsAttemptingToSignOut;
-//    BOOL mediaThumbnailFailedToDownload;
-//    BOOL activityHasRichData;
-//
-//    CGFloat previewLabelHeight;
-//    CGFloat mediaBoxHeight;
-//
-//    NSDictionary *customInterface;
-//    NSDictionary *colorsDictionary;
-//    UIView *titleView;
-//
-//    UIView *myBackgroundView;
-//    UITabBar *myTabBar;
-//
-//    /* Activity Spinner and Label displayed while the list of configured providers is empty */
-//    NSTimer *timer;
-//    UILabel *myLoadingLabel;
-//    UIActivityIndicatorView *myLoadingActivitySpinner;
-//    UIView *myLoadingGrayView;
-//
-//    UIView *myPadGrayEditingViewTop;
-//    UIView *myPadGrayEditingViewMiddle;
-//    UIView *myPadGrayEditingViewBottom;
-//
-//    UIView *myContentView;
-//    UIScrollView *myScrollView;
-//
-//    UITextView *myUserCommentTextView;
-//    JRRoundedRect *myUserCommentBoundingBox;
-//
-//    UILabel *myRemainingCharactersLabel;
-//
-//    UIView *myEntirePreviewContainer;
-//    JRRoundedRect *myPreviewContainerRoundedRect;
-//    JRPreviewLabel *myPreviewOfTheUserCommentLabel;
-//    JRRoundedRect *myRichDataContainer;
-//    UIButton *myMediaThumbnailView;
-//    UIActivityIndicatorView *myMediaThumbnailActivityIndicator;
-//    UILabel *myTitleLabel;
-//    UILabel *myDescriptionLabel;
-//
-//    UIButton *myInfoButton;
-//    UILabel *myPoweredByLabel;
-//    UIImageView *myProviderIcon;
-//
-//    UIView *myShareToView;
-//    UIImageView *myTriangleIcon;
-//    UIButton *myConnectAndShareButton;
-//    UIButton *myJustShareButton;
-//    UIButton *myProfilePic;
-//    UIActivityIndicatorView *myProfilePicActivityIndicator;
-//    UILabel *myUserName;
-//    UIButton *mySignOutButton;
-//    UIImageView *mySharedCheckMark;
-//    UILabel *mySharedLabel;
-//}
 @synthesize selectedProvider;
 @synthesize myBackgroundView, myTabBar, myLoadingLabel, myLoadingActivitySpinner, myLoadingGrayView,
 myPadGrayEditingViewTop, myPadGrayEditingViewMiddle, myPadGrayEditingViewBottom, myContentView, myScrollView,
@@ -542,25 +463,14 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
 
     if (!self.titleView)
     {
-        UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)] autorelease];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
-        titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        titleLabel.textAlignment = JR_TEXT_ALIGN_CENTER;
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.adjustsFontSizeToFitWidth = YES;
-        titleLabel.minimumFontSize = 18.0;
-
         if ([self.customInterface objectForKey:kJRSocialSharingTitleString])
-            titleLabel.text = NSLocalizedString([self.customInterface objectForKey:kJRSocialSharingTitleString], @"");
+            self.navigationItem.title =
+                NSLocalizedString([self.customInterface objectForKey:kJRSocialSharingTitleString], @"");
         else if (selectedProvider)
-            titleLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Share on", @""),
-                                                         selectedProvider.friendlyName];
+            self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Share on", @""),
+                                                                             selectedProvider.friendlyName];
         else
-            titleLabel.text = NSLocalizedString(@"Share", @"");
-
-        self.titleView = titleLabel;
-        self.navigationItem.titleView = self.titleView;
+            self.navigationItem.title = NSLocalizedString(@"Share", @"");
     }
 }
 
@@ -975,9 +885,13 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         if (![self.customInterface objectForKey:kJRSocialSharingTitleString] &&
                 ![self.customInterface objectForKey:kJRSocialSharingTitleView])
         {
-            ((UILabel *) self.titleView).text = [NSString stringWithFormat:@"%@ %@",
-                                                                           NSLocalizedString(@"Share on", @""),
-                                                                           selectedProvider.friendlyName];
+            NSString *newText = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Share on", @""),
+                                                                     selectedProvider.friendlyName];
+            if (self.titleView) {
+                 ((UILabel *) self.titleView).text = newText;
+            } else {
+                self.navigationItem.title = newText;
+            }
         }
 ;
 
@@ -1236,7 +1150,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     [email setSubject:self.currentActivity.email.subject];
     [email setMessageBody:self.currentActivity.email.messageBody isHTML:self.currentActivity.email.isHtml];
 
-    [self presentModalViewController:email animated:YES];
+    [self jrPresentViewController:email animated:YES];
 #endif
 }
 
@@ -1251,8 +1165,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     sms.messageComposeDelegate = self;
     sms.body = self.currentActivity.sms.message;
 
-    [self presentModalViewController:sms animated:YES];
-
+    [self jrPresentViewController:sms animated:YES];
 #endif
 }
 
@@ -1504,7 +1417,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         CGSize shouldBeTitleSize =
                 [myTitleLabel.text sizeWithFont:myTitleLabel.font
                               constrainedToSize:CGSizeMake(title_w, MBC_MAX_HEIGHT)
-                                  lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+                                  lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
         shouldBeTitleHeight = shouldBeTitleSize.height;
     }
 
@@ -1518,7 +1431,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         CGSize shouldBeDescriptionSize =
                 [myDescriptionLabel.text sizeWithFont:myDescriptionLabel.font
                                     constrainedToSize:CGSizeMake(descr_w, MBC_MAX_HEIGHT)
-                                        lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+                                        lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
         shouldBeDescriptionHeight = shouldBeDescriptionSize.height;
     }
 
@@ -1609,7 +1522,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
                 CGSize shouldBeTitleSize =
                         [myTitleLabel.text sizeWithFont:myTitleLabel.font
                                       constrainedToSize:titleSize
-                                          lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+                                          lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
                 shouldBeTitleHeight = shouldBeTitleSize.height;
 
                 title_h = shouldBeTitleHeight;
@@ -2010,7 +1923,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     myTabBar.selectedItem = [myTabBar.items objectAtIndex:self.selectedTab];
     [self tabBar:myTabBar didSelectItem:[myTabBar.items objectAtIndex:self.selectedTab]];
 
-    [self dismissModalViewControllerAnimated:YES];
+    [self jrDismissViewControllerAnimated:YES];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller
@@ -2043,7 +1956,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     myTabBar.selectedItem = [myTabBar.items objectAtIndex:self.selectedTab];
     [self tabBar:myTabBar didSelectItem:[myTabBar.items objectAtIndex:self.selectedTab]];
 
-    [self dismissModalViewControllerAnimated:YES];
+    [self jrDismissViewControllerAnimated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

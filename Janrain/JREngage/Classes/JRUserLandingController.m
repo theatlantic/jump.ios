@@ -132,18 +132,12 @@
 
     self.title = [self customTitle];
 
-    if (!titleView)
-    {
-        titleView = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 156, 44)] autorelease];
-        titleView.backgroundColor = [UIColor clearColor];
-        titleView.font = [UIFont boldSystemFontOfSize:20.0];
-        titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        titleView.textAlignment = JR_TEXT_ALIGN_CENTER;
-        titleView.textColor = [UIColor whiteColor];
+    if (titleView) {
+        titleView.text = [NSString stringWithString:sessionData.currentProvider.friendlyName];
+        self.navigationItem.titleView = titleView;
+    } else {
+        self.navigationItem.title = [NSString stringWithString:sessionData.currentProvider.friendlyName];
     }
-
-    titleView.text = [NSString stringWithString:sessionData.currentProvider.friendlyName];
-    self.navigationItem.titleView = titleView;
 
     [myTableView reloadData];
     [self adjustTableViewFrame];

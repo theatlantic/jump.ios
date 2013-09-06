@@ -48,6 +48,9 @@
 
 @implementation CaptureProfileViewController
 @synthesize myEmailTextField;
+@synthesize myDisplayNameTextField;
+@synthesize myFirstNameTextField;
+@synthesize myLastNameTextField;
 @synthesize myGenderIdentitySegControl;
 @synthesize myBirthdayButton;
 @synthesize myAboutMeTextView;
@@ -63,18 +66,36 @@
     return self;
 }
 
+- (void)loadView {
+    [super loadView];
+
+    myScrollView.contentSize = CGSizeMake(320, 500);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     [myAboutMeTextView setInputAccessoryView:myKeyboardToolbar];
     [myEmailTextField setInputAccessoryView:myKeyboardToolbar];
+    [myDisplayNameTextField setInputAccessoryView:myKeyboardToolbar];
+    [myFirstNameTextField setInputAccessoryView:myKeyboardToolbar];
+    [myLastNameTextField setInputAccessoryView:myKeyboardToolbar];
 
     if (appDelegate.captureUser.email)
         myEmailTextField.text  = appDelegate.captureUser.email;
 
     if (appDelegate.captureUser.aboutMe)
         myAboutMeTextView.text = appDelegate.captureUser.aboutMe;
+
+    if (appDelegate.captureUser.displayName)
+        myDisplayNameTextField.text = appDelegate.captureUser.displayName;
+
+    if (appDelegate.captureUser.givenName)
+        myFirstNameTextField.text = appDelegate.captureUser.givenName;
+
+    if (appDelegate.captureUser.familyName)
+        myLastNameTextField.text = appDelegate.captureUser.familyName;
 
     char genderSegment = ([self isFemaleGender:[appDelegate.captureUser.gender lowercaseString]]) ? 0 : 1;
     [myGenderIdentitySegControl setSelectedSegmentIndex:genderSegment];
@@ -126,6 +147,18 @@
     [self scrollUpBy:40];
 }
 
+- (IBAction)displayNameFieldClicked:(id)sender {
+    [myDisplayNameTextField becomeFirstResponder];
+}
+
+- (IBAction)firstNameFieldClicked:(id)sender {
+    [myFirstNameTextField becomeFirstResponder];
+}
+
+- (IBAction)lastNameFieldClicked:(id)sender {
+    [myLastNameTextField becomeFirstResponder];
+}
+
 - (void)pickerDone
 {
     [self slidePickerDown];
@@ -162,6 +195,9 @@
     appDelegate.captureUser.aboutMe  = myAboutMeTextView.text;
     appDelegate.captureUser.birthday = myBirthdate;
     appDelegate.captureUser.email    = myEmailTextField.text;
+    appDelegate.captureUser.displayName = myDisplayNameTextField.text;
+    appDelegate.captureUser.givenName = myFirstNameTextField.text;
+    appDelegate.captureUser.familyName = myLastNameTextField.text;
 
     if (myGenderIdentitySegControl.selectedSegmentIndex == 0)
         appDelegate.captureUser.gender = @"female";
