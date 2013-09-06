@@ -31,8 +31,13 @@
 
 #import "JRCaptureTypes.h"
 
+/**
+ * @brief
+ * Capture configuration object for storing Capture settings.
+ **/
 @interface JRCaptureConfig : NSObject
 
+/*@{*/
 /**
  *   This is your 20-character application ID for Engage. You can find this on your application's Engage Dashboard
  *   on http://rpxnow.com">http://rpxnow.com. Please do not use your API key. The API key
@@ -103,6 +108,10 @@
  */
 @property (nonatomic, retain) NSString *passwordRecoverUri;
 
+/**
+ *   Get an empty Capture Configuration
+ */
 + (JRCaptureConfig *)emptyCaptureConfig;
+/*@}*/
 
 @end
