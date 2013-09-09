@@ -1,3 +1,11 @@
+v3.4.0
+ - iOS 7 Compatibility
+ - Fixes a bug in SimpleCaptureDemo which prevented two step registration from working
+   with the standard_flow
+ - Support for initiating the Forgot Password Flow
+ - Added Google+ & Tumblr icons
+ - Updated Phonegap plugin for Phonegap 2.7.0
+ - Added support for code_and_token response types
 v3.3.9
  - Adds friendly fast failure for unsupported trad auth forms
 v3.3.8
