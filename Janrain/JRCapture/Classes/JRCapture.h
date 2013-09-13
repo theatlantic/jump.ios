@@ -324,6 +324,18 @@
  */
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error;
 
+/**
+ * Sent when the Account is Linked Successfully
+ */
+- (void)linkNewAccountDidSucceed;
+
+/**
+ * Sent when the Account linking flow fails
+ * @param error
+ *   The error that caused the failure.
+ */
+- (void)linkNewAccountDidFailWithError:(NSError *)error;
+
 @end
 
 /**
@@ -699,6 +711,10 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 + (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
                                       delegate:(id <JRCaptureDelegate>)delegate;
 
+/**
+ * Link new account for existing user for new
+ */
++ (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate withToken:(NSString *)token;
 @end
 
 /**

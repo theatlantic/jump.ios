@@ -93,6 +93,7 @@
         self.shareButton.hidden = NO;
         self.refetchButton.hidden = NO;
         self.forgotPasswordButton.hidden = YES;
+        self.linkAccountButton.hidden = NO;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Update" forState:UIControlStateNormal];
@@ -110,6 +111,7 @@
         self.shareButton.hidden = YES;
         self.refetchButton.hidden = YES;
         self.forgotPasswordButton.hidden = NO;
+        self.linkAccountButton.hidden = YES;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Traditional Registration" forState:UIControlStateNormal];
@@ -201,6 +203,11 @@
 {
     [self startSignInForProvider:@"facebook"];
     //[JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
+}
+
+-(IBAction)linkAccountButtonPressed:(id)sender
+{
+    [JREngage showAuthenticationDialog];
 }
 
 - (void)startSignInForProvider:(NSString *)provider
@@ -561,4 +568,18 @@
 {
 }
 
+- (void)linkNewAccountDidSucceed
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked SUccessfully." message:@"" delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)linkNewAccountDidFailWithError:(NSError *)error
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:@"" delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
+    
+}
 @end
