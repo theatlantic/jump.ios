@@ -114,6 +114,10 @@ A less desirable but more reliable and more general upgrade strategy:
     * `jrAuthenticationCallToTokenUrl:didFailWithError:forProvider:` has been replaced with
       `authenticationCallToTokenUrl:didFailWithError:forProvider:`
 
+* **cannot find protocol declaration for 'JREngageDelegate'**
+
+    Change `<JREngageDelegate>` to `<JREngageSigninDelegate>`
+
 * **Use of undeclared identifier 'JRDialogShowingError'**
 
     Import `JREngageError.h`
