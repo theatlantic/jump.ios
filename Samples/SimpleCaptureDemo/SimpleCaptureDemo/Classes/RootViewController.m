@@ -207,7 +207,18 @@
 
 -(IBAction)linkAccountButtonPressed:(id)sender
 {
-    [JREngage showAuthenticationDialog];
+    void (^completion)(UIAlertView *, BOOL, NSInteger) =
+    ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+        if(buttonIndex != alertView.cancelButtonIndex) {
+            [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate forAccountLinking:YES withRedirectUri:@"http://www.gmail.com"];
+        }
+    };
+    [[[AlertViewWithBlocks alloc] initWithTitle:@"Capture Account Linking"
+                                        message:@"Do you wish to Link a new account to your current account ?"
+                                     completion:completion
+                                          style:UIAlertViewStyleDefault
+                              cancelButtonTitle:@"Cancel"
+                              otherButtonTitles:@"Continue", Nil] show];
 }
 
 - (void)startSignInForProvider:(NSString *)provider
@@ -570,14 +581,18 @@
 
 - (void)linkNewAccountDidSucceed
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked SUccessfully." message:@"" delegate:nil
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked Successfully." message:@"Account Linked Successfully" delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
 }
 
 - (void)linkNewAccountDidFailWithError:(NSError *)error
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:@"" delegate:nil
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:error.localizedFailureReason delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
     
