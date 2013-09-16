@@ -46,4 +46,9 @@
                                 forDelegate:(id <JRCaptureDelegate>)delegate;
 
 + (id)getDelegate;
++ (void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
+                           andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                           forDelegate:(id <JRCaptureDelegate>)delegate
+                                     forAccountLinking:(BOOL)linkAccount withRedirectUri:(NSString *)redirectUri;
+
 @end

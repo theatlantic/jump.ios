@@ -157,6 +157,13 @@ static JREngage* singleton = nil;
     }
 }
 
+- (void)markFlowForAccountLinking:(BOOL)linkAccount forProviders:(NSString *)provider
+                  customInterface:(NSDictionary *)customInterfaceOverrides {
+    ALog (@"JREngage Marking flow for Account Linking");
+    sessionData.accountLinking = linkAccount;
+    [self showAuthenticationDialogForProvider:provider customInterface:customInterfaceOverrides];
+    
+}
 - (void)showAuthenticationDialogForProvider:(NSString *)provider
                             customInterface:(NSDictionary *)customInterfaceOverrides
 {
@@ -256,6 +263,12 @@ static JREngage* singleton = nil;
 {
     [[JREngage singletonInstance] showAuthenticationDialogForProvider:nil
                                                       customInterface:customInterfaceOverrides];
+}
+
++(void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides forAccountLinking:(BOOL)linkAccount
+{
+    [[JREngage singletonInstance] markFlowForAccountLinking:linkAccount forProviders:nil customInterface:customInterfaceOverrides];
+    
 }
 
 //- (void)showAuthenticationDialogForProvider:(NSString *)provider
@@ -582,4 +595,20 @@ static JREngage* singleton = nil;
 {
     [[JREngage singletonInstance].sessionData setCustomProvidersWithDictionary:customProviders];
 }
+
+- (void)authenticationDidSucceedForAccountLinking:(NSDictionary *)profile forProvider:(NSString *)provider
+{
+    ALog (@"Signing complete for %@", provider);
+    
+    NSArray *delegatesCopy = [NSArray arrayWithArray:delegates];
+    for (id<JREngageSigninDelegate> delegate in delegatesCopy)
+    {
+        if ([delegate respondsToSelector:@selector(engageAuthenticationDidSucceedForAccountLinking:forProvider:)])
+            [delegate engageAuthenticationDidSucceedForAccountLinking:profile forProvider:provider];
+    }
+    
+    [interfaceMaestro authenticationCompleted];
+}
+
+
 @end

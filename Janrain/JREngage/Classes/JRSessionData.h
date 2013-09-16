@@ -93,6 +93,8 @@
 
 - (void)authenticationDidCompleteForUser:(NSDictionary *)profile forProvider:(NSString *)provider;
 
+- (void)authenticationDidSucceedForAccountLinking:(NSDictionary *)profile forProvider:(NSString *)provider;
+
 - (void)authenticationDidFailWithError:(NSError *)error forProvider:(NSString *)provider;
 
 - (void)authenticationDidReachTokenUrl:(NSString *)tokenUrl withResponse:(NSURLResponse *)response
@@ -138,6 +140,7 @@
 @property BOOL alwaysForceReauth;
 @property BOOL socialSharing;
 @property BOOL authenticationFlowIsInFlight;
+@property BOOL accountLinking;
 @property(retain, readonly) NSError *error;
 
 + (JRSessionData *)jrSessionData;

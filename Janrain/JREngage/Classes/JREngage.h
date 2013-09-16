@@ -221,7 +221,10 @@
  *   please see the \ref authenticationProviders "List of Providers"
  **/
 - (void)authenticationCallToTokenUrl:(NSString *)tokenUrl didFailWithError:(NSError *)error forProvider:(NSString *)provider;
-/*@}*/
+/**
+ * Sent when the Engage Authentication is completed successfully for Link Account Flow
+ */
+- (void)engageAuthenticationDidSucceedForAccountLinking:(NSDictionary *)engageAuthInfo forProvider:(NSString *)provider;
 @end
 
 /**
@@ -391,7 +394,7 @@
  * values specified the dictionary passed into the setCustomInterfaceDefaults:() method.
  **/
 + (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused;
-
++ (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides forAccountLinking:(BOOL)linkAccount __unused;
 /**
 * Use this function to begin authentication. The JREngage library will pop up a modal dialog, configured
 * with the given custom interface and skipping the list of providers, and take the user straight to the sign-in

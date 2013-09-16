@@ -491,36 +491,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     }];
 }
 
-+ (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate withToken:(NSString *)token
-{
-    JRCaptureData *data = [JRCaptureData sharedCaptureData];
-    NSString *url = [NSString stringWithFormat:@"%@/oauth/link_account_native", data.captureBaseUrl];
-    
-    NSDictionary *params = @{
-                             @"client_id" : data.clientId,
-                             @"locale" : data.captureLocale,
-                             @"response_type" : @"token",
-                             @"redirect_uri" : @"http://not-a-real-uri.janrain.com/addNew_Account.html",
-                             @"access_token" : [data accessToken],
-                             @"token" :token
-                             };
-    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error)
-     {
-         if (error) {
-             ALog("Failure initiating add account flow: %@", error);
-             [self maybeDispatch:@selector(addAccountDidFailWithError:)
-                     forDelegate:delegate withArg:error];
-         } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
-             DLog(@"Add account Flow started successfully");
-             [self maybeDispatch:@selector(linkNewAccountDidSucceed) forDelegate:delegate];
-         } else {
-             JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
-            [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
-                     forDelegate:delegate withArg:captureError];
-         }
-     }];
-}
-
 + (NSString *)utcTimeString
 {
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -690,4 +660,52 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     [JRCapture startEngageSignInDialogForDelegate:delegate];
 }
 
++(void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate forAccountLinking:(BOOL)linkAccount withRedirectUri:(NSString *)redirectUri
+{
+    [JREngageWrapper startAuthenticationDialogWithTraditionalSignIn:JRTraditionalSignInNone
+                                        andCustomInterfaceOverrides:nil forDelegate:delegate forAccountLinking:YES withRedirectUri:redirectUri];
+}
+
++ (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate redirectUri:(NSString *)redirectUri withAuthInfo:(NSDictionary *)authInfo
+{
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/link_account_native", data.captureBaseUrl];
+    if (!redirectUri) redirectUri = data.captureRedirectUri;
+    if (!redirectUri) {
+        JRCaptureError *captureError =
+        [JRCaptureError invalidArgumentErrorWithParameterName:@"redirectUri"];
+        [self maybeDispatch:@selector(linkNewAccountDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
+        
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing argument/setting redirectUri"];
+        return;
+    }
+    
+    NSDictionary *params = @{
+                             @"client_id" : data.clientId,
+                             @"locale" : data.captureLocale,
+                             @"response_type" : @"token",
+                             @"redirect_uri" : redirectUri,
+                             @"access_token" : [data accessToken],
+                             @"token" :[authInfo valueForKey:@"token"],
+                             @"flow" :data.captureFlowName,
+                             @"flow_version" :data.downloadedFlowVersion
+                             };
+    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error)
+     {
+         if (error) {
+             ALog("Failure initiating link account flow: %@", error);
+             [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
+                     forDelegate:delegate withArg:error];
+         } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+             DLog(@"Link account Flow started successfully");
+             [self maybeDispatch:@selector(linkNewAccountDidSucceed) forDelegate:delegate];
+         } else {
+             JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+             [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
+                     forDelegate:delegate withArg:captureError];
+         }
+     }];
+}
 @end
