@@ -210,7 +210,9 @@
     void (^completion)(UIAlertView *, BOOL, NSInteger) =
     ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
         if(buttonIndex != alertView.cancelButtonIndex) {
-            [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate forAccountLinking:YES withRedirectUri:@"http://www.gmail.com"];
+            [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate
+                                                    linkToAccount:YES
+                                                  withRedirectUri:@"http://www.gmail.com"];
         }
     };
     [[[AlertViewWithBlocks alloc] initWithTitle:@"Capture Account Linking"

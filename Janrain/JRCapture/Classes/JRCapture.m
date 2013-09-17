@@ -660,13 +660,20 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     [JRCapture startEngageSignInDialogForDelegate:delegate];
 }
 
-+(void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate forAccountLinking:(BOOL)linkAccount withRedirectUri:(NSString *)redirectUri
++(void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate
+                                    linkToAccount:(BOOL)linkAccount
+                                  withRedirectUri:(NSString *)redirectUri
 {
     [JREngageWrapper startAuthenticationDialogWithTraditionalSignIn:JRTraditionalSignInNone
-                                        andCustomInterfaceOverrides:nil forDelegate:delegate forAccountLinking:YES withRedirectUri:redirectUri];
+                                        andCustomInterfaceOverrides:nil
+                                                        forDelegate:delegate
+                                                      linkToAccount:YES
+                                                    withRedirectUri:redirectUri];
 }
 
-+ (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate redirectUri:(NSString *)redirectUri withAuthInfo:(NSDictionary *)authInfo
++ (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate
+                           redirectUri:(NSString *)redirectUri
+                          withAuthInfo:(NSDictionary *)authInfo
 {
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
     NSString *url = [NSString stringWithFormat:@"%@/oauth/link_account_native", data.captureBaseUrl];

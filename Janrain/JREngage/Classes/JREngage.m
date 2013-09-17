@@ -265,9 +265,12 @@ static JREngage* singleton = nil;
                                                       customInterface:customInterfaceOverrides];
 }
 
-+(void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides forAccountLinking:(BOOL)linkAccount
++(void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                          forAccountLinking:(BOOL)linkAccount
 {
-    [[JREngage singletonInstance] markFlowForAccountLinking:linkAccount forProviders:nil customInterface:customInterfaceOverrides];
+    [[JREngage singletonInstance] markFlowForAccountLinking:linkAccount
+                                               forProviders:nil
+                                            customInterface:customInterfaceOverrides];
     
 }
 
@@ -596,7 +599,8 @@ static JREngage* singleton = nil;
     [[JREngage singletonInstance].sessionData setCustomProvidersWithDictionary:customProviders];
 }
 
-- (void)authenticationDidSucceedForAccountLinking:(NSDictionary *)profile forProvider:(NSString *)provider
+- (void)authenticationDidSucceedForAccountLinking:(NSDictionary *)profile
+                                      forProvider:(NSString *)provider
 {
     ALog (@"Signing complete for %@", provider);
     

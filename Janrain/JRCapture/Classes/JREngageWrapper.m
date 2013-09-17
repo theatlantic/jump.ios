@@ -127,31 +127,39 @@ static JREngageWrapper *singleton = nil;
                            andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                            forDelegate:(id <JRCaptureDelegate>)delegate
 {
-    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:delegate ]];
-
-    JREngageWrapper *wrapper = [JREngageWrapper singletonInstance];
-    [wrapper setDelegate:delegate];
-    [wrapper setDialogState:JREngageDialogStateAuthentication];
-
-    NSMutableDictionary *expandedCustomInterfaceOverrides =
-            [NSMutableDictionary dictionaryWithDictionary:customInterfaceOverrides];
-
-    if (nativeSignInType != JRTraditionalSignInNone)
-    {
-        [self configureTradSignIn:nativeSignInType expandedCustomInterfaceOverrides:expandedCustomInterfaceOverrides];
-    }
-
-    [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:expandedCustomInterfaceOverrides];
+    [JREngageWrapper performCommonAuthenticationForTraditionalSignIn:nativeSignInType
+                                         andCustomInterfaceOverrides:customInterfaceOverrides
+                                                         forDelegate:delegate
+                                                     withRedirectUri:nil
+                                                       linkToAccount:NO];
 }
 
-+(void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides forDelegate:(id<JRCaptureDelegate>)delegate forAccountLinking:(BOOL)linkAccount withRedirectUri:(NSString *)redirectUri {
-    
-    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:delegate ]];
++ (void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
+                          andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                          forDelegate:(id<JRCaptureDelegate>)delegate
+                                        linkToAccount:(BOOL)linkAccount
+                                      withRedirectUri:(NSString *)redirectUri
+{
+    [JREngageWrapper performCommonAuthenticationForTraditionalSignIn:nativeSignInType
+                                         andCustomInterfaceOverrides:customInterfaceOverrides
+                                                         forDelegate:delegate
+                                                     withRedirectUri:redirectUri
+                                                       linkToAccount:linkAccount];
+}
 
++ (void) performCommonAuthenticationForTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
+                             andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                             forDelegate:(id<JRCaptureDelegate>)delegate
+                                         withRedirectUri:(NSString *)redirectUri
+                                           linkToAccount:(BOOL)linkAccount
+{
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:delegate ]];
+    
     JREngageWrapper *wrapper = [JREngageWrapper singletonInstance];
     [wrapper setDelegate:delegate];
     [wrapper setDialogState:JREngageDialogStateAuthentication];
-    [wrapper setRedirectUri:redirectUri];
+    if(linkAccount)
+        [wrapper setRedirectUri:redirectUri];
     
     NSMutableDictionary *expandedCustomInterfaceOverrides =
     [NSMutableDictionary dictionaryWithDictionary:customInterfaceOverrides];
@@ -161,8 +169,14 @@ static JREngageWrapper *singleton = nil;
         [self configureTradSignIn:nativeSignInType expandedCustomInterfaceOverrides:expandedCustomInterfaceOverrides];
     }
     
-    [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:expandedCustomInterfaceOverrides forAccountLinking:linkAccount];
-
+    if(linkAccount)
+    {
+        [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:expandedCustomInterfaceOverrides
+                                                     forAccountLinking:linkAccount];
+    } else
+    {
+        [JREngage showAuthenticationDialogWithCustomInterfaceOverrides:expandedCustomInterfaceOverrides];
+    }
 }
 
 + (void)     configureTradSignIn:(JRTraditionalSignInType)nativeSignInType
@@ -290,12 +304,16 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
         [delegate engageAuthenticationDidSucceedForUser:auth_info forProvider:provider];
 }
 
-- (void)engageAuthenticationDidSucceedForAccountLinking:(NSDictionary *)engageAuthInfo forProvider:(NSString *)provider {
+- (void)engageAuthenticationDidSucceedForAccountLinking:(NSDictionary *)engageAuthInfo
+                                            forProvider:(NSString *)provider
+{
     self.engageToken = [engageAuthInfo objectForKey:@"token"];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     JREngageWrapper *wrapper = [JREngageWrapper singletonInstance];
-    [JRCapture startLinkNewAccountFordelegate:delegate redirectUri:[wrapper redirectUri] withAuthInfo:engageAuthInfo];
+    [JRCapture startLinkNewAccountFordelegate:delegate
+                                  redirectUri:[wrapper redirectUri]
+                                 withAuthInfo:engageAuthInfo];
 }
 
 - (void)engageDialogDidFailToShowWithError:(NSError *)error
