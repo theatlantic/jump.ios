@@ -211,8 +211,8 @@
     ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
         if(buttonIndex != alertView.cancelButtonIndex) {
             [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate
-                                                    linkToAccount:YES
-                                                  withRedirectUri:@"http://www.gmail.com"];
+                                                forAccountLinking:YES
+                                                  withRedirectUri:@"http://your-domain-custom-redirect-url-page.html"];
         }
     };
     [[[AlertViewWithBlocks alloc] initWithTitle:@"Capture Account Linking"

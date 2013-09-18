@@ -715,7 +715,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  * Link new account for existing user for new
  */
 + (void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate
-                                     linkToAccount:(BOOL)linkAccount
+                                 forAccountLinking:(BOOL)linkAccount
                                    withRedirectUri:(NSString *)redirectUri;
 
 + (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate

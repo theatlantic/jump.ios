@@ -661,13 +661,13 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 }
 
 +(void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate
-                                    linkToAccount:(BOOL)linkAccount
+                                forAccountLinking:(BOOL)linkAccount
                                   withRedirectUri:(NSString *)redirectUri
 {
     [JREngageWrapper startAuthenticationDialogWithTraditionalSignIn:JRTraditionalSignInNone
                                         andCustomInterfaceOverrides:nil
                                                         forDelegate:delegate
-                                                      linkToAccount:YES
+                                                  forAccountLinking:YES
                                                     withRedirectUri:redirectUri];
 }
 

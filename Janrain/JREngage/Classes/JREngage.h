@@ -396,7 +396,7 @@
 + (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused;
 
 /**
- * Use this function to begin authentication for Linking Account. The JREngage library will pop up a modal dialog,
+ * Use this function for linking an account. The JREngage library will pop up a modal dialog,
  * configured with the given custom interface, and take the user through the sign-in process.
  *
  * @param customInterfaceOverrides

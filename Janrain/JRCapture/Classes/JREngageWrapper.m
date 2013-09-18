@@ -131,27 +131,27 @@ static JREngageWrapper *singleton = nil;
                                          andCustomInterfaceOverrides:customInterfaceOverrides
                                                          forDelegate:delegate
                                                      withRedirectUri:nil
-                                                       linkToAccount:NO];
+                                                   forAccountLinking:NO];
 }
 
 + (void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
                           andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                           forDelegate:(id<JRCaptureDelegate>)delegate
-                                        linkToAccount:(BOOL)linkAccount
+                                    forAccountLinking:(BOOL)linkAccount
                                       withRedirectUri:(NSString *)redirectUri
 {
     [JREngageWrapper performCommonAuthenticationForTraditionalSignIn:nativeSignInType
                                          andCustomInterfaceOverrides:customInterfaceOverrides
                                                          forDelegate:delegate
                                                      withRedirectUri:redirectUri
-                                                       linkToAccount:linkAccount];
+                                                   forAccountLinking:linkAccount];
 }
 
 + (void) performCommonAuthenticationForTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
                              andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                              forDelegate:(id<JRCaptureDelegate>)delegate
                                          withRedirectUri:(NSString *)redirectUri
-                                           linkToAccount:(BOOL)linkAccount
+                                       forAccountLinking:(BOOL)linkAccount
 {
     [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:delegate ]];
     
