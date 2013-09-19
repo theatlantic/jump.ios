@@ -91,6 +91,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic) BOOL captureEnableThinRegistration;
 
 @property(nonatomic, retain) NSDictionary *captureFlow;
+@property(nonatomic, retain) NSArray *linkedProfileArray;
 @property(nonatomic) BOOL initialized;
 @end
 
@@ -114,6 +115,7 @@ static JRCaptureData *singleton = nil;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
 @synthesize passwordRecoverUri;
+@synthesize linkedProfileArray;
 
 - (JRCaptureData *)init
 {
@@ -454,6 +456,25 @@ static JRCaptureData *singleton = nil;
 + (void)setBackplaneChannelUrl:(NSString *)bpChannelUrl __unused
 {
     [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
+}
+
++ (void)setLinkedProfiles:(NSDictionary *)captureData {
+    NSMutableArray *tempArray = [captureData valueForKey:@"profiles"];
+    NSMutableArray *returnArray = [[NSMutableArray alloc]init];
+    if([tempArray count] > 1) {
+        for(NSDictionary *dict in tempArray) {
+            
+            NSDictionary *tempDict = [
+                                      [NSDictionary alloc]initWithObjectsAndKeys:
+                                      [dict objectForKey:@"verifiedEmail"],@"verifiedEmail",
+                                      [dict objectForKey:@"identifier"], @"identifier",
+                                      nil
+                                      ];
+            
+            [returnArray addObject:tempDict];
+        }
+    }
+    [JRCaptureData sharedCaptureData].linkedProfileArray = returnArray;
 }
 
 - (NSString *)responseType:(id)delegate {

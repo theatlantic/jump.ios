@@ -336,6 +336,18 @@
  */
 - (void)linkNewAccountDidFailWithError:(NSError *)error;
 
+/** Sent when the Account unlinking flow succeeds
+ 
+ **/
+- (void)accountUnlinkingDidSucceed;
+
+/**
+ * Sent when the Account unlinking flow fails
+ * @param error
+ *   The error that caused the failure.
+ */
+- (void)accountUnlinkingDidFailWithError:(NSError *)error;
+
 @end
 
 /**
@@ -713,7 +725,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
 /**
  * Link new account for existing user for new
- */
+**/
 + (void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate
                                  forAccountLinking:(BOOL)linkAccount
                                    withRedirectUri:(NSString *)redirectUri;
@@ -721,6 +733,9 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 + (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate
                            redirectUri:(NSString *)redirectUri
                           withAuthInfo:(NSDictionary *)authInfo;
+
+
++ (void)startAccountUnLinking:(id <JRCaptureDelegate>)delegate;
 
 @end
 

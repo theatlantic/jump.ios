@@ -94,6 +94,7 @@
         self.refetchButton.hidden = NO;
         self.forgotPasswordButton.hidden = YES;
         self.linkAccountButton.hidden = NO;
+        self.unlinkAccountButton.hidden = NO;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Update" forState:UIControlStateNormal];
@@ -112,6 +113,7 @@
         self.refetchButton.hidden = YES;
         self.forgotPasswordButton.hidden = NO;
         self.linkAccountButton.hidden = YES;
+        self.unlinkAccountButton.hidden = YES;
 
         self.formButton.hidden = NO;
         [self.formButton setTitle:@"Traditional Registration" forState:UIControlStateNormal];
@@ -280,6 +282,21 @@
                                      completion:completion
                                           style:UIAlertViewStylePlainTextInput
                               cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil] show];
+}
+
+-(void)unlinkAccountButtonPressed:(id)sender {
+    void (^completion)(UIAlertView *, BOOL, NSInteger) =
+    ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            [JRCapture startAccountUnLinking:self.captureDelegate];
+        }
+    };
+    
+    [[[AlertViewWithBlocks alloc] initWithTitle:@"Unlink Account"
+                                        message:@"You are going to start account unlinking process."
+                                     completion:completion
+                                          style:UIAlertViewStyleDefault
+                              cancelButtonTitle:@"Cancel" otherButtonTitles:@"Proceed", nil] show];
 }
 
 - (void)configureUserLabelAndIcon
@@ -585,7 +602,18 @@
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked Successfully." message:@"Account Linked Successfully" delegate:nil
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked Successfully."
+                                                        message:@"Account Linked Successfully"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)accountUnlinkingDidSucceed {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Account unlinking Success"
+                                                        message:@"Account unlinked successfully."
+                                                       delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
 }
@@ -599,4 +627,12 @@
     [alertView show];
     
 }
+
+- (void)accountUnlinkingDidFailWithError:(NSError *)error
+{
+    [[[UIAlertView alloc] initWithTitle:@"Account unlinking Failure"
+                                message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                      cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
 @end

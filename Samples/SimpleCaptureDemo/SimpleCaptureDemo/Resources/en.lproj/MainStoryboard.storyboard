@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="9RN-Pn-CPc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="9RN-Pn-CPc">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3734.1"/>
     </dependencies>
     <scenes>
@@ -53,7 +53,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GHJ-Vx-tee">
-                                <rect key="frame" x="20" y="366" width="280" height="44"/>
+                                <rect key="frame" x="20" y="362" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Out">
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -166,9 +166,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ObZ-df-gL7">
-                                <rect key="frame" x="20" y="317" width="280" height="44"/>
+                                <rect key="frame" x="50" y="319" width="114" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Link New Account">
+                                <state key="normal" title="Link Account">
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -177,6 +177,20 @@
                                 </state>
                                 <connections>
                                     <action selector="linkAccountButtonPressed:" destination="2" eventType="touchUpInside" id="F8A-oj-YEN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gDA-4c-m8N">
+                                <rect key="frame" x="173" y="319" width="114" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Unlink Account">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="unlinkAccountButtonPressed:" destination="2" eventType="touchUpInside" id="ew7-4w-5Zb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -197,6 +211,7 @@
                         <outlet property="signInButton" destination="gAk-C3-t5t" id="xiB-Pk-aug"/>
                         <outlet property="signOutButton" destination="GHJ-Vx-tee" id="irK-fI-240"/>
                         <outlet property="tradAuthButton" destination="11P-Kw-deQ" id="pWo-8s-cyK"/>
+                        <outlet property="unlinkAccountButton" destination="gDA-4c-m8N" id="wop-9y-SbH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
