@@ -51,7 +51,7 @@
 @property(nonatomic, readonly, retain) NSDictionary *captureFlow;
 @property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic) BOOL flowUsesTestingCdn;
-@property(nonatomic, readonly, retain) NSArray *linkedProfileArray;
+@property(nonatomic, readonly, retain) NSArray *linkedProfiles;
 
 + (void)setAccessToken:(NSString *)token;
 
@@ -69,7 +69,7 @@
 
 + (NSMutableURLRequest *)requestWithPath:(NSString *)path;
 
-+ (void)setLinkedProfiles:(NSDictionary *)captureData;
++ (void)setLinkedProfiles:(NSArray **)captureData;
 
 - (NSString *)downloadedFlowVersion;
 

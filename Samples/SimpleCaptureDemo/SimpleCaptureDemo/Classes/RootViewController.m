@@ -40,6 +40,8 @@
 #import "JRCaptureUser+Extras.h"
 #import "JRCaptureObject+Internal.h"
 #import "JRActivityObject.h"
+#import "LinkedProfilesViewController.h"
+#import "JRCaptureData.h"
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate, JRCaptureUserDelegate>
 @property RootViewController *rvc;
@@ -47,7 +49,7 @@
 - (id)initWithRootViewController:(RootViewController *)rvc;
 @end
 
-@interface RootViewController () <UIAlertViewDelegate>
+@interface RootViewController () <UIAlertViewDelegate, LinkedProfilesDelegate>
 @property(nonatomic, copy) void (^viewDidAppearContinuation)();
 @property(nonatomic) BOOL viewIsApparent;
 @property MyCaptureDelegate *captureDelegate;
@@ -288,7 +290,10 @@
     void (^completion)(UIAlertView *, BOOL, NSInteger) =
     ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
         if (buttonIndex != alertView.cancelButtonIndex) {
-            [JRCapture startAccountUnLinking:self.captureDelegate];
+            LinkedProfilesViewController *linkedProfilesController = [[LinkedProfilesViewController alloc]init];
+            linkedProfilesController.delegate = self;
+            linkedProfilesController.linkedProfiles = [JRCaptureData sharedCaptureData].linkedProfiles;
+            [self.navigationController presentModalViewController:linkedProfilesController animated:YES];
         }
     };
     
@@ -297,6 +302,10 @@
                                      completion:completion
                                           style:UIAlertViewStyleDefault
                               cancelButtonTitle:@"Cancel" otherButtonTitles:@"Proceed", nil] show];
+}
+
+-(void)unlinkSelectedProfile:(NSString *)selectedProfile {
+    [JRCapture startAccountUnLinking:self.captureDelegate forProfileIdentifier:selectedProfile];
 }
 
 - (void)configureUserLabelAndIcon

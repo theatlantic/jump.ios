@@ -15,6 +15,7 @@
 		19BC043CB32C3615A713D687 /* JRCompatibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */; };
 		19BC04A025012377EE30F823 /* logo_amazon_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */; };
 		19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */; };
+		4ED8382D17EC307900CA9645 /* LinkedProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */; };
 		6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FCAB908800A9FF445D4B /* Upgrade Guide.md */; };
 		6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */; };
 		6706F0548CC1DBB6CEC0407D /* JRCurrentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F48794E72EF1AAA12F65 /* JRCurrentLocation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -309,6 +310,8 @@
 		19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_amazon_280x65.png; sourceTree = "<group>"; };
 		19BC0C91C468544CC1764EEB /* JRCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureConfig.h; sourceTree = "<group>"; };
 		19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amazon_30x30.png; sourceTree = "<group>"; };
+		4ED8382B17EC307900CA9645 /* LinkedProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedProfilesViewController.h; path = Classes/LinkedProfilesViewController.h; sourceTree = "<group>"; };
+		4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedProfilesViewController.m; path = Classes/LinkedProfilesViewController.m; sourceTree = "<group>"; };
 		6706F004B5721D364A0105AB /* JRObjectLevelTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRObjectLevelTwo.m; sourceTree = "<group>"; };
 		6706F011CCEAA27C898AC307 /* JRPluralLevelTwoElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPluralLevelTwoElement.m; sourceTree = "<group>"; };
 		6706F01AA24E373956F9C20D /* JRProfilePhotosElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProfilePhotosElement.h; sourceTree = "<group>"; };
@@ -863,6 +866,8 @@
 				6706F1A44624C7575D0E75DA /* Utils.m */,
 				6706F177967F38CF7CA5D0FC /* CaptureDynamicForm.h */,
 				6706F39D56CA252D2415997F /* CaptureDynamicForm.m */,
+				4ED8382B17EC307900CA9645 /* LinkedProfilesViewController.h */,
+				4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1670,6 +1675,7 @@
 				6706FC34AE6B93DA0A7FD0F2 /* JRPrimaryAddress.m in Sources */,
 				6706F93B33D4BDC335A65E73 /* JRAccountsElement.m in Sources */,
 				6706F0548CC1DBB6CEC0407D /* JRCurrentLocation.m in Sources */,
+				4ED8382D17EC307900CA9645 /* LinkedProfilesViewController.m in Sources */,
 				6706F5FBFB18FFEC70EE819A /* JRProfilesElement.m in Sources */,
 				6706FB96928B72AC8E95BBBE /* JRStatusesElement.m in Sources */,
 				6706F619362F907CF818FB72 /* JRAddressesElement.m in Sources */,
@@ -1798,7 +1804,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1829,7 +1835,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1944,7 +1950,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -91,7 +91,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic) BOOL captureEnableThinRegistration;
 
 @property(nonatomic, retain) NSDictionary *captureFlow;
-@property(nonatomic, retain) NSArray *linkedProfileArray;
+@property(nonatomic, retain) NSArray *linkedProfiles;
 @property(nonatomic) BOOL initialized;
 @end
 
@@ -115,7 +115,7 @@ static JRCaptureData *singleton = nil;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
 @synthesize passwordRecoverUri;
-@synthesize linkedProfileArray;
+@synthesize linkedProfiles;
 
 - (JRCaptureData *)init
 {
@@ -458,23 +458,19 @@ static JRCaptureData *singleton = nil;
     [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
 }
 
-+ (void)setLinkedProfiles:(NSDictionary *)captureData {
-    NSMutableArray *tempArray = [captureData valueForKey:@"profiles"];
++ (void)setLinkedProfiles:(NSArray **)captureData {
     NSMutableArray *returnArray = [[NSMutableArray alloc]init];
-    if([tempArray count] > 1) {
-        for(NSDictionary *dict in tempArray) {
+    if([*captureData count] > 0) {
+        for(NSDictionary *dict in *captureData) {
             
-            NSDictionary *tempDict = [
-                                      [NSDictionary alloc]initWithObjectsAndKeys:
-                                      [dict objectForKey:@"verifiedEmail"],@"verifiedEmail",
-                                      [dict objectForKey:@"identifier"], @"identifier",
-                                      nil
-                                      ];
-            
+            NSDictionary *tempDict = @{
+                                       @"verifiedEmail" : ([[dict objectForKey:@"verifiedEmail"] isKindOfClass:[NSNull class]]) ? @"": [dict objectForKey:@"verifiedEmail"],
+                                       @"identifier" : [dict objectForKey:@"identifier"],
+                                       };
             [returnArray addObject:tempDict];
         }
     }
-    [JRCaptureData sharedCaptureData].linkedProfileArray = returnArray;
+    [JRCaptureData sharedCaptureData].linkedProfiles = returnArray;
 }
 
 - (NSString *)responseType:(id)delegate {

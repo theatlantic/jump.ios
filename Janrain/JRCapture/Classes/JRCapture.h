@@ -722,9 +722,8 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  */
 + (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
                                       delegate:(id <JRCaptureDelegate>)delegate;
-
 /**
- * Link new account for existing user for new
+ * Link new account for existing user
 **/
 + (void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate
                                  forAccountLinking:(BOOL)linkAccount
@@ -734,8 +733,17 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                            redirectUri:(NSString *)redirectUri
                           withAuthInfo:(NSDictionary *)authInfo;
 
-
-+ (void)startAccountUnLinking:(id <JRCaptureDelegate>)delegate;
+/**
+ *  Starts the Account unlink flow for a signed-user.
+ *
+ *  A successful call will unlink a linked account from the Exisiting account.
+ *
+ *  @param identifier
+ *    The identifier of the linked account
+ *  @param delegate
+ *    The JRCaptureDelegate object that wishes to receive messages regarding user account unlinking.
+ */
++ (void)startAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier;
 
 @end
 
