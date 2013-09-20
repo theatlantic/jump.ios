@@ -107,6 +107,10 @@
  *  The base uri for creating the link in a password recovery email.
  */
 @property (nonatomic, retain) NSString *passwordRecoverUri;
+/**
+ *  The name of the form (from your flow) used for editing the user profile
+ */
+@property (nonatomic, retain) NSString *editProfileFormName;
 
 /**
  *   Get an empty Capture Configuration

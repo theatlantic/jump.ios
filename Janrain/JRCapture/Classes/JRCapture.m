@@ -623,6 +623,54 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     [JRConnectionManager jsonRequestToUrl:entityUrl params:@{@"access_token" : accessToken} completionHandler:handler];
 }
 
++ (void)updateProfileForUser:(JRCaptureUser *)user delegate:(id <JRCaptureDelegate>)delegate
+{
+    if (!user) {
+        [JRCapture maybeDispatch:@selector(updateUserProfileDidFailWithError:) forDelegate:delegate
+                         withArg:[JRCaptureError invalidArgumentErrorWithParameterName:@"user"]];
+    }
+
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *editProfileForm = data.captureEditProfileFormName;
+    NSMutableDictionary *params = [user toFormFieldsForForm:editProfileForm withFlow:data.captureFlow];
+
+    [params addEntriesFromDictionary:@{
+            @"client_id" : data.clientId,
+            @"access_token" : data.accessToken,
+            @"locale" : data.captureLocale,
+            @"form" : editProfileForm,
+            @"flow" : data.captureFlowName,
+    }];
+
+    if ([data downloadedFlowVersion]) {
+        [params setObject:[data downloadedFlowVersion] forKey:@"flow_version"];
+    }
+
+    NSString *urlString = [NSString stringWithFormat:@"%@/oauth/update_profile_native", data.captureBaseUrl];
+
+    void (^handler)(id, NSError *) = ^(id result, NSError *error) {
+        if (error) {
+            ALog("Failure when updating the user profile: %@", error);
+            [self maybeDispatch:@selector(updateUserProfileDidFailWithError:) forDelegate:delegate withArg:error];
+        } else if (![result isKindOfClass:[NSDictionary class]]) {
+            JRCaptureError *captureError = [JRCaptureError invalidApiResponseErrorWithObject:result];
+
+            [self maybeDispatch:@selector(updateUserProfileDidFailWithError:)
+                    forDelegate:delegate withArg:captureError];
+        } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+            DLog(@"User profile successfully updated");
+            [self maybeDispatch:@selector(updateUserProfileDidSucceed) forDelegate:delegate];
+        } else {
+            JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+
+            [self maybeDispatch:@selector(updateUserProfileDidFailWithError:)
+                    forDelegate:delegate withArg:captureError];
+        }
+    };
+
+    [JRConnectionManager jsonRequestToUrl:urlString params:params completionHandler:handler];
+}
+
 + (void)maybeDispatch:(SEL)pSelector forDelegate:(id <JRCaptureDelegate>)delegate withArg:(id)arg1
               withArg:(id)arg2
 {

@@ -34,6 +34,7 @@
 #import "JRConnectionManager.h"
 #import "JRCaptureData.h"
 #import "JRCaptureConfig.h"
+#import "JRCaptureUser+Extras.h"
 #import <OCMock/OCMock.h>
 
 @interface JRCaptureTests : GHTestCase
@@ -81,6 +82,58 @@
     id connectionManager = [OCMockObject mockForClass:[JRConnectionManager class]];
     [[connectionManager expect] jsonRequestToUrl:expectedUri params:expectedParams completionHandler:[OCMArg any]];
     [JRCapture startForgottenPasswordRecoveryForField:@"me@mydomain.name" recoverUri:nil delegate:nil];
+    [connectionManager verify];
+}
+
+- (void)test_updateProfileForUserDelegate
+{
+    NSDictionary *flow = @{
+            @"fields" : @{
+                    @"editProfileForm" : @{
+                            @"fields" : @[ @"message" ]
+                    },
+                    @"message" : @{
+                            @"schemaId" : @{
+                                    @"greeting" : @"basicString",
+                                    @"number" : @"basicInteger",
+                            }
+                    }
+            }
+    };
+
+    JRCaptureData *captureData = [[JRCaptureData alloc]  init];
+    id mockData = [OCMockObject partialMockForObject:captureData];
+    [[[mockData stub] andReturn:flow] captureFlow];
+    [[[mockData stub] andReturn:@"http://base.uri"] captureBaseUrl];
+    [[[mockData stub] andReturn:@"editProfileForm"] captureEditProfileFormName];
+    [[[mockData stub] andReturn:@"abc123"] clientId];
+    [[[mockData stub] andReturn:@"12345abcdef"] accessToken];
+    [[[mockData stub] andReturn:@"US-en"] captureLocale];
+    [[[mockData stub] andReturn:@"standard_flow"] captureFlowName];
+    [[[mockData stub] andReturn:@"123456"] downloadedFlowVersion];
+
+    id mockJRCaptureData = [OCMockObject mockForClass:[JRCaptureData class]];
+    [[[mockJRCaptureData stub] andReturn:mockData] sharedCaptureData];
+
+    JRCaptureUser *user = [JRCaptureUser captureUser];
+    user.basicString = @"hello";
+    user.basicInteger = @30;
+
+    NSString *expectedUri = @"http://base.uri/oauth/update_profile_native";
+    NSDictionary *expectedParams = @{
+            @"client_id" : @"abc123",
+            @"access_token" : @"12345abcdef",
+            @"locale" : @"US-en",
+            @"form" : @"editProfileForm",
+            @"flow" : @"standard_flow",
+            @"flow_version" : @"123456",
+            @"message[greeting]" : @"hello",
+            @"message[number]" : @"30"
+    };
+
+    id connectionManager = [OCMockObject mockForClass:[JRConnectionManager class]];
+    [[connectionManager expect] jsonRequestToUrl:expectedUri params:expectedParams completionHandler:[OCMArg any]];
+    [JRCapture updateProfileForUser:user delegate:nil ];
     [connectionManager verify];
 }
 
