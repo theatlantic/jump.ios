@@ -157,6 +157,7 @@ Copy and paste this block into `-[AppDelegate application:didFinishLaunchingWith
         config.captureAppId = @"your_capture_app_id";
         config.forgottenPasswordFormName = @"forgotPasswordForm"; // e.g.
         config.passwordRecoverUri = @"your_password_recovery_uri";
+        config.editProfileFormName = @"editProfileForm";
 
         [JRCapture setCaptureConfig:config];
     }
@@ -419,7 +420,21 @@ you must replace the plural. For example, `JRName` (the user's name) is an objec
 part of their name, but `JRInterests` (a plural of strings holding the user's interests) must be replaced if the user
 adds or removes an interest.
 
-### Updating Record Entities (Non-Plurals)
+### Updating User Profiles
+
+Conform to the `JRCaptureDelegate` protocol in your class.
+
+    @interface MyCaptureEditProfileController : UIViewController <JRCaptureDelegate>
+
+Update the properties of your `JRCaptureUser` that correspond to the fields of your `editProfileForm` in your flow. For
+example: `givenName`, `familyName`, `birthdate`, `aboutMe`, etc.
+
+Call `+[JRCapture updateProfileForUser:delegate]` to update the users profile.
+
+Upon a successful update the delegate method `updateUserProfileDidSucceed` will be called. If the update fails for any
+reason `updateUserProfileDidFailWithError:` will be called instead.
+
+### Updating Record Entities (Non-Plurals) (Deprecated)
 
 Conform to the
 [JRCaptureObjectDelegate](http://janrain.github.com/jump.ios/gh_docs/capture/html/protocol_j_r_capture_object_delegate-p.html)
@@ -459,7 +474,7 @@ instance), or a sub-object of that object.
 
 **Warning** When you update an object, the update _does not_ affect plurals inside of that object.
 
-### Replacing Plurals
+### Replacing Plurals (Deprecated)
 
 To add or remove the elements of a plural send the `replace_ArrayName_ArrayOnCaptureForDelegate:context:` message to
 the parent-object of the plural, where _ArrayName_ is the name of the plural attribute.
