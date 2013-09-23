@@ -30,11 +30,9 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import "CaptureEditProfileViewController.h"
-#import "debug_log.h"
 #import "JRCapture.h"
 #import "AppDelegate.h"
 #import "JRCaptureUser+Extras.h"
-#import "JRCaptureConfig.h"
 #import "Utils.h"
 
 @interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate>
@@ -121,13 +119,11 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    DLog(@"");
     activeField = textField;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    DLog(@"");
     if (textField == activeField) activeField = nil;
 }
 
@@ -142,13 +138,11 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    DLog(@"");
     activeField = textView;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    DLog(@"");
     if (textView == activeField) activeField = nil;
 }
 
