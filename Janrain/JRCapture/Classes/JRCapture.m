@@ -514,9 +514,9 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                     forDelegate:delegate withArg:error];
         } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
             DLog(@"Account Unlinking flow started successfully");
-            if( [[data linkedProfiles] count] ) {
+            if( [[JRCaptureData getLinkedProfiles] count] ) {
                 NSMutableArray *updateProfiles = [[NSMutableArray alloc]init];
-                for(NSDictionary *dict in [data linkedProfiles] ) {
+                for(NSDictionary *dict in [JRCaptureData getLinkedProfiles] ) {
                     if(![[dict valueForKey:@"identifier"] isEqualToString:identifier]) {
                         [updateProfiles addObject:dict];
                     }

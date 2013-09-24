@@ -292,7 +292,7 @@
         if (buttonIndex != alertView.cancelButtonIndex) {
             LinkedProfilesViewController *linkedProfilesController = [[LinkedProfilesViewController alloc]init];
             linkedProfilesController.delegate = self;
-            linkedProfilesController.linkedProfiles = [JRCaptureData sharedCaptureData].linkedProfiles;
+            linkedProfilesController.linkedProfiles = [JRCaptureData getLinkedProfiles];
             [self.navigationController presentModalViewController:linkedProfilesController animated:YES];
         }
     };

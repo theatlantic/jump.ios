@@ -115,7 +115,6 @@ static JRCaptureData *singleton = nil;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
 @synthesize passwordRecoverUri;
-@synthesize linkedProfiles;
 
 - (JRCaptureData *)init
 {
@@ -143,6 +142,13 @@ static JRCaptureData *singleton = nil;
     }
 
     return singleton;
+}
+
++ (NSArray *)getLinkedProfiles {
+    if(singleton) {
+        return [singleton linkedProfiles];
+    }
+    return nil;
 }
 
 + (id)allocWithZone:(NSZone *)zone
@@ -458,10 +464,10 @@ static JRCaptureData *singleton = nil;
     [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
 }
 
-+ (void)setLinkedProfiles:(NSArray **)captureData {
++ (void)setLinkedProfiles:(NSArray *)profileData {
     NSMutableArray *returnArray = [[NSMutableArray alloc]init];
-    if([*captureData count] > 0) {
-        for(NSDictionary *dict in *captureData) {
+    if([profileData count] > 0) {
+        for(NSDictionary *dict in profileData) {
             
             NSDictionary *tempDict = @{
                                        @"verifiedEmail" : ([[dict objectForKey:@"verifiedEmail"] isKindOfClass:[NSNull class]]) ? @"": [dict objectForKey:@"verifiedEmail"],
@@ -470,9 +476,9 @@ static JRCaptureData *singleton = nil;
             [returnArray addObject:tempDict];
         }
     }
-    [JRCaptureData sharedCaptureData].linkedProfiles = returnArray;
+    [JRCaptureData sharedCaptureData].linkedProfiles = profileData;
+    [returnArray release];
 }
-
 - (NSString *)responseType:(id)delegate {
     if ([delegate respondsToSelector:@selector(captureDidSucceedWithCode:)]) {
         return @"code_and_token";

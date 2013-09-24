@@ -69,7 +69,9 @@
 
 + (NSMutableURLRequest *)requestWithPath:(NSString *)path;
 
-+ (void)setLinkedProfiles:(NSArray **)captureData;
++ (void)setLinkedProfiles:(NSArray *)profileData;
+
++ (NSArray *)getLinkedProfiles;
 
 - (NSString *)downloadedFlowVersion;
 
