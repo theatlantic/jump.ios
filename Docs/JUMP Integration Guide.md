@@ -426,14 +426,14 @@ use this flow. This flow will unlink one account at a time, in a successful exec
 
 **Note** This should be called when the user has already signed-in into capture application.
 
--`[JRCaptureData sharedCaptureData].linkedProfiles`: Stores the list of linked accounts after the successful sign-in. The linked profile
+-`[JRCaptureData getLinkedProfiles]` : Use this method to fetch the list of linked accounts after the successful sign-in. The linked profile
    array consists of dictionary of linked profiles. This is stored in the `JRCaptureData` object. Each dictionary object has
    the following keys:
    `verifiedEmail`  & `identifier` : Use `identifier` value for unlinking account.
 
 - `+[JRcapture startAccountUnlinking:(id<JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier`: This will
-   unlink the account identified by the `identifier`, from the existing capture account. Pass any `identifier` value begin retrieved from 
-   `[JRCaptureData sharedCaptureData].linkedProfiles` array. The `JRCapture` will trigger `accountUnlinkingDidFailWithError` &
+   unlink the account identified by the `identifier`, from the existing capture account. Pass any `identifier` value being retrieved from 
+   `[JRCaptureData getLinkedProfiles]` array. The `JRCapture` will trigger `accountUnlinkingDidFailWithError` &
    `accountUnlinkingDidSucceed` delegates.
 
 Delegates:
@@ -446,7 +446,7 @@ Let's call this on the click of a button for Account Un-linking.
 **Note** This should be called when the user has already signed-in into a capture application.
     
     // store the Linked accounts into your array aobject from JRCaptureData object.
-    NSArray *linkedProfiles = [JRCaptureData sharedCaptureData].linkedProfiles;
+    NSArray *linkedProfiles = [JRCaptureData getLinkedProfiles];
     
     if([linkedProfiles count]) {
     	NSString *selectedProfile = [[linkedProfiles objectAtIndex:0] valueForKey:@"identifier"];
