@@ -224,6 +224,8 @@
 /*@}*/
 @end
 
+#define JREngageDelegate JREngageSigninDelegate
+
 /**
  * @brief
  * Protocol adopted by an object that wishes to receive notifications when and information about a
@@ -330,6 +332,13 @@
  **/
 + (void)setEngageAppId:(NSString *)appId tokenUrl:(NSString *)tokenUrl
            andDelegate:(id <JREngageSigninDelegate>)delegate;
+
+/**
+ * @deprecated
+ * Use [JREngage setEngageAppId:TokenUrl:andDelegate] instead
+ */
++ (JREngage *)jrEngageWithAppId:(NSString *)appId andTokenUrl:(NSString *)tokenUrl
+                       delegate:(id <JREngageSigninDelegate>)delegate __attribute__((deprecated));
 /*@}*/
 
 /**
@@ -551,31 +560,11 @@
  * for documentation
  **/
 /*@{*/
-//#define kJRCustomOpenId @"kJRCustomOpenId"
-//#define kJRCustomOpenIdProviderId @"kJRCustomOpenidProviderId"
-//#define kJRCustomOpenIdProviderName @"friendly_name"
 #define kJRCustomOpenIdIdentifier @"openid_identifier"
 #define kJRCustomOpenIdOpxblob @"opx_blob"
 
-// reserved
-//#define kJRCustomOpenIdProviderColor @"kJRCustomOpenIdProviderColor"
-//#define kJRCustomOpenIdLargeIcon @"kJRCustomOpenidLargeIcon"
-//#define kJRCustomOpenIdFlow @"kJRCustomOpenIdFlow"
-
-//#define kJRCustomOpenIdProviderKeys @[kJRCustomOpenIdProviderId, kJRCustomOpenIdProviderName, kJRCustomOpenIdProviderColor,\
-//kJRCustomOpenIdLargeIcon, kJRCustomOpenIdLargeIcon, kJRCustomOpenIdIdentifier, kJRCustomOpenIdOpxblob, kJRCustomOpenIdFlow]
-
-//#define kJRCustomSaml @"kJRCustomSaml"
-//#define kJRCustomSamlProviderId @"kJRCustomSamlProviderId"
 #define kJRCustomSamlProviderSamlName @"saml_provider"
-//#define kJRCustomSamlProviderName @"friendly_name"
 
-// reserved
-//#define kJRCustomSamlProviderColor @"kJRCustomSamlProviderColor"
-//#define kJRCustomSamlLargeIcon @"kJRCustomSamlLargeIcon"
-
-//#define kJRCustomSamlProviderKeys @[kJRCustomSamlProviderId, kJRCustomSamlProviderName, kJRCustomSamlProviderColor,\
-//kJRCustomSamlLargeIcon]
 /*@}*/
 
 /**
