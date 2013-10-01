@@ -74,7 +74,7 @@
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     cancelButton.frame = CGRectMake(self.view.frame.size.width/2-50, self.view.frame.size.height-100, 100, 25);
     cancelButton.titleLabel.font = [UIFont fontWithName:@"verdana-bold" size:10];
-    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [cancelButton setBackgroundColor:[UIColor colorWithRed:0.245 green:0.023 blue:0.945 alpha:1]];
@@ -115,16 +115,16 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont fontWithName:@"verdana" size:12];
-    cell.textLabel.text = [[linkedProfiles objectAtIndex:indexPath.row] valueForKey:@"verifiedEmail"];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"verdana" size:6];
+    cell.textLabel.text = ([[[linkedProfiles objectAtIndex:indexPath.row] valueForKey:@"verifiedEmail"] isKindOfClass:[NSNull class]]) ? @"No Name" :[[linkedProfiles objectAtIndex:indexPath.row] valueForKey:@"verifiedEmail"];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"verdana" size:8];
     cell.detailTextLabel.text = [[linkedProfiles objectAtIndex:indexPath.row] valueForKey:@"identifier"];
     
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     UIButton *unlinkButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    unlinkButton.frame = CGRectMake(0, 3, 35, 20);
+    unlinkButton.frame = CGRectMake(0, 3, 55, 20);
     unlinkButton.titleLabel.font = [UIFont fontWithName:@"verdana-bold" size:8];
-    [unlinkButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [unlinkButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [unlinkButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [unlinkButton setTitle:@"Unlink" forState:UIControlStateNormal];
     [unlinkButton setBackgroundColor:[UIColor colorWithRed:0.945 green:0.023 blue:0.210 alpha:1]];
