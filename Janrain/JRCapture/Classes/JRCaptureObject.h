@@ -192,7 +192,6 @@
 - (BOOL)needsUpdate;
 
 /**
- * @deprecated
  * Sent if ...
  *
  * @param delegate
@@ -205,6 +204,6 @@
  *   context is entirely optional and at your discretion.
  **/
 - (void)updateOnCaptureForDelegate:(id<JRCaptureObjectDelegate>)delegate
-                           context:(NSObject *)context __attribute__((deprecated));
+                           context:(NSObject *)context;
 @end
 

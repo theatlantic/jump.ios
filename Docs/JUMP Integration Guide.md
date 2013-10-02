@@ -434,7 +434,7 @@ Call `+[JRCapture updateProfileForUser:delegate]` to update the users profile.
 Upon a successful update the delegate method `updateUserProfileDidSucceed` will be called. If the update fails for any
 reason `updateUserProfileDidFailWithError:` will be called instead.
 
-### Updating Record Entities (Non-Plurals) (Deprecated)
+### Updating Record Entities (Non-Plurals)
 
 Conform to the
 [JRCaptureObjectDelegate](http://janrain.github.com/jump.ios/gh_docs/capture/html/protocol_j_r_capture_object_delegate-p.html)
@@ -474,7 +474,7 @@ instance), or a sub-object of that object.
 
 **Warning** When you update an object, the update _does not_ affect plurals inside of that object.
 
-### Replacing Plurals (Deprecated)
+### Replacing Plurals
 
 To add or remove the elements of a plural send the `replace_ArrayName_ArrayOnCaptureForDelegate:context:` message to
 the parent-object of the plural, where _ArrayName_ is the name of the plural attribute.
