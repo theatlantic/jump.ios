@@ -632,6 +632,11 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
     NSString *editProfileForm = data.captureEditProfileFormName;
+
+    if (!editProfileForm) {
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing editProfileFormName configuration option"];
+    }
     NSMutableDictionary *params = [user toFormFieldsForForm:editProfileForm withFlow:data.captureFlow];
 
     [params addEntriesFromDictionary:@{
