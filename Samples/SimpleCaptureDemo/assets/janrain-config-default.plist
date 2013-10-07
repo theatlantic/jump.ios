@@ -14,9 +14,9 @@
         <key>captureClientId</key>
         <string>9vt2ej43mxyftkf68c3xthkm2rtweg8w</string>
         <key>captureFlowName</key>
-        <string>native_flow</string>
+        <string>standard_flow</string>
         <key>captureTraditionalSignInFormName</key>
-        <string>signinForm</string>
+        <string>userInformationForm</string>
         <key>captureLocale</key>
         <string>en-US</string>
         <key>captureEnableThinRegistration</key>
@@ -32,7 +32,9 @@
         <key>bpBusUrlString</key>
         <string>https://backplane1.janrainbackplane.com/v1.2/bus/nathan-janrain</string>
         <key>captureForgottenPasswordFormName</key>
-        <string>recoverPassword</string>
+        <string>forgotPasswordForm</string>
+        <key>captureEditProfileFormName</key>
+        <string>editProfileForm</string>
         <key>liveFyreNetwork</key>
         <string></string>
         <key>liveFyreSiteId</key>

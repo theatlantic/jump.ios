@@ -58,6 +58,7 @@
     [self.captureAppId release];
     [self.forgottenPasswordFormName release];
     [self.passwordRecoverUri release];
+    [self.editProfileFormName release];
 
     [super dealloc];
 #endif

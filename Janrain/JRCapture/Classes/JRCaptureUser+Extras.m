@@ -130,26 +130,63 @@
 - (NSMutableDictionary *)toFormFieldsForForm:(NSString *)formName withFlow:(NSDictionary *)flow
 {
     if (!formName || !flow) return nil;
+
     NSMutableDictionary *retval = [NSMutableDictionary dictionary];
     NSDictionary *form = [[flow objectForKey:@"fields"] objectForKey:formName];
     NSArray *fieldNames = [form objectForKey:@"fields"];
     NSArray *fields = [[flow objectForKey:@"fields"] objectsForKeys:fieldNames notFoundMarker:[NSNull null]];
-    for (NSObject *field in fields)
-    {
-        if (![field isKindOfClass:[NSDictionary class]])
-        {
+
+    for (NSObject *field in fields) {
+        if (![field isKindOfClass:[NSDictionary class]]) {
             ALog(@"unrecognized field defn: %@", [field description]);
             continue;
         }
 
-        NSString *formFieldValue = [self valueForAttrByDotPath:[(NSDictionary *) field objectForKey:@"schemaId"]];
-        if (formFieldValue)
-        {
-            [retval setObject:formFieldValue forKey:[fieldNames objectAtIndex:[fields indexOfObject:field]]];
+        id schemaId = [(NSDictionary *) field objectForKey:@"schemaId"];
+        NSString *key = [fieldNames objectAtIndex:[fields indexOfObject:field]];
+
+        if ([schemaId isKindOfClass:[NSString class]]) {
+            if ([[(NSDictionary *) field objectForKey:@"type"] isEqualToString:@"dateselect"]) {
+                [self setForDateValueFromDotPath:schemaId forKey:key dictionary:retval];
+            } else {
+                [self setForValueFromDotPath:schemaId forKey:key dictionary:retval];
+            }
+        } else if ([schemaId isKindOfClass:[NSDictionary class]]) {
+            for (NSString *subscript in schemaId) {
+                NSString *dotPath = [schemaId objectForKey:subscript];
+                NSString *paramName = [NSString stringWithFormat:@"%@[%@]", key, subscript];
+                [self setForValueFromDotPath:dotPath forKey:paramName dictionary:retval];
+            }
         }
     }
 
     return retval;
+}
+
+- (void)setForValueFromDotPath:(NSString *)dotPath forKey:(NSString *)key dictionary:(NSMutableDictionary *)dictionary
+{
+    NSString *formFieldValue = [self valueForAttrByDotPath:dotPath];
+
+    if (formFieldValue) {
+        [dictionary setObject:formFieldValue forKey:key];
+    }
+}
+
+- (void)setForDateValueFromDotPath:(NSString *)dotPath forKey:(NSString *)key
+                        dictionary:(NSMutableDictionary *)dictionary
+{
+
+    NSString *formFieldValue = [self valueForAttrByDotPath:dotPath];
+
+    if (formFieldValue) {
+        // The date is in the format yyyy-MM-dd
+        NSArray *dateParts = [formFieldValue componentsSeparatedByString:@"-"];
+        if ([dateParts count] == 3) {
+            [dictionary setObject:dateParts[0] forKey:[key stringByAppendingString:@"[dateselect_year]"]];
+            [dictionary setObject:dateParts[1] forKey:[key stringByAppendingString:@"[dateselect_month]"]];
+            [dictionary setObject:dateParts[2] forKey:[key stringByAppendingString:@"[dateselect_day]"]];
+        }
+    }
 }
 
 - (NSString *)valueForAttrByDotPath:(NSString *)dotPath

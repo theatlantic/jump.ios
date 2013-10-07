@@ -157,6 +157,7 @@ Copy and paste this block into `-[AppDelegate application:didFinishLaunchingWith
         config.captureAppId = @"your_capture_app_id";
         config.forgottenPasswordFormName = @"forgotPasswordForm"; // e.g.
         config.passwordRecoverUri = @"your_password_recovery_uri";
+        config.editProfileFormName = @"editProfileForm";
 
         [JRCapture setCaptureConfig:config];
     }
@@ -418,6 +419,20 @@ speaking, parts of the record that are limited to objects can be updated, but to
 you must replace the plural. For example, `JRName` (the user's name) is an object and can be updated if the user changes
 part of their name, but `JRInterests` (a plural of strings holding the user's interests) must be replaced if the user
 adds or removes an interest.
+
+### Updating User Profiles
+
+Conform to the `JRCaptureDelegate` protocol in your class.
+
+    @interface MyCaptureEditProfileController : UIViewController <JRCaptureDelegate>
+
+Update the properties of your `JRCaptureUser` that correspond to the fields of your `editProfileForm` in your flow. For
+example: `givenName`, `familyName`, `birthdate`, `aboutMe`, etc.
+
+Call `+[JRCapture updateProfileForUser:delegate]` to update the users profile.
+
+Upon a successful update the delegate method `updateUserProfileDidSucceed` will be called. If the update fails for any
+reason `updateUserProfileDidFailWithError:` will be called instead.
 
 ### Updating Record Entities (Non-Plurals)
 

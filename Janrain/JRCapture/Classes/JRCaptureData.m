@@ -86,6 +86,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic, retain) NSString *captureTraditionalRegistrationFormName;
 @property(nonatomic, retain) NSString *captureSocialRegistrationFormName;
 @property(nonatomic, retain) NSString *captureForgottenPasswordFormName;
+@property(nonatomic, retain) NSString *captureEditProfileFormName;
 
 //@property(nonatomic) JRTraditionalSignInType captureTradSignInType;
 @property(nonatomic) BOOL captureEnableThinRegistration;
@@ -109,6 +110,7 @@ static JRCaptureData *singleton = nil;
 @synthesize captureTraditionalRegistrationFormName;
 @synthesize captureSocialRegistrationFormName;
 @synthesize captureForgottenPasswordFormName;
+@synthesize captureEditProfileFormName;
 @synthesize captureFlowVersion;
 @synthesize captureAppId;
 @synthesize captureFlow;
@@ -252,6 +254,7 @@ static JRCaptureData *singleton = nil;
     captureDataInstance.captureFlowVersion = config.captureFlowVersion;
     captureDataInstance.captureAppId = config.captureAppId;
     captureDataInstance.captureForgottenPasswordFormName = config.forgottenPasswordFormName;
+    captureDataInstance.captureEditProfileFormName = config.editProfileFormName;
     captureDataInstance.passwordRecoverUri = config.passwordRecoverUri;
 
     if ([captureDataInstance.captureLocale length] &&
@@ -433,6 +436,7 @@ static JRCaptureData *singleton = nil;
     [passwordRecoverUri release];
     [captureSocialRegistrationFormName release];
     [captureForgottenPasswordFormName release];
+    [captureEditProfileFormName release];
     [super dealloc];
 }
 
@@ -457,7 +461,8 @@ static JRCaptureData *singleton = nil;
 }
 
 - (NSString *)responseType:(id)delegate {
-    if ([delegate respondsToSelector:@selector(captureDidSucceedWithCode:)]) {
+    SEL captureDidSucceedWithCode = sel_registerName("captureDidSucceedWithCode:");
+    if ([delegate respondsToSelector:captureDidSucceedWithCode]) {
         return @"code_and_token";
     }
     return @"token";

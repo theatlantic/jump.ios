@@ -48,12 +48,13 @@
             }
     };
 
-    JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
+    JRCaptureData *captureData = [[JRCaptureData alloc] init];
     id mockData = [OCMockObject partialMockForObject:captureData];
     [[[mockData stub] andReturn:flow] captureFlow];
     [[[mockData stub] andReturn:@"resetPasswordForm"] captureForgottenPasswordFormName];
 
-    GHAssertEqualStrings([mockData getForgottenPasswordFieldName], @"traditionalSignIn_emailAddress", nil, nil);
+    GHAssertEqualStrings([mockData getForgottenPasswordFieldName],
+                         @"traditionalSignIn_emailAddress", nil);
 }
 
 - (void)test_getForgottenPasswordFieldName_picks_first_field_that_is_a_string_type
@@ -69,7 +70,7 @@
             }
     };
 
-    JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
+    JRCaptureData *captureData = [[JRCaptureData alloc] init];
     id mockData = [OCMockObject partialMockForObject:captureData];
     [[[mockData stub] andReturn:flow] captureFlow];
     [[[mockData stub] andReturn:@"resetPasswordForm"] captureForgottenPasswordFormName];
@@ -81,7 +82,7 @@
 {
     NSDictionary *flow = @{ };
 
-    JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
+    JRCaptureData *captureData = [[JRCaptureData alloc] init];
     id mockData = [OCMockObject partialMockForObject:captureData];
     [[[mockData stub] andReturn:flow] captureFlow];
     [[[mockData stub] andReturn:@"resetPasswordForm"] captureForgottenPasswordFormName];

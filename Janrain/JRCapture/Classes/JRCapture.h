@@ -297,6 +297,18 @@
 - (void)registerUserDidFailWithError:(NSError *)error;
 
 /**
+ * Sent when a user profile update has succeeded
+ */
+- (void)updateUserProfileDidSucceed;
+
+/*
+ * Sent when a user profile update has failed
+ * @param error
+ *   The error causing the failure
+ */
+- (void)updateUserProfileDidFailWithError:(NSError *)error;
+
+/**
  * Sent when the access token has been successfully refreshed
  * @param context
  *   The context supplied when initiating the token refresh
@@ -678,6 +690,11 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  */
 + (void)registerNewUser:(JRCaptureUser *)newUser socialRegistrationToken:(NSString *)socialRegistrationToken
             forDelegate:(id <JRCaptureDelegate>)delegate __unused;
+
+/**
+ * Updates the profile for a given user
+ */
++ (void)updateProfileForUser:(JRCaptureUser *)user delegate:(id <JRCaptureDelegate>)delegate;
 
 /**
  * Signs the currently-signed-in user, if any, out.

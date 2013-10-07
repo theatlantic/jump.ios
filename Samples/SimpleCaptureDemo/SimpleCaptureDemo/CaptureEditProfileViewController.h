@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2010, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -29,34 +29,8 @@
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#import <Foundation/Foundation.h>
 
-#import <UIKit/UIKit.h>
-#import "BackplaneUtils.h"
-#import "JRCaptureObject.h"
 
-@interface RootViewController : UIViewController
-- (IBAction)browseButtonPressed:(id)sender;
-- (IBAction)tradRegButtonPressed:(id)sender;
-- (IBAction)refreshButtonPressed:(id)sender;
-- (IBAction)signInButtonPressed:(id)sender;
-- (IBAction)facebookAuthButtonPressed:(id)sender;
-- (IBAction)tradAuthButtonPressed:(id)sender;
-- (IBAction)signOutButtonPressed:(id)sender;
-- (IBAction)shareButtonPressed:(id)sender;
-- (IBAction)refetchButtonPressed:(id)sender;
-- (IBAction)forgotPasswordButtonPressed:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *shareButton;
-@property (weak) IBOutlet UILabel *currentUserLabel;
-@property (weak) IBOutlet UIImageView *currentUserProviderIcon;
-@property (weak) IBOutlet UIButton *browseButton;
-@property (weak) IBOutlet UIButton *formButton;
-@property (weak) IBOutlet UIButton *refreshButton;
-@property (weak) IBOutlet UIButton *signInButton;
-@property (weak) IBOutlet UIButton *signOutButton;
-@property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
-@property (weak, nonatomic) IBOutlet UIButton *directFacebookAuthButton;
-@property (weak, nonatomic) IBOutlet UIButton *refetchButton;
-@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
-@property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
-@property(nonatomic, strong) NSDictionary *customUi;
+@interface CaptureEditProfileViewController : UIViewController
 @end
