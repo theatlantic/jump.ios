@@ -352,7 +352,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
     [JRCaptureData setAccessToken:accessToken];
     NSArray *linkedProfile = [captureUserJson valueForKey:@"profiles"];
-    [JRCaptureData setLinkedProfiles:&linkedProfile];
+    [JRCaptureData setLinkedProfiles:linkedProfile];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     JRCaptureRecordStatus recordStatus = isNew ? JRCaptureRecordNewlyCreated : JRCaptureRecordExists;
@@ -521,7 +521,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                         [updateProfiles addObject:dict];
                     }
                 }
-                [JRCaptureData setLinkedProfiles:&updateProfiles];
+                [JRCaptureData setLinkedProfiles:updateProfiles];
             }
             [self maybeDispatch:@selector(accountUnlinkingDidSucceed) forDelegate:delegate];
         } else {
