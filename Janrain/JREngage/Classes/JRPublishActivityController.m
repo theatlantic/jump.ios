@@ -617,10 +617,11 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         UIBarButtonItem *barButton;
         if (shared)
         {
+            SEL triggerPublishingDidComplete = sel_registerName("triggerPublishingDidComplete:");
             barButton = [[[UIBarButtonItem alloc] initWithTitle:@"Close"
                                                           style:UIBarButtonItemStyleDone
                                                          target:self.sessionData
-                                                         action:@selector(triggerPublishingDidComplete:)] autorelease];
+                                                         action:triggerPublishingDidComplete] autorelease];
         }
         else
         {

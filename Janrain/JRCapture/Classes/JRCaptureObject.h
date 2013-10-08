@@ -203,6 +203,7 @@
  *   asynchronous Capture methods to facilitate correlation of the response messages with the calling code. Use of the
  *   context is entirely optional and at your discretion.
  **/
-- (void)updateOnCaptureForDelegate:(id<JRCaptureObjectDelegate>)delegate context:(NSObject *)context;
+- (void)updateOnCaptureForDelegate:(id<JRCaptureObjectDelegate>)delegate
+                           context:(NSObject *)context;
 @end
 

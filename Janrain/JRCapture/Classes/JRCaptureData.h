@@ -50,6 +50,7 @@
 @property(nonatomic, readonly, retain) NSString *captureAppId;
 @property(nonatomic, readonly, retain) NSDictionary *captureFlow;
 @property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
+@property(nonatomic, readonly, retain) NSString *captureEditProfileFormName;
 @property(nonatomic) BOOL flowUsesTestingCdn;
 @property(nonatomic, readonly, retain) NSArray *linkedProfiles;
 

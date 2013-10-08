@@ -36,7 +36,7 @@
 
 @interface RootViewController : UIViewController
 - (IBAction)browseButtonPressed:(id)sender;
-- (IBAction)updateButtonPressed:(id)sender;
+- (IBAction)tradRegButtonPressed:(id)sender;
 - (IBAction)refreshButtonPressed:(id)sender;
 - (IBAction)signInButtonPressed:(id)sender;
 - (IBAction)facebookAuthButtonPressed:(id)sender;
@@ -61,5 +61,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property (weak, nonatomic) IBOutlet UIButton *linkAccountButton;
 @property (weak, nonatomic) IBOutlet UIButton *unlinkAccountButton;
+@property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
 @property(nonatomic, strong) NSDictionary *customUi;
 @end

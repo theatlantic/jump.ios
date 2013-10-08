@@ -98,8 +98,8 @@
         self.linkAccountButton.hidden = NO;
         self.unlinkAccountButton.hidden = NO;
 
-        self.formButton.hidden = NO;
-        [self.formButton setTitle:@"Update" forState:UIControlStateNormal];
+        self.formButton.hidden = YES;
+        self.updateProfileButton.hidden = NO;
 
         self.browseButton.enabled = YES;
         self.browseButton.alpha = 1;
@@ -117,8 +117,8 @@
         self.linkAccountButton.hidden = YES;
         self.unlinkAccountButton.hidden = YES;
 
+        self.updateProfileButton.hidden = YES;
         self.formButton.hidden = NO;
-        [self.formButton setTitle:@"Traditional Registration" forState:UIControlStateNormal];
 
         self.browseButton.enabled = NO;
         self.browseButton.alpha = 0.5;
@@ -166,16 +166,9 @@
     DLog(@"Capture user record: %@", [appDelegate.captureUser toDictionaryForEncoder:NO]);
 }
 
-- (IBAction)updateButtonPressed:(id)sender
+- (IBAction)tradRegButtonPressed:(id)sender
 {
-    if (appDelegate.captureUser)
-    {
-        [RootViewController showProfileForm:self.navigationController];
-    }
-    else
-    {
-        [self showRegistrationForm];
-    }
+    [self showRegistrationForm];
 }
 
 - (void)showRegistrationForm
@@ -582,7 +575,8 @@
                               cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
-- (void)captureDidSucceedWithCode:(NSString *)code {
+- (void)captureDidSucceedWithCode:(NSString *)code
+{
     DLog(@"Authorization Code: %@",code);
 }
 

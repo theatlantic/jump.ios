@@ -1,3 +1,5 @@
+v3.4.1
+ - New upgrade guides for the most commonly deployed versions
 v3.4.0
  - iOS 7 Compatibility
  - Fixes a bug in SimpleCaptureDemo which prevented two step registration from working

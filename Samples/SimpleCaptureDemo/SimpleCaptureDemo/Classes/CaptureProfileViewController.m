@@ -209,10 +209,6 @@
         [JRCapture registerNewUser:appDelegate.captureUser socialRegistrationToken:appDelegate.registrationToken
                        forDelegate:self];
     }
-    else
-    {
-        [appDelegate.captureUser updateOnCaptureForDelegate:self context:nil];
-    }
 
     self.myDoneButton.enabled = NO;
 }
