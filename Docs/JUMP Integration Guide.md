@@ -456,7 +456,6 @@ Let's call this on the click of a button for Account Un-linking.
     	[JRCapture startAccountUnlinking:self.captureDelegate forProfileIdentifier:selectedProfile];
     }
 
->>>>>>> 38b9cf9... MOB-126:Documentation updated for Comments in Git
 ## Making Changes in a Capture User Record
 
 ### Capture Schema Basics
