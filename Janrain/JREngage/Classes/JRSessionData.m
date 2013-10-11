@@ -501,6 +501,7 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
 @synthesize returningAuthenticationProvider;
 @synthesize currentProvider;
 @synthesize socialSharing;
+@synthesize accountLinking;
 
 @synthesize alwaysForceReauth;
 @synthesize hidePoweredBy;
@@ -569,6 +570,14 @@ static JRSessionData *singleton = nil;
         return;
 
     [self startGetShortenedUrlsForActivity:activity];
+}
+
+-(BOOL)accountLinking {
+    return accountLinking;
+}
+
+-(void)setAccountLinking:(BOOL)linkAccount {
+    accountLinking = linkAccount;
 }
 
 #pragma mark initialization
@@ -1642,8 +1651,19 @@ CALL_DELEGATE_SELECTOR:
     NSArray *delegatesCopy = [NSArray arrayWithArray:delegates];
     for (id <JRSessionDelegate> delegate in delegatesCopy)
     {
-        if ([delegate respondsToSelector:@selector(authenticationDidCompleteForUser:forProvider:)])
-            [delegate authenticationDidCompleteForUser:authInfo forProvider:currentProvider.name];
+        if(accountLinking) {
+            if([delegate respondsToSelector:@selector(authenticationDidSucceedForAccountLinking:forProvider:)])
+                [delegate authenticationDidSucceedForAccountLinking:authInfo forProvider:currentProvider.name];
+        }else{
+            if ([delegate respondsToSelector:@selector(authenticationDidCompleteForUser:forProvider:)])
+                [delegate authenticationDidCompleteForUser:authInfo forProvider:currentProvider.name];
+        }
+    }
+    
+    if(accountLinking)
+    {
+        accountLinking = NO;
+        return;
     }
 
     if (tokenUrl)

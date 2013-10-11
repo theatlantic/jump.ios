@@ -45,6 +45,8 @@
 - (IBAction)shareButtonPressed:(id)sender;
 - (IBAction)refetchButtonPressed:(id)sender;
 - (IBAction)forgotPasswordButtonPressed:(id)sender;
+- (IBAction)linkAccountButtonPressed:(id)sender;
+- (IBAction)unlinkAccountButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak) IBOutlet UILabel *currentUserLabel;
 @property (weak) IBOutlet UIImageView *currentUserProviderIcon;
@@ -57,6 +59,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *directFacebookAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *linkAccountButton;
+@property (weak, nonatomic) IBOutlet UIButton *unlinkAccountButton;
 @property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
 @property(nonatomic, strong) NSDictionary *customUi;
 @end

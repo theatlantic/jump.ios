@@ -337,6 +337,30 @@
  */
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error;
 
+/**
+ * Sent when the Account is Linked Successfully
+ */
+- (void)linkNewAccountDidSucceed;
+
+/**
+ * Sent when the Account linking flow fails
+ * @param error
+ *   The error that caused the failure.
+ */
+- (void)linkNewAccountDidFailWithError:(NSError *)error;
+
+/** Sent when the Account unlinking flow succeeds
+ 
+ **/
+- (void)accountUnlinkingDidSucceed;
+
+/**
+ * Sent when the Account unlinking flow fails
+ * @param error
+ *   The error that caused the failure.
+ */
+- (void)accountUnlinkingDidFailWithError:(NSError *)error;
+
 @end
 
 /**
@@ -716,6 +740,28 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  */
 + (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
                                       delegate:(id <JRCaptureDelegate>)delegate;
+/**
+ * Link new account for existing user
+**/
++ (void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate
+                                 forAccountLinking:(BOOL)linkAccount
+                                   withRedirectUri:(NSString *)redirectUri;
+
++ (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate
+                           redirectUri:(NSString *)redirectUri
+                          withAuthInfo:(NSDictionary *)authInfo;
+
+/**
+ *  Starts the Account unlink flow for a signed-user.
+ *
+ *  A successful call will unlink a linked account from the Exisiting account.
+ *
+ *  @param identifier
+ *    The identifier of the linked account
+ *  @param delegate
+ *    The JRCaptureDelegate object that wishes to receive messages regarding user account unlinking.
+ */
++ (void)startAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier;
 
 @end
 

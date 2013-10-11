@@ -349,6 +349,8 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     }
 
     [JRCaptureData setAccessToken:accessToken];
+    NSArray *linkedProfile = [captureUserJson valueForKey:@"profiles"];
+    [JRCaptureData setLinkedProfiles:linkedProfile];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     JRCaptureRecordStatus recordStatus = isNew ? JRCaptureRecordNewlyCreated : JRCaptureRecordExists;
@@ -484,6 +486,46 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
             JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
 
             [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:)
+                    forDelegate:delegate withArg:captureError];
+        }
+    }];
+}
+
++(void)startAccountUnLinking:(id<JRCaptureDelegate>)delegate
+        forProfileIdentifier:(NSString *)identifier {
+    
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/unlink_account_native", data.captureBaseUrl];
+    NSDictionary *params = @{
+                             @"client_id" : data.clientId,
+                             @"locale" : data.captureLocale,
+                             @"identifier_to_remove" : identifier,
+                             @"access_token" : data.accessToken,
+                             @"flow": data.captureFlowName,
+                             @"flow_version": data.downloadedFlowVersion
+                             };
+    
+    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error) {
+        if (error) {
+            ALog("Failed to initiate Account Unlinking flow: %@", error);
+            [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
+                    forDelegate:delegate withArg:error];
+        } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+            DLog(@"Account Unlinking flow started successfully");
+            if( [[JRCaptureData getLinkedProfiles] count] ) {
+                NSMutableArray *updateProfiles = [[NSMutableArray alloc]init];
+                for(NSDictionary *dict in [JRCaptureData getLinkedProfiles] ) {
+                    if(![[dict valueForKey:@"identifier"] isEqualToString:identifier]) {
+                        [updateProfiles addObject:dict];
+                    }
+                }
+                [JRCaptureData setLinkedProfiles:updateProfiles];
+            }
+            [self maybeDispatch:@selector(accountUnlinkingDidSucceed) forDelegate:delegate];
+        } else {
+            JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+            
+            [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
                     forDelegate:delegate withArg:captureError];
         }
     }];
@@ -711,4 +753,59 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     [JRCapture startEngageSignInDialogForDelegate:delegate];
 }
 
++(void)startAccountLinkingSignInDialogForDelegate:(id<JRCaptureDelegate>)delegate
+                                forAccountLinking:(BOOL)linkAccount
+                                  withRedirectUri:(NSString *)redirectUri
+{
+    [JREngageWrapper startAuthenticationDialogWithTraditionalSignIn:JRTraditionalSignInNone
+                                        andCustomInterfaceOverrides:nil
+                                                        forDelegate:delegate
+                                                  forAccountLinking:YES
+                                                    withRedirectUri:redirectUri];
+}
+
++ (void)startLinkNewAccountFordelegate:(id<JRCaptureDelegate>)delegate
+                           redirectUri:(NSString *)redirectUri
+                          withAuthInfo:(NSDictionary *)authInfo
+{
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/link_account_native", data.captureBaseUrl];
+    if (!redirectUri) redirectUri = data.captureRedirectUri;
+    if (!redirectUri) {
+        JRCaptureError *captureError =
+        [JRCaptureError invalidArgumentErrorWithParameterName:@"redirectUri"];
+        [self maybeDispatch:@selector(linkNewAccountDidFailWithError:) forDelegate:delegate
+                    withArg:captureError];
+        
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing argument/setting redirectUri"];
+        return;
+    }
+    
+    NSDictionary *params = @{
+                             @"client_id" : data.clientId,
+                             @"locale" : data.captureLocale,
+                             @"response_type" : @"token",
+                             @"redirect_uri" : redirectUri,
+                             @"access_token" : [data accessToken],
+                             @"token" :[authInfo valueForKey:@"token"],
+                             @"flow" :data.captureFlowName,
+                             @"flow_version" :data.downloadedFlowVersion
+                             };
+    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error)
+     {
+         if (error) {
+             ALog("Failure initiating link account flow: %@", error);
+             [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
+                     forDelegate:delegate withArg:error];
+         } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+             DLog(@"Link account Flow started successfully");
+             [self maybeDispatch:@selector(linkNewAccountDidSucceed) forDelegate:delegate];
+         } else {
+             JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+             [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
+                     forDelegate:delegate withArg:captureError];
+         }
+     }];
+}
 @end

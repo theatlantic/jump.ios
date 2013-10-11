@@ -92,6 +92,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic) BOOL captureEnableThinRegistration;
 
 @property(nonatomic, retain) NSDictionary *captureFlow;
+@property(nonatomic, retain) NSArray *linkedProfiles;
 @property(nonatomic) BOOL initialized;
 @end
 
@@ -143,6 +144,13 @@ static JRCaptureData *singleton = nil;
     }
 
     return singleton;
+}
+
++ (NSArray *)getLinkedProfiles {
+    if(singleton) {
+        return [singleton linkedProfiles];
+    }
+    return nil;
 }
 
 + (id)allocWithZone:(NSZone *)zone
@@ -460,6 +468,21 @@ static JRCaptureData *singleton = nil;
     [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
 }
 
++ (void)setLinkedProfiles:(NSArray *)profileData {
+    NSMutableArray *returnArray = [[NSMutableArray alloc]init];
+    if([profileData count] > 0) {
+        for(NSDictionary *dict in profileData) {
+            
+            NSDictionary *tempDict = @{
+                                       @"verifiedEmail" : ([[dict objectForKey:@"verifiedEmail"] isKindOfClass:[NSNull class]]) ? @"": [dict objectForKey:@"verifiedEmail"],
+                                       @"identifier" : [dict objectForKey:@"identifier"],
+                                       };
+            [returnArray addObject:tempDict];
+        }
+    }
+    [JRCaptureData sharedCaptureData].linkedProfiles = profileData;
+    [returnArray release];
+}
 - (NSString *)responseType:(id)delegate {
     SEL captureDidSucceedWithCode = sel_registerName("captureDidSucceedWithCode:");
     if ([delegate respondsToSelector:captureDidSucceedWithCode]) {

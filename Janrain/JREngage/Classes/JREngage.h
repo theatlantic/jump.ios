@@ -221,7 +221,10 @@
  *   please see the \ref authenticationProviders "List of Providers"
  **/
 - (void)authenticationCallToTokenUrl:(NSString *)tokenUrl didFailWithError:(NSError *)error forProvider:(NSString *)provider;
-/*@}*/
+/**
+ * Sent when the Engage Authentication is completed successfully for Link Account Flow
+ */
+- (void)engageAuthenticationDidSucceedForAccountLinking:(NSDictionary *)engageAuthInfo forProvider:(NSString *)provider;
 @end
 
 #define JREngageDelegate JREngageSigninDelegate
@@ -401,6 +404,25 @@
  **/
 + (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused;
 
+/**
+ * Use this function for linking an account. The JREngage library will pop up a modal dialog,
+ * configured with the given custom interface, and take the user through the sign-in process.
+ *
+ * @param customInterfaceOverrides
+ *   A dictionary of objects and properties, indexed by the set of
+ *   \link customInterface pre-defined custom interface keys\endlink,
+ *   to be used by the library to customize the look and feel of the user
+ *   interface and/or add a native login experience
+ * 
+ * @param linkAccount
+ *   A BOOL value indicating to consider this flow for Account Linking process.
+ *
+ * @note
+ * Any values specified in the \e customInterfaceOverrides dictionary will override the corresponding
+ * values specified the dictionary passed into the setCustomInterfaceDefaults:() method.
+ **/
++ (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                           forAccountLinking:(BOOL)linkAccount __unused;
 /**
 * Use this function to begin authentication. The JREngage library will pop up a modal dialog, configured
 * with the given custom interface and skipping the list of providers, and take the user straight to the sign-in

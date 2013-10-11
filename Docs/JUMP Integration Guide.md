@@ -390,6 +390,72 @@ This example checks for the merge-flow error, it prompts the user to merge, and 
 a conflict with an existing record created with traditional sign-in. This case is handled in the `handleTradMerge:`
 method.
 
+### Performing Account Linking Flow
+
+There are times when a user want to link another social identity provider to the existing capture account. This flow enables
+user to link other social identity provider accounts to the current capture account. 
+
+- `+[JRCapture startAccountLinkingSignInDialogForDelegate:forAccountLinking:withRedirectUri:]` : Starts the 
+   social sign-in process for all currently configured social sign-in providers, displaying a list of them initially,
+   and guiding the user through the authentication. Once the authentication is completed, this new account is linked to the 
+   existing capture account.
+   
+Parameters :
+- `JRCaptureDelegate` : A capture delegate object.
+- `forAccountLinking` : A `bool` value to indicate whether to perform account linking or not. Set it `"YES` to start account linking.
+- `withRedirectUri`	  : A url which will be used if & only if the flow is set up to trigger an email after linking accounts successfully.
+During the capture account setup process, email triggering can be configured.
+
+Delegates:
+- `-(void)linkNewAccountDidFailWithError:(NSError *)error` : The delegate is fired with an error when the account linking fails.
+
+- `-(void)linkNewAccountDidSucceed` : The delegate is fired after the Successful account linking process.
+
+Example:
+Let's call this on the click of a button for Account Linking.
+
+    [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate 
+                                        forAccountLinking:YES
+                                          withRedirectUri:@"http://your-domain-custom-redirect-url-page.html"]
+
+**Note** This should be called when the user has already signed-in into capture application.
+
+### Performing Account Unlink Flow
+
+A user can have multiple accounts linked to the same capture account. To unlink an account associated with an existing capture account,
+use this flow. This flow will unlink one account at a time, in a successful execution.
+
+**Note** This should be called when the user has already signed-in into capture application.
+
+-`[JRCaptureData getLinkedProfiles]` : Use this method to fetch the list of linked accounts after the successful sign-in. The linked profile
+   array consists of dictionary of linked profiles. This is stored in the `JRCaptureData` object. Each dictionary object has
+   the following keys:
+   `verifiedEmail`  & `identifier` : Use `identifier` value for unlinking account.
+
+- `+[JRcapture startAccountUnlinking:(id<JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier`: This will
+   unlink the account identified by the `identifier`, from the existing capture account. Pass any `identifier` value being retrieved from 
+   `[JRCaptureData getLinkedProfiles]` array. The `JRCapture` will trigger `accountUnlinkingDidFailWithError` &
+   `accountUnlinkingDidSucceed` delegates.
+
+Delegates:
+- `-(void)accountUnlinkingDidFailWithError:(NSError *)error` : This delegate is fired when the account unlinking process fails.
+
+- `-(void)accountUnlinkingDidSucceed` : This delegate is fired after a successful account unlinking flow.
+
+Example:
+Let's call this on the click of a button for Account Un-linking.
+**Note** This should be called when the user has already signed-in into a capture application.
+    
+    // store the Linked accounts into your array aobject from JRCaptureData object.
+    NSArray *linkedProfiles = [JRCaptureData getLinkedProfiles];
+    
+    if([linkedProfiles count]) {
+    	NSString *selectedProfile = [[linkedProfiles objectAtIndex:0] valueForKey:@"identifier"];
+    	
+    	// pass the selected  identifier to the unlinking method.
+    	[JRCapture startAccountUnlinking:self.captureDelegate forProfileIdentifier:selectedProfile];
+    }
+
 ## Making Changes in a Capture User Record
 
 ### Capture Schema Basics
