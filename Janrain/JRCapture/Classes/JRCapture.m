@@ -351,6 +351,11 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     [JRCaptureData setAccessToken:accessToken];
     NSArray *linkedProfile = [captureUserJson valueForKey:@"profiles"];
     [JRCaptureData setLinkedProfiles:linkedProfile];
+    if([[[captureUserJson valueForKey:@"password"] class] isSubclassOfClass:[NSNull class]]) {
+        [JRCaptureData setSocialSignInMode:YES];
+    }else {
+        [JRCaptureData setSocialSignInMode:NO];
+    }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     JRCaptureRecordStatus recordStatus = isNew ? JRCaptureRecordNewlyCreated : JRCaptureRecordExists;
@@ -495,6 +500,9 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
         forProfileIdentifier:(NSString *)identifier {
     
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    if([JRCaptureData isSocialSignInMode] && ([[JRCaptureData getLinkedProfiles] count] == 1)) {
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"%@/oauth/unlink_account_native", data.captureBaseUrl];
     NSDictionary *params = @{
                              @"client_id" : data.clientId,

@@ -53,6 +53,7 @@
 @property(nonatomic, readonly, retain) NSString *captureEditProfileFormName;
 @property(nonatomic) BOOL flowUsesTestingCdn;
 @property(nonatomic, readonly, retain) NSArray *linkedProfiles;
+@property(nonatomic, readonly) BOOL socialSignMode;
 
 + (void)setAccessToken:(NSString *)token;
 
@@ -73,6 +74,10 @@
 + (void)setLinkedProfiles:(NSArray *)profileData;
 
 + (NSArray *)getLinkedProfiles;
+
++ (void)setSocialSignInMode:(BOOL)mode;
+
++ (BOOL)isSocialSignInMode;
 
 - (NSString *)downloadedFlowVersion;
 
