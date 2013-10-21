@@ -67,6 +67,10 @@
 
     self.customUi = @{kJRApplicationNavigationController : self.navigationController};
     [self configureUserLabelAndIcon];
+
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -493,7 +497,12 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success" message:nil
                                                        delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
-    [self.rvc configureViewsWithDisableOverride:NO];
+    appDelegate.captureUser = fetchedUser;
+    [appDelegate.prefs setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.captureUser]
+                          forKey:cJRCaptureUser];
+
+    [self.rvc configureViewsWithDisableOverride:NO ];
+    [self.rvc configureUserLabelAndIcon];
 }
 
 - (void)engageAuthenticationDialogDidFailToShowWithError:(NSError *)error

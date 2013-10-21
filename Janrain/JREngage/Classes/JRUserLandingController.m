@@ -68,6 +68,10 @@
     DLog(@"");
     [super viewDidLoad];
 
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+
     myTableView.backgroundColor = [UIColor clearColor];
 
     /* If there is a UIColor object set for the background color, use this */

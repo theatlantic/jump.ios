@@ -113,6 +113,10 @@
     [super viewDidLoad];
     myTableView.backgroundColor = [UIColor clearColor];
 
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+
     // If there is a UIColor object set for the background color, use this
     if ([customInterface objectForKey:kJRAuthenticationBackgroundColor])
         myBackgroundView.backgroundColor = [customInterface objectForKey:kJRAuthenticationBackgroundColor];

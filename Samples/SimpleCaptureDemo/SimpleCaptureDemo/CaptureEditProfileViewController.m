@@ -56,6 +56,10 @@
     [super viewDidLoad];
     scrollView.contentSize = CGSizeMake(320, updateButton.frame.origin.y + (updateButton.frame.size.height));
 
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+
     firstNameField.delegate = self;
     lastNameField.delegate = self;
     displayNameField.delegate = self;
