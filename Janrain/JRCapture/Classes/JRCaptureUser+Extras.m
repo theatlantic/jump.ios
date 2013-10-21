@@ -78,6 +78,7 @@
                                              context:context];
 
     JRCaptureUser *captureUser = [JRCaptureUser captureUserObjectFromDictionary:result_];
+    [JRCaptureData setLinkedProfiles:[[result valueForKey:@"result"] valueForKey:@"profiles"]];
 
     if ([delegate respondsToSelector:@selector(fetchUserDidSucceed:context:)])
         [delegate fetchUserDidSucceed:captureUser context:callerContext];

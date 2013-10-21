@@ -808,7 +808,30 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                      forDelegate:delegate withArg:error];
          } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
              DLog(@"Link account Flow started successfully");
-             [self maybeDispatch:@selector(linkNewAccountDidSucceed) forDelegate:delegate];
+             NSString *url = [NSString stringWithFormat:@"%@/entity", data.captureBaseUrl];
+             NSDictionary *params = @{
+                                      @"type_name" : @"user",
+                                      @"id" : @"1",
+                                      @"access_token" : [data accessToken]
+                                      };
+             
+             [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error) {
+                 if (error) {
+                     ALog("Failure: Failed to fetch linked accounts after linking: %@", error);
+                     [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
+                             forDelegate:delegate withArg:error];
+                 } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+                      DLog(@"Success: Fetched the linked accounts & updated Capture object successfully");
+                     [JRCaptureData setLinkedProfiles:[[result valueForKey:@"result"] valueForKey:@"profiles"]];
+                     [self maybeDispatch:@selector(linkNewAccountDidSucceed) forDelegate:delegate];
+                     
+                 } else {
+                     JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+                     [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
+                             forDelegate:delegate withArg:captureError];
+                 }
+             }];
+             
          } else {
              JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
              [self maybeDispatch:@selector(linkNewAccountDidFailWithError:)
