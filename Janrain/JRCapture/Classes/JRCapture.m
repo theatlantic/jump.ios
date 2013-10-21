@@ -810,8 +810,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
              DLog(@"Link account Flow started successfully");
              NSString *url = [NSString stringWithFormat:@"%@/entity", data.captureBaseUrl];
              NSDictionary *params = @{
-                                      @"type_name" : @"user",
-                                      @"id" : @"1",
                                       @"access_token" : [data accessToken]
                                       };
              
