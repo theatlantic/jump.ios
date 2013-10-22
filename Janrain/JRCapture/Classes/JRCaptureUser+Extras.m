@@ -79,6 +79,14 @@
 
     JRCaptureUser *captureUser = [JRCaptureUser captureUserObjectFromDictionary:result_];
     [JRCaptureData setLinkedProfiles:[[result valueForKey:@"result"] valueForKey:@"profiles"]];
+    if([[[result_ valueForKey:[NSString stringWithFormat:@"%@",[[[[[JRCaptureData sharedCaptureData] captureFlow]
+                                                                  valueForKey:@"schema_info"]
+                                                                 valueForKey:@"paths"]
+                                                                valueForKey:@"password"]]] class] isSubclassOfClass:[NSNull class]]) {
+        [JRCaptureData setSocialSignInMode:YES];
+    }else {
+        [JRCaptureData setSocialSignInMode:NO];
+    }
 
     if ([delegate respondsToSelector:@selector(fetchUserDidSucceed:context:)])
         [delegate fetchUserDidSucceed:captureUser context:callerContext];

@@ -351,7 +351,11 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     [JRCaptureData setAccessToken:accessToken];
     NSArray *linkedProfile = [captureUserJson valueForKey:@"profiles"];
     [JRCaptureData setLinkedProfiles:linkedProfile];
-    if([[[captureUserJson valueForKey:@"password"] class] isSubclassOfClass:[NSNull class]]) {
+    if([[[captureUserJson valueForKey:[NSString stringWithFormat:@"%@",
+                                       [[[[[JRCaptureData sharedCaptureData] captureFlow]
+                                          valueForKey:@"schema_info"]
+                                         valueForKey:@"paths"]
+                                        valueForKey:@"password"]]] class] isSubclassOfClass:[NSNull class]]) {
         [JRCaptureData setSocialSignInMode:YES];
     }else {
         [JRCaptureData setSocialSignInMode:NO];
@@ -500,9 +504,14 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
         forProfileIdentifier:(NSString *)identifier {
     
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    
     if([JRCaptureData isSocialSignInMode] && ([[JRCaptureData getLinkedProfiles] count] == 1)) {
+        [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
+                forDelegate:delegate
+                    withArg:[JRCaptureError invalidInternalStateErrorWithDescription:@"At least one profile should be must on a Social Sign-in Account."]];
         return;
     }
+    
     NSString *url = [NSString stringWithFormat:@"%@/oauth/unlink_account_native", data.captureBaseUrl];
     NSDictionary *params = @{
                              @"client_id" : data.clientId,
