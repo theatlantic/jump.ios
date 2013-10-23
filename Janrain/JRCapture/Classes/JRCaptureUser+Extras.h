@@ -47,6 +47,8 @@
 - (NSMutableDictionary *)toFormFieldsForForm:(NSString *)formName withFlow:(NSDictionary *)flow;
 
 + (JRCaptureUser *)captureUserObjectWithPrefilledFields:(NSDictionary *)prefilledFields flow:(NSDictionary *)flow;
+
+- (BOOL)hasPassword;
 @end
 
 @protocol JRCaptureObjectDelegate;

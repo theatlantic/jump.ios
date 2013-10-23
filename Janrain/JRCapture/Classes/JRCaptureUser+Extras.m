@@ -79,10 +79,7 @@
 
     JRCaptureUser *captureUser = [JRCaptureUser captureUserObjectFromDictionary:result_];
     [JRCaptureData setLinkedProfiles:[[result valueForKey:@"result"] valueForKey:@"profiles"]];
-    if([[[result_ valueForKey:[NSString stringWithFormat:@"%@",[[[[[JRCaptureData sharedCaptureData] captureFlow]
-                                                                  valueForKey:@"schema_info"]
-                                                                 valueForKey:@"paths"]
-                                                                valueForKey:@"password"]]] class] isSubclassOfClass:[NSNull class]]) {
+    if(![captureUser hasPassword]){
         [JRCaptureData setSocialSignInMode:YES];
     }else {
         [JRCaptureData setSocialSignInMode:NO];
@@ -172,6 +169,17 @@
     return retval;
 }
 
+-(BOOL)hasPassword {
+    
+    NSString *component = [[[[[JRCaptureData sharedCaptureData] captureFlow]
+                             valueForKey:@"schema_info"]
+                            valueForKey:@"paths"]
+                           valueForKey:@"password"];
+    
+    NSString *passwordValue = [self valueForAttrByDotPath:component];
+    
+    return (passwordValue && [passwordValue length]);
+}
 - (void)setForValueFromDotPath:(NSString *)dotPath forKey:(NSString *)key dictionary:(NSMutableDictionary *)dictionary
 {
     NSString *formFieldValue = [self valueForAttrByDotPath:dotPath];

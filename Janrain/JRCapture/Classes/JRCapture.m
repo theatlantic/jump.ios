@@ -351,11 +351,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     [JRCaptureData setAccessToken:accessToken];
     NSArray *linkedProfile = [captureUserJson valueForKey:@"profiles"];
     [JRCaptureData setLinkedProfiles:linkedProfile];
-    if([[[captureUserJson valueForKey:[NSString stringWithFormat:@"%@",
-                                       [[[[[JRCaptureData sharedCaptureData] captureFlow]
-                                          valueForKey:@"schema_info"]
-                                         valueForKey:@"paths"]
-                                        valueForKey:@"password"]]] class] isSubclassOfClass:[NSNull class]]) {
+    if(![captureUser hasPassword]){
         [JRCaptureData setSocialSignInMode:YES];
     }else {
         [JRCaptureData setSocialSignInMode:NO];
