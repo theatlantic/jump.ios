@@ -79,11 +79,6 @@
 
     JRCaptureUser *captureUser = [JRCaptureUser captureUserObjectFromDictionary:result_];
     [JRCaptureData setLinkedProfiles:[[result valueForKey:@"result"] valueForKey:@"profiles"]];
-    if(![captureUser hasPassword]){
-        [JRCaptureData setSocialSignInMode:YES];
-    }else {
-        [JRCaptureData setSocialSignInMode:NO];
-    }
 
     if ([delegate respondsToSelector:@selector(fetchUserDidSucceed:context:)])
         [delegate fetchUserDidSucceed:captureUser context:callerContext];
@@ -169,14 +164,14 @@
     return retval;
 }
 
--(BOOL)hasPassword {
++(BOOL)hasPasswordField:(NSDictionary *)dict {
     
     NSString *component = [[[[[JRCaptureData sharedCaptureData] captureFlow]
                              valueForKey:@"schema_info"]
                             valueForKey:@"paths"]
                            valueForKey:@"password"];
-    
-    NSString *passwordValue = [self valueForAttrByDotPath:component];
+    NSArray *pathComponents = [component componentsSeparatedByString:@"."];
+    NSString *passwordValue =  [JRCaptureUser valueForAttrByDotPathComponents:pathComponents userDict:dict];
     
     return (passwordValue && [passwordValue length]);
 }

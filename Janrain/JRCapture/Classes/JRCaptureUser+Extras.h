@@ -48,7 +48,7 @@
 
 + (JRCaptureUser *)captureUserObjectWithPrefilledFields:(NSDictionary *)prefilledFields flow:(NSDictionary *)flow;
 
-- (BOOL)hasPassword;
++ (BOOL)hasPasswordField:(NSDictionary *)userDict;
 @end
 
 @protocol JRCaptureObjectDelegate;

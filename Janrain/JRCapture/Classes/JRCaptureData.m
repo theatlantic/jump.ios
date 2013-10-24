@@ -491,15 +491,4 @@ static JRCaptureData *singleton = nil;
     }
     return @"token";
 }
-
-+ (void)setSocialSignInMode:(BOOL)mode {
-    [JRCaptureData sharedCaptureData].socialSignMode = mode;
-}
-
-+(BOOL)isSocialSignInMode {
-    if(singleton) {
-        return [singleton socialSignMode];
-    }
-    return NO;
-}
 @end

@@ -75,10 +75,6 @@
 
 + (NSArray *)getLinkedProfiles;
 
-+ (void)setSocialSignInMode:(BOOL)mode;
-
-+ (BOOL)isSocialSignInMode;
-
 - (NSString *)downloadedFlowVersion;
 
 - (NSString *)redirectUri;
