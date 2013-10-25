@@ -500,59 +500,38 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                              @"access_token" : [data accessToken]
                              };
     
-    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error) {
+    [JRConnectionManager jsonRequestToUrl:url
+                                   params:params
+                        completionHandler:^(id result, NSError *error) {
         if (error) {
             ALog("Failed to initiate Account Unlinking flow: %@", error);
             [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
-                    forDelegate:delegate withArg:error];
+                    forDelegate:delegate
+                        withArg:error];
+            
         } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
-            if(![JRCaptureUser hasPasswordField:[result valueForKey:@"result"]] && ([[JRCaptureData getLinkedProfiles] count] == 1)) {
+            if(![JRCaptureUser hasPasswordField:[result valueForKey:@"result"]] &&
+               ([[JRCaptureData getLinkedProfiles] count] == 1)) {
                 [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
                         forDelegate:delegate
-                            withArg:[JRCaptureError invalidInternalStateErrorWithDescription:@"At least one profile should be must on a Social Sign-in Account."]];
+                            withArg:[JRCaptureError
+                                     invalidInternalStateErrorWithDescription:
+                                     @"At least one profile should be must on a Social Sign-in Account."
+                                     ]];
                 return;
             }else {
-                
-                NSString *url = [NSString stringWithFormat:@"%@/oauth/unlink_account_native", data.captureBaseUrl];
-                NSDictionary *params = @{
-                                         @"client_id" : data.clientId,
-                                         @"locale" : data.captureLocale,
-                                         @"identifier_to_remove" : identifier,
-                                         @"access_token" : data.accessToken,
-                                         @"flow": data.captureFlowName,
-                                         @"flow_version": data.downloadedFlowVersion
-                                         };
-                
-                [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:^(id result, NSError *error) {
-                    if (error) {
-                        ALog("Failed to initiate Account Unlinking flow: %@", error);
-                        [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
-                                forDelegate:delegate withArg:error];
-                    } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
-                        DLog(@"Account Unlinking flow started successfully");
-                        if( [[JRCaptureData getLinkedProfiles] count] ) {
-                            NSMutableArray *updateProfiles = [[NSMutableArray alloc]init];
-                            for(NSDictionary *dict in [JRCaptureData getLinkedProfiles] ) {
-                                if(![[dict valueForKey:@"identifier"] isEqualToString:identifier]) {
-                                    [updateProfiles addObject:dict];
-                                }
-                            }
-                            [JRCaptureData setLinkedProfiles:updateProfiles];
-                        }
-                        [self maybeDispatch:@selector(accountUnlinkingDidSucceed) forDelegate:delegate];
-                    } else {
-                        JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
-                        
-                        [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
-                                forDelegate:delegate withArg:captureError];
-                    }
-                }];
+                [JRCapture startActualAccountUnLinking:delegate
+                                  forProfileIdentifier:identifier];
             }
             
         } else {
-            JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+            JRCaptureError *captureError = [JRCaptureError errorFromResult:result
+                                                                onProvider:nil
+                                                               engageToken:nil];
+            
             [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
-                    forDelegate:delegate withArg:captureError];
+                    forDelegate:delegate
+                        withArg:captureError];
         }
     }];
 }
@@ -856,5 +835,54 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                      forDelegate:delegate withArg:captureError];
          }
      }];
+}
+
++ (void)startActualAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier {
+    
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/unlink_account_native", data.captureBaseUrl];
+    NSDictionary *params = @{
+                             @"client_id" : data.clientId,
+                             @"locale" : data.captureLocale,
+                             @"identifier_to_remove" : identifier,
+                             @"access_token" : data.accessToken,
+                             @"flow": data.captureFlowName,
+                             @"flow_version": data.downloadedFlowVersion
+                             };
+    
+    [JRConnectionManager jsonRequestToUrl:url
+                                   params:params
+                        completionHandler:^(id result, NSError *error) {
+                            
+                            if (error) {
+                                ALog("Failed to initiate Account Unlinking flow: %@", error);
+                                [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
+                                        forDelegate:delegate withArg:error];
+                                
+                            } else if ([@"ok" isEqual:[result objectForKey:@"stat"]]) {
+                                DLog(@"Account Unlinking flow started successfully");
+                                
+                                if( [[JRCaptureData getLinkedProfiles] count] ) {
+                                    NSMutableArray *updateProfiles = [[NSMutableArray alloc]init];
+                                    for(NSDictionary *dict in [JRCaptureData getLinkedProfiles] ) {
+                                        if(![[dict valueForKey:@"identifier"] isEqualToString:identifier]) {
+                                            [updateProfiles addObject:dict];
+                                        }
+                                    }
+                                    [JRCaptureData setLinkedProfiles:updateProfiles];
+                                }
+                                [self maybeDispatch:@selector(accountUnlinkingDidSucceed)
+                                        forDelegate:delegate];
+                            } else {
+                                JRCaptureError *captureError = [JRCaptureError errorFromResult:result
+                                                                                    onProvider:nil
+                                                                                   engageToken:nil];
+                                
+                                [self maybeDispatch:@selector(accountUnlinkingDidFailWithError:)
+                                        forDelegate:delegate
+                                            withArg:captureError];
+                            }
+                        }];
 }
 @end
