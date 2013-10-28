@@ -763,6 +763,8 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  */
 + (void)startAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier;
 
++ (void)startActualAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier;
+
 @end
 
 /**
