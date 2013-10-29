@@ -78,6 +78,7 @@
                                              context:context];
 
     JRCaptureUser *captureUser = [JRCaptureUser captureUserObjectFromDictionary:result_];
+    [JRCaptureData setLinkedProfiles:[[result valueForKey:@"result"] valueForKey:@"profiles"]];
 
     if ([delegate respondsToSelector:@selector(fetchUserDidSucceed:context:)])
         [delegate fetchUserDidSucceed:captureUser context:callerContext];
@@ -163,6 +164,17 @@
     return retval;
 }
 
++(BOOL)hasPasswordField:(NSDictionary *)dict {
+    
+    NSString *component = [[[[[JRCaptureData sharedCaptureData] captureFlow]
+                             valueForKey:@"schema_info"]
+                            valueForKey:@"paths"]
+                           valueForKey:@"password"];
+    NSArray *pathComponents = [component componentsSeparatedByString:@"."];
+    NSString *passwordValue =  [JRCaptureUser valueForAttrByDotPathComponents:pathComponents userDict:dict];
+    
+    return (passwordValue && [passwordValue length]);
+}
 - (void)setForValueFromDotPath:(NSString *)dotPath forKey:(NSString *)key dictionary:(NSMutableDictionary *)dictionary
 {
     NSString *formFieldValue = [self valueForAttrByDotPath:dotPath];

@@ -94,6 +94,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 @property(nonatomic, retain) NSDictionary *captureFlow;
 @property(nonatomic, retain) NSArray *linkedProfiles;
 @property(nonatomic) BOOL initialized;
+@property(nonatomic) BOOL socialSignMode;
 @end
 
 @implementation JRCaptureData
