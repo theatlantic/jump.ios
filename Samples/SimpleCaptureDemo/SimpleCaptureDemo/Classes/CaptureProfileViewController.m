@@ -76,6 +76,10 @@
 {
     [super viewDidLoad];
 
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+
     [myAboutMeTextView setInputAccessoryView:myKeyboardToolbar];
     [myEmailTextField setInputAccessoryView:myKeyboardToolbar];
     [myDisplayNameTextField setInputAccessoryView:myKeyboardToolbar];
