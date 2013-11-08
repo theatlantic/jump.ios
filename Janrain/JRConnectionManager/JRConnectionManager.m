@@ -292,7 +292,15 @@ static JRConnectionManager *singleton = nil;
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request JR_setBodyWithParams:params];
+
+    [JRConnectionManager startURLConnectionWithRequest:request completionHandler:handler];
+}
+
++ (void)startURLConnectionWithRequest:(NSURLRequest *)request
+                    completionHandler:(void(^)(id parsedResponse, NSError *e))handler
+{
     NSString *p = [[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] autorelease];
+    NSString *url = [request.URL absoluteString];
     DLog(@"URL: \"%@\" params: \"%@\"", url, p);
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *r, NSData *d, NSError *e)

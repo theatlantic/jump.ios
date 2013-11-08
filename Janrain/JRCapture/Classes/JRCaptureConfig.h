@@ -113,6 +113,11 @@
 @property (nonatomic, retain) NSString *editProfileFormName;
 
 /**
+ *  The name of the form (from your flow) used for resending the email validation email
+ */
+@property (nonatomic, retain) NSString *resendEmailVerificationFormName;
+
+/**
  *   Get an empty Capture Configuration
  */
 + (JRCaptureConfig *)emptyCaptureConfig;

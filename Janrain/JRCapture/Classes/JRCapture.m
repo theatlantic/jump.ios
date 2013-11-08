@@ -47,6 +47,9 @@
 #import "JRConnectionManager.h"
 #import "JRCaptureConfig.h"
 #import "NSMutableDictionary+JRDictionaryUtils.h"
+#import "JRCaptureUIRequestBuilder.h"
+#import "JRCaptureFlow.h"
+#import "JRJsonUtils.h"
 
 @implementation JRCapture
 
@@ -489,6 +492,61 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                     forDelegate:delegate withArg:captureError];
         }
     }];
+}
+
++ (void)resendVerificationEmail:(NSString *)emailAddress delegate:(id <JRCaptureDelegate>)delegate {
+
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    NSString *formName = data.resendEmailVerificationFormName;
+
+    void(^dispatchInvalidArgument)(NSString *) = ^(NSString *description) {
+        [self maybeDispatch:@selector(forgottenPasswordRecoveryDidFailWithError:)
+                forDelegate:delegate
+                    withArg:[JRCaptureError invalidArgumentErrorWithParameterName:description]];
+    };
+    if (!emailAddress) {
+        dispatchInvalidArgument(@"emailAddress");
+        return;
+    }
+    if (!formName) {
+        dispatchInvalidArgument(@"resendEmailVerificationFormName");
+        return;
+    }
+
+    NSString *fieldName = [data.captureFlow userIdentifyingFieldForForm:formName];
+
+    JRCaptureUIRequestBuilder *requestBuilder = [[JRCaptureUIRequestBuilder alloc] initWithEnvironment:data];
+    NSURLRequest *request = [requestBuilder requestWithParams:@{ fieldName : emailAddress } form:formName];
+    [requestBuilder release];
+
+    [self startURLConnectionWithRequest:request
+                               delegate:delegate
+                              onSuccess:@selector(resendVerificationEmailDidSucceed)
+                              onFailure:@selector(resendVerificationEmailDidFailWithError:)
+                                message:@"resending email verification"];
+}
+
++ (void)startURLConnectionWithRequest:(NSURLRequest *)request
+                             delegate:(id <JRCaptureDelegate>)delegate
+                            onSuccess:(SEL)successSelector
+                            onFailure:(SEL)failureSelector
+                              message:(NSString *)message {
+
+    void(^handler)(id, NSError *) = ^(id result, NSError *error) {
+        if (error) {
+            ALog("Failure %@: %@", message, error);
+            [self maybeDispatch:failureSelector forDelegate:delegate withArg:error];
+        } else if ([result JR_isOKStatus]) {
+            DLog(@"Success %@", message);
+            [self maybeDispatch:successSelector forDelegate:delegate];
+        } else {
+            JRCaptureError *captureError = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
+
+            [self maybeDispatch:failureSelector forDelegate:delegate withArg:captureError];
+        }
+    };
+
+    [JRConnectionManager startURLConnectionWithRequest:request completionHandler:handler];
 }
 
 +(void)startAccountUnLinking:(id<JRCaptureDelegate>)delegate

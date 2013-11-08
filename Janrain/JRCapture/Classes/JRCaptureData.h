@@ -1,3 +1,5 @@
+#import "JRCaptureEnvironment.h"
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Copyright (c) 2012, Janrain, Inc.
 
@@ -29,11 +31,12 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 @class JRCaptureConfig;
+@class JRCaptureFlow;
 
 /**
  * @internal
  */
-@interface JRCaptureData : NSObject
+@interface JRCaptureData : NSObject <JRCaptureEnvironment>
 @property(nonatomic, retain) NSString *bpChannelUrl;
 @property(nonatomic, readonly, retain) NSString *captureBaseUrl;
 @property(nonatomic, readonly, retain) NSString *captureRedirectUri;
@@ -48,9 +51,10 @@
 @property(nonatomic, readonly, retain) NSString *captureSocialRegistrationFormName;
 @property(nonatomic, readonly, retain) NSString *captureFlowVersion;
 @property(nonatomic, readonly, retain) NSString *captureAppId;
-@property(nonatomic, readonly, retain) NSDictionary *captureFlow;
+@property(nonatomic, readonly, retain) JRCaptureFlow *captureFlow;
 @property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic, readonly, retain) NSString *captureEditProfileFormName;
+@property(nonatomic, readonly, retain) NSString *resendEmailVerificationFormName;
 @property(nonatomic) BOOL flowUsesTestingCdn;
 @property(nonatomic, readonly, retain) NSArray *linkedProfiles;
 @property(nonatomic, readonly) BOOL socialSignMode;

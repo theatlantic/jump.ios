@@ -40,6 +40,7 @@
 
 @interface NSDictionary (JRJsonUtils)
 - (NSString *)JR_jsonString;
+- (BOOL)JR_isOKStatus;
 @end
 
 @interface NSArray (JRJsonUtils)

@@ -40,6 +40,7 @@
 #import "NSMutableURLRequest+JRRequestUtils.h"
 #import "JRCaptureError.h"
 #import "JRJsonUtils.h"
+#import "JRCaptureFlow.h"
 
 static NSString *const cSignInUser = @"signinUser";
 static NSString *const cGetUser = @"getUser";
@@ -637,7 +638,7 @@ typedef enum CaptureInterfaceStatEnum
  */
 + (NSDictionary *)flowTraditionalSignInCredentialsForName:(NSString *)name andPassword:(NSString *)password {
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
-    NSDictionary *captureFlow = [data captureFlow];
+    JRCaptureFlow *captureFlow = [data captureFlow];
     NSDictionary *fields = [captureFlow objectForKey:@"fields"];
     NSString *tradSignInFormName = [data captureTraditionalSignInFormName];
     NSDictionary *tradSignInForm = [fields objectForKey:tradSignInFormName];

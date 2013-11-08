@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2010, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -29,40 +29,84 @@
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#import "JRCaptureFlow.h"
 
-#import "JRCaptureConfig.h"
+@interface JRCaptureFlow()
+@property (nonatomic, copy) NSDictionary *flowDict;
+@end
 
-@implementation JRCaptureConfig
+@implementation JRCaptureFlow {
 
-+ (JRCaptureConfig *)emptyCaptureConfig {
+}
++ (JRCaptureFlow *)flowWithDictionary:(NSDictionary *)dict {
+    JRCaptureFlow *flow = [[JRCaptureFlow alloc] initWithDictionary:dict];
+
 #if __has_feature(objc_arc)
-    return [[JRCaptureConfig alloc] init];
+    return flow;
 #else
-    return [[[JRCaptureConfig alloc] init] autorelease];
+    return [flow autorelease];
 #endif
+}
+
+- (id)initWithDictionary:(NSDictionary *)dict {
+    self = [super init];
+    if (self) {
+        _flowDict = [dict copy];
+    }
+
+    return self;
+}
+
+- (NSDictionary *)dictionary {
+    return self.flowDict;
+}
+
+- (id)objectForKey:(id)key {
+    return [self.flowDict objectForKey:key];
+}
+
+- (NSMutableDictionary *)fieldsForForm:(NSString *)formName fromDictionary:(NSDictionary *)dict {
+    NSDictionary *form = [self.fields objectForKey:formName];
+    NSArray *fieldNames = [form objectForKey:@"fields"];
+    NSMutableDictionary *fields = [NSMutableDictionary dictionary];
+
+    for (NSString *key in fieldNames) {
+        if ([dict objectForKey:key]) [fields setObject:[dict objectForKey:key] forKey:key];
+    }
+
+    return fields;
+}
+
+- (NSString *)userIdentifyingFieldForForm:(NSString *)formName{
+
+    NSDictionary *fields = [self fields];
+    NSDictionary *form = [fields objectForKey:formName];
+    NSArray *formFields = [form objectForKey:@"fields"];
+
+    for (NSString *fieldName in formFields) {
+        NSDictionary *field = [fields objectForKey:fieldName];
+        NSString * type = [field objectForKey:@"type"];
+
+        if ([type isEqualToString:@"email"] || [type isEqualToString:@"text"]) {
+            return fieldName;
+        }
+    }
+
+    return nil;
+}
+
+- (NSDictionary *)fields {
+    return [self objectForKey:@"fields"];
 }
 
 - (void)dealloc
 {
 #if !__has_feature(objc_arc)
-    [self.engageAppId release];
-    [self.captureDomain release];
-    [self.captureClientId release];
-    [self.captureLocale release];
-    [self.captureFlowName release];
-    [self.captureFlowVersion release];
-    [self.captureSignInFormName release];
-    [self.customProviders release];
-    [self.captureTraditionalRegistrationFormName release];
-    [self.captureSocialRegistrationFormName release];
-    [self.captureAppId release];
-    [self.forgottenPasswordFormName release];
-    [self.passwordRecoverUri release];
-    [self.editProfileFormName release];
-    [self.resendEmailVerificationFormName release];
+    [_flowDict release];
 
     [super dealloc];
 #endif
 }
+
 
 @end
