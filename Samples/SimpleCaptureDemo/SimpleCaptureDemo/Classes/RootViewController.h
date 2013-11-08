@@ -47,6 +47,7 @@
 - (IBAction)forgotPasswordButtonPressed:(id)sender;
 - (IBAction)linkAccountButtonPressed:(id)sender;
 - (IBAction)unlinkAccountButtonPressed:(id)sender;
+- (IBAction)resendVerificationButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak) IBOutlet UILabel *currentUserLabel;
 @property (weak) IBOutlet UIImageView *currentUserProviderIcon;
@@ -62,5 +63,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *linkAccountButton;
 @property (weak, nonatomic) IBOutlet UIButton *unlinkAccountButton;
 @property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
+@property (weak, nonatomic) IBOutlet UIButton *resendVerificationButton;
 @property(nonatomic, strong) NSDictionary *customUi;
 @end

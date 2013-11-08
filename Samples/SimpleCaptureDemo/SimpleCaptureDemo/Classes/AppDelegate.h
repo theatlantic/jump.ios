@@ -72,6 +72,7 @@ AppDelegate *appDelegate;
 
 @property(nonatomic, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic, retain) NSString *captureEditProfileFormName;
+@property(nonatomic, retain) NSString *resendVerificationFormName;
 
 - (void)saveCaptureUser;
 @end

@@ -67,6 +67,7 @@ AppDelegate *appDelegate = nil;
 @synthesize customProviders;
 @synthesize captureForgottenPasswordFormName;
 @synthesize captureEditProfileFormName;
+@synthesize resendVerificationFormName;
 
 // Backplane / LiveFyre stuff:
 @synthesize bpChannelUrl;
@@ -104,6 +105,7 @@ AppDelegate *appDelegate = nil;
     config.forgottenPasswordFormName = captureForgottenPasswordFormName;
     config.passwordRecoverUri = @"http://not-a-real-uri.janrain.com/forgotten_password.html";
     config.editProfileFormName = captureEditProfileFormName;
+    config.resendEmailVerificationFormName = resendVerificationFormName;
 
     [JRCapture setCaptureConfig:config];
 
@@ -227,6 +229,8 @@ AppDelegate *appDelegate = nil;
         self.captureForgottenPasswordFormName = [cfg objectForKey:@"captureForgottenPasswordFormName"];
     if ([cfg objectForKey:@"captureEditProfileFormName"])
         self.captureEditProfileFormName = [cfg objectForKey:@"captureEditProfileFormName"];
+    if ([cfg objectForKey:@"resendVerificationFormName"])
+        self.resendVerificationFormName = [cfg objectForKey:@"resendVerificationFormName"];
     if ([cfg objectForKey:@"bpBusUrlString"])
         self.bpBusUrlString = [cfg objectForKey:@"bpBusUrlString"];
     if ([cfg objectForKey:@"bpChannelUrl"])

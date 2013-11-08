@@ -35,6 +35,8 @@
         <string>forgotPasswordForm</string>
         <key>captureEditProfileFormName</key>
         <string>editProfileForm</string>
+        <key>resendVerificationFormName</key>
+        <string>resendVerificationForm</string>
         <key>liveFyreNetwork</key>
         <string></string>
         <key>liveFyreSiteId</key>
