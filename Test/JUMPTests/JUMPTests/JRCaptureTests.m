@@ -181,8 +181,11 @@
             @"message[number]" : @"30"
     };
 
+    NSMutableURLRequest *expectedRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:expectedUri]];
+    [expectedRequest JR_setBodyWithParams:expectedParams];
+
     id connectionManager = [OCMockObject mockForClass:[JRConnectionManager class]];
-    [[connectionManager expect] jsonRequestToUrl:expectedUri params:expectedParams completionHandler:[OCMArg any]];
+    [[connectionManager expect] startURLConnectionWithRequest:expectedRequest completionHandler:[OCMArg any]];
     [JRCapture updateProfileForUser:user delegate:nil ];
     [connectionManager verify];
 }

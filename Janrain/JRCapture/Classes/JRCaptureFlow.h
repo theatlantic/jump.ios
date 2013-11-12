@@ -37,6 +37,7 @@
 
 - (NSDictionary *)dictionary;
 - (id)objectForKey:(id)key;
+- (id)schemaIdForFieldName:(NSString *)fieldName;
 - (NSMutableDictionary *)fieldsForForm:(NSString *)form fromDictionary:(NSDictionary *)dict;
 - (NSString *)userIdentifyingFieldForForm:(NSString *)formName;
 @end

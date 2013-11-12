@@ -65,6 +65,12 @@
     return [self.flowDict objectForKey:key];
 }
 
+- (id)schemaIdForFieldName:(NSString *)fieldName {
+    NSDictionary *schemaInfo = [self.flowDict objectForKey:@"schema_info"];
+    NSDictionary *paths = [schemaInfo objectForKey:@"paths"];
+    return [paths objectForKey:fieldName];
+}
+
 - (NSMutableDictionary *)fieldsForForm:(NSString *)formName fromDictionary:(NSDictionary *)dict {
     NSDictionary *form = [self.fields objectForKey:formName];
     NSArray *fieldNames = [form objectForKey:@"fields"];

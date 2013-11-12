@@ -166,11 +166,7 @@
 }
 
 +(BOOL)hasPasswordField:(NSDictionary *)dict {
-    
-    NSString *component = [[[[[JRCaptureData sharedCaptureData] captureFlow]
-                             valueForKey:@"schema_info"]
-                            valueForKey:@"paths"]
-                           valueForKey:@"password"];
+    NSString *component = [[[JRCaptureData sharedCaptureData] captureFlow] schemaIdForFieldName:@"password"];
     NSArray *pathComponents = [component componentsSeparatedByString:@"."];
     NSString *passwordValue =  [JRCaptureUser valueForAttrByDotPathComponents:pathComponents userDict:dict];
     
