@@ -31,5 +31,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSMutableURLRequest (JRRequestUtils)
++ (NSMutableURLRequest *)JR_requestWithURL:(NSURL *)url params:(NSDictionary *)dictionary;
 - (void)JR_setBodyWithParams:(NSDictionary *)dictionary;
 @end

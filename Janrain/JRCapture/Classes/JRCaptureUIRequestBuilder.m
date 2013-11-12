@@ -61,15 +61,12 @@
 - (NSURLRequest *)requestWithParams:(NSDictionary *)namedParams form:(NSString *)formName {
     NSURL *url = [self captureUrlForForm:formName];
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSMutableDictionary *params = [self.environment.captureFlow fieldsForForm:formName fromDictionary:namedParams];
     [params addEntriesFromDictionary:[self standardParameters]];
     [params setObject:self.environment.redirectUri forKey:@"redirect_uri"];
     [params setObject:formName forKey:@"form"];
 
-    [request JR_setBodyWithParams:params];
-
-    return request;
+    return [NSMutableURLRequest JR_requestWithURL:url params:params];
 }
 
 - (NSURL *)captureUrlForForm:(NSString *)formName {

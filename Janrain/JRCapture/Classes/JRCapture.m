@@ -477,8 +477,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
             fieldName : fieldValue
     };
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [request JR_setBodyWithParams:params];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
 
     [self startURLConnectionWithRequest:request
                                delegate:delegate
@@ -556,8 +555,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                              @"access_token" : [data accessToken]
                              };
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [request JR_setBodyWithParams:params];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
 
     void(^successHandler)(id) = ^(id result) {
         if(![JRCaptureUser hasPasswordField:[result valueForKey:@"result"]] &&
@@ -743,9 +741,8 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
         [params setObject:[data downloadedFlowVersion] forKey:@"flow_version"];
     }
 
-    NSString *urlString = [NSString stringWithFormat:@"%@/oauth/update_profile_native", data.captureBaseUrl];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [request JR_setBodyWithParams:params];
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/update_profile_native", data.captureBaseUrl];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
 
     [self startURLConnectionWithRequest:request
                                delegate:delegate
@@ -832,8 +829,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                              @"flow_version" :data.downloadedFlowVersion
                              };
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [request JR_setBodyWithParams:params];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
 
     void(^successHandler)(id) = ^(id result) {
              DLog(@"Link account Flow started successfully");
@@ -881,8 +877,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                              @"flow_version": data.downloadedFlowVersion
                              };
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [request JR_setBodyWithParams:params];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
 
     void(^successHandler)(id) = ^(id result) {
         DLog(@"Account Unlinking flow started successfully");

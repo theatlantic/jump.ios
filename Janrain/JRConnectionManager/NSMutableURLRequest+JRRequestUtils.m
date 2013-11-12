@@ -33,6 +33,13 @@
 #import "debug_log.h"
 
 @implementation NSMutableURLRequest (JRRequestUtils)
++ (NSMutableURLRequest *)JR_requestWithURL:(NSURL *)url params:(NSDictionary *)params {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request JR_setBodyWithParams:params];
+
+    return request;
+}
+
 - (void)JR_setBodyWithParams:(NSDictionary *)dictionary
 {
     [self setHTTPMethod:@"POST"];
