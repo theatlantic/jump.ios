@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2012, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -26,33 +26,21 @@
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import <GHUnitIOS/GHUnit.h>
-#import "SharedData.h"
+#import <Foundation/Foundation.h>
 
-@interface AcmeTest : GHAsyncTestCase <SharedDataDelegate>
-{ }
-@end
+@class JRCaptureUser;
+@protocol JRCaptureEnvironment;
 
-@implementation AcmeTest
 
-- (void)testGetUserFromCapture {
+@interface JRCaptureUIRequestBuilder : NSObject
 
-  [self prepare];
+- (id)initWithEnvironment:(id <JRCaptureEnvironment>)environment;
 
-  [SharedData getCaptureUserForDelegate:self];
+- (NSURLRequest *)requestWithUser:(JRCaptureUser *)user form:(NSString *)formName;
 
-  [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
-}
+- (NSURLRequest *)requestWithParams:(NSDictionary *)params form:(NSString *)formName;
 
-- (void)getCaptureUserDidSucceedWithUser:(JRCaptureUser *)user
-{
-    [self notify:kGHUnitWaitStatusSuccess forSelector:@selector(testGetUserFromCapture)];
-}
-
-- (void)getCaptureUserDidFailWithResult:(NSString *)result
-{
-    [self notify:kGHUnitWaitStatusFailure forSelector:@selector(testGetUserFromCapture)];
-}
 @end

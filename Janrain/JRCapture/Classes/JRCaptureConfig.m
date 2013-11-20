@@ -59,6 +59,7 @@
     [self.forgottenPasswordFormName release];
     [self.passwordRecoverUri release];
     [self.editProfileFormName release];
+    [self.resendEmailVerificationFormName release];
 
     [super dealloc];
 #endif

@@ -31,6 +31,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import "JRCaptureUser.h"
+#import "JRCaptureFlow.h"
 #import "JRCaptureUser+Extras.h"
 
 @interface JRCaptureUserExtrasTests : GHTestCase
@@ -54,7 +55,7 @@
     JRCaptureUser *user = [JRCaptureUser captureUser];
     user.basicString = @"hello";
 
-    NSDictionary *actualFields = [user toFormFieldsForForm:@"editProfileForm" withFlow:flow];
+    NSDictionary *actualFields = [user toFormFieldsForForm:@"editProfileForm" withFlow:[JRCaptureFlow flowWithDictionary:flow]];
     NSDictionary *expectedFields = @{
             @"message" : @"hello",
     };
@@ -82,7 +83,7 @@
     user.basicString = @"hello";
     user.basicInteger = @30;
 
-    NSDictionary *actualFields = [user toFormFieldsForForm:@"editProfileForm" withFlow:flow];
+    NSDictionary *actualFields = [user toFormFieldsForForm:@"editProfileForm" withFlow:[JRCaptureFlow flowWithDictionary:flow]];
     NSDictionary *expectedFields = @{
             @"message[greeting]" : @"hello",
             @"message[number]" : @"30"
@@ -110,7 +111,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     user.basicDate = [dateFormatter dateFromString:@"1959-04-22"];
 
-    NSDictionary *actualFields = [user toFormFieldsForForm:@"editProfileForm" withFlow:flow];
+    NSDictionary *actualFields = [user toFormFieldsForForm:@"editProfileForm" withFlow:[JRCaptureFlow flowWithDictionary:flow]];
     NSDictionary *expectedFields = @{
             @"birthdate[dateselect_day]" : @"22",
             @"birthdate[dateselect_month]" : @"04",

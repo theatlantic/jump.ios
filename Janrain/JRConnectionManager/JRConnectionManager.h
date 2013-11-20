@@ -76,4 +76,6 @@
 
 + (void)jsonRequestToUrl:(NSString *)url params:(NSDictionary *)params
        completionHandler:(void (^)(id, NSError *))handler;
+
++ (void)startURLConnectionWithRequest:(NSURLRequest *)request completionHandler:(void (^)(id parsedResponse, NSError *e))handler;
 @end

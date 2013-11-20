@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2010, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -26,25 +26,30 @@
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import "NSMutableURLRequest+JRRequestUtils.h"
-#import "NSDictionary+JRQueryParams.h"
-#import "debug_log.h"
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-@implementation NSMutableURLRequest (JRRequestUtils)
-+ (NSMutableURLRequest *)JR_requestWithURL:(NSURL *)url params:(NSDictionary *)params {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request JR_setBodyWithParams:params];
+#import "NSURLRequest+JRQueryParams.h"
 
-    return request;
-}
 
-- (void)JR_setBodyWithParams:(NSDictionary *)dictionary
+@implementation NSURLRequest (JRQueryParams)
+- (NSDictionary *)JR_HTTPBodyAsDictionary
 {
-    [self setHTTPMethod:@"POST"];
-    NSString *paramString = [dictionary asJRURLParamString];
-    DLog(@"Adding params to %@: %@", self, paramString);
-    [self setHTTPBody:[paramString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *paramString = [[NSString alloc] initWithData:[self HTTPBody] encoding:NSUTF8StringEncoding];
+    NSArray *keyValueStrings = [paramString componentsSeparatedByString:@"&"];
+#if !__has_feature(objc_arc)
+    [paramString release];
+#endif
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+    for (NSString *keyValueString in keyValueStrings) {
+        NSArray *keyValuePair = [keyValueString componentsSeparatedByString:@"="];
+        NSString *key = keyValuePair[0];
+        NSString *value = [keyValuePair[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [params setObject:value forKey:key];
+    }
+
+    return params;
 }
+
 @end

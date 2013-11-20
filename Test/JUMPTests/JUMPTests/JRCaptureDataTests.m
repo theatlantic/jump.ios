@@ -30,6 +30,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import "JRCaptureData.h"
+#import "JRCaptureFlow.h"
 #import <OCMock/OCMock.h>
 
 @interface JRCaptureDataTests : GHTestCase
@@ -50,7 +51,7 @@
 
     JRCaptureData *captureData = [[JRCaptureData alloc] init];
     id mockData = [OCMockObject partialMockForObject:captureData];
-    [[[mockData stub] andReturn:flow] captureFlow];
+    [[[mockData stub] andReturn:[JRCaptureFlow flowWithDictionary:flow]] captureFlow];
     [[[mockData stub] andReturn:@"resetPasswordForm"] captureForgottenPasswordFormName];
 
     GHAssertEqualStrings([mockData getForgottenPasswordFieldName],
@@ -72,7 +73,7 @@
 
     JRCaptureData *captureData = [[JRCaptureData alloc] init];
     id mockData = [OCMockObject partialMockForObject:captureData];
-    [[[mockData stub] andReturn:flow] captureFlow];
+    [[[mockData stub] andReturn:[JRCaptureFlow flowWithDictionary:flow]] captureFlow];
     [[[mockData stub] andReturn:@"resetPasswordForm"] captureForgottenPasswordFormName];
 
     GHAssertEqualStrings([mockData getForgottenPasswordFieldName], @"username", nil, nil);
@@ -84,7 +85,7 @@
 
     JRCaptureData *captureData = [[JRCaptureData alloc] init];
     id mockData = [OCMockObject partialMockForObject:captureData];
-    [[[mockData stub] andReturn:flow] captureFlow];
+    [[[mockData stub] andReturn:[JRCaptureFlow flowWithDictionary:flow]] captureFlow];
     [[[mockData stub] andReturn:@"resetPasswordForm"] captureForgottenPasswordFormName];
 
     GHAssertEqualStrings([mockData getForgottenPasswordFieldName], nil, nil, nil);

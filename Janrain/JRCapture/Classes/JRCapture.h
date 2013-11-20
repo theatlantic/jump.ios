@@ -338,6 +338,18 @@
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error;
 
 /**
+ * Sent when resending the email validation email succeeds
+ */
+- (void)resendVerificationEmailDidSucceed;
+
+/**
+ * Sent when resending the email validation email fails
+ * @param error
+ *    The error that caused the failure.
+ */
+- (void)resendVerificationEmailDidFailWithError:(NSError *)error;
+
+/**
  * Sent when the Account is Linked Successfully
  */
 - (void)linkNewAccountDidSucceed;
@@ -740,6 +752,21 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  */
 + (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
                                       delegate:(id <JRCaptureDelegate>)delegate;
+
+/**
+ * Resend the email verification email
+ *
+ * A successful call will cause an email to be sent to the provided email address containing a "resend" link. The link
+ * will use the "verify_email_url" Capture setting as a base and includes a "verification_code" parameter that can be
+ * used to verify the email address.
+ *
+ * @param emailAddress
+ *   The email address of the user that needs to be verified
+ * @param delegate
+ *   The JRCaptureDelegate object that wishes to receive messages regarding user authentication.
+ */
++ (void)resendVerificationEmail:(NSString *)emailAddress delegate:(id <JRCaptureDelegate>)delegate;
+
 /**
  * Link new account for existing user
 **/

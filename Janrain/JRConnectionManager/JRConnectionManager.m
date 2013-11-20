@@ -290,9 +290,15 @@ static JRConnectionManager *singleton = nil;
 + (void)jsonRequestToUrl:(NSString *)url params:(NSDictionary *)params
      completionHandler:(void(^)(id parsedResponse, NSError *e))handler
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [request JR_setBodyWithParams:params];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
+    [JRConnectionManager startURLConnectionWithRequest:request completionHandler:handler];
+}
+
++ (void)startURLConnectionWithRequest:(NSURLRequest *)request
+                    completionHandler:(void(^)(id parsedResponse, NSError *e))handler
+{
     NSString *p = [[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding] autorelease];
+    NSString *url = [request.URL absoluteString];
     DLog(@"URL: \"%@\" params: \"%@\"", url, p);
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *r, NSData *d, NSError *e)

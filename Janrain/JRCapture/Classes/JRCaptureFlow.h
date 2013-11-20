@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2010, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -26,25 +26,18 @@
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import "NSMutableURLRequest+JRRequestUtils.h"
-#import "NSDictionary+JRQueryParams.h"
-#import "debug_log.h"
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-@implementation NSMutableURLRequest (JRRequestUtils)
-+ (NSMutableURLRequest *)JR_requestWithURL:(NSURL *)url params:(NSDictionary *)params {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request JR_setBodyWithParams:params];
+#import <Foundation/Foundation.h>
 
-    return request;
-}
 
-- (void)JR_setBodyWithParams:(NSDictionary *)dictionary
-{
-    [self setHTTPMethod:@"POST"];
-    NSString *paramString = [dictionary asJRURLParamString];
-    DLog(@"Adding params to %@: %@", self, paramString);
-    [self setHTTPBody:[paramString dataUsingEncoding:NSUTF8StringEncoding]];
-}
+@interface JRCaptureFlow : NSObject
++ (JRCaptureFlow *)flowWithDictionary:(NSDictionary *)dictionary;
+
+- (NSDictionary *)dictionary;
+- (id)objectForKey:(id)key;
+- (id)schemaIdForFieldName:(NSString *)fieldName;
+- (NSMutableDictionary *)fieldsForForm:(NSString *)form fromDictionary:(NSDictionary *)dict;
+- (NSString *)userIdentifyingFieldForForm:(NSString *)formName;
 @end

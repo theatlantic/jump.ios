@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2012, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -26,24 +26,23 @@
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
 #import <Foundation/Foundation.h>
-#import "JRCaptureUser+Extras.h"
 
-@protocol SharedDataDelegate <NSObject>
-- (void)getCaptureUserDidSucceedWithUser:(JRCaptureUser *)user;
-- (void)getCaptureUserDidFailWithResult:(NSString *)result;
+@class JRCaptureFlow;
+
+@protocol JRCaptureEnvironment <NSObject>
+
+- (JRCaptureFlow *)captureFlow;
+- (NSString *)captureBaseUrl;
+- (NSString *)captureForgottenPasswordFormName;
+- (NSString *)clientId;
+- (NSString *)captureLocale;
+- (NSString *)captureFlowName;
+- (NSString *)downloadedFlowVersion;
+- (NSString *)resendEmailVerificationFormName;
+- (NSString *)redirectUri;
+
 @end
-
-@interface SharedData : NSObject <JRCaptureUserDelegate>
-+ (JRCaptureUser *)sharedCaptureUser;
-+ (void)getCaptureUserForDelegate:(id<SharedDataDelegate>)delegate;
-+ (void)initializeCapture;
-+ (JRCaptureUser *)getBlankCaptureUser;
-@end
-
-typedef void (^UpdateCallback)(JRCaptureObject *, NSError *);
-typedef void (^FetchCallback)(JRCaptureUser *, NSError *);
-typedef void (^ReplaceArrayCallback)(NSArray *, NSError *);

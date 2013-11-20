@@ -31,6 +31,8 @@
 #import <Foundation/Foundation.h>
 #import "JRCaptureUser.h"
 
+@class JRCaptureFlow;
+
 /**
  * @internal
  */
@@ -44,9 +46,9 @@
  * @internal
  */
 @interface JRCaptureUser (JRCaptureUser_Internal_Extras)
-- (NSMutableDictionary *)toFormFieldsForForm:(NSString *)formName withFlow:(NSDictionary *)flow;
+- (NSMutableDictionary *)toFormFieldsForForm:(NSString *)formName withFlow:(JRCaptureFlow *)flow;
 
-+ (JRCaptureUser *)captureUserObjectWithPrefilledFields:(NSDictionary *)prefilledFields flow:(NSDictionary *)flow;
++ (JRCaptureUser *)captureUserObjectWithPrefilledFields:(NSDictionary *)prefilledFields flow:(JRCaptureFlow *)flow;
 
 + (BOOL)hasPasswordField:(NSDictionary *)userDict;
 @end

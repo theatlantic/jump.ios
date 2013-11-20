@@ -71,6 +71,11 @@
 {
     return [JRJsonUtils jsonStringForJsonObject:self];
 }
+
+- (BOOL)JR_isOKStatus
+{
+    return [@"ok" isEqualToString:[self objectForKey:@"stat"]];
+}
 @end
 
 @implementation NSArray (JRJsonUtils)

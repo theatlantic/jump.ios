@@ -35,6 +35,7 @@
 #import "JRCaptureUser+Extras.h"
 #import "JRCaptureError.h"
 #import "JRCaptureObject+Internal.h"
+#import "JRCaptureFlow.h"
 
 @interface JRCaptureUserApidHandler : NSObject <JRCaptureInternalDelegate>
 @end
@@ -128,7 +129,7 @@
 @end
 
 @implementation JRCaptureUser (JRCaptureUser_Internal_Extras)
-- (NSMutableDictionary *)toFormFieldsForForm:(NSString *)formName withFlow:(NSDictionary *)flow
+- (NSMutableDictionary *)toFormFieldsForForm:(NSString *)formName withFlow:(JRCaptureFlow *)flow
 {
     if (!formName || !flow) return nil;
 
@@ -165,11 +166,7 @@
 }
 
 +(BOOL)hasPasswordField:(NSDictionary *)dict {
-    
-    NSString *component = [[[[[JRCaptureData sharedCaptureData] captureFlow]
-                             valueForKey:@"schema_info"]
-                            valueForKey:@"paths"]
-                           valueForKey:@"password"];
+    NSString *component = [[[JRCaptureData sharedCaptureData] captureFlow] schemaIdForFieldName:@"password"];
     NSArray *pathComponents = [component componentsSeparatedByString:@"."];
     NSString *passwordValue =  [JRCaptureUser valueForAttrByDotPathComponents:pathComponents userDict:dict];
     
@@ -256,7 +253,7 @@
         }
 }
 
-+ (JRCaptureUser *)captureUserObjectWithPrefilledFields:(NSDictionary *)prefilledFields flow:(NSDictionary *)flow
++ (JRCaptureUser *)captureUserObjectWithPrefilledFields:(NSDictionary *)prefilledFields flow:(JRCaptureFlow *)flow
 {
     NSMutableDictionary *preregAttributes = [NSMutableDictionary dictionary];
     for (id key in prefilledFields)
@@ -272,7 +269,7 @@
     return [JRCaptureUser captureUserObjectFromDictionary:preregAttributes];
 }
 
-+ (NSDictionary *)fieldDictForFieldName:(NSString *)fieldName flow:(NSDictionary *)flow
++ (NSDictionary *)fieldDictForFieldName:(NSString *)fieldName flow:(JRCaptureFlow *)flow
 {
     NSDictionary *fields = [flow objectForKey:@"fields"];
     for (id key in fields)

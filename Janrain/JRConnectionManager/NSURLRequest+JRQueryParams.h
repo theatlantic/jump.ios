@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2012, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -26,70 +26,11 @@
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-//#ifdef DEBUG
-//#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-//#else
-//#define DLog(...)
-//#endif
-//
-//#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-//
-//#import <GHUnitIOS/GHUnit.h>
-//#import "SharedData.h"
-//#import "JRCaptureObject+Internal.h"
-//#import "JSONKit.h"
-//
-//@interface e1_ErrorHandlerTests : GHAsyncTestCase <JRCaptureObjectTesterDelegate, JRCaptureUserTesterDelegate>
-//{
-//    JRCaptureUser *captureUser;
-//}
-//@property(retain) JRCaptureUser *captureUser;
-//@end
-//
-//@implementation e1_ErrorHandlerTests
-//@synthesize captureUser;
-//
-//- (void)setUpClass
-//{
-//    DLog(@"");
-//    [SharedData initializeCapture];
-//}
-//
-//- (void)tearDownClass
-//{
-//    DLog(@"");
-//    self.captureUser = nil;
-//}
-//
-//- (void)setUp
-//{
-//    self.captureUser = [SharedData getBlankCaptureUser];
-//}
-//
-//- (void)tearDown
-//{
-//    self.captureUser = nil;
-//}
-//
-///* Set a boolean with an NSNumber boolean */
-//- (void)test_e101_booleanWithBoolTrue
-//{
-//    GHAssertNotNil(captureUser, @"captureUser should not be nil");
-//
-//    captureUser.basicBoolean = [NSNumber numberWithBool:YES];
-//    GHAssertTrue([captureUser.basicBoolean boolValue], nil);
-//
-//    [self prepare];
-//    [captureUser updateOnCaptureForDelegate:self context:NSStringFromSelector(_cmd)];
-//    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
-//}
-//
-//- (void)dealloc
-//{
-//    [captureUser release];
-//    [super dealloc];
-//}
-//@end
-//
+#import <Foundation/Foundation.h>
+
+@interface NSURLRequest (JRQueryParams)
+- (NSDictionary *)JR_HTTPBodyAsDictionary;
+@end

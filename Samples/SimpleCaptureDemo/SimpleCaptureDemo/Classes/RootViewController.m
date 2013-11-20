@@ -99,6 +99,7 @@
         self.shareButton.hidden = NO;
         self.refetchButton.hidden = NO;
         self.forgotPasswordButton.hidden = YES;
+        self.resendVerificationButton.hidden = YES;
         self.linkAccountButton.hidden = NO;
         self.unlinkAccountButton.hidden = NO;
 
@@ -118,6 +119,7 @@
         self.shareButton.hidden = YES;
         self.refetchButton.hidden = YES;
         self.forgotPasswordButton.hidden = NO;
+        self.resendVerificationButton.hidden = NO;
         self.linkAccountButton.hidden = YES;
         self.unlinkAccountButton.hidden = YES;
 
@@ -143,7 +145,7 @@
     self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha =
                 self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha =
                 self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha =
-                self.tradAuthButton.alpha = 0.5 + b * 0.5;
+                self.resendVerificationButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -299,6 +301,22 @@
                                      completion:completion
                                           style:UIAlertViewStyleDefault
                               cancelButtonTitle:@"Cancel" otherButtonTitles:@"Proceed", nil] show];
+}
+
+- (IBAction)resendVerificationButtonPressed:(id)sender {
+    void (^completion)(UIAlertView *, BOOL, NSInteger) =
+            ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+                if (buttonIndex != alertView.cancelButtonIndex) {
+                    NSString *emailAddress = [alertView textFieldAtIndex:0].text;
+                    [JRCapture resendVerificationEmail:emailAddress delegate:self.captureDelegate];
+                }
+            };
+
+    [[[AlertViewWithBlocks alloc] initWithTitle:@"Please confirm your email"
+                                        message:@"We'll resend your verification email."
+                                     completion:completion
+                                          style:UIAlertViewStylePlainTextInput
+                              cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil] show];
 }
 
 -(void)unlinkSelectedProfile:(NSString *)selectedProfile {
@@ -582,6 +600,18 @@
     [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
                                         message:[NSString stringWithFormat:@"%@", error] delegate:nil
                               cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
+- (void)resendVerificationEmailDidSucceed {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Verification email Sent" message:@"" delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)resendVerificationEmailDidFailWithError:(NSError *)error {
+    [[[UIAlertView alloc] initWithTitle:@"Failed to resend verification email"
+                                message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                      cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
 - (void)captureDidSucceedWithCode:(NSString *)code

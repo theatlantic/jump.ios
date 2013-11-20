@@ -3,7 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -135,7 +135,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="11P-Kw-deQ">
-                                <rect key="frame" x="20" y="302" width="280" height="44"/>
+                                <rect key="frame" x="20" y="319" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Direct Traditional Sign-In">
@@ -164,8 +164,23 @@
                                     <action selector="forgotPasswordButtonPressed:" destination="2" eventType="touchUpInside" id="UcZ-rZ-nLa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PXV-y1-mTZ">
+                                <rect key="frame" x="20" y="217" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Resend Verification Email">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resendVerificationButtonPressed:" destination="2" eventType="touchUpInside" id="lQG-jz-1dJ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FmY-Nl-bUq">
-                                <rect key="frame" x="20" y="251" width="280" height="44"/>
+                                <rect key="frame" x="20" y="268" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Direct Facebook Sign-In">
@@ -238,6 +253,7 @@
                         <outlet property="linkAccountButton" destination="ObZ-df-gL7" id="YXV-Ln-6w8"/>
                         <outlet property="refetchButton" destination="UYF-zS-03v" id="Ry9-EY-EKB"/>
                         <outlet property="refreshButton" destination="9l8-Zj-RBh" id="FEg-vq-zM3"/>
+                        <outlet property="resendVerificationButton" destination="PXV-y1-mTZ" id="OPT-FZ-e93"/>
                         <outlet property="shareButton" destination="Lxu-X3-tcS" id="6WO-eE-sYh"/>
                         <outlet property="signInButton" destination="gAk-C3-t5t" id="xiB-Pk-aug"/>
                         <outlet property="signOutButton" destination="GHJ-Vx-tee" id="irK-fI-240"/>
