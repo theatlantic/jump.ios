@@ -47,6 +47,7 @@
 
 /** \internal Array of JREngageDelegate objects */
 @property (nonatomic, retain) NSMutableArray         *delegates;
+
 @end
 
 @implementation JREngage
@@ -55,15 +56,6 @@
 @synthesize delegates;
 
 static JREngage* singleton = nil;
-
-- (id)init
-{
-    if ((self = [super init]))
-    {
-    }
-
-    return self;
-}
 
 + (JREngage *)singletonInstance
 {

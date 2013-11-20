@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2010, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -27,14 +27,20 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
- File:   JRActivityObject.h
- Author: Lilli Szafranski - lilli@janrain.com, lillialexis@gmail.com
- Date:   Tuesday, August 24, 2010
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <Foundation/Foundation.h>
 
-@interface JRNativeAuth : NSObject
-+ (BOOL)canHandleProvider:(NSString *)provider;
-+ (void)startAuthOnProvider:(NSString *)provider completion:(void (^)(NSError *))completion;
+typedef void (^NativeCompletionBlock)(NSError *);
+
+
+@interface JRNativeProvider : NSObject
+@property (nonatomic, readonly, copy) NativeCompletionBlock completion;
+
++ (BOOL)canHandleAuthentication;
+
+- (NSString *)provider;
+- (id)initWithCompletion:(NativeCompletionBlock)completion;
+- (void)startAuthentication;
+- (void)getAuthInfoTokenForAccessToken:(id)token;
 @end
