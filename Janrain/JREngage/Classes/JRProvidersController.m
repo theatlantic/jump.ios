@@ -41,6 +41,7 @@
 #import "JRUserLandingController.h"
 #import "JRNativeAuth.h"
 #import "JREngageError.h"
+#import "JRCaptureData.h"
 
 @interface UITableViewCellProviders : UITableViewCell
 @end
@@ -516,15 +517,14 @@
             [myActivitySpinner startAnimating];
             myLoadingLabel.text = @"Signing in ...";
         }];
-        [JRNativeAuth startAuthOnProvider:provider.name completion:^(NSError *e) {
-            if (e)
-            {
-                if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError)
-                {
+        [JRNativeAuth startAuthOnProvider:provider.name
+                            configuration:[JRCaptureData sharedCaptureData]
+                               completion:^(NSError *e) {
+            if (e) {
+                if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
                     [sessionData triggerAuthenticationDidCancel];
                 }
-                else
-                {
+                else {
                     [UIView animateWithDuration:0.3 animations:^() {
                         myTableView.hidden = NO;
                         [myActivitySpinner setHidden:YES];

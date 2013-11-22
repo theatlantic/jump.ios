@@ -1,4 +1,5 @@
 #import "JRCaptureEnvironment.h"
+#import "JRNativeAuthConfig.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Copyright (c) 2012, Janrain, Inc.
@@ -36,7 +37,7 @@
 /**
  * @internal
  */
-@interface JRCaptureData : NSObject <JRCaptureEnvironment>
+@interface JRCaptureData : NSObject <JRCaptureEnvironment, JRNativeAuthConfig>
 @property(nonatomic, retain) NSString *bpChannelUrl;
 @property(nonatomic, readonly, retain) NSString *captureBaseUrl;
 @property(nonatomic, readonly, retain) NSString *captureRedirectUri;
@@ -55,6 +56,7 @@
 @property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic, readonly, retain) NSString *captureEditProfileFormName;
 @property(nonatomic, readonly, retain) NSString *resendEmailVerificationFormName;
+@property(nonatomic, readonly, retain) NSString *googlePlusClientId;
 @property(nonatomic) BOOL flowUsesTestingCdn;
 @property(nonatomic, readonly, retain) NSArray *linkedProfiles;
 @property(nonatomic, readonly) BOOL socialSignMode;

@@ -60,6 +60,7 @@
     [self.passwordRecoverUri release];
     [self.editProfileFormName release];
     [self.resendEmailVerificationFormName release];
+    [self.googlePlusClientId release];
 
     [super dealloc];
 #endif

@@ -34,7 +34,10 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol JRNativeAuthConfig;
+
 @interface JRNativeAuth : NSObject
 + (BOOL)canHandleProvider:(NSString *)provider;
-+ (void)startAuthOnProvider:(NSString *)provider completion:(void (^)(NSError *))completion;
+
++ (void)startAuthOnProvider:(NSString *)provider configuration:(id <JRNativeAuthConfig>)config completion:(void (^)(NSError *))completion;
 @end

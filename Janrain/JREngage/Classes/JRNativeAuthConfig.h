@@ -31,17 +31,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^NativeCompletionBlock)(NSError *);
-
-
-@interface JRNativeProvider : NSObject
-@property (nonatomic, readonly, copy) NativeCompletionBlock completion;
-
-+ (BOOL)canHandleAuthentication;
-
-- (NSString *)provider;
-- (id)initWithCompletion:(NativeCompletionBlock)completion;
-- (void)startAuthentication;
-- (void)getAuthInfoTokenForAccessToken:(id)token;
-- (void)signOut;
+@protocol JRNativeAuthConfig <NSObject>
+- (NSString *)googlePlusClientId;
 @end

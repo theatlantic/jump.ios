@@ -37,6 +37,8 @@
 #import "JRConnectionManager.h"
 #import "JRSessionData.h"
 #import "JRNativeFacebook.h"
+#import "JRNativeAuthConfig.h"
+#import "JRNativeGooglePlus.h"
 
 //#ifdef JR_FACEBOOK_SDK_TEST
 //#   import "FacebookSDK/FacebookSDK.h"
@@ -62,21 +64,30 @@ static JRNativeAuth *singleton;
 + (BOOL)canHandleProvider:(NSString *)provider
 {
     if ([provider isEqualToString:@"facebook"] && [JRNativeFacebook canHandleAuthentication]) return YES;
+    else if ([provider isEqualToString:@"googleplus"] && [JRNativeGooglePlus canHandleAuthentication]) return YES;
+
     return NO;
 }
 
-+ (void)startAuthOnProvider:(NSString *)provider completion:(void (^)(NSError *))completion
-{
++ (void)startAuthOnProvider:(NSString *)provider
+              configuration:(id <JRNativeAuthConfig>)config
+                 completion:(void (^)(NSError *))completion
+ {
     void (^_completion)(NSError *) = ^(NSError *error) {
         singleton.nativeProvider = nil;
         completion(error);
     };
 
-    if ([provider isEqual:@"facebook"]) {
-        [JRSessionData jrSessionData].authenticationFlowIsInFlight = YES;
+    [JRSessionData jrSessionData].authenticationFlowIsInFlight = YES;
+    if ([provider isEqualToString:@"facebook"]) {
         singleton.nativeProvider = [[JRNativeFacebook alloc] initWithCompletion:_completion];
+    } else if ([provider isEqualToString:@"googleplus"]) {
+        singleton.nativeProvider = [[JRNativeGooglePlus alloc] initWithCompletion:_completion];
+        [(JRNativeGooglePlus *)singleton.nativeProvider setGooglePlusClientId:config.googlePlusClientId];
     } else {
+        [JRSessionData jrSessionData].authenticationFlowIsInFlight = NO;
         [NSException raiseJRDebugException:@"unexpected native auth provider" format:provider];
+        return;
     }
 
     [singleton.nativeProvider startAuthentication];

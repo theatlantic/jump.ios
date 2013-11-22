@@ -66,16 +66,16 @@
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
 }
 
-- (void)getAuthInfoTokenForAccessToken:(id)token
-{
+- (void)signOut {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+}
+
+- (void)getAuthInfoTokenForAccessToken:(id)token {
     DLog(@"token %@", token);
     if (![token isKindOfClass:[NSString class]])
     {
-//#if __has_feature(objc_arc)
         id userInfo = @{@"description":@"invalid token", @"token":[NSValue valueWithNonretainedObject:token]};
-//#else
-//        id userInfo = @{@"description":@"invalid token", @"token":[NSValue valueWithPointer:token]};
-//#endif
         NSError *error = [NSError errorWithDomain:JREngageErrorDomain code:JRAuthenticationNativeAuthError
                                          userInfo:userInfo];
         DLog(@"Native auth error: %@", error);

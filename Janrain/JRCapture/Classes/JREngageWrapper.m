@@ -120,6 +120,7 @@ static JREngageWrapper *singleton = nil;
 + (void)configureEngageWithAppId:(NSString *)appId customIdentityProviders:(NSDictionary *)customProviders
 {
     [JREngage setEngageAppId:appId tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
+    [JREngage setGooglePlusClientId:[[JRCaptureData sharedCaptureData] googlePlusClientId]];
     JREngage.customProviders = customProviders;
 }
 

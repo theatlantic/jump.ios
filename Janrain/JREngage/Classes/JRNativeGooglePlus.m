@@ -29,19 +29,54 @@
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import <Foundation/Foundation.h>
+#import "JRNativeGooglePlus.h"
+#import "debug_log.h"
 
-typedef void (^NativeCompletionBlock)(NSError *);
+#if __has_include(<GooglePlus/GooglePlus.h>)
+# import <GooglePlus/GooglePlus.h>
+#endif
+#if __has_include(<GoogleOpenSource/GoogleOpenSource.h>)
+# import <GoogleOpenSource/GoogleOpenSource.h>
+#endif
 
 
-@interface JRNativeProvider : NSObject
-@property (nonatomic, readonly, copy) NativeCompletionBlock completion;
+@interface JRNativeGooglePlus () <GPPSignInDelegate>
+@end
 
-+ (BOOL)canHandleAuthentication;
+@implementation JRNativeGooglePlus
 
-- (NSString *)provider;
-- (id)initWithCompletion:(NativeCompletionBlock)completion;
-- (void)startAuthentication;
-- (void)getAuthInfoTokenForAccessToken:(id)token;
-- (void)signOut;
++ (BOOL)canHandleAuthentication {
+    return NSClassFromString(@"GPPSignIn") ? YES : NO;
+}
+
+- (NSString *)provider {
+    return @"googleplus";
+}
+
+- (void)startAuthentication {
+    id signIn = [NSClassFromString(@"GPPSignIn") sharedInstance];
+    [signIn setClientID:self.googlePlusClientId];
+    //TODO This should be based on what is configured in the Engage Dashboard
+    [signIn setScopes:@[@"https://www.googleapis.com/auth/plus.login"]];
+    [signIn setDelegate:self];
+
+    [signIn authenticate];
+}
+
+- (void)signOut {
+    [(id)[NSClassFromString(@"GPPSignIn") sharedInstance] signOut];
+}
+
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
+    DLog(@"Google+ received error %@ and auth object %@",error, auth);
+
+    // FIXME should add better error handling here
+    if (error) {
+        self.completion(error);
+    } else {
+        NSString *accessToken = [auth accessToken];
+        [self getAuthInfoTokenForAccessToken:accessToken];
+    }
+}
+
 @end

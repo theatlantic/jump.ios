@@ -95,6 +95,7 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 
 @property(nonatomic, retain) JRCaptureFlow *captureFlow;
 @property(nonatomic, retain) NSArray *linkedProfiles;
+@property(nonatomic, retain) NSString *googlePlusClientId;
 @property(nonatomic) BOOL initialized;
 @property(nonatomic) BOOL socialSignMode;
 @end
@@ -121,6 +122,7 @@ static JRCaptureData *singleton = nil;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
 @synthesize passwordRecoverUri;
+@synthesize googlePlusClientId;
 
 - (JRCaptureData *)init
 {
@@ -269,6 +271,7 @@ static JRCaptureData *singleton = nil;
     captureDataInstance.captureEditProfileFormName = config.editProfileFormName;
     captureDataInstance.passwordRecoverUri = config.passwordRecoverUri;
     captureDataInstance.resendEmailVerificationFormName = config.resendEmailVerificationFormName;
+    captureDataInstance.googlePlusClientId = config.googlePlusClientId;
 
     if ([captureDataInstance.captureLocale length] &&
             [captureDataInstance.captureFlowName length] && [captureDataInstance.captureAppId length])
@@ -438,6 +441,7 @@ static JRCaptureData *singleton = nil;
     [captureForgottenPasswordFormName release];
     [captureEditProfileFormName release];
     [resendEmailVerificationFormName release];
+    [googlePlusClientId release];
     [super dealloc];
 }
 
@@ -467,9 +471,9 @@ static JRCaptureData *singleton = nil;
         for(NSDictionary *dict in profileData) {
             
             NSDictionary *tempDict = @{
-                                       @"verifiedEmail" : ([[dict objectForKey:@"verifiedEmail"] isKindOfClass:[NSNull class]]) ? @"": [dict objectForKey:@"verifiedEmail"],
-                                       @"identifier" : [dict objectForKey:@"identifier"],
-                                       };
+                   @"verifiedEmail" : ([dict objectForKey:@"verifiedEmail"] ? [dict objectForKey:@"verifiedEmail"] : @""),
+                   @"identifier" : [dict objectForKey:@"identifier"],
+            };
             [returnArray addObject:tempDict];
         }
     }

@@ -345,6 +345,14 @@
 /*@}*/
 
 /**
+ *  Set the Google+ client id for use with native Google+ SSO
+ *
+ *  @param clientId
+ *    Your google+ client id. Should be from the same Google+ app that is registered with Engage.
+ */
++ (void)setGooglePlusClientId:(NSString *)clientId;
+
+/**
  * @name Manage the Delegates
  * Add/remove delegates that implement the JREngageSigninDelegate or JREngageSharingDelegate protocol
  **/
@@ -571,6 +579,12 @@
 + (void)setCustomInterfaceDefaults:(NSDictionary *)customInterfaceDefaults __unused;
 /*@}*/
 + (void)setCustomProviders:(NSDictionary *)customProviders __unused;
+
+/**
+ * JREngage URL handler
+ */
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation;
 @end
 
 /**
