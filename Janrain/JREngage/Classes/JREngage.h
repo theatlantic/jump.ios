@@ -81,6 +81,8 @@
 #endif
 
 #import <Foundation/Foundation.h>
+#import "JRNativeAuthConfig.h"
+
 @class JRActivityObject;
 
 /**
@@ -309,7 +311,7 @@
  * the token URL. Your server can complete authentication, access more of JREngage's API, log the authentication, etc.
  * and the server's response will be passed back through to your iOS application.
  **/
-@interface JREngage : NSObject
+@interface JREngage : NSObject <JRNativeAuthConfig>
 
 /**
  * @name Get the JREngage Instance
@@ -335,6 +337,11 @@
  **/
 + (void)setEngageAppId:(NSString *)appId tokenUrl:(NSString *)tokenUrl
            andDelegate:(id <JREngageSigninDelegate>)delegate;
+
+/**
+ * Get the shared JREngage instance
+ */
++ (JREngage *)instance;
 
 /**
  * @deprecated

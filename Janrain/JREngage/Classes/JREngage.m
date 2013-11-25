@@ -46,7 +46,7 @@
 # import <GooglePlus/GooglePlus.h>
 #endif
 
-@interface JREngage () <JRSessionDelegate, JRNativeAuthConfig>
+@interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
 @property (nonatomic, retain) JRUserInterfaceMaestro *interfaceMaestro;
 
@@ -102,6 +102,13 @@ static JREngage* singleton = nil;
 + (void)setEngageAppId:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
 {
     [[JREngage singletonInstance] setEngageAppID:appId tokenUrl:tokenUrl andDelegate:delegate];
+}
+
++ (JREngage *)instance {
+    if (singleton) {
+        return [JREngage singletonInstance];
+    }
+    return nil;
 }
 
 + (JREngage *)jrEngageWithAppId:(NSString *)appId andTokenUrl:(NSString *)tokenUrl
@@ -228,7 +235,7 @@ static JREngage* singleton = nil;
 
     if ([JRNativeAuth canHandleProvider:provider])
     {
-        [self startNativeAuthWithCustomInterface:customInterfaceOverrides provider:provider];
+        [self startNativeAuthOnProvider:provider];
     }
     else
     {
@@ -236,25 +243,18 @@ static JREngage* singleton = nil;
     }
 }
 
-- (void)startNativeAuthWithCustomInterface:(NSDictionary *)customInterfaceOverrides provider:(NSString *)provider
+- (void)startNativeAuthOnProvider:(NSString *)provider
 {
     [JRNativeAuth startAuthOnProvider:provider configuration:self completion:^(NSError *error) {
         if (!error) return;
+
         if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
             [self authenticationDidCancel];
-        }
-        else {
-            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
+        } else {
+            [self authenticationDidFailWithError:error forProvider:provider];
         }
     }];
 }
-
-//- (void)showAuthenticationDialogForProvider:(NSString *)provider
-//               withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
-//{
-//    [self showAuthenticationDialogWithCustomInterfaceOverrides:customInterfaceOverrides
-//                            orAuthenticatingOnJustThisProvider:provider];
-//}
 
 + (void)showAuthenticationDialogForProvider:(NSString *)provider
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused
@@ -615,9 +615,16 @@ static JREngage* singleton = nil;
     Class fbSession = NSClassFromString(@"FBSession");
     Class gPPURLHandler = NSClassFromString(@"GPPURLHandler");
 
-    if (fbSession && [[fbSession activeSession] handleOpenURL:url]) {
-        return YES;
-    } else if (gPPURLHandler) {
+    if (fbSession) {
+        SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
+        id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
+        id activeSession = getActiveSession(fbSession, activeSessionSelector);
+
+        SEL urlHandlerSelector = NSSelectorFromString(@"handleOpenURL:");
+        BOOL (*urlHandler)(id, SEL, NSURL *) = (void *)[activeSession methodForSelector:urlHandlerSelector];
+        if (urlHandler(activeSession, urlHandlerSelector, url)) return YES;
+    }
+    if (gPPURLHandler) {
         SEL urlHandlerSel = NSSelectorFromString(@"handleURL:sourceApplication:annotation:");
         BOOL (*urlHandler)(id, SEL, NSURL *, NSString *, id) = (void *)[gPPURLHandler methodForSelector:urlHandlerSel];
         if (urlHandler(gPPURLHandler, urlHandlerSel, url, sourceApplication, annotation)) return YES;

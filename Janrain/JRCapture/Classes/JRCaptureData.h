@@ -37,7 +37,7 @@
 /**
  * @internal
  */
-@interface JRCaptureData : NSObject <JRCaptureEnvironment, JRNativeAuthConfig>
+@interface JRCaptureData : NSObject <JRCaptureEnvironment>
 @property(nonatomic, retain) NSString *bpChannelUrl;
 @property(nonatomic, readonly, retain) NSString *captureBaseUrl;
 @property(nonatomic, readonly, retain) NSString *captureRedirectUri;
@@ -56,7 +56,6 @@
 @property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic, readonly, retain) NSString *captureEditProfileFormName;
 @property(nonatomic, readonly, retain) NSString *resendEmailVerificationFormName;
-@property(nonatomic, readonly, retain) NSString *googlePlusClientId;
 @property(nonatomic) BOOL flowUsesTestingCdn;
 @property(nonatomic, readonly, retain) NSArray *linkedProfiles;
 @property(nonatomic, readonly) BOOL socialSignMode;

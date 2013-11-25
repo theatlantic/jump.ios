@@ -38,6 +38,7 @@
 #import "JRUserInterfaceMaestro.h"
 #import "JRWebViewController.h"
 #import "debug_log.h"
+#import "JRNativeAuth.h"
 
 #define frame_w(a) a.frame.size.width
 #define frame_h(a) a.frame.size.height
@@ -529,29 +530,44 @@ replacementString:(NSString *)string
 {
     DLog(@"");
     DLog(@"user input: %@", textField.text);
-    if (sessionData.currentProvider.requiresInput)
-    {
-        if (textField.text.length > 0)
+    if ([JRNativeAuth canHandleProvider:sessionData.currentProvider.name]) {
+        void (^completion)(NSError *) = ^(NSError *error) {
+            if (error) {
+                if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
+                    [sessionData triggerAuthenticationDidCancel];
+                } else {
+                    [sessionData triggerAuthenticationDidFailWithError:error];
+                }
+            }
+        };
+        [JRNativeAuth startAuthOnProvider:sessionData.currentProvider.name
+                            configuration:[JREngage instance]
+                               completion:completion];
+    } else {
+        if (sessionData.currentProvider.requiresInput)
         {
-            [textField resignFirstResponder];
-            [self adjustTableViewFrame];
+            if (textField.text.length > 0)
+            {
+                [textField resignFirstResponder];
+                [self adjustTableViewFrame];
 
-            sessionData.currentProvider.userInput = [NSString stringWithString:textField.text];
+                sessionData.currentProvider.userInput = [NSString stringWithString:textField.text];
+            }
+            else
+            {
+                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
+                                                                 message:@"The input you have entered is not valid. Please "
+                                                                         "try again."
+                                                                delegate:self
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil] autorelease];
+                [alert show];
+                return;
+            }
         }
-        else
-        {
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                             message:@"The input you have entered is not valid. Please "
-                                                                     "try again."
-                                                            delegate:self
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil] autorelease];
-            [alert show];
-            return;
-        }
+
+        [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
     }
-
-    [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

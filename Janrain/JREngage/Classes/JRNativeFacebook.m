@@ -31,7 +31,6 @@
 
 #import <objc/message.h>
 #import "JRNativeFacebook.h"
-#import "JRSessionData.h"
 #import "debug_log.h"
 #import "JREngageError.h"
 
@@ -41,129 +40,83 @@
 @implementation JRNativeFacebook {
 }
 
-static Class fbSession;
-static SEL activeSessionSel;
-static SEL stateSel;
-static SEL accessTokenDataSel;
-static SEL accessTokenSel;
-static SEL openActiveSessionWithReadPermissionsSel;
-static SEL appIdSel;
-static Class fbErrorUtilityClass;
-static SEL fbErrorCategoryForErrorSel;
-
-+ (void)initialize
-{
-    static BOOL initialized = NO;
-    if (!initialized) {
-        fbSession = NSClassFromString(@"FBSession");
-        activeSessionSel = NSSelectorFromString(@"activeSession");
-        stateSel = NSSelectorFromString(@"state");
-        accessTokenDataSel = NSSelectorFromString(@"accessTokenData");
-        accessTokenSel = NSSelectorFromString(@"accessToken");
-        openActiveSessionWithReadPermissionsSel =
-                NSSelectorFromString(@"openActiveSessionWithReadPermissions:allowLoginUI:completionHandler:");
-        appIdSel = NSSelectorFromString(@"appID");
-        fbErrorUtilityClass = NSClassFromString(@"FBErrorUtility");
-        fbErrorCategoryForErrorSel = NSSelectorFromString(@"errorCategoryForError:");
-
-        initialized = YES;
-    }
-}
-
 + (BOOL)canHandleAuthentication {
-    [JRNativeFacebook initialize];
-    return fbSession ? YES : NO;
+    return NSClassFromString(@"FBSession") ? YES : NO;
 }
 
 - (NSString *)provider {
     return @"facebook";
 }
 
-//- (id)initWithCompletion:(NativeCompletionBlock)completion {
-//    if (self = [super initWithCompletion:completion]) {
-//        _fbSession = NSClassFromString(@"FBSession");
-//        _activeSessionSel = NSSelectorFromString(@"activeSession");
-//        _stateSel = NSSelectorFromString(@"state");
-//        _accessTokenDataSel = NSSelectorFromString(@"accessTokenData");
-//        _accessTokenSel = NSSelectorFromString(@"accessToken");
-//        _openActiveSessionWithReadPermissionsSel =
-//                NSSelectorFromString(@"openActiveSessionWithReadPermissions:allowLoginUI:completionHandler:");
-//        _appIdSel = NSSelectorFromString(@"appID");
-//        _fbErrorUtilityClass = NSClassFromString(@"FBErrorUtility");
-//        _fbErrorCategoryForErrorSel = NSSelectorFromString(@"errorCategoryForError:");
-//    }
-//    return self;
-//}
-
 - (void)startAuthentication {
-    [JRNativeFacebook initialize];
-// FIXME the below line causes a warning, but immediately below that is a fix
-// Alternatively could make these things static, like they were before.
-//    id fbActiveSession = [fbSession performSelector:activeSessionSel];
-    id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSel];
-    id fbActiveSession = getActiveSession(fbSession, activeSessionSel);
+    Class fbSession = NSClassFromString(@"FBSession");
+    SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
+    id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
+    id fbActiveSession = getActiveSession(fbSession, activeSessionSelector);
 
-//    int64_t fbState = (BOOL) [fbActiveSession performSelector:stateSel];
-    int64_t (*getState)(id, SEL) = (void *)[fbActiveSession methodForSelector:stateSel];
-    int64_t fbState = (BOOL)getState(fbActiveSession, stateSel);
+    SEL stateSelector = NSSelectorFromString(@"state");
+    unsigned int (*getState)(id, SEL) = (void *)[fbActiveSession methodForSelector:stateSelector];
+    unsigned int fbState = getState(fbActiveSession, stateSelector);
 
-    //#define FB_SESSIONSTATEOPENBIT (1 << 9)
-    if (fbState & (1 << 9))
-    {
+    // We don't always have access to the Facebook headers,
+    // so we'll use the actual values of the states instead of their names
+    // #define FB_SESSIONSTATEOPENBIT (1 << 9)
+    // #define FB_SESSIONSTATETERMINALBIT (1 << 9)
+    if (fbState & (1 << 9)) {
         id accessToken = [self getAccessToken:fbActiveSession];
         [self getAuthInfoTokenForAccessToken:accessToken];
-    }
-    else
-    {
-        void (^handler)(id, BOOL, NSError *) =
-                ^(id session, BOOL status, NSError *error)
-                {
-                    DLog(@"session %@ status %i error %@", session, status, error);
-                    //error.fberrorCategory == FBErrorCategoryUserCancelled
-//                    int t = (int) [fbErrorUtilityClass performSelector:fbErrorCategoryForErrorSel withObject:error];
-                    int (*getErrorCategory)(id, SEL, NSError *) =
-                            (void *)[fbErrorUtilityClass methodForSelector:fbErrorCategoryForErrorSel];
-                    int t = (int)getErrorCategory(fbErrorUtilityClass, fbErrorCategoryForErrorSel, error);
-                    //FBErrorCategoryUserCancelled                = 6,
-                    if (t == 6)
-                    {
-                        NSError *err = [JREngageError errorWithMessage:@"native fb auth canceled"
-                                                               andCode:JRAuthenticationCanceledError];
-                        self.completion(err);
-                    }
-                    else
-                    {
-                        static id accessToken = nil;
-                        id accessToken_ = [self getAccessToken:session];
-
-                        // XXX horrible hack to avoid session.fbAccessTokenData being null for auth flows subsequent
-                        // to the first. Seems to have something to do with caching.
-                        if (accessToken_) accessToken = accessToken_;
-                        else accessToken_ = accessToken;
-
-                        [self getAuthInfoTokenForAccessToken:accessToken_];
+    } else {
+        void (^handler)(id, unsigned int, NSError *) =
+                ^(id session, unsigned int state, NSError *error) {
+                    DLog(@"session %@ state %d error %@", session, state, error);
+                    switch (state) {
+                        case (1 | (1 << 9)): {// Open
+                                DLog(@"Facebook Session Open: %@", session);
+                                id accessToken = [self getAccessToken:session];
+                                [self getAuthInfoTokenForAccessToken:accessToken];
+                            }
+                            break;
+                        case (1 | (1 << 8)): // Closed Login Failed
+                            DLog(@"Facebook Session Closed/Login Failed: %@, error: %@", session, error);
+                            if (error && [self getErrorCategory:error] == 6) { // Canceled
+                                NSError *canceledError = [JREngageError errorWithMessage:@"native fb auth canceled"
+                                                                       andCode:JRAuthenticationCanceledError];
+                                self.completion(canceledError);
+                            } else {
+                                self.completion(error);
+                            }
+                        case (2 | (1 << 8)): // Closed
+                            DLog(@"Facebook Session Closed: %@", session);
+                            break;
+                        default:
+                            break;
                     }
                 };
-        objc_msgSend(fbSession, openActiveSessionWithReadPermissionsSel, @[], YES, handler);
+        objc_msgSend(
+                fbSession,
+                NSSelectorFromString(@"openActiveSessionWithReadPermissions:allowLoginUI:completionHandler:"),
+                @[], YES, handler);
     }
-}
-
-- (id)fbSessionAppId
-{
-//    return [fbSession performSelector:appIdSel];
-    id (*getAppId)(id, SEL) = (void *)[fbSession methodForSelector:appIdSel];
-    return getAppId(fbSession, stateSel);
 }
 
 - (id)getAccessToken:(id)fbActiveSession
 {
-//    id accessTokenData = [fbActiveSession performSelector:accessTokenDataSel];
-    id (*getAccessTokenData)(id, SEL) = (void *)[fbActiveSession methodForSelector:accessTokenDataSel];
-    id accessTokenData = getAccessTokenData(fbActiveSession, accessTokenDataSel);
-//    id accessToken = [accessTokenData performSelector:accessTokenSel];
-    id (*getToken)(id, SEL) = (void *)[accessTokenData methodForSelector:accessTokenSel];
-    id accessToken = getToken(accessTokenData, accessTokenSel);
+    SEL accessTokenDataSelector = NSSelectorFromString(@"accessTokenData");
+    id (*getAccessTokenData)(id, SEL) = (void *)[fbActiveSession methodForSelector:accessTokenDataSelector];
+    id accessTokenData = getAccessTokenData(fbActiveSession, accessTokenDataSelector);
+
+    SEL accessTokenSelector = NSSelectorFromString(@"accessToken");
+    id (*getToken)(id, SEL) = (void *)[accessTokenData methodForSelector:accessTokenSelector];
+    id accessToken = getToken(accessTokenData, accessTokenSelector);
     return accessToken;
+}
+
+- (int)getErrorCategory:(NSError *)error {
+    Class fbErrorUtilityClass = NSClassFromString(@"FBErrorUtility");
+    SEL fbErrorCategoryForErrorSelector = NSSelectorFromString(@"errorCategoryForError:");
+    int (*getErrorCategory)(id, SEL, NSError *) =
+            (void *)[fbErrorUtilityClass methodForSelector:fbErrorCategoryForErrorSelector];
+    return getErrorCategory(fbErrorUtilityClass, fbErrorCategoryForErrorSelector, error);
 }
 
 @end

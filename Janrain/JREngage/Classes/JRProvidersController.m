@@ -223,9 +223,7 @@
     {
         self.providers = [NSMutableArray arrayWithArray:sessionData.authenticationProviders];
         [providers removeObjectsInArray:[customInterface objectForKey:kJRRemoveProvidersFromAuthentication]];
-        [myActivitySpinner stopAnimating];
-        [myActivitySpinner setHidden:YES];
-        [myLoadingLabel setHidden:YES];
+        [self stopActivityIndicator];
 
         // Load the table with the list of providers.
         [myTableView reloadData];
@@ -278,9 +276,7 @@
         self.providers = [NSMutableArray arrayWithArray:sessionData.authenticationProviders];
         [providers removeObjectsInArray:[customInterface objectForKey:kJRRemoveProvidersFromAuthentication]];
 
-        [myActivitySpinner stopAnimating];
-        [myActivitySpinner setHidden:YES];
-        [myLoadingLabel setHidden:YES];
+        [self stopActivityIndicator];
 
         [myTableView reloadData];
 
@@ -292,9 +288,7 @@
         // Polling has timed out
         DLog(@"No Available Providers");
 
-        [myActivitySpinner setHidden:YES];
-        [myLoadingLabel setHidden:YES];
-        [myActivitySpinner stopAnimating];
+        [self stopActivityIndicator];
 
         UIApplication *app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;
@@ -518,21 +512,15 @@
             myLoadingLabel.text = @"Signing in ...";
         }];
         [JRNativeAuth startAuthOnProvider:provider.name
-                            configuration:[JRCaptureData sharedCaptureData]
+                            configuration:[JREngage instance]
                                completion:^(NSError *e) {
             if (e) {
                 if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
                     [sessionData triggerAuthenticationDidCancel];
-                }
-                else {
-                    [UIView animateWithDuration:0.3 animations:^() {
-                        myTableView.hidden = NO;
-                        [myActivitySpinner setHidden:YES];
-                        [myLoadingLabel setHidden:YES];
-                        [myActivitySpinner stopAnimating];
-                    }];
-
-                    [self startWebViewAuthOnProvider:provider];
+                } else {
+                    myTableView.hidden = NO;
+                    [self stopActivityIndicator];
+                    [sessionData triggerAuthenticationDidFailWithError:e];
                 }
             }
         }];
@@ -562,6 +550,12 @@
         [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
     }
 
+}
+
+- (void)stopActivityIndicator {
+    [myActivitySpinner stopAnimating];
+    [myActivitySpinner setHidden:YES];
+    [myLoadingLabel setHidden:YES];
 }
 
 - (void)userInterfaceWillClose

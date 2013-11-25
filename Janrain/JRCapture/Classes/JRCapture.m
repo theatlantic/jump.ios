@@ -64,6 +64,7 @@
 {
     [JRCaptureData setCaptureConfig:config];
     [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
+    [JREngage setGooglePlusClientId:config.googlePlusClientId];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
