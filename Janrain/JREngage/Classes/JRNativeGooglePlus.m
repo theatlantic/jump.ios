@@ -32,17 +32,6 @@
 #import "JRNativeGooglePlus.h"
 #import "debug_log.h"
 
-#if __has_include(<GooglePlus/GooglePlus.h>)
-# import <GooglePlus/GooglePlus.h>
-#endif
-#if __has_include(<GoogleOpenSource/GoogleOpenSource.h>)
-# import <GoogleOpenSource/GoogleOpenSource.h>
-#endif
-
-
-@interface JRNativeGooglePlus () <GPPSignInDelegate>
-@end
-
 @implementation JRNativeGooglePlus
 
 + (BOOL)canHandleAuthentication {
@@ -54,29 +43,48 @@
 }
 
 - (void)startAuthentication {
-    id signIn = [NSClassFromString(@"GPPSignIn") sharedInstance];
-    [signIn setClientID:self.googlePlusClientId];
-    //TODO This should be based on what is configured in the Engage Dashboard
-    [signIn setScopes:@[@"https://www.googleapis.com/auth/plus.login"]];
-    [signIn setDelegate:self];
+    id signIn = [self signInInstance];
+    SEL setClientIDSelector = NSSelectorFromString(@"setClientID:");
+    void (*setClientID)(id, SEL, NSString *) = (void *)[signIn methodForSelector:setClientIDSelector];
+    setClientID(signIn, setClientIDSelector, self.googlePlusClientId);
 
-    [signIn authenticate];
+    SEL setScopesSelector = NSSelectorFromString(@"setScopes:");
+    void (*setScopes)(id, SEL, NSArray *) = (void *)[signIn methodForSelector:setScopesSelector];
+    setScopes(signIn, setScopesSelector, @[@"https://www.googleapis.com/auth/plus.login"]);
+    SEL setDelegateSelector = NSSelectorFromString(@"setDelegate:");
+    void (*setDelegate)(id, SEL, id) = (void *)[signIn methodForSelector:setDelegateSelector];
+    setDelegate(signIn, setDelegateSelector, self);
+
+    SEL authenticateSelector = NSSelectorFromString(@"authenticate");
+    void (*authenticate)(id, SEL) = (void *)[signIn methodForSelector:authenticateSelector];
+    authenticate(signIn, authenticateSelector);
 }
 
 - (void)signOut {
-    [(id)[NSClassFromString(@"GPPSignIn") sharedInstance] signOut];
+    id signIn = [self signInInstance];
+    SEL signOutSelector = NSSelectorFromString(@"signOut");
+    void (*signOut)(id, SEL) = (void *)[signIn methodForSelector:signOutSelector];
+    signOut(signIn, signOutSelector);
 }
 
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
+- (void)finishedWithAuth:(id)auth error:(NSError *)error {
     DLog(@"Google+ received error %@ and auth object %@",error, auth);
 
-    // FIXME should add better error handling here
     if (error) {
         self.completion(error);
     } else {
-        NSString *accessToken = [auth accessToken];
-        [self getAuthInfoTokenForAccessToken:accessToken];
+        SEL accessTokenSelector = NSSelectorFromString(@"accessToken");
+        id (*getAccessToken)(id, SEL) = (void *)[auth methodForSelector:accessTokenSelector];
+        id accessToken = getAccessToken(auth, accessTokenSelector);
+        [self getAuthInfoTokenForAccessToken:(NSString *)accessToken];
     }
+}
+
+- (id)signInInstance {
+    Class signInClass = NSClassFromString(@"GPPSignIn");
+    SEL getInstanceSelector = NSSelectorFromString(@"sharedInstance");
+    id (*getInstance)(id, SEL) = (void *)[signInClass methodForSelector:getInstanceSelector];
+    return getInstance(signInClass, getInstanceSelector);
 }
 
 @end
