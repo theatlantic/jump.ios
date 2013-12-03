@@ -592,6 +592,12 @@
  */
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation;
+
+/**
+ * JREngage application did become active handler
+ */
++ (void)applicationDidBecomeActive:(UIApplication *)application;
+
 @end
 
 /**

@@ -552,8 +552,10 @@ static JRSessionData *singleton = nil;
         self.error = [self updateConfig:savedConfigurationBlock];
 
     /* If the dialog is going away, then we don't still need to shorten the urls */
-    if (!isInFlight)
+    if (!isInFlight) {
         stillNeedToShortenUrls = NO;
+        _nativeAuthenticationFlowIsInFlight = NO;
+    }
 
     authenticationFlowIsInFlight = isInFlight;
 }

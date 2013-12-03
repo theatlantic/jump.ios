@@ -34,4 +34,5 @@
 
 
 @interface JRNativeFacebook : JRNativeProvider
++ (BOOL)urlHandler:(NSURL *)url;
 @end

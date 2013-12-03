@@ -119,4 +119,21 @@
     return getErrorCategory(fbErrorUtilityClass, fbErrorCategoryForErrorSelector, error);
 }
 
++ (BOOL)urlHandler:(NSURL *)url {
+    Class fbSession = NSClassFromString(@"FBSession");
+
+    if (fbSession) {
+        SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
+        id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
+        id activeSession = getActiveSession(fbSession, activeSessionSelector);
+
+        SEL urlHandlerSelector = NSSelectorFromString(@"handleOpenURL:");
+        BOOL (*urlHandler)(id, SEL, NSURL *) = (void *)[activeSession methodForSelector:urlHandlerSelector];
+        return urlHandler(activeSession, urlHandlerSelector, url);
+    }
+
+    return NO;
+}
+
+
 @end

@@ -35,4 +35,6 @@
 
 @interface JRNativeGooglePlus : JRNativeProvider
 @property (nonatomic, retain) NSString *googlePlusClientId;
+
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(NSString *)annotation;
 @end

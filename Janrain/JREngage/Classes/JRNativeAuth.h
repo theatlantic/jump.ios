@@ -38,4 +38,7 @@
 
 + (void)startAuthOnProvider:(NSString *)provider configuration:(id <JRNativeAuthConfig>)config
                  completion:(void (^)(NSError *))completion;
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation;
 @end

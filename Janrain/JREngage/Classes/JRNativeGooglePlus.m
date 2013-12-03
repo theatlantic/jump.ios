@@ -91,4 +91,17 @@
     return getInstance(signInClass, getInstanceSelector);
 }
 
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(NSString *)annotation {
+    Class gPPURLHandler = NSClassFromString(@"GPPURLHandler");
+
+    if (gPPURLHandler) {
+        SEL urlHandlerSel = NSSelectorFromString(@"handleURL:sourceApplication:annotation:");
+        BOOL (*urlHandler)(id, SEL, NSURL *, NSString *, id) = (void *)[gPPURLHandler methodForSelector:urlHandlerSel];
+        return urlHandler(gPPURLHandler, urlHandlerSel, url, sourceApplication, annotation);
+    }
+
+    return NO;
+}
+
+
 @end

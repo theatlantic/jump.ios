@@ -612,27 +612,32 @@ static JREngage* singleton = nil;
 
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    Class fbSession = NSClassFromString(@"FBSession");
-    Class gPPURLHandler = NSClassFromString(@"GPPURLHandler");
+    return [JRNativeAuth application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
 
++ (void)applicationDidBecomeActive:(UIApplication *)application {
+    Class fbSession = NSClassFromString(@"FBSession");
     if (fbSession) {
         SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
         id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
         id activeSession = getActiveSession(fbSession, activeSessionSelector);
 
-        SEL urlHandlerSelector = NSSelectorFromString(@"handleOpenURL:");
-        BOOL (*urlHandler)(id, SEL, NSURL *) = (void *)[activeSession methodForSelector:urlHandlerSelector];
-        if (urlHandler(activeSession, urlHandlerSelector, url)) return YES;
-    }
-    if (gPPURLHandler) {
-        SEL urlHandlerSel = NSSelectorFromString(@"handleURL:sourceApplication:annotation:");
-        BOOL (*urlHandler)(id, SEL, NSURL *, NSString *, id) = (void *)[gPPURLHandler methodForSelector:urlHandlerSel];
-        if (urlHandler(gPPURLHandler, urlHandlerSel, url, sourceApplication, annotation)) return YES;
+        SEL handleDidBecomeActiveSelector = NSSelectorFromString(@"handleDidBecomeActive");
+        void (*handleDidBecomeActive)(id, SEL, UIApplication *) =
+            (void *)[activeSession methodForSelector:handleDidBecomeActiveSelector];
+        handleDidBecomeActive(activeSession, handleDidBecomeActiveSelector, application);
     }
 
-    return NO;
+    if (singleton) {
+        [singleton applicationDidBecomeActive:application];
+    }
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if (sessionData.nativeAuthenticationFlowIsInFlight) {
+        [interfaceMaestro authenticationCanceled];
+    }
+}
 
 - (void)authenticationDidSucceedForAccountLinking:(NSDictionary *)profile
                                       forProvider:(NSString *)provider

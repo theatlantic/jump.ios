@@ -76,6 +76,8 @@ static JRNativeAuth *singleton;
     };
 
     [JRSessionData jrSessionData].authenticationFlowIsInFlight = YES;
+    [JRSessionData jrSessionData].nativeAuthenticationFlowIsInFlight = YES;
+
     if ([provider isEqualToString:@"facebook"]) {
         singleton.nativeProvider = [[JRNativeFacebook alloc] initWithCompletion:_completion];
     } else if ([provider isEqualToString:@"googleplus"]) {
@@ -83,11 +85,21 @@ static JRNativeAuth *singleton;
         [(JRNativeGooglePlus *)singleton.nativeProvider setGooglePlusClientId:config.googlePlusClientId];
     } else {
         [JRSessionData jrSessionData].authenticationFlowIsInFlight = NO;
+        [JRSessionData jrSessionData].nativeAuthenticationFlowIsInFlight = NO;
         [NSException raiseJRDebugException:@"unexpected native auth provider" format:provider];
         return;
     }
 
     [singleton.nativeProvider startAuthentication];
 }
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    if ([JRNativeFacebook urlHandler:url]) return YES;
+    if ([JRNativeGooglePlus handleURL:url sourceApplication:sourceApplication annotation:annotation]) return YES;
+
+    return NO;
+}
+
 
 @end
