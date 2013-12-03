@@ -50,7 +50,7 @@
 
     SEL setScopesSelector = NSSelectorFromString(@"setScopes:");
     void (*setScopes)(id, SEL, NSArray *) = (void *)[signIn methodForSelector:setScopesSelector];
-    setScopes(signIn, setScopesSelector, @[@"https://www.googleapis.com/auth/plus.login"]);
+    setScopes(signIn, setScopesSelector, self.scopes);
     SEL setDelegateSelector = NSSelectorFromString(@"setDelegate:");
     void (*setDelegate)(id, SEL, id) = (void *)[signIn methodForSelector:setDelegateSelector];
     setDelegate(signIn, setDelegateSelector, self);
@@ -58,6 +58,10 @@
     SEL authenticateSelector = NSSelectorFromString(@"authenticate");
     void (*authenticate)(id, SEL) = (void *)[signIn methodForSelector:authenticateSelector];
     authenticate(signIn, authenticateSelector);
+}
+
+- (NSArray *)scopes {
+    return @[@"https://www.googleapis.com/auth/plus.login"];
 }
 
 - (void)signOut {

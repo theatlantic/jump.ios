@@ -169,10 +169,13 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
         if ((void *)[dictionary objectForKey:@"preferred_username"] != kCFNull)
             _preferredUsername = [[dictionary objectForKey:@"preferred_username"] retain];
 
-        if (welcomeString && ![welcomeString isEqualToString:@""])
+        if (welcomeString && ![welcomeString isEqualToString:@""]) {
             _welcomeString = [welcomeString retain];
-        else
+        } else if (_preferredUsername) {
             _welcomeString = [[NSString stringWithFormat:@"Sign in as %@?", _preferredUsername] retain];
+        } else {
+            _welcomeString = @"Sign back in?";
+        }
     }
 
     return self;

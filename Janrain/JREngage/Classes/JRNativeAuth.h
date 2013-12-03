@@ -27,9 +27,6 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
- File:   JRActivityObject.h
- Author: Lilli Szafranski - lilli@janrain.com, lillialexis@gmail.com
- Date:   Tuesday, August 24, 2010
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <Foundation/Foundation.h>
@@ -39,5 +36,6 @@
 @interface JRNativeAuth : NSObject
 + (BOOL)canHandleProvider:(NSString *)provider;
 
-+ (void)startAuthOnProvider:(NSString *)provider configuration:(id <JRNativeAuthConfig>)config completion:(void (^)(NSError *))completion;
++ (void)startAuthOnProvider:(NSString *)provider configuration:(id <JRNativeAuthConfig>)config
+                 completion:(void (^)(NSError *))completion;
 @end
