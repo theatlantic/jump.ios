@@ -39,9 +39,14 @@
 #import "JRWebViewController.h"
 #import "debug_log.h"
 #import "JRNativeAuth.h"
+#import "JRNativeProvider.h"
 
 #define frame_w(a) a.frame.size.width
 #define frame_h(a) a.frame.size.height
+
+@interface JRUserLandingController ()
+@property (nonatomic, retain) JRNativeProvider *nativeProvider;
+@end
 
 @implementation JRUserLandingController
 @synthesize myBackgroundView;
@@ -531,7 +536,10 @@ replacementString:(NSString *)string
     DLog(@"");
     DLog(@"user input: %@", textField.text);
     if ([JRNativeAuth canHandleProvider:sessionData.currentProvider.name]) {
-        void (^completion)(NSError *) = ^(NSError *error) {
+        self.nativeProvider = [JRNativeAuth nativeProviderNamed:sessionData.currentProvider.name
+                                              withConfiguration:[JREngage instance]];
+        [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
+            self.nativeProvider = nil;
             if (error) {
                 if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
                     [sessionData triggerAuthenticationDidCancel];
@@ -539,10 +547,7 @@ replacementString:(NSString *)string
                     [sessionData triggerAuthenticationDidFailWithError:error];
                 }
             }
-        };
-        [JRNativeAuth startAuthOnProvider:sessionData.currentProvider.name
-                            configuration:[JREngage instance]
-                               completion:completion];
+        }];
     } else {
         if (sessionData.currentProvider.requiresInput)
         {
@@ -613,6 +618,7 @@ replacementString:(NSString *)string
     [myTableView release];
     [sessionData release];
     [infoBar release];
+    [_nativeProvider release];
 
     [super dealloc];
 }

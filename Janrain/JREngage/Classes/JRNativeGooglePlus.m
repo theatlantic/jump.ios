@@ -42,7 +42,9 @@
     return @"googleplus";
 }
 
-- (void)startAuthentication {
+- (void)startAuthenticationWithCompletion:(NativeCompletionBlock)completion {
+    [super startAuthenticationWithCompletion:completion];
+
     id signIn = [self signInInstance];
     SEL setClientIDSelector = NSSelectorFromString(@"setClientID:");
     void (*setClientID)(id, SEL, NSString *) = (void *)[signIn methodForSelector:setClientIDSelector];
@@ -64,19 +66,12 @@
     return @[@"https://www.googleapis.com/auth/plus.login"];
 }
 
-- (void)signOut {
-    id signIn = [self signInInstance];
-    SEL signOutSelector = NSSelectorFromString(@"signOut");
-    void (*signOut)(id, SEL) = (void *)[signIn methodForSelector:signOutSelector];
-    signOut(signIn, signOutSelector);
-}
-
-- (void)finishedWithAuth:(id)auth error:(NSError *)error {
-    DLog(@"Google+ received error %@ and auth object %@",error, auth);
-
+- (void)finishedWithAuth:(id)auth error:(NSError *)error __unused {
     if (error) {
+        DLog(@"Google+ received error %@",error);
         self.completion(error);
     } else {
+        DLog(@"Google+ received auth object %@", auth);
         SEL accessTokenSelector = NSSelectorFromString(@"accessToken");
         id (*getAccessToken)(id, SEL) = (void *)[auth methodForSelector:accessTokenSelector];
         id accessToken = getAccessToken(auth, accessTokenSelector);

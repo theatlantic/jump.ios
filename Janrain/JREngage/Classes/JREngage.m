@@ -38,6 +38,7 @@
 #import "JREngageError.h"
 #import "JRNativeAuth.h"
 #import "JRNativeAuthConfig.h"
+#import "JRNativeProvider.h"
 
 #if __has_include(<FacebookSDK/FacebookSDK.h>)
 # import <FacebookSDK/FacebookSDK.h>
@@ -57,6 +58,8 @@
 @property (nonatomic, retain) NSMutableArray         *delegates;
 
 @property (nonatomic, retain) NSString *googlePlusClientId;
+
+@property (nonatomic, retain) JRNativeProvider *nativeProvider;
 
 @end
 
@@ -245,7 +248,10 @@ static JREngage* singleton = nil;
 
 - (void)startNativeAuthOnProvider:(NSString *)provider
 {
-    [JRNativeAuth startAuthOnProvider:provider configuration:self completion:^(NSError *error) {
+    self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider withConfiguration:self];
+    [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
+        self.nativeProvider = nil;
+
         if (!error) return;
 
         if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
@@ -262,12 +268,6 @@ static JREngage* singleton = nil;
     [[JREngage singletonInstance] showAuthenticationDialogForProvider:provider
                                                       customInterface:customInterfaceOverrides];
 }
-
-//- (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
-//{
-//    [self showAuthenticationDialogWithCustomInterfaceOverrides:customInterfaceOverrides
-//                            orAuthenticatingOnJustThisProvider:nil];
-//}
 
 + (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused
 {
@@ -595,6 +595,7 @@ static JREngage* singleton = nil;
     [interfaceMaestro release];
     [sessionData release];
     [delegates release];
+    [_nativeProvider release];
     [_googlePlusClientId release];
     [super dealloc];
 }

@@ -35,13 +35,11 @@ typedef void (^NativeCompletionBlock)(NSError *);
 
 
 @interface JRNativeProvider : NSObject
-@property (nonatomic, readonly, copy) NativeCompletionBlock completion;
+@property (nonatomic, copy) NativeCompletionBlock completion;
 
 + (BOOL)canHandleAuthentication;
 
 - (NSString *)provider;
-- (id)initWithCompletion:(NativeCompletionBlock)completion;
-- (void)startAuthentication;
+- (void)startAuthenticationWithCompletion:(NativeCompletionBlock)completion;
 - (void)getAuthInfoTokenForAccessToken:(id)token;
-- (void)signOut;
 @end

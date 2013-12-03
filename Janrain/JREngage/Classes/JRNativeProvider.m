@@ -34,19 +34,8 @@
 #import "JREngageError.h"
 #import "JRSessionData.h"
 
-@interface JRNativeProvider ()
-@property (nonatomic, copy) NativeCompletionBlock completion;
-@end
 
 @implementation JRNativeProvider {
-}
-
-- (id)initWithCompletion:(NativeCompletionBlock)completion {
-    if (self = [super init]) {
-        self.completion = completion;
-    }
-
-    return self;
 }
 
 - (NSString *)provider {
@@ -61,14 +50,11 @@
     return NO;
 }
 
-- (void)startAuthentication {
-    [NSException raise:NSInternalInconsistencyException
-                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
-}
+- (void)startAuthenticationWithCompletion:(NativeCompletionBlock)completion {
+    self.completion = completion;
 
-- (void)signOut {
-    [NSException raise:NSInternalInconsistencyException
-                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
+    [JRSessionData jrSessionData].authenticationFlowIsInFlight = YES;
+    [JRSessionData jrSessionData].nativeAuthenticationFlowIsInFlight = YES;
 }
 
 - (void)getAuthInfoTokenForAccessToken:(id)token {

@@ -42,6 +42,7 @@
 #import "JRNativeAuth.h"
 #import "JREngageError.h"
 #import "JRCaptureData.h"
+#import "JRNativeProvider.h"
 
 @interface UITableViewCellProviders : UITableViewCell
 @end
@@ -70,6 +71,7 @@
 
 @property(retain) NSMutableArray *providers;
 @property(retain) UIView *myTraditionalSignInLoadingView;
+@property(nonatomic, retain) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRProvidersController
@@ -511,9 +513,10 @@
             [myActivitySpinner startAnimating];
             myLoadingLabel.text = @"Signing in ...";
         }];
-        [JRNativeAuth startAuthOnProvider:provider.name
-                            configuration:[JREngage instance]
-                               completion:^(NSError *e) {
+
+        self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider.name withConfiguration:[JREngage instance]];
+        [self.nativeProvider startAuthenticationWithCompletion:^(NSError *e) {
+            self.nativeProvider = nil;
             if (e) {
                 if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
                     [sessionData triggerAuthenticationDidCancel];
@@ -579,6 +582,7 @@
     [infoBar release];
     [providers release];
     [myTraditionalSignInLoadingView release];
+    [_nativeProvider release];
     [super dealloc];
 }
 @end

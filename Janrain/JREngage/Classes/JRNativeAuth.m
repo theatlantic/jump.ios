@@ -32,31 +32,15 @@
 #import "JRNativeAuth.h"
 #import "debug_log.h"
 #import "JRConnectionManager.h"
-#import "JRSessionData.h"
 #import "JRNativeFacebook.h"
 #import "JRNativeAuthConfig.h"
 #import "JRNativeGooglePlus.h"
-
-//#ifdef JR_FACEBOOK_SDK_TEST
-//#   import "FacebookSDK/FacebookSDK.h"
-//#endif
 
 @interface JRNativeAuth ()
 @property (nonatomic, retain) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRNativeAuth
-
-static JRNativeAuth *singleton;
-
-+ (void)initialize
-{
-    static BOOL initialized = NO;
-    if (!initialized) {
-        initialized = YES;
-        singleton = [[JRNativeAuth alloc] init];
-    }
-}
 
 + (BOOL)canHandleProvider:(NSString *)provider
 {
@@ -66,31 +50,19 @@ static JRNativeAuth *singleton;
     return NO;
 }
 
-+ (void)startAuthOnProvider:(NSString *)provider
-              configuration:(id <JRNativeAuthConfig>)config
-                 completion:(void (^)(NSError *))completion
- {
-    void (^_completion)(NSError *) = ^(NSError *error) {
-        singleton.nativeProvider = nil;
-        completion(error);
-    };
-
-    [JRSessionData jrSessionData].authenticationFlowIsInFlight = YES;
-    [JRSessionData jrSessionData].nativeAuthenticationFlowIsInFlight = YES;
++ (JRNativeProvider *)nativeProviderNamed:(NSString *)provider withConfiguration:(id <JRNativeAuthConfig>)config {
+    JRNativeProvider *nativeProvider = nil;
 
     if ([provider isEqualToString:@"facebook"]) {
-        singleton.nativeProvider = [[JRNativeFacebook alloc] initWithCompletion:_completion];
+        nativeProvider = [[[JRNativeFacebook alloc] init] autorelease];
     } else if ([provider isEqualToString:@"googleplus"]) {
-        singleton.nativeProvider = [[JRNativeGooglePlus alloc] initWithCompletion:_completion];
-        [(JRNativeGooglePlus *)singleton.nativeProvider setGooglePlusClientId:config.googlePlusClientId];
+        nativeProvider = [[[JRNativeGooglePlus alloc] init] autorelease];
+        [(JRNativeGooglePlus *)nativeProvider setGooglePlusClientId:config.googlePlusClientId];
     } else {
-        [JRSessionData jrSessionData].authenticationFlowIsInFlight = NO;
-        [JRSessionData jrSessionData].nativeAuthenticationFlowIsInFlight = NO;
         [NSException raiseJRDebugException:@"unexpected native auth provider" format:provider];
-        return;
     }
 
-    [singleton.nativeProvider startAuthentication];
+    return nativeProvider;
 }
 
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication

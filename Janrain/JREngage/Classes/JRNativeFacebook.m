@@ -48,7 +48,9 @@
     return @"facebook";
 }
 
-- (void)startAuthentication {
+- (void)startAuthenticationWithCompletion:(NativeCompletionBlock)completion {
+    [super startAuthenticationWithCompletion:completion];
+
     Class fbSession = NSClassFromString(@"FBSession");
     SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
     id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
