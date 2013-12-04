@@ -12,15 +12,15 @@
 		19BC01885B417B64E987C500 /* CaptureEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC07DF96012EB5B44C5B6C /* CaptureEditProfileViewController.m */; };
 		19BC01E36A31424334D83559 /* icon_bw_amazon_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */; };
 		19BC0273946224097507522B /* JRCaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		19BC0332A2C30DD3A5BC4646 /* JRNativeFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC07E8779D811B40AC7792 /* JRNativeFacebook.m */; };
 		19BC038695E3F63ED3DAF62B /* icon_bw_amazon_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */; };
 		19BC03A4F7837E9320636958 /* JRCaptureFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0BFBA1B728272D41559E /* JRCaptureFlow.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC03D72B24CB34F6581A24 /* JRCaptureUIRequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC04C4EF4D04199F0988AB /* JRCaptureUIRequestBuilder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC043CB32C3615A713D687 /* JRCompatibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */; };
-		19BC047A087EAFC709C7A9C2 /* JRNativeGooglePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F4DB72FCB99F78E0699 /* JRNativeGooglePlus.m */; };
 		19BC04A025012377EE30F823 /* logo_amazon_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */; };
-		19BC08F32C3C7E714C0D4147 /* JRNativeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC008782D74CE6A02DA64B /* JRNativeProvider.m */; };
+		19BC08BD64B1552774EBDFEA /* JRNativeGooglePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0A194B8B15D5375BBB98 /* JRNativeGooglePlus.m */; };
 		19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */; };
+		19BC0DFDCBAF337078CAF21B /* JRNativeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0A5CBDCA26A833BCC0C0 /* JRNativeProvider.m */; };
+		19BC0F8289734BEF98CD916D /* JRNativeFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0AF36F9FFDBE539E801E /* JRNativeFacebook.m */; };
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
 		4ED8382D17EC307900CA9645 /* LinkedProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */; };
 		6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FCAB908800A9FF445D4B /* Upgrade Guide.md */; };
@@ -93,15 +93,6 @@
 		C1424E3B144EDDE0ABA1E0E7 /* AlertViewWithBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */; };
 		C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1424E26376A97DCC6454072 /* Security.framework */; };
 		D806D1B616A7638E008EEF96 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D806D1B516A7638E008EEF96 /* assets */; };
-		D80DE9EF183FECC000625A69 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80DE9EE183FECC000625A69 /* GoogleOpenSource.framework */; };
-		D80DE9F1183FECC600625A69 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80DE9F0183FECC600625A69 /* GooglePlus.framework */; };
-		D84B3120183D5E4B00B54D0D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B311F183D5E4B00B54D0D /* FacebookSDK.framework */; };
-		D84B3122183D7FA300B54D0D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D84B3121183D7FA300B54D0D /* MediaPlayer.framework */; };
-		D8773A9A183D5B7E00A939B9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8773A99183D5B7E00A939B9 /* AssetsLibrary.framework */; };
-		D8773A9C183D5B8900A939B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8773A9B183D5B8900A939B9 /* CoreLocation.framework */; };
-		D8773A9E183D5B9100A939B9 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8773A9D183D5B9100A939B9 /* CoreMotion.framework */; };
-		D8773AA0183D5B9F00A939B9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8773A9F183D5B9F00A939B9 /* CoreText.framework */; };
-		D8773AA2183D5BA900A939B9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8773AA1183D5BA900A939B9 /* SystemConfiguration.framework */; };
 		D8E0218B17D14CC700013803 /* icon_googleplus_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218A17D14CC700013803 /* icon_googleplus_30x30.png */; };
 		D8E0218D17D14CFB00013803 /* logo_googleplus_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */; };
 		D8E0218F17D14D0C00013803 /* icon_googleplus_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */; };
@@ -316,31 +307,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19BC008782D74CE6A02DA64B /* JRNativeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeProvider.m; sourceTree = "<group>"; };
 		19BC0172346689920F3635B5 /* JRCaptureUIRequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureUIRequestBuilder.h; sourceTree = "<group>"; };
 		19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCompatibilityUtils.m; sourceTree = "<group>"; };
 		19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_amazon_280x65@2x.png"; sourceTree = "<group>"; };
 		19BC0446B3F416604E5EFB41 /* CaptureEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureEditProfileViewController.h; sourceTree = "<group>"; };
+		19BC044CFBB57C725104A436 /* JRNativeFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeFacebook.h; sourceTree = "<group>"; };
 		19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureConfig.m; sourceTree = "<group>"; };
 		19BC04C4EF4D04199F0988AB /* JRCaptureUIRequestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureUIRequestBuilder.m; sourceTree = "<group>"; };
 		19BC052B6185FEA424AF0113 /* JRCompatibilityUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCompatibilityUtils.h; sourceTree = "<group>"; };
-		19BC0627B072DAFF167A3BDE /* JRNativeAuthConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeAuthConfig.h; sourceTree = "<group>"; };
 		19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_amazon_30x30@2x.png"; sourceTree = "<group>"; };
-		19BC0679F0AF1457A5DC4D66 /* JRNativeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeProvider.h; sourceTree = "<group>"; };
+		19BC0729F091BC7BF1711D7B /* JRNativeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeProvider.h; sourceTree = "<group>"; };
 		19BC0790B7A0F9C301BC4638 /* JRCaptureFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureFlow.h; sourceTree = "<group>"; };
 		19BC07DF96012EB5B44C5B6C /* CaptureEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureEditProfileViewController.m; sourceTree = "<group>"; };
-		19BC07E8779D811B40AC7792 /* JRNativeFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeFacebook.m; sourceTree = "<group>"; };
 		19BC082BDAC70108910C88F6 /* NSURLRequest+JRQueryParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+JRQueryParams.h"; sourceTree = "<group>"; };
 		19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_amazon_30x30@2x.png"; sourceTree = "<group>"; };
 		19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_amazon_30x30.png; sourceTree = "<group>"; };
-		19BC098C1F5A1681A6E78127 /* JRNativeGooglePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeGooglePlus.h; sourceTree = "<group>"; };
+		19BC0A194B8B15D5375BBB98 /* JRNativeGooglePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeGooglePlus.m; sourceTree = "<group>"; };
+		19BC0A5CBDCA26A833BCC0C0 /* JRNativeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeProvider.m; sourceTree = "<group>"; };
+		19BC0AF36F9FFDBE539E801E /* JRNativeFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeFacebook.m; sourceTree = "<group>"; };
 		19BC0BFBA1B728272D41559E /* JRCaptureFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureFlow.m; sourceTree = "<group>"; };
 		19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_amazon_280x65.png; sourceTree = "<group>"; };
+		19BC0C7FA871F682D690A5BC /* JRNativeAuthConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeAuthConfig.h; sourceTree = "<group>"; };
 		19BC0C91C468544CC1764EEB /* JRCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureConfig.h; sourceTree = "<group>"; };
-		19BC0CF84119F489AF0335E8 /* JRNativeFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeFacebook.h; sourceTree = "<group>"; };
+		19BC0DD546434509C30D84AF /* JRNativeGooglePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeGooglePlus.h; sourceTree = "<group>"; };
 		19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amazon_30x30.png; sourceTree = "<group>"; };
 		19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+JRQueryParams.m"; sourceTree = "<group>"; };
-		19BC0F4DB72FCB99F78E0699 /* JRNativeGooglePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeGooglePlus.m; sourceTree = "<group>"; };
 		4ED8382B17EC307900CA9645 /* LinkedProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedProfilesViewController.h; path = Classes/LinkedProfilesViewController.h; sourceTree = "<group>"; };
 		4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedProfilesViewController.m; path = Classes/LinkedProfilesViewController.m; sourceTree = "<group>"; };
 		6706F004B5721D364A0105AB /* JRObjectLevelTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRObjectLevelTwo.m; sourceTree = "<group>"; };
@@ -458,15 +449,6 @@
 		C1424E26376A97DCC6454072 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertViewWithBlocks.m; path = Classes/AlertViewWithBlocks.m; sourceTree = "<group>"; };
 		D806D1B516A7638E008EEF96 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
-		D80DE9EE183FECC000625A69 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../../../Development/google-plus-ios-sdk-1.4.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
-		D80DE9F0183FECC600625A69 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../Development/google-plus-ios-sdk-1.4.1/GooglePlus.framework"; sourceTree = "<group>"; };
-		D84B311F183D5E4B00B54D0D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		D84B3121183D7FA300B54D0D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		D8773A99183D5B7E00A939B9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		D8773A9B183D5B8900A939B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		D8773A9D183D5B9100A939B9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		D8773A9F183D5B9F00A939B9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		D8773AA1183D5BA900A939B9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D8E0218A17D14CC700013803 /* icon_googleplus_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_googleplus_30x30.png; sourceTree = "<group>"; };
 		D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_googleplus_280x65.png; sourceTree = "<group>"; };
 		D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_googleplus_30x30@2x.png"; sourceTree = "<group>"; };
@@ -708,21 +690,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D84B3122183D7FA300B54D0D /* MediaPlayer.framework in Frameworks */,
-				D8773AA2183D5BA900A939B9 /* SystemConfiguration.framework in Frameworks */,
-				D8773AA0183D5B9F00A939B9 /* CoreText.framework in Frameworks */,
-				D8773A9E183D5B9100A939B9 /* CoreMotion.framework in Frameworks */,
-				D8773A9C183D5B8900A939B9 /* CoreLocation.framework in Frameworks */,
-				D8773A9A183D5B7E00A939B9 /* AssetsLibrary.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */,
-				D80DE9EF183FECC000625A69 /* GoogleOpenSource.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */,
-				D80DE9F1183FECC600625A69 /* GooglePlus.framework in Frameworks */,
 				C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */,
 				C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */,
 				C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */,
-				D84B3120183D5E4B00B54D0D /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,15 +817,6 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D80DE9F0183FECC600625A69 /* GooglePlus.framework */,
-				D80DE9EE183FECC000625A69 /* GoogleOpenSource.framework */,
-				D84B3121183D7FA300B54D0D /* MediaPlayer.framework */,
-				D84B311F183D5E4B00B54D0D /* FacebookSDK.framework */,
-				D8773AA1183D5BA900A939B9 /* SystemConfiguration.framework */,
-				D8773A9F183D5B9F00A939B9 /* CoreText.framework */,
-				D8773A9D183D5B9100A939B9 /* CoreMotion.framework */,
-				D8773A9B183D5B8900A939B9 /* CoreLocation.framework */,
-				D8773A99183D5B7E00A939B9 /* AssetsLibrary.framework */,
 				90C36B6B7717AA0C893E090A /* SenTestingKit.framework */,
 				90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */,
 				90C36B6B7717AA0C893E08EB /* Foundation.framework */,
@@ -1128,13 +1092,13 @@
 				DFEFE3EF17A9915200760FEE /* JRWebViewController.m */,
 				19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */,
 				19BC052B6185FEA424AF0113 /* JRCompatibilityUtils.h */,
-				19BC008782D74CE6A02DA64B /* JRNativeProvider.m */,
-				19BC0679F0AF1457A5DC4D66 /* JRNativeProvider.h */,
-				19BC07E8779D811B40AC7792 /* JRNativeFacebook.m */,
-				19BC0CF84119F489AF0335E8 /* JRNativeFacebook.h */,
-				19BC0627B072DAFF167A3BDE /* JRNativeAuthConfig.h */,
-				19BC0F4DB72FCB99F78E0699 /* JRNativeGooglePlus.m */,
-				19BC098C1F5A1681A6E78127 /* JRNativeGooglePlus.h */,
+				19BC044CFBB57C725104A436 /* JRNativeFacebook.h */,
+				19BC0AF36F9FFDBE539E801E /* JRNativeFacebook.m */,
+				19BC0DD546434509C30D84AF /* JRNativeGooglePlus.h */,
+				19BC0A194B8B15D5375BBB98 /* JRNativeGooglePlus.m */,
+				19BC0729F091BC7BF1711D7B /* JRNativeProvider.h */,
+				19BC0A5CBDCA26A833BCC0C0 /* JRNativeProvider.m */,
+				19BC0C7FA871F682D690A5BC /* JRNativeAuthConfig.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1798,9 +1762,9 @@
 				19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */,
 				19BC03A4F7837E9320636958 /* JRCaptureFlow.m in Sources */,
 				19BC03D72B24CB34F6581A24 /* JRCaptureUIRequestBuilder.m in Sources */,
-				19BC08F32C3C7E714C0D4147 /* JRNativeProvider.m in Sources */,
-				19BC0332A2C30DD3A5BC4646 /* JRNativeFacebook.m in Sources */,
-				19BC047A087EAFC709C7A9C2 /* JRNativeGooglePlus.m in Sources */,
+				19BC0F8289734BEF98CD916D /* JRNativeFacebook.m in Sources */,
+				19BC08BD64B1552774EBDFEA /* JRNativeGooglePlus.m in Sources */,
+				19BC0DFDCBAF337078CAF21B /* JRNativeProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1935,10 +1899,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/../../../../Documents/FacebookSDK\\\\\\\"",
-					/Users/joe/code/work_ios/Samples/SimpleCaptureDemo,
-					"/Users/joe/Development/google-plus-ios-sdk-1.4.1",
-					/Users/joe/Documents/FacebookSDK,
+					"\"$(SRCROOT)/../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
@@ -1951,7 +1912,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1968,10 +1928,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/../../../../Documents/FacebookSDK\\\\\\\"",
-					/Users/joe/code/work_ios/Samples/SimpleCaptureDemo,
-					"/Users/joe/Development/google-plus-ios-sdk-1.4.1",
-					/Users/joe/Documents/FacebookSDK,
+					"\"$(SRCROOT)/../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
@@ -1984,7 +1941,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2063,10 +2019,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/../../../../Documents/FacebookSDK\\\\\\\"",
-					/Users/joe/code/work_ios/Samples/SimpleCaptureDemo,
-					"/Users/joe/Development/google-plus-ios-sdk-1.4.1",
-					/Users/joe/Documents/FacebookSDK,
+					"\"$(SRCROOT)/../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
@@ -2079,7 +2032,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
