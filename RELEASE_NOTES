@@ -1,3 +1,5 @@
+v3.5.1
+ - Fixes display of Yahoo! login page. Input fields are visible in iPad.
 v3.5.0
  - Support for Capture account linking and unlinking
  - Support for editing user profiles
