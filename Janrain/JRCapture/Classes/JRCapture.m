@@ -65,6 +65,7 @@
     [JRCaptureData setCaptureConfig:config];
     [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
     [JREngage setGooglePlusClientId:config.googlePlusClientId];
+    [JREngage setTwitterConsumerKey:config.twitterConsumerKey andSecret:config.twitterConsumerSecret];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain

@@ -514,12 +514,18 @@
             myLoadingLabel.text = @"Signing in ...";
         }];
 
+        [sessionData setCurrentProvider:provider];
+
         self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider.name withConfiguration:[JREngage instance]];
         [self.nativeProvider startAuthenticationWithCompletion:^(NSError *e) {
-            self.nativeProvider = nil;
             if (e) {
                 if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
                     [sessionData triggerAuthenticationDidCancel];
+                } else if ([e.domain isEqualToString:JREngageErrorDomain]
+                           && e.code == JRAuthenticationShouldTryWebViewError) {
+                    self.myTableView.hidden = NO;
+                    [self stopActivityIndicator];
+                    [self startWebViewAuthOnProvider:provider];
                 } else {
                     myTableView.hidden = NO;
                     [self stopActivityIndicator];

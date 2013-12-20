@@ -33,4 +33,6 @@
 
 @protocol JRNativeAuthConfig <NSObject>
 - (NSString *)googlePlusClientId;
+- (NSString *)twitterConsumerKey;
+- (NSString *)twitterConsumerSecret;
 @end

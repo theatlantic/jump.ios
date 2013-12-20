@@ -35,6 +35,7 @@
 #import "JRNativeFacebook.h"
 #import "JRNativeAuthConfig.h"
 #import "JRNativeGooglePlus.h"
+#import "JRNativeTwitter.h"
 
 @interface JRNativeAuth ()
 @property (nonatomic, retain) JRNativeProvider *nativeProvider;
@@ -46,6 +47,7 @@
 {
     if ([provider isEqualToString:@"facebook"] && [JRNativeFacebook canHandleAuthentication]) return YES;
     else if ([provider isEqualToString:@"googleplus"] && [JRNativeGooglePlus canHandleAuthentication]) return YES;
+    else if ([provider isEqualToString:@"twitter"] && [JRNativeTwitter canHandleAuthentication]) return YES;
 
     return NO;
 }
@@ -58,6 +60,10 @@
     } else if ([provider isEqualToString:@"googleplus"]) {
         nativeProvider = [[[JRNativeGooglePlus alloc] init] autorelease];
         [(JRNativeGooglePlus *)nativeProvider setGooglePlusClientId:config.googlePlusClientId];
+    } else if ([provider isEqualToString:@"twitter"]) {
+        nativeProvider = [[[JRNativeTwitter alloc] init] autorelease];
+        [(JRNativeTwitter *)nativeProvider setConsumerKey:config.twitterConsumerKey];
+        [(JRNativeTwitter *)nativeProvider setConsumerSecret:config.twitterConsumerSecret];
     } else {
         [NSException raiseJRDebugException:@"unexpected native auth provider" format:provider];
     }

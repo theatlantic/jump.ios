@@ -11,6 +11,11 @@ A less desirable but more reliable and more general upgrade strategy:
 3. Follow the process described JUMP Integration Guide
 
 
+### Upgrading from any version to v3.6 or greater
+1. Ensure that the **Accounts** and **Social** frameworks have been added to your project.
+2. Ensure that your deployment target is at least iOS 6.
+
+
 ### Solutions for upgrading from v2.5.2-v3.1.4 to v3.4.0
 * **'JSONKit.h' file not found**
     Remove `#import "JSONKit.h` it is no longer required for JUMP.

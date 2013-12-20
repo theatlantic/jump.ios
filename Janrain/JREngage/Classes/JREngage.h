@@ -360,6 +360,17 @@
 + (void)setGooglePlusClientId:(NSString *)clientId;
 
 /**
+ *  Set the Twitter consumer key and secret. This is required for native Twitter SSO.
+ *  The values must match the values in your Engage Dashboard.
+ *
+ *  @param consumerKey
+ *    Your Twitter consumer key
+ *  @param consumerSecret
+ *    Your Twitter consumer secret
+ */
++ (void)setTwitterConsumerKey:(NSString *)consumerKey andSecret:(NSString *)consumerSecret;
+
+/**
  * @name Manage the Delegates
  * Add/remove delegates that implement the JREngageSigninDelegate or JREngageSharingDelegate protocol
  **/

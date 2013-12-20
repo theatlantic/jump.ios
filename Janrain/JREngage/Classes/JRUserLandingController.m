@@ -539,40 +539,46 @@ replacementString:(NSString *)string
         self.nativeProvider = [JRNativeAuth nativeProviderNamed:sessionData.currentProvider.name
                                               withConfiguration:[JREngage instance]];
         [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
-            self.nativeProvider = nil;
             if (error) {
                 if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
                     [sessionData triggerAuthenticationDidCancel];
+                } else if ([error.domain isEqualToString:JREngageErrorDomain]
+                           && error.code == JRAuthenticationShouldTryWebViewError) {
+                    [self startWebViewAuthentication:textField];
                 } else {
                     [sessionData triggerAuthenticationDidFailWithError:error];
                 }
             }
         }];
     } else {
-        if (sessionData.currentProvider.requiresInput)
-        {
-            if (textField.text.length > 0)
-            {
-                [textField resignFirstResponder];
-                [self adjustTableViewFrame];
-
-                sessionData.currentProvider.userInput = [NSString stringWithString:textField.text];
-            }
-            else
-            {
-                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                                 message:@"The input you have entered is not valid. Please "
-                                                                         "try again."
-                                                                delegate:self
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil] autorelease];
-                [alert show];
-                return;
-            }
-        }
-
-        [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
+        [self startWebViewAuthentication:textField];
     }
+}
+
+- (void)startWebViewAuthentication:(UITextField *)textField {
+    if (sessionData.currentProvider.requiresInput)
+    {
+        if (textField.text.length > 0)
+        {
+            [textField resignFirstResponder];
+            [self adjustTableViewFrame];
+
+            sessionData.currentProvider.userInput = [NSString stringWithString:textField.text];
+        }
+        else
+        {
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
+                                                             message:@"The input you have entered is not valid. Please "
+                                                                     "try again."
+                                                            delegate:self
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil] autorelease];
+            [alert show];
+            return;
+        }
+    }
+
+    [[JRUserInterfaceMaestro sharedMaestro] pushWebViewFromViewController:self];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

@@ -37,7 +37,6 @@
 #import "JRUserInterfaceMaestro.h"
 #import "JREngageError.h"
 #import "JRNativeAuth.h"
-#import "JRNativeAuthConfig.h"
 #import "JRNativeProvider.h"
 
 #if __has_include(<FacebookSDK/FacebookSDK.h>)
@@ -58,6 +57,8 @@
 @property (nonatomic, retain) NSMutableArray         *delegates;
 
 @property (nonatomic, retain) NSString *googlePlusClientId;
+@property (nonatomic, retain) NSString *twitterConsumerKey;
+@property (nonatomic, retain) NSString *twitterConsumerSecret;
 
 @property (nonatomic, retain) JRNativeProvider *nativeProvider;
 
@@ -123,6 +124,11 @@ static JREngage* singleton = nil;
 
 + (void)setGooglePlusClientId:(NSString *)clientId {
     [[JREngage singletonInstance] setGooglePlusClientId:clientId];
+}
+
++ (void)setTwitterConsumerKey:(NSString *)consumerKey andSecret:(NSString *)consumerSecret {
+    [[JREngage singletonInstance] setTwitterConsumerKey:consumerKey];
+    [[JREngage singletonInstance] setTwitterConsumerSecret:consumerSecret];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
@@ -238,7 +244,7 @@ static JREngage* singleton = nil;
 
     if ([JRNativeAuth canHandleProvider:provider])
     {
-        [self startNativeAuthOnProvider:provider];
+        [self startNativeAuthOnProvider:provider customInterface:customInterfaceOverrides];
     }
     else
     {
@@ -246,16 +252,17 @@ static JREngage* singleton = nil;
     }
 }
 
-- (void)startNativeAuthOnProvider:(NSString *)provider
-{
+- (void)startNativeAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
     self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider withConfiguration:self];
     [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
-        self.nativeProvider = nil;
 
         if (!error) return;
 
         if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
             [self authenticationDidCancel];
+        } else if ([error.domain isEqualToString:JREngageErrorDomain]
+                   && error.code == JRAuthenticationShouldTryWebViewError) {
+            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
         } else {
             [self authenticationDidFailWithError:error forProvider:provider];
         }
@@ -597,6 +604,8 @@ static JREngage* singleton = nil;
     [delegates release];
     [_nativeProvider release];
     [_googlePlusClientId release];
+    [_twitterConsumerKey release];
+    [_twitterConsumerSecret release];
     [super dealloc];
 }
 

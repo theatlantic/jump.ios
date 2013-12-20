@@ -18,6 +18,7 @@
 		19BC0346B1A2C2E2FF8782D0 /* JRPinapinoL1Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0DFF867077EEEF5E6E70 /* JRPinapinoL1Object.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC0353E361F0E707E126D9 /* JROnipinoL1Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0BDCC64F06725AF387B1 /* JROnipinoL1Object.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC039C16438228AF2F5E32 /* JRCaptureDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0A0D53A68BDBB3486936 /* JRCaptureDataTests.m */; };
+		19BC03FCC1652C3759E5890A /* JRNativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC06ABAAE4A0A924C1CF01 /* JRNativeTwitter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC043989B9AE97A7F7B4CC /* JRPinoL2PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0D02463D1A2087B577D5 /* JRPinoL2PluralElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC06373901B23DD25A7ECC /* JRPinapinapL2PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0D9491F9EE6D7AA8A44E /* JRPinapinapL2PluralElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC0645475A8A31D1B28515 /* JRPinoinoL3PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC080B143FF9CCAD52209C /* JRPinoinoL3PluralElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -27,6 +28,7 @@
 		19BC06BC359ED6E1D914EDC2 /* JRCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC044CABA1F8B5E2A87965 /* JRCaptureTests.m */; };
 		19BC08017BFF5579C459CE0B /* JRPinapinoL2PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0B5113DE336C1B87BABA /* JRPinapinoL2PluralElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC080C01642127832BB85B /* JRPinoL1Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0888989F707AC9319FA1 /* JRPinoL1Object.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		19BC084D29B75E065142B9FC /* JRNativeTwitterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0868554BD33EC8DBC083 /* JRNativeTwitterTests.m */; };
 		19BC08579C5EEE4D46AE1B38 /* JROnipinoL2PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0FA8EFEA4B2DF126FAFB /* JROnipinoL2PluralElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC0871B4B22A00D9422306 /* JRPinapL2PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC09DFC78AABDD5D3D0F74 /* JRPinapL2PluralElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC08AB02FA98688E85A74F /* JRCaptureUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC01D8E78E6BA31785660C /* JRCaptureUser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -53,6 +55,8 @@
 		9FEB3888158130E1007706DC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEB3886158130E1007706DC /* MessageUI.framework */; };
 		9FEB3889158130E1007706DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEB3887158130E1007706DC /* Security.framework */; };
 		C14242C007F83BB4E693E6FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C142496846000070E975C56D /* QuartzCore.framework */; };
+		D8943652186216E5004BCF0A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8943651186216E5004BCF0A /* Social.framework */; };
+		D8943658186248BC004BCF0A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8943657186248BC004BCF0A /* Accounts.framework */; };
 		D8C66B45185FBB2400AC0BDA /* JRBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C66A26185FBB2400AC0BDA /* JRBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8C66B46185FBB2400AC0BDA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D8C66A29185FBB2400AC0BDA /* .gitignore */; };
 		D8C66B47185FBB2400AC0BDA /* JRCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C66A2B185FBB2400AC0BDA /* JRCapture.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -317,6 +321,7 @@
 		19BC06429391F55A7C3325EA /* JRPinapinoL3PluralElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPinapinoL3PluralElement.h; sourceTree = "<group>"; };
 		19BC0664921405E4DD4BAA8E /* JRPinapinapL3PluralElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinapinapL3PluralElement.m; sourceTree = "<group>"; };
 		19BC06A45E219F2DEBEA0B75 /* JROinoL2Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROinoL2Object.h; sourceTree = "<group>"; };
+		19BC06ABAAE4A0A924C1CF01 /* JRNativeTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeTwitter.m; sourceTree = "<group>"; };
 		19BC06E7A1E0D4B8A0455C01 /* JRPinonipL2Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPinonipL2Object.h; sourceTree = "<group>"; };
 		19BC07084CAF118083D80454 /* JRPinoinoL1Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinoinoL1Object.m; sourceTree = "<group>"; };
 		19BC075A509F9D3AC9F264B6 /* JROinoL1Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROinoL1Object.m; sourceTree = "<group>"; };
@@ -326,6 +331,7 @@
 		19BC080B143FF9CCAD52209C /* JRPinoinoL3PluralElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinoinoL3PluralElement.m; sourceTree = "<group>"; };
 		19BC081373A7FABD3A8DDFD2 /* JRPinonipL1PluralElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinonipL1PluralElement.m; sourceTree = "<group>"; };
 		19BC082AB90DBA88A5CB4492 /* JROinonipL3Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROinonipL3Object.m; sourceTree = "<group>"; };
+		19BC0868554BD33EC8DBC083 /* JRNativeTwitterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeTwitterTests.m; sourceTree = "<group>"; };
 		19BC0884CCB9FEF18C2FD806 /* JRPinapinoL3PluralElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinapinoL3PluralElement.m; sourceTree = "<group>"; };
 		19BC0888989F707AC9319FA1 /* JRPinoL1Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinoL1Object.m; sourceTree = "<group>"; };
 		19BC08E503D2457CA7E02CAB /* JROnipL1PluralElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROnipL1PluralElement.m; sourceTree = "<group>"; };
@@ -363,6 +369,7 @@
 		19BC0EFDEA30C04D46B68F83 /* JROinoL1Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROinoL1Object.h; sourceTree = "<group>"; };
 		19BC0F05EBAF213FFD923E6A /* JRPluralTestAlphabeticElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPluralTestAlphabeticElement.h; sourceTree = "<group>"; };
 		19BC0F1B48A04D52E560A347 /* JRPinapL1PluralElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPinapL1PluralElement.m; sourceTree = "<group>"; };
+		19BC0F1F465A353BDEA1A530 /* JRNativeTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeTwitter.h; sourceTree = "<group>"; };
 		19BC0F3EA6C4EA04F534E064 /* JROnipinapL3Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROnipinapL3Object.m; sourceTree = "<group>"; };
 		19BC0F4AEAFF9F00F266FE34 /* JRPinapinoL1Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPinapinoL1Object.h; sourceTree = "<group>"; };
 		19BC0F63584447994986286D /* JRBasicPluralElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBasicPluralElement.h; sourceTree = "<group>"; };
@@ -372,6 +379,8 @@
 		9FEB3886158130E1007706DC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9FEB3887158130E1007706DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C142496846000070E975C56D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D8943651186216E5004BCF0A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D8943657186248BC004BCF0A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D8C66A25185FBB2400AC0BDA /* JRBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBase64.h; sourceTree = "<group>"; };
 		D8C66A26185FBB2400AC0BDA /* JRBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBase64.m; sourceTree = "<group>"; };
 		D8C66A29185FBB2400AC0BDA /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -656,6 +665,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8943658186248BC004BCF0A /* Accounts.framework in Frameworks */,
+				D8943652186216E5004BCF0A /* Social.framework in Frameworks */,
 				D8FC6F8F17BAA7960001650F /* libOCMock.a in Frameworks */,
 				9FEB3888158130E1007706DC /* MessageUI.framework in Frameworks */,
 				9FEB3889158130E1007706DC /* Security.framework in Frameworks */,
@@ -918,6 +929,8 @@
 				D8C66A83185FBB2400AC0BDA /* JRUserLandingController.m */,
 				D8C66A84185FBB2400AC0BDA /* JRWebViewController.h */,
 				D8C66A85185FBB2400AC0BDA /* JRWebViewController.m */,
+				19BC0F1F465A353BDEA1A530 /* JRNativeTwitter.h */,
+				19BC06ABAAE4A0A924C1CF01 /* JRNativeTwitter.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1237,6 +1250,8 @@
 		DDE0B9A67F00A1DC4B6DFBB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8943657186248BC004BCF0A /* Accounts.framework */,
+				D8943651186216E5004BCF0A /* Social.framework */,
 				D8DABE3017B99F2700F31953 /* GHUnitIOS.framework */,
 				9FEB3886158130E1007706DC /* MessageUI.framework */,
 				9FEB3887158130E1007706DC /* Security.framework */,
@@ -1256,6 +1271,7 @@
 				19BC044CABA1F8B5E2A87965 /* JRCaptureTests.m */,
 				19BC05E57594F7DEF6A7F0BE /* JRCaptureUserExtrasTests.m */,
 				19BC0AA9ED5739B546754F5E /* JRCaptureUIRequestBuilderTests.m */,
+				19BC0868554BD33EC8DBC083 /* JRNativeTwitterTests.m */,
 			);
 			path = JUMPTests;
 			sourceTree = "<group>";
@@ -1599,6 +1615,8 @@
 				19BC01F092E2E58E5F5EA8C0 /* JRCaptureUIRequestBuilderTests.m in Sources */,
 				D8C66B52185FBB2400AC0BDA /* JRTraditionalSigninViewController.m in Sources */,
 				D8C66B5E185FBB2400AC0BDA /* NSDictionary+JRQueryParams.m in Sources */,
+				19BC03FCC1652C3759E5890A /* JRNativeTwitter.m in Sources */,
+				19BC084D29B75E065142B9FC /* JRNativeTwitterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1675,6 +1693,7 @@
 				);
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/usr/include\"";
 				INFOPLIST_FILE = "JUMPTests/JUMPTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1708,6 +1727,7 @@
 				);
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/usr/include\"";
 				INFOPLIST_FILE = "JUMPTests/JUMPTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
