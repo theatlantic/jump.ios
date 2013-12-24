@@ -97,9 +97,12 @@
         self.completion(
                 [JREngageError errorWithMessage:@"No access to Twitter accounts"
                                         andCode:JRAuthenticationNoAccessToTwitterAccountsError]);
+    } else if (error.code == ACErrorAccountNotFound) {
+        // This occurs in the iOS 6 simulator when there are no accounts
+        [self triggerWebViewAuthenticationWithMessage:@"No twitter accounts configured, try web view authentication"];
     } else {
-        self.completion([JREngageError errorWithMessage:@"Failed to get access to Twitter accounts"
-                                                andCode:JRAuthenticationNativeAuthError]);
+        NSString *errorMessage = [NSString stringWithFormat:@"Failed to get access to Twitter accounts: %@", error];
+        self.completion([JREngageError errorWithMessage:errorMessage andCode:JRAuthenticationNativeAuthError]);
     }
 }
 
