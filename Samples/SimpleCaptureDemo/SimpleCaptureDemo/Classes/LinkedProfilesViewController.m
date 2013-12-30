@@ -93,7 +93,7 @@
     [super viewDidAppear:animated];
     
     if(![linkedProfiles count]){
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -145,7 +145,7 @@
 -(void)notifySelectedProfile:(UIButton *)sender {
     NSLog(@"Selected : %@", [linkedProfiles objectAtIndex:sender.tag]);
     [delegate unlinkSelectedProfile:[[linkedProfiles objectAtIndex:sender.tag] valueForKey:@"identifier"]];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -24,7 +24,9 @@ If you haven't already, clone the JUMP for iOS library from GitHub: `git clone g
    JRCapture project group from the Janrain project group.
 7. You must also add the **Security** framework, **QuartzCore** framework, and the **MessageUI** framework to your
    project. As the **MessageUI** framework is not available on all iOS devices and versions, you must designate the
-   framework as "optional."
+   framework as "optional." As of JUMP iOS v3.6 you must also add the **Accounts** framework and the **Social**
+   framework.
+8. Ensure that your deployment target is at least iOS 6 (This is required as of JUMP iOS v3.6.)
 
 ### Frameworks:
 

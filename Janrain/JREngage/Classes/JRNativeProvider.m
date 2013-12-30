@@ -55,10 +55,11 @@
 
     [JRSessionData jrSessionData].authenticationFlowIsInFlight = YES;
     [JRSessionData jrSessionData].nativeAuthenticationFlowIsInFlight = YES;
+
+    DLog(@"Starting native %@ authentication.", [self provider]);
 }
 
 - (void)getAuthInfoTokenForAccessToken:(id)token {
-    DLog(@"token %@", token);
     if (![token isKindOfClass:[NSString class]])
     {
         id userInfo = @{@"description":@"invalid token", @"token":[NSValue valueWithNonretainedObject:token]};
@@ -69,8 +70,26 @@
         return;
     }
 
+    [self getAuthInfoTokenForAccessToken:(NSString *)token andTokenSecret:nil];
+}
+
+- (void)triggerWebViewAuthenticationWithMessage:(NSString *)message {
+    [JRSessionData jrSessionData].nativeAuthenticationFlowIsInFlight = NO;
+    self.completion([JREngageError errorWithMessage:message andCode:JRAuthenticationShouldTryWebViewError]);
+}
+
+- (void)getAuthInfoTokenForAccessToken:(NSString *)token andTokenSecret:(NSString *)tokenSecret {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
+            @"token" : token,
+            @"provider" : self.provider
+    }];
     NSString *url = [[JRSessionData jrSessionData].baseUrl stringByAppendingString:@"/signin/oauth_token"];
-    NSDictionary *params = @{@"token" : token, @"provider" : self.provider};
+
+    if (tokenSecret) {
+        // Twitter uses OAuth 1 and requires both a token and a token secret
+        [params setObject:tokenSecret forKey:@"token_secret"];
+    }
+
 
     void (^responseHandler)(id, NSError *) = ^(id result, NSError *error)
     {

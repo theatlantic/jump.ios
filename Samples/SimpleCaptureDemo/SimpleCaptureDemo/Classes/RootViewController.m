@@ -292,7 +292,7 @@
             LinkedProfilesViewController *linkedProfilesController = [[LinkedProfilesViewController alloc]init];
             linkedProfilesController.delegate = self;
             linkedProfilesController.linkedProfiles = [JRCaptureData getLinkedProfiles];
-            [self.navigationController presentModalViewController:linkedProfilesController animated:YES];
+            [self.navigationController presentViewController:linkedProfilesController animated:YES completion:nil];
         }
     };
     

@@ -123,6 +123,18 @@
 @property (nonatomic, retain) NSString *googlePlusClientId;
 
 /**
+ *  Your Twitter consumer secret. Must match the value in your Engage Dashboard.
+ *  This is required for native Twitter authentication
+ */
+@property (nonatomic, retain) NSString *twitterConsumerSecret;
+
+/**
+ *  Your Twitter consumer key. Must match the value in your Engage Dashboard.
+ *  This is required for native Twitter authentication
+ */
+@property (nonatomic, retain) NSString *twitterConsumerKey;
+
+/**
  *   Get an empty Capture Configuration
  */
 + (JRCaptureConfig *)emptyCaptureConfig;

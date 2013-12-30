@@ -42,4 +42,6 @@ typedef void (^NativeCompletionBlock)(NSError *);
 - (NSString *)provider;
 - (void)startAuthenticationWithCompletion:(NativeCompletionBlock)completion;
 - (void)getAuthInfoTokenForAccessToken:(id)token;
+- (void)getAuthInfoTokenForAccessToken:(NSString *)token andTokenSecret:(NSString *)tokenSecret;
+- (void)triggerWebViewAuthenticationWithMessage:(NSString *)message;
 @end
