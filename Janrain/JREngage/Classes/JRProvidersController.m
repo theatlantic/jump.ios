@@ -41,7 +41,6 @@
 #import "JRUserLandingController.h"
 #import "JRNativeAuth.h"
 #import "JREngageError.h"
-#import "JRCaptureData.h"
 #import "JRNativeProvider.h"
 
 @interface UITableViewCellProviders : UITableViewCell

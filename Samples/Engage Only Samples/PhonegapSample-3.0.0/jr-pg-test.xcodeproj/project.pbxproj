@@ -230,6 +230,14 @@
 		4E1D944017CB4C9B00516D59 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D936E17CB4C9B00516D59 /* SFHFKeychainUtils.m */; };
 		4E1D944217CB4D2000516D59 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1D944117CB4D2000516D59 /* AssetsLibrary.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
+		D85F4DAA1871F4660013FD41 /* JRNativeFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = D85F4DA31871F4660013FD41 /* JRNativeFacebook.m */; };
+		D85F4DAB1871F4660013FD41 /* JRNativeGooglePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = D85F4DA51871F4660013FD41 /* JRNativeGooglePlus.m */; };
+		D85F4DAC1871F4660013FD41 /* JRNativeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D85F4DA71871F4660013FD41 /* JRNativeProvider.m */; };
+		D85F4DAD1871F4660013FD41 /* JRNativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = D85F4DA91871F4660013FD41 /* JRNativeTwitter.m */; };
+		D85F4DB01871F4D40013FD41 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = D85F4DAF1871F4D40013FD41 /* NSURLRequest+JRQueryParams.m */; };
+		D85F4DB41871F4E40013FD41 /* JRBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D85F4DB31871F4E40013FD41 /* JRBase64.m */; };
+		D85F4DB61871F5B50013FD41 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85F4DB51871F5B50013FD41 /* Accounts.framework */; };
+		D85F4DB81871F5BB0013FD41 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85F4DB71871F5BB0013FD41 /* Social.framework */; };
 		D8F00B2A16A4D79C0051B2C8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F00B2916A4D79C0051B2C8 /* MessageUI.framework */; };
 		D8F00B2C16A4D7B20051B2C8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F00B2B16A4D7B20051B2C8 /* Security.framework */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
@@ -505,6 +513,21 @@
 		4E1D944117CB4D2000516D59 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* jr-pg-test-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "jr-pg-test-Info.plist"; path = "../jr-pg-test-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
+		D85F4DA11871F4660013FD41 /* JRNativeAuthConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeAuthConfig.h; sourceTree = "<group>"; };
+		D85F4DA21871F4660013FD41 /* JRNativeFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeFacebook.h; sourceTree = "<group>"; };
+		D85F4DA31871F4660013FD41 /* JRNativeFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeFacebook.m; sourceTree = "<group>"; };
+		D85F4DA41871F4660013FD41 /* JRNativeGooglePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeGooglePlus.h; sourceTree = "<group>"; };
+		D85F4DA51871F4660013FD41 /* JRNativeGooglePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeGooglePlus.m; sourceTree = "<group>"; };
+		D85F4DA61871F4660013FD41 /* JRNativeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeProvider.h; sourceTree = "<group>"; };
+		D85F4DA71871F4660013FD41 /* JRNativeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeProvider.m; sourceTree = "<group>"; };
+		D85F4DA81871F4660013FD41 /* JRNativeTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeTwitter.h; sourceTree = "<group>"; };
+		D85F4DA91871F4660013FD41 /* JRNativeTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeTwitter.m; sourceTree = "<group>"; };
+		D85F4DAE1871F4D40013FD41 /* NSURLRequest+JRQueryParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+JRQueryParams.h"; sourceTree = "<group>"; };
+		D85F4DAF1871F4D40013FD41 /* NSURLRequest+JRQueryParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+JRQueryParams.m"; sourceTree = "<group>"; };
+		D85F4DB21871F4E40013FD41 /* JRBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBase64.h; sourceTree = "<group>"; };
+		D85F4DB31871F4E40013FD41 /* JRBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBase64.m; sourceTree = "<group>"; };
+		D85F4DB51871F5B50013FD41 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D85F4DB71871F5BB0013FD41 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D8F00B2916A4D79C0051B2C8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D8F00B2B16A4D7B20051B2C8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "jr-pg-test/config.xml"; sourceTree = "<group>"; };
@@ -515,6 +538,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85F4DB81871F5BB0013FD41 /* Social.framework in Frameworks */,
+				D85F4DB61871F5B50013FD41 /* Accounts.framework in Frameworks */,
 				4E1D944217CB4D2000516D59 /* AssetsLibrary.framework in Frameworks */,
 				D8F00B2C16A4D7B20051B2C8 /* Security.framework in Frameworks */,
 				D8F00B2A16A4D79C0051B2C8 /* MessageUI.framework in Frameworks */,
@@ -622,6 +647,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D85F4DB71871F5BB0013FD41 /* Social.framework */,
+				D85F4DB51871F5B50013FD41 /* Accounts.framework */,
 				4E1D944117CB4D2000516D59 /* AssetsLibrary.framework */,
 				D8F00B2B16A4D7B20051B2C8 /* Security.framework */,
 				D8F00B2916A4D79C0051B2C8 /* MessageUI.framework */,
@@ -702,6 +729,7 @@
 		4E1D926517CB4C9A00516D59 /* Janrain */ = {
 			isa = PBXGroup;
 			children = (
+				D85F4DB11871F4E40013FD41 /* Base64 */,
 				4E1D928C17CB4C9A00516D59 /* JRConnectionManager */,
 				4E1D929317CB4C9A00516D59 /* JREngage */,
 				4E1D936C17CB4C9B00516D59 /* Security */,
@@ -713,6 +741,8 @@
 		4E1D928C17CB4C9A00516D59 /* JRConnectionManager */ = {
 			isa = PBXGroup;
 			children = (
+				D85F4DAE1871F4D40013FD41 /* NSURLRequest+JRQueryParams.h */,
+				D85F4DAF1871F4D40013FD41 /* NSURLRequest+JRQueryParams.m */,
 				4E1D928D17CB4C9A00516D59 /* JRConnectionManager.h */,
 				4E1D928E17CB4C9A00516D59 /* JRConnectionManager.m */,
 				4E1D928F17CB4C9A00516D59 /* NSDictionary+JRQueryParams.h */,
@@ -738,6 +768,15 @@
 		4E1D929517CB4C9B00516D59 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D85F4DA11871F4660013FD41 /* JRNativeAuthConfig.h */,
+				D85F4DA21871F4660013FD41 /* JRNativeFacebook.h */,
+				D85F4DA31871F4660013FD41 /* JRNativeFacebook.m */,
+				D85F4DA41871F4660013FD41 /* JRNativeGooglePlus.h */,
+				D85F4DA51871F4660013FD41 /* JRNativeGooglePlus.m */,
+				D85F4DA61871F4660013FD41 /* JRNativeProvider.h */,
+				D85F4DA71871F4660013FD41 /* JRNativeProvider.m */,
+				D85F4DA81871F4660013FD41 /* JRNativeTwitter.h */,
+				D85F4DA91871F4660013FD41 /* JRNativeTwitter.m */,
 				4E007BA6181F89C000F44705 /* JRCompatibilityUtils.h */,
 				4E007BA7181F89C000F44705 /* JRCompatibilityUtils.m */,
 				4E1D929617CB4C9B00516D59 /* debug_log.h */,
@@ -1062,6 +1101,15 @@
 			path = Security;
 			sourceTree = "<group>";
 		};
+		D85F4DB11871F4E40013FD41 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				D85F4DB21871F4E40013FD41 /* JRBase64.h */,
+				D85F4DB31871F4E40013FD41 /* JRBase64.m */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1349,19 +1397,25 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				4E007BA8181F89C000F44705 /* JRCompatibilityUtils.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				D85F4DAC1871F4660013FD41 /* JRNativeProvider.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+				D85F4DAA1871F4660013FD41 /* JRNativeFacebook.m in Sources */,
 				4E1D938417CB4C9B00516D59 /* JRConnectionManager.m in Sources */,
 				4E1D938517CB4C9B00516D59 /* NSDictionary+JRQueryParams.m in Sources */,
 				4E1D938617CB4C9B00516D59 /* NSMutableURLRequest+JRRequestUtils.m in Sources */,
 				4E1D938817CB4C9B00516D59 /* debug_log.m in Sources */,
 				4E1D938917CB4C9B00516D59 /* JRActivityObject.m in Sources */,
+				D85F4DB01871F4D40013FD41 /* NSURLRequest+JRQueryParams.m in Sources */,
 				4E1D938A17CB4C9B00516D59 /* JREngage+CustomInterface.m in Sources */,
 				4E1D938B17CB4C9B00516D59 /* JREngage.m in Sources */,
 				4E1D938C17CB4C9B00516D59 /* JREngageError.m in Sources */,
 				4E1D938D17CB4C9B00516D59 /* JREngagePhonegapPlugin.m in Sources */,
+				D85F4DB41871F4E40013FD41 /* JRBase64.m in Sources */,
+				D85F4DAD1871F4660013FD41 /* JRNativeTwitter.m in Sources */,
 				4E1D938E17CB4C9B00516D59 /* JRInfoBar.m in Sources */,
 				4E1D938F17CB4C9B00516D59 /* JRJsonUtils.m in Sources */,
 				4E1D939017CB4C9B00516D59 /* JRNativeAuth.m in Sources */,
+				D85F4DAB1871F4660013FD41 /* JRNativeGooglePlus.m in Sources */,
 				4E1D939117CB4C9B00516D59 /* JRPreviewLabel.m in Sources */,
 				4E1D939217CB4C9B00516D59 /* JRProvidersController.m in Sources */,
 				4E1D939317CB4C9B00516D59 /* JRPublishActivityController.m in Sources */,
