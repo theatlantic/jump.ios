@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2010, Janrain, Inc.
+ Copyright (c) 2013, Janrain, Inc.
 
  All rights reserved.
 
@@ -29,41 +29,12 @@
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#import <Foundation/Foundation.h>
+#import "JRNativeProvider.h"
 
-#import "JRCaptureConfig.h"
 
-@implementation JRCaptureConfig
+@interface JRNativeGooglePlus : JRNativeProvider
+@property (nonatomic, retain) NSString *googlePlusClientId;
 
-+ (JRCaptureConfig *)emptyCaptureConfig {
-#if __has_feature(objc_arc)
-    return [[JRCaptureConfig alloc] init];
-#else
-    return [[[JRCaptureConfig alloc] init] autorelease];
-#endif
-}
-
-- (void)dealloc
-{
-#if !__has_feature(objc_arc)
-    [self.engageAppId release];
-    [self.captureDomain release];
-    [self.captureClientId release];
-    [self.captureLocale release];
-    [self.captureFlowName release];
-    [self.captureFlowVersion release];
-    [self.captureSignInFormName release];
-    [self.customProviders release];
-    [self.captureTraditionalRegistrationFormName release];
-    [self.captureSocialRegistrationFormName release];
-    [self.captureAppId release];
-    [self.forgottenPasswordFormName release];
-    [self.passwordRecoverUri release];
-    [self.editProfileFormName release];
-    [self.resendEmailVerificationFormName release];
-    [self.googlePlusClientId release];
-
-    [super dealloc];
-#endif
-}
-
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(NSString *)annotation;
 @end

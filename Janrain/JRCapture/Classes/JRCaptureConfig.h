@@ -118,6 +118,11 @@
 @property (nonatomic, retain) NSString *resendEmailVerificationFormName;
 
 /**
+ *  Your Google+ client id. Must be for the same google application that is configured in Engage.
+ */
+@property (nonatomic, retain) NSString *googlePlusClientId;
+
+/**
  *   Get an empty Capture Configuration
  */
 + (JRCaptureConfig *)emptyCaptureConfig;

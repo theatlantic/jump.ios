@@ -81,6 +81,8 @@
 #endif
 
 #import <Foundation/Foundation.h>
+#import "JRNativeAuthConfig.h"
+
 @class JRActivityObject;
 
 /**
@@ -309,7 +311,7 @@
  * the token URL. Your server can complete authentication, access more of JREngage's API, log the authentication, etc.
  * and the server's response will be passed back through to your iOS application.
  **/
-@interface JREngage : NSObject
+@interface JREngage : NSObject <JRNativeAuthConfig>
 
 /**
  * @name Get the JREngage Instance
@@ -337,12 +339,25 @@
            andDelegate:(id <JREngageSigninDelegate>)delegate;
 
 /**
+ * Get the shared JREngage instance
+ */
++ (JREngage *)instance;
+
+/**
  * @deprecated
  * Use [JREngage setEngageAppId:TokenUrl:andDelegate] instead
  */
 + (JREngage *)jrEngageWithAppId:(NSString *)appId andTokenUrl:(NSString *)tokenUrl
                        delegate:(id <JREngageSigninDelegate>)delegate __attribute__((deprecated));
 /*@}*/
+
+/**
+ *  Set the Google+ client id for use with native Google+ SSO
+ *
+ *  @param clientId
+ *    Your google+ client id. Should be from the same Google+ app that is registered with Engage.
+ */
++ (void)setGooglePlusClientId:(NSString *)clientId;
 
 /**
  * @name Manage the Delegates
@@ -571,6 +586,18 @@
 + (void)setCustomInterfaceDefaults:(NSDictionary *)customInterfaceDefaults __unused;
 /*@}*/
 + (void)setCustomProviders:(NSDictionary *)customProviders __unused;
+
+/**
+ * JREngage URL handler
+ */
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation;
+
+/**
+ * JREngage application did become active handler
+ */
++ (void)applicationDidBecomeActive:(UIApplication *)application;
+
 @end
 
 /**

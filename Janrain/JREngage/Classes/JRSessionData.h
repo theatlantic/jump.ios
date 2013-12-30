@@ -140,6 +140,7 @@
 @property BOOL alwaysForceReauth;
 @property BOOL socialSharing;
 @property BOOL authenticationFlowIsInFlight;
+@property BOOL nativeAuthenticationFlowIsInFlight;
 @property BOOL accountLinking;
 @property(retain, readonly) NSError *error;
 

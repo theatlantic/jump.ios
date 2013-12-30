@@ -17,7 +17,10 @@
 		19BC03D72B24CB34F6581A24 /* JRCaptureUIRequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC04C4EF4D04199F0988AB /* JRCaptureUIRequestBuilder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19BC043CB32C3615A713D687 /* JRCompatibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */; };
 		19BC04A025012377EE30F823 /* logo_amazon_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */; };
+		19BC08BD64B1552774EBDFEA /* JRNativeGooglePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0A194B8B15D5375BBB98 /* JRNativeGooglePlus.m */; };
 		19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */; };
+		19BC0DFDCBAF337078CAF21B /* JRNativeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0A5CBDCA26A833BCC0C0 /* JRNativeProvider.m */; };
+		19BC0F8289734BEF98CD916D /* JRNativeFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0AF36F9FFDBE539E801E /* JRNativeFacebook.m */; };
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
 		4ED8382D17EC307900CA9645 /* LinkedProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */; };
 		6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FCAB908800A9FF445D4B /* Upgrade Guide.md */; };
@@ -308,18 +311,25 @@
 		19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCompatibilityUtils.m; sourceTree = "<group>"; };
 		19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_amazon_280x65@2x.png"; sourceTree = "<group>"; };
 		19BC0446B3F416604E5EFB41 /* CaptureEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureEditProfileViewController.h; sourceTree = "<group>"; };
+		19BC044CFBB57C725104A436 /* JRNativeFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeFacebook.h; sourceTree = "<group>"; };
 		19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureConfig.m; sourceTree = "<group>"; };
 		19BC04C4EF4D04199F0988AB /* JRCaptureUIRequestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureUIRequestBuilder.m; sourceTree = "<group>"; };
 		19BC052B6185FEA424AF0113 /* JRCompatibilityUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCompatibilityUtils.h; sourceTree = "<group>"; };
 		19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_amazon_30x30@2x.png"; sourceTree = "<group>"; };
+		19BC0729F091BC7BF1711D7B /* JRNativeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeProvider.h; sourceTree = "<group>"; };
 		19BC0790B7A0F9C301BC4638 /* JRCaptureFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureFlow.h; sourceTree = "<group>"; };
 		19BC07DF96012EB5B44C5B6C /* CaptureEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureEditProfileViewController.m; sourceTree = "<group>"; };
 		19BC082BDAC70108910C88F6 /* NSURLRequest+JRQueryParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+JRQueryParams.h"; sourceTree = "<group>"; };
 		19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_amazon_30x30@2x.png"; sourceTree = "<group>"; };
 		19BC08BE93BD3ECF364C358F /* icon_bw_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_amazon_30x30.png; sourceTree = "<group>"; };
+		19BC0A194B8B15D5375BBB98 /* JRNativeGooglePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeGooglePlus.m; sourceTree = "<group>"; };
+		19BC0A5CBDCA26A833BCC0C0 /* JRNativeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeProvider.m; sourceTree = "<group>"; };
+		19BC0AF36F9FFDBE539E801E /* JRNativeFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeFacebook.m; sourceTree = "<group>"; };
 		19BC0BFBA1B728272D41559E /* JRCaptureFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureFlow.m; sourceTree = "<group>"; };
 		19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_amazon_280x65.png; sourceTree = "<group>"; };
+		19BC0C7FA871F682D690A5BC /* JRNativeAuthConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeAuthConfig.h; sourceTree = "<group>"; };
 		19BC0C91C468544CC1764EEB /* JRCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureConfig.h; sourceTree = "<group>"; };
+		19BC0DD546434509C30D84AF /* JRNativeGooglePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeGooglePlus.h; sourceTree = "<group>"; };
 		19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amazon_30x30.png; sourceTree = "<group>"; };
 		19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+JRQueryParams.m"; sourceTree = "<group>"; };
 		4ED8382B17EC307900CA9645 /* LinkedProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedProfilesViewController.h; path = Classes/LinkedProfilesViewController.h; sourceTree = "<group>"; };
@@ -1082,6 +1092,13 @@
 				DFEFE3EF17A9915200760FEE /* JRWebViewController.m */,
 				19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */,
 				19BC052B6185FEA424AF0113 /* JRCompatibilityUtils.h */,
+				19BC044CFBB57C725104A436 /* JRNativeFacebook.h */,
+				19BC0AF36F9FFDBE539E801E /* JRNativeFacebook.m */,
+				19BC0DD546434509C30D84AF /* JRNativeGooglePlus.h */,
+				19BC0A194B8B15D5375BBB98 /* JRNativeGooglePlus.m */,
+				19BC0729F091BC7BF1711D7B /* JRNativeProvider.h */,
+				19BC0A5CBDCA26A833BCC0C0 /* JRNativeProvider.m */,
+				19BC0C7FA871F682D690A5BC /* JRNativeAuthConfig.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1745,6 +1762,9 @@
 				19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */,
 				19BC03A4F7837E9320636958 /* JRCaptureFlow.m in Sources */,
 				19BC03D72B24CB34F6581A24 /* JRCaptureUIRequestBuilder.m in Sources */,
+				19BC0F8289734BEF98CD916D /* JRNativeFacebook.m in Sources */,
+				19BC08BD64B1552774EBDFEA /* JRNativeGooglePlus.m in Sources */,
+				19BC0DFDCBAF337078CAF21B /* JRNativeProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

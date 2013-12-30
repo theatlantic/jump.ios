@@ -37,6 +37,15 @@
 #import "JRUserInterfaceMaestro.h"
 #import "JREngageError.h"
 #import "JRNativeAuth.h"
+#import "JRNativeAuthConfig.h"
+#import "JRNativeProvider.h"
+
+#if __has_include(<FacebookSDK/FacebookSDK.h>)
+# import <FacebookSDK/FacebookSDK.h>
+#endif
+#if __has_include(<GooglePlus/GooglePlus.h>)
+# import <GooglePlus/GooglePlus.h>
+#endif
 
 @interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
@@ -47,6 +56,11 @@
 
 /** \internal Array of JREngageDelegate objects */
 @property (nonatomic, retain) NSMutableArray         *delegates;
+
+@property (nonatomic, retain) NSString *googlePlusClientId;
+
+@property (nonatomic, retain) JRNativeProvider *nativeProvider;
+
 @end
 
 @implementation JREngage
@@ -55,15 +69,6 @@
 @synthesize delegates;
 
 static JREngage* singleton = nil;
-
-- (id)init
-{
-    if ((self = [super init]))
-    {
-    }
-
-    return self;
-}
 
 + (JREngage *)singletonInstance
 {
@@ -102,11 +107,22 @@ static JREngage* singleton = nil;
     [[JREngage singletonInstance] setEngageAppID:appId tokenUrl:tokenUrl andDelegate:delegate];
 }
 
++ (JREngage *)instance {
+    if (singleton) {
+        return [JREngage singletonInstance];
+    }
+    return nil;
+}
+
 + (JREngage *)jrEngageWithAppId:(NSString *)appId andTokenUrl:(NSString *)tokenUrl
                        delegate:(id <JREngageSigninDelegate>)delegate {
     [JREngage setEngageAppId:appId tokenUrl:tokenUrl andDelegate:delegate];
 
     return [JREngage singletonInstance];
+}
+
++ (void)setGooglePlusClientId:(NSString *)clientId {
+    [[JREngage singletonInstance] setGooglePlusClientId:clientId];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
@@ -222,7 +238,7 @@ static JREngage* singleton = nil;
 
     if ([JRNativeAuth canHandleProvider:provider])
     {
-        [self startNativeAuthWithCustomInterface:customInterfaceOverrides provider:provider];
+        [self startNativeAuthOnProvider:provider];
     }
     else
     {
@@ -230,28 +246,21 @@ static JREngage* singleton = nil;
     }
 }
 
-- (void)startNativeAuthWithCustomInterface:(NSDictionary *)customInterfaceOverrides provider:(NSString *)provider
+- (void)startNativeAuthOnProvider:(NSString *)provider
 {
-    [JRNativeAuth startAuthOnProvider:provider completion:^(NSError *error)
-    {
+    self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider withConfiguration:self];
+    [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
+        self.nativeProvider = nil;
+
         if (!error) return;
-        if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError)
-        {
+
+        if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
             [self authenticationDidCancel];
-        }
-        else
-        {
-            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
+        } else {
+            [self authenticationDidFailWithError:error forProvider:provider];
         }
     }];
 }
-
-//- (void)showAuthenticationDialogForProvider:(NSString *)provider
-//               withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
-//{
-//    [self showAuthenticationDialogWithCustomInterfaceOverrides:customInterfaceOverrides
-//                            orAuthenticatingOnJustThisProvider:provider];
-//}
 
 + (void)showAuthenticationDialogForProvider:(NSString *)provider
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused
@@ -259,12 +268,6 @@ static JREngage* singleton = nil;
     [[JREngage singletonInstance] showAuthenticationDialogForProvider:provider
                                                       customInterface:customInterfaceOverrides];
 }
-
-//- (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
-//{
-//    [self showAuthenticationDialogWithCustomInterfaceOverrides:customInterfaceOverrides
-//                            orAuthenticatingOnJustThisProvider:nil];
-//}
 
 + (void)showAuthenticationDialogWithCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused
 {
@@ -592,6 +595,8 @@ static JREngage* singleton = nil;
     [interfaceMaestro release];
     [sessionData release];
     [delegates release];
+    [_nativeProvider release];
+    [_googlePlusClientId release];
     [super dealloc];
 }
 
@@ -604,6 +609,35 @@ static JREngage* singleton = nil;
 + (void)setCustomProviders:(NSDictionary *)customProviders __unused
 {
     [[JREngage singletonInstance].sessionData setCustomProvidersWithDictionary:customProviders];
+}
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [JRNativeAuth application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+
++ (void)applicationDidBecomeActive:(UIApplication *)application {
+    Class fbSession = NSClassFromString(@"FBSession");
+    if (fbSession) {
+        SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
+        id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
+        id activeSession = getActiveSession(fbSession, activeSessionSelector);
+
+        SEL handleDidBecomeActiveSelector = NSSelectorFromString(@"handleDidBecomeActive");
+        void (*handleDidBecomeActive)(id, SEL, UIApplication *) =
+            (void *)[activeSession methodForSelector:handleDidBecomeActiveSelector];
+        handleDidBecomeActive(activeSession, handleDidBecomeActiveSelector, application);
+    }
+
+    if (singleton) {
+        [singleton applicationDidBecomeActive:application];
+    }
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if (sessionData.nativeAuthenticationFlowIsInFlight) {
+        [interfaceMaestro authenticationCanceled];
+    }
 }
 
 - (void)authenticationDidSucceedForAccountLinking:(NSDictionary *)profile

@@ -51,6 +51,7 @@
 #import "JRCaptureFlow.h"
 #import "JRJsonUtils.h"
 #import "NSMutableURLRequest+JRRequestUtils.h"
+#import "JREngage.h"
 
 @implementation JRCapture
 
@@ -63,6 +64,7 @@
 {
     [JRCaptureData setCaptureConfig:config];
     [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
+    [JREngage setGooglePlusClientId:config.googlePlusClientId];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
@@ -902,4 +904,10 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                                 message:@"initiating account unlinking flow"
                   extraOnSuccessHandler:successHandler];
 }
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [JREngage application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+
 @end

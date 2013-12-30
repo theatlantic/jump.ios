@@ -467,9 +467,9 @@ static JRCaptureData *singleton = nil;
         for(NSDictionary *dict in profileData) {
             
             NSDictionary *tempDict = @{
-                                       @"verifiedEmail" : ([[dict objectForKey:@"verifiedEmail"] isKindOfClass:[NSNull class]]) ? @"": [dict objectForKey:@"verifiedEmail"],
-                                       @"identifier" : [dict objectForKey:@"identifier"],
-                                       };
+                   @"verifiedEmail" : ([dict objectForKey:@"verifiedEmail"] ? [dict objectForKey:@"verifiedEmail"] : @""),
+                   @"identifier" : [dict objectForKey:@"identifier"],
+            };
             [returnArray addObject:tempDict];
         }
     }

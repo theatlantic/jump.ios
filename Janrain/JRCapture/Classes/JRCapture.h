@@ -792,6 +792,13 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
 + (void)startActualAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier;
 
+
+/**
+ * JRCapture URL handler
+ */
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation;
+
 @end
 
 /**
