@@ -1,3 +1,9 @@
+v3.6.0
+ - Dropped support for iOS 5, now only support iOS 6+
+ - Added support for sign-in using the Google+ SDK
+ - Added support for sign-in using iOS's Twitter accounts
+ - Added ability to resend email verification email
+ - Removed old Engage only sample apps
 v3.5.1
  - Fixes display of Yahoo! login page. Input fields are visible in iPad.
 v3.5.0
