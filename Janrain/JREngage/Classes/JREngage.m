@@ -39,13 +39,6 @@
 #import "JRNativeAuth.h"
 #import "JRNativeProvider.h"
 
-#if __has_include(<FacebookSDK/FacebookSDK.h>)
-# import <FacebookSDK/FacebookSDK.h>
-#endif
-#if __has_include(<GooglePlus/GooglePlus.h>)
-# import <GooglePlus/GooglePlus.h>
-#endif
-
 @interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
 @property (nonatomic, retain) JRUserInterfaceMaestro *interfaceMaestro;
