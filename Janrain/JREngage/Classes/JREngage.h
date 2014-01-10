@@ -296,6 +296,12 @@
 @end
 
 /**
+ * Notification sent when the Engage configuration has been updated.
+ */
+extern NSString *const JRFinishedUpdatingEngageConfigurationNotification;
+extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
+
+/**
  * @brief
  * Main API for interacting with the Janrain Engage for iOS library
  *

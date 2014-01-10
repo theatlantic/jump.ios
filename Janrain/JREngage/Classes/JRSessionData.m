@@ -776,6 +776,9 @@ static JRSessionData *singleton = nil;
     self.savedConfigurationBlock = nil;
     self.updatedEtag = nil;
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:JRFinishedUpdatingEngageConfigurationNotification
+                                                        object:self];
+
     return nil;
 }
 
@@ -1486,6 +1489,12 @@ CALL_DELEGATE_SELECTOR:
         {
             NSString *configJson = [[[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding] autorelease];
             self.error = [self finishGetConfiguration:configJson response:httpResponse];
+            if (self.error) {
+                [[NSNotificationCenter defaultCenter]
+                        postNotificationName:JRFailedToUpdateEngageConfigurationNotification
+                                      object:self
+                                    userInfo:@{@"error" : self.error}];
+            }
         }
     }
 }
