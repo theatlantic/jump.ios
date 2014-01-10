@@ -227,7 +227,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 
 - (void)loadView
 {
-    [self setView:[[[UIView alloc] initWithFrame:MODAL_SIZE_FRAME] autorelease]];
+    [self setView:[[UIView alloc] initWithFrame:MODAL_SIZE_FRAME]];
     self.view.backgroundColor = jrChildViewController.view.backgroundColor;
 }
 
@@ -298,7 +298,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
     self.windowDimmingView.backgroundColor = [UIColor clearColor];
 
     // dim the modal
-    self.modalDimmingView = [[[UIView alloc] initWithFrame:MODAL_SIZE_FRAME] autorelease];
+    self.modalDimmingView = [[UIView alloc] initWithFrame:MODAL_SIZE_FRAME];
     self.modalDimmingView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.modalDimmingView.backgroundColor = self.originalDimmingViewColor;
     [self.dropShadow addSubview:self.modalDimmingView];
@@ -445,11 +445,6 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 
 - (void)dealloc
 {
-    [_modalDimmingView release];
-    [_originalDimmingViewColor release];
-    [jrPresentingViewController release];
-    [jrChildViewController release];
-    [super dealloc];
 }
 
 @end
@@ -485,7 +480,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.animationController = [[[CustomAnimationController alloc] initWithNibName:nil bundle:nil] autorelease];
+        self.animationController = [[CustomAnimationController alloc] initWithNibName:nil bundle:nil];
     }
 
     return self;
@@ -494,7 +489,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 - (void)loadView
 {
     DLog (@"");
-    UIView *view = [[[UIView alloc] initWithFrame:getWindow().frame] autorelease];
+    UIView *view = [[UIView alloc] initWithFrame:getWindow().frame];
 
     [view setAutoresizingMask:
             UIViewAutoresizingNone
@@ -623,11 +618,6 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 - (void)dealloc
 {
     DLog (@"");
-    [myNavigationController release];
-    [myPopoverController release];
-    [animationController release];
-    [vcToPresent release];
-    [super dealloc];
 }
 @end
 
@@ -668,27 +658,10 @@ static JRUserInterfaceMaestro *singleton = nil;
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self sharedMaestro] retain];
+    return [self sharedMaestro];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;
-}
-
-- (oneway void)release { }
-
-- (id)autorelease
 {
     return self;
 }
@@ -717,7 +690,7 @@ static JRUserInterfaceMaestro *singleton = nil;
     {
         singleton = self;
         sessionData = newSessionData;
-        janrainInterfaceDefaults = [[self loadJanrainInterfaceDefaults] retain];
+        janrainInterfaceDefaults = [self loadJanrainInterfaceDefaults];
     }
 
     return self;
@@ -731,7 +704,7 @@ static JRUserInterfaceMaestro *singleton = nil;
     if (newSessionData == nil)
         return nil;
 
-    return [[((JRUserInterfaceMaestro *)[super allocWithZone:nil]) initWithSessionData:newSessionData] autorelease];
+    return [((JRUserInterfaceMaestro *)[super allocWithZone:nil]) initWithSessionData:newSessionData];
 }
 
 - (void)buildCustomInterface:(NSDictionary *)customizations
@@ -800,7 +773,7 @@ static JRUserInterfaceMaestro *singleton = nil;
     padPopoverMode = PadPopoverModeNone;
     usingAppNav = NO, usingCustomNav = NO;
 
-    [viewControllerToPopTo release], viewControllerToPopTo = nil;
+    viewControllerToPopTo = nil;
     self.applicationNavigationController = nil;
     self.customModalNavigationController = nil;
 }
@@ -860,18 +833,18 @@ static JRUserInterfaceMaestro *singleton = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"JRTearingDownViewControllers" object:self];
 
     [delegates removeAllObjects];
-    [delegates release], delegates = nil;
+    delegates = nil;
 
-    [myProvidersController release],        myProvidersController = nil;
-    [myUserLandingController release],      myUserLandingController = nil;
-    [myWebViewController release],          myWebViewController = nil;
-    [myPublishActivityController release],  myPublishActivityController = nil;
+    myProvidersController = nil;
+    myUserLandingController = nil;
+    myWebViewController = nil;
+    myPublishActivityController = nil;
 
-    [jrModalViewController release], jrModalViewController = nil;
-    [customModalNavigationController release], customModalNavigationController = nil;
+    jrModalViewController = nil;
+    customModalNavigationController = nil;
 
     self.customInterface = nil;
-    [directProviderName release], directProviderName = nil;
+    directProviderName = nil;
 
     sessionData.authenticationFlowIsInFlight = NO;
 }
@@ -898,7 +871,7 @@ static JRUserInterfaceMaestro *singleton = nil;
 - (UINavigationController *)createDefaultNavigationControllerWithRootViewController:(UIViewController *)root
 {
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:root];
-    [navigationController autorelease];
+
     navigationController.navigationBar.barStyle = UIBarStyleBlack;
     navigationController.navigationBar.clipsToBounds = YES;
 
@@ -914,8 +887,8 @@ static JRUserInterfaceMaestro *singleton = nil;
 {
     // Allocating UIPopoverController with class string allocation so that it compiles for iPhone OS versions < v3.2
     UIPopoverController *popoverController =
-        [[[NSClassFromString(@"UIPopoverController") alloc]
-            initWithContentViewController:navigationController] autorelease];
+        [[NSClassFromString(@"UIPopoverController") alloc]
+            initWithContentViewController:navigationController];
 
     if (popoverController)
     {
@@ -967,7 +940,7 @@ static JRUserInterfaceMaestro *singleton = nil;
 {
     DLog(@"");
 
-    self.jrModalViewController = [[[JRModalViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+    self.jrModalViewController = [[JRModalViewController alloc] initWithNibName:nil bundle:nil];
 
     if (usingCustomNav)
     {
@@ -1028,7 +1001,7 @@ static JRUserInterfaceMaestro *singleton = nil;
     DLog(@"");
     if (!viewControllerToPopTo)
     {
-        viewControllerToPopTo = [[applicationNavigationController topViewController] retain];
+        viewControllerToPopTo = [applicationNavigationController topViewController];
     }
 
     if ([self shouldOpenToUserLandingPage])
@@ -1196,21 +1169,6 @@ static JRUserInterfaceMaestro *singleton = nil;
 
 - (void)dealloc
 {
-    [delegates release];
-    [myProvidersController release];
-    [myUserLandingController release];
-    [myWebViewController release];
-    [myPublishActivityController release];
-    [viewControllerToPopTo release];
-    [janrainInterfaceDefaults release];
-    [jrModalViewController release];
-    [customModalNavigationController release];
-    [applicationNavigationController release];
-    [savedNavigationController release];
-    [customInterfaceDefaults release];
-    [directProviderName release];
-    [customInterface release];
-    [super dealloc];
 }
 
 - (void)startWebAuthWithCustomInterface:(NSDictionary *)customInterfaceOverrides provider:(NSString *)provider

@@ -72,7 +72,6 @@
 {
     [self.dirtyPropertySet addObject:@"department"];
 
-    [_department autorelease];
     _department = [newDepartment copy];
 }
 
@@ -85,7 +84,6 @@
 {
     [self.dirtyPropertySet addObject:@"description"];
 
-    [_description autorelease];
     _description = [newDescription copy];
 }
 
@@ -98,7 +96,6 @@
 {
     [self.dirtyPropertySet addObject:@"endDate"];
 
-    [_endDate autorelease];
     _endDate = [newEndDate copy];
 }
 
@@ -111,8 +108,7 @@
 {
     [self.dirtyPropertySet addObject:@"location"];
 
-    [_location autorelease];
-    _location = [newLocation retain];
+    _location = newLocation;
 
     [_location setAllPropertiesToDirty];
 }
@@ -126,7 +122,6 @@
 {
     [self.dirtyPropertySet addObject:@"name"];
 
-    [_name autorelease];
     _name = [newName copy];
 }
 
@@ -139,7 +134,6 @@
 {
     [self.dirtyPropertySet addObject:@"primary"];
 
-    [_primary autorelease];
     _primary = [newPrimary copy];
 }
 
@@ -152,8 +146,7 @@
 {
     [self.dirtyPropertySet addObject:@"primary"];
 
-    [_primary autorelease];
-    _primary = [[NSNumber numberWithBool:boolVal] retain];
+    _primary = [NSNumber numberWithBool:boolVal];
 }
 
 - (NSString *)startDate
@@ -165,7 +158,6 @@
 {
     [self.dirtyPropertySet addObject:@"startDate"];
 
-    [_startDate autorelease];
     _startDate = [newStartDate copy];
 }
 
@@ -178,7 +170,6 @@
 {
     [self.dirtyPropertySet addObject:@"title"];
 
-    [_title autorelease];
     _title = [newTitle copy];
 }
 
@@ -191,7 +182,6 @@
 {
     [self.dirtyPropertySet addObject:@"type"];
 
-    [_type autorelease];
     _type = [newType copy];
 }
 
@@ -211,7 +201,7 @@
 
 + (id)organizationsElement
 {
-    return [[[JROrganizationsElement alloc] init] autorelease];
+    return [[JROrganizationsElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -325,7 +315,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"organizations", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -388,7 +378,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"organizationsElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"organizationsElement"];
 
     if (self.location)
         [snapshotDictionary setObject:[self.location snapshotDictionaryFromDirtyPropertySet]
@@ -549,18 +539,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_department release];
-    [_description release];
-    [_endDate release];
-    [_location release];
-    [_name release];
-    [_primary release];
-    [_startDate release];
-    [_title release];
-    [_type release];
-
-    [super dealloc];
-}
 @end

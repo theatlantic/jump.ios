@@ -182,7 +182,7 @@ static NSString *const ENGAGE_TOKEN_KEY = @"merge_token";
                                                    description, NSLocalizedFailureReasonErrorKey, nil];
 
     [userInfo addEntriesFromDictionary:extraFields];
-    return [[[JRCaptureError alloc] initWithDomain:kJRCaptureErrorDomain code:code userInfo:userInfo] autorelease];
+    return [[JRCaptureError alloc] initWithDomain:kJRCaptureErrorDomain code:code userInfo:userInfo];
 }
 
 + (JRCaptureError *)errorFromResult:(NSDictionary *)result onProvider:(NSString *)onProvider
@@ -192,7 +192,7 @@ static NSString *const ENGAGE_TOKEN_KEY = @"merge_token";
     NSString *errorString = [result objectForKey:@"error"];
     NSNumber *code = [result objectForKey:@"code"];
     NSString *rawResponse = [result objectForKey:@"raw_response"];
-    NSMutableDictionary *extraFields = [[@{} mutableCopy] autorelease];
+    NSMutableDictionary *extraFields = [@{} mutableCopy];
     if (onProvider) [extraFields setObject:onProvider forKey:@"provider"];
     if (mergeToken) [extraFields setObject:mergeToken forKey:ENGAGE_TOKEN_KEY];
     if (rawResponse) [extraFields setObject:rawResponse forKey:@"raw_response"];

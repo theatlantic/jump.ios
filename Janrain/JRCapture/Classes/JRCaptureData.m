@@ -159,27 +159,10 @@ static JRCaptureData *singleton = nil;
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self sharedCaptureData] retain];
+    return [self sharedCaptureData];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;
-}
-
-- (oneway void)release { }
-
-- (id)autorelease
 {
     return self;
 }
@@ -415,32 +398,6 @@ static JRCaptureData *singleton = nil;
     return [[JRCaptureData sharedCaptureData] clientId];
 }
 
-- (void)dealloc
-{
-    [clientId release];
-    [accessToken release];
-    [captureBaseUrl release];
-    [captureFlowName release];
-    [captureLocale release];
-    [captureTraditionalSignInFormName release];
-    [bpChannelUrl release];
-    [captureTraditionalRegistrationFormName release];
-    [captureFlowVersion release];
-    [captureTraditionalRegistrationFormName release];
-    [captureFlowVersion release];
-    [captureAppId release];
-    [captureAppId release];
-    [captureFlow release];
-    [refreshSecret release];
-    [captureRedirectUri release];
-    [passwordRecoverUri release];
-    [captureSocialRegistrationFormName release];
-    [captureForgottenPasswordFormName release];
-    [captureEditProfileFormName release];
-    [resendEmailVerificationFormName release];
-    [super dealloc];
-}
-
 + (void)clearSignInState
 {
     [JRCaptureData deleteTokenNameFromKeychain:@"access_token"];
@@ -474,7 +431,6 @@ static JRCaptureData *singleton = nil;
         }
     }
     [JRCaptureData sharedCaptureData].linkedProfiles = profileData;
-    [returnArray release];
 }
 - (NSString *)responseType:(id)delegate {
     SEL captureDidSucceedWithCode = sel_registerName("captureDidSucceedWithCode:");

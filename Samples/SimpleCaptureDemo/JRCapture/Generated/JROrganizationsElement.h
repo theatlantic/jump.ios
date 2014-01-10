@@ -41,7 +41,7 @@
 @property (nonatomic, copy)     NSString *department; /**< The department within this organization. */ 
 @property (nonatomic, copy)     NSString *description; /**< A textual description of the role this Contact played in this organization. */ 
 @property (nonatomic, copy)     NSString *endDate; /**< The date this Contact left this organization or the role specified by title within this organization. */ 
-@property (nonatomic, retain)   JRLocation *location; /**< The object's \e location property */ 
+@property (nonatomic,strong)    JRLocation *location; /**< The object's \e location property */ 
 @property (nonatomic, copy)     NSString *name; /**< The name of the organization. */ 
 @property (nonatomic, copy)     JRBoolean *primary; /**< The object's \e primary property @note A ::JRBoolean property is a property of type \ref typesTable "boolean" and a typedef of \e NSNumber. The accepted values can only be <code>[NSNumber numberWithBool:<em>myBool</em>]</code> or <code>nil</code> */ 
 @property (nonatomic, copy)     NSString *startDate; /**< The date this Contact joined this organization. */ 

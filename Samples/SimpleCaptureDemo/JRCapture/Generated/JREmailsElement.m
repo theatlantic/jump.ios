@@ -61,7 +61,6 @@
 {
     [self.dirtyPropertySet addObject:@"primary"];
 
-    [_primary autorelease];
     _primary = [newPrimary copy];
 }
 
@@ -74,8 +73,7 @@
 {
     [self.dirtyPropertySet addObject:@"primary"];
 
-    [_primary autorelease];
-    _primary = [[NSNumber numberWithBool:boolVal] retain];
+    _primary = [NSNumber numberWithBool:boolVal];
 }
 
 - (NSString *)type
@@ -87,7 +85,6 @@
 {
     [self.dirtyPropertySet addObject:@"type"];
 
-    [_type autorelease];
     _type = [newType copy];
 }
 
@@ -100,7 +97,6 @@
 {
     [self.dirtyPropertySet addObject:@"value"];
 
-    [_value autorelease];
     _value = [newValue copy];
 }
 
@@ -119,7 +115,7 @@
 
 + (id)emailsElement
 {
-    return [[[JREmailsElement alloc] init] autorelease];
+    return [[JREmailsElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -197,7 +193,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"emails", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -233,7 +229,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"emailsElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"emailsElement"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -318,12 +314,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_primary release];
-    [_type release];
-    [_value release];
-
-    [super dealloc];
-}
 @end

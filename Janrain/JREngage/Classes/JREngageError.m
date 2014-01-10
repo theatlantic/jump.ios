@@ -40,8 +40,8 @@ NSString *JREngageErrorDomain = @"JREngage.ErrorDomain";
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [NSString stringWithString:message], NSLocalizedDescriptionKey, nil];
 
-    return [[[NSError alloc] initWithDomain:JREngageErrorDomain
+    return [[NSError alloc] initWithDomain:JREngageErrorDomain
                                        code:code
-                                   userInfo:userInfo] autorelease];
+                                   userInfo:userInfo];
 }
 @end

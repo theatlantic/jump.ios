@@ -68,7 +68,6 @@
 {
     [self.dirtyPropertySet addObject:@"address1"];
 
-    [_address1 autorelease];
     _address1 = [newAddress1 copy];
 }
 
@@ -81,7 +80,6 @@
 {
     [self.dirtyPropertySet addObject:@"address2"];
 
-    [_address2 autorelease];
     _address2 = [newAddress2 copy];
 }
 
@@ -94,7 +92,6 @@
 {
     [self.dirtyPropertySet addObject:@"city"];
 
-    [_city autorelease];
     _city = [newCity copy];
 }
 
@@ -107,7 +104,6 @@
 {
     [self.dirtyPropertySet addObject:@"company"];
 
-    [_company autorelease];
     _company = [newCompany copy];
 }
 
@@ -120,7 +116,6 @@
 {
     [self.dirtyPropertySet addObject:@"country"];
 
-    [_country autorelease];
     _country = [newCountry copy];
 }
 
@@ -133,7 +128,6 @@
 {
     [self.dirtyPropertySet addObject:@"mobile"];
 
-    [_mobile autorelease];
     _mobile = [newMobile copy];
 }
 
@@ -146,7 +140,6 @@
 {
     [self.dirtyPropertySet addObject:@"phone"];
 
-    [_phone autorelease];
     _phone = [newPhone copy];
 }
 
@@ -159,7 +152,6 @@
 {
     [self.dirtyPropertySet addObject:@"stateAbbreviation"];
 
-    [_stateAbbreviation autorelease];
     _stateAbbreviation = [newStateAbbreviation copy];
 }
 
@@ -172,7 +164,6 @@
 {
     [self.dirtyPropertySet addObject:@"zip"];
 
-    [_zip autorelease];
     _zip = [newZip copy];
 }
 
@@ -185,7 +176,6 @@
 {
     [self.dirtyPropertySet addObject:@"zipPlus4"];
 
-    [_zipPlus4 autorelease];
     _zipPlus4 = [newZipPlus4 copy];
 }
 
@@ -204,7 +194,7 @@
 
 + (id)primaryAddress
 {
-    return [[[JRPrimaryAddress alloc] init] autorelease];
+    return [[JRPrimaryAddress alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -318,7 +308,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
 
@@ -381,7 +371,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"primaryAddress"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"primaryAddress"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -529,19 +519,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_address1 release];
-    [_address2 release];
-    [_city release];
-    [_company release];
-    [_country release];
-    [_mobile release];
-    [_phone release];
-    [_stateAbbreviation release];
-    [_zip release];
-    [_zipPlus4 release];
-
-    [super dealloc];
-}
 @end

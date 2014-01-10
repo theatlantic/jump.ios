@@ -53,6 +53,7 @@
 #import "NSMutableURLRequest+JRRequestUtils.h"
 #import "JREngage.h"
 
+
 @implementation JRCapture
 
 + (void)setBackplaneChannelUrl:(NSString *)backplaneChannelUrl
@@ -321,7 +322,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
         return;
     }
 
-    NSMutableDictionary *params = [[@{@"user" : user, @"password" : password} mutableCopy] autorelease];
+    NSMutableDictionary *params = [@{@"user" : user, @"password" : password} mutableCopy];
     [params JR_maybeSetObject:mergeToken forKey:@"merge_token"];
 
     NSString *secret = [JRCaptureData generateAndStoreRefreshSecret];
@@ -367,7 +368,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
         captureUser, recordStatus);
     if ([delegate respondsToSelector:@selector(captureSignInDidSucceedForUser:status:)]) {
         [delegate performSelector:@selector(captureSignInDidSucceedForUser:status:) withObject:captureUser
-                       withObject:(id) recordStatus];
+                       withObject:[NSNumber numberWithInt:recordStatus]];
     }
 
     if ([delegate respondsToSelector:@selector(captureDidSucceedWithCode:)] && authorizationCode) {
@@ -513,7 +514,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
     JRCaptureUIRequestBuilder *requestBuilder = [[JRCaptureUIRequestBuilder alloc] initWithEnvironment:data];
     NSURLRequest *request = [requestBuilder requestWithParams:@{ fieldName : emailAddress } form:formName];
-    [requestBuilder release];
 
     [self startURLConnectionWithRequest:request
                                delegate:delegate
@@ -584,7 +584,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
 + (NSString *)utcTimeString
 {
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
@@ -604,7 +604,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
     CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
 
-    return [[[[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)] autorelease] JRBase64EncodedString];
+    return [[[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)] JRBase64EncodedString];
 }
 
 + (void)registerNewUser:(JRCaptureUser *)newUser socialRegistrationToken:(NSString *)socialRegistrationToken
@@ -759,8 +759,20 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
               withArg:(id)arg2
 {
     DLog(@"Dispatching %@ with %@, %@", NSStringFromSelector(pSelector), arg1, arg2);
-    if ([delegate respondsToSelector:pSelector]) {
-        [delegate performSelector:pSelector withObject:arg1 withObject:arg2];
+    if ([delegate respondsToSelector:pSelector])
+    {
+        NSMethodSignature *propSignature = [[delegate class] instanceMethodSignatureForSelector:pSelector];
+        NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+        if (!propSignature || !propInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(pSelector));
+            return;
+        }
+        [propInvoker setSelector:pSelector];
+        [propInvoker setTarget:delegate];
+        [propInvoker setArgument:&arg1 atIndex:2 /*yes, that's right. 2 is the first arg*/];
+        [propInvoker setArgument:&arg2 atIndex:3];
+        [propInvoker invoke];
     }
 }
 
@@ -769,7 +781,17 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     DLog(@"Dispatching %@ with %@", NSStringFromSelector(pSelector), arg);
     if ([delegate respondsToSelector:pSelector])
     {
-        [delegate performSelector:pSelector withObject:arg];
+        NSMethodSignature *propSignature = [[delegate class] instanceMethodSignatureForSelector:pSelector];
+        NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+        if (!propSignature || !propInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(pSelector));
+            return;
+        }
+        [propInvoker setSelector:pSelector];
+        [propInvoker setTarget:delegate];
+        [propInvoker setArgument:&arg atIndex:2 /*yes, that's right. 2 is the first arg*/];
+        [propInvoker invoke];
     }
 }
 
@@ -778,13 +800,21 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     DLog(@"Dispatching %@", NSStringFromSelector(pSelector));
     if ([delegate respondsToSelector:pSelector])
     {
-        [delegate performSelector:pSelector];
+        NSMethodSignature *propSignature = [[delegate class] instanceMethodSignatureForSelector:pSelector];
+        NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+        if (!propSignature || !propInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(pSelector));
+            return;
+        }
+        [propInvoker setSelector:pSelector];
+        [propInvoker setTarget:delegate];
+        [propInvoker invoke];
     }
 }
 
 - (void)dealloc
 {
-    [super dealloc];
 }
 
 + (void)startEngageSignInForDelegate:(id <JRCaptureDelegate>)delegate

@@ -110,8 +110,7 @@ my @minConstructorParts = (
 # {
 #     if(!<requriredProperties>)
 #     {                         
-#       [self release];         
-#       return nil;             
+#       return nil;
 #     }                         
 #                               
 #     if ((self = [super init]))
@@ -146,7 +145,6 @@ my @constructorParts = (
 "\n{\n",
 "    if (","",")\n",
 "    {
-        [self release];
         return nil;
      }\n\n",
 "    if ((self = [super init]))
@@ -177,7 +175,7 @@ my @constructorParts = (
 #  **/
 # + (id)<objectName>    
 # {                                             
-#     return [[[<className> alloc] init] autorelease]; 
+#     return [[<className> alloc] init]];
 # }
 ###################################################################
 
@@ -193,7 +191,7 @@ my @minClassConstructorDocParts = (
 my @minClassConstructorParts = (
 "+ (id)","",
 "\n{\n",
-"    return [[[",""," alloc] init] autorelease];",
+"    return [[",""," alloc] init];",
 "\n}\n\n"); 
 
 ###################################################################
@@ -212,7 +210,7 @@ my @minClassConstructorParts = (
 #  **/
 # + (id)<objectName><requiredProperties>        
 # {                                             
-#     return [[[<className> alloc] init<requiredProperties>] autorelease]; 
+#     return [[<className> alloc] init<requiredProperties>];
 # }
 ###################################################################
 
@@ -230,7 +228,7 @@ my @classConstructorDocParts = (
 my @classConstructorParts = (
 "+ (id)","","", 
 "\n{\n",
-"    return [[[",""," alloc] init","","] autorelease];",
+"    return [[",""," alloc] init","","];",
 "\n}\n\n"); 
 
 
@@ -303,7 +301,7 @@ my @copyConstructorParts = (
 #     }
 #     else
 #     {                                                                                         Only if an element of a plural
-#         dirtyPropertySetCopy            = [[self.dirtyPropertySet copy] autorelease];                +----------|
+#         dirtyPropertySetCopy            = [self.dirtyPropertySet copy];                              +----------|
 #         <object>.canBeUpdatedOnCapture  = YES;  <----------------------------------------------------+          V
 #         <object>.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"<object>", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 #     }
@@ -514,7 +512,7 @@ my @toDictionaryParts = (
 # {
 #     self.canBeUpdatedOnCapture = YES;
 #
-#     NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+#     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 #
 #     self.canBeUpdatedOnCapture = YES;
 #     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"<object>", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -562,7 +560,7 @@ my @updateFrDictDocParts = (
 my @updateFrDictParts = (
 "- (void)updateFromDictionary:(NSDictionary*)dictionary withPath:(NSString *)capturePath",
 "\n{\n    DLog(@\"\%\@ \%\@\", capturePath, [dictionary description]);\n","
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;\n",
 "    self.captureObjectPath = [NSString stringWithFormat:\@\"\%\@/\%\@","","\", capturePath, ","","","];\n",
@@ -646,7 +644,7 @@ my @replaceFrDictParts = (
 "- (void)replaceFromDictionary:(NSDictionary*)dictionary withPath:(NSString *)capturePath",
 "\n{
     DLog(@\"\%\@ \%\@\", capturePath, [dictionary description]);\n","
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;\n",
 "    self.captureObjectPath = [NSString stringWithFormat:\@\"\%\@/\%\@","","\", capturePath, ","","","];\n",
@@ -676,7 +674,7 @@ my @dirtyPropertySnapshotParts = (
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:\@\"","","\"];\n\n",
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:\@\"","","\"];\n\n",
 "",
 "    return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }\n\n",
@@ -926,27 +924,7 @@ my @objectPropertiesParts = (
 "\n}\n\n");
 
 
-###################################################################
-# DESTRUCTOR
-#
-# - (void)dealloc
-# {
-#     [<property> release];
-#       ...
-# 
-#     [super dealloc];
-# }
-###################################################################
-
-my @destructorParts = (
-"- (void)dealloc",
-"\n{\n",
-"", 
-"\n    [super dealloc];",
-"\n}\n");
-
-
-my $copyrightHeader = 
+my $copyrightHeader =
 "/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Copyright (c) 2012, Janrain, Inc.
 
@@ -1160,10 +1138,8 @@ sub createGetterSetterForProperty {
     $setter .= "    [self.dirtyPropertySet addObject:@\"" . $propertyName . "\"];\n\n";
   }
 
-  $setter .= "    [_" . $propertyName . " autorelease];\n";
-  
   if ($isObject) {
-    $setter .= "    _" . $propertyName . " = [new" . ucfirst($propertyName) . " retain];\n\n";  
+    $setter .= "    _" . $propertyName . " = new" . ucfirst($propertyName) . ";\n\n";
     $setter .= "    [_" . $propertyName . " setAllPropertiesToDirty];"
   } else {
     $setter .= "    _" . $propertyName . " = [new" . ucfirst($propertyName) . " copy];";    
@@ -1182,8 +1158,7 @@ sub createGetterSetterForProperty {
     $primitiveSetter .= "\n{\n";
     $primitiveSetter .= "    [self.dirtyPropertySet addObject:@\"" . $propertyName . "\"];\n\n";
   
-    $primitiveSetter .= "    [_" . $propertyName .  " autorelease];\n";    
-    $primitiveSetter .= "    _" . $propertyName .  " = [[NSNumber numberWithBool:boolVal] retain];";    
+    $primitiveSetter .= "    _" . $propertyName .  " = [NSNumber numberWithBool:boolVal];";
     $primitiveSetter .= "\n}\n\n";
 
   } elsif ($isBoolOrInt eq "i") {
@@ -1197,8 +1172,7 @@ sub createGetterSetterForProperty {
     $primitiveSetter .= "\n{\n";
     $primitiveSetter .= "    [self.dirtyPropertySet addObject:@\"" . $propertyName . "\"];\n\n";
 
-    $primitiveSetter .= "    [_" . $propertyName .  " autorelease];\n";  
-    $primitiveSetter .= "    _" . $propertyName .  " = [[NSNumber numberWithInteger:integerVal] retain];";    
+    $primitiveSetter .= "    _" . $propertyName .  " = [NSNumber numberWithInteger:integerVal];";
     $primitiveSetter .= "\n}\n\n";
     
   }
@@ -1311,10 +1285,6 @@ sub getIsEqualObjectDocParts {
 
 sub getObjectPropertiesParts {
   return @objectPropertiesParts;
-}
-
-sub getDestructorParts {
-  return @destructorParts;
 }
 
 sub getCopyrightHeader {

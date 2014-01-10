@@ -110,7 +110,6 @@
 {
     if (![src isWellFormedAbsoluteUrl] || ![href isWellFormedAbsoluteUrl])
     {
-        [self release];
         return nil;
     }
 
@@ -128,7 +127,7 @@
     if (![src isWellFormedAbsoluteUrl] || ![href isWellFormedAbsoluteUrl])
         return nil;
 
-    return [[[JRImageMediaObject alloc] initWithSrc:src andHref:href] autorelease];
+    return [[JRImageMediaObject alloc] initWithSrc:src andHref:href];
 }
 
 - (id)copyWithZone:(NSZone*)zone
@@ -144,10 +143,10 @@
 
 - (NSDictionary*)dictionaryForObject
 {
-    return [[[NSDictionary alloc] initWithObjectsAndKeys:
+    return [[NSDictionary alloc] initWithObjectsAndKeys:
              @"image", @"type",
              _src, @"src",
-             _href, @"href", nil] autorelease];
+             _href, @"href", nil];
 }
 
 + (JRMediaObject*)mediaObjectFromDictionary:(NSDictionary*)dictionary
@@ -158,11 +157,6 @@
 
 - (void)dealloc
 {
-    [_src release];
-    [_href release];
-    [_preview release];
-
-    [super dealloc];
 }
 @end
 
@@ -179,7 +173,6 @@
 {
     if (![swfsrc isWellFormedAbsoluteUrl] || ![imgsrc isWellFormedAbsoluteUrl])
     {
-        [self release];
         return nil;
     }
 
@@ -197,7 +190,7 @@
     if (![swfsrc isWellFormedAbsoluteUrl] || ![imgsrc isWellFormedAbsoluteUrl])
         return nil;
 
-    return [[[JRFlashMediaObject alloc] initWithSwfsrc:swfsrc andImgsrc:imgsrc] autorelease];
+    return [[JRFlashMediaObject alloc] initWithSwfsrc:swfsrc andImgsrc:imgsrc];
 }
 
 - (id)copyWithZone:(NSZone*)zone
@@ -217,10 +210,10 @@
 
 - (NSDictionary*)dictionaryForObject
 {
-    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjectsAndKeys:
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                   @"flash", @"type",
                                   _swfsrc, @"swfsrc",
-                                  _imgsrc, @"imgsrc", nil] autorelease];
+                                  _imgsrc, @"imgsrc", nil];
 
     // TODO: Should I be setting these as numbers and not strings?
     if (_width)
@@ -254,11 +247,6 @@
 
 - (void)dealloc
 {
-    [_swfsrc release];
-    [_imgsrc release];
-    [_preview release];
-
-    [super dealloc];
 }
 @end
 
@@ -272,7 +260,6 @@
 {
     if (![src isWellFormedAbsoluteUrl])
     {
-        [self release];
         return nil;
     }
 
@@ -289,7 +276,7 @@
     if (![src isWellFormedAbsoluteUrl])
         return nil;
 
-    return [[[JRMp3MediaObject alloc] initWithSrc:src] autorelease];
+    return [[JRMp3MediaObject alloc] initWithSrc:src];
 }
 
 - (id)copyWithZone:(NSZone*)zone
@@ -306,9 +293,9 @@
 
 - (NSDictionary*)dictionaryForObject
 {
-    NSMutableDictionary *dict = [[[NSMutableDictionary alloc] initWithObjectsAndKeys:
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                   @"mp3", @"type",
-                                  _src, @"src", nil] autorelease];
+                                  _src, @"src", nil];
 
     if (_title)
         [dict setObject:_title forKey:@"title"];
@@ -335,12 +322,6 @@
 
 - (void)dealloc
 {
-    [_src release];
-    [_title release];
-    [_artist release];
-    [_album release];
-
-    [super dealloc];
 }
 @end
 
@@ -358,7 +339,6 @@
 {
     if (!text || ![href isWellFormedAbsoluteUrl])
     {
-        [self release];
         return nil;
     }
 
@@ -376,7 +356,7 @@
     if (!text || !href)
         return nil;
 
-    return [[[JRActionLink alloc] initWithText:text andHref:href] autorelease];
+    return [[JRActionLink alloc] initWithText:text andHref:href];
 }
 
 - (id)copyWithZone:(NSZone*)zone
@@ -389,9 +369,9 @@
 
 - (NSDictionary*)dictionaryForObject
 {
-    return [[[NSDictionary alloc] initWithObjectsAndKeys:
+    return [[NSDictionary alloc] initWithObjectsAndKeys:
              _text, @"text",
-             _href, @"href", nil] autorelease];
+             _href, @"href", nil];
 }
 
 + (JRActionLink*)actionLinkFromDictionary:(NSDictionary*)dictionary
@@ -403,10 +383,6 @@
 
 - (void)dealloc
 {
-    [_text release];
-    [_href release];
-
-    [super dealloc];
 }
 @end
 
@@ -417,7 +393,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
     for (NSObject *url in urls)
         if ([url isKindOfClass:[NSString class]])
             if ([((NSString*)url) isWellFormedAbsoluteUrl])
-                [array addObject:[[url copy] autorelease]];
+                [array addObject:[url copy]];
 
     return array;
 }
@@ -439,7 +415,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
             _messageBody = [messageBody copy];
 
         _isHtml = isHtml;
-        _urls   = [filteredArrayOfValidUrls (urls) retain];
+        _urls   = filteredArrayOfValidUrls (urls);
     }
 
     return self;
@@ -447,7 +423,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
 + (id)emailObjectWithSubject:(NSString *)subject andMessageBody:(NSString *)messageBody isHtml:(BOOL)isHtml andUrlsToBeShortened:(NSArray*)urls
 {
-    return [[[JREmailObject alloc] initWithSubject:subject andMessageBody:messageBody isHtml:isHtml andUrlsToBeShortened:urls] autorelease];
+    return [[JREmailObject alloc] initWithSubject:subject andMessageBody:messageBody isHtml:isHtml andUrlsToBeShortened:urls];
 }
 
 - (id)copyWithZone:(NSZone*)zone
@@ -471,11 +447,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
 - (void)dealloc
 {
-    [_subject release];
-    [_messageBody release];
-    [_urls release];
 
-    [super dealloc];
 }
 @end
 
@@ -491,7 +463,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
         if (message)
             _message = [message copy];
 
-        _urls =  [filteredArrayOfValidUrls (urls) retain];
+        _urls =  filteredArrayOfValidUrls (urls);
     }
 
     return self;
@@ -499,7 +471,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
 + (id)smsObjectWithMessage:(NSString *)message andUrlsToBeShortened:(NSArray*)urls
 {
-    return [[[JRSmsObject alloc] initWithMessage:message andUrlsToBeShortened:urls] autorelease];
+    return [[JRSmsObject alloc] initWithMessage:message andUrlsToBeShortened:urls];
 }
 
 - (id)copyWithZone:(NSZone*)zone
@@ -519,10 +491,6 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
 - (void)dealloc
 {
-    [_message release];
-    [_urls release];
-
-    [super dealloc];
 }
 @end
 
@@ -547,7 +515,6 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 {
     if (!action)
     {
-        [self release];
         return nil;
     }
 
@@ -567,14 +534,13 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
     if (!action)
         return nil;
 
-    return [[[JRActivityObject alloc] initWithAction:action andUrl:url] autorelease];
+    return [[JRActivityObject alloc] initWithAction:action andUrl:url];
 }
 
 - (id)initWithAction:(NSString*)action
 {
     if (!action)
     {
-        [self release];
         return nil;
     }
 
@@ -591,7 +557,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
     if (!action)
         return nil;
 
-    return [[[JRActivityObject alloc] initWithAction:action] autorelease];
+    return [[JRActivityObject alloc] initWithAction:action];
 }
 
 - (id)copyWithZone:(NSZone*)zone
@@ -614,7 +580,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
 - (void)setUrl:(NSString*)url
 {
-    [_url release], _url = nil;
+    _url = nil;
 
     if ([url isWellFormedAbsoluteUrl])
         _url = [url copy];
@@ -622,7 +588,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
 - (NSString*)url
 {
-    return [[_url copy] autorelease];
+    return [_url copy];
 }
 
 /* This function filters the given array, media, and only keeps the objects that
@@ -633,17 +599,14 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 - (void)setMedia:(NSArray*)media
 {
     NSPredicate    *predicate = [NSPredicate predicateForMediaObjectBaseClass];
-    NSMutableArray *oldMedia  = _media;
 
     _media = [[NSMutableArray alloc] initWithArray:[media filteredArrayUsingPredicate:predicate]
                                          copyItems:YES];
-
-    [oldMedia release];
 }
 
 - (NSArray*)media
 {
-    return [[_media copy] autorelease];
+    return [_media copy];
 }
 
 /* This function filters the given array, actionlinks, and only keeps the objects that
@@ -651,17 +614,14 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 - (void)setActionLinks:(NSArray*)actionLinks
 {
     NSPredicate    *predicate      = [NSPredicate predicateForActionLinkObjectClass];
-    NSMutableArray *oldActionLinks = _actionLinks;
 
     _actionLinks = [[NSMutableArray alloc] initWithArray:[actionLinks filteredArrayUsingPredicate:predicate]
                                                 copyItems:YES];
-
-    [oldActionLinks release];
 }
 
 - (NSArray*)actionLinks
 {
-    return [[_actionLinks copy] autorelease];
+    return [_actionLinks copy];
 }
 
 ///* Deprecated; calling new function instead. */
@@ -751,7 +711,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
     if ([_actionLinks count])
     {
-        NSMutableArray *arr = [[[NSMutableArray alloc] initWithCapacity:[_actionLinks count]] autorelease];
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:[_actionLinks count]];
 
         for (JRActionLink *link in _actionLinks)
         {
@@ -763,7 +723,7 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
     if ([_media count])
     {
-        NSMutableArray *arr = [[[NSMutableArray alloc] initWithCapacity:[_media count]] autorelease];
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:[_media count]];
 
         for (id<JRMediaObjectDelegate> item in _media)
         {
@@ -840,18 +800,5 @@ static NSArray* filteredArrayOfValidUrls (NSArray *urls)
 
 - (void)dealloc
 {
-    [_action release];
-    [_url release];
-    [_userGeneratedContent release];
-    [_resourceTitle release];
-    [_resourceDescription release];
-    [_actionLinks release];
-    [_media release];
-    [_properties release];
-    [_email release];
-    [_sms release];
-    [_shortenedUrl release];
-
-    [super dealloc];
 }
 @end

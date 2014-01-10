@@ -60,7 +60,6 @@
 {
     [self.dirtyPropertySet addObject:@"status"];
 
-    [_status autorelease];
     _status = [newStatus copy];
 }
 
@@ -73,7 +72,6 @@
 {
     [self.dirtyPropertySet addObject:@"statusCreated"];
 
-    [_statusCreated autorelease];
     _statusCreated = [newStatusCreated copy];
 }
 
@@ -92,7 +90,7 @@
 
 + (id)statusesElement
 {
-    return [[[JRStatusesElement alloc] init] autorelease];
+    return [[JRStatusesElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -164,7 +162,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"statuses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -196,7 +194,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"statusesElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"statusesElement"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -272,11 +270,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_status release];
-    [_statusCreated release];
-
-    [super dealloc];
-}
 @end

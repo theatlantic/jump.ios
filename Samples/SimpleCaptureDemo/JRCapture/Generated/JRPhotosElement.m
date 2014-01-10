@@ -60,7 +60,6 @@
 {
     [self.dirtyPropertySet addObject:@"type"];
 
-    [_type autorelease];
     _type = [newType copy];
 }
 
@@ -73,7 +72,6 @@
 {
     [self.dirtyPropertySet addObject:@"value"];
 
-    [_value autorelease];
     _value = [newValue copy];
 }
 
@@ -92,7 +90,7 @@
 
 + (id)photosElement
 {
-    return [[[JRPhotosElement alloc] init] autorelease];
+    return [[JRPhotosElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -164,7 +162,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"photos", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -196,7 +194,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"photosElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"photosElement"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -272,11 +270,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_type release];
-    [_value release];
-
-    [super dealloc];
-}
 @end

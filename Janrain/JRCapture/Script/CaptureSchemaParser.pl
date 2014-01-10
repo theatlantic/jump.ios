@@ -419,7 +419,7 @@ sub recursiveParse {
   #    my @minClassConstructorParts = (
   #    "+ (id)","",
   #    "\n{\n",
-  #    "    return [[[",""," alloc] init] autorelease];",
+  #    "    return [[",""," alloc] init];",
   #    "\n}\n\n"); 
   #
   #    The first, third, fourth, sixth, and seventh elements are fixed; they do not change.  The second and fifth
@@ -433,7 +433,7 @@ sub recursiveParse {
   #
   #    + (id)exampleElement
   #    {
-  #        return [[[JRExampleElement alloc] init] autorelease];
+  #        return [[JRExampleElement alloc] init];
   #    }
   #
   # 2. The second place, as the script loops through an object's properties, and after it determines a property's name
@@ -469,7 +469,6 @@ sub recursiveParse {
   my @classConstructorSection    = getClassConstructorParts();
   my @copyConstructorSection     = getCopyConstructorParts();
   my @decodeUserFromDictSection  = getDecodeUserFromDictParts();
-  my @destructorSection          = getDestructorParts();
   my @dictFromObjSection         = getToDictionaryParts();
   my @objFromDictSection         = getFromDictionaryParts();
   my @updateFromDictSection      = getUpdateFromDictParts();
@@ -612,14 +611,14 @@ sub recursiveParse {
   # e.g.:
   #   + (id)exampleElement    
   #   {                                             
-  #       return [[[JRExampleElement alloc] init] autorelease]; 
+  #       return [[JRExampleElement alloc] init];
   $minClassConstructorSection[1]    = $objectName;
   $minClassConstructorSection[4]    = $className;
 
   # e.g.:
   #   + (id)exampleElementWithFoo:(NSObject *)foo andBar:(NSObject *)bar ...
   #   {                                             
-  #       return [[[JRExampleElement alloc] initWithFoo:foo andBar:bar] autorelease]; 
+  #       return [[JRExampleElement alloc] initWithFoo:foo andBar:bar];
   $classConstructorSection[1] = $objectName;
   $classConstructorSection[5] = $className;
 
@@ -663,7 +662,7 @@ sub recursiveParse {
   #   }
   #   else
   #   {
-  #       dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+  #       dirtyPropertySetCopy = [self.dirtyPropertySet copy];
   #       exampleElement.canBeUpdatedOnCapture = YES;
   #       exampleElement.captureObjectPath      =  [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"exampleElement", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
   #   }
@@ -679,7 +678,7 @@ sub recursiveParse {
   $objFromDictSection[22] = $objFromDictSection[24] = $objFromDictSection[26] = $objectName;
   
   # e.g.:
-  #   [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"exampleObject"];
+  #   [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"exampleObject"];
   $dirtyPropertySection[7] = $objectName;
   
   # e.g.:
@@ -1307,14 +1306,13 @@ sub recursiveParse {
     
     ### All pretty straightforward stuff here... ###
     
-    $destructorSection[2] .= "    [_$propertyName release];\n";
     $privateIvarsSection  .= "    " . $objectiveType . "_" . $propertyName . ";\n";
     $synthesizeSection    .= "\@dynamic $propertyName;\n";
   
     if ($isReadOnly) {
       $propertiesSection    .= "\@property (nonatomic, readonly) $objectiveType$propertyName; $propertyNotes \n";
     } elsif ($isObject) {
-      $propertiesSection    .= "\@property (nonatomic, retain)   $objectiveType$propertyName; $propertyNotes \n";
+      $propertiesSection    .= "\@property (nonatomic,strong)    $objectiveType$propertyName; $propertyNotes \n";
     } else {
       $propertiesSection    .= "\@property (nonatomic, copy)     $objectiveType$propertyName; $propertyNotes \n";
     }
@@ -1816,11 +1814,7 @@ sub recursiveParse {
   for (my $i = 0; $i < @objectPropertiesSection; $i++) {
     $mFile .= $objectPropertiesSection[$i];
   }
-  
-  for (my $i = 0; $i < @destructorSection; $i++) {
-    $mFile .= $destructorSection[$i];
-  }
-  
+    
   $mFile .= "\@end\n";  
   
   ##########################################################################

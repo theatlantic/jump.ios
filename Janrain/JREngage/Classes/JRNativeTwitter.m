@@ -141,11 +141,11 @@
     self.backgroundView.backgroundColor = [UIColor clearColor];
     [window addSubview:self.backgroundView];
 
-    UIActionSheet *actionSheet = [[[UIActionSheet alloc] initWithTitle:@"Choose a Twitter Account"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose a Twitter Account"
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil] autorelease];
+                                                    otherButtonTitles:nil];
     actionSheet.delegate = self;
     for (ACAccount *account in self.accounts) {
         [actionSheet addButtonWithTitle:account.username];
@@ -201,8 +201,6 @@
         }
     }
 
-    [responseString release];
-
     if (!accessToken || !accessToken.length || !tokenSecret || !tokenSecret.length) return nil;
     return @{ @"access_token" : accessToken, @"token_secret" : tokenSecret };
 }
@@ -243,7 +241,7 @@
                     self.completion(connectionError);
                 } else {
                     self.reverseAuthParameters =
-                        [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+                        [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                     [self obtainTwitterAccessToken];
                 }
             }];
@@ -305,7 +303,7 @@
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     CFStringRef uuidString = CFUUIDCreateString(kCFAllocatorDefault,uuid);
     CFRelease(uuid);
-    return [(NSString *)uuidString autorelease];
+    return (NSString *)CFBridgingRelease(uuidString);
 }
 
 - (NSString *)secondsSinceEpoch {
@@ -330,13 +328,5 @@
     }
 }
 
-- (void)dealloc {
-    [_accountStore release];
-    [_backgroundView release];
-    [_accounts release];
-    [_accountToSignInWith release];
-
-    [super dealloc];
-}
 
 @end
