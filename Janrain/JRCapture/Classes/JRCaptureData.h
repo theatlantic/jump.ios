@@ -80,6 +80,10 @@
 
 + (NSArray *)getLinkedProfiles;
 
++ (void)setCaptureClientId:(NSString*)captureClientId;
+
++ (void)setCaptureBaseUrl:(NSString *)baseUrl;
+
 - (NSString *)downloadedFlowVersion;
 
 - (NSString *)redirectUri;

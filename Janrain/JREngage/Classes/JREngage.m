@@ -57,6 +57,9 @@
 
 @end
 
+NSString *const JRFinishedUpdatingEngageConfigurationNotification = @"JRFinishedUpdatingEngageConfigurationNotification";
+NSString *const JRFailedToUpdateEngageConfigurationNotification = @"JRFailedToUpdateEngageConfigurationNotification";
+
 @implementation JREngage
 @synthesize interfaceMaestro;
 @synthesize sessionData;

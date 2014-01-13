@@ -410,6 +410,14 @@ static JRCaptureData *singleton = nil;
     return [[JRCaptureData sharedCaptureData] captureBaseUrl];
 }
 
++ (void)setCaptureClientId:(NSString*)captureClientId {
+    [JRCaptureData sharedCaptureData].clientId = captureClientId;
+}
+
++ (void)setCaptureBaseUrl:(NSString*)baseUrl {
+    [JRCaptureData sharedCaptureData].captureBaseUrl = [baseUrl urlStringFromBaseDomain];
+}
+
 + (NSString *)clientId __unused
 {
     return [[JRCaptureData sharedCaptureData] clientId];
