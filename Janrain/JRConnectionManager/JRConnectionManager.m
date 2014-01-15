@@ -93,6 +93,7 @@
 
 - (id)initWithRequest:(NSURLRequest *)request
           forDelegate:(id <JRConnectionManagerDelegate>)delegate
+       withConnection:(NSURLConnection*)connection
    returnFullResponse:(BOOL)returnFullResponse
               withTag:(id)userdata
 {
@@ -106,6 +107,7 @@
         _response = nil;
         _fullResponse = nil;
         self->_delegate = delegate;
+        self->_connection = connection;
     }
     return self;
 }
@@ -195,14 +197,12 @@ static JRConnectionManager *singleton = nil;
 
     ConnectionData *connectionData = [[ConnectionData alloc] initWithRequest:request
                                                                  forDelegate:delegate
+                                                              withConnection:connection
                                                           returnFullResponse:returnFullResponse
                                                                      withTag:userData];
-    [connectionData setConnection:connection];
     [connectionBuffers addObject:connectionData];
-
     [connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [connection start];
-
     [connectionManager startActivity];
 
     return YES;
@@ -218,6 +218,7 @@ static JRConnectionManager *singleton = nil;
 
 + (void)stopConnectionsForDelegate:(id <JRConnectionManagerDelegate>)delegate
 {
+    DLog(@"delegate=%@", delegate.debugDescription);
     JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
 
     for (ConnectionData *connectionData in [JRConnectionManager getConnectionBuffers])
@@ -242,6 +243,7 @@ static JRConnectionManager *singleton = nil;
 + (void)jsonRequestToUrl:(NSString *)url params:(NSDictionary *)params
      completionHandler:(void(^)(id parsedResponse, NSError *e))handler
 {
+    DLog(@"url=%@", url);
     NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
     [JRConnectionManager startURLConnectionWithRequest:request completionHandler:handler];
 }
@@ -316,7 +318,7 @@ static JRConnectionManager *singleton = nil;
 
 - (void)dealloc
 {
-    //DLog(@"");
+    DLog(@"");
     NSEnumerator *enumerator = [connectionBuffers objectEnumerator];
     ConnectionData *connectionData;
     while ((connectionData = [enumerator nextObject]))
@@ -334,6 +336,7 @@ static JRConnectionManager *singleton = nil;
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    DLog(@"data=%@", data.base64Encoding);
     for (ConnectionData *connectionData in connectionBuffers)
     {
         if (connectionData.connection == connection)
@@ -346,7 +349,7 @@ static JRConnectionManager *singleton = nil;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    //DLog(@"");
+    DLog(@"response=%@", response.URL.absoluteString);
     for (ConnectionData *connectionData in connectionBuffers)
     {
         if (connectionData.connection == connection)
@@ -361,10 +364,10 @@ static JRConnectionManager *singleton = nil;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    //DLog(@"");
+    DLog(@"connection=%@", connection.description);
     
-    ConnectionData *connectionData  = [JRConnectionManager getConnectionDataFromConnection:connection];;
-    if (!connectionData || (connectionData.connection == connection))
+    ConnectionData *connectionData  = [JRConnectionManager getConnectionDataFromConnection:connection];
+    if (!connectionData || (connectionData.connection != connection))
     {
         return;
     }
@@ -420,7 +423,8 @@ static JRConnectionManager *singleton = nil;
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request
             redirectResponse:(NSURLResponse *)redirectResponse
 {
-    //DLog(@"");
+    NSString *body = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
+    DLog(@"request to '%@' with body: '%@'", [[request URL] absoluteString], body);
     ConnectionData* connectionData  = [JRConnectionManager getConnectionDataFromConnection:connection];
 
     if ([connectionData returnFullResponse])
