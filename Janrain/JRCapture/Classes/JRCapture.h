@@ -391,12 +391,6 @@
 /*@{*/
 
 /**
- * Set the Backplane channel URL to which Capture will post identity/login messages to. For use with third party
- * integrations
- */
-+ (void)setBackplaneChannelUrl:(NSString *)backplaneChannelUrl __unused;
-
-/**
  * Method for configuring the library ot work with your Janrain Capture and Engage applications.
  *
  * @param config

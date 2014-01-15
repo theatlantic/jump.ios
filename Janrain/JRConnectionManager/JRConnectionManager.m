@@ -188,9 +188,8 @@ static JRConnectionManager *singleton = nil;
     if (![NSURLConnection canHandleRequest:request])
         return NO;
 
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
-                                                                  delegate:connectionManager
-                                                          startImmediately:NO];
+    NSURLConnection *connection = [[NSURLConnection alloc]
+            initWithRequest:request delegate:connectionManager startImmediately:NO];
 
     if (!connection)
         return NO;

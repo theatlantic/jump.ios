@@ -57,19 +57,8 @@ AppDelegate *appDelegate;
 @property(nonatomic, strong) NSString *captureSocialRegistrationFormName;
 @property(nonatomic, strong) NSString *captureAppId;
 @property(nonatomic, strong) NSString *engageAppId;
-@property(nonatomic, strong) NSString *bpBusUrlString;
-
-@property(nonatomic, strong) NSString *lfToken;
-@property(nonatomic, strong) NSString *bpChannelUrl;
-@property(nonatomic, strong) NSString *liveFyreNetwork;
-@property(nonatomic, strong) NSString *liveFyreSiteId;
-@property(nonatomic, strong) NSString *liveFyreArticleId;
-
-
 @property(nonatomic, retain) NSString *registrationToken;
-
 @property(nonatomic, strong) NSDictionary *customProviders;
-
 @property(nonatomic, retain) NSString *captureForgottenPasswordFormName;
 @property(nonatomic, retain) NSString *captureEditProfileFormName;
 @property(nonatomic, retain) NSString *resendVerificationFormName;

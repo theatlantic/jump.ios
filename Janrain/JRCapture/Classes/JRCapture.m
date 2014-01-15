@@ -56,11 +56,6 @@
 
 @implementation JRCapture
 
-+ (void)setBackplaneChannelUrl:(NSString *)backplaneChannelUrl
-{
-    [JRCaptureData sharedCaptureData].bpChannelUrl = backplaneChannelUrl;
-}
-
 + (void)setCaptureConfig:(JRCaptureConfig *)config
 {
     [JRCaptureData setCaptureConfig:config];
@@ -641,7 +636,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
             @"refresh_secret" : refreshSecret,
     }];
 
-    if (config.bpChannelUrl) [params setObject:config.bpChannelUrl forKey:@"bp_channel"];
     if ([config downloadedFlowVersion]) [params setObject:[config downloadedFlowVersion] forKey:@"flow_version"];
 
     NSString *urlString;

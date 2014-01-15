@@ -29,21 +29,13 @@
         <string>HEAD</string>
         <key>captureAppId</key>
         <string>rz47skmnm48jpcv3bh4eguv4b8</string>
-        <key>bpBusUrlString</key>
-        <string>https://backplane1.janrainbackplane.com/v1.2/bus/nathan-janrain</string>
         <key>captureForgottenPasswordFormName</key>
         <string>forgotPasswordForm</string>
         <key>captureEditProfileFormName</key>
         <string>editProfileForm</string>
         <key>resendVerificationFormName</key>
         <string>resendVerificationForm</string>
-        <key>liveFyreNetwork</key>
-        <string></string>
-        <key>liveFyreSiteId</key>
-        <string></string>
-        <key>liveFyreArticleId</key>
-        <string></string>
-        
+
         <!--<key>customProviders</key>-->
         <!--<dict>-->
             <!--<key>test_custom_openid</key>-->

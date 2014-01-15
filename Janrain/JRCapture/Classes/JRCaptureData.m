@@ -106,7 +106,6 @@ static JRCaptureData *singleton = nil;
 @synthesize captureBaseUrl;
 @synthesize accessToken;
 @synthesize refreshSecret;
-@synthesize bpChannelUrl;
 @synthesize captureLocale;
 @synthesize captureTraditionalSignInFormName;
 //@synthesize captureTradSignInType;
@@ -184,7 +183,6 @@ static JRCaptureData *singleton = nil;
     if (captureData.captureFlowName) [urlArgs setObject:captureData.captureFlowName forKey:@"flow"];
     if ([captureData downloadedFlowVersion])
         [urlArgs setObject:[captureData downloadedFlowVersion] forKey:@"flow_version"];
-    if (captureData.bpChannelUrl) [urlArgs setObject:captureData.bpChannelUrl forKey:@"bp_channel"];
     if (mergeToken) [urlArgs setObject:mergeToken forKey:@"merge_token"];
     if (captureData.captureSocialRegistrationFormName)
     {
@@ -413,11 +411,6 @@ static JRCaptureData *singleton = nil;
     return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 }
 
-+ (void)setBackplaneChannelUrl:(NSString *)bpChannelUrl __unused
-{
-    [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
-}
-
 + (void)setLinkedProfiles:(NSArray *)profileData {
     NSMutableArray *returnArray = [[NSMutableArray alloc]init];
     if([profileData count] > 0) {
@@ -432,6 +425,7 @@ static JRCaptureData *singleton = nil;
     }
     [JRCaptureData sharedCaptureData].linkedProfiles = profileData;
 }
+
 - (NSString *)responseType:(id)delegate {
     SEL captureDidSucceedWithCode = sel_registerName("captureDidSucceedWithCode:");
     if ([delegate respondsToSelector:captureDidSucceedWithCode]) {

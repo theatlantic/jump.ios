@@ -31,7 +31,6 @@
 //#import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "JRCapture.h"
-#import "BackplaneUtils.h"
 #import "debug_log.h"
 #import "JRSessionData.h"
 #import "JRCaptureData.h"
@@ -69,14 +68,6 @@ AppDelegate *appDelegate = nil;
 @synthesize captureEditProfileFormName;
 @synthesize resendVerificationFormName;
 
-// Backplane / LiveFyre stuff:
-@synthesize bpChannelUrl;
-@synthesize lfToken;
-@synthesize bpBusUrlString;
-@synthesize liveFyreNetwork;
-@synthesize liveFyreSiteId;
-@synthesize liveFyreArticleId;
-
 // Demo state machine stuff:
 @synthesize currentProvider;
 @synthesize isNotYetCreated;
@@ -108,22 +99,7 @@ AppDelegate *appDelegate = nil;
     config.resendEmailVerificationFormName = resendVerificationFormName;
 
     [JRCapture setCaptureConfig:config];
-
-    [BackplaneUtils asyncFetchNewBackplaneChannelWithBus:bpBusUrlString
-                                              completion:^(NSString *newChannel, NSError *error)
-                                              {
-                                                  if (newChannel)
-                                                  {
-                                                      self.bpChannelUrl = newChannel;
-                                                  }
-                                                  else
-                                                  {
-                                                      ALog("%@", [error description]);
-                                                  }
-                                              }];
-
     self.prefs = [NSUserDefaults standardUserDefaults];
-
     self.currentProvider = [self.prefs objectForKey:cJRCurrentProvider];
 
     NSData *archivedCaptureUser = [self.prefs objectForKey:cJRCaptureUser];
@@ -231,16 +207,6 @@ AppDelegate *appDelegate = nil;
         self.captureEditProfileFormName = [cfg objectForKey:@"captureEditProfileFormName"];
     if ([cfg objectForKey:@"resendVerificationFormName"])
         self.resendVerificationFormName = [cfg objectForKey:@"resendVerificationFormName"];
-    if ([cfg objectForKey:@"bpBusUrlString"])
-        self.bpBusUrlString = [cfg objectForKey:@"bpBusUrlString"];
-    if ([cfg objectForKey:@"bpChannelUrl"])
-        self.bpChannelUrl = [cfg objectForKey:@"bpChannelUrl"];
-    if ([cfg objectForKey:@"liveFyreNetwork"])
-        self.liveFyreNetwork = [cfg objectForKey:@"liveFyreNetwork"];
-    if ([cfg objectForKey:@"liveFyreSiteId"])
-        self.liveFyreSiteId = [cfg objectForKey:@"liveFyreSiteId"];
-    if ([cfg objectForKey:@"liveFyreArticleId"])
-        self.liveFyreArticleId = [cfg objectForKey:@"liveFyreArticleId"];
     if ([cfg objectForKey:@"rpxDomain"])
         [JRSessionData setServerUrl:[NSString stringWithFormat:@"https://%@", [cfg objectForKey:@"rpxDomain"]]];
     if ([cfg objectForKey:@"flowUsesTestingCdn"])
