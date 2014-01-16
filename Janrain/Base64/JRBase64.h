@@ -29,13 +29,6 @@
 //
 //  3. This notice may not be removed or altered from any source distribution.
 //
-
-// Thanks Nick!
-// Changes made:
-//  - name mangling to skirt potential ObjC global-namespace collisions
-//  - de-ARC-ified
-//  - data type tweaks to nice some lint/compiler warnings
-
 #import <Foundation/Foundation.h>
 
 @interface NSData (JRBase64)

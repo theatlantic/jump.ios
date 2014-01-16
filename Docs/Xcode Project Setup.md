@@ -82,16 +82,8 @@ Once generated, the user model must be added to your Xcode project:
 
 ## Working with ARC
 
-The JUMP for iOS library does not, itself, use Automatic Reference Counting, but you can add the library to a project
-that does by disabling ARC when compliling the JUMP library source code. To do so:
+As of v3.7.0 the JUMP iOS SDK uses ARC for object memory management.
 
-1. Go to your project settings, select your application’s target, and select the **Build Phases** tab.
-2. Expand the section named **Compile Sources**.
-3. Select all the files from the **Janrain** folder, including `SFHFKeychainUtils.m`
-   Also select the generated user model files, if you added them.
-4. Press **Return** to edit all the files at once, and, in the floating text-box, add the `-fno-objc-arc` compiler
-   flag.
-5. After adding the compiler flag, either click **Done** in the input bubble, or press Return.
 
 ## Upgrading from an Earlier Version of the JUMP SDK
 
