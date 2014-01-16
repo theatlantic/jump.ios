@@ -59,8 +59,6 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
-
-    [_string1 autorelease];
     _string1 = [newString1 copy];
 }
 
@@ -72,8 +70,6 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
-
-    [_string2 autorelease];
     _string2 = [newString2 copy];
 }
 
@@ -92,7 +88,7 @@
 
 + (id)pinoinoL3PluralElement
 {
-    return [[[JRPinoinoL3PluralElement alloc] init] autorelease];
+    return [[JRPinoinoL3PluralElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -164,7 +160,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"pinoinoL3Plural", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -196,7 +192,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"pinoinoL3PluralElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"pinoinoL3PluralElement"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -274,9 +270,5 @@
 
 - (void)dealloc
 {
-    [_string1 release];
-    [_string2 release];
-
-    [super dealloc];
 }
 @end

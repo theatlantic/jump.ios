@@ -125,8 +125,6 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
-
-    [_string1 autorelease];
     _string1 = [newString1 copy];
 }
 
@@ -138,8 +136,6 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
-
-    [_string2 autorelease];
     _string2 = [newString2 copy];
 }
 
@@ -150,7 +146,6 @@
 
 - (void)setOnipinoL2Plural:(NSArray *)newOnipinoL2Plural
 {
-    [_onipinoL2Plural autorelease];
     _onipinoL2Plural = [newOnipinoL2Plural copy];
 }
 
@@ -169,7 +164,7 @@
 
 + (id)onipinoL1Object
 {
-    return [[[JROnipinoL1Object alloc] init] autorelease];
+    return [[JROnipinoL1Object alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -241,7 +236,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
 
@@ -276,7 +271,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"onipinoL1Object"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"onipinoL1Object"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -371,10 +366,5 @@
 
 - (void)dealloc
 {
-    [_string1 release];
-    [_string2 release];
-    [_onipinoL2Plural release];
-
-    [super dealloc];
 }
 @end

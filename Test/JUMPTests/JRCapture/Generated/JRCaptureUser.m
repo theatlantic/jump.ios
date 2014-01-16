@@ -688,8 +688,6 @@
 - (void)setUuid:(JRUuid *)newUuid
 {
     [self.dirtyPropertySet addObject:@"uuid"];
-
-    [_uuid autorelease];
     _uuid = [newUuid copy];
 }
 
@@ -701,8 +699,6 @@
 - (void)setCreated:(JRDateTime *)newCreated
 {
     [self.dirtyPropertySet addObject:@"created"];
-
-    [_created autorelease];
     _created = [newCreated copy];
 }
 
@@ -714,8 +710,6 @@
 - (void)setLastUpdated:(JRDateTime *)newLastUpdated
 {
     [self.dirtyPropertySet addObject:@"lastUpdated"];
-
-    [_lastUpdated autorelease];
     _lastUpdated = [newLastUpdated copy];
 }
 
@@ -727,8 +721,6 @@
 - (void)setEmail:(NSString *)newEmail
 {
     [self.dirtyPropertySet addObject:@"email"];
-
-    [_email autorelease];
     _email = [newEmail copy];
 }
 
@@ -740,8 +732,6 @@
 - (void)setBasicBoolean:(JRBoolean *)newBasicBoolean
 {
     [self.dirtyPropertySet addObject:@"basicBoolean"];
-
-    [_basicBoolean autorelease];
     _basicBoolean = [newBasicBoolean copy];
 }
 
@@ -753,9 +743,7 @@
 - (void)setBasicBooleanWithBool:(BOOL)boolVal
 {
     [self.dirtyPropertySet addObject:@"basicBoolean"];
-
-    [_basicBoolean autorelease];
-    _basicBoolean = [[NSNumber numberWithBool:boolVal] retain];
+    _basicBoolean = [NSNumber numberWithBool:boolVal];
 }
 
 - (NSString *)basicString
@@ -766,8 +754,6 @@
 - (void)setBasicString:(NSString *)newBasicString
 {
     [self.dirtyPropertySet addObject:@"basicString"];
-
-    [_basicString autorelease];
     _basicString = [newBasicString copy];
 }
 
@@ -779,8 +765,6 @@
 - (void)setBasicInteger:(JRInteger *)newBasicInteger
 {
     [self.dirtyPropertySet addObject:@"basicInteger"];
-
-    [_basicInteger autorelease];
     _basicInteger = [newBasicInteger copy];
 }
 
@@ -792,9 +776,7 @@
 - (void)setBasicIntegerWithInteger:(NSInteger)integerVal
 {
     [self.dirtyPropertySet addObject:@"basicInteger"];
-
-    [_basicInteger autorelease];
-    _basicInteger = [[NSNumber numberWithInteger:integerVal] retain];
+    _basicInteger = [NSNumber numberWithInteger:integerVal];
 }
 
 - (JRDecimal *)basicDecimal
@@ -805,8 +787,6 @@
 - (void)setBasicDecimal:(JRDecimal *)newBasicDecimal
 {
     [self.dirtyPropertySet addObject:@"basicDecimal"];
-
-    [_basicDecimal autorelease];
     _basicDecimal = [newBasicDecimal copy];
 }
 
@@ -818,8 +798,6 @@
 - (void)setBasicDate:(JRDate *)newBasicDate
 {
     [self.dirtyPropertySet addObject:@"basicDate"];
-
-    [_basicDate autorelease];
     _basicDate = [newBasicDate copy];
 }
 
@@ -831,8 +809,6 @@
 - (void)setBasicDateTime:(JRDateTime *)newBasicDateTime
 {
     [self.dirtyPropertySet addObject:@"basicDateTime"];
-
-    [_basicDateTime autorelease];
     _basicDateTime = [newBasicDateTime copy];
 }
 
@@ -844,8 +820,6 @@
 - (void)setBasicIpAddress:(JRIpAddress *)newBasicIpAddress
 {
     [self.dirtyPropertySet addObject:@"basicIpAddress"];
-
-    [_basicIpAddress autorelease];
     _basicIpAddress = [newBasicIpAddress copy];
 }
 
@@ -857,8 +831,6 @@
 - (void)setBasicPassword:(JRPassword *)newBasicPassword
 {
     [self.dirtyPropertySet addObject:@"basicPassword"];
-
-    [_basicPassword autorelease];
     _basicPassword = [newBasicPassword copy];
 }
 
@@ -870,8 +842,6 @@
 - (void)setJsonNumber:(JRJsonObject *)newJsonNumber
 {
     [self.dirtyPropertySet addObject:@"jsonNumber"];
-
-    [_jsonNumber autorelease];
     _jsonNumber = [newJsonNumber copy];
 }
 
@@ -883,8 +853,6 @@
 - (void)setJsonString:(JRJsonObject *)newJsonString
 {
     [self.dirtyPropertySet addObject:@"jsonString"];
-
-    [_jsonString autorelease];
     _jsonString = [newJsonString copy];
 }
 
@@ -896,8 +864,6 @@
 - (void)setJsonArray:(JRJsonObject *)newJsonArray
 {
     [self.dirtyPropertySet addObject:@"jsonArray"];
-
-    [_jsonArray autorelease];
     _jsonArray = [newJsonArray copy];
 }
 
@@ -909,8 +875,6 @@
 - (void)setJsonDictionary:(JRJsonObject *)newJsonDictionary
 {
     [self.dirtyPropertySet addObject:@"jsonDictionary"];
-
-    [_jsonDictionary autorelease];
     _jsonDictionary = [newJsonDictionary copy];
 }
 
@@ -922,8 +886,6 @@
 - (void)setStringTestJson:(NSString *)newStringTestJson
 {
     [self.dirtyPropertySet addObject:@"stringTestJson"];
-
-    [_stringTestJson autorelease];
     _stringTestJson = [newStringTestJson copy];
 }
 
@@ -935,8 +897,6 @@
 - (void)setStringTestEmpty:(NSString *)newStringTestEmpty
 {
     [self.dirtyPropertySet addObject:@"stringTestEmpty"];
-
-    [_stringTestEmpty autorelease];
     _stringTestEmpty = [newStringTestEmpty copy];
 }
 
@@ -948,8 +908,6 @@
 - (void)setStringTestNull:(NSString *)newStringTestNull
 {
     [self.dirtyPropertySet addObject:@"stringTestNull"];
-
-    [_stringTestNull autorelease];
     _stringTestNull = [newStringTestNull copy];
 }
 
@@ -961,8 +919,6 @@
 - (void)setStringTestInvalid:(NSString *)newStringTestInvalid
 {
     [self.dirtyPropertySet addObject:@"stringTestInvalid"];
-
-    [_stringTestInvalid autorelease];
     _stringTestInvalid = [newStringTestInvalid copy];
 }
 
@@ -974,8 +930,6 @@
 - (void)setStringTestNSNull:(NSString *)newStringTestNSNull
 {
     [self.dirtyPropertySet addObject:@"stringTestNSNull"];
-
-    [_stringTestNSNull autorelease];
     _stringTestNSNull = [newStringTestNSNull copy];
 }
 
@@ -987,8 +941,6 @@
 - (void)setStringTestAlphanumeric:(NSString *)newStringTestAlphanumeric
 {
     [self.dirtyPropertySet addObject:@"stringTestAlphanumeric"];
-
-    [_stringTestAlphanumeric autorelease];
     _stringTestAlphanumeric = [newStringTestAlphanumeric copy];
 }
 
@@ -1000,8 +952,6 @@
 - (void)setStringTestUnicodeLetters:(NSString *)newStringTestUnicodeLetters
 {
     [self.dirtyPropertySet addObject:@"stringTestUnicodeLetters"];
-
-    [_stringTestUnicodeLetters autorelease];
     _stringTestUnicodeLetters = [newStringTestUnicodeLetters copy];
 }
 
@@ -1013,8 +963,6 @@
 - (void)setStringTestUnicodePrintable:(NSString *)newStringTestUnicodePrintable
 {
     [self.dirtyPropertySet addObject:@"stringTestUnicodePrintable"];
-
-    [_stringTestUnicodePrintable autorelease];
     _stringTestUnicodePrintable = [newStringTestUnicodePrintable copy];
 }
 
@@ -1026,8 +974,6 @@
 - (void)setStringTestEmailAddress:(NSString *)newStringTestEmailAddress
 {
     [self.dirtyPropertySet addObject:@"stringTestEmailAddress"];
-
-    [_stringTestEmailAddress autorelease];
     _stringTestEmailAddress = [newStringTestEmailAddress copy];
 }
 
@@ -1039,8 +985,6 @@
 - (void)setStringTestLength:(NSString *)newStringTestLength
 {
     [self.dirtyPropertySet addObject:@"stringTestLength"];
-
-    [_stringTestLength autorelease];
     _stringTestLength = [newStringTestLength copy];
 }
 
@@ -1052,8 +996,6 @@
 - (void)setStringTestCaseSensitive:(NSString *)newStringTestCaseSensitive
 {
     [self.dirtyPropertySet addObject:@"stringTestCaseSensitive"];
-
-    [_stringTestCaseSensitive autorelease];
     _stringTestCaseSensitive = [newStringTestCaseSensitive copy];
 }
 
@@ -1065,8 +1007,6 @@
 - (void)setStringTestFeatures:(NSString *)newStringTestFeatures
 {
     [self.dirtyPropertySet addObject:@"stringTestFeatures"];
-
-    [_stringTestFeatures autorelease];
     _stringTestFeatures = [newStringTestFeatures copy];
 }
 
@@ -1077,7 +1017,6 @@
 
 - (void)setBasicPlural:(NSArray *)newBasicPlural
 {
-    [_basicPlural autorelease];
     _basicPlural = [newBasicPlural copy];
 }
 
@@ -1089,10 +1028,7 @@
 - (void)setBasicObject:(JRBasicObject *)newBasicObject
 {
     [self.dirtyPropertySet addObject:@"basicObject"];
-
-    [_basicObject autorelease];
-    _basicObject = [newBasicObject retain];
-
+    _basicObject = newBasicObject;
     [_basicObject setAllPropertiesToDirty];
 }
 
@@ -1104,10 +1040,7 @@
 - (void)setObjectTestRequired:(JRObjectTestRequired *)newObjectTestRequired
 {
     [self.dirtyPropertySet addObject:@"objectTestRequired"];
-
-    [_objectTestRequired autorelease];
-    _objectTestRequired = [newObjectTestRequired retain];
-
+    _objectTestRequired = newObjectTestRequired;
     [_objectTestRequired setAllPropertiesToDirty];
 }
 
@@ -1118,7 +1051,6 @@
 
 - (void)setPluralTestUnique:(NSArray *)newPluralTestUnique
 {
-    [_pluralTestUnique autorelease];
     _pluralTestUnique = [newPluralTestUnique copy];
 }
 
@@ -1130,10 +1062,7 @@
 - (void)setObjectTestRequiredUnique:(JRObjectTestRequiredUnique *)newObjectTestRequiredUnique
 {
     [self.dirtyPropertySet addObject:@"objectTestRequiredUnique"];
-
-    [_objectTestRequiredUnique autorelease];
-    _objectTestRequiredUnique = [newObjectTestRequiredUnique retain];
-
+   _objectTestRequiredUnique = newObjectTestRequiredUnique;
     [_objectTestRequiredUnique setAllPropertiesToDirty];
 }
 
@@ -1144,7 +1073,6 @@
 
 - (void)setPluralTestAlphabetic:(NSArray *)newPluralTestAlphabetic
 {
-    [_pluralTestAlphabetic autorelease];
     _pluralTestAlphabetic = [newPluralTestAlphabetic copy];
 }
 
@@ -1155,7 +1083,6 @@
 
 - (void)setSimpleStringPluralOne:(JRStringArray *)newSimpleStringPluralOne
 {
-    [_simpleStringPluralOne autorelease];
     _simpleStringPluralOne = [newSimpleStringPluralOne copy];
 }
 
@@ -1166,7 +1093,6 @@
 
 - (void)setSimpleStringPluralTwo:(JRStringArray *)newSimpleStringPluralTwo
 {
-    [_simpleStringPluralTwo autorelease];
     _simpleStringPluralTwo = [newSimpleStringPluralTwo copy];
 }
 
@@ -1177,7 +1103,6 @@
 
 - (void)setPinapL1Plural:(NSArray *)newPinapL1Plural
 {
-    [_pinapL1Plural autorelease];
     _pinapL1Plural = [newPinapL1Plural copy];
 }
 
@@ -1189,10 +1114,7 @@
 - (void)setPinoL1Object:(JRPinoL1Object *)newPinoL1Object
 {
     [self.dirtyPropertySet addObject:@"pinoL1Object"];
-
-    [_pinoL1Object autorelease];
-    _pinoL1Object = [newPinoL1Object retain];
-
+    _pinoL1Object = newPinoL1Object;
     [_pinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1203,7 +1125,6 @@
 
 - (void)setOnipL1Plural:(NSArray *)newOnipL1Plural
 {
-    [_onipL1Plural autorelease];
     _onipL1Plural = [newOnipL1Plural copy];
 }
 
@@ -1215,10 +1136,7 @@
 - (void)setOinoL1Object:(JROinoL1Object *)newOinoL1Object
 {
     [self.dirtyPropertySet addObject:@"oinoL1Object"];
-
-    [_oinoL1Object autorelease];
-    _oinoL1Object = [newOinoL1Object retain];
-
+    _oinoL1Object = newOinoL1Object;
     [_oinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1229,7 +1147,6 @@
 
 - (void)setPinapinapL1Plural:(NSArray *)newPinapinapL1Plural
 {
-    [_pinapinapL1Plural autorelease];
     _pinapinapL1Plural = [newPinapinapL1Plural copy];
 }
 
@@ -1240,7 +1157,6 @@
 
 - (void)setPinonipL1Plural:(NSArray *)newPinonipL1Plural
 {
-    [_pinonipL1Plural autorelease];
     _pinonipL1Plural = [newPinonipL1Plural copy];
 }
 
@@ -1252,10 +1168,7 @@
 - (void)setPinapinoL1Object:(JRPinapinoL1Object *)newPinapinoL1Object
 {
     [self.dirtyPropertySet addObject:@"pinapinoL1Object"];
-
-    [_pinapinoL1Object autorelease];
-    _pinapinoL1Object = [newPinapinoL1Object retain];
-
+    _pinapinoL1Object = newPinapinoL1Object;
     [_pinapinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1267,9 +1180,7 @@
 - (void)setPinoinoL1Object:(JRPinoinoL1Object *)newPinoinoL1Object
 {
     [self.dirtyPropertySet addObject:@"pinoinoL1Object"];
-
-    [_pinoinoL1Object autorelease];
-    _pinoinoL1Object = [newPinoinoL1Object retain];
+    _pinoinoL1Object = newPinoinoL1Object;
 
     [_pinoinoL1Object setAllPropertiesToDirty];
 }
@@ -1281,7 +1192,6 @@
 
 - (void)setOnipinapL1Plural:(NSArray *)newOnipinapL1Plural
 {
-    [_onipinapL1Plural autorelease];
     _onipinapL1Plural = [newOnipinapL1Plural copy];
 }
 
@@ -1292,7 +1202,6 @@
 
 - (void)setOinonipL1Plural:(NSArray *)newOinonipL1Plural
 {
-    [_oinonipL1Plural autorelease];
     _oinonipL1Plural = [newOinonipL1Plural copy];
 }
 
@@ -1304,10 +1213,7 @@
 - (void)setOnipinoL1Object:(JROnipinoL1Object *)newOnipinoL1Object
 {
     [self.dirtyPropertySet addObject:@"onipinoL1Object"];
-
-    [_onipinoL1Object autorelease];
-    _onipinoL1Object = [newOnipinoL1Object retain];
-
+    _onipinoL1Object = newOnipinoL1Object;
     [_onipinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1319,10 +1225,7 @@
 - (void)setOinoinoL1Object:(JROinoinoL1Object *)newOinoinoL1Object
 {
     [self.dirtyPropertySet addObject:@"oinoinoL1Object"];
-
-    [_oinoinoL1Object autorelease];
-    _oinoinoL1Object = [newOinoinoL1Object retain];
-
+    _oinoinoL1Object = newOinoinoL1Object;
     [_oinoinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1334,8 +1237,6 @@
 - (void)setCaptureUserId:(JRObjectId *)newCaptureUserId
 {
     [self.dirtyPropertySet addObject:@"captureUserId"];
-
-    [_captureUserId autorelease];
     _captureUserId = [newCaptureUserId copy];
 }
 
@@ -1363,7 +1264,7 @@
 
 + (id)captureUser
 {
-    return [[[JRCaptureUser alloc] init] autorelease];
+    return [[JRCaptureUser alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -1917,7 +1818,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
 
@@ -2163,7 +2064,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"captureUser"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"captureUser"];
 
     if (self.basicObject)
         [snapshotDictionary setObject:[self.basicObject snapshotDictionaryFromDirtyPropertySet]
@@ -2918,56 +2819,5 @@
 
 - (void)dealloc
 {
-    [_uuid release];
-    [_created release];
-    [_lastUpdated release];
-    [_email release];
-    [_basicBoolean release];
-    [_basicString release];
-    [_basicInteger release];
-    [_basicDecimal release];
-    [_basicDate release];
-    [_basicDateTime release];
-    [_basicIpAddress release];
-    [_basicPassword release];
-    [_jsonNumber release];
-    [_jsonString release];
-    [_jsonArray release];
-    [_jsonDictionary release];
-    [_stringTestJson release];
-    [_stringTestEmpty release];
-    [_stringTestNull release];
-    [_stringTestInvalid release];
-    [_stringTestNSNull release];
-    [_stringTestAlphanumeric release];
-    [_stringTestUnicodeLetters release];
-    [_stringTestUnicodePrintable release];
-    [_stringTestEmailAddress release];
-    [_stringTestLength release];
-    [_stringTestCaseSensitive release];
-    [_stringTestFeatures release];
-    [_basicPlural release];
-    [_basicObject release];
-    [_objectTestRequired release];
-    [_pluralTestUnique release];
-    [_objectTestRequiredUnique release];
-    [_pluralTestAlphabetic release];
-    [_simpleStringPluralOne release];
-    [_simpleStringPluralTwo release];
-    [_pinapL1Plural release];
-    [_pinoL1Object release];
-    [_onipL1Plural release];
-    [_oinoL1Object release];
-    [_pinapinapL1Plural release];
-    [_pinonipL1Plural release];
-    [_pinapinoL1Object release];
-    [_pinoinoL1Object release];
-    [_onipinapL1Plural release];
-    [_oinonipL1Plural release];
-    [_onipinoL1Object release];
-    [_oinoinoL1Object release];
-    [_captureUserId release];
-
-    [super dealloc];
 }
 @end

@@ -125,8 +125,6 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
-
-    [_string1 autorelease];
     _string1 = [newString1 copy];
 }
 
@@ -138,8 +136,6 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
-
-    [_string2 autorelease];
     _string2 = [newString2 copy];
 }
 
@@ -150,7 +146,6 @@
 
 - (void)setPinonipL3Plural:(NSArray *)newPinonipL3Plural
 {
-    [_pinonipL3Plural autorelease];
     _pinonipL3Plural = [newPinonipL3Plural copy];
 }
 
@@ -169,7 +164,7 @@
 
 + (id)pinonipL2Object
 {
-    return [[[JRPinonipL2Object alloc] init] autorelease];
+    return [[JRPinonipL2Object alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -247,7 +242,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@", capturePath, @"pinonipL2Object"];
@@ -283,7 +278,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"pinonipL2Object"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"pinonipL2Object"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -378,10 +373,5 @@
 
 - (void)dealloc
 {
-    [_string1 release];
-    [_string2 release];
-    [_pinonipL3Plural release];
-
-    [super dealloc];
 }
 @end

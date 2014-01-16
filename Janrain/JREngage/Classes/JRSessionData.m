@@ -1339,13 +1339,7 @@ static JRSessionData *singleton = nil;
 
     NSDictionary *dict = [urls JR_objectFromJSONString];
 
-    if (!dict || ([dict objectForKey:@"err"]))
-    {
-        for (id<JRSessionDelegate> delegate in [NSArray arrayWithArray:delegates])
-            if ([delegate respondsToSelector:@selector(urlShortenedToNewUrl:forActivity:)])
-                [delegate urlShortenedToNewUrl:[_activity shortenedUrl] forActivity:_activity];
-    }
-    else
+    if (dict && !([dict objectForKey:@"err"]))
     {
         NSDictionary *emailUrls    = [[dict objectForKey:@"urls"] objectForKey:@"email"];
         NSDictionary *smsUrls      = [[dict objectForKey:@"urls"] objectForKey:@"sms"];
@@ -1371,6 +1365,9 @@ static JRSessionData *singleton = nil;
                 [_activity setShortenedUrl:[activityUrls objectForKey:key]];
         }
     }
+    for (id<JRSessionDelegate> delegate in [NSArray arrayWithArray:delegates])
+        if ([delegate respondsToSelector:@selector(urlShortenedToNewUrl:forActivity:)])
+            [delegate urlShortenedToNewUrl:[_activity shortenedUrl] forActivity:_activity];
 }
 
 #pragma mark token_url
