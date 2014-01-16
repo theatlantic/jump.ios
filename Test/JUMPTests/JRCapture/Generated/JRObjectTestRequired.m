@@ -60,8 +60,6 @@
 - (void)setRequiredString:(NSString *)newRequiredString
 {
     [self.dirtyPropertySet addObject:@"requiredString"];
-
-    [_requiredString autorelease];
     _requiredString = [newRequiredString copy];
 }
 
@@ -73,8 +71,6 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
-
-    [_string1 autorelease];
     _string1 = [newString1 copy];
 }
 
@@ -86,8 +82,6 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
-
-    [_string2 autorelease];
     _string2 = [newString2 copy];
 }
 
@@ -108,7 +102,6 @@
 {
     if (!newRequiredString)
     {
-        [self release];
         return nil;
      }
 
@@ -126,12 +119,12 @@
 
 + (id)objectTestRequired
 {
-    return [[[JRObjectTestRequired alloc] init] autorelease];
+    return [[JRObjectTestRequired alloc] init];
 }
 
 + (id)objectTestRequiredWithRequiredString:(NSString *)requiredString
 {
-    return [[[JRObjectTestRequired alloc] initWithRequiredString:requiredString] autorelease];
+    return [[JRObjectTestRequired alloc] initWithRequiredString:requiredString];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -203,7 +196,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
 
@@ -238,7 +231,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"objectTestRequired"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"objectTestRequired"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -325,10 +318,5 @@
 
 - (void)dealloc
 {
-    [_requiredString release];
-    [_string1 release];
-    [_string2 release];
-
-    [super dealloc];
 }
 @end

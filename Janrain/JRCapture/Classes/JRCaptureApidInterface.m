@@ -620,7 +620,7 @@ typedef enum CaptureInterfaceStatEnum
  */
 + (NSDictionary *)flowTraditionalSignInCredentialsForName:(NSString *)name andPassword:(NSString *)password {
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
-    NSDictionary *captureFlow = CFBridgingRelease(CFBridgingRetain([data captureFlow]));
+    JRCaptureFlow *captureFlow = [data captureFlow];
     NSDictionary *fields = [captureFlow objectForKey:@"fields"];
     NSString *tradSignInFormName = [data captureTraditionalSignInFormName];
     NSDictionary *tradSignInForm = [fields objectForKey:tradSignInFormName];

@@ -53,13 +53,17 @@
 @end
 
 
-/*********************************************************************************************
- /
- /   ConnectionData CLASS
- /
- /  Stores the NSURLConnection and othr
- *********************************************************************************************/
-
+/**
+ * @brief Stores the NSURLConnection and other connection data
+ *
+ *  ConnectionData is the root object that is collected by
+ *  JRConnectionManager in an NSMutableArray. This object is not intended to
+ *  be used in a public interface
+ *
+ * @sa
+ * For more information of Janrain Engage's activity api, see
+ * <a href="http://documentation.janrain.com/activity">the activity section</a> of our API Documentation.
+ **/
 @interface ConnectionData : NSObject
 {
 }
@@ -114,18 +118,22 @@
 @end
 
 
+/**
+ * @brief JRConnectionManager category that hides the internal collection
+ * of ConnectionData objects
+ *
+ **/
+@interface JRConnectionManager()
+@property NSMutableArray *connectionBuffers;
+@end
+
+
 
 
 @implementation JRConnectionManager
 
 static JRConnectionManager *singleton = nil;
 
-
- /*********************************************************************************************
- /
- /   JRConnectionManager CLASS METHODS
- /
- *********************************************************************************************/
 
 + (id)getJRConnectionManager
 {
@@ -150,12 +158,9 @@ static JRConnectionManager *singleton = nil;
 + (NSUInteger)openConnections
 {
     JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
-    return [connectionManager->connectionBuffers count];
+    return [[connectionManager connectionBuffers] count];
 }
 
-//
-//  Gets the ConnectionData object that holds the NSURLConnection 'connection'
-//
 + (ConnectionData*) getConnectionDataFromConnection:(NSURLConnection *)connection
 {
     for (ConnectionData* connectionData in [JRConnectionManager getConnectionBuffers])
@@ -171,7 +176,7 @@ static JRConnectionManager *singleton = nil;
 + (NSMutableArray *) getConnectionBuffers
 {
     JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
-    return connectionManager->connectionBuffers;
+    return [connectionManager connectionBuffers];
 }
 
 + (bool)createConnectionFromRequest:(NSURLRequest *)request
@@ -183,7 +188,7 @@ static JRConnectionManager *singleton = nil;
     DLog(@"request to '%@' with body: '%@'", [[request URL] absoluteString], body);
 
     JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
-    NSMutableArray *connectionBuffers = connectionManager->connectionBuffers;
+    NSMutableArray *connectionBuffers = [connectionManager connectionBuffers];
 
     if (![NSURLConnection canHandleRequest:request])
         return NO;
@@ -218,8 +223,6 @@ static JRConnectionManager *singleton = nil;
 + (void)stopConnectionsForDelegate:(id <JRConnectionManagerDelegate>)delegate
 {
     DLog(@"delegate=%@", delegate.debugDescription);
-    JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
-
     for (ConnectionData *connectionData in [JRConnectionManager getConnectionBuffers])
     {
         if (connectionData.delegate == delegate)
@@ -232,11 +235,11 @@ static JRConnectionManager *singleton = nil;
                     [delegate connectionWasStoppedWithTag:[connectionData tag]];
             }
 
-            [connectionManager->connectionBuffers removeObject:connectionData];
+            [[JRConnectionManager getConnectionBuffers] removeObject:connectionData];
         }
     }
 
-    [connectionManager stopActivity];
+    [[JRConnectionManager getJRConnectionManager] stopActivity];
 }
 
 + (void)jsonRequestToUrl:(NSString *)url params:(NSDictionary *)params
@@ -284,17 +287,12 @@ static JRConnectionManager *singleton = nil;
                            }];
 }
 
-/*********************************************************************************************
-/
-/   JRConnectionManager INSTANCE METHODS
-/
-*********************************************************************************************/
 
 - (JRConnectionManager *)init
 {
     if ((self = [super init]))
     {
-        connectionBuffers = [[NSMutableArray alloc] init];
+        _connectionBuffers = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -308,7 +306,7 @@ static JRConnectionManager *singleton = nil;
 
 - (void)stopActivity
 {
-    if ([connectionBuffers count] == 0)
+    if ([[self connectionBuffers] count] == 0)
     {
         UIApplication *app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = NO;
@@ -318,7 +316,7 @@ static JRConnectionManager *singleton = nil;
 - (void)dealloc
 {
     DLog(@"");
-    NSEnumerator *enumerator = [connectionBuffers objectEnumerator];
+    NSEnumerator *enumerator = [[self connectionBuffers] objectEnumerator];
     ConnectionData *connectionData;
     while ((connectionData = [enumerator nextObject]))
     {
@@ -329,14 +327,15 @@ static JRConnectionManager *singleton = nil;
             [[connectionData delegate] connectionWasStoppedWithTag:[connectionData tag]];
         }
         
-        [connectionBuffers removeObject:connectionData];
+        [[self connectionBuffers] removeObject:connectionData];
     }
     [self stopActivity];
 }
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     DLog(@"data=%@", data.base64Encoding);
-    for (ConnectionData *connectionData in connectionBuffers)
+    for (ConnectionData *connectionData in [self connectionBuffers])
     {
         if (connectionData.connection == connection)
         {
@@ -349,7 +348,7 @@ static JRConnectionManager *singleton = nil;
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     DLog(@"response=%@", response.URL.absoluteString);
-    for (ConnectionData *connectionData in connectionBuffers)
+    for (ConnectionData *connectionData in [self connectionBuffers])
     {
         if (connectionData.connection == connection)
         {
@@ -395,7 +394,7 @@ static JRConnectionManager *singleton = nil;
     }
 
     JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
-    [connectionManager->connectionBuffers removeObject:connectionData];
+    [[connectionManager connectionBuffers] removeObject:connectionData];
 
     [self stopActivity];
 }
@@ -414,7 +413,7 @@ static JRConnectionManager *singleton = nil;
         [delegate connectionDidFailWithError:error request:request andTag:userData];
 
     JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
-    [connectionManager->connectionBuffers removeObject:connectionData];
+    [[connectionManager connectionBuffers] removeObject:connectionData];
 
     [self stopActivity];
 }

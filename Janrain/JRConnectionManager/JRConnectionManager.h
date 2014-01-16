@@ -61,8 +61,6 @@
 
 @interface JRConnectionManager : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
-    // ConnectionData objects
-    NSMutableArray *connectionBuffers;
 }
 
 + (bool)createConnectionFromRequest:(NSURLRequest *)request

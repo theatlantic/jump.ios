@@ -126,7 +126,6 @@
 {
     [self.dirtyPropertySet addObject:@"string1"];
 
-    [_string1 autorelease];
     _string1 = [newString1 copy];
 }
 
@@ -138,8 +137,6 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
-
-    [_string2 autorelease];
     _string2 = [newString2 copy];
 }
 
@@ -150,7 +147,6 @@
 
 - (void)setPinapinapL2Plural:(NSArray *)newPinapinapL2Plural
 {
-    [_pinapinapL2Plural autorelease];
     _pinapinapL2Plural = [newPinapinapL2Plural copy];
 }
 
@@ -169,7 +165,7 @@
 
 + (id)pinapinapL1PluralElement
 {
-    return [[[JRPinapinapL1PluralElement alloc] init] autorelease];
+    return [[JRPinapinapL1PluralElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -247,7 +243,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"pinapinapL1Plural", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -283,7 +279,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"pinapinapL1PluralElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"pinapinapL1PluralElement"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -378,10 +374,5 @@
 
 - (void)dealloc
 {
-    [_string1 release];
-    [_string2 release];
-    [_pinapinapL2Plural release];
-
-    [super dealloc];
 }
 @end
