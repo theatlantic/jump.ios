@@ -124,11 +124,6 @@
 
 - (void)dealloc
 {
-#if !__has_feature(objc_arc)
-    [_completion release];
-
-    [super dealloc];
-#endif
 }
 
 @end
