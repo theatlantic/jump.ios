@@ -106,7 +106,6 @@ static JRCaptureData *singleton = nil;
 @synthesize captureBaseUrl;
 @synthesize accessToken;
 @synthesize refreshSecret;
-@synthesize bpChannelUrl;
 @synthesize captureLocale;
 @synthesize captureTraditionalSignInFormName;
 //@synthesize captureTradSignInType;
@@ -159,27 +158,10 @@ static JRCaptureData *singleton = nil;
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self sharedCaptureData] retain];
+    return [self sharedCaptureData];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;
-}
-
-- (oneway void)release { }
-
-- (id)autorelease
 {
     return self;
 }
@@ -201,7 +183,6 @@ static JRCaptureData *singleton = nil;
     if (captureData.captureFlowName) [urlArgs setObject:captureData.captureFlowName forKey:@"flow"];
     if ([captureData downloadedFlowVersion])
         [urlArgs setObject:[captureData downloadedFlowVersion] forKey:@"flow_version"];
-    if (captureData.bpChannelUrl) [urlArgs setObject:captureData.bpChannelUrl forKey:@"bp_channel"];
     if (mergeToken) [urlArgs setObject:mergeToken forKey:@"merge_token"];
     if (captureData.captureSocialRegistrationFormName)
     {
@@ -423,32 +404,6 @@ static JRCaptureData *singleton = nil;
     return [[JRCaptureData sharedCaptureData] clientId];
 }
 
-- (void)dealloc
-{
-    [clientId release];
-    [accessToken release];
-    [captureBaseUrl release];
-    [captureFlowName release];
-    [captureLocale release];
-    [captureTraditionalSignInFormName release];
-    [bpChannelUrl release];
-    [captureTraditionalRegistrationFormName release];
-    [captureFlowVersion release];
-    [captureTraditionalRegistrationFormName release];
-    [captureFlowVersion release];
-    [captureAppId release];
-    [captureAppId release];
-    [captureFlow release];
-    [refreshSecret release];
-    [captureRedirectUri release];
-    [passwordRecoverUri release];
-    [captureSocialRegistrationFormName release];
-    [captureForgottenPasswordFormName release];
-    [captureEditProfileFormName release];
-    [resendEmailVerificationFormName release];
-    [super dealloc];
-}
-
 + (void)clearSignInState
 {
     [JRCaptureData deleteTokenNameFromKeychain:@"access_token"];
@@ -464,11 +419,6 @@ static JRCaptureData *singleton = nil;
     return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 }
 
-+ (void)setBackplaneChannelUrl:(NSString *)bpChannelUrl __unused
-{
-    [JRCaptureData sharedCaptureData].bpChannelUrl = bpChannelUrl;
-}
-
 + (void)setLinkedProfiles:(NSArray *)profileData {
     NSMutableArray *returnArray = [[NSMutableArray alloc]init];
     if([profileData count] > 0) {
@@ -482,8 +432,8 @@ static JRCaptureData *singleton = nil;
         }
     }
     [JRCaptureData sharedCaptureData].linkedProfiles = profileData;
-    [returnArray release];
 }
+
 - (NSString *)responseType:(id)delegate {
     SEL captureDidSucceedWithCode = sel_registerName("captureDidSucceedWithCode:");
     if ([delegate respondsToSelector:captureDidSucceedWithCode]) {

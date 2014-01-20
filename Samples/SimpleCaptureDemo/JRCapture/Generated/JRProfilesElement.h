@@ -44,7 +44,7 @@
 @property (nonatomic, copy)     JRStringArray *following; /**< Who the user is following @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c identifier */ 
 @property (nonatomic, copy)     JRStringArray *friends; /**< User's friends @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c identifier */ 
 @property (nonatomic, copy)     NSString *identifier; /**< Profile provider unique identifier */ 
-@property (nonatomic, retain)   JRProfile *profile; /**< The object's \e profile property */ 
+@property (nonatomic,strong)    JRProfile *profile; /**< The object's \e profile property */ 
 @property (nonatomic, copy)     JRJsonObject *provider; /**< Provider for this profile @note A ::JRJsonObject property is a property of type \ref typesTable "json", which can be an \e NSDictionary, \e NSArray, \e NSString, etc., and is therefore is a typedef of \e NSObject */ 
 @property (nonatomic, copy)     NSString *remote_key; /**< PrimaryKey field from Engage */ 
 @property (nonatomic, copy)     JRJsonObject *verifiedEmail; /**< The object's \e verifiedEmail property @note A ::JRJsonObject property is a property of type \ref typesTable "json", which can be an \e NSDictionary, \e NSArray, \e NSString, etc., and is therefore is a typedef of \e NSObject */ 

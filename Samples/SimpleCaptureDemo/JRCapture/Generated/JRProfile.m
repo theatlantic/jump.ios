@@ -612,7 +612,6 @@
 {
     [self.dirtyPropertySet addObject:@"aboutMe"];
 
-    [_aboutMe autorelease];
     _aboutMe = [newAboutMe copy];
 }
 
@@ -623,7 +622,6 @@
 
 - (void)setAccounts:(NSArray *)newAccounts
 {
-    [_accounts autorelease];
     _accounts = [newAccounts copy];
 }
 
@@ -634,7 +632,6 @@
 
 - (void)setActivities:(JRStringArray *)newActivities
 {
-    [_activities autorelease];
     _activities = [newActivities copy];
 }
 
@@ -645,7 +642,6 @@
 
 - (void)setAddresses:(NSArray *)newAddresses
 {
-    [_addresses autorelease];
     _addresses = [newAddresses copy];
 }
 
@@ -658,7 +654,6 @@
 {
     [self.dirtyPropertySet addObject:@"anniversary"];
 
-    [_anniversary autorelease];
     _anniversary = [newAnniversary copy];
 }
 
@@ -671,7 +666,6 @@
 {
     [self.dirtyPropertySet addObject:@"birthday"];
 
-    [_birthday autorelease];
     _birthday = [newBirthday copy];
 }
 
@@ -684,8 +678,7 @@
 {
     [self.dirtyPropertySet addObject:@"bodyType"];
 
-    [_bodyType autorelease];
-    _bodyType = [newBodyType retain];
+    _bodyType = newBodyType;
 
     [_bodyType setAllPropertiesToDirty];
 }
@@ -697,7 +690,6 @@
 
 - (void)setBooks:(JRStringArray *)newBooks
 {
-    [_books autorelease];
     _books = [newBooks copy];
 }
 
@@ -708,7 +700,6 @@
 
 - (void)setCars:(JRStringArray *)newCars
 {
-    [_cars autorelease];
     _cars = [newCars copy];
 }
 
@@ -719,7 +710,6 @@
 
 - (void)setChildren:(JRStringArray *)newChildren
 {
-    [_children autorelease];
     _children = [newChildren copy];
 }
 
@@ -732,8 +722,7 @@
 {
     [self.dirtyPropertySet addObject:@"currentLocation"];
 
-    [_currentLocation autorelease];
-    _currentLocation = [newCurrentLocation retain];
+    _currentLocation = newCurrentLocation;
 
     [_currentLocation setAllPropertiesToDirty];
 }
@@ -747,7 +736,6 @@
 {
     [self.dirtyPropertySet addObject:@"displayName"];
 
-    [_displayName autorelease];
     _displayName = [newDisplayName copy];
 }
 
@@ -760,7 +748,6 @@
 {
     [self.dirtyPropertySet addObject:@"drinker"];
 
-    [_drinker autorelease];
     _drinker = [newDrinker copy];
 }
 
@@ -771,7 +758,6 @@
 
 - (void)setEmails:(NSArray *)newEmails
 {
-    [_emails autorelease];
     _emails = [newEmails copy];
 }
 
@@ -784,7 +770,6 @@
 {
     [self.dirtyPropertySet addObject:@"ethnicity"];
 
-    [_ethnicity autorelease];
     _ethnicity = [newEthnicity copy];
 }
 
@@ -797,7 +782,6 @@
 {
     [self.dirtyPropertySet addObject:@"fashion"];
 
-    [_fashion autorelease];
     _fashion = [newFashion copy];
 }
 
@@ -808,7 +792,6 @@
 
 - (void)setFood:(JRStringArray *)newFood
 {
-    [_food autorelease];
     _food = [newFood copy];
 }
 
@@ -821,7 +804,6 @@
 {
     [self.dirtyPropertySet addObject:@"gender"];
 
-    [_gender autorelease];
     _gender = [newGender copy];
 }
 
@@ -834,7 +816,6 @@
 {
     [self.dirtyPropertySet addObject:@"happiestWhen"];
 
-    [_happiestWhen autorelease];
     _happiestWhen = [newHappiestWhen copy];
 }
 
@@ -845,7 +826,6 @@
 
 - (void)setHeroes:(JRStringArray *)newHeroes
 {
-    [_heroes autorelease];
     _heroes = [newHeroes copy];
 }
 
@@ -858,7 +838,6 @@
 {
     [self.dirtyPropertySet addObject:@"humor"];
 
-    [_humor autorelease];
     _humor = [newHumor copy];
 }
 
@@ -869,7 +848,6 @@
 
 - (void)setIms:(NSArray *)newIms
 {
-    [_ims autorelease];
     _ims = [newIms copy];
 }
 
@@ -880,7 +858,6 @@
 
 - (void)setInterestedInMeeting:(JRStringArray *)newInterestedInMeeting
 {
-    [_interestedInMeeting autorelease];
     _interestedInMeeting = [newInterestedInMeeting copy];
 }
 
@@ -891,7 +868,6 @@
 
 - (void)setInterests:(JRStringArray *)newInterests
 {
-    [_interests autorelease];
     _interests = [newInterests copy];
 }
 
@@ -902,7 +878,6 @@
 
 - (void)setJobInterests:(JRStringArray *)newJobInterests
 {
-    [_jobInterests autorelease];
     _jobInterests = [newJobInterests copy];
 }
 
@@ -913,7 +888,6 @@
 
 - (void)setLanguages:(JRStringArray *)newLanguages
 {
-    [_languages autorelease];
     _languages = [newLanguages copy];
 }
 
@@ -924,7 +898,6 @@
 
 - (void)setLanguagesSpoken:(JRStringArray *)newLanguagesSpoken
 {
-    [_languagesSpoken autorelease];
     _languagesSpoken = [newLanguagesSpoken copy];
 }
 
@@ -937,7 +910,6 @@
 {
     [self.dirtyPropertySet addObject:@"livingArrangement"];
 
-    [_livingArrangement autorelease];
     _livingArrangement = [newLivingArrangement copy];
 }
 
@@ -948,7 +920,6 @@
 
 - (void)setLookingFor:(JRStringArray *)newLookingFor
 {
-    [_lookingFor autorelease];
     _lookingFor = [newLookingFor copy];
 }
 
@@ -959,7 +930,6 @@
 
 - (void)setMovies:(JRStringArray *)newMovies
 {
-    [_movies autorelease];
     _movies = [newMovies copy];
 }
 
@@ -970,7 +940,6 @@
 
 - (void)setMusic:(JRStringArray *)newMusic
 {
-    [_music autorelease];
     _music = [newMusic copy];
 }
 
@@ -983,8 +952,7 @@
 {
     [self.dirtyPropertySet addObject:@"name"];
 
-    [_name autorelease];
-    _name = [newName retain];
+    _name = newName;
 
     [_name setAllPropertiesToDirty];
 }
@@ -998,7 +966,6 @@
 {
     [self.dirtyPropertySet addObject:@"nickname"];
 
-    [_nickname autorelease];
     _nickname = [newNickname copy];
 }
 
@@ -1011,7 +978,6 @@
 {
     [self.dirtyPropertySet addObject:@"note"];
 
-    [_note autorelease];
     _note = [newNote copy];
 }
 
@@ -1022,7 +988,6 @@
 
 - (void)setOrganizations:(NSArray *)newOrganizations
 {
-    [_organizations autorelease];
     _organizations = [newOrganizations copy];
 }
 
@@ -1033,7 +998,6 @@
 
 - (void)setPets:(JRStringArray *)newPets
 {
-    [_pets autorelease];
     _pets = [newPets copy];
 }
 
@@ -1044,7 +1008,6 @@
 
 - (void)setPhoneNumbers:(NSArray *)newPhoneNumbers
 {
-    [_phoneNumbers autorelease];
     _phoneNumbers = [newPhoneNumbers copy];
 }
 
@@ -1055,7 +1018,6 @@
 
 - (void)setProfilePhotos:(NSArray *)newProfilePhotos
 {
-    [_profilePhotos autorelease];
     _profilePhotos = [newProfilePhotos copy];
 }
 
@@ -1068,7 +1030,6 @@
 {
     [self.dirtyPropertySet addObject:@"politicalViews"];
 
-    [_politicalViews autorelease];
     _politicalViews = [newPoliticalViews copy];
 }
 
@@ -1081,7 +1042,6 @@
 {
     [self.dirtyPropertySet addObject:@"preferredUsername"];
 
-    [_preferredUsername autorelease];
     _preferredUsername = [newPreferredUsername copy];
 }
 
@@ -1094,7 +1054,6 @@
 {
     [self.dirtyPropertySet addObject:@"profileSong"];
 
-    [_profileSong autorelease];
     _profileSong = [newProfileSong copy];
 }
 
@@ -1107,7 +1066,6 @@
 {
     [self.dirtyPropertySet addObject:@"profileUrl"];
 
-    [_profileUrl autorelease];
     _profileUrl = [newProfileUrl copy];
 }
 
@@ -1120,7 +1078,6 @@
 {
     [self.dirtyPropertySet addObject:@"profileVideo"];
 
-    [_profileVideo autorelease];
     _profileVideo = [newProfileVideo copy];
 }
 
@@ -1133,7 +1090,6 @@
 {
     [self.dirtyPropertySet addObject:@"published"];
 
-    [_published autorelease];
     _published = [newPublished copy];
 }
 
@@ -1144,7 +1100,6 @@
 
 - (void)setQuotes:(JRStringArray *)newQuotes
 {
-    [_quotes autorelease];
     _quotes = [newQuotes copy];
 }
 
@@ -1157,7 +1112,6 @@
 {
     [self.dirtyPropertySet addObject:@"relationshipStatus"];
 
-    [_relationshipStatus autorelease];
     _relationshipStatus = [newRelationshipStatus copy];
 }
 
@@ -1168,7 +1122,6 @@
 
 - (void)setRelationships:(JRStringArray *)newRelationships
 {
-    [_relationships autorelease];
     _relationships = [newRelationships copy];
 }
 
@@ -1181,7 +1134,6 @@
 {
     [self.dirtyPropertySet addObject:@"religion"];
 
-    [_religion autorelease];
     _religion = [newReligion copy];
 }
 
@@ -1194,7 +1146,6 @@
 {
     [self.dirtyPropertySet addObject:@"romance"];
 
-    [_romance autorelease];
     _romance = [newRomance copy];
 }
 
@@ -1207,7 +1158,6 @@
 {
     [self.dirtyPropertySet addObject:@"scaredOf"];
 
-    [_scaredOf autorelease];
     _scaredOf = [newScaredOf copy];
 }
 
@@ -1220,7 +1170,6 @@
 {
     [self.dirtyPropertySet addObject:@"sexualOrientation"];
 
-    [_sexualOrientation autorelease];
     _sexualOrientation = [newSexualOrientation copy];
 }
 
@@ -1233,7 +1182,6 @@
 {
     [self.dirtyPropertySet addObject:@"smoker"];
 
-    [_smoker autorelease];
     _smoker = [newSmoker copy];
 }
 
@@ -1244,7 +1192,6 @@
 
 - (void)setSports:(JRStringArray *)newSports
 {
-    [_sports autorelease];
     _sports = [newSports copy];
 }
 
@@ -1257,7 +1204,6 @@
 {
     [self.dirtyPropertySet addObject:@"status"];
 
-    [_status autorelease];
     _status = [newStatus copy];
 }
 
@@ -1268,7 +1214,6 @@
 
 - (void)setTags:(JRStringArray *)newTags
 {
-    [_tags autorelease];
     _tags = [newTags copy];
 }
 
@@ -1279,7 +1224,6 @@
 
 - (void)setTurnOffs:(JRStringArray *)newTurnOffs
 {
-    [_turnOffs autorelease];
     _turnOffs = [newTurnOffs copy];
 }
 
@@ -1290,7 +1234,6 @@
 
 - (void)setTurnOns:(JRStringArray *)newTurnOns
 {
-    [_turnOns autorelease];
     _turnOns = [newTurnOns copy];
 }
 
@@ -1301,7 +1244,6 @@
 
 - (void)setTvShows:(JRStringArray *)newTvShows
 {
-    [_tvShows autorelease];
     _tvShows = [newTvShows copy];
 }
 
@@ -1314,7 +1256,6 @@
 {
     [self.dirtyPropertySet addObject:@"updated"];
 
-    [_updated autorelease];
     _updated = [newUpdated copy];
 }
 
@@ -1325,7 +1266,6 @@
 
 - (void)setUrls:(NSArray *)newUrls
 {
-    [_urls autorelease];
     _urls = [newUrls copy];
 }
 
@@ -1338,7 +1278,6 @@
 {
     [self.dirtyPropertySet addObject:@"utcOffset"];
 
-    [_utcOffset autorelease];
     _utcOffset = [newUtcOffset copy];
 }
 
@@ -1360,7 +1299,7 @@
 
 + (id)profile
 {
-    return [[[JRProfile alloc] init] autorelease];
+    return [[JRProfile alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -1786,7 +1725,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@", capturePath, @"profile"];
@@ -2063,7 +2002,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"profile"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"profile"];
 
     if (self.bodyType)
         [snapshotDictionary setObject:[self.bodyType snapshotDictionaryFromDirtyPropertySet]
@@ -2976,70 +2915,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_aboutMe release];
-    [_accounts release];
-    [_activities release];
-    [_addresses release];
-    [_anniversary release];
-    [_birthday release];
-    [_bodyType release];
-    [_books release];
-    [_cars release];
-    [_children release];
-    [_currentLocation release];
-    [_displayName release];
-    [_drinker release];
-    [_emails release];
-    [_ethnicity release];
-    [_fashion release];
-    [_food release];
-    [_gender release];
-    [_happiestWhen release];
-    [_heroes release];
-    [_humor release];
-    [_ims release];
-    [_interestedInMeeting release];
-    [_interests release];
-    [_jobInterests release];
-    [_languages release];
-    [_languagesSpoken release];
-    [_livingArrangement release];
-    [_lookingFor release];
-    [_movies release];
-    [_music release];
-    [_name release];
-    [_nickname release];
-    [_note release];
-    [_organizations release];
-    [_pets release];
-    [_phoneNumbers release];
-    [_profilePhotos release];
-    [_politicalViews release];
-    [_preferredUsername release];
-    [_profileSong release];
-    [_profileUrl release];
-    [_profileVideo release];
-    [_published release];
-    [_quotes release];
-    [_relationshipStatus release];
-    [_relationships release];
-    [_religion release];
-    [_romance release];
-    [_scaredOf release];
-    [_sexualOrientation release];
-    [_smoker release];
-    [_sports release];
-    [_status release];
-    [_tags release];
-    [_turnOffs release];
-    [_turnOns release];
-    [_tvShows release];
-    [_updated release];
-    [_urls release];
-    [_utcOffset release];
-
-    [super dealloc];
-}
 @end

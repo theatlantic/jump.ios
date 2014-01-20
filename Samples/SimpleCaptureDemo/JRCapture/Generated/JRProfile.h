@@ -75,11 +75,11 @@
 @property (nonatomic, copy)     NSArray *addresses; /**< A physical mailing address for this Contact. @note This is an array of JRAddressesElement objects */ 
 @property (nonatomic, copy)     JRDate *anniversary; /**< The wedding anniversary of this contact. @note A ::JRDate property is a property of type \ref typesTable "date" and a typedef of \e NSDate. The accepted format should be an ISO 8601 date string (e.g., <code>yyyy-MM-dd</code>) */ 
 @property (nonatomic, copy)     NSString *birthday; /**< The birthday of this contact. */ 
-@property (nonatomic, retain)   JRBodyType *bodyType; /**< Person's body characteristics. */ 
+@property (nonatomic,strong)    JRBodyType *bodyType; /**< Person's body characteristics. */ 
 @property (nonatomic, copy)     JRStringArray *books; /**< Person's favorite books. @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c book */ 
 @property (nonatomic, copy)     JRStringArray *cars; /**< Person's favorite cars. @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c car */ 
 @property (nonatomic, copy)     JRStringArray *children; /**< Description of the person's children. @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c value */ 
-@property (nonatomic, retain)   JRCurrentLocation *currentLocation; /**< The object's \e currentLocation property */ 
+@property (nonatomic,strong)    JRCurrentLocation *currentLocation; /**< The object's \e currentLocation property */ 
 @property (nonatomic, copy)     NSString *displayName; /**< The name of this Contact, suitable for display to end-users. */ 
 @property (nonatomic, copy)     NSString *drinker; /**< Person's drinking status. */ 
 @property (nonatomic, copy)     NSArray *emails; /**< E-mail address for this Contact. @note This is an array of JREmailsElement objects */ 
@@ -100,7 +100,7 @@
 @property (nonatomic, copy)     JRStringArray *lookingFor; /**< Person's statement about who or what they are looking for, or what they are interested in meeting people for. @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c value */ 
 @property (nonatomic, copy)     JRStringArray *movies; /**< Person's favorite movies. @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c movie */ 
 @property (nonatomic, copy)     JRStringArray *music; /**< Person's favorite music. @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c music */ 
-@property (nonatomic, retain)   JRName *name; /**< The object's \e name property */ 
+@property (nonatomic,strong)    JRName *name; /**< The object's \e name property */ 
 @property (nonatomic, copy)     NSString *nickname; /**< The casual way to address this Contact in real life */ 
 @property (nonatomic, copy)     NSString *note; /**< Notes about this person, with an unspecified meaning or usage. */ 
 @property (nonatomic, copy)     NSArray *organizations; /**< Describes a current or past organizational affiliation of this contact. @note This is an array of JROrganizationsElement objects */ 

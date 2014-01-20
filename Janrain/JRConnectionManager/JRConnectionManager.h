@@ -40,6 +40,7 @@
 - (NSString *)stringByAddingUrlPercentEscapes;
 @end
 
+
 @protocol JRConnectionManagerDelegate <NSObject>
 @optional
 - (void)connectionDidFinishLoadingWithPayload:(NSString *)payload request:(NSURLRequest *)request andTag:(id)userData;
@@ -54,12 +55,13 @@
 - (void)connectionWasStoppedWithTag:(id)userData;
 @end
 
+
+
+
+
 @interface JRConnectionManager : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
-    CFMutableDictionaryRef connectionBuffers;
 }
-
-@property CFMutableDictionaryRef connectionBuffers;
 
 + (bool)createConnectionFromRequest:(NSURLRequest *)request
                         forDelegate:(id <JRConnectionManagerDelegate>)delegate

@@ -128,8 +128,8 @@
     else
         fontSize = 12.0;
 
-    font     = [[UIFont systemFontOfSize:fontSize] retain];
-    boldFont = [[UIFont boldSystemFontOfSize:fontSize] retain];
+    font     = [UIFont systemFontOfSize:fontSize];
+    boldFont = [UIFont boldSystemFontOfSize:fontSize];
 
     usernameLabel = [[UILabel alloc] init];
     usernameLabel.numberOfLines = 1;
@@ -409,20 +409,17 @@
 
 - (void)rebuildText
 {
-    [text release];
-    text = [[NSString stringWithFormat:@"%@%@%@",
+    text = [NSString stringWithFormat:@"%@%@%@",
             (username) ? [NSString stringWithFormat:@"%@ ", username] : @"",
             (userText) ? [NSString stringWithFormat:@"%@ ", userText] : @"",
-            (url)      ? (url) : (@"")] retain];
+            (url)      ? (url) : (@"")];
 }
 
-- (NSString*)username { return [[username copy] autorelease]; }
-- (NSString*)url      { return [[url copy] autorelease]; }
+- (NSString*)username { return [username copy]; }
+- (NSString*)url      { return [url copy]; }
 
 - (void)setUsername:(NSString*)newUsername
 {
-    [username release];
-
     if (newUsername && ![newUsername isEqualToString:@""])
         username = [[newUsername stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] copy];
     else
@@ -434,8 +431,6 @@
 
 - (void)setUrl:(NSString*)newUrl
 {
-    [url release];
-
     if (newUrl && ![newUrl isEqualToString:@""])
         url = [[newUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] copy];
     else
@@ -447,8 +442,6 @@
 
 - (void)setUserText:(NSString*)newUserText;
 {
-    [userText release];
-
     if (newUserText && ![newUserText isEqualToString:@""])
         userText = [[newUserText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] copy];
     else
@@ -460,19 +453,5 @@
 
 - (void)dealloc
 {
-    [usernameLabel release];
-    [textLabelLine1 release];
-    [textLabelLine2 release];
-    [textLabelLine3 release];
-    [urlLabel release];
-    [username release];
-    [userText release];
-    [url release];
-    [text release], text = nil;
-    [font release];
-    [boldFont release];
-
-    [delegate release];
-    [super dealloc];
 }
 @end

@@ -62,7 +62,6 @@
 {
     [self.dirtyPropertySet addObject:@"domain"];
 
-    [_domain autorelease];
     _domain = [newDomain copy];
 }
 
@@ -75,7 +74,6 @@
 {
     [self.dirtyPropertySet addObject:@"primary"];
 
-    [_primary autorelease];
     _primary = [newPrimary copy];
 }
 
@@ -88,8 +86,7 @@
 {
     [self.dirtyPropertySet addObject:@"primary"];
 
-    [_primary autorelease];
-    _primary = [[NSNumber numberWithBool:boolVal] retain];
+    _primary = [NSNumber numberWithBool:boolVal];
 }
 
 - (NSString *)userid
@@ -101,7 +98,6 @@
 {
     [self.dirtyPropertySet addObject:@"userid"];
 
-    [_userid autorelease];
     _userid = [newUserid copy];
 }
 
@@ -114,7 +110,6 @@
 {
     [self.dirtyPropertySet addObject:@"username"];
 
-    [_username autorelease];
     _username = [newUsername copy];
 }
 
@@ -133,7 +128,7 @@
 
 + (id)accountsElement
 {
-    return [[[JRAccountsElement alloc] init] autorelease];
+    return [[JRAccountsElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -217,7 +212,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"accounts", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -257,7 +252,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"accountsElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"accountsElement"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -351,13 +346,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_domain release];
-    [_primary release];
-    [_userid release];
-    [_username release];
-
-    [super dealloc];
-}
 @end

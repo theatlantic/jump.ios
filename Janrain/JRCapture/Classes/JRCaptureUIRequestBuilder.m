@@ -44,9 +44,6 @@
 
 - (id)initWithEnvironment:(id <JRCaptureEnvironment>)environment {
     if (self = [super init]) {
-#if !__has_feature(objc_arc)
-        [environment retain];
-#endif
         _environment = environment;
     }
 
@@ -99,11 +96,6 @@
 
 - (void)dealloc
 {
-#if !__has_feature(objc_arc)
-    [_environment release];
-
-    [super dealloc];
-#endif
 }
 
 @end

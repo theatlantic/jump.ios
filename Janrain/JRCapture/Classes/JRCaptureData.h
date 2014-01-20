@@ -38,7 +38,6 @@
  * @internal
  */
 @interface JRCaptureData : NSObject <JRCaptureEnvironment>
-@property(nonatomic, retain) NSString *bpChannelUrl;
 @property(nonatomic, readonly, retain) NSString *captureBaseUrl;
 @property(nonatomic, readonly, retain) NSString *captureRedirectUri;
 @property(nonatomic, readonly, retain) NSString *passwordRecoverUri;

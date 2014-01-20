@@ -37,9 +37,6 @@ void JRLogExpressionSink(NSString *format, ...)
     va_list va;
     va_start(va, format);
     NSString *string = [[NSString alloc] initWithFormat:format arguments:va];
-#if !__has_feature(objc_arc)
-    [string autorelease];
-#endif
     va_end(va);
     [string description];
 }
@@ -56,9 +53,6 @@ void JRLogExpressionSink(NSString *format, ...)
     va_list va;
     va_start(va, format);
     NSString *string = [[NSString alloc] initWithFormat:format arguments:va];
-#if !__has_feature(objc_arc)
-    [string autorelease];
-#endif
     va_end(va);
 
     if (debug)

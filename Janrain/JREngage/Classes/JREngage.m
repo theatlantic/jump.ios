@@ -78,7 +78,7 @@ static JREngage* singleton = nil;
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self singletonInstance] retain];
+    return [self singletonInstance];
 }
 
 - (void)setEngageAppID:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
@@ -128,23 +128,6 @@ static JREngage* singleton = nil;
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;
-}
-
-- (oneway void)release { }
-
-- (id)autorelease
 {
     return self;
 }
@@ -207,7 +190,7 @@ static JREngage* singleton = nil;
 
         if (sessionData.error.code / 100 == ConfigurationError)
         {
-            [self engageDidFailWithError:[[sessionData.error copy] autorelease]];
+            [self engageDidFailWithError:[sessionData.error copy]];
             [sessionData tryToReconfigureLibrary];
 
             return;
@@ -216,7 +199,7 @@ static JREngage* singleton = nil;
         {
             // TODO: The session data error doesn't get reset here.  When will this happen and what will be the
             // expected behavior?
-            [self engageDidFailWithError:[[sessionData.error copy] autorelease]];
+            [self engageDidFailWithError:[sessionData.error copy]];
             return;
         }
     }
@@ -328,14 +311,14 @@ static JREngage* singleton = nil;
 
         if (sessionData.error.code / 100 == ConfigurationError)
         {
-            [self engageDidFailWithError:[[sessionData.error copy] autorelease]];
+            [self engageDidFailWithError:[sessionData.error copy]];
             [sessionData tryToReconfigureLibrary];
 
             return;
         }
         else
         {
-            [self engageDidFailWithError:[[sessionData.error copy] autorelease]];
+            [self engageDidFailWithError:[sessionData.error copy]];
             return;
         }
     }
@@ -595,14 +578,6 @@ static JREngage* singleton = nil;
 
 - (void)dealloc
 {
-    [interfaceMaestro release];
-    [sessionData release];
-    [delegates release];
-    [_nativeProvider release];
-    [_googlePlusClientId release];
-    [_twitterConsumerKey release];
-    [_twitterConsumerSecret release];
-    [super dealloc];
 }
 
 + (void)setCustomInterfaceDefaults:(NSDictionary *)customInterfaceDefaults

@@ -28,10 +28,7 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-
 #import <UIKit/UIKit.h>
-#import "BackplaneUtils.h"
 #import "JRCaptureObject.h"
 
 @interface RootViewController : UIViewController

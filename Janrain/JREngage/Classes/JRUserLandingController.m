@@ -58,7 +58,7 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
         sessionData = [JRSessionData jrSessionData];
-        customInterface = [theCustomInterface retain];
+        customInterface = theCustomInterface;
 
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
             iPad = YES;
@@ -98,10 +98,10 @@
 
     if (!self.navigationController.navigationBar.backItem)
     {
-        UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                      target:sessionData
-                                     action:@selector(triggerAuthenticationDidCancel:)] autorelease];
+                                     action:@selector(triggerAuthenticationDidCancel:)];
 
         self.navigationItem.rightBarButtonItem = cancelButton;
         self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -228,7 +228,7 @@ enum
     if (cell)
         return (UIImageView *) [cell.contentView viewWithTag:LOGO_TAG];
 
-    UIImageView *logo = [[[UIImageView alloc] initWithFrame:CGRectMake(LOGO_FRAME)] autorelease];
+    UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(LOGO_FRAME)];
 
     logo.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |
             UIViewAutoresizingFlexibleLeftMargin;
@@ -243,7 +243,7 @@ enum
     if (cell)
         return (UILabel *) [cell.contentView viewWithTag:WELCOME_LABEL_TAG];
 
-    UILabel *welcomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(WELCOME_LABEL_FRAME)] autorelease];
+    UILabel *welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(WELCOME_LABEL_FRAME)];
 
     welcomeLabel.font = [UIFont boldSystemFontOfSize:20.0];
 
@@ -263,7 +263,7 @@ enum
     if (cell)
         return (UITextField *) [cell.contentView viewWithTag:TEXT_FIELD_TAG];
 
-    UITextField *textField = [[[UITextField alloc] initWithFrame:CGRectMake(TEXT_FIELD_FRAME)] autorelease];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(TEXT_FIELD_FRAME)];
 
     textField.font = [UIFont systemFontOfSize:15.0];
 
@@ -382,12 +382,12 @@ enum
 
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cachedCell"] autorelease];
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cachedCell"];
 
         [cell.contentView setFrame:CGRectMake(10, 0, 300, 180)];
 
-        UIView *buttonSubview = [[[UIView alloc] initWithFrame:CGRectMake(BUTTON_SUBVIEW_FRAME)] autorelease];
+        UIView *buttonSubview = [[UIView alloc] initWithFrame:CGRectMake(BUTTON_SUBVIEW_FRAME)];
 
         [buttonSubview setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin |
                 UIViewAutoresizingFlexibleLeftMargin];
@@ -567,12 +567,12 @@ replacementString:(NSString *)string
         }
         else
         {
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Invalid Input"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input"
                                                              message:@"The input you have entered is not valid. Please "
                                                                      "try again."
                                                             delegate:self
                                                    cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil] autorelease];
+                                                   otherButtonTitles:nil];
             [alert show];
             return;
         }
@@ -618,14 +618,5 @@ replacementString:(NSString *)string
 - (void)dealloc
 {
     DLog(@"");
-
-    [customInterface release];
-    [myBackgroundView release];
-    [myTableView release];
-    [sessionData release];
-    [infoBar release];
-    [_nativeProvider release];
-
-    [super dealloc];
 }
 @end

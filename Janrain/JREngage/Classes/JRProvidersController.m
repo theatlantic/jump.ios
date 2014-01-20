@@ -42,6 +42,7 @@
 #import "JRNativeAuth.h"
 #import "JREngageError.h"
 #import "JRNativeProvider.h"
+#import "JRTraditionalSignInViewController.h"
 
 @interface UITableViewCellProviders : UITableViewCell
 @end
@@ -103,7 +104,7 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
     {
         sessionData = [JRSessionData jrSessionData];
-        customInterface = [theCustomInterface retain];
+        customInterface = theCustomInterface;
     }
 
     return self;
@@ -145,18 +146,23 @@
     id const maybeCaptureSignInVc = [customInterface objectForKey:kJRCaptureTraditionalSignInViewController];
     if ([maybeCaptureSignInVc isKindOfClass:NSClassFromString(@"JRTraditionalSignInViewController")])
     {
-        [maybeCaptureSignInVc performSelector:NSSelectorFromString(@"setDelegate:") withObject:self];
-
+        if ([maybeCaptureSignInVc respondsToSelector:@selector(setDelegate:)]){
+            [maybeCaptureSignInVc setDelegate:self];
+        } else {
+            DLog(@"setDelegate selector not found on object %@", maybeCaptureSignInVc);
+            // TODO: NSAssert here?
+        }
         [self createTraditionalSignInLoadingView];
+
     }
 
     if (!hidesCancelButton)
     {
         UIBarButtonItem *cancelButton =
-                [[[UIBarButtonItem alloc]
+                [[UIBarButtonItem alloc]
                         initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                              target:sessionData
-                                             action:@selector(triggerAuthenticationDidCancel:)] autorelease];
+                                             action:@selector(triggerAuthenticationDidCancel:)];
 
         self.navigationItem.leftBarButtonItem = cancelButton;
         self.navigationItem.leftBarButtonItem.enabled = YES;
@@ -296,10 +302,10 @@
 
         NSString *message = @"There are no available providers. Either there is a problem connecting or no providers "
                 "have been configured. Please try again later.";
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"No Available Providers" message:message
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Available Providers" message:message
                                                         delegate:self
                                                cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil] autorelease];
+                                               otherButtonTitles:nil];
         [alert show];
         return;
     }
@@ -349,11 +355,11 @@
 
 - (void)createTraditionalSignInLoadingView
 {
-    self.myTraditionalSignInLoadingView = [[[UIView alloc] initWithFrame:self.view.frame] autorelease];
+    self.myTraditionalSignInLoadingView = [[UIView alloc] initWithFrame:self.view.frame];
 
     [self.myTraditionalSignInLoadingView setBackgroundColor:[UIColor blackColor]];
 
-    UILabel *loadingLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 180, 320, 30)] autorelease];
+    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 180, 320, 30)];
 
     [loadingLabel setText:@"Completing Sign-In..."];
     [loadingLabel setFont:[UIFont systemFontOfSize:20.0]];
@@ -368,7 +374,6 @@
 
     UIActivityIndicatorView *loadingSpinner =
             [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [loadingSpinner autorelease];
 
     [loadingSpinner setFrame:CGRectMake(142, self.view.frame.size.height / 2 - 16, 37, 37)];
     [loadingLabel setAutoresizingMask:UIViewAutoresizingNone |
@@ -448,7 +453,7 @@
     else if (![customInterface objectForKey:kJRProviderTableSectionFooterTitleString])
     {
         CGRect frame = CGRectMake(0, 0, myTableView.frame.size.width, infoBar.frame.size.height);
-        return [[[UIView alloc] initWithFrame:frame] autorelease];
+        return [[UIView alloc] initWithFrame:frame];
     }
     else
     {
@@ -477,8 +482,8 @@
             (UITableViewCellProviders *) [tableView dequeueReusableCellWithIdentifier:@"cachedCell"];
 
     if (cell == nil)
-        cell = [[[UITableViewCellProviders alloc]
-                initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cachedCell"] autorelease];
+        cell = [[UITableViewCellProviders alloc]
+                initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cachedCell"];
 
     JRProvider *provider = [sessionData getProviderNamed:[providers objectAtIndex:(NSUInteger) indexPath.row]];
 
@@ -578,16 +583,5 @@
 - (void)dealloc
 {
     DLog(@"");
-
-    [customInterface release];
-    [myBackgroundView release];
-    [myTableView release];
-    [myLoadingLabel release];
-    [myActivitySpinner release];
-    [infoBar release];
-    [providers release];
-    [myTraditionalSignInLoadingView release];
-    [_nativeProvider release];
-    [super dealloc];
 }
 @end

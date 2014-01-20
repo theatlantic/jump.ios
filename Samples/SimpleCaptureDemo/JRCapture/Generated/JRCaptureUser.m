@@ -267,7 +267,6 @@
 {
     [self.dirtyPropertySet addObject:@"aboutMe"];
 
-    [_aboutMe autorelease];
     _aboutMe = [newAboutMe copy];
 }
 
@@ -280,7 +279,6 @@
 {
     [self.dirtyPropertySet addObject:@"birthday"];
 
-    [_birthday autorelease];
     _birthday = [newBirthday copy];
 }
 
@@ -293,7 +291,6 @@
 {
     [self.dirtyPropertySet addObject:@"currentLocation"];
 
-    [_currentLocation autorelease];
     _currentLocation = [newCurrentLocation copy];
 }
 
@@ -306,7 +303,6 @@
 {
     [self.dirtyPropertySet addObject:@"display"];
 
-    [_display autorelease];
     _display = [newDisplay copy];
 }
 
@@ -319,7 +315,6 @@
 {
     [self.dirtyPropertySet addObject:@"displayName"];
 
-    [_displayName autorelease];
     _displayName = [newDisplayName copy];
 }
 
@@ -332,7 +327,6 @@
 {
     [self.dirtyPropertySet addObject:@"email"];
 
-    [_email autorelease];
     _email = [newEmail copy];
 }
 
@@ -345,7 +339,6 @@
 {
     [self.dirtyPropertySet addObject:@"emailVerified"];
 
-    [_emailVerified autorelease];
     _emailVerified = [newEmailVerified copy];
 }
 
@@ -358,7 +351,6 @@
 {
     [self.dirtyPropertySet addObject:@"familyName"];
 
-    [_familyName autorelease];
     _familyName = [newFamilyName copy];
 }
 
@@ -371,7 +363,6 @@
 {
     [self.dirtyPropertySet addObject:@"gender"];
 
-    [_gender autorelease];
     _gender = [newGender copy];
 }
 
@@ -384,7 +375,6 @@
 {
     [self.dirtyPropertySet addObject:@"givenName"];
 
-    [_givenName autorelease];
     _givenName = [newGivenName copy];
 }
 
@@ -397,7 +387,6 @@
 {
     [self.dirtyPropertySet addObject:@"lastLogin"];
 
-    [_lastLogin autorelease];
     _lastLogin = [newLastLogin copy];
 }
 
@@ -410,7 +399,6 @@
 {
     [self.dirtyPropertySet addObject:@"middleName"];
 
-    [_middleName autorelease];
     _middleName = [newMiddleName copy];
 }
 
@@ -423,7 +411,6 @@
 {
     [self.dirtyPropertySet addObject:@"password"];
 
-    [_password autorelease];
     _password = [newPassword copy];
 }
 
@@ -434,7 +421,6 @@
 
 - (void)setPhotos:(NSArray *)newPhotos
 {
-    [_photos autorelease];
     _photos = [newPhotos copy];
 }
 
@@ -447,8 +433,7 @@
 {
     [self.dirtyPropertySet addObject:@"primaryAddress"];
 
-    [_primaryAddress autorelease];
-    _primaryAddress = [newPrimaryAddress retain];
+    _primaryAddress = newPrimaryAddress;
 
     [_primaryAddress setAllPropertiesToDirty];
 }
@@ -460,7 +445,6 @@
 
 - (void)setProfiles:(NSArray *)newProfiles
 {
-    [_profiles autorelease];
     _profiles = [newProfiles copy];
 }
 
@@ -471,7 +455,6 @@
 
 - (void)setStatuses:(NSArray *)newStatuses
 {
-    [_statuses autorelease];
     _statuses = [newStatuses copy];
 }
 
@@ -484,7 +467,6 @@
 {
     [self.dirtyPropertySet addObject:@"created"];
 
-    [_created autorelease];
     _created = [newCreated copy];
 }
 
@@ -497,7 +479,6 @@
 {
     [self.dirtyPropertySet addObject:@"lastUpdated"];
 
-    [_lastUpdated autorelease];
     _lastUpdated = [newLastUpdated copy];
 }
 
@@ -510,7 +491,6 @@
 {
     [self.dirtyPropertySet addObject:@"captureUserId"];
 
-    [_captureUserId autorelease];
     _captureUserId = [newCaptureUserId copy];
 }
 
@@ -523,7 +503,6 @@
 {
     [self.dirtyPropertySet addObject:@"uuid"];
 
-    [_uuid autorelease];
     _uuid = [newUuid copy];
 }
 
@@ -545,7 +524,6 @@
 {
     if (!newEmail)
     {
-        [self release];
         return nil;
      }
 
@@ -564,12 +542,12 @@
 
 + (id)captureUser
 {
-    return [[[JRCaptureUser alloc] init] autorelease];
+    return [[JRCaptureUser alloc] init];
 }
 
 + (id)captureUserWithEmail:(NSString *)email
 {
-    return [[[JRCaptureUser alloc] initWithEmail:email] autorelease];
+    return [[JRCaptureUser alloc] initWithEmail:email];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -843,7 +821,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
 
@@ -953,7 +931,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"captureUser"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"captureUser"];
 
     if (self.primaryAddress)
         [snapshotDictionary setObject:[self.primaryAddress snapshotDictionaryFromDirtyPropertySet]
@@ -1214,30 +1192,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_aboutMe release];
-    [_birthday release];
-    [_currentLocation release];
-    [_display release];
-    [_displayName release];
-    [_email release];
-    [_emailVerified release];
-    [_familyName release];
-    [_gender release];
-    [_givenName release];
-    [_lastLogin release];
-    [_middleName release];
-    [_password release];
-    [_photos release];
-    [_primaryAddress release];
-    [_profiles release];
-    [_statuses release];
-    [_created release];
-    [_lastUpdated release];
-    [_captureUserId release];
-    [_uuid release];
-
-    [super dealloc];
-}
 @end

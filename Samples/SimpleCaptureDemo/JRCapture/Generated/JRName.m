@@ -64,7 +64,6 @@
 {
     [self.dirtyPropertySet addObject:@"familyName"];
 
-    [_familyName autorelease];
     _familyName = [newFamilyName copy];
 }
 
@@ -77,7 +76,6 @@
 {
     [self.dirtyPropertySet addObject:@"formatted"];
 
-    [_formatted autorelease];
     _formatted = [newFormatted copy];
 }
 
@@ -90,7 +88,6 @@
 {
     [self.dirtyPropertySet addObject:@"givenName"];
 
-    [_givenName autorelease];
     _givenName = [newGivenName copy];
 }
 
@@ -103,7 +100,6 @@
 {
     [self.dirtyPropertySet addObject:@"honorificPrefix"];
 
-    [_honorificPrefix autorelease];
     _honorificPrefix = [newHonorificPrefix copy];
 }
 
@@ -116,7 +112,6 @@
 {
     [self.dirtyPropertySet addObject:@"honorificSuffix"];
 
-    [_honorificSuffix autorelease];
     _honorificSuffix = [newHonorificSuffix copy];
 }
 
@@ -129,7 +124,6 @@
 {
     [self.dirtyPropertySet addObject:@"middleName"];
 
-    [_middleName autorelease];
     _middleName = [newMiddleName copy];
 }
 
@@ -148,7 +142,7 @@
 
 + (id)name
 {
-    return [[[JRName alloc] init] autorelease];
+    return [[JRName alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -244,7 +238,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@", capturePath, @"name"];
@@ -292,7 +286,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"name"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"name"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -404,15 +398,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_familyName release];
-    [_formatted release];
-    [_givenName release];
-    [_honorificPrefix release];
-    [_honorificSuffix release];
-    [_middleName release];
-
-    [super dealloc];
-}
 @end

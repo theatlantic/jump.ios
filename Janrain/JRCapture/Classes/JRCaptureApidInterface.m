@@ -80,27 +80,10 @@ NSString *const kJRTradAuthUrlPath = @"/oauth/auth_native_traditional";
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [[self sharedCaptureApidInterface] retain];
+    return [self sharedCaptureApidInterface];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (NSUInteger)retainCount
-{
-    return NSUIntegerMax;
-}
-
-- (oneway void)release { }
-
-- (id)autorelease
 {
     return self;
 }
@@ -143,7 +126,7 @@ typedef enum CaptureInterfaceStatEnum
 
 + (void)startTradAuthForDelegate:(id)delegate context:(NSObject *)context request:(NSURLRequest *)request
 {
-    NSMutableDictionary *tag = [[@{cTagAction : cSignInUser, @"delegate" : delegate } mutableCopy] autorelease];
+    NSMutableDictionary *tag = [@{cTagAction : cSignInUser, @"delegate" : delegate } mutableCopy];
     if (context) [tag setObject:context forKey:@"context"];
     JRCaptureApidInterface *singleton = [JRCaptureApidInterface sharedCaptureApidInterface];
     if (![JRConnectionManager createConnectionFromRequest:request forDelegate:singleton withTag:tag])
@@ -175,7 +158,7 @@ typedef enum CaptureInterfaceStatEnum
 {
     NSMutableURLRequest *request = [self entityRequestForPath:nil token:token];
 
-    NSMutableDictionary *tag = [[@{cTagAction : cGetUser, @"delegate" : delegate } mutableCopy] autorelease];
+    NSMutableDictionary *tag = [@{cTagAction : cGetUser, @"delegate" : delegate } mutableCopy];
     [tag JR_maybeSetObject:context forKey:@"context"];
     if (![JRConnectionManager createConnectionFromRequest:request forDelegate:self withTag:tag])
     {
@@ -214,7 +197,7 @@ typedef enum CaptureInterfaceStatEnum
 {
     NSMutableURLRequest *request = [self entityRequestForPath:entityPath token:token];
 
-    NSMutableDictionary *tag = [[@{cTagAction : cGetObject, @"delegate" : delegate } mutableCopy] autorelease];
+    NSMutableDictionary *tag = [@{cTagAction : cGetObject, @"delegate" : delegate } mutableCopy];
     [tag JR_maybeSetObject:context forKey:@"context"];
     if (![JRConnectionManager createConnectionFromRequest:request forDelegate:self withTag:tag])
     {
@@ -233,7 +216,7 @@ typedef enum CaptureInterfaceStatEnum
 
 - (NSMutableURLRequest *)entityRequestForPath:(NSString *)entityPath token:(NSString *)token
 {
-    NSMutableDictionary *params = [[@{@"access_token" : token} mutableCopy] autorelease];
+    NSMutableDictionary *params = [@{@"access_token" : token} mutableCopy];
 
     if (entityPath && ![entityPath isEqualToString:@""])
         [params setObject:entityPath forKey:@"attribute_name"];
@@ -291,7 +274,7 @@ typedef enum CaptureInterfaceStatEnum
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:body];
 
-    NSMutableDictionary *tag = [[@{cTagAction : cUpdateObject, @"delegate" : delegate} mutableCopy] autorelease];
+    NSMutableDictionary *tag = [@{cTagAction : cUpdateObject, @"delegate" : delegate} mutableCopy];
     [tag JR_maybeSetObject:context forKey:@"context"];
 
     if (![JRConnectionManager createConnectionFromRequest:request forDelegate:self withTag:tag])
@@ -356,7 +339,7 @@ typedef enum CaptureInterfaceStatEnum
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:body];
 
-    NSMutableDictionary *tag = [[@{cTagAction : cReplaceObject, @"delegate" : delegate} mutableCopy] autorelease];
+    NSMutableDictionary *tag = [@{cTagAction : cReplaceObject, @"delegate" : delegate} mutableCopy];
     [tag JR_maybeSetObject:context forKey:@"context"];
 
     if (![JRConnectionManager createConnectionFromRequest:request forDelegate:self withTag:tag])
@@ -418,7 +401,7 @@ typedef enum CaptureInterfaceStatEnum
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:body];
 
-    NSMutableDictionary *tag = [[@{cTagAction : cReplaceArray, @"delegate" : delegate} mutableCopy] autorelease];
+    NSMutableDictionary *tag = [@{cTagAction : cReplaceArray, @"delegate" : delegate} mutableCopy];
     [tag JR_maybeSetObject:context forKey:@"context"];
 
     DLog(@"%@ attributes=%@ access_token=%@ attribute_name=%@", [[request URL] absoluteString], attributes, token,
@@ -591,17 +574,16 @@ typedef enum CaptureInterfaceStatEnum
     NSDictionary *credsParams = flowCreds ? flowCreds : paramsDict;
     JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
 
-    NSMutableDictionary *signInParams = [[@{
+    NSMutableDictionary *signInParams = [@{
             @"client_id" : captureData.clientId,
             @"locale" : captureData.captureLocale,
             @"form" : captureData.captureTraditionalSignInFormName,
             @"redirect_uri" : [captureData redirectUri],
             @"response_type" : [captureData responseType:delegate],
             @"refresh_secret" : refreshSecret
-    } mutableCopy] autorelease];
+    } mutableCopy];
 
     [signInParams addEntriesFromDictionary:credsParams];
-    [signInParams JR_maybeSetObject:[JRCaptureData sharedCaptureData].bpChannelUrl forKey:@"bp_channel"];
     [signInParams JR_maybeSetObject:[JRCaptureData sharedCaptureData].captureFlowName forKey:@"flow"];
     [signInParams JR_maybeSetObject:[JRCaptureData sharedCaptureData].downloadedFlowVersion forKey:@"flow_version"];
     [signInParams JR_maybeSetObject:[paramsDict objectForKey:@"merge_token"] forKey:@"merge_token"];

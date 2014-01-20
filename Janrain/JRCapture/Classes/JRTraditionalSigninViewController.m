@@ -40,6 +40,7 @@
 #import "JRUserInterfaceMaestro.h"
 #import "JRCaptureData.h"
 #import "JRCapture.h"
+#import "JRCaptureFlow.h"
 
 typedef enum
 {
@@ -74,9 +75,9 @@ typedef enum
     if ((self = [super init]))
     {
         signInType = theSignInType;
-        titleString = [theTitleString retain];
-        titleView = [theTitleView retain];
-        wrapper = [theWrapper retain];
+        titleString = theTitleString;
+        titleView = theTitleView;
+        wrapper = theWrapper;
     }
 
     return self;
@@ -85,10 +86,10 @@ typedef enum
 + (id)traditionalSignInViewController:(JRTraditionalSignInType)theSignInType titleString:(NSString *)theTitleString
                             titleView:(UIView *)theTitleView engageWrapper:(JREngageWrapper *)theWrapper
 {
-    return [[[JRTraditionalSignInViewController alloc]
+    return [[JRTraditionalSignInViewController alloc]
             initWithTraditionalSignInType:theSignInType
                               titleString:theTitleString
-                                titleView:theTitleView engageWrapper:theWrapper] autorelease];
+                                titleView:theTitleView engageWrapper:theWrapper];
 }
 
 - (void)loadView
@@ -113,7 +114,7 @@ typedef enum
                action:@selector(signInButtonTouchUpInside:)
      forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)] autorelease];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     [footerView addSubview:button];
 
     myTableView.tableFooterView = footerView;
@@ -185,9 +186,9 @@ typedef enum
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
 
-        textField = [[[UITextField alloc] initWithFrame:CGRectMake(10, 7, 280, 26)] autorelease];
+        textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 7, 280, 26)];
 
         textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -275,11 +276,11 @@ typedef enum
     NSString const *type = self.signInType == JRTraditionalSignInEmailPassword ? @"Email" : @"Username";
     NSString *title = [NSString stringWithFormat:@"Incorrect %@ or Password", type];
     //NSString *const message = [result objectForKey:@"error"];
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:title
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                          message:nil // MOB-73
                                                         delegate:self
                                                cancelButtonTitle:@"Dismiss"
-                                               otherButtonTitles:@"Forgot Password", nil] autorelease];
+                                               otherButtonTitles:@"Forgot Password", nil];
     alertView.tag = JRIncorrectUserOrPasswordAlertViewTag;
     [alertView show];
 
@@ -313,7 +314,6 @@ typedef enum
     }
 
     [alertView show];
-    [alertView autorelease];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -332,7 +332,6 @@ typedef enum
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
-    [alertView autorelease];
 }
 
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
@@ -343,7 +342,6 @@ typedef enum
                                                         message:errorMessage delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
-    [alertView autorelease];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -362,14 +360,6 @@ typedef enum
 
 - (void)dealloc
 {
-    [myTableView release];
-    [delegate release];
-    [titleView release];
-    [titleString release];
-    [firstResponder release];
-
-    [wrapper release];
-    [super dealloc];
 }
 @end
 

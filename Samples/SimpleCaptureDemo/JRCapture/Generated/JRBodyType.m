@@ -63,7 +63,6 @@
 {
     [self.dirtyPropertySet addObject:@"build"];
 
-    [_build autorelease];
     _build = [newBuild copy];
 }
 
@@ -76,7 +75,6 @@
 {
     [self.dirtyPropertySet addObject:@"color"];
 
-    [_color autorelease];
     _color = [newColor copy];
 }
 
@@ -89,7 +87,6 @@
 {
     [self.dirtyPropertySet addObject:@"eyeColor"];
 
-    [_eyeColor autorelease];
     _eyeColor = [newEyeColor copy];
 }
 
@@ -102,7 +99,6 @@
 {
     [self.dirtyPropertySet addObject:@"hairColor"];
 
-    [_hairColor autorelease];
     _hairColor = [newHairColor copy];
 }
 
@@ -115,7 +111,6 @@
 {
     [self.dirtyPropertySet addObject:@"height"];
 
-    [_height autorelease];
     _height = [newHeight copy];
 }
 
@@ -134,7 +129,7 @@
 
 + (id)bodyType
 {
-    return [[[JRBodyType alloc] init] autorelease];
+    return [[JRBodyType alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -224,7 +219,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@", capturePath, @"bodyType"];
@@ -268,7 +263,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"bodyType"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"bodyType"];
 
     return [NSDictionary dictionaryWithDictionary:snapshotDictionary];
 }
@@ -371,14 +366,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-    [_build release];
-    [_color release];
-    [_eyeColor release];
-    [_hairColor release];
-    [_height release];
-
-    [super dealloc];
-}
 @end

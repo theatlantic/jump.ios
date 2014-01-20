@@ -56,12 +56,12 @@
     JRNativeProvider *nativeProvider = nil;
 
     if ([provider isEqualToString:@"facebook"]) {
-        nativeProvider = [[[JRNativeFacebook alloc] init] autorelease];
+        nativeProvider = [[JRNativeFacebook alloc] init];
     } else if ([provider isEqualToString:@"googleplus"]) {
-        nativeProvider = [[[JRNativeGooglePlus alloc] init] autorelease];
+        nativeProvider = [[JRNativeGooglePlus alloc] init];
         [(JRNativeGooglePlus *)nativeProvider setGooglePlusClientId:config.googlePlusClientId];
     } else if ([provider isEqualToString:@"twitter"]) {
-        nativeProvider = [[[JRNativeTwitter alloc] init] autorelease];
+        nativeProvider = [[JRNativeTwitter alloc] init];
         [(JRNativeTwitter *)nativeProvider setConsumerKey:config.twitterConsumerKey];
         [(JRNativeTwitter *)nativeProvider setConsumerSecret:config.twitterConsumerSecret];
     } else {

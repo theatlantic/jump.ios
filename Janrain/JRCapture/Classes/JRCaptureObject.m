@@ -65,7 +65,7 @@
 @implementation JRCaptureObjectApidHandler
 + (id)captureObjectApidHandler
 {
-    return [[[JRCaptureObjectApidHandler alloc] init] autorelease];
+    return [[JRCaptureObjectApidHandler alloc] init];
 }
 
 - (void)updateCaptureObjectDidFailWithResult:(NSDictionary *)result context:(NSObject *)context
@@ -317,13 +317,33 @@
     {
         NSString *selName = [NSString stringWithFormat:@"arrayOf%@ElementsFrom%@DictionariesWithPath:", capitalizedName,
                                                        capitalizedName];
-        SEL arrayOfObjectsFromArrayOfDictionariesSelector = NSSelectorFromString(selName);
+        SEL pSelector = NSSelectorFromString(selName);
 
-        newArray = [resultsArray performSelector:arrayOfObjectsFromArrayOfDictionariesSelector
-                                      withObject:capturePath];
+        NSMethodSignature *propSignature = [[resultsArray class] instanceMethodSignatureForSelector:pSelector];
+        NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+        if (!propSignature || !propInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(pSelector));
+            return;
+        }
+        [propInvoker setSelector:pSelector];
+        [propInvoker setTarget:resultsArray];
+        [propInvoker setArgument:&capturePath atIndex:2 /*yes, that's right. 2 is the first arg*/];
+        [propInvoker setReturnValue:&newArray];
+        [propInvoker invoke];
     }
 
-    [captureObject performSelector:setNewArrayInParentSelector withObject:newArray];
+    NSMethodSignature *propSignature = [[captureObject class] instanceMethodSignatureForSelector:setNewArrayInParentSelector];
+    NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+    if (!propSignature || !propInvoker)
+    {
+        DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(setNewArrayInParentSelector));
+        return;
+    }
+    [propInvoker setSelector:setNewArrayInParentSelector];
+    [propInvoker setTarget:captureObject];
+    [propInvoker setArgument:&newArray atIndex:2 /*yes, that's right. 2 is the first arg*/];
+    [propInvoker invoke];
 
     /* Calling the old protocol methods for testing purposes */
     SEL testSelector = @selector(replaceArray:named:onCaptureObject:didSucceedWithResult:context:);
@@ -457,9 +477,23 @@
         NSString *pName = [NSString stringWithUTF8String:property_getName(properties[i])];
         NSString *pAttr = [NSString stringWithUTF8String:property_getAttributes(properties[i])];
 
-        SEL pSel = NSSelectorFromString(pName);
-        if (![self respondsToSelector:pSel]) continue;
-        id pVal = [self performSelector:pSel];
+        SEL pSelector = NSSelectorFromString(pName);
+        if (![self respondsToSelector:pSelector]) continue;
+
+        id pVal;
+
+        DLog(@"deepClearDirtyProperties: Calling selector %@", pName);
+        NSMethodSignature *propSignature = [[self class] instanceMethodSignatureForSelector:pSelector];
+        NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+        if (!propSignature || !propInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(pSelector));
+            return;
+        }
+        [propInvoker setSelector:pSelector];
+        [propInvoker setTarget:self];
+        [propInvoker setReturnValue:&pVal];
+        [propInvoker invoke];
 
         if ([pAttr characterAtIndex:1] != '@' || ![pVal isKindOfClass:[JRCaptureObject class]]) continue;
         [pVal deepClearDirtyProperties];
@@ -573,10 +607,28 @@
     NSArray *serialized;
 
     if (!isStringArray)
-        serialized = [array performSelector:NSSelectorFromString([NSString stringWithFormat:
-                           @"arrayOf%@ReplaceDictionariesFrom%@Elements", capitalizedName, capitalizedName])];
+    {
+        NSString *selectorString = [NSString stringWithFormat:
+                @"arrayOf%@ReplaceDictionariesFrom%@Elements",
+                        capitalizedName,
+                        capitalizedName];
+        SEL pSelector = NSSelectorFromString(selectorString);
+        NSMethodSignature *propSignature = [[array class] instanceMethodSignatureForSelector:pSelector];
+        NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+        if (!propSignature || !propInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(pSelector));
+            return;
+        }
+        [propInvoker setSelector:pSelector];
+        [propInvoker setTarget:array];
+        [propInvoker setReturnValue:&serialized];
+        [propInvoker invoke];
+    }
     else
+    {
         serialized = array;
+    }
 
     NSDictionary *newContext = [NSDictionary dictionaryWithObjectsAndKeys:
                                                      self, @"captureObject",
@@ -646,9 +698,36 @@
     for (NSString *key in props)
     {
         const SEL selectorForProp = NSSelectorFromString(key);
-        id prop = [self performSelector:selectorForProp];
-        id otherProp = [otherObj performSelector:selectorForProp];
+        
+        // call the selector on self to get an id object named 'prop'
+        id prop = nil;
+        NSMethodSignature *propSignature = [[self class] instanceMethodSignatureForSelector:selectorForProp];
+        NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
+        if (!propSignature || !propInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(selectorForProp));
+            return NO;
+        }
+        [propInvoker setSelector:selectorForProp];
+        [propInvoker setTarget:self];
+        [propInvoker setReturnValue:&prop];
+        [propInvoker invoke];
+        
+        // call the selector on otherObj to get an id object named 'otherProp'
+        id otherProp = nil;
+        NSMethodSignature *otherPropSignature = [[otherObj class] instanceMethodSignatureForSelector:selectorForProp];
+        NSInvocation *otherPropInvoker = [NSInvocation invocationWithMethodSignature:otherPropSignature];
+        if (!otherPropSignature || !otherPropInvoker)
+        {
+            DLog(@"ERROR! Selector %@ not found", NSStringFromSelector(selectorForProp));
+            return NO;
+        }
+        [propInvoker setSelector:selectorForProp];
+        [propInvoker setTarget:otherObj];
+        [propInvoker setReturnValue:&otherProp];
+        [propInvoker invoke];
 
+        
         if ([prop isKindOfClass:[JRCaptureObject class]])
             if (![((JRCaptureObject *) prop) isEqualByPrivateProperties:otherProp]) return NO;
 
@@ -664,12 +743,5 @@
         }
     }
     return YES;
-}
-
-- (void)dealloc
-{
-    [self.dirtyPropertySet release];
-    [self.captureObjectPath release];
-    [super dealloc];
 }
 @end

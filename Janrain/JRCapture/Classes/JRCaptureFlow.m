@@ -40,12 +40,7 @@
 }
 + (JRCaptureFlow *)flowWithDictionary:(NSDictionary *)dict {
     JRCaptureFlow *flow = [[JRCaptureFlow alloc] initWithDictionary:dict];
-
-#if __has_feature(objc_arc)
     return flow;
-#else
-    return [flow autorelease];
-#endif
 }
 
 - (id)initWithDictionary:(NSDictionary *)dict {
@@ -107,11 +102,6 @@
 
 - (void)dealloc
 {
-#if !__has_feature(objc_arc)
-    [_flowDict release];
-
-    [super dealloc];
-#endif
 }
 
 

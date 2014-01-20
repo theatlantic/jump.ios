@@ -65,8 +65,6 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
-
-    [_string1 autorelease];
     _string1 = [newString1 copy];
 }
 
@@ -78,8 +76,6 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
-
-    [_string2 autorelease];
     _string2 = [newString2 copy];
 }
 
@@ -91,9 +87,7 @@
 - (void)setOinonipL2Object:(JROinonipL2Object *)newOinonipL2Object
 {
     [self.dirtyPropertySet addObject:@"oinonipL2Object"];
-
-    [_oinonipL2Object autorelease];
-    _oinonipL2Object = [newOinonipL2Object retain];
+    _oinonipL2Object = newOinonipL2Object;
 
     [_oinonipL2Object setAllPropertiesToDirty];
 }
@@ -114,7 +108,7 @@
 
 + (id)oinonipL1PluralElement
 {
-    return [[[JROinonipL1PluralElement alloc] init] autorelease];
+    return [[JROinonipL1PluralElement alloc] init];
 }
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
@@ -192,7 +186,7 @@
 {
     DLog(@"%@ %@", capturePath, [dictionary description]);
 
-    NSSet *dirtyPropertySetCopy = [[self.dirtyPropertySet copy] autorelease];
+    NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"oinonipL1Plural", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
@@ -231,7 +225,7 @@
     NSMutableDictionary *snapshotDictionary =
              [NSMutableDictionary dictionaryWithCapacity:10];
 
-    [snapshotDictionary setObject:[[self.dirtyPropertySet copy] autorelease] forKey:@"oinonipL1PluralElement"];
+    [snapshotDictionary setObject:[self.dirtyPropertySet copy] forKey:@"oinonipL1PluralElement"];
 
     if (self.oinonipL2Object)
         [snapshotDictionary setObject:[self.oinonipL2Object snapshotDictionaryFromDirtyPropertySet]
@@ -340,10 +334,5 @@
 
 - (void)dealloc
 {
-    [_string1 release];
-    [_string2 release];
-    [_oinonipL2Object release];
-
-    [super dealloc];
 }
 @end

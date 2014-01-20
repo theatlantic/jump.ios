@@ -140,10 +140,10 @@
     {
         //truncate data to match actual output length
         outputBytes = realloc(outputBytes, outputLength);
-        return [[[NSString alloc] initWithBytesNoCopy:outputBytes
-                                              length:outputLength
-                                            encoding:NSASCIIStringEncoding
-                                        freeWhenDone:YES] autorelease];
+        return [[NSString alloc] initWithBytesNoCopy:outputBytes
+                                               length:outputLength
+                                             encoding:NSASCIIStringEncoding
+                                         freeWhenDone:YES];
     }
     else if (outputBytes)
     {
@@ -167,7 +167,7 @@
     NSData *data = [NSData dataWithJRBase64EncodedString:string];
     if (data)
     {
-        return [[[self alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        return [[self alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
     return nil;
 }

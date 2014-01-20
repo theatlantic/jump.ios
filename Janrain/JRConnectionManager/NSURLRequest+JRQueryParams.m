@@ -37,9 +37,6 @@
 {
     NSString *paramString = [[NSString alloc] initWithData:[self HTTPBody] encoding:NSUTF8StringEncoding];
     NSArray *keyValueStrings = [paramString componentsSeparatedByString:@"&"];
-#if !__has_feature(objc_arc)
-    [paramString release];
-#endif
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
     for (NSString *keyValueString in keyValueStrings) {

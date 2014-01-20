@@ -156,10 +156,10 @@
 
     NSString *verString = [NSString stringWithFormat:
                                             @"Janrain Engage for iPhone Library\nVersion %@\nwww.janrain.com", version];
-    UIActionSheet *actionSheet = [[[UIActionSheet alloc] initWithTitle:verString
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:verString
                                                               delegate:delegate
                                                      cancelButtonTitle:@"OK"
-                                                destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+                                                destructiveButtonTitle:nil otherButtonTitles:nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     return actionSheet;
 }
@@ -208,12 +208,6 @@
 
 - (void)dealloc
 {
-    [barBackground release];
-    [poweredByLabel release];
-    [spinner release];
-    [loadingLabel release];
-
-    [super dealloc];
 }
 
 @end
