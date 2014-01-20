@@ -399,6 +399,27 @@
 + (void)setCaptureConfig:(JRCaptureConfig *)config;
 
 /**
+ * Set the Engage app id, this will force Engage to reload it's configuration data
+ * @param engageAppId
+ *   The new Engage app id
+ */
++ (void)reconfigureWithEngageAppId:(NSString *)engageAppId;
+
+/**
+ * Set the Capture client id
+ * @param captureClientId
+ *   The new Capture client id
+ */
++ (void)setCaptureClientId:(NSString *)captureClientId;
+
+/**
+ * Set the Capture Domain
+ * @param captureDomain
+ *   The new Capture domain
+ */
++ (void)setCaptureDomain:(NSString *)captureDomain;
+
+/**
  * Method for configuring the library to work with your Janrain Capture and Engage applications.
  *
  * @param engageAppId

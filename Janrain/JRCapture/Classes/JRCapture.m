@@ -64,6 +64,33 @@
     [JREngage setTwitterConsumerKey:config.twitterConsumerKey andSecret:config.twitterConsumerSecret];
 }
 
+/**
+ * Change the Engage app ID and reload the Engage configuration data
+ * @param engageAppId
+ *   The new Engage app ID
+ */
++ (void)reconfigureWithEngageAppId:(NSString *)engageAppId {
+    [JREngageWrapper reconfigureEngageWithNewAppId:engageAppId];
+}
+
+/**
+ * Change the Capture Client ID that will be used in requests to Capture
+ * @param clientId
+ *   The new Capture Client ID
+ */
++ (void)setCaptureClientId:(NSString *)captureClientId {
+    [JRCaptureData setCaptureClientId:captureClientId];
+}
+
+/**
+ * Change the Capture Domain that will be used as the base URL for Capture request
+ * @param captureDomain
+ *   The new Capture domain
+ */
++ (void)setCaptureDomain:(NSString *)captureDomain {
+    [JRCaptureData setCaptureBaseUrl:captureDomain];
+}
+
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
        captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
                  captureFlowName:(NSString *)captureFlowName captureFlowVersion:(NSString *)captureFlowVersion
