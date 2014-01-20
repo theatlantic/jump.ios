@@ -396,7 +396,11 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
     if (!signature || !accessToken || !date)
     {
-        [delegate refreshAccessTokenDidFailWithError:[JRCaptureError invalidInternalStateErrorWithDescription:@"unable to generate signature"] context:context];
+        if ([delegate respondsToSelector:@selector(refreshAccessTokenDidFailWithError:context:)]){
+            [delegate refreshAccessTokenDidFailWithError:
+                    [JRCaptureError invalidInternalStateErrorWithDescription:@"unable to generate signature"]
+                                                 context:context];
+        }
         return;
     }
 

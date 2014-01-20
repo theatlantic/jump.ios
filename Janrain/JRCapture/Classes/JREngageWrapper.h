@@ -36,6 +36,8 @@
 
 + (void)configureEngageWithAppId:(NSString *)appId customIdentityProviders:(NSDictionary *)customProviders;
 
++ (void)reconfigureEngageWithNewAppId:(NSString *)appId;
+
 + (void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
                            andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                            forDelegate:(id <JRCaptureDelegate>)delegate;

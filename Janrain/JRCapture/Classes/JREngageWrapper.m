@@ -106,6 +106,10 @@ static JREngageWrapper *singleton = nil;
     JREngage.customProviders = customProviders;
 }
 
++ (void)reconfigureEngageWithNewAppId:(NSString *)appId {
+    [JREngage setEngageAppId:appId tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
+}
+
 + (void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
                            andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                            forDelegate:(id <JRCaptureDelegate>)delegate

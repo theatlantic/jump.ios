@@ -146,9 +146,14 @@
     id const maybeCaptureSignInVc = [customInterface objectForKey:kJRCaptureTraditionalSignInViewController];
     if ([maybeCaptureSignInVc isKindOfClass:NSClassFromString(@"JRTraditionalSignInViewController")])
     {
-        JRTraditionalSignInViewController *pController = (JRTraditionalSignInViewController*)maybeCaptureSignInVc;
-        [pController self];
+        if ([maybeCaptureSignInVc respondsToSelector:@selector(setDelegate:)]){
+            [maybeCaptureSignInVc setDelegate:self];
+        } else {
+            DLog(@"setDelegate selector not found on object %@", maybeCaptureSignInVc);
+            // TODO: NSAssert here?
+        }
         [self createTraditionalSignInLoadingView];
+
     }
 
     if (!hidesCancelButton)

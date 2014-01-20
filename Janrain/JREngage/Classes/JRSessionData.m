@@ -167,10 +167,13 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
         if ([dictionary objectForKey:@"preferred_username"] != nil)
             _preferredUsername = [dictionary objectForKey:@"preferred_username"];
 
-        if (welcomeString && ![welcomeString isEqualToString:@""])
+        if (welcomeString && ![welcomeString isEqualToString:@""]) {
             _welcomeString = welcomeString;
-        else
+        } else if (_preferredUsername) {
             _welcomeString = [NSString stringWithFormat:@"Sign in as %@?", _preferredUsername];
+        } else {
+            _welcomeString = @"Sign back in?";
+        }
     }
 
     return self;
@@ -741,6 +744,9 @@ static JRSessionData *singleton = nil;
 
     self.savedConfigurationBlock = nil;
     self.updatedEtag = nil;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:JRFinishedUpdatingEngageConfigurationNotification
+                                                        object:self];
 
     return nil;
 }
@@ -1447,6 +1453,12 @@ static JRSessionData *singleton = nil;
         {
             NSString *configJson = [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding];
             self.error = [self finishGetConfiguration:configJson response:httpResponse];
+            if (self.error) {
+                [[NSNotificationCenter defaultCenter]
+                        postNotificationName:JRFailedToUpdateEngageConfigurationNotification
+                                      object:self
+                                    userInfo:@{@"error" : self.error}];
+            }
         }
     }
 }
