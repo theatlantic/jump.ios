@@ -40,7 +40,6 @@
 @interface JRCaptureData : NSObject <JRCaptureEnvironment>
 @property(nonatomic, readonly, retain) NSString *captureBaseUrl;
 @property(nonatomic, readonly, retain) NSString *captureRedirectUri;
-@property(nonatomic, readonly, retain) NSString *passwordRecoverUri;
 @property(nonatomic, readonly, retain) NSString *clientId;
 @property(nonatomic, readonly, retain) NSString *accessToken;
 @property(nonatomic, readonly, retain) NSString *refreshSecret;

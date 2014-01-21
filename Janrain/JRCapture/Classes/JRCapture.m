@@ -475,7 +475,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     NSString *url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
     NSString *fieldName = [data getForgottenPasswordFieldName];
 
-    if (!recoverUri) recoverUri = data.passwordRecoverUri;
+    if (!recoverUri) recoverUri = [data redirectUri];
     if (!recoverUri) {
         JRCaptureError *captureError =
                 [JRCaptureError invalidArgumentErrorWithParameterName:@"recoverUri"];

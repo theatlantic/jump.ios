@@ -94,7 +94,6 @@ AppDelegate *appDelegate = nil;
     config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
     config.captureAppId = captureAppId;
     config.forgottenPasswordFormName = captureForgottenPasswordFormName;
-    config.passwordRecoverUri = @"http://not-a-real-uri.janrain.com/forgotten_password.html";
     config.editProfileFormName = captureEditProfileFormName;
     config.resendEmailVerificationFormName = resendVerificationFormName;
 
