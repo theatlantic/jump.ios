@@ -365,9 +365,9 @@
 @end
 
 @interface JRCaptureObject ()
-@property(nonatomic, readwrite, retain) NSString *captureObjectPath;
+@property(nonatomic, readwrite) NSString *captureObjectPath;
 @property(readwrite) BOOL canBeUpdatedOnCapture;
-@property(nonatomic, readwrite, retain) NSMutableSet *dirtyPropertySet;
+@property(nonatomic, readwrite) NSMutableSet *dirtyPropertySet;
 @end
 
 @implementation JRCaptureObject

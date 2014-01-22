@@ -201,16 +201,16 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 // size hacks
 // Also forwards appearance and rotation events for iOS 4 iPads
 @interface CustomAnimationController : UIViewController
-@property (retain) UIViewController *jrPresentingViewController;
-@property (retain) UIViewController *jrChildViewController;
-@property (retain) UIView *dropShadow;
-@property (retain) UIView *windowDimmingView;
+@property  UIViewController *jrPresentingViewController;
+@property  UIViewController *jrChildViewController;
+@property  UIView *dropShadow;
+@property  UIView *windowDimmingView;
 @property(nonatomic) BOOL animating;
 @property(nonatomic) BOOL delayedRotationWhileAnimating;
 @property(nonatomic) BOOL havePerformedFirstAnimation;
-@property(nonatomic, retain) UIView *modalDimmingView;
+@property(nonatomic) UIView *modalDimmingView;
 @property(nonatomic) CATransform3D originalTransform;
-@property(nonatomic, retain) UIColor *originalDimmingViewColor;
+@property(nonatomic) UIColor *originalDimmingViewColor;
 @property(nonatomic) CGFloat originalZPosition;
 @end
 
@@ -454,19 +454,19 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 {
     BOOL shouldUnloadSubviews;
 }
-@property (retain) CustomAnimationController *animationController;
-@property (retain) UINavigationController *myNavigationController;
-@property (retain) UIPopoverController *myPopoverController;
-@property (retain) UIViewController *vcToPresent;
+@property  CustomAnimationController *animationController;
+@property  UINavigationController *myNavigationController;
+@property  UIPopoverController *myPopoverController;
+@property  UIViewController *vcToPresent;
 @end
 
 @interface JRUserInterfaceMaestro ()
-@property(retain) JRModalViewController *jrModalViewController;
-@property(retain) UINavigationController *customModalNavigationController;
-@property(retain) UINavigationController *applicationNavigationController;
-@property(retain) UINavigationController *savedNavigationController;
-@property(retain) NSDictionary *janrainInterfaceDefaults;
-@property(nonatomic, retain) NSDictionary *customInterface;
+@property JRModalViewController *jrModalViewController;
+@property UINavigationController *customModalNavigationController;
+@property UINavigationController *applicationNavigationController;
+@property UINavigationController *savedNavigationController;
+@property NSDictionary *janrainInterfaceDefaults;
+@property(nonatomic) NSDictionary *customInterface;
 @end
 
 @implementation JRModalViewController

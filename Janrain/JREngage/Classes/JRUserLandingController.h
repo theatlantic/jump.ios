@@ -50,8 +50,8 @@
 
     JRInfoBar *infoBar;
 }
-@property(nonatomic, retain) IBOutlet UIView *myBackgroundView;
-@property(nonatomic, retain) IBOutlet UITableView *myTableView;
+@property(nonatomic) IBOutlet UIView *myBackgroundView;
+@property(nonatomic) IBOutlet UITableView *myTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
    andCustomInterface:(NSDictionary *)theCustomInterface;

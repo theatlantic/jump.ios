@@ -74,8 +74,8 @@ didSucceedWithResult:(NSString *)result context:(NSObject *)context;
 
 
 @interface JRCaptureObject (Private) <NSCoding>
-@property(readwrite, retain, nonatomic) NSString *captureObjectPath;
-@property(readwrite, retain, nonatomic) NSMutableSet *dirtyPropertySet;
+@property(readwrite, nonatomic) NSString *captureObjectPath;
+@property(readwrite, nonatomic) NSMutableSet *dirtyPropertySet;
 @property(readwrite) BOOL canBeUpdatedOnCapture;
 
 - (NSDictionary *)toDictionaryForEncoder:(BOOL)forEncoder;

@@ -38,25 +38,25 @@
  * @internal
  */
 @interface JRCaptureData : NSObject <JRCaptureEnvironment>
-@property(nonatomic, readonly, retain) NSString *captureBaseUrl;
-@property(nonatomic, readonly, retain) NSString *captureRedirectUri;
-@property(nonatomic, readonly, retain) NSString *passwordRecoverUri;
-@property(nonatomic, readonly, retain) NSString *clientId;
-@property(nonatomic, readonly, retain) NSString *accessToken;
-@property(nonatomic, readonly, retain) NSString *refreshSecret;
-@property(nonatomic, readonly, retain) NSString *captureLocale;
-@property(nonatomic, readonly, retain) NSString *captureTraditionalSignInFormName;
-@property(nonatomic, readonly, retain) NSString *captureFlowName;
-@property(nonatomic, readonly, retain) NSString *captureTraditionalRegistrationFormName;
-@property(nonatomic, readonly, retain) NSString *captureSocialRegistrationFormName;
-@property(nonatomic, readonly, retain) NSString *captureFlowVersion;
-@property(nonatomic, readonly, retain) NSString *captureAppId;
-@property(nonatomic, readonly, retain) JRCaptureFlow *captureFlow;
-@property(nonatomic, readonly, retain) NSString *captureForgottenPasswordFormName;
-@property(nonatomic, readonly, retain) NSString *captureEditProfileFormName;
-@property(nonatomic, readonly, retain) NSString *resendEmailVerificationFormName;
+@property(nonatomic, readonly) NSString *captureBaseUrl;
+@property(nonatomic, readonly) NSString *captureRedirectUri;
+@property(nonatomic, readonly) NSString *passwordRecoverUri;
+@property(nonatomic, readonly) NSString *clientId;
+@property(nonatomic, readonly) NSString *accessToken;
+@property(nonatomic, readonly) NSString *refreshSecret;
+@property(nonatomic, readonly) NSString *captureLocale;
+@property(nonatomic, readonly) NSString *captureTraditionalSignInFormName;
+@property(nonatomic, readonly) NSString *captureFlowName;
+@property(nonatomic, readonly) NSString *captureTraditionalRegistrationFormName;
+@property(nonatomic, readonly) NSString *captureSocialRegistrationFormName;
+@property(nonatomic, readonly) NSString *captureFlowVersion;
+@property(nonatomic, readonly) NSString *captureAppId;
+@property(nonatomic, readonly) JRCaptureFlow *captureFlow;
+@property(nonatomic, readonly) NSString *captureForgottenPasswordFormName;
+@property(nonatomic, readonly) NSString *captureEditProfileFormName;
+@property(nonatomic, readonly) NSString *resendEmailVerificationFormName;
 @property(nonatomic) BOOL flowUsesTestingCdn;
-@property(nonatomic, readonly, retain) NSArray *linkedProfiles;
+@property(nonatomic, readonly) NSArray *linkedProfiles;
 @property(nonatomic, readonly) BOOL socialSignMode;
 
 + (void)setAccessToken:(NSString *)token;

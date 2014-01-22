@@ -32,7 +32,7 @@
 #import "LinkedProfilesViewController.h"
 
 @interface LinkedProfilesViewController ()
-@property(nonatomic, strong) UITableView *profileTable;
+@property(nonatomic) UITableView *profileTable;
 @end
 
 @implementation LinkedProfilesViewController

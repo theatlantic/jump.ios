@@ -54,10 +54,10 @@ typedef enum
 @end
 
 @interface JRTraditionalSignInViewController () <JRCaptureInternalDelegate, UIAlertViewDelegate,  JRCaptureDelegate>
-@property (retain) NSString *titleString;
-@property (retain) UIView   *titleView;
+@property  NSString *titleString;
+@property  UIView   *titleView;
 @property JRTraditionalSignInType signInType;
-@property (retain) JREngageWrapper *wrapper;
+@property  JREngageWrapper *wrapper;
 @end
 
 @implementation JRTraditionalSignInViewController

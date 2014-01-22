@@ -40,6 +40,6 @@
 
 
 @interface LinkedProfilesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property(nonatomic, strong) NSArray *linkedProfiles;
+@property(nonatomic) NSArray *linkedProfiles;
 @property(unsafe_unretained) id <LinkedProfilesDelegate> delegate;
 @end

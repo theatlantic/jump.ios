@@ -34,6 +34,6 @@
 
 
 @interface JRNativeTwitter : JRNativeProvider
-@property (nonatomic, retain) NSString *consumerKey;
-@property (nonatomic, retain) NSString *consumerSecret;
+@property (nonatomic) NSString *consumerKey;
+@property (nonatomic) NSString *consumerSecret;
 @end

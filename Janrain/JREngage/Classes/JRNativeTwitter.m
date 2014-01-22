@@ -40,11 +40,11 @@
 #import "JREngageError.h"
 
 @interface JRNativeTwitter () <UIActionSheetDelegate>
-@property (nonatomic, retain) ACAccountStore *accountStore;
-@property (atomic, retain) NSString *reverseAuthParameters;
-@property (atomic, retain) UIView *backgroundView;
-@property (atomic, retain) NSArray *accounts;
-@property (atomic, retain) ACAccount *accountToSignInWith;
+@property (nonatomic) ACAccountStore *accountStore;
+@property (atomic) NSString *reverseAuthParameters;
+@property (atomic) UIView *backgroundView;
+@property (atomic) NSArray *accounts;
+@property (atomic) ACAccount *accountToSignInWith;
 @end
 
 @implementation JRNativeTwitter

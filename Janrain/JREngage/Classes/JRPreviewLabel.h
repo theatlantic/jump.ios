@@ -42,7 +42,7 @@
 @end
 
 @interface JRPreviewLabel : UIView
-@property (retain) id<JRPreviewLabelDelegate> delegate;
+@property  id<JRPreviewLabelDelegate> delegate;
 @property (copy) NSString *username;
 @property (copy) NSString *url;
 @property (copy, nonatomic) NSString *userText;

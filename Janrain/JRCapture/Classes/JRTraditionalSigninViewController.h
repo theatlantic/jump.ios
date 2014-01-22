@@ -43,8 +43,8 @@
 {
     UITableView *myTableView;
 }
-@property(nonatomic, retain) id <JRExternalDialogControllerDelegate> delegate;
-@property(nonatomic, strong) UITextField *firstResponder;
+@property(nonatomic) id <JRExternalDialogControllerDelegate> delegate;
+@property(nonatomic) UITextField *firstResponder;
 
 - (id)initWithTraditionalSignInType:(JRTraditionalSignInType)theSignInType titleString:(NSString *)theTitleString
                           titleView:(UIView *)theTitleView engageWrapper:(JREngageWrapper *)theWrapper;
