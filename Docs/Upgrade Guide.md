@@ -11,7 +11,7 @@ A less desirable but more reliable and more general upgrade strategy:
 3. Follow the process described JUMP Integration Guide
 
 ### Upgrading from any version to v3.7 or greater
-The Janrain iOS SDK now requires Automatic Reference Counting (ARC). Follow the generalized upgrade process and but do
+The Janrain iOS SDK now requires Automatic Reference Counting (ARC). Follow the generalized upgrade process but do
 *NOT* add the `-fno-objc-arc` compiler flag to the Janrain sources.
 
 ### Upgrading from any version to v3.6 or greater
