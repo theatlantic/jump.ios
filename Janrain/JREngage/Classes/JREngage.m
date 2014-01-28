@@ -41,19 +41,19 @@
 
 @interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
-@property (nonatomic, retain) JRUserInterfaceMaestro *interfaceMaestro;
+@property (nonatomic) JRUserInterfaceMaestro *interfaceMaestro;
 
 /** \internal Holds configuration and state for the JREngage library */
-@property (nonatomic, retain) JRSessionData          *sessionData;
+@property (nonatomic) JRSessionData          *sessionData;
 
 /** \internal Array of JREngageDelegate objects */
-@property (nonatomic, retain) NSMutableArray         *delegates;
+@property (nonatomic) NSMutableArray         *delegates;
 
-@property (nonatomic, retain) NSString *googlePlusClientId;
-@property (nonatomic, retain) NSString *twitterConsumerKey;
-@property (nonatomic, retain) NSString *twitterConsumerSecret;
+@property (nonatomic) NSString *googlePlusClientId;
+@property (nonatomic) NSString *twitterConsumerKey;
+@property (nonatomic) NSString *twitterConsumerSecret;
 
-@property (nonatomic, retain) JRNativeProvider *nativeProvider;
+@property (nonatomic) JRNativeProvider *nativeProvider;
 
 @end
 

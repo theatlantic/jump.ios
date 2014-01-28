@@ -42,8 +42,8 @@
 
 @interface CaptureProfileViewController () <UITextViewDelegate, UIAlertViewDelegate, JRCaptureUserDelegate,
         UITextFieldDelegate, JRCaptureDelegate>
-@property(nonatomic, retain) id firstResponder;
-@property(nonatomic, retain) NSDate *myBirthdate;
+@property(nonatomic) id firstResponder;
+@property(nonatomic) NSDate *myBirthdate;
 @end
 
 @implementation CaptureProfileViewController

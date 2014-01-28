@@ -37,7 +37,7 @@
 #import "Cordova/CDV.h"
 
 @interface JREngagePhonegapPlugin : CDVPlugin <JREngageSigninDelegate, JREngageSharingDelegate>
-@property(nonatomic, retain) id callbackID;
+@property(nonatomic) id callbackID;
 @property(nonatomic) BOOL shareInProgress;
 @end
 

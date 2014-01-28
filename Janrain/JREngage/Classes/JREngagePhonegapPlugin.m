@@ -42,10 +42,10 @@
 #import "CDVJSON.h"
 
 @interface JREngagePhonegapPlugin ()
-@property(nonatomic, retain) NSMutableDictionary *fullAuthenticationResponse;
-@property(nonatomic, retain) NSMutableDictionary *fullSharingResponse;
-@property(nonatomic, retain) NSMutableArray *authenticationBlobs;
-@property(nonatomic, retain) NSMutableArray *shareBlobs;
+@property(nonatomic) NSMutableDictionary *fullAuthenticationResponse;
+@property(nonatomic) NSMutableDictionary *fullSharingResponse;
+@property(nonatomic) NSMutableArray *authenticationBlobs;
+@property(nonatomic) NSMutableArray *shareBlobs;
 @end
 
 @implementation JREngagePhonegapPlugin

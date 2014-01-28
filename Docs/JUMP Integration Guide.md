@@ -123,7 +123,7 @@ object that manages your application's state model.
 
 3. Add a `JRCaptureUser *` property to your class's interface declaration:
 
-        @property (retain, nonatomic) JRCaptureUser *captureUser;
+        @property (nonatomic) JRCaptureUser *captureUser;
 
 4. In your class's implementation synthesize that property:
 
