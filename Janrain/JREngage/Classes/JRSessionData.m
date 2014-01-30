@@ -124,7 +124,7 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
 
 #pragma mark JRActivityObject ()
 @interface JRActivityObject (JRActivityObject_shortenedUrl)
-@property (retain) NSString *shortenedUrl;
+@property  NSString *shortenedUrl;
 @end
 
 @implementation JRActivityObject (JRActivityObject_shortenedUrl)
@@ -447,19 +447,19 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
 
 @property NSString *returningAuthenticationProvider;
 @property NSString *returningSharingProvider;
-@property(retain) NSError *error;
-@property(retain) NSString *appId;
-@property(retain) NSString *updatedEtag;
-@property(retain) NSDictionary *savedConfigurationBlock;
-//@property (retain) NSString *gitCommit;
-@property(nonatomic, retain) NSDictionary *customProviders;
+@property NSError *error;
+@property NSString *appId;
+@property NSString *updatedEtag;
+@property NSDictionary *savedConfigurationBlock;
+//@property  NSString *gitCommit;
+@property(nonatomic) NSDictionary *customProviders;
 
 /** engageProviders is a dictionary of JRProviders, where each JRProvider contains the information specific to that
     provider. authenticationProviders and sharingProviders are arrays of NSStrings, each string being the primary key
     in engageProviders for that provider, representing the list of providers to be used in authentication and social
     publishing. The arrays are in the order configured by the RP on http://rpxnow.com. */
-@property (readwrite, retain) NSMutableDictionary *engageProviders;
-@property (readwrite, retain) NSArray             *sharingProviders;
+@property (readwrite) NSMutableDictionary *engageProviders;
+@property (readwrite) NSArray             *sharingProviders;
 
 - (NSError *)startGetConfiguration;
 - (void)startGetShortenedUrlsForActivity:(JRActivityObject *)theActivity;

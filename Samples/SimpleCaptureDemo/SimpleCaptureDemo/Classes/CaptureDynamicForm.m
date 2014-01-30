@@ -8,11 +8,11 @@
 static NSMutableDictionary *identifierMap = nil;
 
 @interface CaptureDynamicForm ()
-@property(nonatomic, strong) JRCaptureUser *captureUser;
-@property(nonatomic, strong) UIBarButtonItem *registerButton;
-@property(nonatomic, strong) UIScrollView *scrollView;
-@property(nonatomic, strong) UILabel *disclaimer;
-@property(nonatomic, strong) UIView *formView;
+@property(nonatomic) JRCaptureUser *captureUser;
+@property(nonatomic) UIBarButtonItem *registerButton;
+@property(nonatomic) UIScrollView *scrollView;
+@property(nonatomic) UILabel *disclaimer;
+@property(nonatomic) UIView *formView;
 @end
 
 /**

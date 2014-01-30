@@ -36,10 +36,10 @@
 @interface JRProvidersController : UIViewController <UINavigationBarDelegate, UITableViewDelegate,
         UITableViewDataSource, UIAlertViewDelegate, JRUserInterfaceDelegate, JRExternalDialogControllerDelegate>
 @property(assign) BOOL hidesCancelButton;
-@property(nonatomic, retain) IBOutlet UIView *myBackgroundView;
-@property(nonatomic, retain) IBOutlet UITableView *myTableView;
-@property(nonatomic, retain) IBOutlet UILabel *myLoadingLabel;
-@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *myActivitySpinner;
+@property(nonatomic) IBOutlet UIView *myBackgroundView;
+@property(nonatomic) IBOutlet UITableView *myTableView;
+@property(nonatomic) IBOutlet UILabel *myLoadingLabel;
+@property(nonatomic) IBOutlet UIActivityIndicatorView *myActivitySpinner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
    andCustomInterface:(NSDictionary *)theCustomInterface;

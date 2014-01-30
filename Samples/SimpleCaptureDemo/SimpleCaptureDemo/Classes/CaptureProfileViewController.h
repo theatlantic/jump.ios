@@ -36,19 +36,19 @@
 
 @interface CaptureProfileViewController : PickerViewController
 
-@property(nonatomic, retain) IBOutlet UILabel *myFormTitle;
-@property(nonatomic, retain) IBOutlet UITextField *myEmailTextField;
+@property(nonatomic) IBOutlet UILabel *myFormTitle;
+@property(nonatomic) IBOutlet UITextField *myEmailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myDisplayNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myFirstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myLastNameTextField;
-@property(nonatomic, retain) IBOutlet UISegmentedControl *myGenderIdentitySegControl;
-@property(nonatomic, retain) IBOutlet UIButton *myBirthdayButton;
-@property(nonatomic, retain) IBOutlet UIDatePicker *myBirthdayPicker;
-@property(nonatomic, retain) IBOutlet UIToolbar *myPickerToolbar;
-@property(nonatomic, retain) IBOutlet UITextView *myAboutMeTextView;
-@property(nonatomic, retain) IBOutlet UIView *myPickerView;
-@property(nonatomic, retain) IBOutlet UIScrollView *myScrollView;
-@property(nonatomic, retain) IBOutlet UIToolbar *myKeyboardToolbar;
+@property(nonatomic) IBOutlet UISegmentedControl *myGenderIdentitySegControl;
+@property(nonatomic) IBOutlet UIButton *myBirthdayButton;
+@property(nonatomic) IBOutlet UIDatePicker *myBirthdayPicker;
+@property(nonatomic) IBOutlet UIToolbar *myPickerToolbar;
+@property(nonatomic) IBOutlet UITextView *myAboutMeTextView;
+@property(nonatomic) IBOutlet UIView *myPickerView;
+@property(nonatomic) IBOutlet UIScrollView *myScrollView;
+@property(nonatomic) IBOutlet UIToolbar *myKeyboardToolbar;
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *myDoneButton;
 
 - (IBAction)emailTextFieldClicked:(id)sender;

@@ -47,12 +47,12 @@ typedef enum {
 @end
 
 @interface JREngageWrapper () <JREngageSigninDelegate>
-@property(retain) NSString *engageToken;
-@property(retain) JRTraditionalSignInViewController *nativeSignInViewController;
-@property(retain) id <JRCaptureDelegate> delegate;
+@property NSString *engageToken;
+@property JRTraditionalSignInViewController *nativeSignInViewController;
+@property id <JRCaptureDelegate> delegate;
 @property JREngageDialogState dialogState;
 @property bool didTearDownViewControllers;
-@property(retain) NSString *redirectUri;
+@property NSString *redirectUri;
 @end
 
 @implementation JREngageWrapper

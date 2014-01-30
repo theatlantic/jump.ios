@@ -1,4 +1,4 @@
-# JUMP iOS Upgrade Guide
+# Janrain iOS SDK Upgrade Guide
 
 This guide describes the steps required to upgrade from different versions of the library.
 
@@ -10,6 +10,9 @@ A less desirable but more reliable and more general upgrade strategy:
 2. Remove generated Capture user model project groups
 3. Follow the process described JUMP Integration Guide
 
+### Upgrading from any version to v3.7 or greater
+The Janrain iOS SDK now requires Automatic Reference Counting (ARC). Follow the generalized upgrade process but do
+*NOT* add the `-fno-objc-arc` compiler flag to the Janrain sources.
 
 ### Upgrading from any version to v3.6 or greater
 1. Ensure that the **Accounts** and **Social** frameworks have been added to your project.

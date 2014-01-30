@@ -36,7 +36,7 @@
 #import "JRCaptureFlow.h"
 
 @interface JRCaptureUIRequestBuilder()
-   @property (nonatomic, retain) id<JRCaptureEnvironment> environment;
+   @property (nonatomic) id<JRCaptureEnvironment> environment;
 @end
 
 @implementation JRCaptureUIRequestBuilder {

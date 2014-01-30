@@ -38,7 +38,7 @@
 #import "JRNativeTwitter.h"
 
 @interface JRNativeAuth ()
-@property (nonatomic, retain) JRNativeProvider *nativeProvider;
+@property (nonatomic) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRNativeAuth

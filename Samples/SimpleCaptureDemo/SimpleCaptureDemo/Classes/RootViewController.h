@@ -61,5 +61,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *unlinkAccountButton;
 @property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
 @property (weak, nonatomic) IBOutlet UIButton *resendVerificationButton;
-@property(nonatomic, strong) NSDictionary *customUi;
+@property(nonatomic) NSDictionary *customUi;
 @end

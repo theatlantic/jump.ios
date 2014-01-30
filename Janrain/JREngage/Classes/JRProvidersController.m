@@ -69,9 +69,9 @@
 @interface JRProvidersController ()
 - (void)createTraditionalSignInLoadingView;
 
-@property(retain) NSMutableArray *providers;
-@property(retain) UIView *myTraditionalSignInLoadingView;
-@property(nonatomic, retain) JRNativeProvider *nativeProvider;
+@property NSMutableArray *providers;
+@property UIView *myTraditionalSignInLoadingView;
+@property(nonatomic) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRProvidersController

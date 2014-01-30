@@ -40,28 +40,28 @@ AppDelegate *appDelegate;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) UIWindow *window;
 
-@property(strong) NSUserDefaults *prefs;
-@property(strong) JRCaptureUser *captureUser;
+@property NSUserDefaults *prefs;
+@property JRCaptureUser *captureUser;
 @property BOOL isNotYetCreated;
-@property(strong) NSString *currentProvider;
-@property(nonatomic, strong) NSString *captureClientId;
-@property(nonatomic, strong) NSString *captureDomain;
-@property(nonatomic, strong) NSString *captureLocale;
-@property(nonatomic, strong) NSString *captureFlowName;
-@property(nonatomic, strong) NSString *captureTraditionalSignInFormName;
+@property NSString *currentProvider;
+@property(nonatomic) NSString *captureClientId;
+@property(nonatomic) NSString *captureDomain;
+@property(nonatomic) NSString *captureLocale;
+@property(nonatomic) NSString *captureFlowName;
+@property(nonatomic) NSString *captureTraditionalSignInFormName;
 @property(nonatomic) BOOL captureEnableThinRegistration;
-@property(nonatomic, strong) NSString *captureFlowVersion;
-@property(nonatomic, strong) NSString *captureTraditionalRegistrationFormName;
-@property(nonatomic, strong) NSString *captureSocialRegistrationFormName;
-@property(nonatomic, strong) NSString *captureAppId;
-@property(nonatomic, strong) NSString *engageAppId;
-@property(nonatomic, retain) NSString *registrationToken;
-@property(nonatomic, strong) NSDictionary *customProviders;
-@property(nonatomic, retain) NSString *captureForgottenPasswordFormName;
-@property(nonatomic, retain) NSString *captureEditProfileFormName;
-@property(nonatomic, retain) NSString *resendVerificationFormName;
+@property(nonatomic) NSString *captureFlowVersion;
+@property(nonatomic) NSString *captureTraditionalRegistrationFormName;
+@property(nonatomic) NSString *captureSocialRegistrationFormName;
+@property(nonatomic) NSString *captureAppId;
+@property(nonatomic) NSString *engageAppId;
+@property(nonatomic) NSString *registrationToken;
+@property(nonatomic) NSDictionary *customProviders;
+@property(nonatomic) NSString *captureForgottenPasswordFormName;
+@property(nonatomic) NSString *captureEditProfileFormName;
+@property(nonatomic) NSString *resendVerificationFormName;
 
 - (void)saveCaptureUser;
 @end

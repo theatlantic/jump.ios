@@ -71,29 +71,30 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 
 @interface JRCaptureData ()
 
-@property(nonatomic, retain) NSString *accessToken;
-@property(nonatomic, retain) NSString *refreshSecret;
+@property(nonatomic) NSString *accessToken;
+@property(nonatomic) NSString *refreshSecret;
 
-@property(nonatomic, retain) NSString *captureBaseUrl;
-@property(nonatomic, retain) NSString *clientId;
-@property(nonatomic, retain) NSString *captureAppId;
-@property(nonatomic, retain) NSString *captureRedirectUri;
+@property(nonatomic) NSString *captureBaseUrl;
+@property(nonatomic) NSString *clientId;
+@property(nonatomic) NSString *captureAppId;
+@property(nonatomic) NSString *captureRedirectUri;
+@property(nonatomic) NSString *passwordRecoverUri;
 
-@property(nonatomic, retain) NSString *captureFlowName;
-@property(nonatomic, retain) NSString *captureFlowVersion;
-@property(nonatomic, retain) NSString *captureLocale;
-@property(nonatomic, retain) NSString *captureTraditionalSignInFormName;
-@property(nonatomic, retain) NSString *captureTraditionalRegistrationFormName;
-@property(nonatomic, retain) NSString *captureSocialRegistrationFormName;
-@property(nonatomic, retain) NSString *captureForgottenPasswordFormName;
-@property(nonatomic, retain) NSString *captureEditProfileFormName;
-@property(nonatomic, retain) NSString *resendEmailVerificationFormName;
+@property(nonatomic) NSString *captureFlowName;
+@property(nonatomic) NSString *captureFlowVersion;
+@property(nonatomic) NSString *captureLocale;
+@property(nonatomic) NSString *captureTraditionalSignInFormName;
+@property(nonatomic) NSString *captureTraditionalRegistrationFormName;
+@property(nonatomic) NSString *captureSocialRegistrationFormName;
+@property(nonatomic) NSString *captureForgottenPasswordFormName;
+@property(nonatomic) NSString *captureEditProfileFormName;
+@property(nonatomic) NSString *resendEmailVerificationFormName;
 
 //@property(nonatomic) JRTraditionalSignInType captureTradSignInType;
 @property(nonatomic) BOOL captureEnableThinRegistration;
 
-@property(nonatomic, retain) JRCaptureFlow *captureFlow;
-@property(nonatomic, retain) NSArray *linkedProfiles;
+@property(nonatomic) JRCaptureFlow *captureFlow;
+@property(nonatomic) NSArray *linkedProfiles;
 @property(nonatomic) BOOL initialized;
 @property(nonatomic) BOOL socialSignMode;
 @end

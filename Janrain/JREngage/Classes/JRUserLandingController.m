@@ -45,7 +45,7 @@
 #define frame_h(a) a.frame.size.height
 
 @interface JRUserLandingController ()
-@property (nonatomic, retain) JRNativeProvider *nativeProvider;
+@property (nonatomic) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRUserLandingController
