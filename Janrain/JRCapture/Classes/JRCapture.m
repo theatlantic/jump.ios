@@ -54,6 +54,8 @@
 #import "JREngage.h"
 
 
+NSString* const JRDownloadFlowResult = @"JRDownloadFlowResult";
+
 @implementation JRCapture
 
 + (void)setCaptureConfig:(JRCaptureConfig *)config

@@ -60,6 +60,19 @@
 #define startCaptureConventionalSignInForUser startCaptureTraditionalSignInForUser
 
 /**
+ *  NSNotifications
+ */
+
+/** Posted via a NSNotificationQueue when a download flow completes.
+ *  Name:    "JRDownloadFlowResult"
+ *  object:  JRCaptureError
+ *  if the object is nil, the FLOW was successfully downloaded.
+ *  If the JRCaptureError object is !nil, then the FLOW did not download.
+ */
+extern NSString* const JRDownloadFlowResult;
+
+
+/**
  * @mainpage Janrain Capture for iOS
  *
  * <a href="http://developers.janrain.com/documentation/mobile-libraries/">
