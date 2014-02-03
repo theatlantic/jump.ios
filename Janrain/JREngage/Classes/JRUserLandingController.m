@@ -265,7 +265,7 @@ enum
 
     UILabel *providerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(PROVIDERNAME_LABEL_FRAME)];
 
-    providerNameLabel.font = [UIFont boldSystemFontOfSize:20.0];
+    providerNameLabel.font = [UIFont boldSystemFontOfSize:24.0];
 
     providerNameLabel.adjustsFontSizeToFitWidth = YES;
     providerNameLabel.textColor = [UIColor blackColor];
@@ -359,7 +359,7 @@ enum
     [signInButton setTitleShadowColor:[UIColor grayColor]
                              forState:UIControlStateNormal];
 
-    [signInButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
+    [signInButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
 
     [signInButton addTarget:self
                      action:@selector(signInButtonTouchUpInside:)
@@ -415,7 +415,7 @@ enum
     [bigSignInButton setTitleShadowColor:[UIColor grayColor]
                                 forState:UIControlStateNormal];
 
-    [bigSignInButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20.0]];
+    [bigSignInButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
 
     [bigSignInButton addTarget:self
                         action:@selector(signInButtonTouchUpInside:)
@@ -463,7 +463,6 @@ enum
 
     CGRect newSubViewFrameRect = CGRectMake(
             CGRectGetMidX(cellFrameRect) - width/2 - 15,
-            //145 - width/2,
             subViewFrameRect.origin.y,
             width,
             subViewFrameRect.size.height);
