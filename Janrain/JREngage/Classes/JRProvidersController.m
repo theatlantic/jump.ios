@@ -42,7 +42,7 @@
 #import "JRNativeAuth.h"
 #import "JREngageError.h"
 #import "JRNativeProvider.h"
-#import "JRTraditionalSignInViewController.h"
+
 
 @interface UITableViewCellProviders : UITableViewCell
 @end
