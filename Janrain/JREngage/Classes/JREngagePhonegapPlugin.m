@@ -267,8 +267,22 @@
                                      payloadString:(NSString *)payloadString
 {
     NSMutableDictionary *r = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-    [r setObject:tokenUrl ? tokenUrl : (void *) kCFNull forKey:@"tokenUrl"];
-    [r setObject:(payloadString ? payloadString : (void *) kCFNull) forKey:@"tokenUrlPayload"];
+    if (tokenUrl)
+    {
+        [r setObject:tokenUrl forKey:@"tokenUrl"];
+    }
+    else
+    {
+        [r setObject:(void *) kCFNull forKey:@"tokenUrl"];
+    }
+    if (payloadString)
+    {
+        [r setObject:payloadString forKey:@"tokenUrlPayload"];
+    }
+    else
+    {
+        [r setObject:(void *) kCFNull forKey:@"tokenUrlPayload"];
+    }
     [r setObject:@"ok" forKey:@"stat"];
     return r;
 }
@@ -281,8 +295,8 @@
     // TODO: Will this ever happen, and if so, what should we do?
     if (!fullAuthenticationResponse) ALog(@"JREngage error");
 
-    NSString *payloadString = [[[NSString alloc] initWithData:tokenUrlPayload
-                                                     encoding:NSUTF8StringEncoding] autorelease];
+    NSString *payloadString = [[NSString alloc] initWithData:tokenUrlPayload
+                                                     encoding:NSUTF8StringEncoding];
 
     self.fullAuthenticationResponse = [self authinfoResponseWithStuff:self.fullAuthenticationResponse
                                                              tokenUrl:tokenUrl
@@ -355,13 +369,6 @@
                                              andMessage:@"User canceled sharing"]];
 }
 
-- (void)dealloc
-{
-    [fullAuthenticationResponse release];
-    [fullSharingResponse release];
-    [authenticationBlobs release];
-    [super dealloc];
-}
 @end
 
 #endif
