@@ -474,7 +474,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
     NSString *url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
     NSString *fieldName = [data getForgottenPasswordFieldName];
-
+ 
     if (!fieldValue) {
         JRCaptureError *captureError =
                 [JRCaptureError invalidArgumentErrorWithParameterName:@"fieldValue"];
@@ -497,6 +497,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
             @"client_id" : data.clientId,
             @"locale" : data.captureLocale,
             @"response_type" : @"token",
+            @"redirect_uri" : data.captureRedirectUri,
             @"form" : data.captureForgottenPasswordFormName,
             @"flow" : data.captureFlowName,
             @"flow_version" : data.downloadedFlowVersion,
