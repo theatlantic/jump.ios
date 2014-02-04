@@ -48,6 +48,28 @@ It is possible that the redirect back to you app may be interrupted. If that hap
 
 Start authentication or sign-in as normal. If the Facebook iOS SDK is compiled into your app, it will be used to perform all Facebook authentication.
 
+### Signing Out
+
+Following Facebook’s documentation we’ll use `closeAndClearTokenInformation` to close the in-memory Facebook session.
+
+In your view controller import the Facebook SDK
+
+    #import <FacebookSDK/FacebookSDK.h>
+
+Call `closeAndClearTokenInformation` when your sign-out button is pressed. For example, in the SimpleCaptureDemo, we add
+the following to the signOutCurrentUser method of the RootViewController.
+
+    - (void)signOutCurrentUser
+    {
+        ...
+
+        // Sign out of the Facebook SDK
+        [FBSession.activeSession closeAndClearTokenInformation];
+    }
+
+Note: This does not revoke the applications access to Facebook. So if a user has a Facebook account set up in their iOS
+device’s Settings app it will continue to be used to sign in without asking to be reauthorized.
+
 ## Google+
 
 ### Configure the Native Authentication Framework
