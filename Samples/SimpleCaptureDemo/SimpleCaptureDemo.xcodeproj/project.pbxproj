@@ -77,6 +77,12 @@
 		C1424E3B144EDDE0ABA1E0E7 /* AlertViewWithBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */; };
 		C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1424E26376A97DCC6454072 /* Security.framework */; };
 		D806D1B616A7638E008EEF96 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D806D1B516A7638E008EEF96 /* assets */; };
+		D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */; };
+		D823C6EF189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6EE189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png */; };
+		D823C6F1189C2FBB00993DAE /* logo_microsoftaccount_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6F0189C2FBB00993DAE /* logo_microsoftaccount_280x65.png */; };
+		D823C6F3189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6F2189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png */; };
+		D823C6F5189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6F4189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png */; };
+		D823C6F7189C2FEA00993DAE /* logo_microsoftaccount_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6F6189C2FEA00993DAE /* logo_microsoftaccount_280x65@2x.png */; };
 		D894365F18651F2F004BCF0A /* JRNativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = D894365E18651F2F004BCF0A /* JRNativeTwitter.m */; };
 		D894366118651F47004BCF0A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894366018651F47004BCF0A /* Social.framework */; };
 		D894366318651F4D004BCF0A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D894366218651F4D004BCF0A /* Accounts.framework */; };
@@ -407,6 +413,12 @@
 		C1424E26376A97DCC6454072 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertViewWithBlocks.m; path = Classes/AlertViewWithBlocks.m; sourceTree = "<group>"; };
 		D806D1B516A7638E008EEF96 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
+		D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_microsoftaccount_30x30.png; sourceTree = "<group>"; };
+		D823C6EE189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_microsoftaccount_30x30.png; sourceTree = "<group>"; };
+		D823C6F0189C2FBB00993DAE /* logo_microsoftaccount_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_microsoftaccount_280x65.png; sourceTree = "<group>"; };
+		D823C6F2189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_microsoftaccount_30x30@2x.png"; sourceTree = "<group>"; };
+		D823C6F4189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_microsoftaccount_30x30@2x.png"; sourceTree = "<group>"; };
+		D823C6F6189C2FEA00993DAE /* logo_microsoftaccount_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_microsoftaccount_280x65@2x.png"; sourceTree = "<group>"; };
 		D894365D18651F2F004BCF0A /* JRNativeTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeTwitter.h; sourceTree = "<group>"; };
 		D894365E18651F2F004BCF0A /* JRNativeTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeTwitter.m; sourceTree = "<group>"; };
 		D894366018651F47004BCF0A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -1090,6 +1102,7 @@
 		DFEFE40717A9915200760FEE /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */,
 				D8E0218A17D14CC700013803 /* icon_googleplus_30x30.png */,
 				DFEFE40817A9915200760FEE /* icon_aol_30x30.png */,
 				DFEFE40917A9915200760FEE /* icon_blogger_30x30.png */,
@@ -1123,6 +1136,7 @@
 		DFEFE42017A9915200760FEE /* icons_bw */ = {
 			isa = PBXGroup;
 			children = (
+				D823C6EE189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png */,
 				DFEFE42117A9915200760FEE /* icon_bw_facebook_30x30.png */,
 				DFEFE42217A9915200760FEE /* icon_bw_linkedin_30x30.png */,
 				DFEFE42317A9915200760FEE /* icon_bw_mail_30x30.png */,
@@ -1139,6 +1153,7 @@
 		DFEFE42917A9915200760FEE /* logos */ = {
 			isa = PBXGroup;
 			children = (
+				D823C6F0189C2FBB00993DAE /* logo_microsoftaccount_280x65.png */,
 				D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */,
 				DFEFE42A17A9915200760FEE /* logo_aol_280x65.png */,
 				DFEFE42B17A9915200760FEE /* logo_blogger_280x65.png */,
@@ -1221,6 +1236,7 @@
 		DFEFE45C17A9915200760FEE /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D823C6F2189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png */,
 				D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */,
 				DFEFE45D17A9915200760FEE /* icon_aol_30x30@2x.png */,
 				DFEFE45E17A9915200760FEE /* icon_blogger_30x30@2x.png */,
@@ -1254,6 +1270,7 @@
 		DFEFE47517A9915200760FEE /* icons_bw */ = {
 			isa = PBXGroup;
 			children = (
+				D823C6F4189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png */,
 				DFEFE47617A9915200760FEE /* icon_bw_facebook_30x30@2x.png */,
 				DFEFE47717A9915200760FEE /* icon_bw_linkedin_30x30@2x.png */,
 				DFEFE47817A9915200760FEE /* icon_bw_mail_30x30@2x.png */,
@@ -1270,6 +1287,7 @@
 		DFEFE47E17A9915200760FEE /* logos */ = {
 			isa = PBXGroup;
 			children = (
+				D823C6F6189C2FEA00993DAE /* logo_microsoftaccount_280x65@2x.png */,
 				D8E0219017D14D1800013803 /* logo_googleplus_280x65@2x.png */,
 				DFEFE47F17A9915200760FEE /* logo_aol_280x65@2x.png */,
 				DFEFE48017A9915200760FEE /* logo_blogger_280x65@2x.png */,
@@ -1401,6 +1419,7 @@
 				C1424221EF003C4A217BE9F5 /* Default.png in Resources */,
 				C1424C2310E295E5506D8FF8 /* Default-568h@2x.png in Resources */,
 				6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */,
+				D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */,
 				6706F18263DF25C5CAEA8F6C /* Engage Custom Provider Guide.md in Resources */,
 				6706F0DA7F5FA9A15B437997 /* Engage-Only Integration Guide.md in Resources */,
 				6706F2F5D380E2BE1B74B0C3 /* JUMP Integration Guide.md in Resources */,
@@ -1414,12 +1433,15 @@
 				DFEFE4B317A9915200760FEE /* JREngage-Info.plist in Resources */,
 				DFEFE4B517A9915200760FEE /* button_black_135x40.png in Resources */,
 				DFEFE4B617A9915200760FEE /* button_black_280x40.png in Resources */,
+				D823C6F7189C2FEA00993DAE /* logo_microsoftaccount_280x65@2x.png in Resources */,
+				D823C6F3189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png in Resources */,
 				DFEFE4B717A9915200760FEE /* button_facebook_135x40.png in Resources */,
 				DFEFE4B817A9915200760FEE /* button_facebook_280x40.png in Resources */,
 				DFEFE4B917A9915200760FEE /* button_google_135x40.png in Resources */,
 				DFEFE4BA17A9915200760FEE /* button_google_280x40.png in Resources */,
 				DFEFE4BB17A9915200760FEE /* button_iosblue_135x40.png in Resources */,
 				DFEFE4BC17A9915200760FEE /* button_iosblue_280x40.png in Resources */,
+				D823C6EF189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png in Resources */,
 				DFEFE4BD17A9915200760FEE /* button_janrain_135x40.png in Resources */,
 				DFEFE4BE17A9915200760FEE /* button_janrain_280x40.png in Resources */,
 				DFEFE4BF17A9915200760FEE /* button_linkedin_135x40.png in Resources */,
@@ -1509,6 +1531,7 @@
 				DFEFE51317A9915300760FEE /* button_twitter_280x40@2x.png in Resources */,
 				DFEFE51417A9915300760FEE /* button_yahoo_135x40@2x.png in Resources */,
 				DFEFE51517A9915300760FEE /* button_yahoo_280x40@2x.png in Resources */,
+				D823C6F1189C2FBB00993DAE /* logo_microsoftaccount_280x65.png in Resources */,
 				DFEFE51617A9915300760FEE /* icon_aol_30x30@2x.png in Resources */,
 				DFEFE51717A9915300760FEE /* icon_blogger_30x30@2x.png in Resources */,
 				DFEFE51817A9915300760FEE /* icon_facebook_30x30@2x.png in Resources */,
@@ -1573,6 +1596,7 @@
 				DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */,
 				DFEFE55417A9915300760FEE /* JRPublishActivityController.xib in Resources */,
 				DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */,
+				D823C6F5189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png in Resources */,
 				DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */,
 				19BC00CC7CE1407ECD3FCEA9 /* icon_amazon_30x30.png in Resources */,
 				19BC038695E3F63ED3DAF62B /* icon_bw_amazon_30x30.png in Resources */,
