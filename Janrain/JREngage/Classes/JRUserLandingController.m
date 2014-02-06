@@ -117,7 +117,7 @@
 - (NSString *)customTitle
 {
     DLog(@"");
-    if (!sessionData.currentProvider.requiresInput) return @"Welcome Back!";
+    if (!sessionData.currentProvider.requiresInput) return NSLocalizedString(@"Welcome Back!", nil);
 
     return sessionData.currentProvider.shortText;
 }
@@ -353,7 +353,7 @@ enum
     [signInButton setBackgroundImage:[UIImage imageNamed:@"button_iosblue_135x40.png"]
                             forState:UIControlStateNormal];
 
-    [signInButton setTitle:@"Sign In" forState:UIControlStateNormal];
+    [signInButton setTitle:NSLocalizedString(@"Sign In", nil) forState:UIControlStateNormal];
     [signInButton setTitleColor:[UIColor whiteColor]
                        forState:UIControlStateNormal];
     [signInButton setTitleShadowColor:[UIColor grayColor]
@@ -381,7 +381,7 @@ enum
     [backToProvidersButton setBackgroundImage:[UIImage imageNamed:@"button_black_135x40.png"]
                                      forState:UIControlStateNormal];
 
-    [backToProvidersButton setTitle:@"Switch Accounts" forState:UIControlStateNormal];
+    [backToProvidersButton setTitle:NSLocalizedString(@"Switch Accounts", nil) forState:UIControlStateNormal];
     [backToProvidersButton setTitleColor:[UIColor whiteColor]
                                 forState:UIControlStateNormal];
     [backToProvidersButton setTitleShadowColor:[UIColor grayColor]
@@ -409,7 +409,7 @@ enum
     [bigSignInButton setBackgroundImage:[UIImage imageNamed:@"button_iosblue_280x40.png"]
                                forState:UIControlStateNormal];
 
-    [bigSignInButton setTitle:@"Sign In" forState:UIControlStateNormal];
+    [bigSignInButton setTitle:NSLocalizedString(@"Sign In", nil) forState:UIControlStateNormal];
     [bigSignInButton setTitleColor:[UIColor whiteColor]
                           forState:UIControlStateNormal];
     [bigSignInButton setTitleShadowColor:[UIColor grayColor]
@@ -654,12 +654,11 @@ replacementString:(NSString *)string
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input"
-                                                             message:@"The input you have entered is not valid. Please "
-                                                                     "try again."
-                                                            delegate:self
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Input", nil)
+                          message:NSLocalizedString(@"The input you have entered is not valid. Please try again.", nil)
+                         delegate:self
+                cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                otherButtonTitles:nil];
             [alert show];
             return;
         }

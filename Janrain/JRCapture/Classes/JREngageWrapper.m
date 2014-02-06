@@ -173,11 +173,11 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
             ([expandedCustomInterfaceOverrides objectForKey:kJRCaptureTraditionalSignInTitleString] ?
                     [expandedCustomInterfaceOverrides objectForKey:kJRCaptureTraditionalSignInTitleString] :
                     (nativeSignInType == JRTraditionalSignInEmailPassword ?
-                            @"Sign In With Your Email and Password" :
-                            @"Sign In With Your Username and Password"));
+                            NSLocalizedString(@"Sign In With Your Email and Password", nil) :
+                            NSLocalizedString(@"Sign In With Your Username and Password", nil)));
 
     if (![expandedCustomInterfaceOverrides objectForKey:kJRProviderTableSectionHeaderTitleString])
-        [expandedCustomInterfaceOverrides setObject:@"Sign In With a Social Provider"
+        [expandedCustomInterfaceOverrides setObject:NSLocalizedString(@"Sign In With a Social Provider", nil)
                                              forKey:kJRProviderTableSectionHeaderTitleString];
 
     UIView *const titleView = [expandedCustomInterfaceOverrides objectForKey:kJRCaptureTraditionalSignInTitleView];

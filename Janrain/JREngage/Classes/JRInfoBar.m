@@ -64,7 +64,7 @@
         poweredByLabel.textAlignment = NSTextAlignmentRight;
         poweredByLabel.autoresizingMask = UIViewAutoresizingNone | UIViewAutoresizingFlexibleLeftMargin;
 
-        poweredByLabel.text = (hidesPoweredBy) ? @"" : @"Powered by Janrain";
+        poweredByLabel.text = (hidesPoweredBy) ? @"" : NSLocalizedString(@"Powered by Janrain", nil);
 
         infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
         infoButton.frame = CGRectMake(width - 20, 7, 15, 15);
@@ -92,7 +92,7 @@
         loadingLabel.textColor = [UIColor whiteColor];
         loadingLabel.textAlignment = JR_TEXT_ALIGN_LEFT;
         loadingLabel.autoresizingMask = UIViewAutoresizingNone | UIViewAutoresizingFlexibleRightMargin;
-        loadingLabel.text = @"Loading...";
+        loadingLabel.text = NSLocalizedString(@"Loading...", nil);
 
         [self addSubview:barBackground];
         [self addSubview:poweredByLabel];
@@ -158,7 +158,7 @@
                                             @"Janrain Engage for iPhone Library\nVersion %@\nwww.janrain.com", version];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:verString
                                                               delegate:delegate
-                                                     cancelButtonTitle:@"OK"
+                                                     cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                                 destructiveButtonTitle:nil otherButtonTitles:nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     return actionSheet;

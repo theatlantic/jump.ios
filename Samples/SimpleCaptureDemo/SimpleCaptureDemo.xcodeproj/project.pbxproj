@@ -22,6 +22,10 @@
 		19BC0DFDCBAF337078CAF21B /* JRNativeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0A5CBDCA26A833BCC0C0 /* JRNativeProvider.m */; };
 		19BC0F8289734BEF98CD916D /* JRNativeFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0AF36F9FFDBE539E801E /* JRNativeFacebook.m */; };
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
+		3306C17245BA3B16978120CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */; };
+		3306C504E4EB30699D49C31F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306C1C76C81D3A8D4ED2232 /* Localizable.strings */; };
+		4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994B918A3F82D00E4D116 /* JRPublishActivityController.xib */; };
+		4DB994BD18A3F84B00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */; };
 		4DFC8F17187E1DD100CE8A83 /* JRAccountsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC8ED6187E1DD100CE8A83 /* JRAccountsElement.m */; };
 		4DFC8F18187E1DD100CE8A83 /* JRAddressesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC8ED8187E1DD100CE8A83 /* JRAddressesElement.m */; };
 		4DFC8F1A187E1DD100CE8A83 /* JRBodyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC8EDC187E1DD100CE8A83 /* JRBodyType.m */; };
@@ -284,7 +288,6 @@
 		DFEFE55117A9915300760FEE /* profilepic_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49B17A9915200760FEE /* profilepic_placeholder@2x.png */; };
 		DFEFE55217A9915300760FEE /* triangle_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49C17A9915200760FEE /* triangle_icon@2x.png */; };
 		DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49E17A9915200760FEE /* JRProvidersController.xib */; };
-		DFEFE55417A9915300760FEE /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49F17A9915200760FEE /* JRPublishActivityController.xib */; };
 		DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */; };
 		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
 /* End PBXBuildFile section */
@@ -326,8 +329,12 @@
 		19BC0DD546434509C30D84AF /* JRNativeGooglePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeGooglePlus.h; sourceTree = "<group>"; };
 		19BC0E7594BE142048FCCDCB /* icon_amazon_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_amazon_30x30.png; sourceTree = "<group>"; };
 		19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+JRQueryParams.m"; sourceTree = "<group>"; };
+		3306C1D905E80CB37965B544 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
 		4D60E0D0187F1D1F006A6744 /* JRCaptureEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureEnvironment.h; sourceTree = "<group>"; };
+		4DB994B818A3F82D00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/JRPublishActivityController.xib; sourceTree = "<group>"; };
+		4DB994BC18A3F84B00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = JRPublishActivityController.xib; sourceTree = "<group>"; };
 		4DFC8ED5187E1DD100CE8A83 /* JRAccountsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAccountsElement.h; sourceTree = "<group>"; };
 		4DFC8ED6187E1DD100CE8A83 /* JRAccountsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAccountsElement.m; sourceTree = "<group>"; };
 		4DFC8ED7187E1DD100CE8A83 /* JRAddressesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAddressesElement.h; sourceTree = "<group>"; };
@@ -653,7 +660,6 @@
 		DFEFE49B17A9915200760FEE /* profilepic_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profilepic_placeholder@2x.png"; sourceTree = "<group>"; };
 		DFEFE49C17A9915200760FEE /* triangle_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangle_icon@2x.png"; sourceTree = "<group>"; };
 		DFEFE49E17A9915200760FEE /* JRProvidersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRProvidersController.xib; sourceTree = "<group>"; };
-		DFEFE49F17A9915200760FEE /* JRPublishActivityController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRPublishActivityController.xib; sourceTree = "<group>"; };
 		DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRUserLandingController.xib; sourceTree = "<group>"; };
 		DFEFE4A117A9915200760FEE /* JRWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRWebViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -687,6 +693,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3306C285D18BF8E9B2D57447 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		3306C38996F58DC76F82D93E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3306C65D7656D71FAE4884B4 /* en.lproj */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3306C65D7656D71FAE4884B4 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				3306C1C76C81D3A8D4ED2232 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		4DB994BA18A3F84B00E4D116 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		4DFC8ED4187E1DD100CE8A83 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,7 +885,6 @@
 				D806D1B516A7638E008EEF96 /* assets */,
 				9F7B6A9A1533648C002BF452 /* en.lproj */,
 				9F7B6AA71533648C002BF452 /* images */,
-				9F7B6AA91533648C002BF452 /* images-2x */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -872,14 +909,6 @@
 			);
 			name = images;
 			path = Resources/images;
-			sourceTree = "<group>";
-		};
-		9F7B6AA91533648C002BF452 /* images-2x */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "images-2x";
-			path = "Resources/images-2x";
 			sourceTree = "<group>";
 		};
 		C1424A8BB874F02EEE6D8982 /* Docs */ = {
@@ -918,6 +947,7 @@
 			isa = PBXGroup;
 			children = (
 				DF39E01417A9887300FDA67A /* Classes */,
+				3306C38996F58DC76F82D93E /* Resources */,
 			);
 			path = JRCapture;
 			sourceTree = "<group>";
@@ -1058,6 +1088,7 @@
 				DFEFE3F317A9915200760FEE /* images */,
 				DFEFE44817A9915200760FEE /* images-2x */,
 				DFEFE49D17A9915200760FEE /* xibs */,
+				3306C285D18BF8E9B2D57447 /* en.lproj */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1333,8 +1364,9 @@
 		DFEFE49D17A9915200760FEE /* xibs */ = {
 			isa = PBXGroup;
 			children = (
+				4DB994BA18A3F84B00E4D116 /* en.lproj */,
+				4DB994B918A3F82D00E4D116 /* JRPublishActivityController.xib */,
 				DFEFE49E17A9915200760FEE /* JRProvidersController.xib */,
-				DFEFE49F17A9915200760FEE /* JRPublishActivityController.xib */,
 				DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */,
 				DFEFE4A117A9915200760FEE /* JRWebViewController.xib */,
 			);
@@ -1431,6 +1463,7 @@
 				DF39E03C17A9887300FDA67A /* .gitignore in Resources */,
 				DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */,
 				DFEFE4B317A9915200760FEE /* JREngage-Info.plist in Resources */,
+				4DB994BD18A3F84B00E4D116 /* JRPublishActivityController.xib in Resources */,
 				DFEFE4B517A9915200760FEE /* button_black_135x40.png in Resources */,
 				DFEFE4B617A9915200760FEE /* button_black_280x40.png in Resources */,
 				D823C6F7189C2FEA00993DAE /* logo_microsoftaccount_280x65@2x.png in Resources */,
@@ -1470,6 +1503,7 @@
 				DFEFE4D617A9915300760FEE /* icon_paypal_30x30.png in Resources */,
 				DFEFE4D717A9915300760FEE /* icon_salesforce_30x30.png in Resources */,
 				DFEFE4D817A9915300760FEE /* icon_soundcloud_30x30.png in Resources */,
+				4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */,
 				DFEFE4D917A9915300760FEE /* icon_tumblr_30x30.png in Resources */,
 				DFEFE4DA17A9915300760FEE /* icon_twitter_30x30.png in Resources */,
 				DFEFE4DB17A9915300760FEE /* icon_verisign_30x30.png in Resources */,
@@ -1594,7 +1628,6 @@
 				DFEFE55117A9915300760FEE /* profilepic_placeholder@2x.png in Resources */,
 				DFEFE55217A9915300760FEE /* triangle_icon@2x.png in Resources */,
 				DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */,
-				DFEFE55417A9915300760FEE /* JRPublishActivityController.xib in Resources */,
 				DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */,
 				D823C6F5189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png in Resources */,
 				DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */,
@@ -1608,6 +1641,8 @@
 				D8E0218D17D14CFB00013803 /* logo_googleplus_280x65.png in Resources */,
 				D8E0218F17D14D0C00013803 /* icon_googleplus_30x30@2x.png in Resources */,
 				D8E0219117D14D1800013803 /* logo_googleplus_280x65@2x.png in Resources */,
+				3306C17245BA3B16978120CA /* Localizable.strings in Resources */,
+				3306C504E4EB30699D49C31F /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1733,6 +1768,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3306C1C76C81D3A8D4ED2232 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3306C1D905E80CB37965B544 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3306C4925175C8478CBDD523 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4DB994B918A3F82D00E4D116 /* JRPublishActivityController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DB994B818A3F82D00E4D116 /* en */,
+			);
+			name = JRPublishActivityController.xib;
+			sourceTree = "<group>";
+		};
+		4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DB994BC18A3F84B00E4D116 /* en */,
+			);
+			name = JRPublishActivityController.xib;
+			sourceTree = "<group>";
+		};
 		90C36B6B7717AA0C893E0914 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
