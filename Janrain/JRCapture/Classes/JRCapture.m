@@ -497,7 +497,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
             @"client_id" : data.clientId,
             @"locale" : data.captureLocale,
             @"response_type" : @"token",
-            @"redirect_uri" : data.captureRedirectUri,
+            @"redirect_uri" : data.redirectUri,
             @"form" : data.captureForgottenPasswordFormName,
             @"flow" : data.captureFlowName,
             @"flow_version" : data.downloadedFlowVersion,
