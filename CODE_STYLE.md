@@ -6,7 +6,7 @@
 * Curly braces opening method definitions go on the line following the signature (e.g. K&R style)
 * Multi-line message sends align the first colon of each line
 * Dictionary & array literals have their opening braces on the ... ? line
-* Must be iOS 5 compatible
+* Must be iOS 6 compatible
 * 4 space indents
 * Spaces, not tabs
 * Practice information hiding
