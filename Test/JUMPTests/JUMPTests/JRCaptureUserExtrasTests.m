@@ -121,4 +121,23 @@
     GHAssertEqualObjects(actualFields, expectedFields, nil);
 }
 
+- (void)test_toFormFieldsForFormWithFlow_does_not_crash_when_field_is_not_in_schema
+{
+    NSDictionary *flow = @{
+            @"fields" : @{
+                    @"editProfileForm" : @{
+                            @"fields" : @[ @"message" ]
+                    },
+                    @"message" : @{
+                            @"schemaId" : @"badFieldDoesntExist"
+                    }
+            }
+    };
+
+    JRCaptureUser *user = [JRCaptureUser captureUser];
+    user.basicString = @"hello";
+
+    [user toFormFieldsForForm:@"editProfileForm" withFlow:[JRCaptureFlow flowWithDictionary:flow]];
+}
+
 @end
