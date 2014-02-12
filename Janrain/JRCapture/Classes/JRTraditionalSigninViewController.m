@@ -322,7 +322,7 @@ typedef enum
     } else if (alertView.tag == JRForgotPasswordAlertViewTag && buttonIndex == 1) {
         [delegate showLoading];
         [JRCapture startForgottenPasswordRecoveryForField:[alertView textFieldAtIndex:0].text
-                                               recoverUri:nil delegate:self];
+                                                 delegate:self];
     }
 }
 

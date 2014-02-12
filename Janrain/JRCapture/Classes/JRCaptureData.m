@@ -119,7 +119,6 @@ static JRCaptureData *singleton = nil;
 @synthesize captureAppId;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
-@synthesize passwordRecoverUri;
 
 - (JRCaptureData *)init
 {
@@ -248,7 +247,6 @@ static JRCaptureData *singleton = nil;
     captureDataInstance.captureAppId = config.captureAppId;
     captureDataInstance.captureForgottenPasswordFormName = config.forgottenPasswordFormName;
     captureDataInstance.captureEditProfileFormName = config.editProfileFormName;
-    captureDataInstance.passwordRecoverUri = config.passwordRecoverUri;
     captureDataInstance.resendEmailVerificationFormName = config.resendEmailVerificationFormName;
 
     if ([captureDataInstance.captureLocale length] &&

@@ -469,25 +469,12 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     }];
 }
 
-+ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
++ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue
                                       delegate:(id <JRCaptureDelegate>)delegate {
     JRCaptureData *data = [JRCaptureData sharedCaptureData];
     NSString *url = [NSString stringWithFormat:@"%@/oauth/forgot_password_native", data.captureBaseUrl];
     NSString *fieldName = [data getForgottenPasswordFieldName];
-
-    if (!recoverUri) recoverUri = data.passwordRecoverUri;
-    if (!recoverUri) {
-        JRCaptureError *captureError =
-                [JRCaptureError invalidArgumentErrorWithParameterName:@"recoverUri"];
-        if ([delegate respondsToSelector:@selector(forgottenPasswordRecoveryDidFailWithError:)]){
-            [delegate forgottenPasswordRecoveryDidFailWithError:captureError];
-        }
-
-        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
-                                    format:@"Missing argument/setting passwordRecoverUri"];
-        return;
-    }
-
+ 
     if (!fieldValue) {
         JRCaptureError *captureError =
                 [JRCaptureError invalidArgumentErrorWithParameterName:@"fieldValue"];
@@ -510,7 +497,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
             @"client_id" : data.clientId,
             @"locale" : data.captureLocale,
             @"response_type" : @"token",
-            @"redirect_uri" : recoverUri,
+            @"redirect_uri" : data.redirectUri,
             @"form" : data.captureForgottenPasswordFormName,
             @"flow" : data.captureFlowName,
             @"flow_version" : data.downloadedFlowVersion,
