@@ -236,7 +236,7 @@
 
 + (NSString *)jsonStringForValue:(id)userDict
 {
-    if (userDict == [NSNull null]) return nil;
+    if (!userDict || userDict == [NSNull null]) return nil;
     // This hack will get us the string-ified version of a JSON-able value.
     NSError *ignore = nil;
     NSArray *thisIsAHack = [NSArray arrayWithObject:userDict];
