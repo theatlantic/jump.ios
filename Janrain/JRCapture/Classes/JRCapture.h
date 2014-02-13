@@ -765,7 +765,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  *  @param delegate
  *    The JRCaptureDelegate object that wishes to receive messages regarding user authentication.
  */
-+ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue recoverUri:(NSString *)recoverUri
++ (void)startForgottenPasswordRecoveryForField:(NSString *)fieldValue
                                       delegate:(id <JRCaptureDelegate>)delegate;
 
 /**

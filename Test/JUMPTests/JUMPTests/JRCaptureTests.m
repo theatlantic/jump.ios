@@ -59,7 +59,7 @@
     id mockData = [OCMockObject partialMockForObject:captureData];
     [[[mockData stub] andReturn:[JRCaptureFlow flowWithDictionary:flow]] captureFlow];
     [[[mockData stub] andReturn:@"http://base.uri"] captureBaseUrl];
-    [[[mockData stub] andReturn:@"http://resetpassword.here"] passwordRecoverUri];
+    [[[mockData stub] andReturn:@"http://captureRedirectUri.here"] captureRedirectUri];
     [[[mockData stub] andReturn:@"resetPasswordForm"] captureForgottenPasswordFormName];
     [[[mockData stub] andReturn:@"abc123"] clientId];
     [[[mockData stub] andReturn:@"US-en"] captureLocale];
@@ -74,7 +74,7 @@
             @"client_id" : @"abc123",
             @"locale" : @"US-en",
             @"response_type" : @"token",
-            @"redirect_uri" : @"http://resetpassword.here",
+            @"redirect_uri" : @"http://captureRedirectUri_from_JRCaptureData",
             @"form" : @"resetPasswordForm",
             @"flow" : @"native_flow",
             @"flow_version" : @"123456",
@@ -86,7 +86,7 @@
 
     id connectionManager = [OCMockObject mockForClass:[JRConnectionManager class]];
     [[connectionManager expect] startURLConnectionWithRequest:expectedRequest completionHandler:[OCMArg any]];
-    [JRCapture startForgottenPasswordRecoveryForField:@"me@mydomain.name" recoverUri:nil delegate:nil];
+    [JRCapture startForgottenPasswordRecoveryForField:@"me@mydomain.name" delegate:nil];
     [connectionManager verify];
 }
 

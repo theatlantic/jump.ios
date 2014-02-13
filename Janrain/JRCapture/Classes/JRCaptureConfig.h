@@ -104,10 +104,6 @@
  **/
 @property (nonatomic) NSString *forgottenPasswordFormName;
 /**
- *  The base uri for creating the link in a password recovery email.
- */
-@property (nonatomic) NSString *passwordRecoverUri;
-/**
  *  The name of the form (from your flow) used for editing the user profile
  */
 @property (nonatomic) NSString *editProfileFormName;

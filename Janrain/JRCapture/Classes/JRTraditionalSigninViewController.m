@@ -331,7 +331,7 @@ typedef enum
     } else if (alertView.tag == JRForgotPasswordAlertViewTag && buttonIndex == 1) {
         [delegate showLoading];
         [JRCapture startForgottenPasswordRecoveryForField:[alertView textFieldAtIndex:0].text
-                                               recoverUri:nil delegate:self];
+                                                 delegate:self];
     }
 }
 
@@ -350,13 +350,32 @@ typedef enum
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
 {
     [delegate hideLoading];
-    NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey];
-    UIAlertView *alertView = [[UIAlertView alloc]
-            initWithTitle:NSLocalizedString(@"Could Not Reset Password", nil)
-                  message:errorMessage
-                 delegate:nil
-        cancelButtonTitle:NSLocalizedString(@"Dismiss", nil)
-        otherButtonTitles:nil];
+    NSString *errorMessage;
+
+    NSDictionary *msg = [error.userInfo objectForKey:@"invalid_fields"];
+    if (msg)
+    {
+        // The form name comes from config data, which is store by JRCaptureData
+        NSString *formName = [[JRCaptureData sharedCaptureData] captureForgottenPasswordFormName];
+        if (formName)
+        {
+            NSArray *form = [msg objectForKey:formName];
+            if (form && form.count)
+            {
+                // use the first invalid field.
+                errorMessage = form[0];
+            }
+        }
+    }
+    if (!errorMessage)
+    {
+        errorMessage = [error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey];
+    }
+
+    // read the localized error string from JRCaptureError.
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could Not Reset Password", nil)
+                                                        message:errorMessage delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil];
     [alertView show];
 }
 

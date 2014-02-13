@@ -248,6 +248,7 @@ static NSString *const ENGAGE_TOKEN_KEY = @"merge_token";
             break;
 
         case 390:
+        case 212:
             [self maybeCopyEntry:@"invalid_fields" from:result to:extraFields];
             break;
 
