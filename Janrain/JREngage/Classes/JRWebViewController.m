@@ -96,7 +96,7 @@
     [super viewWillAppear:animated];
     self.contentSizeForViewInPopover = self.view.frame.size;
 
-    self.title = (sessionData.currentProvider) ? sessionData.currentProvider.friendlyName : @"Loading";
+    self.title = (sessionData.currentProvider) ? sessionData.currentProvider.friendlyName : NSLocalizedString(@"Loading", nil);
 
     if (!infoBar)
     {
@@ -311,11 +311,10 @@
         {
             NSError *error = [JREngageError errorWithMessage:errorMessage andCode:JRAuthenticationFailedError];
 
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                                             message:@"An error occurred while attempting to sign you "
-                                                                     "in.  Please try again."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log In Failed", nil)
+                                                             message:NSLocalizedString(@"An error occurred while attempting to sign you in.  Please try again.", nil)
                                                             delegate:nil
-                                                   cancelButtonTitle:@"OK"
+                                                   cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                    otherButtonTitles:nil];
             [alert show];
 
@@ -334,17 +333,17 @@
             {
                 NSString *alertMessage;
                 if (sessionData.currentProvider.requiresInput)
-                    alertMessage = [NSString stringWithFormat:@"The %@ you entered was not valid. Please try again.",
-                                                              sessionData.currentProvider.shortText];
+                    alertMessage = [NSString stringWithFormat:NSLocalizedString(@"The %@ you entered was not valid. Please try again.", nil),
+                        sessionData.currentProvider.shortText];
                 else
-                    alertMessage = @"There was a problem authenticating with this provider. Please try again.";
+                    alertMessage = NSLocalizedString(@"There was a problem authenticating with this provider. Please try again.", nil);
 
                 DLog(@"Discovery failed for the OpenID you entered: %@", alertMessage);
 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Input", nil)
                                                                  message:alertMessage
                                                                 delegate:nil
-                                                       cancelButtonTitle:@"OK"
+                                                       cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                        otherButtonTitles:nil];
 
                 userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
@@ -357,17 +356,17 @@
             {
                 NSString *alertMessage;
                 if (sessionData.currentProvider.requiresInput)
-                    alertMessage = [NSString stringWithFormat:@"The %@ you entered was not valid. Please try again.",
+                    alertMessage = [NSString stringWithFormat:NSLocalizedString(@"The %@ you entered was not valid. Please try again.", nil),
                                                               sessionData.currentProvider.shortText];
                 else
-                    alertMessage = @"There was a problem authenticating with this provider. Please try again.";
+                    alertMessage = NSLocalizedString(@"There was a problem authenticating with this provider. Please try again.", nil);
 
                 DLog(@"The URL you entered does not appear to be an OpenID: %@", alertMessage);
 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Input"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Input", nil)
                                                                  message:alertMessage
                                                                 delegate:nil
-                                                       cancelButtonTitle:@"OK"
+                                                       cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                        otherButtonTitles:nil];
 
                 userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
@@ -386,11 +385,10 @@
             else
             {
                 NSError *error = [JREngageError errorWithMessage:errorMessage andCode:JRAuthenticationFailedError];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                                                 message:@"An error occurred while attempting to sign "
-                                                                         "you in.  Please try again."
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log In Failed", nil)
+                                                                 message:NSLocalizedString(@"An error occurred while attempting to sign you in.  Please try again.", nil)
                                                                 delegate:nil
-                                                       cancelButtonTitle:@"OK"
+                                                       cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                        otherButtonTitles:nil];
                 [alert show];
 
@@ -485,10 +483,10 @@
                                                                                        [error localizedDescription]]
                                                     andCode:JRAuthenticationFailedError];
 
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                                         message:@"An error occurred while attempting to sign you in.  Please try again."
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log In Failed", nil)
+                                                         message:NSLocalizedString(@"An error occurred while attempting to sign you in.  Please try again.", nil)
                                                         delegate:nil
-                                               cancelButtonTitle:@"OK"
+                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                otherButtonTitles:nil];
         [alert show];
 

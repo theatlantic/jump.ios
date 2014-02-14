@@ -38,6 +38,8 @@
 		308D05381370CCF300D202BF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D052F1370CCF300D202BF /* icon.png */; };
 		308D05391370CCF300D202BF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D05301370CCF300D202BF /* icon@2x.png */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3306C3D6F80E74AC765E2936 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3306C5EFCFBF49565CC5B15E /* JRPublishActivityController.xib */; };
+		3306CB7E8C0B9F582C9FFF69 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CDC6608831F92753E0AA /* Localizable.strings */; };
 		4E007BA8181F89C000F44705 /* JRCompatibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E007BA7181F89C000F44705 /* JRCompatibilityUtils.m */; };
 		4E1D938417CB4C9B00516D59 /* JRConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D928E17CB4C9A00516D59 /* JRConnectionManager.m */; };
 		4E1D938517CB4C9B00516D59 /* NSDictionary+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D929017CB4C9A00516D59 /* NSDictionary+JRQueryParams.m */; };
@@ -224,7 +226,6 @@
 		4E1D943A17CB4C9B00516D59 /* profilepic_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1D936517CB4C9B00516D59 /* profilepic_placeholder@2x.png */; };
 		4E1D943B17CB4C9B00516D59 /* triangle_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E1D936617CB4C9B00516D59 /* triangle_icon@2x.png */; };
 		4E1D943C17CB4C9B00516D59 /* JRProvidersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E1D936817CB4C9B00516D59 /* JRProvidersController.xib */; };
-		4E1D943D17CB4C9B00516D59 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E1D936917CB4C9B00516D59 /* JRPublishActivityController.xib */; };
 		4E1D943E17CB4C9B00516D59 /* JRUserLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E1D936A17CB4C9B00516D59 /* JRUserLandingController.xib */; };
 		4E1D943F17CB4C9B00516D59 /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E1D936B17CB4C9B00516D59 /* JRWebViewController.xib */; };
 		4E1D944017CB4C9B00516D59 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D936E17CB4C9B00516D59 /* SFHFKeychainUtils.m */; };
@@ -299,6 +300,8 @@
 		30A0434714DC770100060A13 /* se */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = se; path = Localizable.strings; sourceTree = "<group>"; };
 		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* jr-pg-test-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "jr-pg-test-Prefix.pch"; sourceTree = "<group>"; };
+		3306C01BD8DFF4732E010661 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = JRPublishActivityController.xib; sourceTree = "<group>"; };
+		3306CE212EEDD7ECB898ACF3 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		4E007BA6181F89C000F44705 /* JRCompatibilityUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCompatibilityUtils.h; sourceTree = "<group>"; };
 		4E007BA7181F89C000F44705 /* JRCompatibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCompatibilityUtils.m; sourceTree = "<group>"; };
 		4E1D928D17CB4C9A00516D59 /* JRConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRConnectionManager.h; sourceTree = "<group>"; };
@@ -505,7 +508,6 @@
 		4E1D936517CB4C9B00516D59 /* profilepic_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profilepic_placeholder@2x.png"; sourceTree = "<group>"; };
 		4E1D936617CB4C9B00516D59 /* triangle_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangle_icon@2x.png"; sourceTree = "<group>"; };
 		4E1D936817CB4C9B00516D59 /* JRProvidersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRProvidersController.xib; sourceTree = "<group>"; };
-		4E1D936917CB4C9B00516D59 /* JRPublishActivityController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRPublishActivityController.xib; sourceTree = "<group>"; };
 		4E1D936A17CB4C9B00516D59 /* JRUserLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRUserLandingController.xib; sourceTree = "<group>"; };
 		4E1D936B17CB4C9B00516D59 /* JRWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRWebViewController.xib; sourceTree = "<group>"; };
 		4E1D936D17CB4C9B00516D59 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
@@ -726,6 +728,22 @@
 			path = se.lproj;
 			sourceTree = "<group>";
 		};
+		3306C49A33DEB54D0F9B9CFA /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				3306CDC6608831F92753E0AA /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		3306CD8600CE87566DA59637 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				3306C5EFCFBF49565CC5B15E /* JRPublishActivityController.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		4E1D926517CB4C9A00516D59 /* Janrain */ = {
 			isa = PBXGroup;
 			children = (
@@ -821,6 +839,7 @@
 				4E1D92B917CB4C9B00516D59 /* images */,
 				4E1D931017CB4C9B00516D59 /* images-2x */,
 				4E1D936717CB4C9B00516D59 /* xibs */,
+				3306C49A33DEB54D0F9B9CFA /* en.lproj */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1085,9 +1104,9 @@
 			isa = PBXGroup;
 			children = (
 				4E1D936817CB4C9B00516D59 /* JRProvidersController.xib */,
-				4E1D936917CB4C9B00516D59 /* JRPublishActivityController.xib */,
 				4E1D936A17CB4C9B00516D59 /* JRUserLandingController.xib */,
 				4E1D936B17CB4C9B00516D59 /* JRWebViewController.xib */,
+				3306CD8600CE87566DA59637 /* en.lproj */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -1364,9 +1383,10 @@
 				4E1D943A17CB4C9B00516D59 /* profilepic_placeholder@2x.png in Resources */,
 				4E1D943B17CB4C9B00516D59 /* triangle_icon@2x.png in Resources */,
 				4E1D943C17CB4C9B00516D59 /* JRProvidersController.xib in Resources */,
-				4E1D943D17CB4C9B00516D59 /* JRPublishActivityController.xib in Resources */,
 				4E1D943E17CB4C9B00516D59 /* JRUserLandingController.xib in Resources */,
 				4E1D943F17CB4C9B00516D59 /* JRWebViewController.xib in Resources */,
+				3306CB7E8C0B9F582C9FFF69 /* Localizable.strings in Resources */,
+				3306C3D6F80E74AC765E2936 /* JRPublishActivityController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1467,6 +1487,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				30A0434714DC770100060A13 /* se */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3306C5EFCFBF49565CC5B15E /* JRPublishActivityController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3306C01BD8DFF4732E010661 /* en */,
+			);
+			name = JRPublishActivityController.xib;
+			sourceTree = "<group>";
+		};
+		3306CDC6608831F92753E0AA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3306CE212EEDD7ECB898ACF3 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

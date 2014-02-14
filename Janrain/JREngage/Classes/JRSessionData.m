@@ -170,9 +170,9 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
         if (welcomeString && ![welcomeString isEqualToString:@""]) {
             _welcomeString = welcomeString;
         } else if (_preferredUsername) {
-            _welcomeString = [NSString stringWithFormat:@"Sign in as %@?", _preferredUsername];
+            _welcomeString = [NSString stringWithFormat:NSLocalizedString(@"Sign in as %@?", nil), _preferredUsername];
         } else {
-            _welcomeString = @"Sign back in?";
+            _welcomeString = NSLocalizedString(@"Sign back in?", nil);
         }
     }
 
@@ -213,7 +213,7 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
         _welcomeString     = [coder decodeObjectForKey:cJRUserWelcomeString];
 
         if (!_welcomeString)
-            _welcomeString = [NSString stringWithFormat:@"Sign in as %@?", _preferredUsername];
+            _welcomeString = [NSString stringWithFormat:NSLocalizedString(@"Sign in as %@?", nil), _preferredUsername];
 
         NSError *error = nil;
         _deviceToken = [SFHFKeychainUtils getPasswordForUsername:_providerName
@@ -686,7 +686,7 @@ static JRSessionData *singleton = nil;
     if (![JRConnectionManager createConnectionFromRequest:configRequest forDelegate:self returnFullResponse:YES
                                                   withTag:GET_CONFIGURATION_TAG])
     {
-        NSString *errMsg = @"There was a problem connecting to the Janrain server while configuring authentication.";
+        NSString *errMsg = NSLocalizedString(@"There was a problem connecting to the Janrain server while configuring authentication.", nil);
         return [JREngageError errorWithMessage:errMsg andCode:JRUrlError];
     }
 
@@ -925,9 +925,9 @@ static JRSessionData *singleton = nil;
             if ([strArr count] <= 5)
                 return nil;
 
-            return [[[NSString stringWithFormat:@"Sign in as %@?", (NSString *)[strArr objectAtIndex:5]]
+            return [[[NSString stringWithFormat:NSLocalizedString(@"Sign in as %@?", nil), (NSString *) [strArr objectAtIndex:5]]
                      stringByReplacingOccurrencesOfString:@"+" withString:@" "]
-                        stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                        stringByReplacingPercentEscapesUsingEncoding:NSUnicodeStringEncoding];
         }
     }
 

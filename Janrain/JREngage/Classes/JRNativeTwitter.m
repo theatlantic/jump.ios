@@ -141,16 +141,18 @@
     self.backgroundView.backgroundColor = [UIColor clearColor];
     [window addSubview:self.backgroundView];
 
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Choose a Twitter Account"
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
+
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+            initWithTitle:NSLocalizedString(@"Choose a Twitter Account", nil)
+                 delegate:self
+        cancelButtonTitle:nil
+   destructiveButtonTitle:nil
+        otherButtonTitles:nil];
     actionSheet.delegate = self;
     for (ACAccount *account in self.accounts) {
         [actionSheet addButtonWithTitle:account.username];
     }
-    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [actionSheet showInView:self.backgroundView];
 }
 

@@ -134,8 +134,8 @@
         self.navigationItem.titleView = titleView;
     } else {
         NSString *l10n = ([customInterface objectForKey:kJRProviderTableTitleString]) ?
-            [customInterface objectForKey:kJRProviderTableTitleString] : @"Sign in with...";
-        self.navigationItem.title = NSLocalizedString(l10n, @"");
+            [customInterface objectForKey:kJRProviderTableTitleString] : NSLocalizedString(@"Sign in with...",nil);
+        self.navigationItem.title = l10n;
     }
 
     myTableView.tableHeaderView = [customInterface objectForKey:kJRProviderTableHeaderView];
@@ -300,11 +300,11 @@
         UIApplication *app = [UIApplication sharedApplication];
         app.networkActivityIndicatorVisible = YES;
 
-        NSString *message = @"There are no available providers. Either there is a problem connecting or no providers "
-                "have been configured. Please try again later.";
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Available Providers" message:message
+        NSString *message = NSLocalizedString(@"There are no available providers. Either there is a problem connecting or no providers "
+                "have been configured. Please try again later.", nil);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Available Providers",nil) message:message
                                                         delegate:self
-                                               cancelButtonTitle:@"OK"
+                                               cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                                otherButtonTitles:nil];
         [alert show];
         return;
@@ -361,7 +361,7 @@
 
     UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 180, 320, 30)];
 
-    [loadingLabel setText:@"Completing Sign-In..."];
+    [loadingLabel setText:NSLocalizedString(@"Completing Sign-In...",nil)];
     [loadingLabel setFont:[UIFont systemFontOfSize:20.0]];
     [loadingLabel setTextAlignment:(int)JR_TEXT_ALIGN_CENTER];
     [loadingLabel setTextColor:[UIColor whiteColor]];
@@ -515,7 +515,7 @@
             [myActivitySpinner setHidden:NO];
             [myLoadingLabel setHidden:NO];
             [myActivitySpinner startAnimating];
-            myLoadingLabel.text = @"Signing in ...";
+            myLoadingLabel.text = NSLocalizedString(@"Signing in ...",nil);
         }];
 
         [sessionData setCurrentProvider:provider];
