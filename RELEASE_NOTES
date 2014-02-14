@@ -1,3 +1,12 @@
+v3.7.0
+ - SDK now uses Automatic Reference Counting
+ - Removed unused backplane support
+ - Added icon support for Microsoft Account provider
+ - User landing screen now uses square provider icons
+ - Fixed bug with SMS URL shortening (Thanks hanvic)
+ - Fixed crash when flow references field that does not exist in user record
+ - User facing strings are now localizable
+ - Added notification for when flow download succeeds or fails
 v3.6.1
  - Allow Capture Domain, Capture Client ID, and Engage App ID to be changed
    after initalization
