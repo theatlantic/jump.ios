@@ -482,7 +482,6 @@
 
         id pVal;
 
-        DLog(@"deepClearDirtyProperties: Calling selector %@", pName);
         NSMethodSignature *propSignature = [[self class] instanceMethodSignatureForSelector:pSelector];
         NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
         if (!propSignature || !propInvoker)
