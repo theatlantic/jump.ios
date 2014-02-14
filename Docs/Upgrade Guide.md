@@ -16,6 +16,12 @@ The Janrain iOS SDK now requires Automatic Reference Counting (ARC). Follow the 
 the "Objective-C Automatic Reference Counting" build setting to "YES" and add the `-fno-objc-arc` compiler flag to
 any of your sources that do not support ARC.
 
+#### Solutions
+* **no known class method for selector 'startForgottenPasswordRecoveryForField:recoverUri:delegate:'**
+
+    The `recoverUri` parameter has been removed from this method. Use the `password_recover_url` Capture dashboard
+    setting instead and call the method `[JRCapture startForgottenPasswordRecoveryForField:delegate:]`.
+
 ### Upgrading from any version to v3.6 or greater
 1. Ensure that the **Accounts** and **Social** frameworks have been added to your project.
 2. Ensure that your deployment target is at least iOS 6.
