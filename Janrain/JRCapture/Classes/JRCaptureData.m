@@ -36,6 +36,7 @@
 #import "JREngageWrapper.h"
 #import "JRCaptureFlow.h"
 #import "JRCaptureError.h"
+#import "JRCapture.h"
 
 #define cJRCaptureKeychainIdentifier @"capture_tokens.janrain"
 #define cJRCaptureKeychainUserName @"capture_user"
