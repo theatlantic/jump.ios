@@ -35,6 +35,7 @@
 #import "NSDictionary+JRQueryParams.h"
 #import "JREngageWrapper.h"
 #import "JRCaptureFlow.h"
+#import "JRCaptureError.h"
 
 #define cJRCaptureKeychainIdentifier @"capture_tokens.janrain"
 #define cJRCaptureKeychainUserName @"capture_user"
@@ -119,6 +120,7 @@ static JRCaptureData *singleton = nil;
 @synthesize captureAppId;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
+
 
 - (JRCaptureData *)init
 {
@@ -285,20 +287,33 @@ static JRCaptureData *singleton = nil;
     NSMutableURLRequest *downloadRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:flowUrlString]];
     [downloadRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 
-    [NSURLConnection sendAsynchronousRequest:downloadRequest queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e)
-                           {
-                               if (e)
-                               {
-                                   ALog(@"Error downloading flow: %@", e);
-                                   return;
-                               }
-                               DLog(@"Fetched flow URL: %@", flowUrlString);
-                               [self processFlow:d response:(NSHTTPURLResponse *) r];
-                           }];
+    [NSURLConnection
+       sendAsynchronousRequest:downloadRequest
+                         queue:[NSOperationQueue mainQueue]
+             completionHandler:^(NSURLResponse *r, NSData *d, NSError *e)
+             {
+                 /*
+                  * "Notification Centers" @ developer.apple.com
+                  * A notification center delivers notifications to observers synchronously. In other words,
+                  * when posting a notification, control does not return to the poster until all observers
+                  * have received and processed the notification. To send notifications asynchronously use
+                  * a notification queue, which is described in “Notification Queues.”
+                  */
+                 if (e)
+                 {
+                     ALog(@"Error downloading flow: %@", e);
+                     NSNotification *notification = [NSNotification notificationWithName:JRDownloadFlowResult object:e];
+                     [[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostWhenIdle];
+                     return;
+                 }
+                 DLog(@"Fetched flow URL: %@", flowUrlString);
+                 NSError *error = [self processFlow:d response:(NSHTTPURLResponse *) r];
+                 NSNotification *notification = [NSNotification notificationWithName:JRDownloadFlowResult object:error];
+                 [[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostWhenIdle];
+             }];
 }
 
-- (void)processFlow:(NSData *)flowData response:(NSHTTPURLResponse *)response
+- (NSError *)processFlow:(NSData *)flowData response:(NSHTTPURLResponse *)response
 {
     NSError *jsonErr = nil;
     NSObject *parsedFlow = [NSJSONSerialization JSONObjectWithData:flowData options:(NSJSONReadingOptions) 0
@@ -309,19 +324,27 @@ static JRCaptureData *singleton = nil;
         NSString *responseString = [NSHTTPURLResponse localizedStringForStatusCode:[response statusCode]];
         ALog(@"Error parsing flow JSON, response: %@", responseString);
         ALog(@"Error parsing flow JSON, err: %@", [jsonErr description]);
-        return;
+        return jsonErr;
     }
     
     if (![parsedFlow isKindOfClass:[NSDictionary class]])
     {
-        ALog(@"Error parsing flow JSON, top level object was not a hash...: %@", [parsedFlow description]);
-        return;
+        NSString *errorMsg = [NSString stringWithFormat:@"Error parsing flow JSON, top level object was not a hash...: %@",
+                        [parsedFlow description]];
+
+        ALog(@"%@", errorMsg);
+        JRCaptureError *error = [JRCaptureError errorWithErrorString:@"JSON Parsing Error"
+                                                                code:JRCaptureErrorWhileParsingJson
+                                                         description:errorMsg
+                                                         extraFields:nil];
+        return error;
     }
 
     self.captureFlow = [JRCaptureFlow flowWithDictionary:(NSDictionary *) parsedFlow];
     DLog(@"Parsed flow, version: %@", [self downloadedFlowVersion]);
     
     [self writeCaptureFlow];
+    return nil;
 }
 
 - (void)writeCaptureFlow

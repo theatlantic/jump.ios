@@ -35,6 +35,7 @@
 #import "JRSessionData.h"
 #import "JRCaptureData.h"
 #import "JRCaptureConfig.h"
+#import "JRCaptureError.h"
 
 #ifdef JR_FACEBOOK_SDK_TEST
 #  import "FacebookSDK/FacebookSDK.h"
@@ -76,6 +77,13 @@ AppDelegate *appDelegate = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     appDelegate = self;
+
+    // register for Janrain notification(s)
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(onJRDownLoadFlowResult:)
+                   name:JRDownloadFlowResult object:nil];
+
 
     [self loadDemoConfigFromPlist];
 
@@ -220,4 +228,18 @@ AppDelegate *appDelegate = nil;
     [self.prefs setObject:[NSKeyedArchiver archivedDataWithRootObject:self.captureUser] forKey:cJRCaptureUser];
 }
 
+- (void)onJRDownLoadFlowResult:(NSNotification *)notification
+{
+    if ([notification object] != nil){
+        JRCaptureError *error = (JRCaptureError*)[notification object];
+        NSLog(@"JRCaptureError! Desc=%@", [error localizedDescription]);
+        for (NSString *key in [[error userInfo] allKeys]){
+            NSLog(@"JRCaptureError:%@", [[error userInfo] objectForKey:key]);
+        }
+    }
+    else
+    {
+        NSLog(@"THE Janrain FLOW was successfully downloaded");
+    }
+}
 @end
