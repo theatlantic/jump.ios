@@ -1,3 +1,5 @@
+v3.7.1
+ - Added notification for when flow download succeeds or fails
 v3.7.0
  - SDK now uses Automatic Reference Counting
  - Removed unused backplane support
@@ -6,7 +8,6 @@ v3.7.0
  - Fixed bug with SMS URL shortening (Thanks hanvic)
  - Fixed crash when flow references field that does not exist in user record
  - User facing strings are now localizable
- - Added notification for when flow download succeeds or fails
 v3.6.1
  - Allow Capture Domain, Capture Client ID, and Engage App ID to be changed
    after initalization
