@@ -329,8 +329,10 @@
         [propInvoker setSelector:pSelector];
         [propInvoker setTarget:resultsArray];
         [propInvoker setArgument:&capturePath atIndex:2 /*yes, that's right. 2 is the first arg*/];
-        [propInvoker setReturnValue:&newArray];
         [propInvoker invoke];
+        id __unsafe_unretained result;
+        [propInvoker getReturnValue:&result];
+        newArray = (NSArray *)result;
     }
 
     NSMethodSignature *propSignature = [[captureObject class] instanceMethodSignatureForSelector:setNewArrayInParentSelector];
@@ -480,7 +482,7 @@
         SEL pSelector = NSSelectorFromString(pName);
         if (![self respondsToSelector:pSelector]) continue;
 
-        id pVal;
+        id __unsafe_unretained pVal;
 
         NSMethodSignature *propSignature = [[self class] instanceMethodSignatureForSelector:pSelector];
         NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
@@ -491,8 +493,8 @@
         }
         [propInvoker setSelector:pSelector];
         [propInvoker setTarget:self];
-        [propInvoker setReturnValue:&pVal];
         [propInvoker invoke];
+        [propInvoker getReturnValue:&pVal];
 
         if ([pAttr characterAtIndex:1] != '@' || ![pVal isKindOfClass:[JRCaptureObject class]]) continue;
         [pVal deepClearDirtyProperties];
@@ -621,8 +623,10 @@
         }
         [propInvoker setSelector:pSelector];
         [propInvoker setTarget:array];
-        [propInvoker setReturnValue:&serialized];
         [propInvoker invoke];
+        id __unsafe_unretained result;
+        [propInvoker getReturnValue:&result];
+        serialized = (NSArray *)result;
     }
     else
     {
@@ -699,7 +703,7 @@
         const SEL selectorForProp = NSSelectorFromString(key);
         
         // call the selector on self to get an id object named 'prop'
-        id prop = nil;
+        id __unsafe_unretained prop = nil;
         NSMethodSignature *propSignature = [[self class] instanceMethodSignatureForSelector:selectorForProp];
         NSInvocation *propInvoker = [NSInvocation invocationWithMethodSignature:propSignature];
         if (!propSignature || !propInvoker)
@@ -709,11 +713,11 @@
         }
         [propInvoker setSelector:selectorForProp];
         [propInvoker setTarget:self];
-        [propInvoker setReturnValue:&prop];
         [propInvoker invoke];
+        [propInvoker getReturnValue:&prop];
         
         // call the selector on otherObj to get an id object named 'otherProp'
-        id otherProp = nil;
+        id __unsafe_unretained otherProp = nil;
         NSMethodSignature *otherPropSignature = [[otherObj class] instanceMethodSignatureForSelector:selectorForProp];
         NSInvocation *otherPropInvoker = [NSInvocation invocationWithMethodSignature:otherPropSignature];
         if (!otherPropSignature || !otherPropInvoker)
@@ -723,8 +727,8 @@
         }
         [propInvoker setSelector:selectorForProp];
         [propInvoker setTarget:otherObj];
-        [propInvoker setReturnValue:&otherProp];
         [propInvoker invoke];
+        [propInvoker getReturnValue:&otherProp];
 
         
         if ([prop isKindOfClass:[JRCaptureObject class]])
