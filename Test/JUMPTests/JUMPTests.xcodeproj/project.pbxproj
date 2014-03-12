@@ -284,6 +284,7 @@
 		19BC0FE56C56BE4C751F88D1 /* JRPinapL1PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1B48A04D52E560A347 /* JRPinapL1PluralElement.m */; };
 		19BC0FE7884027C863381A6C /* icon_wordpress_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC020F8CB93E7BFA558068 /* icon_wordpress_30x30.png */; };
 		19BC0FF6CE47576213D6C842 /* icon_myspace_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC054D3E0023C14766628F /* icon_myspace_30x30@2x.png */; };
+		3306CADF0ADF347E9B87E5F5 /* JRCaptureObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3306C218022F50807D22ADCE /* JRCaptureObjectTests.m */; };
 		9FEB3888158130E1007706DC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEB3886158130E1007706DC /* MessageUI.framework */; };
 		9FEB3889158130E1007706DC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEB3887158130E1007706DC /* Security.framework */; };
 		C14242C007F83BB4E693E6FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C142496846000070E975C56D /* QuartzCore.framework */; };
@@ -659,6 +660,7 @@
 		19BC0FC0A80017FAF365B4EC /* icon_bw_sms_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_sms_30x30@2x.png"; sourceTree = "<group>"; };
 		19BC0FC7653D473E6B3230BD /* JRPinapL1PluralElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPinapL1PluralElement.h; sourceTree = "<group>"; };
 		19BC0FCA9A9B237A79E01C40 /* ATTRIBUTION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ATTRIBUTION; sourceTree = "<group>"; };
+		3306C218022F50807D22ADCE /* JRCaptureObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureObjectTests.m; sourceTree = "<group>"; };
 		9FEB3886158130E1007706DC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9FEB3887158130E1007706DC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C142496846000070E975C56D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1328,6 +1330,7 @@
 				19BC05E57594F7DEF6A7F0BE /* JRCaptureUserExtrasTests.m */,
 				19BC0AA9ED5739B546754F5E /* JRCaptureUIRequestBuilderTests.m */,
 				19BC0868554BD33EC8DBC083 /* JRNativeTwitterTests.m */,
+				3306C218022F50807D22ADCE /* JRCaptureObjectTests.m */,
 			);
 			path = JUMPTests;
 			sourceTree = "<group>";
@@ -1681,6 +1684,7 @@
 				19BC0A78A178214E0B9C9FA4 /* NSDictionary+JRQueryParams.m in Sources */,
 				19BC0BCF3D60884323318DBA /* NSURLRequest+JRQueryParams.m in Sources */,
 				19BC036A3551828BC19D45D7 /* NSMutableURLRequest+JRRequestUtils.m in Sources */,
+				3306CADF0ADF347E9B87E5F5 /* JRCaptureObjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
