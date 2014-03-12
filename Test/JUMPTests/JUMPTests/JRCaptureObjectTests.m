@@ -42,13 +42,6 @@
 
 - (void) test_NSInvocationCallingConvention
 {
-    // JRCaptureObject has a test method that gives access to
-    // "- (void)replaceCaptureArrayDidSucceedWithResult:(NSObject *)result context:(NSObject *)context"
-    // which is what this test targets
-
-    //JRCaptureObject *objectCopy = [[JRCaptureObject alloc] init];
-
-
     //
     //  Test how to get a result from NSInvocation
     //
