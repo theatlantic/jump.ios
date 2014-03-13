@@ -1,3 +1,6 @@
+v3.7.2
+ - Fixes bug that would replace plurals with an empty array when the array
+   should be non-empty
 v3.7.1
  - Added notification for when flow download succeeds or fails
 v3.7.0
