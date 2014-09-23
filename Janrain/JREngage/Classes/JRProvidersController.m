@@ -147,7 +147,7 @@
     if ([maybeCaptureSignInVc isKindOfClass:NSClassFromString(@"JRTraditionalSignInViewController")])
     {
         if ([maybeCaptureSignInVc respondsToSelector:@selector(setDelegate:)]){
-            [maybeCaptureSignInVc setDelegate:(id<NSFileManagerDelegate>)self];
+            [maybeCaptureSignInVc setDelegate:((id<NSFileManagerDelegate>)self)];
         } else {
             DLog(@"setDelegate selector not found on object %@", maybeCaptureSignInVc);
             // TODO: NSAssert here?
