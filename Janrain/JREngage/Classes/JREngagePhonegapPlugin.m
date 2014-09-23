@@ -110,7 +110,7 @@
 {
     NSMutableDictionary *errorResponse = [NSMutableDictionary dictionary];
 
-    [errorResponse setObject:[NSNumber numberWithInt:error.code] forKey:@"code"];
+    [errorResponse setObject:[NSNumber numberWithInteger:error.code] forKey:@"code"];
     [errorResponse setObject:error.localizedDescription forKey:@"message"];
     [errorResponse setObject:@"fail" forKey:@"stat"];
 
@@ -121,7 +121,7 @@
 {
     NSMutableDictionary *errorResponse = [NSMutableDictionary dictionary];
 
-    [errorResponse setObject:[NSNumber numberWithInt:code] forKey:@"code"];
+    [errorResponse setObject:[NSNumber numberWithInteger:code] forKey:@"code"];
     [errorResponse setObject:message forKey:@"message"];
     [errorResponse setObject:@"fail" forKey:@"stat"];
 
@@ -319,7 +319,7 @@
             [NSDictionary dictionaryWithObjectsAndKeys:
                                   provider, @"provider",
                                   @"fail", @"stat",
-                                  [NSString stringWithFormat:@"%d", error.code], @"code",
+                                  [NSString stringWithFormat:@"%ld", (long)error.code], @"code",
                                   error.localizedDescription, @"message", nil];
 
     if (!shareBlobs)

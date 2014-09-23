@@ -36,7 +36,7 @@ NSString *JREngageErrorDomain = @"JREngage.ErrorDomain";
 @implementation JREngageError
 + (NSError *)errorWithMessage:(NSString *)message andCode:(NSInteger)code
 {
-    ALog (@"An error occurred (%d): %@", code, message);
+    ALog (@"An error occurred (%ld): %@", (long)code, message);
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [NSString stringWithString:message], NSLocalizedDescriptionKey, nil];
 

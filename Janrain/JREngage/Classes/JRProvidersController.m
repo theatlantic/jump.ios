@@ -147,7 +147,7 @@
     if ([maybeCaptureSignInVc isKindOfClass:NSClassFromString(@"JRTraditionalSignInViewController")])
     {
         if ([maybeCaptureSignInVc respondsToSelector:@selector(setDelegate:)]){
-            [maybeCaptureSignInVc setDelegate:self];
+            [maybeCaptureSignInVc setDelegate:(id<NSFileManagerDelegate>)self];
         } else {
             DLog(@"setDelegate selector not found on object %@", maybeCaptureSignInVc);
             // TODO: NSAssert here?
@@ -274,7 +274,7 @@
 
     timer = nil;
 
-    DLog(@"prov count = %d", [sessionData.authenticationProviders count]);
+    DLog(@"prov count = %lu", (unsigned long)[sessionData.authenticationProviders count]);
     DLog(@"interval = %f", interval);
 
     if ([sessionData.authenticationProviders count] > 0)

@@ -756,7 +756,7 @@ static JRSessionData *singleton = nil;
     #define MAX_LOGGED_CONFIG_RESPONSE_LENGTH 80
     NSUInteger max = [configJson length];
     if (max > MAX_LOGGED_CONFIG_RESPONSE_LENGTH) max = MAX_LOGGED_CONFIG_RESPONSE_LENGTH;
-    ALog (@"Configuration information downloaded (%d): %@", [response statusCode], [configJson substringToIndex:max]);
+    ALog (@"Configuration information downloaded (%ld): %@", (long)[response statusCode], [configJson substringToIndex:max]);
 
     NSDictionary *configDict = [configJson JR_objectFromJSONString];
     NSString *err = @"There was a problem communicating with the Janrain server while configuring authentication.";
