@@ -160,7 +160,7 @@
     }
     else
     {
-        urlsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"urls", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        urlsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"urls", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         urlsElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -196,7 +196,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"urls", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"urls", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.primary =
         [dictionary objectForKey:@"primary"] != [NSNull null] ? 

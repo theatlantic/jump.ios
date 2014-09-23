@@ -295,7 +295,7 @@
     }
     else
     {
-        addressesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"addresses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        addressesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"addresses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         addressesElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -367,7 +367,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"addresses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"addresses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.country =
         [dictionary objectForKey:@"country"] != [NSNull null] ? 

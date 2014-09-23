@@ -133,7 +133,7 @@
     }
     else
     {
-        statusesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"statuses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        statusesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"statuses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         statusesElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -165,7 +165,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"statuses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"statuses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.status =
         [dictionary objectForKey:@"status"] != [NSNull null] ? 

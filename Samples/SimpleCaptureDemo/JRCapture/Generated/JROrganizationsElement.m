@@ -258,7 +258,7 @@
     }
     else
     {
-        organizationsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"organizations", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        organizationsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"organizations", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         organizationsElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -318,7 +318,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"organizations", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"organizations", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.department =
         [dictionary objectForKey:@"department"] != [NSNull null] ? 

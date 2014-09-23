@@ -133,7 +133,7 @@
     }
     else
     {
-        photosElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"photos", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        photosElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"photos", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         photosElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -165,7 +165,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"photos", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"photos", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.type =
         [dictionary objectForKey:@"type"] != [NSNull null] ? 

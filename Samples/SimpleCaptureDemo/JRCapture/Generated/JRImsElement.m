@@ -160,7 +160,7 @@
     }
     else
     {
-        imsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"ims", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        imsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"ims", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         imsElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -196,7 +196,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"ims", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"ims", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.primary =
         [dictionary objectForKey:@"primary"] != [NSNull null] ? 
