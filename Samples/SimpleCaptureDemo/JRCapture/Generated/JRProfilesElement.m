@@ -209,7 +209,7 @@
         _domain = [newDomain copy];
         _identifier = [newIdentifier copy];
         _profile = [[JRProfile alloc] init];
-    
+
         [self.dirtyPropertySet setSet:[self updatablePropertySet]];
     }
     return self;
@@ -227,7 +227,7 @@
 
 - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary __weak *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.accessCredentials ? self.accessCredentials : [NSNull null])
@@ -257,10 +257,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -329,7 +329,7 @@
         [profilesElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [profilesElement.dirtyPropertySet removeAllObjects];
-    
+
     return profilesElement;
 }
 
@@ -586,7 +586,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"JRJsonObject" forKey:@"accessCredentials"];

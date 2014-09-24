@@ -80,6 +80,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "90C36B6B7717AA0C893E08E1"
+            BuildableName = "SimpleCaptureDemo.app"
+            BlueprintName = "SimpleCaptureDemo"
+            ReferencedContainer = "container:SimpleCaptureDemo.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
