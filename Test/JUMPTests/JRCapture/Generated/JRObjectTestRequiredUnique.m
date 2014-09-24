@@ -60,6 +60,7 @@
 - (void)setRequiredString:(NSString *)newRequiredString
 {
     [self.dirtyPropertySet addObject:@"requiredString"];
+
     _requiredString = [newRequiredString copy];
 }
 
@@ -71,6 +72,7 @@
 - (void)setUniqueString:(NSString *)newUniqueString
 {
     [self.dirtyPropertySet addObject:@"uniqueString"];
+
     _uniqueString = [newUniqueString copy];
 }
 
@@ -82,6 +84,7 @@
 - (void)setRequiredUniqueString:(NSString *)newRequiredUniqueString
 {
     [self.dirtyPropertySet addObject:@"requiredUniqueString"];
+
     _requiredUniqueString = [newRequiredUniqueString copy];
 }
 
@@ -317,7 +320,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-}
 @end

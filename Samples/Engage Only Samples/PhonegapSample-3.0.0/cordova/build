@@ -23,29 +23,34 @@
 # compile and launch a Cordova/iOS project to the simulator
 #
 
-set -e
-
-XCODE_VER=$(xcodebuild -version | head -n 1 | sed -e 's/Xcode //')
-XCODE_MIN_VERSION="4.5"
-
-if [[ "$XCODE_VER" < "$XCODE_MIN_VERSION" ]]; then
-	echo "Cordova can only run in Xcode version $XCODE_MIN_VERSION or greater."
-	exit 1
-fi
-
 CORDOVA_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$CORDOVA_PATH")"
 XCODEPROJ=$( ls "$PROJECT_PATH" | grep .xcodeproj  )
 PROJECT_NAME=$(basename "$XCODEPROJ" .xcodeproj)
 
+source "$CORDOVA_PATH/check_reqs"
+
 cd "$PROJECT_PATH"
 
 APP=build/$PROJECT_NAME.app
-SDK=`xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
 
-xcodebuild -project $PROJECT_NAME.xcodeproj -arch i386 -target $PROJECT_NAME -configuration Debug -sdk $SDK clean build VALID_ARCHS="i386" CONFIGURATION_BUILD_DIR="$PROJECT_PATH/build"
+CONFIGURATION=Debug
+EMULATOR=1
+DEVICE=0
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --debug) ;;
+        --release) CONFIGURATION=Release;;
+        --device) EMULATOR=0;;
+        --emulator) ;;
+        *) echo "Unrecognized flag: $1"; exit 2;;
+    esac
+    shift
+done
 
-
-
-
+if (( $EMULATOR )); then
+    exec xcodebuild -project "$PROJECT_NAME.xcodeproj" -arch i386 -target "$PROJECT_NAME" -configuration $CONFIGURATION -sdk iphonesimulator build VALID_ARCHS="i386" CONFIGURATION_BUILD_DIR="$PROJECT_PATH/build/emulator"
+else
+    exec xcodebuild -xcconfig "$CORDOVA_PATH/build.xcconfig" -project "$PROJECT_NAME.xcodeproj" ARCHS="armv7 armv7s arm64" -target "$PROJECT_NAME" -configuration $CONFIGURATION -sdk iphoneos build VALID_ARCHS="armv7 armv7s arm64" CONFIGURATION_BUILD_DIR="$PROJECT_PATH/build/device"
+fi
 

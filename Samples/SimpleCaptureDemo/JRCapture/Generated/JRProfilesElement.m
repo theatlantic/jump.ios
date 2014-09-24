@@ -281,7 +281,7 @@
     }
     else
     {
-        profilesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"profiles", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        profilesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"profiles", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         profilesElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -345,7 +345,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"profiles", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"profiles", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.accessCredentials =
         [dictionary objectForKey:@"accessCredentials"] != [NSNull null] ? 

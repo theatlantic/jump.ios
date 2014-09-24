@@ -160,7 +160,7 @@
     }
     else
     {
-        phoneNumbersElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"phoneNumbers", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        phoneNumbersElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"phoneNumbers", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         phoneNumbersElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -196,7 +196,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"phoneNumbers", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"phoneNumbers", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.primary =
         [dictionary objectForKey:@"primary"] != [NSNull null] ? 

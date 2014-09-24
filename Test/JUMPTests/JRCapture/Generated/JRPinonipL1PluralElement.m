@@ -65,6 +65,7 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
+
     _string1 = [newString1 copy];
 }
 
@@ -76,6 +77,7 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
+
     _string2 = [newString2 copy];
 }
 
@@ -87,6 +89,7 @@
 - (void)setPinonipL2Object:(JRPinonipL2Object *)newPinonipL2Object
 {
     [self.dirtyPropertySet addObject:@"pinonipL2Object"];
+
     _pinonipL2Object = newPinonipL2Object;
 
     [_pinonipL2Object setAllPropertiesToDirty];
@@ -153,7 +156,7 @@
     }
     else
     {
-        pinonipL1PluralElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"pinonipL1Plural", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        pinonipL1PluralElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"pinonipL1Plural", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         pinonipL1PluralElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -189,7 +192,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"pinonipL1Plural", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"pinonipL1Plural", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.string1 =
         [dictionary objectForKey:@"string1"] != [NSNull null] ? 
@@ -332,7 +335,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-}
 @end

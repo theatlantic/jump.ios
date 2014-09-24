@@ -30,8 +30,9 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <GHUnitIOS/GHUnit.h>
+#import <OCMock/OCMock.h>
 #import <OCMock/OCMockObject.h>
-#import <OCMock/OCMockRecorder.h>
+#import <OCMock/OCMRecorder.h>
 #import "JRCaptureEnvironment.h"
 #import "JRCaptureUIRequestBuilder.h"
 #import "NSURLRequest+JRQueryParams.h"
@@ -62,7 +63,7 @@
             }
     };
 
-    id environment = [OCMockObject mockForProtocol:@protocol(JRCaptureEnvironment)];
+    id environment = OCMProtocolMock(@protocol(JRCaptureEnvironment));
     [[[environment stub] andReturn:[JRCaptureFlow flowWithDictionary:flowDict]] captureFlow];
     [[[environment stub] andReturn:@"https://base.uri"] captureBaseUrl];
     [[[environment stub] andReturn:@"abc123"] clientId];

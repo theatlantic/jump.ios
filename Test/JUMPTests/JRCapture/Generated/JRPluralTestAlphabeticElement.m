@@ -60,6 +60,7 @@
 - (void)setUniqueString:(NSString *)newUniqueString
 {
     [self.dirtyPropertySet addObject:@"uniqueString"];
+
     _uniqueString = [newUniqueString copy];
 }
 
@@ -71,6 +72,7 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
+
     _string1 = [newString1 copy];
 }
 
@@ -82,6 +84,7 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
+
     _string2 = [newString2 copy];
 }
 
@@ -145,7 +148,7 @@
     }
     else
     {
-        pluralTestAlphabeticElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"pluralTestAlphabetic", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        pluralTestAlphabeticElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"pluralTestAlphabetic", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         pluralTestAlphabeticElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -181,7 +184,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"pluralTestAlphabetic", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"pluralTestAlphabetic", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.uniqueString =
         [dictionary objectForKey:@"uniqueString"] != [NSNull null] ? 
@@ -299,7 +302,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-}
 @end

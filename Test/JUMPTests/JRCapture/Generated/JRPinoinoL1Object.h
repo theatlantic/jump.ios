@@ -40,7 +40,7 @@
 @interface JRPinoinoL1Object : JRCaptureObject
 @property (nonatomic, copy)     NSString *string1; /**< The object's \e string1 property */ 
 @property (nonatomic, copy)     NSString *string2; /**< The object's \e string2 property */ 
-@property (nonatomic, retain)   JRPinoinoL2Object *pinoinoL2Object; /**< The object's \e pinoinoL2Object property */ 
+@property (nonatomic,strong)    JRPinoinoL2Object *pinoinoL2Object; /**< The object's \e pinoinoL2Object property */ 
 
 /**
  * @name Constructors

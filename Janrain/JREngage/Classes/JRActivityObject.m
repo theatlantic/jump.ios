@@ -217,16 +217,16 @@
 
     // TODO: Should I be setting these as numbers and not strings?
     if (_width)
-        [dict setObject:[NSString stringWithFormat:@"%d", _width] forKey:@"width"];
+        [dict setObject:[NSString stringWithFormat:@"%lu", (unsigned long)_width] forKey:@"width"];
 
     if (_height)
-        [dict setObject:[NSString stringWithFormat:@"%d", _height] forKey:@"height"];
+        [dict setObject:[NSString stringWithFormat:@"%lu", (unsigned long)_height] forKey:@"height"];
 
     if (_expanded_width)
-        [dict setObject:[NSString stringWithFormat:@"%d", _expanded_width] forKey:@"expandedWidth"];
+        [dict setObject:[NSString stringWithFormat:@"%lu", (unsigned long)_expanded_width] forKey:@"expandedWidth"];
 
     if (_expanded_height)
-        [dict setObject:[NSString stringWithFormat:@"%d", _expanded_height] forKey:@"expandedHeight"];
+        [dict setObject:[NSString stringWithFormat:@"%lu", (unsigned long)_expanded_height] forKey:@"expandedHeight"];
 
     return dict;
 }

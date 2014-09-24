@@ -160,7 +160,7 @@
     }
     else
     {
-        emailsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"emails", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        emailsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"emails", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         emailsElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -196,7 +196,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"emails", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"emails", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.primary =
         [dictionary objectForKey:@"primary"] != [NSNull null] ? 
