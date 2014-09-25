@@ -102,6 +102,7 @@
         self.resendVerificationButton.hidden = YES;
         self.linkAccountButton.hidden = NO;
         self.unlinkAccountButton.hidden = NO;
+        self.signInNavButton.enabled = NO;
 
         self.formButton.hidden = YES;
         self.updateProfileButton.hidden = NO;
@@ -122,6 +123,7 @@
         self.resendVerificationButton.hidden = NO;
         self.linkAccountButton.hidden = YES;
         self.unlinkAccountButton.hidden = YES;
+        self.signInNavButton.enabled = YES;
 
         self.updateProfileButton.hidden = YES;
         self.formButton.hidden = NO;
@@ -141,7 +143,7 @@
     self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled =
                 self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled =
                         self.shareButton.enabled = self.directFacebookAuthButton.enabled = self.tradAuthButton.enabled
-                                = b;
+                            = self.signInNavButton.enabled = b;
     self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha =
                 self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha =
                 self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha =
@@ -227,10 +229,9 @@
 }
 
 - (IBAction)signInNavButtonPressed:(id)sender {
-    //kJRApplicationNavigationController
-    //kJRCustomModalNavigationController
-    self.customUi = @{kJRApplicationNavigationController : self.navigationController, kJRPopoverPresentationBarButtonItem : self.signInNavButton};
+    [self signOutCurrentUser];
     
+    self.customUi = @{kJRApplicationNavigationController : self.navigationController, kJRPopoverPresentationBarButtonItem : self.signInNavButton};
     
     [self startSignInForProvider:nil];
 }
