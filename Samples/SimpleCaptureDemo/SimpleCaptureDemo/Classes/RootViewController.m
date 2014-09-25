@@ -226,6 +226,15 @@
                               otherButtonTitles:@"Continue", Nil] show];
 }
 
+- (IBAction)signInNavButtonPressed:(id)sender {
+    //kJRApplicationNavigationController
+    //kJRCustomModalNavigationController
+    self.customUi = @{kJRApplicationNavigationController : self.navigationController, kJRPopoverPresentationBarButtonItem : self.signInNavButton};
+    
+    
+    [self startSignInForProvider:@"facebook"];
+}
+
 - (void)startSignInForProvider:(NSString *)provider
 {
     self.currentUserProviderIcon.image = nil;

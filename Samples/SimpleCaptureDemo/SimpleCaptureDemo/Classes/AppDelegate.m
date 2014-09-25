@@ -28,7 +28,8 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-//#import <FacebookSDK/FacebookSDK.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import "JREngage.h"
 #import "AppDelegate.h"
 #import "JRCapture.h"
 #import "debug_log.h"
@@ -122,13 +123,11 @@ AppDelegate *appDelegate = nil;
     return YES;
 }
 
-#   ifdef JR_FACEBOOK_SDK_TEST
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-        [FBSession.activeSession handleOpenURL:url];
+    return [JREngage application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
-#   endif
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
