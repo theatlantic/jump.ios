@@ -36,9 +36,10 @@
 #import "JRCaptureData.h"
 #import "JRCaptureConfig.h"
 #import "JRCaptureError.h"
+#import "JREngage.h"
 
 #ifdef JR_FACEBOOK_SDK_TEST
-#  import "FacebookSDK/FacebookSDK.h"
+#  import <FacebookSDK/FacebookSDK.h>
 #endif
 
 @interface JRSessionData (Internal)
@@ -129,6 +130,12 @@ AppDelegate *appDelegate = nil;
         [FBSession.activeSession handleOpenURL:url];
 }
 #   endif
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [JREngage application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
