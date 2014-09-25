@@ -232,7 +232,7 @@
     self.customUi = @{kJRApplicationNavigationController : self.navigationController, kJRPopoverPresentationBarButtonItem : self.signInNavButton};
     
     
-    [self startSignInForProvider:@"facebook"];
+    [self startSignInForProvider:nil];
 }
 
 - (void)startSignInForProvider:(NSString *)provider
