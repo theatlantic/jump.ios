@@ -1675,6 +1675,10 @@ static JRSessionData *singleton = nil;
             [delegate authenticationDidCancel];
     }
 
+    if(accountLinking)
+    {
+        accountLinking = NO;
+    }
     currentProvider = nil;
 }
 
@@ -1694,6 +1698,10 @@ static JRSessionData *singleton = nil;
             [delegate authenticationDidCancel];
     }
 
+    if(accountLinking)
+    {
+        accountLinking = NO;
+    }
     currentProvider = nil;
 }
 
