@@ -45,6 +45,7 @@
 - (IBAction)linkAccountButtonPressed:(id)sender;
 - (IBAction)unlinkAccountButtonPressed:(id)sender;
 - (IBAction)resendVerificationButtonPressed:(id)sender;
+- (IBAction)signInNavButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak) IBOutlet UILabel *currentUserLabel;
 @property (weak) IBOutlet UIImageView *currentUserProviderIcon;
@@ -53,6 +54,7 @@
 @property (weak) IBOutlet UIButton *refreshButton;
 @property (weak) IBOutlet UIButton *signInButton;
 @property (weak) IBOutlet UIButton *signOutButton;
+@property (weak) IBOutlet UIBarButtonItem *signInNavButton;
 @property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *directFacebookAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;

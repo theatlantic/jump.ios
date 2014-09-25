@@ -24,7 +24,6 @@
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
 		3306C17245BA3B16978120CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */; };
 		3306C504E4EB30699D49C31F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306C1C76C81D3A8D4ED2232 /* Localizable.strings */; };
-		49CD3BC619D375120023A721 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49CD3BC519D375120023A721 /* FacebookSDK.framework */; };
 		4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994B918A3F82D00E4D116 /* JRPublishActivityController.xib */; };
 		4DB994BD18A3F84B00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */; };
 		4DFC8F17187E1DD100CE8A83 /* JRAccountsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC8ED6187E1DD100CE8A83 /* JRAccountsElement.m */; };
@@ -317,7 +316,6 @@
 		3306C1D905E80CB37965B544 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
-		49CD3BC519D375120023A721 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		4D60E0D0187F1D1F006A6744 /* JRCaptureEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureEnvironment.h; sourceTree = "<group>"; };
 		4DB994B818A3F82D00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JRPublishActivityController.xib; sourceTree = "<group>"; };
 		4DB994BC18A3F84B00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = JRPublishActivityController.xib; sourceTree = "<group>"; };
@@ -655,7 +653,6 @@
 				90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */,
-				49CD3BC619D375120023A721 /* FacebookSDK.framework in Frameworks */,
 				C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */,
 				C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */,
 				C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */,
@@ -771,7 +768,6 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				49CD3BC519D375120023A721 /* FacebookSDK.framework */,
 				D894366218651F4D004BCF0A /* Accounts.framework */,
 				D894366018651F47004BCF0A /* Social.framework */,
 				90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */,
@@ -1771,7 +1767,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Andrew Kettel (D787YUH59T)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
