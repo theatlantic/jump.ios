@@ -151,7 +151,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRBasicPluralElement class]])
-            [filteredDictionaryArray addObject:[(JRBasicPluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRBasicPluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -193,7 +193,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPluralTestUniqueElement class]])
-            [filteredDictionaryArray addObject:[(JRPluralTestUniqueElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPluralTestUniqueElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -235,7 +235,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPluralTestAlphabeticElement class]])
-            [filteredDictionaryArray addObject:[(JRPluralTestAlphabeticElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPluralTestAlphabeticElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -277,7 +277,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPinapL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JRPinapL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPinapL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -319,7 +319,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JROnipL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JROnipL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JROnipL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -361,7 +361,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPinapinapL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JRPinapinapL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPinapinapL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -403,7 +403,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPinonipL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JRPinonipL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPinonipL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -445,7 +445,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JROnipinapL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JROnipinapL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JROnipinapL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -487,7 +487,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JROinonipL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JROinonipL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JROinonipL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -1315,9 +1315,9 @@
     return [[JRCaptureUser alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.uuid ? self.uuid : [NSNull null])
@@ -1378,13 +1378,13 @@
                    forKey:@"stringTestFeatures"];
     [dictionary setObject:(self.basicPlural ? [self.basicPlural arrayOfBasicPluralDictionariesFromBasicPluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"basicPlural"];
-    [dictionary setObject:(self.basicObject ? [self.basicObject toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.basicObject ? [self.basicObject newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"basicObject"];
-    [dictionary setObject:(self.objectTestRequired ? [self.objectTestRequired toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.objectTestRequired ? [self.objectTestRequired newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"objectTestRequired"];
     [dictionary setObject:(self.pluralTestUnique ? [self.pluralTestUnique arrayOfPluralTestUniqueDictionariesFromPluralTestUniqueElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pluralTestUnique"];
-    [dictionary setObject:(self.objectTestRequiredUnique ? [self.objectTestRequiredUnique toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.objectTestRequiredUnique ? [self.objectTestRequiredUnique newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"objectTestRequiredUnique"];
     [dictionary setObject:(self.pluralTestAlphabetic ? [self.pluralTestAlphabetic arrayOfPluralTestAlphabeticDictionariesFromPluralTestAlphabeticElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pluralTestAlphabetic"];
@@ -1394,27 +1394,27 @@
                    forKey:@"simpleStringPluralTwo"];
     [dictionary setObject:(self.pinapL1Plural ? [self.pinapL1Plural arrayOfPinapL1PluralDictionariesFromPinapL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinapL1Plural"];
-    [dictionary setObject:(self.pinoL1Object ? [self.pinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.pinoL1Object ? [self.pinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinoL1Object"];
     [dictionary setObject:(self.onipL1Plural ? [self.onipL1Plural arrayOfOnipL1PluralDictionariesFromOnipL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"onipL1Plural"];
-    [dictionary setObject:(self.oinoL1Object ? [self.oinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.oinoL1Object ? [self.oinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinoL1Object"];
     [dictionary setObject:(self.pinapinapL1Plural ? [self.pinapinapL1Plural arrayOfPinapinapL1PluralDictionariesFromPinapinapL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinapinapL1Plural"];
     [dictionary setObject:(self.pinonipL1Plural ? [self.pinonipL1Plural arrayOfPinonipL1PluralDictionariesFromPinonipL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinonipL1Plural"];
-    [dictionary setObject:(self.pinapinoL1Object ? [self.pinapinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.pinapinoL1Object ? [self.pinapinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinapinoL1Object"];
-    [dictionary setObject:(self.pinoinoL1Object ? [self.pinoinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.pinoinoL1Object ? [self.pinoinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinoinoL1Object"];
     [dictionary setObject:(self.onipinapL1Plural ? [self.onipinapL1Plural arrayOfOnipinapL1PluralDictionariesFromOnipinapL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"onipinapL1Plural"];
     [dictionary setObject:(self.oinonipL1Plural ? [self.oinonipL1Plural arrayOfOinonipL1PluralDictionariesFromOinonipL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinonipL1Plural"];
-    [dictionary setObject:(self.onipinoL1Object ? [self.onipinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.onipinoL1Object ? [self.onipinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"onipinoL1Object"];
-    [dictionary setObject:(self.oinoinoL1Object ? [self.oinoinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.oinoinoL1Object ? [self.oinoinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinoinoL1Object"];
     [dictionary setObject:(self.captureUserId ? [NSNumber numberWithInteger:[self.captureUserId integerValue]] : [NSNull null])
                    forKey:@"id"];

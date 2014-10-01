@@ -132,9 +132,9 @@
     return [[JRBodyType alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.build ? self.build : [NSNull null])

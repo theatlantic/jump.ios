@@ -114,16 +114,16 @@
     return [[JROinonipL1PluralElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.string1 ? self.string1 : [NSNull null])
                    forKey:@"string1"];
     [dictionary setObject:(self.string2 ? self.string2 : [NSNull null])
                    forKey:@"string2"];
-    [dictionary setObject:(self.oinonipL2Object ? [self.oinonipL2Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.oinonipL2Object ? [self.oinonipL2Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinonipL2Object"];
 
     if (forEncoder)

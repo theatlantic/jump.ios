@@ -93,9 +93,9 @@
     return [[JRPinapL2PluralElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.string1 ? self.string1 : [NSNull null])

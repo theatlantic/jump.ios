@@ -171,7 +171,7 @@
 
 - (IBAction)browseButtonPressed:(id)sender
 {
-    DLog(@"Capture user record: %@", [appDelegate.captureUser toDictionaryForEncoder:NO]);
+    DLog(@"Capture user record: %@", [appDelegate.captureUser newDictionaryForEncoder:NO]);
 }
 
 - (IBAction)tradRegButtonPressed:(id)sender
@@ -230,9 +230,9 @@
 
 - (IBAction)signInNavButtonPressed:(id)sender {
     [self signOutCurrentUser];
-    
+
     self.customUi = @{kJRApplicationNavigationController : self.navigationController, kJRPopoverPresentationBarButtonItem : self.signInNavButton};
-    
+
     [self startSignInForProvider:nil];
 }
 
@@ -305,7 +305,7 @@
             [self.navigationController presentViewController:linkedProfilesController animated:YES completion:nil];
         }
     };
-    
+
     [[[AlertViewWithBlocks alloc] initWithTitle:@"Unlink Account"
                                         message:@"You are going to start account unlinking process."
                                      completion:completion
@@ -653,7 +653,7 @@
 - (void)linkNewAccountDidSucceed
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked Successfully."
                                                         message:@"Account Linked Successfully"
                                                        delegate:nil
@@ -673,11 +673,11 @@
 - (void)linkNewAccountDidFailWithError:(NSError *)error
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:error.localizedFailureReason delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
-    
+
 }
 
 - (void)accountUnlinkingDidFailWithError:(NSError *)error

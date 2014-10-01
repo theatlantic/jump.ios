@@ -66,7 +66,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPinoinoL3PluralElement class]])
-            [filteredDictionaryArray addObject:[(JRPinoinoL3PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPinoinoL3PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -169,9 +169,9 @@
     return [[JRPinoinoL2Object alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.string1 ? self.string1 : [NSNull null])

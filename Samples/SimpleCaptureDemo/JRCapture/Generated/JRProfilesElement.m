@@ -225,9 +225,9 @@
     return [[JRProfilesElement alloc] initWithDomain:domain andIdentifier:identifier];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.accessCredentials ? self.accessCredentials : [NSNull null])
@@ -242,7 +242,7 @@
                    forKey:@"friends"];
     [dictionary setObject:(self.identifier ? self.identifier : [NSNull null])
                    forKey:@"identifier"];
-    [dictionary setObject:(self.profile ? [self.profile toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.profile ? [self.profile newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"profile"];
     [dictionary setObject:(self.provider ? self.provider : [NSNull null])
                    forKey:@"provider"];

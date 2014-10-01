@@ -131,9 +131,9 @@
     return [[JRObjectTestRequiredUnique alloc] initWithRequiredString:requiredString andRequiredUniqueString:requiredUniqueString];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.requiredString ? self.requiredString : [NSNull null])

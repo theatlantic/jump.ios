@@ -1143,7 +1143,7 @@ sub recursiveParse {
       }
 
       $objectiveType          = "JR" . ucfirst($propertyName) . " *";
-      $toDictionary           = "[self." . $propertyName . " toDictionaryForEncoder:forEncoder]";
+      $toDictionary           = "[self." . $propertyName . " newDictionaryForEncoder:forEncoder]";
       $toUpDictionary         = "[self." . $propertyName . " toUpdateDictionary]";
 
       $frDictionary    = "[JR" . ucfirst($propertyName) . " " . $propertyName . "ObjectFromDictionary:[dictionary objectForKey:\@\"" . $dictionaryKey . "\"] withPath:" . $objectName . ".captureObjectPath fromDecoder:fromDecoder]";

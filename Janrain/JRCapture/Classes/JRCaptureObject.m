@@ -89,7 +89,7 @@
                                                            didFailWithResult:[result JR_jsonString] context:callerContext];
     }
 
-    if ([delegate respondsToSelector:@selector(updateDidFailForObject:withError:context:)]) 
+    if ([delegate respondsToSelector:@selector(updateDidFailForObject:withError:context:)])
     {
         JRCaptureError *error = [JRCaptureError errorFromResult:result onProvider:nil engageToken:nil];
         [delegate updateDidFailForObject:captureObject withError:error context:callerContext];
@@ -204,7 +204,7 @@
                                                    context:context];
     }
 
-    if (![resultDictionary objectForKey:@"result"] || ![[resultDictionary objectForKey:@"result"] 
+    if (![resultDictionary objectForKey:@"result"] || ![[resultDictionary objectForKey:@"result"]
             isKindOfClass:[NSDictionary class]])
     {
         return [self replaceCaptureObjectDidFailWithResult:[JRCaptureError invalidDataErrorDictForResult:result]
@@ -360,7 +360,7 @@
 
     if ([delegate respondsToSelector:@selector(replaceArrayDidSucceedForObject:newArray:named:context:)])
     {
-        [delegate replaceArrayDidSucceedForObject:captureObject newArray:newArray named:arrayName 
+        [delegate replaceArrayDidSucceedForObject:captureObject newArray:newArray named:arrayName
                                           context:callerContext];
     }
 }
@@ -397,7 +397,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    NSDictionary *dictionary = [self toDictionaryForEncoder:YES];
+    NSDictionary *dictionary = [self newDictionaryForEncoder:YES];
     [coder encodeObject:dictionary forKey:cJREncodedCaptureUser];
 }
 
@@ -414,7 +414,7 @@
     return self;
 }
 
-- (NSDictionary *)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary *)newDictionaryForEncoder:(BOOL)forEncoder
 {
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
@@ -552,7 +552,7 @@
                                                       @"This object or its parent is an element of an array, and the array needs to be replaced on Capture first",
                                                       @"error_description",
                                                       errCode, @"code", nil];
-        [[JRCaptureObjectApidHandler captureObjectApidHandler] updateCaptureObjectDidFailWithResult:errDict 
+        [[JRCaptureObjectApidHandler captureObjectApidHandler] updateCaptureObjectDidFailWithResult:errDict
                                                                                             context:newContext];
         return;
     }
@@ -594,8 +594,8 @@
                                      withContext:newContext];
 }
 
-- (void)replaceArrayOnCapture:(NSArray *)array named:(NSString *)arrayName isArrayOfStrings:(BOOL)isStringArray 
-                     withType:(NSString *)type forDelegate:(id <JRCaptureObjectDelegate>)delegate 
+- (void)replaceArrayOnCapture:(NSArray *)array named:(NSString *)arrayName isArrayOfStrings:(BOOL)isStringArray
+                     withType:(NSString *)type forDelegate:(id <JRCaptureObjectDelegate>)delegate
                   withContext:(NSObject *)context
 {
     if (!type) type = @"";
@@ -656,24 +656,24 @@
                                                                                         context:context];
 }
 
-+ (void)testCaptureObjectApidHandlerUpdateCaptureObjectDidSucceedWithResult:(NSObject *)result 
++ (void)testCaptureObjectApidHandlerUpdateCaptureObjectDidSucceedWithResult:(NSObject *)result
                                                                     context:(NSObject *)context __unused
 {
-    [[JRCaptureObjectApidHandler captureObjectApidHandler] updateCaptureObjectDidSucceedWithResult:result 
+    [[JRCaptureObjectApidHandler captureObjectApidHandler] updateCaptureObjectDidSucceedWithResult:result
                                                                                            context:context];
 }
 
 + (void)testCaptureObjectApidHandlerReplaceCaptureObjectDidFailWithResult:(NSDictionary *)result
                                                                   context:(NSObject *)context __unused
 {
-    [[JRCaptureObjectApidHandler captureObjectApidHandler] replaceCaptureObjectDidFailWithResult:result 
+    [[JRCaptureObjectApidHandler captureObjectApidHandler] replaceCaptureObjectDidFailWithResult:result
                                                                                          context:context];
 }
 
 + (void)testCaptureObjectApidHandlerReplaceCaptureObjectDidSucceedWithResult:(NSDictionary *)result
                                                                      context:(NSObject *)context __unused
 {
-    [[JRCaptureObjectApidHandler captureObjectApidHandler] replaceCaptureObjectDidSucceedWithResult:result 
+    [[JRCaptureObjectApidHandler captureObjectApidHandler] replaceCaptureObjectDidSucceedWithResult:result
                                                                                             context:context];
 }
 
@@ -687,7 +687,7 @@
 + (void)testCaptureObjectApidHandlerReplaceCaptureArrayDidSucceedWithResult:(NSDictionary *)result
                                                                     context:(NSObject *)context __unused
 {
-    [[JRCaptureObjectApidHandler captureObjectApidHandler] replaceCaptureArrayDidSucceedWithResult:result 
+    [[JRCaptureObjectApidHandler captureObjectApidHandler] replaceCaptureArrayDidSucceedWithResult:result
                                                                                            context:context];
 }
 
@@ -701,7 +701,7 @@
     for (NSString *key in props)
     {
         const SEL selectorForProp = NSSelectorFromString(key);
-        
+
         // call the selector on self to get an id object named 'prop'
         id __unsafe_unretained prop = nil;
         NSMethodSignature *propSignature = [[self class] instanceMethodSignatureForSelector:selectorForProp];
@@ -715,7 +715,7 @@
         [propInvoker setTarget:self];
         [propInvoker invoke];
         [propInvoker getReturnValue:&prop];
-        
+
         // call the selector on otherObj to get an id object named 'otherProp'
         id __unsafe_unretained otherProp = nil;
         NSMethodSignature *otherPropSignature = [[otherObj class] instanceMethodSignatureForSelector:selectorForProp];
@@ -730,7 +730,7 @@
         [propInvoker invoke];
         [propInvoker getReturnValue:&otherProp];
 
-        
+
         if ([prop isKindOfClass:[JRCaptureObject class]])
             if (![((JRCaptureObject *) prop) isEqualByPrivateProperties:otherProp]) return NO;
 

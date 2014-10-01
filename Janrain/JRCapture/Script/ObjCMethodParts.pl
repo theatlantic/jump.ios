@@ -429,7 +429,7 @@ my @decodeUserFromDictParts = (
 #  * \@return
 #  *   An \e NSDictionary represention of a <objectClass> object
 #  **/
-# - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+# - (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 # {
 #     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:10];
 #
@@ -460,9 +460,9 @@ my @toDictionaryDocParts = (
 " **/\n");
 
 my @toDictionaryParts = (
-"- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder",
+"- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder",
 "\n{\n",
-"    NSMutableDictionary __weak *dictionary =
+"    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];\n\n",
 "","
     if (forEncoder)
@@ -994,7 +994,7 @@ sub createArrayCategoryForSubobject {
        "    NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];\n" .
        "    for (NSObject *object in self)\n" .
        "        if ([object isKindOfClass:[JR" . ucfirst($propertyName) . "Element class]])\n" .
-       "            [filteredDictionaryArray addObject:[(JR" . ucfirst($propertyName) . "Element*)object toDictionaryForEncoder:forEncoder]];\n\n" .
+       "            [filteredDictionaryArray addObject:[(JR" . ucfirst($propertyName) . "Element*)object newDictionaryForEncoder:forEncoder]];\n\n" .
        "    return filteredDictionaryArray;\n}\n\n";
 
   $arrayCategoryImpl .= "$methodName4\n{\n";

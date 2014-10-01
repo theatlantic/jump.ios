@@ -130,9 +130,9 @@
     return [[JRObjectTestRequired alloc] initWithRequiredString:requiredString];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.requiredString ? self.requiredString : [NSNull null])

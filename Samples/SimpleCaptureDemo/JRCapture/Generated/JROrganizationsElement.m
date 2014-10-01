@@ -204,9 +204,9 @@
     return [[JROrganizationsElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary __weak *dictionary =
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.department ? self.department : [NSNull null])
@@ -215,7 +215,7 @@
                    forKey:@"description"];
     [dictionary setObject:(self.endDate ? self.endDate : [NSNull null])
                    forKey:@"endDate"];
-    [dictionary setObject:(self.location ? [self.location toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.location ? [self.location newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"location"];
     [dictionary setObject:(self.name ? self.name : [NSNull null])
                    forKey:@"name"];
