@@ -29,7 +29,6 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 //#define JR_FACEBOOK_SDK_TEST
 
-#import "JREngage.h"
 #import "AppDelegate.h"
 #import "JRCapture.h"
 #import "debug_log.h"
@@ -124,7 +123,7 @@ AppDelegate *appDelegate = nil;
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    return [JREngage application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 #   endif
 
