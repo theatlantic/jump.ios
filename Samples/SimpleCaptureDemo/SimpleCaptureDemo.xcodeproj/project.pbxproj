@@ -1796,10 +1796,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleCaptureDemo/SimpleCaptureDemo.entitlements;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"~/Documents/FacebookSDK",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1825,10 +1821,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"~/Documents/FacebookSDK",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
@@ -1885,10 +1877,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleCaptureDemo/SimpleCaptureDemo.entitlements;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"~/Documents/FacebookSDK",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
