@@ -462,7 +462,7 @@ my @toDictionaryDocParts = (
 my @toDictionaryParts = (
 "- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder",
 "\n{\n",
-"    NSMutableDictionary __weak *dictionary =
+"    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];\n\n",
 "","
     if (forEncoder)
