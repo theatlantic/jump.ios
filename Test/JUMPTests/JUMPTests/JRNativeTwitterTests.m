@@ -58,9 +58,9 @@
     [[[twitter stub] andReturn:@"asecretsignature="] oauthSignature:[OCMArg any]];
     [twitter setConsumerKey:@"123456"];
 
-    NSString *expectedAuthorizationHeader = @"OAuth oauth_timestamp=\"1387238208\", oauth_nonce=\"abcdef\", "
-            "oauth_version=\"1.0\", oauth_consumer_key=\"123456\", oauth_signature_method=\"HMAC-SHA1\", "
-            "oauth_signature=\"asecretsignature%3D\"";
+    NSString *expectedAuthorizationHeader = @"OAuth oauth_signature=\"asecretsignature%3D\", oauth_nonce=\"abcdef\", "
+            "oauth_signature_method=\"HMAC-SHA1\", oauth_consumer_key=\"123456\", oauth_timestamp=\"1387238208\", "
+            "oauth_version=\"1.0\"";
 
     BOOL (^verifyRequest)(id) = ^(id value) {
         NSURLRequest *request = (NSURLRequest *)value;

@@ -45,7 +45,6 @@
 		19BC023418A80C6C625BE4E9 /* icon_blogger_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC051FF004CD5BF2F1A3A2 /* icon_blogger_30x30@2x.png */; };
 		19BC025F26F1B1DAE1FF7BD5 /* icon_bw_microsoftaccount_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC06DB29B22AB1A05033D3 /* icon_bw_microsoftaccount_30x30.png */; };
 		19BC02699A602E74375944F1 /* JRCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0B1D5357BF7B28E495DE /* JRCapture.m */; };
-		19BC0276A5EE6BC9A13EC481 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 19BC083267BBA3DC847E8E99 /* .gitignore */; };
 		19BC0286A8D77B6145CADB73 /* JREngage-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19BC01B99D5119466D49F9C3 /* JREngage-Info.plist */; };
 		19BC02873ED3074FF0638675 /* logo_openid_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC08D2AC0FD9C0ED0B84BF /* logo_openid_280x65@2x.png */; };
 		19BC028BAD74C2251367247C /* icon_hyves_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC09528AB3E90B8E9E5E48 /* icon_hyves_30x30@2x.png */; };
@@ -107,7 +106,6 @@
 		19BC06373901B23DD25A7ECC /* JRPinapinapL2PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0D9491F9EE6D7AA8A44E /* JRPinapinapL2PluralElement.m */; };
 		19BC06403C0FCC8FAF879D72 /* CaptureSchemaParser.pl in Resources */ = {isa = PBXBuildFile; fileRef = 19BC069038A891C6B631B6A8 /* CaptureSchemaParser.pl */; };
 		19BC0645475A8A31D1B28515 /* JRPinoinoL3PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC080B143FF9CCAD52209C /* JRPinoinoL3PluralElement.m */; };
-		19BC064B3487D6F201648383 /* JREngagePlugin.js in Sources */ = {isa = PBXBuildFile; fileRef = 19BC008883D112BDB5CF215B /* JREngagePlugin.js */; };
 		19BC06543D46329E6A9F9BE7 /* button_linkedin_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0A63A60CFDCE5C40BB2D /* button_linkedin_135x40.png */; };
 		19BC065969D2AD616317D3DC /* icon_flickr_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0C15333A7ABA75C2E398 /* icon_flickr_30x30@2x.png */; };
 		19BC06781D8CD361E534AED1 /* JROnipL2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0D87848441D8B8F054B5 /* JROnipL2Object.m */; };
@@ -261,7 +259,6 @@
 		19BC0E6F5280B688B0157A26 /* logo_myopenid_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC00DA1A48677E1DE8D794 /* logo_myopenid_280x65.png */; };
 		19BC0E73933ABC69DC11DF32 /* icon_amazon_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0A6791FC74FB66FB371D /* icon_amazon_30x30.png */; };
 		19BC0E74414E6DB90987DA4B /* logo_vzn_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0894F3D72B6DF0603F9B /* logo_vzn_280x65.png */; };
-		19BC0E84624FA1F7A507CD9F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0BF14CE261DADC858FD7 /* .gitignore */; };
 		19BC0E92F5D325B915DD736D /* JRNativeAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0250E8A8B014CB91B01E /* JRNativeAuth.m */; };
 		19BC0E9924F42188A4B2A4D6 /* icon_soundcloud_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC07E30F791A30C9CDC1A8 /* icon_soundcloud_30x30@2x.png */; };
 		19BC0EB0F1C1453E909C600A /* JROnipL1PluralElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC08E503D2457CA7E02CAB /* JROnipL1PluralElement.m */; };
@@ -1372,6 +1369,7 @@
 		DDE0B9A67F00A1DC4B6DFBA6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0600;
 			};
 			buildConfigurationList = DDE0B9A67F00A1DC4B6DFBA7 /* Build configuration list for PBXProject "JUMPTests" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1577,7 +1575,6 @@
 				19BC07CD8AE173F186B40AD2 /* icon_bw_microsoftaccount_30x30@2x.png in Resources */,
 				19BC0737B8FF6F451F9129DE /* ATTRIBUTION in Resources */,
 				19BC0286A8D77B6145CADB73 /* JREngage-Info.plist in Resources */,
-				19BC0276A5EE6BC9A13EC481 /* .gitignore in Resources */,
 				19BC0D51D545E471D77B05B9 /* typemap.txt in Resources */,
 				19BC0095DDFA146CF20F286B /* regen_demo.sh in Resources */,
 				19BC0F79F2DFA3A46FFEFB12 /* regen_test.sh in Resources */,
@@ -1586,7 +1583,6 @@
 				19BC06403C0FCC8FAF879D72 /* CaptureSchemaParser.pl in Resources */,
 				19BC02044C60300757D8441E /* reserved_attributes.json in Resources */,
 				19BC004810A29F1699280FC3 /* simple_capture_demo_schema.json in Resources */,
-				19BC0E84624FA1F7A507CD9F /* .gitignore in Resources */,
 				19BC052832DF3979E44CED34 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1665,7 +1661,6 @@
 				19BC0462F88CF3CF057A402E /* JRUserLandingController.m in Sources */,
 				19BC08A8C1FE794CEAF95FC1 /* JREngage+CustomInterface.m in Sources */,
 				19BC0A54532D9DD64C8B4682 /* JRPublishActivityController.m in Sources */,
-				19BC064B3487D6F201648383 /* JREngagePlugin.js in Sources */,
 				19BC0FD17E4530889D086E1C /* SFHFKeychainUtils.m in Sources */,
 				19BC02699A602E74375944F1 /* JRCapture.m in Sources */,
 				19BC038D17762013D31BB91B /* JRCaptureData.m in Sources */,
@@ -1730,13 +1725,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -1749,9 +1754,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1761,10 +1773,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1789,7 +1805,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/lib\"",
 					"\"$(SRCROOT)/usr/lib\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1823,7 +1838,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/lib\"",
 					"\"$(SRCROOT)/usr/lib\"",
 				);
 				OTHER_LDFLAGS = (

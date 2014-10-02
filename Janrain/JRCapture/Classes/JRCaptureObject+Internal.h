@@ -78,7 +78,7 @@ didSucceedWithResult:(NSString *)result context:(NSObject *)context;
 @property(readwrite, nonatomic) NSMutableSet *dirtyPropertySet;
 @property(readwrite) BOOL canBeUpdatedOnCapture;
 
-- (NSDictionary *)toDictionaryForEncoder:(BOOL)forEncoder;
+- (NSDictionary *)newDictionaryForEncoder:(BOOL)forEncoder;
 - (NSDictionary *)toUpdateDictionary;
 - (NSDictionary *)toReplaceDictionary;
 - (NSDictionary *)objectProperties;

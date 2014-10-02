@@ -116,7 +116,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRAccountsElement class]])
-            [filteredDictionaryArray addObject:[(JRAccountsElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRAccountsElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -158,7 +158,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRAddressesElement class]])
-            [filteredDictionaryArray addObject:[(JRAddressesElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRAddressesElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -200,7 +200,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JREmailsElement class]])
-            [filteredDictionaryArray addObject:[(JREmailsElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JREmailsElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -242,7 +242,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRImsElement class]])
-            [filteredDictionaryArray addObject:[(JRImsElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRImsElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -284,7 +284,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JROrganizationsElement class]])
-            [filteredDictionaryArray addObject:[(JROrganizationsElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JROrganizationsElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -326,7 +326,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPhoneNumbersElement class]])
-            [filteredDictionaryArray addObject:[(JRPhoneNumbersElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPhoneNumbersElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -368,7 +368,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRProfilePhotosElement class]])
-            [filteredDictionaryArray addObject:[(JRProfilePhotosElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRProfilePhotosElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -410,7 +410,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRUrlsElement class]])
-            [filteredDictionaryArray addObject:[(JRUrlsElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRUrlsElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -1302,9 +1302,9 @@
     return [[JRProfile alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.aboutMe ? self.aboutMe : [NSNull null])
@@ -1319,7 +1319,7 @@
                    forKey:@"anniversary"];
     [dictionary setObject:(self.birthday ? self.birthday : [NSNull null])
                    forKey:@"birthday"];
-    [dictionary setObject:(self.bodyType ? [self.bodyType toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.bodyType ? [self.bodyType newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"bodyType"];
     [dictionary setObject:(self.books ? self.books : [NSNull null])
                    forKey:@"books"];
@@ -1327,7 +1327,7 @@
                    forKey:@"cars"];
     [dictionary setObject:(self.children ? self.children : [NSNull null])
                    forKey:@"children"];
-    [dictionary setObject:(self.currentLocation ? [self.currentLocation toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.currentLocation ? [self.currentLocation newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"currentLocation"];
     [dictionary setObject:(self.displayName ? self.displayName : [NSNull null])
                    forKey:@"displayName"];
@@ -1369,7 +1369,7 @@
                    forKey:@"movies"];
     [dictionary setObject:(self.music ? self.music : [NSNull null])
                    forKey:@"music"];
-    [dictionary setObject:(self.name ? [self.name toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.name ? [self.name newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"name"];
     [dictionary setObject:(self.nickname ? self.nickname : [NSNull null])
                    forKey:@"nickname"];
@@ -1436,10 +1436,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -1712,7 +1712,7 @@
         [profile.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [profile.dirtyPropertySet removeAllObjects];
-    
+
     return profile;
 }
 
@@ -2847,7 +2847,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"aboutMe"];

@@ -80,7 +80,7 @@
     [cancelButton setBackgroundColor:[UIColor colorWithRed:0.245 green:0.023 blue:0.945 alpha:1]];
     [cancelButton addTarget:self action:@selector(dismissModalViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];
-    NSLog(@"viewDidLoad Count : %d", [linkedProfiles count]);
+    NSLog(@"viewDidLoad Count : %lu", (unsigned long)[linkedProfiles count]);
 }
 
 - (void)didReceiveMemoryWarning

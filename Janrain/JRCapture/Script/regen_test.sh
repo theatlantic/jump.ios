@@ -1,1 +1,1 @@
-./CaptureSchemaParser.pl -f ../../../Test/CaptureInterfaceUnitTests/test_user1.json -o ../../../Test/CaptureInterfaceUnitTests/JRCapture/
+./CaptureSchemaParser.pl -f ../../../Test/JUMPTests/test_user1.json -o ../../../Test/JUMPTests/JRCapture/

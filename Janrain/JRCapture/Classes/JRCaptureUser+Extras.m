@@ -169,7 +169,7 @@
     NSString *component = [[[JRCaptureData sharedCaptureData] captureFlow] schemaIdForFieldName:@"password"];
     NSArray *pathComponents = [component componentsSeparatedByString:@"."];
     NSString *passwordValue =  [JRCaptureUser valueForAttrByDotPathComponents:pathComponents userDict:dict];
-    
+
     return (passwordValue && [passwordValue length]);
 }
 - (void)setForValueFromDotPath:(NSString *)dotPath forKey:(NSString *)key dictionary:(NSMutableDictionary *)dictionary
@@ -201,7 +201,7 @@
 - (NSString *)valueForAttrByDotPath:(NSString *)dotPath
 {
     NSArray *pathComponents = [dotPath componentsSeparatedByString:@"."];
-    return [JRCaptureUser valueForAttrByDotPathComponents:pathComponents userDict:[self toDictionaryForEncoder:NO]];
+    return [JRCaptureUser valueForAttrByDotPathComponents:pathComponents userDict:[self newDictionaryForEncoder:NO]];
 }
 
 + (NSString *)valueForAttrByDotPathComponents:(NSArray *)dotPathComponents userDict:(id)userDict

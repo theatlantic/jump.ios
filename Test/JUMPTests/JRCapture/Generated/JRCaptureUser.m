@@ -151,7 +151,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRBasicPluralElement class]])
-            [filteredDictionaryArray addObject:[(JRBasicPluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRBasicPluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -193,7 +193,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPluralTestUniqueElement class]])
-            [filteredDictionaryArray addObject:[(JRPluralTestUniqueElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPluralTestUniqueElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -235,7 +235,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPluralTestAlphabeticElement class]])
-            [filteredDictionaryArray addObject:[(JRPluralTestAlphabeticElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPluralTestAlphabeticElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -277,7 +277,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPinapL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JRPinapL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPinapL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -319,7 +319,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JROnipL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JROnipL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JROnipL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -361,7 +361,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPinapinapL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JRPinapinapL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPinapinapL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -403,7 +403,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JRPinonipL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JRPinonipL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JRPinonipL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -445,7 +445,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JROnipinapL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JROnipinapL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JROnipinapL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -487,7 +487,7 @@
     NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];
     for (NSObject *object in self)
         if ([object isKindOfClass:[JROinonipL1PluralElement class]])
-            [filteredDictionaryArray addObject:[(JROinonipL1PluralElement*)object toDictionaryForEncoder:forEncoder]];
+            [filteredDictionaryArray addObject:[(JROinonipL1PluralElement*)object newDictionaryForEncoder:forEncoder]];
 
     return filteredDictionaryArray;
 }
@@ -688,6 +688,7 @@
 - (void)setUuid:(JRUuid *)newUuid
 {
     [self.dirtyPropertySet addObject:@"uuid"];
+
     _uuid = [newUuid copy];
 }
 
@@ -699,6 +700,7 @@
 - (void)setCreated:(JRDateTime *)newCreated
 {
     [self.dirtyPropertySet addObject:@"created"];
+
     _created = [newCreated copy];
 }
 
@@ -710,6 +712,7 @@
 - (void)setLastUpdated:(JRDateTime *)newLastUpdated
 {
     [self.dirtyPropertySet addObject:@"lastUpdated"];
+
     _lastUpdated = [newLastUpdated copy];
 }
 
@@ -721,6 +724,7 @@
 - (void)setEmail:(NSString *)newEmail
 {
     [self.dirtyPropertySet addObject:@"email"];
+
     _email = [newEmail copy];
 }
 
@@ -732,6 +736,7 @@
 - (void)setBasicBoolean:(JRBoolean *)newBasicBoolean
 {
     [self.dirtyPropertySet addObject:@"basicBoolean"];
+
     _basicBoolean = [newBasicBoolean copy];
 }
 
@@ -743,6 +748,7 @@
 - (void)setBasicBooleanWithBool:(BOOL)boolVal
 {
     [self.dirtyPropertySet addObject:@"basicBoolean"];
+
     _basicBoolean = [NSNumber numberWithBool:boolVal];
 }
 
@@ -754,6 +760,7 @@
 - (void)setBasicString:(NSString *)newBasicString
 {
     [self.dirtyPropertySet addObject:@"basicString"];
+
     _basicString = [newBasicString copy];
 }
 
@@ -765,6 +772,7 @@
 - (void)setBasicInteger:(JRInteger *)newBasicInteger
 {
     [self.dirtyPropertySet addObject:@"basicInteger"];
+
     _basicInteger = [newBasicInteger copy];
 }
 
@@ -776,6 +784,7 @@
 - (void)setBasicIntegerWithInteger:(NSInteger)integerVal
 {
     [self.dirtyPropertySet addObject:@"basicInteger"];
+
     _basicInteger = [NSNumber numberWithInteger:integerVal];
 }
 
@@ -787,6 +796,7 @@
 - (void)setBasicDecimal:(JRDecimal *)newBasicDecimal
 {
     [self.dirtyPropertySet addObject:@"basicDecimal"];
+
     _basicDecimal = [newBasicDecimal copy];
 }
 
@@ -798,6 +808,7 @@
 - (void)setBasicDate:(JRDate *)newBasicDate
 {
     [self.dirtyPropertySet addObject:@"basicDate"];
+
     _basicDate = [newBasicDate copy];
 }
 
@@ -809,6 +820,7 @@
 - (void)setBasicDateTime:(JRDateTime *)newBasicDateTime
 {
     [self.dirtyPropertySet addObject:@"basicDateTime"];
+
     _basicDateTime = [newBasicDateTime copy];
 }
 
@@ -820,6 +832,7 @@
 - (void)setBasicIpAddress:(JRIpAddress *)newBasicIpAddress
 {
     [self.dirtyPropertySet addObject:@"basicIpAddress"];
+
     _basicIpAddress = [newBasicIpAddress copy];
 }
 
@@ -831,6 +844,7 @@
 - (void)setBasicPassword:(JRPassword *)newBasicPassword
 {
     [self.dirtyPropertySet addObject:@"basicPassword"];
+
     _basicPassword = [newBasicPassword copy];
 }
 
@@ -842,6 +856,7 @@
 - (void)setJsonNumber:(JRJsonObject *)newJsonNumber
 {
     [self.dirtyPropertySet addObject:@"jsonNumber"];
+
     _jsonNumber = [newJsonNumber copy];
 }
 
@@ -853,6 +868,7 @@
 - (void)setJsonString:(JRJsonObject *)newJsonString
 {
     [self.dirtyPropertySet addObject:@"jsonString"];
+
     _jsonString = [newJsonString copy];
 }
 
@@ -864,6 +880,7 @@
 - (void)setJsonArray:(JRJsonObject *)newJsonArray
 {
     [self.dirtyPropertySet addObject:@"jsonArray"];
+
     _jsonArray = [newJsonArray copy];
 }
 
@@ -875,6 +892,7 @@
 - (void)setJsonDictionary:(JRJsonObject *)newJsonDictionary
 {
     [self.dirtyPropertySet addObject:@"jsonDictionary"];
+
     _jsonDictionary = [newJsonDictionary copy];
 }
 
@@ -886,6 +904,7 @@
 - (void)setStringTestJson:(NSString *)newStringTestJson
 {
     [self.dirtyPropertySet addObject:@"stringTestJson"];
+
     _stringTestJson = [newStringTestJson copy];
 }
 
@@ -897,6 +916,7 @@
 - (void)setStringTestEmpty:(NSString *)newStringTestEmpty
 {
     [self.dirtyPropertySet addObject:@"stringTestEmpty"];
+
     _stringTestEmpty = [newStringTestEmpty copy];
 }
 
@@ -908,6 +928,7 @@
 - (void)setStringTestNull:(NSString *)newStringTestNull
 {
     [self.dirtyPropertySet addObject:@"stringTestNull"];
+
     _stringTestNull = [newStringTestNull copy];
 }
 
@@ -919,6 +940,7 @@
 - (void)setStringTestInvalid:(NSString *)newStringTestInvalid
 {
     [self.dirtyPropertySet addObject:@"stringTestInvalid"];
+
     _stringTestInvalid = [newStringTestInvalid copy];
 }
 
@@ -930,6 +952,7 @@
 - (void)setStringTestNSNull:(NSString *)newStringTestNSNull
 {
     [self.dirtyPropertySet addObject:@"stringTestNSNull"];
+
     _stringTestNSNull = [newStringTestNSNull copy];
 }
 
@@ -941,6 +964,7 @@
 - (void)setStringTestAlphanumeric:(NSString *)newStringTestAlphanumeric
 {
     [self.dirtyPropertySet addObject:@"stringTestAlphanumeric"];
+
     _stringTestAlphanumeric = [newStringTestAlphanumeric copy];
 }
 
@@ -952,6 +976,7 @@
 - (void)setStringTestUnicodeLetters:(NSString *)newStringTestUnicodeLetters
 {
     [self.dirtyPropertySet addObject:@"stringTestUnicodeLetters"];
+
     _stringTestUnicodeLetters = [newStringTestUnicodeLetters copy];
 }
 
@@ -963,6 +988,7 @@
 - (void)setStringTestUnicodePrintable:(NSString *)newStringTestUnicodePrintable
 {
     [self.dirtyPropertySet addObject:@"stringTestUnicodePrintable"];
+
     _stringTestUnicodePrintable = [newStringTestUnicodePrintable copy];
 }
 
@@ -974,6 +1000,7 @@
 - (void)setStringTestEmailAddress:(NSString *)newStringTestEmailAddress
 {
     [self.dirtyPropertySet addObject:@"stringTestEmailAddress"];
+
     _stringTestEmailAddress = [newStringTestEmailAddress copy];
 }
 
@@ -985,6 +1012,7 @@
 - (void)setStringTestLength:(NSString *)newStringTestLength
 {
     [self.dirtyPropertySet addObject:@"stringTestLength"];
+
     _stringTestLength = [newStringTestLength copy];
 }
 
@@ -996,6 +1024,7 @@
 - (void)setStringTestCaseSensitive:(NSString *)newStringTestCaseSensitive
 {
     [self.dirtyPropertySet addObject:@"stringTestCaseSensitive"];
+
     _stringTestCaseSensitive = [newStringTestCaseSensitive copy];
 }
 
@@ -1007,6 +1036,7 @@
 - (void)setStringTestFeatures:(NSString *)newStringTestFeatures
 {
     [self.dirtyPropertySet addObject:@"stringTestFeatures"];
+
     _stringTestFeatures = [newStringTestFeatures copy];
 }
 
@@ -1028,7 +1058,9 @@
 - (void)setBasicObject:(JRBasicObject *)newBasicObject
 {
     [self.dirtyPropertySet addObject:@"basicObject"];
+
     _basicObject = newBasicObject;
+
     [_basicObject setAllPropertiesToDirty];
 }
 
@@ -1040,7 +1072,9 @@
 - (void)setObjectTestRequired:(JRObjectTestRequired *)newObjectTestRequired
 {
     [self.dirtyPropertySet addObject:@"objectTestRequired"];
+
     _objectTestRequired = newObjectTestRequired;
+
     [_objectTestRequired setAllPropertiesToDirty];
 }
 
@@ -1062,7 +1096,9 @@
 - (void)setObjectTestRequiredUnique:(JRObjectTestRequiredUnique *)newObjectTestRequiredUnique
 {
     [self.dirtyPropertySet addObject:@"objectTestRequiredUnique"];
-   _objectTestRequiredUnique = newObjectTestRequiredUnique;
+
+    _objectTestRequiredUnique = newObjectTestRequiredUnique;
+
     [_objectTestRequiredUnique setAllPropertiesToDirty];
 }
 
@@ -1114,7 +1150,9 @@
 - (void)setPinoL1Object:(JRPinoL1Object *)newPinoL1Object
 {
     [self.dirtyPropertySet addObject:@"pinoL1Object"];
+
     _pinoL1Object = newPinoL1Object;
+
     [_pinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1136,7 +1174,9 @@
 - (void)setOinoL1Object:(JROinoL1Object *)newOinoL1Object
 {
     [self.dirtyPropertySet addObject:@"oinoL1Object"];
+
     _oinoL1Object = newOinoL1Object;
+
     [_oinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1168,7 +1208,9 @@
 - (void)setPinapinoL1Object:(JRPinapinoL1Object *)newPinapinoL1Object
 {
     [self.dirtyPropertySet addObject:@"pinapinoL1Object"];
+
     _pinapinoL1Object = newPinapinoL1Object;
+
     [_pinapinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1180,6 +1222,7 @@
 - (void)setPinoinoL1Object:(JRPinoinoL1Object *)newPinoinoL1Object
 {
     [self.dirtyPropertySet addObject:@"pinoinoL1Object"];
+
     _pinoinoL1Object = newPinoinoL1Object;
 
     [_pinoinoL1Object setAllPropertiesToDirty];
@@ -1213,7 +1256,9 @@
 - (void)setOnipinoL1Object:(JROnipinoL1Object *)newOnipinoL1Object
 {
     [self.dirtyPropertySet addObject:@"onipinoL1Object"];
+
     _onipinoL1Object = newOnipinoL1Object;
+
     [_onipinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1225,7 +1270,9 @@
 - (void)setOinoinoL1Object:(JROinoinoL1Object *)newOinoinoL1Object
 {
     [self.dirtyPropertySet addObject:@"oinoinoL1Object"];
+
     _oinoinoL1Object = newOinoinoL1Object;
+
     [_oinoinoL1Object setAllPropertiesToDirty];
 }
 
@@ -1237,6 +1284,7 @@
 - (void)setCaptureUserId:(JRObjectId *)newCaptureUserId
 {
     [self.dirtyPropertySet addObject:@"captureUserId"];
+
     _captureUserId = [newCaptureUserId copy];
 }
 
@@ -1267,9 +1315,9 @@
     return [[JRCaptureUser alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.uuid ? self.uuid : [NSNull null])
@@ -1330,13 +1378,13 @@
                    forKey:@"stringTestFeatures"];
     [dictionary setObject:(self.basicPlural ? [self.basicPlural arrayOfBasicPluralDictionariesFromBasicPluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"basicPlural"];
-    [dictionary setObject:(self.basicObject ? [self.basicObject toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.basicObject ? [self.basicObject newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"basicObject"];
-    [dictionary setObject:(self.objectTestRequired ? [self.objectTestRequired toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.objectTestRequired ? [self.objectTestRequired newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"objectTestRequired"];
     [dictionary setObject:(self.pluralTestUnique ? [self.pluralTestUnique arrayOfPluralTestUniqueDictionariesFromPluralTestUniqueElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pluralTestUnique"];
-    [dictionary setObject:(self.objectTestRequiredUnique ? [self.objectTestRequiredUnique toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.objectTestRequiredUnique ? [self.objectTestRequiredUnique newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"objectTestRequiredUnique"];
     [dictionary setObject:(self.pluralTestAlphabetic ? [self.pluralTestAlphabetic arrayOfPluralTestAlphabeticDictionariesFromPluralTestAlphabeticElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pluralTestAlphabetic"];
@@ -1346,27 +1394,27 @@
                    forKey:@"simpleStringPluralTwo"];
     [dictionary setObject:(self.pinapL1Plural ? [self.pinapL1Plural arrayOfPinapL1PluralDictionariesFromPinapL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinapL1Plural"];
-    [dictionary setObject:(self.pinoL1Object ? [self.pinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.pinoL1Object ? [self.pinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinoL1Object"];
     [dictionary setObject:(self.onipL1Plural ? [self.onipL1Plural arrayOfOnipL1PluralDictionariesFromOnipL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"onipL1Plural"];
-    [dictionary setObject:(self.oinoL1Object ? [self.oinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.oinoL1Object ? [self.oinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinoL1Object"];
     [dictionary setObject:(self.pinapinapL1Plural ? [self.pinapinapL1Plural arrayOfPinapinapL1PluralDictionariesFromPinapinapL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinapinapL1Plural"];
     [dictionary setObject:(self.pinonipL1Plural ? [self.pinonipL1Plural arrayOfPinonipL1PluralDictionariesFromPinonipL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinonipL1Plural"];
-    [dictionary setObject:(self.pinapinoL1Object ? [self.pinapinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.pinapinoL1Object ? [self.pinapinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinapinoL1Object"];
-    [dictionary setObject:(self.pinoinoL1Object ? [self.pinoinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.pinoinoL1Object ? [self.pinoinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"pinoinoL1Object"];
     [dictionary setObject:(self.onipinapL1Plural ? [self.onipinapL1Plural arrayOfOnipinapL1PluralDictionariesFromOnipinapL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"onipinapL1Plural"];
     [dictionary setObject:(self.oinonipL1Plural ? [self.oinonipL1Plural arrayOfOinonipL1PluralDictionariesFromOinonipL1PluralElementsForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinonipL1Plural"];
-    [dictionary setObject:(self.onipinoL1Object ? [self.onipinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.onipinoL1Object ? [self.onipinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"onipinoL1Object"];
-    [dictionary setObject:(self.oinoinoL1Object ? [self.oinoinoL1Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.oinoinoL1Object ? [self.oinoinoL1Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinoinoL1Object"];
     [dictionary setObject:(self.captureUserId ? [NSNumber numberWithInteger:[self.captureUserId integerValue]] : [NSNull null])
                    forKey:@"id"];
@@ -1377,10 +1425,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -1599,7 +1647,7 @@
         [captureUser.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [captureUser.dirtyPropertySet removeAllObjects];
-    
+
     return captureUser;
 }
 
@@ -2761,7 +2809,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"JRUuid" forKey:@"uuid"];
@@ -2817,7 +2865,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-}
 @end

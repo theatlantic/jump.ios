@@ -102,6 +102,7 @@
         self.resendVerificationButton.hidden = YES;
         self.linkAccountButton.hidden = NO;
         self.unlinkAccountButton.hidden = NO;
+        self.signInNavButton.enabled = NO;
 
         self.formButton.hidden = YES;
         self.updateProfileButton.hidden = NO;
@@ -122,6 +123,7 @@
         self.resendVerificationButton.hidden = NO;
         self.linkAccountButton.hidden = YES;
         self.unlinkAccountButton.hidden = YES;
+        self.signInNavButton.enabled = YES;
 
         self.updateProfileButton.hidden = YES;
         self.formButton.hidden = NO;
@@ -141,7 +143,7 @@
     self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled =
                 self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled =
                         self.shareButton.enabled = self.directFacebookAuthButton.enabled = self.tradAuthButton.enabled
-                                = b;
+                            = self.signInNavButton.enabled = b;
     self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha =
                 self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha =
                 self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha =
@@ -169,7 +171,7 @@
 
 - (IBAction)browseButtonPressed:(id)sender
 {
-    DLog(@"Capture user record: %@", [appDelegate.captureUser toDictionaryForEncoder:NO]);
+    DLog(@"Capture user record: %@", [appDelegate.captureUser newDictionaryForEncoder:NO]);
 }
 
 - (IBAction)tradRegButtonPressed:(id)sender
@@ -224,6 +226,14 @@
                                           style:UIAlertViewStyleDefault
                               cancelButtonTitle:@"Cancel"
                               otherButtonTitles:@"Continue", Nil] show];
+}
+
+- (IBAction)signInNavButtonPressed:(id)sender {
+    [self signOutCurrentUser];
+
+    self.customUi = @{kJRApplicationNavigationController : self.navigationController, kJRPopoverPresentationBarButtonItem : self.signInNavButton};
+
+    [self startSignInForProvider:nil];
 }
 
 - (void)startSignInForProvider:(NSString *)provider
@@ -295,7 +305,7 @@
             [self.navigationController presentViewController:linkedProfilesController animated:YES completion:nil];
         }
     };
-    
+
     [[[AlertViewWithBlocks alloc] initWithTitle:@"Unlink Account"
                                         message:@"You are going to start account unlinking process."
                                      completion:completion
@@ -643,7 +653,7 @@
 - (void)linkNewAccountDidSucceed
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked Successfully."
                                                         message:@"Account Linked Successfully"
                                                        delegate:nil
@@ -663,11 +673,11 @@
 - (void)linkNewAccountDidFailWithError:(NSError *)error
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:error.localizedFailureReason delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
-    
+
 }
 
 - (void)accountUnlinkingDidFailWithError:(NSError *)error

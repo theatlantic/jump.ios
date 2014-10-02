@@ -93,9 +93,9 @@
     return [[JRPhotosElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.type ? self.type : [NSNull null])
@@ -109,10 +109,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -133,7 +133,7 @@
     }
     else
     {
-        photosElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"photos", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        photosElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"photos", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         photosElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -149,7 +149,7 @@
         [photosElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [photosElement.dirtyPropertySet removeAllObjects];
-    
+
     return photosElement;
 }
 
@@ -165,7 +165,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"photos", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"photos", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.type =
         [dictionary objectForKey:@"type"] != [NSNull null] ? 
@@ -261,7 +261,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"type"];

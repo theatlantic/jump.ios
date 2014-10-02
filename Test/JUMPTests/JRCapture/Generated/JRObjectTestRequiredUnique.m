@@ -60,6 +60,7 @@
 - (void)setRequiredString:(NSString *)newRequiredString
 {
     [self.dirtyPropertySet addObject:@"requiredString"];
+
     _requiredString = [newRequiredString copy];
 }
 
@@ -71,6 +72,7 @@
 - (void)setUniqueString:(NSString *)newUniqueString
 {
     [self.dirtyPropertySet addObject:@"uniqueString"];
+
     _uniqueString = [newUniqueString copy];
 }
 
@@ -82,6 +84,7 @@
 - (void)setRequiredUniqueString:(NSString *)newRequiredUniqueString
 {
     [self.dirtyPropertySet addObject:@"requiredUniqueString"];
+
     _requiredUniqueString = [newRequiredUniqueString copy];
 }
 
@@ -112,7 +115,7 @@
 
         _requiredString = [newRequiredString copy];
         _requiredUniqueString = [newRequiredUniqueString copy];
-    
+
         [self.dirtyPropertySet setSet:[self updatablePropertySet]];
     }
     return self;
@@ -128,9 +131,9 @@
     return [[JRObjectTestRequiredUnique alloc] initWithRequiredString:requiredString andRequiredUniqueString:requiredUniqueString];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.requiredString ? self.requiredString : [NSNull null])
@@ -146,10 +149,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -184,7 +187,7 @@
         [objectTestRequiredUnique.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [objectTestRequiredUnique.dirtyPropertySet removeAllObjects];
-    
+
     return objectTestRequiredUnique;
 }
 
@@ -307,7 +310,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"requiredString"];
@@ -317,7 +320,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-}
 @end

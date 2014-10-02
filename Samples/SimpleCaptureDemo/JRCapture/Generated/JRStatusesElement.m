@@ -93,9 +93,9 @@
     return [[JRStatusesElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.status ? self.status : [NSNull null])
@@ -109,10 +109,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -133,7 +133,7 @@
     }
     else
     {
-        statusesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"statuses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        statusesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"statuses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         statusesElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -149,7 +149,7 @@
         [statusesElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [statusesElement.dirtyPropertySet removeAllObjects];
-    
+
     return statusesElement;
 }
 
@@ -165,7 +165,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"statuses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"statuses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.status =
         [dictionary objectForKey:@"status"] != [NSNull null] ? 
@@ -261,7 +261,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"status"];

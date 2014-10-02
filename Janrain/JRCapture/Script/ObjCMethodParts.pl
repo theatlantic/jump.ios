@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Copyright (c) 2012, Janrain, Inc.
 #
 # All rights reserved.
@@ -32,7 +32,7 @@
 # File:   ObjCMethodParts.pl
 # Author: Lilli Szafranski - lilli@janrain.com, lillialexis@gmail.com
 # Date:   Wednesday, February 8, 2012
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ###################################################################
 # OBJC METHODS TO BE POPULATED WITH PROPERTIES
@@ -41,7 +41,7 @@
 ###################################################################
 # MINIMUM INSTANCE CONSTRUCTOR (W/O REQUIRED PROPERTIES)
 #
-#                                              (Section only here when there are required properties)     
+#                                              (Section only here when there are required properties)
 #                                                                          |
 # /**                                                                      |
 #  * Default instance constructor. Returns an empty <objectClass> object.  |
@@ -54,9 +54,9 @@
 #  * when updating the object on Capture.
 #  **/
 # - (id)init
-# {                                                              
-#     if ((self = [super init]))                                 
-#     {     
+# {
+#     if ((self = [super init]))
+#     {
 #         self.captureObjectPath = @"<entity_path>";
 #         self.canBeUpdatedOnCapture = <YES_or_NO>;\n
 #
@@ -75,7 +75,7 @@ my @minConstructorDocParts = (
  *
  * \@return
  *   A ",""," object\n",
-"","", 
+"","",
 " **/\n");
 
 my @minConstructorParts = (
@@ -95,7 +95,7 @@ my @minConstructorParts = (
 ###################################################################
 # INSTANCE CONSTRUCTOR (W REQUIRED PROPERTIES)
 # (Method only here when there are required properties)
-# 
+#
 # /**
 #  * Returns a <objectClass> object initialized with the given required properties: <requiredProperties>
 #  *
@@ -109,14 +109,14 @@ my @minConstructorParts = (
 # - (id)init<requiredProperties>
 # {
 #     if(!<requriredProperties>)
-#     {                         
+#     {
 #       return nil;
-#     }                         
-#                               
+#     }
+#
 #     if ((self = [super init]))
-#     {                         
-#         self.captureObjectPath = @"<entity_path>";         
-#                                                            
+#     {
+#         self.captureObjectPath = @"<entity_path>";
+#
 #         <requiredProperty> = [new<requiredProperty> copy];
 #           ...
 #
@@ -133,8 +133,8 @@ my @constructorDocParts = (
 "/**
  * Returns a ",""," object initialized with the given required properties: ","","
  *",
-"", 
-" 
+"",
+"
  * \@return
  *   A ",""," object initialized with the given required properties: ","",".\n",
 " *   If the required arguments are \\e nil or \\e [NSNull null], returns \\e nil
@@ -150,7 +150,7 @@ my @constructorParts = (
 "    if ((self = [super init]))
     {\n",
     "","
-    
+
         [self.dirtyPropertySet setSet:[self updatablePropertySet]];
     }
     return self;
@@ -160,7 +160,7 @@ my @constructorParts = (
 ###################################################################
 # MINIMUN CLASS CONSTRUCTOR (W/O REQUIRED PROPERTIES)
 #
-#                      (Section only here when there are required properties)     
+#                      (Section only here when there are required properties)
 #                                               |
 # /**                                           |
 #  * Default class constructor. Returns an      |
@@ -173,8 +173,8 @@ my @constructorParts = (
 #  * properties: <requiredProperties>.  These properties are required
 #  * when updating the object on Capture.
 #  **/
-# + (id)<objectName>    
-# {                                             
+# + (id)<objectName>
+# {
 #     return [[<className> alloc] init]];
 # }
 ###################################################################
@@ -185,19 +185,19 @@ my @minClassConstructorDocParts = (
  *
  * \@return
  *   A ",""," object\n",
-"","", 
+"","",
 " **/\n");
 
 my @minClassConstructorParts = (
 "+ (id)","",
 "\n{\n",
 "    return [[",""," alloc] init];",
-"\n}\n\n"); 
+"\n}\n\n");
 
 ###################################################################
 # CLASS CONSTRUCTOR (W REQUIRED PROPERTIES)
 # (Method only here when there are required properties)
-# 
+#
 # /**
 #  * Returns a <objectClass> object initialized with the given required properties: <requiredProperties>
 #  *
@@ -208,8 +208,8 @@ my @minClassConstructorParts = (
 #  *   A <objectClass> object initialized with the given required properties: <requiredProperties>
 #  *   If the required arguments are \e nil or \e [NSNull null], returns \e nil
 #  **/
-# + (id)<objectName><requiredProperties>        
-# {                                             
+# + (id)<objectName><requiredProperties>
+# {
 #     return [[<className> alloc] init<requiredProperties>];
 # }
 ###################################################################
@@ -218,25 +218,25 @@ my @classConstructorDocParts = (
 "/**
  * Returns a ",""," object initialized with the given required properties: ","","
  *",
-"", 
-" 
+"",
+"
  * \@return
  *   A ",""," object initialized with the given required properties: ","",".\n",
 " *   If the required arguments are \\e nil or \\e [NSNull null], returns \\e nil
  **/\n");
 
 my @classConstructorParts = (
-"+ (id)","","", 
+"+ (id)","","",
 "\n{\n",
 "    return [[",""," alloc] init","","];",
-"\n}\n\n"); 
+"\n}\n\n");
 
 
 ###################################################################
 # COPY CONSTRUCTOR (W REQUIRED PROPERTIES)
 #
 # - (id)copyWithZone:(NSZone*)zone
-# {                                                      
+# {
 #     <className> *<object>Copy = (<className> *)[JRCaptureObject copy];
 #
 #     <object>Copy.<property> = self.<property>;
@@ -250,22 +250,22 @@ my @classConstructorParts = (
 
 my @copyConstructorParts = (
 "- (id)copyWithZone:(NSZone*)zone",
-"\n{\n", 
+"\n{\n",
 "","[super copyWithZone:zone];\n\n",
-"", 
+"",
 "\n    return ","",";",
 "\n}\n\n");
 
 
 ###################################################################
 # MAKE OBJECT FROM DICTIONARY
-#                                               
-# /**                                           
+#
+# /**
 #  * Returns a <objectClass> object created from an \\e NSDictionary
 #  * representing the object
 #  *
 #  * @param dictionary
-#  *   An \e NSDictionary containing keys/values which map the the object's 
+#  *   An \e NSDictionary containing keys/values which map the the object's
 #  *   properties and their values/types.  This value cannot be nil
 #  *
 #  * @param capturePath
@@ -276,7 +276,7 @@ my @copyConstructorParts = (
 #  * @par Example:
 #  * The \c /primaryAddress/city refers to the city attribute of the primaryAddress object
 #  * The \c /profiles#1/username refers to the username attribute of the element in profiles with id=1
-#  *                                            
+#  *
 #  * @return                                              (Section only here when there are required properties)
 #  *   A <objectClass> object created from an \e NSDictionary.                       |
 #  *   If the \e NSDictionary is \e nil, returns \e nil                              |
@@ -307,12 +307,12 @@ my @copyConstructorParts = (
 #     }
 #
 #     <object>.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"<object>", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
-#     self.canBeUpdatedOnCapture = YES; 
+#     self.canBeUpdatedOnCapture = YES;
 #
-#     <object>.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#     <object>.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                   [dictionary objectForKey:@"<property>"] : nil;
 #       OR
-#     <object>.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#     <object>.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                   [<propertyFromDictionaryMethod>:[dictionary objectForKey:@"<property>"]] : nil;
 #       ...
 #
@@ -335,7 +335,7 @@ my @fromDictionaryDocParts = (
  * Returns a ",""," object created from an \\e NSDictionary representing the object
  *
  * \@param dictionary
- *   An \\e NSDictionary containing keys/values which map the the object's 
+ *   An \\e NSDictionary containing keys/values which map the the object's
  *   properties and their values/types.  This value cannot be nil
  *
  * \@param capturePath
@@ -349,7 +349,7 @@ my @fromDictionaryDocParts = (
  *
  * \@return
  *   A ",""," object\n",
-"", 
+"",
 " **/\n");
 
 my @fromDictionaryParts = (
@@ -378,7 +378,7 @@ my @fromDictionaryParts = (
         [","",".dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [","",".dirtyPropertySet removeAllObjects];
-    
+
     return ","",";
 }
 
@@ -390,15 +390,15 @@ my @fromDictionaryParts = (
 
 ###################################################################
 # DECODE CAPTURE USER OBJECT FROM DICTIONARY
-#                                               
+#
 # - (void)decodeFromDictionary:(NSDictionary*)dictionary
 # {
 #     NSSet *dirtyPropertySetCopy = [NSSet setWithArray:[dictionary objectForKey:@"dirtyPropertiesSet"]];
 #
-#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                   [dictionary objectForKey:@"<property>"] : nil;
 #       OR
-#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                   [<propertyFromDictionaryMethod>:[dictionary objectForKey:@"<property>"]] : nil;
 #       ...
 #
@@ -423,13 +423,13 @@ my @decodeUserFromDictParts = (
 #
 # /**
 #  * Creates an \e NSDictionary represention of a <objectClass> object
-#  * populated with all of the object's properties, as the dictionary's 
+#  * populated with all of the object's properties, as the dictionary's
 #  * keys, and the properties' values as the dictionary's values
 #  *
 #  * \@return
 #  *   An \e NSDictionary represention of a <objectClass> object
 #  **/
-# - (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+# - (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 # {
 #     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:10];
 #
@@ -452,7 +452,7 @@ my @decodeUserFromDictParts = (
 my @toDictionaryDocParts = (
 "/**
  * Creates an \e NSDictionary representation of a ",""," object
- * populated with all of the object's properties, as the dictionary's 
+ * populated with all of the object's properties, as the dictionary's
  * keys, and the properties' values as the dictionary's values
  *
  * \@return
@@ -460,9 +460,9 @@ my @toDictionaryDocParts = (
 " **/\n");
 
 my @toDictionaryParts = (
-"- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder",
+"- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder",
 "\n{\n",
-"    NSMutableDictionary *dictionary = 
+"    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];\n\n",
 "","
     if (forEncoder)
@@ -471,10 +471,10 @@ my @toDictionaryParts = (
                        forKey:\@\"dirtyPropertiesSet\"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:\@\"captureObjectPath\"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:\@\"canBeUpdatedOnCapture\"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];",
 "\n}\n\n");
 
@@ -486,11 +486,11 @@ my @toDictionaryParts = (
 #  * @internal
 #  * Updates the object from an \e NSDictionary populated with some of the object's
 #  * properties, as the dictionary's keys, and the properties' values as the dictionary's values.
-#  * This method is used by other JRCaptureObjects and should not be used by consumers of the 
+#  * This method is used by other JRCaptureObjects and should not be used by consumers of the
 #  * mobile Capture library
 #  *
 #  * @param dictionary
-#  *   An \e NSDictionary containing keys/values which map the the object's 
+#  *   An \e NSDictionary containing keys/values which map the the object's
 #  *   properties and their values/types
 #  *
 #  * @param capturePath
@@ -502,9 +502,9 @@ my @toDictionaryParts = (
 #  * The \c /primaryAddress/city refers to the city attribute of the primaryAddress object
 #  * The \c /profiles#1/username refers to the username attribute of the element in profiles with id=1
 #  *
-#  * @note 
+#  * @note
 #  * The main difference between this method and the replaceFromDictionary:withPath:(), is that
-#  * in this method properties are only updated if they exist in the dictionary, and in 
+#  * in this method properties are only updated if they exist in the dictionary, and in
 #  * replaceFromDictionary:withPath:(), all properties are replaced.  Even if the value is \e [NSNull null]
 #  * so long as the key exists in the dictionary, the property is updated.
 #  **/
@@ -518,10 +518,10 @@ my @toDictionaryParts = (
 #     self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"<object>", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 #
 #     if ([dictionary objectForKey:@"<property>"])
-#         self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#         self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                       [dictionary objectForKey:@"<property>"] : nil;
 #           OR
-#         self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#         self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                       [<propertyFromDictionaryMethod>:[dictionary objectForKey:@"<property>"]] : nil;
 #           ...
 #
@@ -533,12 +533,12 @@ my @updateFrDictDocParts = (
 "/**
  * \@internal
  * Updates the object from an \\e NSDictionary populated with some of the object's
- * properties, as the dictionary's keys, and the properties' values as the dictionary's values. 
- * This method is used by other JRCaptureObjects and should not be used by consumers of the 
+ * properties, as the dictionary's keys, and the properties' values as the dictionary's values.
+ * This method is used by other JRCaptureObjects and should not be used by consumers of the
  * mobile Capture library
  *
  * \@param dictionary
- *   An \\e NSDictionary containing keys/values which map the the object's 
+ *   An \\e NSDictionary containing keys/values which map the the object's
  *   properties and their values/types
  *
  * \@param capturePath
@@ -550,9 +550,9 @@ my @updateFrDictDocParts = (
  * The \\c /primaryAddress/city refers to the city attribute of the primaryAddress object
  * The \\c /profiles#1/username refers to the username attribute of the element in profiles with id=1
  *
- * \@note 
+ * \@note
  * The main difference between this method and the replaceFromDictionary:withPath:(), is that
- * in this method properties are only updated if they exist in the dictionary, and in 
+ * in this method properties are only updated if they exist in the dictionary, and in
  * replaceFromDictionary:withPath:(), all properties are replaced.  Even if the value is \\e [NSNull null]
  * so long as the key exists in the dictionary, the property is updated.
  **/\n");
@@ -576,11 +576,11 @@ my @updateFrDictParts = (
 #  * @internal
 #  * Replaces the object from an \e NSDictionary populated with some or all of the object's
 #  * properties, as the dictionary's keys, and the properties' values as the dictionary's values.
-#  * This method is used by other JRCaptureObjects and should not be used by consumers of the 
+#  * This method is used by other JRCaptureObjects and should not be used by consumers of the
 #  * mobile Capture library
 #  *
 #  * @param dictionary
-#  *   An \e NSDictionary containing keys/values which map the the object's 
+#  *   An \e NSDictionary containing keys/values which map the the object's
 #  *   properties and their values/types
 #  *
 #  * @param capturePath
@@ -592,7 +592,7 @@ my @updateFrDictParts = (
 #  * The \c /primaryAddress/city refers to the city attribute of the primaryAddress object
 #  * The \c /profiles#1/username refers to the username attribute of the element in profiles with id=1
 #  *
-#  * @note 
+#  * @note
 #  * The main difference between this method and the updateFromDictionary:withPath:(), is that
 #  * in this method \e all the properties are replaced, and in updateFromDictionary:withPath:(),
 #  * they are only updated if the exist in the dictionary.  If the key does not exist in
@@ -602,10 +602,10 @@ my @updateFrDictParts = (
 # {
 #     DLog(@"%@ %@", capturePath, [dictionary description]);
 #
-#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                   [dictionary objectForKey:@"<property>"] : nil;
 #       OR
-#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ? 
+#     self.<property> = [dictionary objectForKey:@"<property>"] != [NSNull null] ?
 #                                   [<propertyFromDictionaryMethod>:[dictionary objectForKey:@"<property>"]] : nil;
 #       ...
 #     [self.dirtyPropertySet setSet:dirtyPropertySetCopy];
@@ -617,11 +617,11 @@ my @replaceFrDictDocParts = (
  * \@internal
  * Replaces the object from an \\e NSDictionary populated with some or all of the object's
  * properties, as the dictionary's keys, and the properties' values as the dictionary's values.
- * This method is used by other JRCaptureObjects and should not be used by consumers of the 
+ * This method is used by other JRCaptureObjects and should not be used by consumers of the
  * mobile Capture library
  *
  * \@param dictionary
- *   An \\e NSDictionary containing keys/values which map the the object's 
+ *   An \\e NSDictionary containing keys/values which map the the object's
  *   properties and their values/types
  *
  * \@param capturePath
@@ -633,10 +633,10 @@ my @replaceFrDictDocParts = (
  * The \\c /primaryAddress/city refers to the city attribute of the primaryAddress object
  * The \\c /profiles#1/username refers to the username attribute of the element in profiles with id=1
  *
- * \@note 
+ * \@note
  * The main difference between this method and the updateFromDictionary:withPath:(), is that
  * in this method \\e all the properties are replaced, and in updateFromDictionary:withPath:(),
- * they are only updated if the exist in the dictionary.  If the key does not exist in 
+ * they are only updated if the exist in the dictionary.  If the key does not exist in
  * the dictionary, the property is set to \\e nil
  **/\n");
 
@@ -693,17 +693,17 @@ my @dirtyPropertySnapshotParts = (
 # {
 #     NSMutableDictionary *dictionary =
 #          [NSMutableDictionary dictionaryWithCapacity:10];
-# 
+#
 #     if ([self.dirtyPropertySet containsObject:@"<property>"])
 #         [dictionary setObject:(self.<property> ? self.<property> : [NSNull null]) forKey:@"<property>"];
 #           OR
 #         [dictionary setObject:(self.<property> ? <propertyToUpdateDictionaryMethod> : [NSNull null]) forKey:@"<property>"];
 #
 #     [self.dirtyPropertySet removeAllObjects];
-# 
+#
 #     return [NSDictionary dictionaryWithDictionary:dictionary];
 # }
-# 
+#
 # /**
 #  * TODO: Doxygen doc
 #  **/
@@ -713,7 +713,7 @@ my @dirtyPropertySnapshotParts = (
 #                                                      context, @"callerContext",
 #                                                      delegate, @"delegate",
 #                                                      context, @"callerContext", nil];
-# 
+#
 #     [JRCaptureInterface updateCaptureObject:[self toUpdateDictionary]
 #                                      withId:self.<objectName>Id OR 0
 #                                      atPath:self.captureObjectPath
@@ -734,7 +734,7 @@ my @toUpdateDictionaryParts = (
 "\n{\n",
 "    NSMutableDictionary *dictionary =
          [NSMutableDictionary dictionaryWithCapacity:10];\n",
-"",         
+"",
 "
     [self.dirtyPropertySet removeAllObjects];
     return [NSDictionary dictionaryWithDictionary:dictionary];",
@@ -754,16 +754,16 @@ my @updateRemotelyParts = (
 # {
 #     NSMutableDictionary *dictionary =
 #          [NSMutableDictionary dictionaryWithCapacity:10];
-# 
+#
 #     [dictionary setObject:(self.<property> ? self.<property> : [NSNull null]) forKey:@"<property>"];
 #       OR
 #     [dictionary setObject:(self.<property> ? <propertyToUpdateDictionaryMethod> : [NSNull null]) forKey:@"<property>"];
-# 
+#
 #     [self.dirtyPropertySet removeAllObjects];
 #
 #     return [NSDictionary dictionaryWithDictionary:dictionary];
 # }
-# 
+#
 # /**
 #  * TODO: Doxygen doc
 #  **/
@@ -773,7 +773,7 @@ my @updateRemotelyParts = (
 #                                                      self, @"captureObject",
 #                                                      delegate, @"delegate",
 #                                                      context, @"callerContext", nil];
-# 
+#
 #     [JRCaptureInterface updateCaptureObject:[self toReplaceDictionary]
 #                                      withId:self.<objectName>Id OR 0
 #                                      atPath:self.captureObjectPath
@@ -793,7 +793,7 @@ my @toReplaceDictionaryParts = (
 "\n{\n",
 "    NSMutableDictionary *dictionary =
          [NSMutableDictionary dictionaryWithCapacity:10];\n\n",
-"",         
+"",
 "
     [self.dirtyPropertySet removeAllObjects];
     return [NSDictionary dictionaryWithDictionary:dictionary];",
@@ -830,7 +830,7 @@ my @toReplaceDictionaryParts = (
 #     else if (![self.<objectProperty> isEqualTo<propertyObject>:other<objectName>.<objectProperty>]) return NO;
 #       ...
 #
-#     return YES;    
+#     return YES;
 # }
 ###################################################################
 
@@ -838,7 +838,7 @@ my @isEqualObjectDocParts = (
 "/**
  * TODO: Doxygen doc
  **/\n");
- 
+
 my @isEqualObjectParts = (
 "- (BOOL)isEqualTo","",
 "\n{\n",
@@ -864,25 +864,25 @@ my @isEqualObjectParts = (
 #         return YES;
 #       ...
 #
-#     return NO;    
+#     return NO;
 # }
 ###################################################################
 
 my @needsUpdateDocParts = (
 "/**
  * Use this method to determine if the object or element needs to be updated remotely.
- * That is, if there are local changes to any of the object/elements's properties or 
+ * That is, if there are local changes to any of the object/elements's properties or
  * sub-objects, then this object will need to be updated on Capture. You can update
  * an object on Capture by using the method updateOnCaptureForDelegate:context:().
  *
  * \@return
  * \\c YES if this object or any of it's sub-objects have any properties that have changed
- * locally. This does not include properties that are arrays, if any, or the elements contained 
+ * locally. This does not include properties that are arrays, if any, or the elements contained
  * within the arrays. \\c NO if no non-array properties or sub-objects have changed locally.",
  "","",
  "","","","
  **/\n");
- 
+
 my @needsUpdateParts = (
 "- (BOOL)needsUpdate",
 "\n{\n",
@@ -913,13 +913,13 @@ my @objectPropertiesDocParts = (
 "/**
  * TODO: Doxygen doc
  **/\n");
- 
+
 my @objectPropertiesParts = (
 "- (NSDictionary*)objectProperties",
 "\n{\n",
-"    NSMutableDictionary *dictionary = 
+"    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];\n\n",
-"", 
+"",
 "\n    return [NSDictionary dictionaryWithDictionary:dictionary];",
 "\n}\n\n");
 
@@ -958,13 +958,13 @@ my $copyrightHeader =
 
 my @doxygenClassDescParts = (
 "/**
- * \@brief ","", 
+ * \@brief ","",
 "\n **/\n");
 
 
-sub createArrayCategoryForSubobject { 
+sub createArrayCategoryForSubobject {
   my $propertyName = $_[0];
-  
+
   my $arrayCategoryIntf = "\@interface NSArray (JRArray_" . ucfirst($propertyName) . "_ToFromDictionary)\n";
   my $arrayCategoryImpl = "\@implementation NSArray (JRArray_" . ucfirst($propertyName) . "_ToFromDictionary)\n";
 
@@ -973,141 +973,141 @@ sub createArrayCategoryForSubobject {
   my $methodName3 = "- (NSArray*)arrayOf" . ucfirst($propertyName) . "DictionariesFrom" . ucfirst($propertyName) . "ElementsForEncoder:(BOOL)forEncoder";
   my $methodName4 = "- (NSArray*)arrayOf" . ucfirst($propertyName) . "DictionariesFrom" . ucfirst($propertyName) . "Elements";
   my $methodName5 = "- (NSArray*)arrayOf" . ucfirst($propertyName) . "ReplaceDictionariesFrom" . ucfirst($propertyName) . "Elements";
- 
+
   $arrayCategoryIntf .= "$methodName1;\n$methodName2;\n$methodName3;\n$methodName4;\n$methodName5;\n\@end\n\n";
-  
+
   $arrayCategoryImpl .= "$methodName1\n{\n";
-  $arrayCategoryImpl .=        
-       "    NSMutableArray *filtered" . ucfirst($propertyName) . "Array = [NSMutableArray arrayWithCapacity:[self count]];\n" . 
-       "    for (NSObject *dictionary in self)\n" . 
-       "        if ([dictionary isKindOfClass:[NSDictionary class]])\n" . 
-       "            [filtered" . ucfirst($propertyName) . "Array addObject:[JR" . ucfirst($propertyName) . "Element " . $propertyName . "ElementFromDictionary:(NSDictionary*)dictionary withPath:capturePath fromDecoder:fromDecoder]];\n\n" . 
+  $arrayCategoryImpl .=
+       "    NSMutableArray *filtered" . ucfirst($propertyName) . "Array = [NSMutableArray arrayWithCapacity:[self count]];\n" .
+       "    for (NSObject *dictionary in self)\n" .
+       "        if ([dictionary isKindOfClass:[NSDictionary class]])\n" .
+       "            [filtered" . ucfirst($propertyName) . "Array addObject:[JR" . ucfirst($propertyName) . "Element " . $propertyName . "ElementFromDictionary:(NSDictionary*)dictionary withPath:capturePath fromDecoder:fromDecoder]];\n\n" .
        "    return filtered" . ucfirst($propertyName) . "Array;\n}\n\n";
 
   $arrayCategoryImpl .= "$methodName2\n{\n";
-  $arrayCategoryImpl .=        
+  $arrayCategoryImpl .=
        "    return [self arrayOf" . ucfirst($propertyName) . "ElementsFrom" . ucfirst($propertyName) . "DictionariesWithPath:capturePath fromDecoder:NO];\n}\n\n";
 
-       
+
   $arrayCategoryImpl .= "$methodName3\n{\n";
-  $arrayCategoryImpl .=        
-       "    NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];\n" . 
-       "    for (NSObject *object in self)\n" . 
-       "        if ([object isKindOfClass:[JR" . ucfirst($propertyName) . "Element class]])\n" . 
-       "            [filteredDictionaryArray addObject:[(JR" . ucfirst($propertyName) . "Element*)object toDictionaryForEncoder:forEncoder]];\n\n" . 
+  $arrayCategoryImpl .=
+       "    NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];\n" .
+       "    for (NSObject *object in self)\n" .
+       "        if ([object isKindOfClass:[JR" . ucfirst($propertyName) . "Element class]])\n" .
+       "            [filteredDictionaryArray addObject:[(JR" . ucfirst($propertyName) . "Element*)object newDictionaryForEncoder:forEncoder]];\n\n" .
        "    return filteredDictionaryArray;\n}\n\n";
 
   $arrayCategoryImpl .= "$methodName4\n{\n";
-  $arrayCategoryImpl .=        
+  $arrayCategoryImpl .=
        "    return [self arrayOf" . ucfirst($propertyName) . "DictionariesFrom" . ucfirst($propertyName) . "ElementsForEncoder:NO];\n}\n\n";
 
   $arrayCategoryImpl .= "$methodName5\n{\n";
-  $arrayCategoryImpl .=        
-       "    NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];\n" . 
-       "    for (NSObject *object in self)\n" . 
-       "        if ([object isKindOfClass:[JR" . ucfirst($propertyName) . "Element class]])\n" . 
-       "            [filteredDictionaryArray addObject:[(JR" . ucfirst($propertyName) . "Element*)object toReplaceDictionary]];\n\n" . 
-       "    return filteredDictionaryArray;\n}\n\@end\n\n";          
+  $arrayCategoryImpl .=
+       "    NSMutableArray *filteredDictionaryArray = [NSMutableArray arrayWithCapacity:[self count]];\n" .
+       "    for (NSObject *object in self)\n" .
+       "        if ([object isKindOfClass:[JR" . ucfirst($propertyName) . "Element class]])\n" .
+       "            [filteredDictionaryArray addObject:[(JR" . ucfirst($propertyName) . "Element*)object toReplaceDictionary]];\n\n" .
+       "    return filteredDictionaryArray;\n}\n\@end\n\n";
 
   return $arrayCategoryImpl;#"$arrayCategoryIntf$arrayCategoryImpl";
 }
 
-sub createObjectCategoryForSubobject { 
+sub createObjectCategoryForSubobject {
   my $propertyName   = $_[0];
   my $isArrayElement = $_[1];
-  
-  my $objectCategoryIntf = "\@interface JR" . ucfirst($propertyName) . " (JR" . ucfirst($propertyName) . "_InternalMethods)\n" . 
-                           "+ (id)" . $propertyName . ($isArrayElement ? "" : "Object") . "FromDictionary:(NSDictionary*)dictionary withPath:(NSString *)capturePath fromDecoder:(BOOL)fromDecoder;\n" . 
-                           "- (BOOL)isEqualTo" . ucfirst($propertyName) . ":(JR" . ucfirst($propertyName) . " *)other" . ucfirst($propertyName) . ";\n" . 
+
+  my $objectCategoryIntf = "\@interface JR" . ucfirst($propertyName) . " (JR" . ucfirst($propertyName) . "_InternalMethods)\n" .
+                           "+ (id)" . $propertyName . ($isArrayElement ? "" : "Object") . "FromDictionary:(NSDictionary*)dictionary withPath:(NSString *)capturePath fromDecoder:(BOOL)fromDecoder;\n" .
+                           "- (BOOL)isEqualTo" . ucfirst($propertyName) . ":(JR" . ucfirst($propertyName) . " *)other" . ucfirst($propertyName) . ";\n" .
                            "\@end\n\n";
 
   return $objectCategoryIntf;
 }
 
-sub getArrayComparisonDeclaration { 
+sub getArrayComparisonDeclaration {
   my $propertyName = $_[0];
-  
+
   return "- (BOOL)isEqualTo" . ucfirst($propertyName) . "Array:(NSArray *)otherArray;\n";
 }
 
-sub getArrayComparisonImplementation { 
+sub getArrayComparisonImplementation {
   my $propertyName = $_[0];
-  
-  return "\n" . 
+
+  return "\n" .
   "- (BOOL)isEqualTo" . ucfirst($propertyName) . "Array:(NSArray *)otherArray\n{\n" .
-  "    if ([self count] != [otherArray count]) return NO;\n\n" . 
+  "    if ([self count] != [otherArray count]) return NO;\n\n" .
   "    for (NSUInteger i = 0; i < [self count]; i++)\n" .
   "        if (![((JR" . ucfirst($propertyName) . "Element *)[self objectAtIndex:i]) isEqualTo" . ucfirst($propertyName) . "Element:[otherArray objectAtIndex:i]])\n" .
   "            return NO;\n\n" .
-  "    return YES;\n}\n";             
+  "    return YES;\n}\n";
 }
 
-sub createArrayReplaceMethodDeclaration { 
+sub createArrayReplaceMethodDeclaration {
   my $propertyName = $_[0];
   my $className    = $_[1];
 
-  my $methodDeclaration = 
+  my $methodDeclaration =
        "\n"  .
-       "/**\n" . 
-       " * Use this method to replace the " . $className . "#" . $propertyName . " array on Capture after adding, removing,\n" . 
+       "/**\n" .
+       " * Use this method to replace the " . $className . "#" . $propertyName . " array on Capture after adding, removing,\n" .
        " * or reordering elements. You should call this method immediately after you perform any of these actions.\n" .
        " * This method will replace the entire array on Capture, including all of its elements and their sub-arrays and\n" .
-       " * sub-objects. When successful, the new array will be added to the " . $className . "#" . $propertyName . " property,\n" . 
+       " * sub-objects. When successful, the new array will be added to the " . $className . "#" . $propertyName . " property,\n" .
        " * replacing the existing NSArray.\n" .
-       " *\n" . 
-       " * If the array is replaced successfully, the method JRCaptureObjectDelegate#replaceArrayDidSucceedForObject:newArray:named:context:\n" . 
+       " *\n" .
+       " * If the array is replaced successfully, the method JRCaptureObjectDelegate#replaceArrayDidSucceedForObject:newArray:named:context:\n" .
        " * will be called on your delegate. This method will return a pointer to the new array, which is also the same pointer\n" .
        " * stored in the " . $className . "#" . $propertyName . " property, and the name of the replaced array: \\c \"" . $propertyName . "\".\n" .
        " *\n" .
        " * If unsuccessful, the method JRCaptureObjectDelegate#replaceArrayDidFailForObject:arrayNamed:withError:context:\n" .
        " * will be called on your delegate.\n" .
-       " *\n" . 
-       " * \@param delegate\n" . 
+       " *\n" .
+       " * \@param delegate\n" .
        " *   The JRCaptureObjectDelegate that implements the optional delegate methods JRCaptureObjectDelegate#replaceArrayDidSucceedForObject:newArray:named:context:\n" .
        " *   and JRCaptureObjectDelegate#replaceArrayDidFailForObject:arrayNamed:withError:context:.\n" .
-       " *\n" . 
-       " * \@param context\n" . 
+       " *\n" .
+       " * \@param context\n" .
        " *   Any NSObject that you would like to send through the asynchronous network call back to your delegate, or \\c nil.\n" .
        " *   This object will be passed back to your JRCaptureObjectDelegate as is. Contexts are used across most of the\n" .
        " *   asynchronous Capture methods to facilitate correlation of the response messages with the calling code. Use of the\n" .
        " *   context is entirely optional and at your discretion.\n" .
-       " *\n" . 
-       " * \@warning\n" . 
-       " * When successful, the new array will be added to the " . $className . "#" . $propertyName . " property,\n" . 
-       " * replacing the existing NSArray. The new array will contain new, but equivalent JR" . ucfirst($propertyName) . "Element\n" . 
-       " * objects. That is to say, the elements will be the same, but they will have new pointers. You should not hold onto\n" . 
-       " * any references to the " . $className . "#" . $propertyName . " or JR" . ucfirst($propertyName) . "Element objects\n" . 
+       " *\n" .
+       " * \@warning\n" .
+       " * When successful, the new array will be added to the " . $className . "#" . $propertyName . " property,\n" .
+       " * replacing the existing NSArray. The new array will contain new, but equivalent JR" . ucfirst($propertyName) . "Element\n" .
+       " * objects. That is to say, the elements will be the same, but they will have new pointers. You should not hold onto\n" .
+       " * any references to the " . $className . "#" . $propertyName . " or JR" . ucfirst($propertyName) . "Element objects\n" .
        " * when you are replacing this array on Capture, as the pointers will become invalid.\n" .
-       " * \n" . 
-       " * \@note\n" . 
-       " * After the array has been replaced on Capture, you can now call JR" . ucfirst($propertyName) . "Element#updateOnCaptureForDelegate:context:()\n" .  
-       " * on the array's elements. You can check the JR" . ucfirst($propertyName) . "Element#canBeUpdatedOnCapture property to determine\n" .  
-       " * if an element can be updated or not. If the JR" . ucfirst($propertyName) . "Element#canBeUpdatedOnCapture property is equal\n" . 
-       " * to \\c NO you should replace the " . $className . "#" . $propertyName . " array on Capture. Replacing the array will also\n" . 
-       " * update any local changes to the properties of a JR" . ucfirst($propertyName) . "Element, including sub-arrays and sub-objects.\n" . 
-       " *\n * \@par\n" . 
-       " * If you haven't added, removed, or reordered any of the elements of the " . $className . "#" . $propertyName . " array, but\n" . 
-       " * you have locally updated the properties of a JR" . ucfirst($propertyName) . "Element, you can just call\n" . 
-       " * JR" . ucfirst($propertyName) . "Element#updateOnCaptureForDelegate:context:() to update the local changes on the Capture server.\n" . 
+       " * \n" .
+       " * \@note\n" .
+       " * After the array has been replaced on Capture, you can now call JR" . ucfirst($propertyName) . "Element#updateOnCaptureForDelegate:context:()\n" .
+       " * on the array's elements. You can check the JR" . ucfirst($propertyName) . "Element#canBeUpdatedOnCapture property to determine\n" .
+       " * if an element can be updated or not. If the JR" . ucfirst($propertyName) . "Element#canBeUpdatedOnCapture property is equal\n" .
+       " * to \\c NO you should replace the " . $className . "#" . $propertyName . " array on Capture. Replacing the array will also\n" .
+       " * update any local changes to the properties of a JR" . ucfirst($propertyName) . "Element, including sub-arrays and sub-objects.\n" .
+       " *\n * \@par\n" .
+       " * If you haven't added, removed, or reordered any of the elements of the " . $className . "#" . $propertyName . " array, but\n" .
+       " * you have locally updated the properties of a JR" . ucfirst($propertyName) . "Element, you can just call\n" .
+       " * JR" . ucfirst($propertyName) . "Element#updateOnCaptureForDelegate:context:() to update the local changes on the Capture server.\n" .
        " * The JR" . ucfirst($propertyName) . "Element#canBeUpdatedOnCapture property will let you know if you can do this.\n" .
-       " **/\n" . 
+       " **/\n" .
        "- (void)replace" . ucfirst($propertyName) . "ArrayOnCaptureForDelegate:(id<JRCaptureObjectDelegate>)delegate context:(NSObject *)context;\n";
 
   return $methodDeclaration;
 }
 
-sub createArrayReplaceMethodImplementation { 
+sub createArrayReplaceMethodImplementation {
   my $propertyName  = $_[0];
   my $isStringArray = $_[1];
   my $elementType   = $_[2];
 
   my $methodImplementation =
-       "- (void)replace" . ucfirst($propertyName) . "ArrayOnCaptureForDelegate:(id<JRCaptureObjectDelegate>)delegate context:(NSObject *)context\n" . 
-       "{\n" . 
-       "    [self replaceArrayOnCapture:self." . $propertyName . " named:\@\"" . $propertyName . "\" isArrayOfStrings:" . ($isStringArray ? "YES" : "NO" ) . "\n" . 
-       "                       withType:\@\"" . ($isStringArray ? $elementType : "" ) . "\" forDelegate:delegate withContext:context];\n" . 
+       "- (void)replace" . ucfirst($propertyName) . "ArrayOnCaptureForDelegate:(id<JRCaptureObjectDelegate>)delegate context:(NSObject *)context\n" .
+       "{\n" .
+       "    [self replaceArrayOnCapture:self." . $propertyName . " named:\@\"" . $propertyName . "\" isArrayOfStrings:" . ($isStringArray ? "YES" : "NO" ) . "\n" .
+       "                       withType:\@\"" . ($isStringArray ? $elementType : "" ) . "\" forDelegate:delegate withContext:context];\n" .
        "}\n\n";
-       
+
   return $methodImplementation;
 }
 
@@ -1121,14 +1121,14 @@ sub createGetterSetterForProperty {
   my $setter;
   my $primitiveGetter = "";
   my $primitiveSetter = "";
-  
+
   $getter = "- (" . $propertyType . ")" . $propertyName;
-  
+
   $getter .= "\n{\n";
   $getter .= "    return _" . $propertyName . ";";
   $getter .= "\n}\n\n";
-  
-  $setter .= "- (void)set". ucfirst($propertyName) . ":(" . $propertyType . ")new" . ucfirst($propertyName); 
+
+  $setter .= "- (void)set". ucfirst($propertyName) . ":(" . $propertyType . ")new" . ucfirst($propertyName);
   $setter .= "\n{\n";
 
 #  if ($isArray) {
@@ -1142,22 +1142,22 @@ sub createGetterSetterForProperty {
     $setter .= "    _" . $propertyName . " = new" . ucfirst($propertyName) . ";\n\n";
     $setter .= "    [_" . $propertyName . " setAllPropertiesToDirty];"
   } else {
-    $setter .= "    _" . $propertyName . " = [new" . ucfirst($propertyName) . " copy];";    
+    $setter .= "    _" . $propertyName . " = [new" . ucfirst($propertyName) . " copy];";
   }
-  
+
   $setter .= "\n}\n\n";
 
   if ($isBoolOrInt eq "b") {
-  
+
     $primitiveGetter .= "- (BOOL)get" . ucfirst($propertyName) . "BoolValue";
     $primitiveGetter .= "\n{\n";
-    $primitiveGetter .= "    return [_" . $propertyName .  " boolValue];";    
+    $primitiveGetter .= "    return [_" . $propertyName .  " boolValue];";
     $primitiveGetter .= "\n}\n\n";
-    
+
     $primitiveSetter .= "- (void)set" . ucfirst($propertyName) . "WithBool:(BOOL)boolVal";
     $primitiveSetter .= "\n{\n";
     $primitiveSetter .= "    [self.dirtyPropertySet addObject:@\"" . $propertyName . "\"];\n\n";
-  
+
     $primitiveSetter .= "    _" . $propertyName .  " = [NSNumber numberWithBool:boolVal];";
     $primitiveSetter .= "\n}\n\n";
 
@@ -1165,16 +1165,16 @@ sub createGetterSetterForProperty {
 
     $primitiveGetter .= "- (NSInteger)get" . ucfirst($propertyName) . "IntegerValue";
     $primitiveGetter .= "\n{\n";
-    $primitiveGetter .= "    return [_" . $propertyName .  " integerValue];";    
+    $primitiveGetter .= "    return [_" . $propertyName .  " integerValue];";
     $primitiveGetter .= "\n}\n\n";
-    
+
     $primitiveSetter .= "- (void)set" . ucfirst($propertyName) . "WithInteger:(NSInteger)integerVal";
     $primitiveSetter .= "\n{\n";
     $primitiveSetter .= "    [self.dirtyPropertySet addObject:@\"" . $propertyName . "\"];\n\n";
 
     $primitiveSetter .= "    _" . $propertyName .  " = [NSNumber numberWithInteger:integerVal];";
     $primitiveSetter .= "\n}\n\n";
-    
+
   }
 
   return $getter . $setter . $primitiveGetter . $primitiveSetter;
@@ -1185,25 +1185,25 @@ sub createGetterSetterForProperty {
 #   my $pluralType    = $_[1];
 #   my $getter;
 #   my $setter;
-#   
+#
 #   $getter = "- (NSArray *)" . $propertyName;
-#   
+#
 #   $getter .= "\n{\n";
 #   $getter .= "    return _" . $propertyName . ";";
 #   $getter .= "\n}\n\n";
-#   
-#   $setter .= "- (void)set". ucfirst($propertyName) . ":(NSArray *)new" . ucfirst($propertyName); 
+#
+#   $setter .= "- (void)set". ucfirst($propertyName) . ":(NSArray *)new" . ucfirst($propertyName);
 #   $setter .= "\n{\n";
 #   $setter .= "    [self.dirtyArraySet addObject:@\"" . $propertyName . "\"];\n";
-# 
+#
 # #   $setter .= "    if (!new" . ucfirst($propertyName) . ")\n";
-# #   $setter .= "        _" . $propertyName .  " = [NSNull null];\n";  
+# #   $setter .= "        _" . $propertyName .  " = [NSNull null];\n";
 # #   $setter .= "    else\n";
 #   $setter .= "    _" . $propertyName .  " = ";
-#   $setter .= "[new" . ucfirst($propertyName) . " copyArrayOfStringPluralElementsWithType:\@\"" . $pluralType . "\"];";  
-#   
+#   $setter .= "[new" . ucfirst($propertyName) . " copyArrayOfStringPluralElementsWithType:\@\"" . $pluralType . "\"];";
+#
 #   $setter .= "\n}\n\n";
-# 
+#
 #   return $getter . $setter;
 # }
 
@@ -1340,24 +1340,24 @@ sub getObjectPropertiesDocParts {
 }
 
 sub getObjcKeywords {
-  my @keywords = ("auto", "_Bool", "_Complex", "_Imaginery", "atomic", "BOOL", "break", "bycopy", "byref", 
-                  "case", "char", "Class", "const", "continue", "default", "do", "double", "else", "enum", 
-                  "extern", "float", "for", "goto", "id", "if", "IMP", "in", "inline", "inout", "int", "long", 
-                  "nil", "NO", "nonatomic", "NULL", "oneway", "out", "Protocol", "register", "restrict", 
-                  "retain", "return", "SEL", "self", "short", "signed", "sizeof", "static", "struct", 
-                  "super", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "YES"); 
+  my @keywords = ("auto", "_Bool", "_Complex", "_Imaginery", "atomic", "BOOL", "break", "bycopy", "byref",
+                  "case", "char", "Class", "const", "continue", "default", "do", "double", "else", "enum",
+                  "extern", "float", "for", "goto", "id", "if", "IMP", "in", "inline", "inout", "int", "long",
+                  "nil", "NO", "nonatomic", "NULL", "oneway", "out", "Protocol", "register", "restrict",
+                  "retain", "return", "SEL", "self", "short", "signed", "sizeof", "static", "struct",
+                  "super", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "YES");
 
   my %keywords = map { $_ => 1 } @keywords;
-  
+
   return %keywords;
 }
 
 sub getJanrainObjectNames {
-  my @objectNames = ("objectId", "integer", "boolean", "uuid", "ipAddress", "password", 
+  my @objectNames = ("objectId", "integer", "boolean", "uuid", "ipAddress", "password",
                      "jsonObject", "simpleArray", "array", "date", "dateTime");
 
   my %keywords = map { $_ => 1 } @keywords;
-  
+
   return %keywords;
 }
 

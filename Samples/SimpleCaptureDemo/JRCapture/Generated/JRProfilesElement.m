@@ -209,7 +209,7 @@
         _domain = [newDomain copy];
         _identifier = [newIdentifier copy];
         _profile = [[JRProfile alloc] init];
-    
+
         [self.dirtyPropertySet setSet:[self updatablePropertySet]];
     }
     return self;
@@ -225,9 +225,9 @@
     return [[JRProfilesElement alloc] initWithDomain:domain andIdentifier:identifier];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.accessCredentials ? self.accessCredentials : [NSNull null])
@@ -242,7 +242,7 @@
                    forKey:@"friends"];
     [dictionary setObject:(self.identifier ? self.identifier : [NSNull null])
                    forKey:@"identifier"];
-    [dictionary setObject:(self.profile ? [self.profile toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.profile ? [self.profile newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"profile"];
     [dictionary setObject:(self.provider ? self.provider : [NSNull null])
                    forKey:@"provider"];
@@ -257,10 +257,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -281,7 +281,7 @@
     }
     else
     {
-        profilesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"profiles", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        profilesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"profiles", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         profilesElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -329,7 +329,7 @@
         [profilesElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [profilesElement.dirtyPropertySet removeAllObjects];
-    
+
     return profilesElement;
 }
 
@@ -345,7 +345,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"profiles", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"profiles", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.accessCredentials =
         [dictionary objectForKey:@"accessCredentials"] != [NSNull null] ? 
@@ -586,7 +586,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"JRJsonObject" forKey:@"accessCredentials"];

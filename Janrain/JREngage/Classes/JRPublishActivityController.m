@@ -290,7 +290,7 @@ or opacity of our rounded rectangle. */
 @property(nonatomic) NSTimer *timer;
 @property(nonatomic) BOOL weAreCurrentlyPostingSomething;
 @property(nonatomic, copy) NSString *shortenedActivityUrl;
-@property(nonatomic) int maxCharacters;
+@property(nonatomic) NSInteger maxCharacters;
 @property(nonatomic) BOOL activityHasRichData;
 @property(nonatomic) float mediaBoxHeight;
 @property(nonatomic) float previewLabelHeight;
@@ -501,7 +501,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
 
     self.timer = nil;
 
-    DLog (@"Social Providers so far: %d", [self.sessionData.sharingProviders count]);
+    DLog (@"Social Providers so far: %lu", (unsigned long)[self.sessionData.sharingProviders count]);
 
     /* If we have our list of providers, stop the progress indicators and load the table. */
     if ([self.sessionData.sharingProviders count] > 0)
@@ -693,7 +693,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     if ([self shouldHideRemainingCharacterCount])
         return;
 
-    int chars_remaining = 0;
+    NSInteger chars_remaining = 0;
     if ([selectedProvider doesContentReplaceAction])
     {
         /* Twitter, MySpace, LinkedIn */
@@ -704,7 +704,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         }
         else
         {
-            int preview_length = [[myPreviewOfTheUserCommentLabel text] length];
+            NSUInteger preview_length = [[myPreviewOfTheUserCommentLabel text] length];
             chars_remaining = self.maxCharacters - preview_length;
 
             characterCountText = [NSString stringWithFormat:NSLocalizedString(@"Remaining characters: %d", nil),
@@ -713,11 +713,11 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     }
     else
     { /* Facebook, Yahoo */
-        int comment_length = [[myUserCommentTextView text] length];
+        NSUInteger comment_length = [[myUserCommentTextView text] length];
         chars_remaining = self.maxCharacters - comment_length;
 
-        characterCountText = [NSString stringWithFormat:@"Remaining characters: %d",
-                                                        chars_remaining]; // TODO: Make just character number red
+        characterCountText = [NSString stringWithFormat:@"Remaining characters: %ld",
+                                                        (long)chars_remaining]; // TODO: Make just character number red
     }
 
     [myRemainingCharactersLabel setText:characterCountText];

@@ -33,9 +33,6 @@
 
 
 @interface JRCaptureObjectTests : GHTestCase
-
-- (void) test_replaceCaptureArrayDidSucceedWithResult;
-
 @end
 
 @implementation JRCaptureObjectTests

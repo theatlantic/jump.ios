@@ -131,9 +131,9 @@
     return [[JRAccountsElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.domain ? self.domain : [NSNull null])
@@ -151,10 +151,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -175,7 +175,7 @@
     }
     else
     {
-        accountsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"accounts", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        accountsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"accounts", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         accountsElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -199,7 +199,7 @@
         [accountsElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [accountsElement.dirtyPropertySet removeAllObjects];
-    
+
     return accountsElement;
 }
 
@@ -215,7 +215,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"accounts", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"accounts", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.domain =
         [dictionary objectForKey:@"domain"] != [NSNull null] ? 
@@ -335,7 +335,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"domain"];

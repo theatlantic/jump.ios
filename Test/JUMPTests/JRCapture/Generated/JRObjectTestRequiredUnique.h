@@ -79,7 +79,7 @@
  *
  * @param newRequiredUniqueString
  *   The object's \e requiredUniqueString property
- * 
+ *
  * @return
  *   A JRObjectTestRequiredUnique object initialized with the given required properties: \e newRequiredString, \e newRequiredUniqueString.
  *   If the required arguments are \e nil or \e [NSNull null], returns \e nil
@@ -94,7 +94,7 @@
  *
  * @param requiredUniqueString
  *   The object's \e requiredUniqueString property
- * 
+ *
  * @return
  *   A JRObjectTestRequiredUnique object initialized with the given required properties: \e requiredString, \e requiredUniqueString.
  *   If the required arguments are \e nil or \e [NSNull null], returns \e nil
@@ -109,13 +109,13 @@
 /*@{*/
 /**
  * Use this method to determine if the object or element needs to be updated remotely.
- * That is, if there are local changes to any of the object/elements's properties or 
+ * That is, if there are local changes to any of the object/elements's properties or
  * sub-objects, then this object will need to be updated on Capture. You can update
  * an object on Capture by using the method updateOnCaptureForDelegate:context:().
  *
  * @return
  * \c YES if this object or any of it's sub-objects have any properties that have changed
- * locally. This does not include properties that are arrays, if any, or the elements contained 
+ * locally. This does not include properties that are arrays, if any, or the elements contained
  * within the arrays. \c NO if no non-array properties or sub-objects have changed locally.
  **/
 - (BOOL)needsUpdate;

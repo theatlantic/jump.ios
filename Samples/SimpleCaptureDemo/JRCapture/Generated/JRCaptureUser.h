@@ -58,10 +58,10 @@
 @property (nonatomic,strong)    JRPrimaryAddress *primaryAddress; /**< The object's \e primaryAddress property */ 
 @property (nonatomic, copy)     NSArray *profiles; /**< The object's \e profiles property @note This is an array of JRProfilesElement objects */ 
 @property (nonatomic, copy)     NSArray *statuses; /**< The object's \e statuses property @note This is an array of JRStatusesElement objects */ 
-@property (nonatomic, readonly) JRDateTime *created; /**< When this entity was created @note A ::JRDateTime property is a property of type \ref typesTable "dateTime" and a typedef of \e NSDate. The accepted format should be an ISO 8601 dateTime string (e.g., <code>yyyy-MM-dd HH:mm:ss.SSSSSS ZZZ</code>) */ 
-@property (nonatomic, readonly) JRDateTime *lastUpdated; /**< When this entity was last updated @note A ::JRDateTime property is a property of type \ref typesTable "dateTime" and a typedef of \e NSDate. The accepted format should be an ISO 8601 dateTime string (e.g., <code>yyyy-MM-dd HH:mm:ss.SSSSSS ZZZ</code>) */ 
 @property (nonatomic, readonly) JRObjectId *captureUserId; /**< Simple identifier for this entity @note The \e id of the object should not be set. */ 
+@property (nonatomic, readonly) JRDateTime *lastUpdated; /**< When this entity was last updated @note A ::JRDateTime property is a property of type \ref typesTable "dateTime" and a typedef of \e NSDate. The accepted format should be an ISO 8601 dateTime string (e.g., <code>yyyy-MM-dd HH:mm:ss.SSSSSS ZZZ</code>) */ 
 @property (nonatomic, readonly) JRUuid *uuid; /**< Globally unique indentifier for this entity @note A ::JRUuid property is a property of type \ref typesTable "uuid" and a typedef of \e NSString */ 
+@property (nonatomic, readonly) JRDateTime *created; /**< When this entity was created @note A ::JRDateTime property is a property of type \ref typesTable "dateTime" and a typedef of \e NSDate. The accepted format should be an ISO 8601 dateTime string (e.g., <code>yyyy-MM-dd HH:mm:ss.SSSSSS ZZZ</code>) */ 
 
 /**
  * @name Constructors
@@ -98,7 +98,7 @@
  *
  * @param newEmail
  *   The object's \e email property
- * 
+ *
  * @return
  *   A JRCaptureUser object initialized with the given required properties: \e newEmail.
  *   If the required arguments are \e nil or \e [NSNull null], returns \e nil
@@ -110,7 +110,7 @@
  *
  * @param email
  *   The object's \e email property
- * 
+ *
  * @return
  *   A JRCaptureUser object initialized with the given required properties: \e email.
  *   If the required arguments are \e nil or \e [NSNull null], returns \e nil
@@ -263,13 +263,13 @@
 
 /**
  * Use this method to determine if the object or element needs to be updated remotely.
- * That is, if there are local changes to any of the object/elements's properties or 
+ * That is, if there are local changes to any of the object/elements's properties or
  * sub-objects, then this object will need to be updated on Capture. You can update
  * an object on Capture by using the method updateOnCaptureForDelegate:context:().
  *
  * @return
  * \c YES if this object or any of it's sub-objects have any properties that have changed
- * locally. This does not include properties that are arrays, if any, or the elements contained 
+ * locally. This does not include properties that are arrays, if any, or the elements contained
  * within the arrays. \c NO if no non-array properties or sub-objects have changed locally.
  *
  * @note

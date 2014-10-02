@@ -84,25 +84,25 @@
 @property (nonatomic, copy)     NSString *stringTestCaseSensitive; /**< Property used to test getting/setting, updating, and replacing strings that have the case-sensitive attribute defined */ 
 @property (nonatomic, copy)     NSString *stringTestFeatures; /**< Property used to test getting/setting, updating, and replacing strings that have the features attribute defined */ 
 @property (nonatomic, copy)     NSArray *basicPlural; /**< Basic plural property for testing getting/setting, updating, and replacing @note This is an array of JRBasicPluralElement objects */ 
-@property (nonatomic, retain)   JRBasicObject *basicObject; /**< Basic object property for testing getting/setting, updating, and replacing */ 
-@property (nonatomic, retain)   JRObjectTestRequired *objectTestRequired; /**< Object for testing getting/setting, updating, and replacing properties when one property has the constraint of being required */ 
+@property (nonatomic,strong)    JRBasicObject *basicObject; /**< Basic object property for testing getting/setting, updating, and replacing */ 
+@property (nonatomic,strong)    JRObjectTestRequired *objectTestRequired; /**< Object for testing getting/setting, updating, and replacing properties when one property has the constraint of being required */ 
 @property (nonatomic, copy)     NSArray *pluralTestUnique; /**< Plural for testing getting/setting, updating, and replacing elements when one element property has the constraint of being unique @note This is an array of JRPluralTestUniqueElement objects */ 
-@property (nonatomic, retain)   JRObjectTestRequiredUnique *objectTestRequiredUnique; /**< Object for testing getting/setting, updating, and replacing properties when the properties have the constraints of being required and unique */ 
+@property (nonatomic,strong)    JRObjectTestRequiredUnique *objectTestRequiredUnique; /**< Object for testing getting/setting, updating, and replacing properties when the properties have the constraints of being required and unique */ 
 @property (nonatomic, copy)     NSArray *pluralTestAlphabetic; /**< Plural for testing getting/setting, updating, and replacing elements when one element property has the constraint of being alphabetic @note This is an array of JRPluralTestAlphabeticElement objects */ 
 @property (nonatomic, copy)     JRStringArray *simpleStringPluralOne; /**< Plural property for testing getting/setting, updating, and replacing lists of strings/JRStringPluralElements @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c simpleTypeOne */ 
 @property (nonatomic, copy)     JRStringArray *simpleStringPluralTwo; /**< Another plural property for testing getting/setting, updating, and replacing lists of strings/JRStringPluralElements @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c simpleTypeTwo */ 
 @property (nonatomic, copy)     NSArray *pinapL1Plural; /**< Plural in a plural (element in a plural in an element in a plural) @note This is an array of JRPinapL1PluralElement objects */ 
-@property (nonatomic, retain)   JRPinoL1Object *pinoL1Object; /**< Plural in an object (element in a plural in an object) */ 
+@property (nonatomic,strong)    JRPinoL1Object *pinoL1Object; /**< Plural in an object (element in a plural in an object) */ 
 @property (nonatomic, copy)     NSArray *onipL1Plural; /**< Object in a plural (object in an element in a plural) @note This is an array of JROnipL1PluralElement objects */ 
-@property (nonatomic, retain)   JROinoL1Object *oinoL1Object; /**< Object in a object */ 
+@property (nonatomic,strong)    JROinoL1Object *oinoL1Object; /**< Object in a object */ 
 @property (nonatomic, copy)     NSArray *pinapinapL1Plural; /**< Plural in a plural in a plural (element in a plural in an element in a plural in an element in a plural) @note This is an array of JRPinapinapL1PluralElement objects */ 
 @property (nonatomic, copy)     NSArray *pinonipL1Plural; /**< Plural in an object in a plural (element in a plural in an object in an element in a plural) @note This is an array of JRPinonipL1PluralElement objects */ 
-@property (nonatomic, retain)   JRPinapinoL1Object *pinapinoL1Object; /**< Plural in a plural in an object (element in a plural in an element in a plural in an object) */ 
-@property (nonatomic, retain)   JRPinoinoL1Object *pinoinoL1Object; /**< Plural in an object in a object (element in a plural in an object in an object) */ 
+@property (nonatomic,strong)    JRPinapinoL1Object *pinapinoL1Object; /**< Plural in a plural in an object (element in a plural in an element in a plural in an object) */ 
+@property (nonatomic,strong)    JRPinoinoL1Object *pinoinoL1Object; /**< Plural in an object in a object (element in a plural in an object in an object) */ 
 @property (nonatomic, copy)     NSArray *onipinapL1Plural; /**< Object in a plural in a plural (object in an element in a plural in an element in a plural) @note This is an array of JROnipinapL1PluralElement objects */ 
 @property (nonatomic, copy)     NSArray *oinonipL1Plural; /**< Object in an object in a plural (object in an object in an element in a plural) @note This is an array of JROinonipL1PluralElement objects */ 
-@property (nonatomic, retain)   JROnipinoL1Object *onipinoL1Object; /**< Object in a plural in an object (object in an element in a plural in an object) */ 
-@property (nonatomic, retain)   JROinoinoL1Object *oinoinoL1Object; /**< Object in an object in a object */ 
+@property (nonatomic,strong)    JROnipinoL1Object *onipinoL1Object; /**< Object in a plural in an object (object in an element in a plural in an object) */ 
+@property (nonatomic,strong)    JROinoinoL1Object *oinoinoL1Object; /**< Object in an object in a object */ 
 @property (nonatomic, readonly) JRObjectId *captureUserId; /**< Simple identifier for this entity @note The \e id of the object should not be set. */ 
 
 /**
@@ -639,13 +639,13 @@
 
 /**
  * Use this method to determine if the object or element needs to be updated remotely.
- * That is, if there are local changes to any of the object/elements's properties or 
+ * That is, if there are local changes to any of the object/elements's properties or
  * sub-objects, then this object will need to be updated on Capture. You can update
  * an object on Capture by using the method updateOnCaptureForDelegate:context:().
  *
  * @return
  * \c YES if this object or any of it's sub-objects have any properties that have changed
- * locally. This does not include properties that are arrays, if any, or the elements contained 
+ * locally. This does not include properties that are arrays, if any, or the elements contained
  * within the arrays. \c NO if no non-array properties or sub-objects have changed locally.
  *
  * @note

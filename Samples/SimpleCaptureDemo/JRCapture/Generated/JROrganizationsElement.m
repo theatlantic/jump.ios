@@ -204,9 +204,9 @@
     return [[JROrganizationsElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.department ? self.department : [NSNull null])
@@ -215,7 +215,7 @@
                    forKey:@"description"];
     [dictionary setObject:(self.endDate ? self.endDate : [NSNull null])
                    forKey:@"endDate"];
-    [dictionary setObject:(self.location ? [self.location toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.location ? [self.location newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"location"];
     [dictionary setObject:(self.name ? self.name : [NSNull null])
                    forKey:@"name"];
@@ -234,10 +234,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -258,7 +258,7 @@
     }
     else
     {
-        organizationsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"organizations", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        organizationsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"organizations", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         organizationsElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -302,7 +302,7 @@
         [organizationsElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [organizationsElement.dirtyPropertySet removeAllObjects];
-    
+
     return organizationsElement;
 }
 
@@ -318,7 +318,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"organizations", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"organizations", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.department =
         [dictionary objectForKey:@"department"] != [NSNull null] ? 
@@ -523,7 +523,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"department"];

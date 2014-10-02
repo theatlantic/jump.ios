@@ -235,9 +235,9 @@
     return [[JRAddressesElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.country ? self.country : [NSNull null])
@@ -271,10 +271,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -295,7 +295,7 @@
     }
     else
     {
-        addressesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"addresses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        addressesElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"addresses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         addressesElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -351,7 +351,7 @@
         [addressesElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [addressesElement.dirtyPropertySet removeAllObjects];
-    
+
     return addressesElement;
 }
 
@@ -367,7 +367,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"addresses", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"addresses", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.country =
         [dictionary objectForKey:@"country"] != [NSNull null] ? 
@@ -583,7 +583,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"country"];

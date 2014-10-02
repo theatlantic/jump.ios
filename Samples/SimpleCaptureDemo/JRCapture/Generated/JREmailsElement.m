@@ -118,9 +118,9 @@
     return [[JREmailsElement alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.primary ? [NSNumber numberWithBool:[self.primary boolValue]] : [NSNull null])
@@ -136,10 +136,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -160,7 +160,7 @@
     }
     else
     {
-        emailsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"emails", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+        emailsElement.captureObjectPath      = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"emails", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
         emailsElement.canBeUpdatedOnCapture = YES;
     }
 
@@ -180,7 +180,7 @@
         [emailsElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [emailsElement.dirtyPropertySet removeAllObjects];
-    
+
     return emailsElement;
 }
 
@@ -196,7 +196,7 @@
     NSSet *dirtyPropertySetCopy = [self.dirtyPropertySet copy];
 
     self.canBeUpdatedOnCapture = YES;
-    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%d", capturePath, @"emails", [(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
+    self.captureObjectPath = [NSString stringWithFormat:@"%@/%@#%ld", capturePath, @"emails", (long)[(NSNumber*)[dictionary objectForKey:@"id"] integerValue]];
 
     self.primary =
         [dictionary objectForKey:@"primary"] != [NSNull null] ? 
@@ -304,7 +304,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"JRBoolean" forKey:@"primary"];

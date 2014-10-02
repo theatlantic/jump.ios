@@ -27,8 +27,8 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+//#define JR_FACEBOOK_SDK_TEST
 
-//#import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "JRCapture.h"
 #import "debug_log.h"
@@ -36,9 +36,10 @@
 #import "JRCaptureData.h"
 #import "JRCaptureConfig.h"
 #import "JRCaptureError.h"
+#import "JREngage.h"
 
 #ifdef JR_FACEBOOK_SDK_TEST
-#  import "FacebookSDK/FacebookSDK.h"
+#  import <FacebookSDK/FacebookSDK.h>
 #endif
 
 @interface JRSessionData (Internal)
@@ -115,10 +116,6 @@ AppDelegate *appDelegate = nil;
         self.captureUser = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
     }
 
-#   ifdef JR_FACEBOOK_SDK_TEST
-        FBSession *t = [FBSession activeSession];
-#   endif
-
     return YES;
 }
 
@@ -126,7 +123,7 @@ AppDelegate *appDelegate = nil;
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-        [FBSession.activeSession handleOpenURL:url];
+    return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 #   endif
 

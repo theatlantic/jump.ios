@@ -65,6 +65,7 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
+
     _string1 = [newString1 copy];
 }
 
@@ -76,6 +77,7 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
+
     _string2 = [newString2 copy];
 }
 
@@ -87,6 +89,7 @@
 - (void)setOinoinoL3Object:(JROinoinoL3Object *)newOinoinoL3Object
 {
     [self.dirtyPropertySet addObject:@"oinoinoL3Object"];
+
     _oinoinoL3Object = newOinoinoL3Object;
 
     [_oinoinoL3Object setAllPropertiesToDirty];
@@ -111,16 +114,16 @@
     return [[JROinoinoL2Object alloc] init];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.string1 ? self.string1 : [NSNull null])
                    forKey:@"string1"];
     [dictionary setObject:(self.string2 ? self.string2 : [NSNull null])
                    forKey:@"string2"];
-    [dictionary setObject:(self.oinoinoL3Object ? [self.oinoinoL3Object toDictionaryForEncoder:forEncoder] : [NSNull null])
+    [dictionary setObject:(self.oinoinoL3Object ? [self.oinoinoL3Object newDictionaryForEncoder:forEncoder] : [NSNull null])
                    forKey:@"oinoinoL3Object"];
 
     if (forEncoder)
@@ -129,10 +132,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -167,7 +170,7 @@
         [oinoinoL2Object.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [oinoinoL2Object.dirtyPropertySet removeAllObjects];
-    
+
     return oinoinoL2Object;
 }
 
@@ -315,7 +318,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"string1"];
@@ -325,7 +328,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-}
 @end

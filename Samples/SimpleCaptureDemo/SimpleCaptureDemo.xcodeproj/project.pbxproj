@@ -61,11 +61,6 @@
 		90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08EB /* Foundation.framework */; };
 		90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */; };
 		90C36B6B7717AA0C893E08F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08F5 /* main.m */; };
-		90C36B6B7717AA0C893E090B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E090A /* SenTestingKit.framework */; };
-		90C36B6B7717AA0C893E090C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08E9 /* UIKit.framework */; };
-		90C36B6B7717AA0C893E090D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08EB /* Foundation.framework */; };
-		90C36B6B7717AA0C893E0915 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E0914 /* InfoPlist.strings */; };
-		90C36B6B7717AA0C893E0918 /* SimpleCaptureDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E0917 /* SimpleCaptureDemoTests.m */; };
 		9F7B6A8415336470002BF452 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8215336470002BF452 /* InfoPlist.strings */; };
 		9F7B6A9315336480002BF452 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8615336480002BF452 /* AppDelegate.m */; };
 		9F7B6A9515336480002BF452 /* CaptureProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8A15336480002BF452 /* CaptureProfileViewController.m */; };
@@ -128,7 +123,6 @@
 		DFEFE4B117A9915200760FEE /* JRUserLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE3ED17A9915200760FEE /* JRUserLandingController.m */; };
 		DFEFE4B217A9915200760FEE /* JRWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE3EF17A9915200760FEE /* JRWebViewController.m */; };
 		DFEFE4B317A9915200760FEE /* JREngage-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE3F017A9915200760FEE /* JREngage-Info.plist */; };
-		DFEFE4B417A9915200760FEE /* JREngagePlugin.js in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE3F117A9915200760FEE /* JREngagePlugin.js */; };
 		DFEFE4B517A9915200760FEE /* button_black_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE3F517A9915200760FEE /* button_black_135x40.png */; };
 		DFEFE4B617A9915200760FEE /* button_black_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE3F617A9915200760FEE /* button_black_280x40.png */; };
 		DFEFE4B717A9915200760FEE /* button_facebook_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE3F717A9915200760FEE /* button_facebook_135x40.png */; };
@@ -292,16 +286,6 @@
 		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		90C36B6B7717AA0C893E090E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90C36B6B7717AA0C893E08DA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 90C36B6B7717AA0C893E08E1;
-			remoteInfo = SimpleCaptureDemo;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		19BC0172346689920F3635B5 /* JRCaptureUIRequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureUIRequestBuilder.h; sourceTree = "<group>"; };
 		19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCompatibilityUtils.m; sourceTree = "<group>"; };
@@ -333,7 +317,7 @@
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
 		4D60E0D0187F1D1F006A6744 /* JRCaptureEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureEnvironment.h; sourceTree = "<group>"; };
-		4DB994B818A3F82D00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/JRPublishActivityController.xib; sourceTree = "<group>"; };
+		4DB994B818A3F82D00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JRPublishActivityController.xib; sourceTree = "<group>"; };
 		4DB994BC18A3F84B00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = JRPublishActivityController.xib; sourceTree = "<group>"; };
 		4DFC8ED5187E1DD100CE8A83 /* JRAccountsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAccountsElement.h; sourceTree = "<group>"; };
 		4DFC8ED6187E1DD100CE8A83 /* JRAccountsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAccountsElement.m; sourceTree = "<group>"; };
@@ -395,11 +379,6 @@
 		90C36B6B7717AA0C893E08F1 /* SimpleCaptureDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "SimpleCaptureDemo-Info.plist"; sourceTree = "<group>"; };
 		90C36B6B7717AA0C893E08F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90C36B6B7717AA0C893E08F7 /* SimpleCaptureDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleCaptureDemo-Prefix.pch"; sourceTree = "<group>"; };
-		90C36B6B7717AA0C893E090A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		90C36B6B7717AA0C893E0912 /* SimpleCaptureDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "SimpleCaptureDemoTests-Info.plist"; sourceTree = "<group>"; };
-		90C36B6B7717AA0C893E0913 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90C36B6B7717AA0C893E0916 /* SimpleCaptureDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleCaptureDemoTests.h; sourceTree = "<group>"; };
-		90C36B6B7717AA0C893E0917 /* SimpleCaptureDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleCaptureDemoTests.m; sourceTree = "<group>"; };
 		9F7B6A8315336470002BF452 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F7B6A8515336480002BF452 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		9F7B6A8615336480002BF452 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
@@ -680,16 +659,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90C36B6B7717AA0C893E0907 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90C36B6B7717AA0C893E090B /* SenTestingKit.framework in Frameworks */,
-				90C36B6B7717AA0C893E090C /* UIKit.framework in Frameworks */,
-				90C36B6B7717AA0C893E090D /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -783,7 +752,6 @@
 				90C36B6B7717AA0C893E08DD /* Products */,
 				90C36B6B7717AA0C893E08E8 /* Frameworks */,
 				90C36B6B7717AA0C893E08EF /* SimpleCaptureDemo */,
-				90C36B6B7717AA0C893E0910 /* SimpleCaptureDemoTests */,
 				C1424A8BB874F02EEE6D8982 /* Docs */,
 				6706F8B0C97A69C3A2194B76 /* JRCapture */,
 			);
@@ -802,7 +770,6 @@
 			children = (
 				D894366218651F4D004BCF0A /* Accounts.framework */,
 				D894366018651F47004BCF0A /* Social.framework */,
-				90C36B6B7717AA0C893E090A /* SenTestingKit.framework */,
 				90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */,
 				90C36B6B7717AA0C893E08EB /* Foundation.framework */,
 				90C36B6B7717AA0C893E08E9 /* UIKit.framework */,
@@ -831,25 +798,6 @@
 				90C36B6B7717AA0C893E08F7 /* SimpleCaptureDemo-Prefix.pch */,
 				90C36B6B7717AA0C893E08F5 /* main.m */,
 				90C36B6B7717AA0C893E08F1 /* SimpleCaptureDemo-Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		90C36B6B7717AA0C893E0910 /* SimpleCaptureDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				90C36B6B7717AA0C893E0917 /* SimpleCaptureDemoTests.m */,
-				90C36B6B7717AA0C893E0916 /* SimpleCaptureDemoTests.h */,
-				90C36B6B7717AA0C893E0911 /* Supporting Files */,
-			);
-			path = SimpleCaptureDemoTests;
-			sourceTree = "<group>";
-		};
-		90C36B6B7717AA0C893E0911 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				90C36B6B7717AA0C893E0914 /* InfoPlist.strings */,
-				90C36B6B7717AA0C893E0912 /* SimpleCaptureDemoTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -992,10 +940,10 @@
 		DFB68871175E8E6C006DFC92 /* Janrain */ = {
 			isa = PBXGroup;
 			children = (
-				DFEFE3CD17A9915200760FEE /* JREngage */,
-				DF315E8717A988E100703C83 /* JRConnectionManager */,
-				DF39E01317A9887300FDA67A /* JRCapture */,
 				DFB68872175E8E6C006DFC92 /* Base64 */,
+				DF39E01317A9887300FDA67A /* JRCapture */,
+				DF315E8717A988E100703C83 /* JRConnectionManager */,
+				DFEFE3CD17A9915200760FEE /* JREngage */,
 				DFB68989175E8E6C006DFC92 /* Security */,
 			);
 			name = Janrain;
@@ -1393,31 +1341,14 @@
 			productReference = 90C36B6B7717AA0C893E08E0 /* SimpleCaptureDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		90C36B6B7717AA0C893E0902 /* SimpleCaptureDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 90C36B6B7717AA0C893E0903 /* Build configuration list for PBXNativeTarget "SimpleCaptureDemoTests" */;
-			buildPhases = (
-				90C36B6B7717AA0C893E0906 /* Sources */,
-				90C36B6B7717AA0C893E0907 /* Frameworks */,
-				90C36B6B7717AA0C893E0908 /* Resources */,
-				90C36B6B7717AA0C893E0909 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				90C36B6B7717AA0C893E090F /* PBXTargetDependency */,
-			);
-			name = SimpleCaptureDemoTests;
-			productName = SimpleCaptureDemoTests;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		90C36B6B7717AA0C893E08DA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastTestingUpgradeCheck = 0600;
+				LastUpgradeCheck = 0600;
 			};
 			buildConfigurationList = 90C36B6B7717AA0C893E08DB /* Build configuration list for PBXProject "SimpleCaptureDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1432,7 +1363,6 @@
 			projectRoot = "";
 			targets = (
 				90C36B6B7717AA0C893E08E1 /* SimpleCaptureDemo */,
-				90C36B6B7717AA0C893E0902 /* SimpleCaptureDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1646,31 +1576,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90C36B6B7717AA0C893E0908 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90C36B6B7717AA0C893E0915 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		90C36B6B7717AA0C893E0909 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90C36B6B7717AA0C893E08E5 /* Sources */ = {
@@ -1735,7 +1641,6 @@
 				DFEFE4B117A9915200760FEE /* JRUserLandingController.m in Sources */,
 				DFEFE4B217A9915200760FEE /* JRWebViewController.m in Sources */,
 				4DFC8F34187E1DD100CE8A83 /* JRProfilesElement.m in Sources */,
-				DFEFE4B417A9915200760FEE /* JREngagePlugin.js in Sources */,
 				19BC043CB32C3615A713D687 /* JRCompatibilityUtils.m in Sources */,
 				4DFC8F17187E1DD100CE8A83 /* JRAccountsElement.m in Sources */,
 				19BC0273946224097507522B /* JRCaptureConfig.m in Sources */,
@@ -1749,23 +1654,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90C36B6B7717AA0C893E0906 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				90C36B6B7717AA0C893E0918 /* SimpleCaptureDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		90C36B6B7717AA0C893E090F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 90C36B6B7717AA0C893E08E1 /* SimpleCaptureDemo */;
-			targetProxy = 90C36B6B7717AA0C893E090E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3306C1C76C81D3A8D4ED2232 /* Localizable.strings */ = {
@@ -1798,14 +1687,6 @@
 				4DB994BC18A3F84B00E4D116 /* en */,
 			);
 			name = JRPublishActivityController.xib;
-			sourceTree = "<group>";
-		};
-		90C36B6B7717AA0C893E0914 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				90C36B6B7717AA0C893E0913 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		9F7B6A8215336470002BF452 /* InfoPlist.strings */ = {
@@ -1853,12 +1734,15 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -1881,9 +1765,11 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1893,6 +1779,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -1909,9 +1796,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleCaptureDemo/SimpleCaptureDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1920,6 +1804,10 @@
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1933,9 +1821,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
@@ -1944,45 +1829,15 @@
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		90C36B6B7717AA0C893E0904 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleCaptureDemo.app/SimpleCaptureDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
-				INFOPLIST_FILE = "SimpleCaptureDemoTests/SimpleCaptureDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
-		90C36B6B7717AA0C893E0905 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleCaptureDemo.app/SimpleCaptureDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
-				INFOPLIST_FILE = "SimpleCaptureDemoTests/SimpleCaptureDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1996,12 +1851,15 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -2019,9 +1877,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleCaptureDemo/SimpleCaptureDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -2030,28 +1885,15 @@
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = "Ad Hoc";
-		};
-		9F95070214FEA81900335A12 /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SimpleCaptureDemo.app/SimpleCaptureDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
-				INFOPLIST_FILE = "SimpleCaptureDemoTests/SimpleCaptureDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = "Ad Hoc";
 		};
@@ -2074,16 +1916,6 @@
 				90C36B6B7717AA0C893E08E3 /* Release */,
 				9F95070114FEA81900335A12 /* Ad Hoc */,
 				90C36B6B7717AA0C893E08E4 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		90C36B6B7717AA0C893E0903 /* Build configuration list for PBXNativeTarget "SimpleCaptureDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				90C36B6B7717AA0C893E0904 /* Release */,
-				9F95070214FEA81900335A12 /* Ad Hoc */,
-				90C36B6B7717AA0C893E0905 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -94,7 +94,7 @@
                             break;
                     }
                 };
-        objc_msgSend(
+        ((void(*)(id, SEL, NSArray*, BOOL, void (^__strong)(__strong id, unsigned int, NSError *__strong)))objc_msgSend)(
                 fbSession,
                 NSSelectorFromString(@"openActiveSessionWithReadPermissions:allowLoginUI:completionHandler:"),
                 @[], YES, handler);

@@ -60,6 +60,7 @@
 - (void)setRequiredString:(NSString *)newRequiredString
 {
     [self.dirtyPropertySet addObject:@"requiredString"];
+
     _requiredString = [newRequiredString copy];
 }
 
@@ -71,6 +72,7 @@
 - (void)setString1:(NSString *)newString1
 {
     [self.dirtyPropertySet addObject:@"string1"];
+
     _string1 = [newString1 copy];
 }
 
@@ -82,6 +84,7 @@
 - (void)setString2:(NSString *)newString2
 {
     [self.dirtyPropertySet addObject:@"string2"];
+
     _string2 = [newString2 copy];
 }
 
@@ -111,7 +114,7 @@
         self.canBeUpdatedOnCapture = YES;
 
         _requiredString = [newRequiredString copy];
-    
+
         [self.dirtyPropertySet setSet:[self updatablePropertySet]];
     }
     return self;
@@ -127,9 +130,9 @@
     return [[JRObjectTestRequired alloc] initWithRequiredString:requiredString];
 }
 
-- (NSDictionary*)toDictionaryForEncoder:(BOOL)forEncoder
+- (NSDictionary*)newDictionaryForEncoder:(BOOL)forEncoder
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:(self.requiredString ? self.requiredString : [NSNull null])
@@ -145,10 +148,10 @@
                        forKey:@"dirtyPropertiesSet"];
         [dictionary setObject:(self.captureObjectPath ? self.captureObjectPath : [NSNull null])
                        forKey:@"captureObjectPath"];
-        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture] 
+        [dictionary setObject:[NSNumber numberWithBool:self.canBeUpdatedOnCapture]
                        forKey:@"canBeUpdatedOnCapture"];
     }
-    
+
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
@@ -183,7 +186,7 @@
         [objectTestRequired.dirtyPropertySet setSet:dirtyPropertySetCopy];
     else
         [objectTestRequired.dirtyPropertySet removeAllObjects];
-    
+
     return objectTestRequired;
 }
 
@@ -306,7 +309,7 @@
 
 - (NSDictionary*)objectProperties
 {
-    NSMutableDictionary *dictionary = 
+    NSMutableDictionary *dictionary =
         [NSMutableDictionary dictionaryWithCapacity:10];
 
     [dictionary setObject:@"NSString" forKey:@"requiredString"];
@@ -316,7 +319,4 @@
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }
 
-- (void)dealloc
-{
-}
 @end
