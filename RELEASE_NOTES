@@ -1,3 +1,7 @@
+v3.8.0
+ - iOS 8 Compatibility
+ - Support for 64bit architectures
+ - Improved ARC support in Capture model generation script
 v3.7.2
  - Fixes bug that would replace plurals with an empty array when the array
    should be non-empty
