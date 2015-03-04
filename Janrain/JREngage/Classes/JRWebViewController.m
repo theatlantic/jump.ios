@@ -38,6 +38,7 @@
 #import "JREngageError.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JRJsonUtils.h"
+#import "JRCompatibilityUtils.h"
 
 @interface JRWebViewController ()
 - (void)loadUrlInWebView:(NSURL *)url;
@@ -94,7 +95,7 @@
 {
     DLog(@"");
     [super viewWillAppear:animated];
-    self.contentSizeForViewInPopover = self.view.frame.size;
+    [self jrSetContentSizeForViewInPopover:self.view.frame.size];
 
     self.title = (sessionData.currentProvider) ? sessionData.currentProvider.friendlyName : NSLocalizedString(@"Loading", nil);
 
@@ -147,7 +148,7 @@
 
         self.navigationItem.rightBarButtonItem = cancelButton;
         self.navigationItem.rightBarButtonItem.enabled = YES;
-        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleBordered;
+        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
     }
 }
 

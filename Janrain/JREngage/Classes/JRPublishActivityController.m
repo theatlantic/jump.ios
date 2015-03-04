@@ -389,7 +389,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         self.navigationItem.leftBarButtonItem = cancelButton;
         self.navigationItem.leftBarButtonItem.enabled = YES;
 
-        self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleBordered;
+        self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStylePlain;
     }
 
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]
@@ -400,7 +400,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     self.navigationItem.rightBarButtonItem = editButton;
     self.navigationItem.rightBarButtonItem.enabled = YES;
 
-    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleBordered;
+    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
 
     if ([self.sessionData hidePoweredBy])
     {
@@ -458,7 +458,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
 {
     DLog(@"");
     [super viewWillAppear:animated];
-    self.contentSizeForViewInPopover = self.view.frame.size;
+    [self jrSetContentSizeForViewInPopover:self.view.frame.size];
 
     if (!self.titleView)
     {
@@ -629,7 +629,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
             barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                        target:self.sessionData
                                                                        action:cancelSel];
-            self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleBordered;
+            self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStylePlain;
         }
 
         self.navigationItem.leftBarButtonItem = barButton;
@@ -1118,7 +1118,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
 
     self.navigationItem.rightBarButtonItem = editButton;
     self.navigationItem.rightBarButtonItem.enabled = YES;
-    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleBordered;
+    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
 
     if (myUserCommentTextView.text.length > 0)
         [myUserCommentTextView scrollRangeToVisible:NSMakeRange(0, 1)];
@@ -1414,10 +1414,11 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
         myTitleLabel.text = self.currentActivity.resourceTitle;
 
         // TODO: Verify change made below
-        CGSize shouldBeTitleSize =
-                [myTitleLabel.text sizeWithFont:myTitleLabel.font
-                              constrainedToSize:CGSizeMake(title_w, MBC_MAX_HEIGHT)
-                                  lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+        CGSize shouldBeTitleSize = [JRCompatibilityUtils jrGetSizeOfString:myTitleLabel.text
+                                                                      font:myTitleLabel.font
+                                                         constrainedToSize:CGSizeMake(title_w, MBC_MAX_HEIGHT)
+                                                             lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+
         shouldBeTitleHeight = shouldBeTitleSize.height;
     }
 
@@ -1428,10 +1429,11 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     {
         myDescriptionLabel.text = self.currentActivity.resourceDescription;
 
-        CGSize shouldBeDescriptionSize =
-                [myDescriptionLabel.text sizeWithFont:myDescriptionLabel.font
-                                    constrainedToSize:CGSizeMake(descr_w, MBC_MAX_HEIGHT)
-                                        lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+        CGSize shouldBeDescriptionSize = [JRCompatibilityUtils jrGetSizeOfString:myDescriptionLabel.text
+                                                                            font:myDescriptionLabel.font
+                                                               constrainedToSize:CGSizeMake(descr_w, MBC_MAX_HEIGHT)
+                                                                   lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+
         shouldBeDescriptionHeight = shouldBeDescriptionSize.height;
     }
 
@@ -1519,12 +1521,12 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
                 and 3 lines) */
                 CGSize titleSize =
                         CGSizeMake(title_w, MBC_MAX_HEIGHT - MBC_INTERIOR_PADDING - shouldBeDescriptionHeight);
-                CGSize shouldBeTitleSize =
-                        [myTitleLabel.text sizeWithFont:myTitleLabel.font
-                                      constrainedToSize:titleSize
-                                          lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
-                shouldBeTitleHeight = shouldBeTitleSize.height;
+                CGSize shouldBeTitleSize = [JRCompatibilityUtils jrGetSizeOfString:myTitleLabel.text
+                                                                              font:myTitleLabel.font
+                                                                 constrainedToSize:titleSize
+                                                                     lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
 
+                shouldBeTitleHeight = shouldBeTitleSize.height;
                 title_h = shouldBeTitleHeight;
                 descr_h = shouldBeDescriptionHeight;
                 descr_y = shouldBeTitleHeight + 7.0; /* Title height + top padding + interior padding */

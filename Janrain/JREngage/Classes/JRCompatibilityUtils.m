@@ -30,10 +30,45 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import "JRCompatibilityUtils.h"
-
+#import "JRUserInterfaceMaestro.h"
 
 @implementation JRCompatibilityUtils {
+}
 
++(CGSize)jrGetSizeOfString:(NSString*)text font:(UIFont*)font constrainedToSize:(CGSize)size lineBreakMode:(JRLineBreakMode)lineBreakMode {
+    CGSize returnSize = CGSizeZero;
+    if ([text respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        switch (lineBreakMode) {
+            case JR_LINE_BREAK_MODE_WORD_WRAP:
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                break;
+                
+            case JR_LINE_BREAK_MODE_TAIL_TRUNCATION:
+                paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+                break;
+                
+            default:
+                break;
+        }
+        
+        NSDictionary *attr = @{NSFontAttributeName : font,
+                               NSParagraphStyleAttributeName : paragraphStyle};
+        
+        CGRect stringSize = [text boundingRectWithSize:size
+                                               options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                            attributes:attr
+                                               context:nil];
+        returnSize = stringSize.size;
+    }
+    else if ([text respondsToSelector:@selector(sizeWithFont:constrainedToSize:lineBreakMode:)]) {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        returnSize = [text sizeWithFont:font constrainedToSize:size lineBreakMode:(int)lineBreakMode];
+        #pragma clang diagnostic pop
+    }
+
+    return returnSize;
 }
 @end
 
@@ -57,4 +92,31 @@
     }
 }
 
+-(void)jrSetContentSizeForViewInPopover:(CGSize)size {
+    if ([self respondsToSelector:@selector(preferredContentSize)]) {
+        self.preferredContentSize = size;
+    }
+    else if ([self respondsToSelector:@selector(contentSizeForViewInPopover)]) {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        self.contentSizeForViewInPopover = size;
+        #pragma clang diagnostic pop
+    }
+}
+
+@end
+
+@implementation NSData (JRCompatibilityUtils)
+
+- (NSString*)jrBase64Encode {
+    if ([self respondsToSelector:@selector(base64EncodedDataWithOptions:)]) {
+        return [self base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
+    }
+    else {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        return self.base64Encoding;
+        #pragma clang diagnostic pop
+    }
+}
 @end

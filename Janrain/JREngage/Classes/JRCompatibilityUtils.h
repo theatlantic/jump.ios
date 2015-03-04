@@ -30,12 +30,18 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <Foundation/Foundation.h>
-
+#import "JRUserInterfaceMaestro.h"
 
 @interface JRCompatibilityUtils : NSObject
++(CGSize)jrGetSizeOfString:(NSString*)text font:(UIFont*)font constrainedToSize:(CGSize)size lineBreakMode:(JRLineBreakMode)lineBreakMode;
 @end
 
 @interface UIViewController (JRCompatibilityUtils)
 -(void)jrPresentViewController:(UIViewController *)viewController animated:(BOOL)animated;
 -(void)jrDismissViewControllerAnimated:(BOOL)animated;
+-(void)jrSetContentSizeForViewInPopover:(CGSize)size;
+@end
+
+@interface NSData (JRCompatibilityUtils)
+-(NSString*)jrBase64Encode;
 @end
