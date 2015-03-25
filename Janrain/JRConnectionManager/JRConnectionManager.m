@@ -36,6 +36,7 @@
 #import "NSMutableURLRequest+JRRequestUtils.h"
 #import "JRConnectionManager.h"
 #import "debug_log.h"
+#import "JRCompatibilityUtils.h"
 
 @implementation NSString (JRString_UrlEscaping)
 - (NSString *)stringByAddingUrlPercentEscapes
@@ -334,7 +335,7 @@ static JRConnectionManager *singleton = nil;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    DLog(@"data=%@", data.base64Encoding);
+    DLog(@"data=%@", [data jrBase64Encode]);
     for (ConnectionData *connectionData in [self connectionBuffers])
     {
         if (connectionData.connection == connection)

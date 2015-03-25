@@ -35,6 +35,7 @@
 //#import "debug_log.h"
 #import "JRPreviewLabel.h"
 #import "JRUserInterfaceMaestro.h"
+#import "JRCompatibilityUtils.h"
 
 @interface NSString (visibleText)
 - (NSUInteger)lengthOfStringVisibleInSize:(CGSize)size withFont:(UIFont *)font
@@ -61,10 +62,11 @@
             indexOfLastBreakingCharacter = i - 1;
 
         NSString *testString = [self substringToIndex:i];
-
-        CGSize stringSize = [testString sizeWithFont:font
-                                   constrainedToSize:CGSizeMake(size.width, size.height + lineHeight)
-                                       lineBreakMode:(int)lineBreakMode];
+        
+        CGSize stringSize = [JRCompatibilityUtils jrGetSizeOfString:testString
+                                                               font:font
+                                                  constrainedToSize:CGSizeMake(size.width, size.height + lineHeight)
+                                                      lineBreakMode:lineBreakMode];
 
         if (stringSize.height > size.height || stringSize.width > size.width)
             break;
@@ -226,7 +228,7 @@
 
     BOOL wrapTextToSecondLine  = NO;
     BOOL wrapTextToThirdLine   = NO;
-
+    
     CGSize sizeOfFirstLineOfText;
     CGSize sizeOfSecondLineOfText = CGSizeZero;
     CGSize sizeOfThirdLineOfText  = CGSizeZero;
@@ -238,23 +240,26 @@
     NSString *secondLineOfText = @"";
     NSString *thirdLineOfText  = @"";
     NSString *remainingText    = @"";
-
-    CGSize sizeOfUrl = (!url) ? CGSizeMake(0, 0) :
-                                [url sizeWithFont:font
-                                constrainedToSize:CGSizeMake(urlMaxWidth, lineHeight)
-                                    lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
-
-    CGSize sizeOfUsername = (!username) ? CGSizeMake(0, 0):
-                                          [username sizeWithFont:boldFont
-                                               constrainedToSize:CGSizeMake(usernameMaxWidth, lineHeight)
-                                                   lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
-
+    
+    CGSize sizeOfUrl = (!url) ? CGSizeZero :
+                                [JRCompatibilityUtils jrGetSizeOfString:url
+                                                           font:font
+                                              constrainedToSize:CGSizeMake(urlMaxWidth, lineHeight)
+                                                lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+    
+    CGSize sizeOfUsername = (!username) ? CGSizeZero :
+                                          [JRCompatibilityUtils jrGetSizeOfString:username
+                                                                             font:boldFont
+                                                                constrainedToSize:CGSizeMake(usernameMaxWidth, lineHeight)
+                                                                    lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
 
     CGFloat remainingLineOneWidth = lineWidth - sizeOfUsername.width - usernamePadding;
 
-    sizeOfFirstLineOfText = [userText sizeWithFont:font
-                                 constrainedToSize:CGSizeMake(remainingLineOneWidth, superviewHeight)
-                                     lineBreakMode:(int)JR_LINE_BREAK_MODE_WORD_WRAP];
+    
+    sizeOfFirstLineOfText = [JRCompatibilityUtils jrGetSizeOfString:userText
+                                                               font:font
+                                                  constrainedToSize:CGSizeMake(remainingLineOneWidth, superviewHeight)
+                                                      lineBreakMode:JR_LINE_BREAK_MODE_WORD_WRAP];
 
     if (sizeOfFirstLineOfText.height <= lineHeight)
     {
@@ -274,10 +279,11 @@
         if (userText.length > lengthOfFirstLineOfText)
             remainingText = [userText substringFromIndex:lengthOfFirstLineOfText];
 
-        sizeOfSecondLineOfText = [remainingText sizeWithFont:font
-                                           constrainedToSize:CGSizeMake(lineWidth, superviewHeight)
-                                               lineBreakMode:(int)JR_LINE_BREAK_MODE_WORD_WRAP];
-
+        sizeOfSecondLineOfText = [JRCompatibilityUtils jrGetSizeOfString:remainingText
+                                                                    font:font
+                                                       constrainedToSize:CGSizeMake(lineWidth, superviewHeight)
+                                                           lineBreakMode:JR_LINE_BREAK_MODE_WORD_WRAP];
+                                                    
         if (sizeOfSecondLineOfText.height <= lineHeight)
         {
             //lengthOfSecondLineOfText = remainingText.length;
@@ -296,9 +302,10 @@
             if (remainingText.length > lengthOfSecondLineOfText)
                 thirdLineOfText = [remainingText substringFromIndex:lengthOfSecondLineOfText];
 
-            sizeOfThirdLineOfText = [thirdLineOfText sizeWithFont:font
-                                                constrainedToSize:CGSizeMake(lineWidth - sizeOfUrl.width - urlPadding, lineHeight)
-                                                    lineBreakMode:(int)JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
+            sizeOfThirdLineOfText = [JRCompatibilityUtils jrGetSizeOfString:thirdLineOfText
+                                                                       font:font
+                                                          constrainedToSize:CGSizeMake(lineWidth - sizeOfUrl.width - urlPadding, lineHeight)
+                                                              lineBreakMode:JR_LINE_BREAK_MODE_TAIL_TRUNCATION];
         }
     }
 

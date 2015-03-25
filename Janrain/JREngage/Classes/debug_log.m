@@ -38,7 +38,8 @@ void JRLogExpressionSink(NSString *format, ...)
     va_start(va, format);
     NSString *string = [[NSString alloc] initWithFormat:format arguments:va];
     va_end(va);
-    [string description];
+    NSString *description = [string description];
+    #pragma unused (description)
 }
 
 @implementation NSException (JR_raiseDebugException)

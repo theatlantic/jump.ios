@@ -40,6 +40,7 @@
 #import "debug_log.h"
 #import "JRNativeAuth.h"
 #import "JRNativeProvider.h"
+#import "JRCompatibilityUtils.h"
 
 #define frame_w(a) a.frame.size.width
 #define frame_h(a) a.frame.size.height
@@ -105,7 +106,7 @@
 
         self.navigationItem.rightBarButtonItem = cancelButton;
         self.navigationItem.rightBarButtonItem.enabled = YES;
-        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleBordered;
+        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
     }
     else
     {
@@ -150,7 +151,7 @@
     }
 
     [myTableView reloadData];
-    [self adjustTableViewFrame];
+    [self adjustTableViewFrame:self.view.frame.size];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -158,7 +159,7 @@
     DLog(@"");
     [super viewDidAppear:animated];
 
-    self.contentSizeForViewInPopover = self.view.frame.size;
+    [self jrSetContentSizeForViewInPopover:self.view.frame.size];
 
     UITableViewCell *cell = [self getTableCell];
     UITextField *textField = [self getTextField:cell];
@@ -573,9 +574,9 @@ enum
     [myTableView setFrame:CGRectMake(TABLE_VIEW_FRAME_PORTRAIT)];
 }
 
-- (void)adjustTableViewFrame
+- (void)adjustTableViewFrame:(CGSize)size
 {
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation) && !iPad)
+    if (size.width > size.height && !iPad)
     {
         if ([[self getTextField:[self getTableCell]] isFirstResponder])
             [self shrinkTableViewLandscape];
@@ -584,13 +585,14 @@ enum
     }
     else
     {
+        
         [self growTableViewPortrait];
     }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [self adjustTableViewFrame];
+    [self adjustTableViewFrame:self.view.frame.size];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
@@ -615,7 +617,7 @@ replacementString:(NSString *)string
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     DLog(@"");
-    [self adjustTableViewFrame];
+    [self adjustTableViewFrame:self.view.frame.size];
 }
 
 - (void)callWebView:(UITextField *)textField
@@ -648,7 +650,7 @@ replacementString:(NSString *)string
         if (textField.text.length > 0)
         {
             [textField resignFirstResponder];
-            [self adjustTableViewFrame];
+            [self adjustTableViewFrame:self.view.frame.size];
 
             sessionData.currentProvider.userInput = [NSString stringWithString:textField.text];
         }
@@ -671,7 +673,7 @@ replacementString:(NSString *)string
 {
     DLog(@"");
     [textField resignFirstResponder];
-    [self adjustTableViewFrame];
+    [self adjustTableViewFrame:self.view.frame.size];
 }
 
 - (void)backToProvidersTouchUpInside
