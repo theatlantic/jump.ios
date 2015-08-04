@@ -227,6 +227,9 @@
  * Sent when the Engage Authentication is completed successfully for Link Account Flow
  */
 - (void)engageAuthenticationDidSucceedForAccountLinking:(NSDictionary *)engageAuthInfo forProvider:(NSString *)provider;
+
+
+
 @end
 
 #define JREngageDelegate JREngageSigninDelegate
@@ -420,6 +423,7 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
  **/
 + (void)showAuthenticationDialogForProvider:(NSString *)provider __unused;
 
+
 /**
  * Use this function to begin authentication. The JREngage library will pop up a modal dialog,
  * configured with the given custom interface, and take the user through the sign-in process.
@@ -476,6 +480,7 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
 **/
 + (void)showAuthenticationDialogForProvider:(NSString *)provider
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused;
+
 
 /**
  * Use this function to begin social sharing. The JREngage library will pop up a modal dialog and
@@ -607,13 +612,33 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
 /**
  * JREngage URL handler
  */
+//PB
+/*
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation;
-
+*/
 /**
  * JREngage application did become active handler
  */
 + (void)applicationDidBecomeActive:(UIApplication *)application;
+
+//PB
+/**
+ * Use this function to begin authentication for one specific provider. The JREngage library will
+ * pop up a modal dialog, skipping the list of providers, and take the user straight to the sign-in
+ * flow of the passed provider. The user will not be able to return to the list of providers.
+ *
+ * @param provider
+ *   The name of the provider on which the user will authenticate. For a list of possible strings,
+ *   please see the \ref authenticationProviders "List of Providers"
+ *
+ * @param token
+ *  access token
+ * @param tokenSecret
+ *  twitter secret
+ **/
++(void)getAuthInfoTokenForNativeProvider:(NSString *)provider withToken:(NSString *)token andTokenSecret:(NSString *)tokenSecret;
+//PB
 
 @end
 

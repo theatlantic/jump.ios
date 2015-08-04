@@ -38,15 +38,15 @@
 #import "JRUserInterfaceMaestro.h"
 #import "JRWebViewController.h"
 #import "debug_log.h"
-#import "JRNativeAuth.h"
-#import "JRNativeProvider.h"
+//#import "JRNativeAuth.h"
+//#import "JRNativeProvider.h"
 #import "JRCompatibilityUtils.h"
 
 #define frame_w(a) a.frame.size.width
 #define frame_h(a) a.frame.size.height
 
 @interface JRUserLandingController ()
-@property (nonatomic) JRNativeProvider *nativeProvider;
+//@property (nonatomic) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRUserLandingController
@@ -624,6 +624,8 @@ replacementString:(NSString *)string
 {
     DLog(@"");
     DLog(@"user input: %@", textField.text);
+    //PB
+    /*
     if ([JRNativeAuth canHandleProvider:sessionData.currentProvider.name]) {
         self.nativeProvider = [JRNativeAuth nativeProviderNamed:sessionData.currentProvider.name
                                               withConfiguration:[JREngage instance]];
@@ -640,8 +642,10 @@ replacementString:(NSString *)string
             }
         }];
     } else {
+     */
         [self startWebViewAuthentication:textField];
-    }
+    //}
+    //PB
 }
 
 - (void)startWebViewAuthentication:(UITextField *)textField {

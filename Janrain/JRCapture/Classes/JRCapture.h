@@ -54,10 +54,10 @@
 #define startEngageSigninDialogOnProvider startEngageSignInDialogOnProvider
 #define startCaptureConventionalSigninForUser startCaptureTraditionalSignInForUser
 #define startEngageSignInDialogWithConventionalSignIn startEngageSignInDialogWithTraditionalSignIn
-#define startEngageSigninDialogWithConventionalSignin startEngageSignInDialogWithTraditionalSignIn
+//#define startEngageSigninDialogWithConventionalSignin startEngageSignInDialogWithTraditionalSignIn
 #define withSigninType withSignInType
 
-#define startCaptureConventionalSignInForUser startCaptureTraditionalSignInForUser
+//#define startCaptureConventionalSignInForUser startCaptureTraditionalSignInForUser
 
 /**
  *  NSNotifications
@@ -651,7 +651,31 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
              withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                mergeToken:(NSString *)mergeToken
                               forDelegate:(id <JRCaptureDelegate>)delegate;
-
+/**
+ * Begin authentication for one specific provider. The library will
+ * pop up a modal dialog, skipping the list of providers, and take the user straight to the sign-in
+ * flow of the passed provider. The user will not be able to return to the list of providers.
+ *
+ * @param provider
+ *   The name of the provider on which the user will authenticate. For a list of possible strings,
+ *   please see the \ref authenticationProviders "List of Providers"
+ *
+ * @param customInterfaceOverrides
+ *   A dictionary of objects and properties, indexed by the set of
+ *   \link customInterface pre-defined custom interface keys\endlink, to be used by the library to customize the look
+ *   and feel of the user interface and/or add a native login experience
+ *
+ * @param mergeToken
+ *   The merge token, retrieved from the merge flow error instance.
+ **/
+//PB
++ (void)startEngageSignInDialogOnNativeProvider:(NSString *)provider
+                                      withToken:(NSString *)token
+                                 andTokenSecret:(NSString *)tokenSecret
+                                     mergeToken:(NSString *)mergeToken
+                   withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                    forDelegate:(id <JRCaptureDelegate>)delegate;
+//PB
 /**
  * Begin authentication, adding the option for your users to log directly into Capture through
  * your traditional sign-in mechanism. By using this method to initiate sign-in, the library automatically adds
@@ -824,8 +848,11 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 /**
  * JRCapture URL handler
  */
+//PB
+/*
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation;
+*/
 
 @end
 

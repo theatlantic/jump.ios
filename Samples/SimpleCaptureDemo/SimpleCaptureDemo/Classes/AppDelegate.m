@@ -37,20 +37,41 @@
 #import "JRCaptureConfig.h"
 #import "JRCaptureError.h"
 #import "JREngage.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
+#import <GoogleSignIn/GoogleSignIn.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
+
+
+/*
 #ifdef JR_FACEBOOK_SDK_TEST
 #  import <FacebookSDK/FacebookSDK.h>
 #endif
+*/
+
+@interface MyCaptureDelegate : NSObject <JRCaptureDelegate>
+@end
+
+// DO NOT USE THIS CLIENT ID. IT WILL NOT WORK FOR YOUR APP.
+// Please use the client ID created for you by Google.
+//NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.apps.googleusercontent.com";
 
 @interface JRSessionData (Internal)
 + (void)setServerUrl:(NSString *)serverUrl_;
 @end
+
 
 AppDelegate *appDelegate = nil;
 
 @implementation AppDelegate
 @synthesize window;
 @synthesize prefs;
+
+
 
 // Capture stuff:
 @synthesize captureUser;
@@ -69,22 +90,43 @@ AppDelegate *appDelegate = nil;
 @synthesize captureForgottenPasswordFormName;
 @synthesize captureEditProfileFormName;
 @synthesize resendVerificationFormName;
+//PB
+//@synthesize captureDelegate;
+//PB
 
 // Demo state machine stuff:
 @synthesize currentProvider;
 @synthesize isNotYetCreated;
 //@synthesize engageSignInWasCanceled;
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     appDelegate = self;
-
+    
+    
+    //Setup Google SignIn
+    // http://developers.google.com/identity/sign-in/ios/sign-in?configured
+    //[GIDSignIn sharedInstance].clientID = kClientID;
+    //[GIDSignIn sharedInstance].delegate = self;
+    
+    //Setup Twitter TwitterKit/Fabric
+    // http://docs.fabric.io/ios/twitter/twitterkit-setup.html
+    [[Twitter sharedInstance] startWithConsumerKey:@"oua7S98XSYNdJ8qvMPydQ" consumerSecret:@"uRrDzqH60UXFvRYCglJYEARR0lbp1LyIq5CHRTyOuio"];
+    [Fabric with:@[TwitterKit]];
+    
+    BOOL fbDidFinish = [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    if(fbDidFinish){
+       NSLog(@"Facebook Started");
+    }
+    [FBSDKLoginManager renewSystemCredentials:^(ACAccountCredentialRenewResult result, NSError *error) {}];
+    
     // register for Janrain notification(s)
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(onJRDownLoadFlowResult:)
                    name:JRDownloadFlowResult object:nil];
-
 
     [self loadDemoConfigFromPlist];
 
@@ -119,13 +161,26 @@ AppDelegate *appDelegate = nil;
     return YES;
 }
 
-#   ifdef JR_FACEBOOK_SDK_TEST
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    //NSString *urlScheme = url.scheme;
+    NSLog(@"openURL %@", url);
+    if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
+        return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                              openURL:url
+                                                    sourceApplication:sourceApplication
+                                                           annotation:annotation];
+    }else if(url.scheme != nil && [url.scheme hasPrefix:@"gplus"]){
+        //NOTE:  Google SignIn wants this but I never see it get hit so I'm guessing at the url scheme prefix.
+        return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    }else{
+        //return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+        return YES;
+    }
 }
-#   endif
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -150,9 +205,10 @@ AppDelegate *appDelegate = nil;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-#   ifdef JR_FACEBOOK_SDK_TEST
-        [FBSession.activeSession handleDidBecomeActive];
-#   endif
+//#   ifdef JR_FACEBOOK_SDK_TEST
+        //[FBSession.activeSession handleDidBecomeActive];
+//#   endif
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

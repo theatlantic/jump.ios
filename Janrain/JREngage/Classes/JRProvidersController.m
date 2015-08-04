@@ -39,9 +39,9 @@
 #import "JRProvidersController.h"
 #import "JRInfoBar.h"
 #import "JRUserLandingController.h"
-#import "JRNativeAuth.h"
+//#import "JRNativeAuth.h"
 #import "JREngageError.h"
-#import "JRNativeProvider.h"
+//#import "JRNativeProvider.h"
 #import "JRCompatibilityUtils.h"
 
 
@@ -72,7 +72,7 @@
 
 @property NSMutableArray *providers;
 @property UIView *myTraditionalSignInLoadingView;
-@property(nonatomic) JRNativeProvider *nativeProvider;
+//@property(nonatomic) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRProvidersController
@@ -509,6 +509,9 @@
 
     // Let sessionData know which provider the user selected
     JRProvider *provider = [sessionData getProviderNamed:[providers objectAtIndex:(NSUInteger) indexPath.row]];
+    
+    //PB
+    /*
     if ([JRNativeAuth canHandleProvider:provider.name])
     {
         [UIView animateWithDuration:0.3 animations:^() {
@@ -541,8 +544,11 @@
     }
     else
     {
+     */
         [self startWebViewAuthOnProvider:provider];
-    }
+    //}
+    //PB
+     
 }
 
 - (void)startWebViewAuthOnProvider:(JRProvider *)provider

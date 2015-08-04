@@ -23,18 +23,55 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb388616046345</string>
+				<string>com.googleusercontent.apps.520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.janrain.simplecapturedemo</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb241142639370227</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>c62a7de78181c7889143e54a7a33e92adfd1fa63</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>QllsUHHuJAVZmdnWnYRZpd3wS</string>
+					<key>consumerSecret</key>
+					<string>lGyWBx0LPF93xq4mN6lyUQ5ZbEpeA8pvyOFsu5XMTzY8mq03uF</string>
+				</dict>
+				<key>KitName</key>
+				<string>Twitter</string>
+			</dict>
+		</array>
+	</dict>
 	<key>FacebookAppID</key>
-	<string>388616046345</string>
+	<string>241142639370227</string>
 	<key>FacebookDisplayName</key>
-	<string>jrauth</string>
+	<string>pbjanrain-dev</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>

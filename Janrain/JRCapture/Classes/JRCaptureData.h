@@ -1,5 +1,6 @@
 #import "JRCaptureEnvironment.h"
-#import "JRNativeAuthConfig.h"
+//PB
+//#import "JRNativeAuthConfig.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Copyright (c) 2012, Janrain, Inc.

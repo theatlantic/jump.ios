@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="9RN-Pn-CPc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="9RN-Pn-CPc">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Root View Controller-->
@@ -44,7 +43,7 @@
                                 <rect key="frame" x="20" y="365" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Sign In">
+                                <state key="normal" title="Webview Sign In">
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -180,10 +179,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FmY-Nl-bUq">
-                                <rect key="frame" x="20" y="268" width="280" height="44"/>
+                                <rect key="frame" x="20" y="268" width="85" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Direct Facebook Sign-In">
+                                <state key="normal" title="Facebook">
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -194,11 +193,11 @@
                                     <action selector="facebookAuthButtonPressed:" destination="2" eventType="touchUpInside" id="XLo-Yd-MxK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UYF-zS-03v">
-                                <rect key="frame" x="20" y="268" width="280" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Zh-Qb-wQr">
+                                <rect key="frame" x="118" y="268" width="85" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Refetch Record">
+                                <state key="normal" title="Google+">
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -206,7 +205,22 @@
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="refetchButtonPressed:" destination="2" eventType="touchUpInside" id="g6G-Ta-tdo"/>
+                                    <action selector="googleplusAuthButtonPressed:" destination="2" eventType="touchUpInside" id="dRR-i4-qR0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hB3-dv-fQL">
+                                <rect key="frame" x="215" y="268" width="85" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Twitter">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="twitterAuthButtonPressed:" destination="2" eventType="touchUpInside" id="ED8-FP-Slj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ObZ-df-gL7">
@@ -239,6 +253,21 @@
                                     <action selector="unlinkAccountButtonPressed:" destination="2" eventType="touchUpInside" id="ew7-4w-5Zb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UYF-zS-03v">
+                                <rect key="frame" x="20" y="268" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Refetch Record">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="refetchButtonPressed:" destination="2" eventType="touchUpInside" id="g6G-Ta-tdo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -254,6 +283,8 @@
                         <outlet property="currentUserLabel" destination="Hq8-yJ-Rmg" id="hGr-bA-Zvn"/>
                         <outlet property="currentUserProviderIcon" destination="PZq-1X-zH2" id="vdO-gn-iv0"/>
                         <outlet property="directFacebookAuthButton" destination="FmY-Nl-bUq" id="ocV-yU-NfD"/>
+                        <outlet property="directGoogleplusAuthButton" destination="4Zh-Qb-wQr" id="hDQ-nc-bRf"/>
+                        <outlet property="directTwitterAuthButton" destination="hB3-dv-fQL" id="JcR-oM-BCV"/>
                         <outlet property="forgotPasswordButton" destination="Ghj-Zz-nLl" id="Uf9-AE-5eo"/>
                         <outlet property="formButton" destination="Th5-gz-bhu" id="AQA-YY-VUE"/>
                         <outlet property="linkAccountButton" destination="ObZ-df-gL7" id="YXV-Ln-6w8"/>

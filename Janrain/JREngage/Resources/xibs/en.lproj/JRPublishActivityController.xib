@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3017" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JRPublishActivityController">
@@ -61,7 +60,7 @@
                         <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="163" userLabel="Middle Gray Editing Pad">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" id="90" userLabel="Scroll View - Text and Preview Container">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
@@ -101,7 +100,7 @@
                                             </accessibility>
                                             <string key="text">You blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag blag </string>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <view contentMode="scaleToFill" id="50" userLabel="Media Rounded Rect View - Media Container" customClass="JRRoundedRect">
@@ -148,7 +147,7 @@
                                 <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="123" userLabel="Top Gray Editing iPad">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <view contentMode="scaleToFill" id="146" userLabel="Text Background Rounded Rect View - User Content Container" customClass="JRRoundedRect">
                                     <rect key="frame" x="10" y="10" width="300" height="78"/>
@@ -170,7 +169,7 @@
                                     <rect key="frame" x="10" y="90" width="300" height="15"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </label>
                             </subviews>
@@ -222,7 +221,7 @@
                                     <rect key="frame" x="63" y="14" width="92" height="23"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button hidden="YES" opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="94" userLabel="Sign Out Button">
@@ -260,7 +259,7 @@
                                     <rect key="frame" x="165" y="15" width="145" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
-                                    <state key="normal" title="Share" backgroundImage="blue_button_145x37.png">
+                                    <state key="normal" title="Share" backgroundImage="button_janrain_135x40.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -307,7 +306,7 @@
                         <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="124" userLabel="Bottom Gray Editing iPad">
                             <rect key="frame" x="0.0" y="264" width="320" height="103"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -342,13 +341,19 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="blue_button_145x37.png" width="16" height="16"/>
+        <image name="button_janrain_135x40.png" width="135" height="40"/>
         <image name="button_janrain_280x40.png" width="280" height="40"/>
         <image name="check_mark.png" width="20" height="20"/>
         <image name="triangle_icon.png" width="18" height="18"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

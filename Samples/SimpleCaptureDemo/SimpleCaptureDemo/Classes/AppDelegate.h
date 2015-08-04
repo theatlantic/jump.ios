@@ -29,6 +29,7 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <UIKit/UIKit.h>
+//#import <GoogleSignIn/GoogleSignIn.h>
 
 #define cJRCurrentProvider  @"simpleCaptureDemo.currentProvider"
 #define cJRCaptureUser      @"simpleCaptureDemo.captureUser"
@@ -36,10 +37,14 @@
 @class AppDelegate;
 @class JRCaptureUser;
 
-AppDelegate *appDelegate;
+extern AppDelegate *appDelegate;
 
+//extern NSString *const kClientID;
+
+//@interface AppDelegate : UIResponder <UIApplicationDelegate, GIDSignInDelegate>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+//@property MyCaptureDelegate *captureDelegate;
 @property (nonatomic) UIWindow *window;
 
 @property NSUserDefaults *prefs;
@@ -64,4 +69,5 @@ AppDelegate *appDelegate;
 @property(nonatomic) NSString *resendVerificationFormName;
 
 - (void)saveCaptureUser;
+
 @end

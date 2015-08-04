@@ -30,13 +30,22 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #import <UIKit/UIKit.h>
 #import "JRCaptureObject.h"
+#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface RootViewController : UIViewController
+extern NSString *const kClientID;
+
+@interface RootViewController : UIViewController <GIDSignInUIDelegate, GIDSignInDelegate>{
+    BOOL isMergingAccount;
+}
+
+
 - (IBAction)browseButtonPressed:(id)sender;
 - (IBAction)tradRegButtonPressed:(id)sender;
 - (IBAction)refreshButtonPressed:(id)sender;
 - (IBAction)signInButtonPressed:(id)sender;
 - (IBAction)facebookAuthButtonPressed:(id)sender;
+- (IBAction)googleplusAuthButtonPressed:(id)sender;
+- (IBAction)twitterAuthButtonPressed:(id)sender;
 - (IBAction)tradAuthButtonPressed:(id)sender;
 - (IBAction)signOutButtonPressed:(id)sender;
 - (IBAction)shareButtonPressed:(id)sender;
@@ -57,6 +66,8 @@
 @property (weak) IBOutlet UIBarButtonItem *signInNavButton;
 @property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *directFacebookAuthButton;
+@property (weak, nonatomic) IBOutlet UIButton *directGoogleplusAuthButton;
+@property (weak, nonatomic) IBOutlet UIButton *directTwitterAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property (weak, nonatomic) IBOutlet UIButton *linkAccountButton;
@@ -64,4 +75,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
 @property (weak, nonatomic) IBOutlet UIButton *resendVerificationButton;
 @property(nonatomic) NSDictionary *customUi;
+@property NSString *currentProvider;
+@property NSString *facebookToken;
+@property NSString *googleplusToken;
+@property NSString *twitterToken;
+@property NSString *twitterTokenSecret;
+@property NSString *activeMergeToken;
+@property BOOL isMergingAccount;
+
 @end

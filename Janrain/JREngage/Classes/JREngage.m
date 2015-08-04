@@ -36,8 +36,9 @@
 #import "JRSessionData.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JREngageError.h"
-#import "JRNativeAuth.h"
-#import "JRNativeProvider.h"
+//PB
+//#import "JRNativeAuth.h"
+//#import "JRNativeProvider.h"
 
 @interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
@@ -53,7 +54,8 @@
 @property (nonatomic) NSString *twitterConsumerKey;
 @property (nonatomic) NSString *twitterConsumerSecret;
 
-@property (nonatomic) JRNativeProvider *nativeProvider;
+//PB
+//@property (nonatomic) JRNativeProvider *nativeProvider;
 
 @end
 
@@ -61,6 +63,7 @@ NSString *const JRFinishedUpdatingEngageConfigurationNotification = @"JRFinished
 NSString *const JRFailedToUpdateEngageConfigurationNotification = @"JRFailedToUpdateEngageConfigurationNotification";
 
 @implementation JREngage
+
 @synthesize interfaceMaestro;
 @synthesize sessionData;
 @synthesize delegates;
@@ -220,17 +223,23 @@ static JREngage* singleton = nil;
         [self engageDidFailWithError:[JREngageError errorWithMessage:message andCode:JRProviderNotConfiguredError]];
         return;
     }
-
+    
+    //PB
+    /*
     if ([JRNativeAuth canHandleProvider:provider])
     {
         [self startNativeAuthOnProvider:provider customInterface:customInterfaceOverrides];
     }
     else
     {
+     */
         [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
-    }
+    //}
+    //PB
 }
 
+//PB
+/*
 - (void)startNativeAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
     self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider withConfiguration:self];
     [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
@@ -247,6 +256,55 @@ static JREngage* singleton = nil;
         }
     }];
 }
+*/
+//PB
++ (void)getAuthInfoTokenForNativeProvider:(NSString *)provider
+                                withToken:(NSString *)token
+                           andTokenSecret:(NSString *)tokenSecret {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                  @"token" : token,
+                                                                                  @"provider" : provider
+                                                                                  }];
+    NSString *url = [[JRSessionData jrSessionData].baseUrl stringByAppendingString:@"/signin/oauth_token"];
+    
+    if (tokenSecret) {
+        // Twitter uses OAuth 1 and requires both a token and a token secret
+        [params setObject:tokenSecret forKey:@"token_secret"];
+    }
+    
+    
+    void (^responseHandler)(id, NSError *) = ^(id result, NSError *error)
+    {
+        NSString *authInfoToken;
+        if (error || ![result isKindOfClass:[NSDictionary class]]
+            || ![[((NSDictionary *) result) objectForKey:@"stat"] isEqual:@"ok"]
+            || ![authInfoToken = [((NSDictionary *) result) objectForKey:@"token"] isKindOfClass:[NSString class]])
+        {
+            NSObject *error_ = error; if (error_ == nil) error_ = [NSNull null];
+            NSObject *result_ = result; if (result_ == nil) result_ = [NSNull null];
+            NSError *nativeAuthError = [NSError errorWithDomain:JREngageErrorDomain
+                                                           code:JRAuthenticationNativeAuthError
+                                                       userInfo:@{@"result": result_, @"error": error_}];
+            DLog(@"Native authentication error: %@", nativeAuthError);
+            //self.completion(nativeAuthError);
+            return;
+        }
+        
+        
+        JRSessionData *sessionData = [JRSessionData jrSessionData];
+        [sessionData setCurrentProvider:[sessionData getProviderNamed:provider]];
+        [sessionData triggerAuthenticationDidCompleteWithPayload:@{
+                                                                   @"rpx_result" : @{
+                                                                           @"token" : authInfoToken,
+                                                                           @"auth_info" : @{}
+                                                                           },
+                                                                   }];
+        
+        //self.completion(nil);
+    };
+    [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:responseHandler];
+}
+//PB
 
 + (void)showAuthenticationDialogForProvider:(NSString *)provider
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused
@@ -591,10 +649,13 @@ static JREngage* singleton = nil;
     [[JREngage singletonInstance].sessionData setCustomProvidersWithDictionary:customProviders];
 }
 
+//PB
+/*
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     return [JRNativeAuth application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
+*/
 
 + (void)applicationDidBecomeActive:(UIApplication *)application {
     Class fbSession = NSClassFromString(@"FBSession");
@@ -613,6 +674,7 @@ static JREngage* singleton = nil;
         [singleton applicationDidBecomeActive:application];
     }
 }
+
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     if (sessionData.nativeAuthenticationFlowIsInFlight) {

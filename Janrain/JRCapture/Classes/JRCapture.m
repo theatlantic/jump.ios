@@ -329,7 +329,22 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                             withCustomInterfaceOverrides:customInterfaceOverrides mergeToken:nil
                                              forDelegate:delegate];
 }
-
+//PB
++ (void)startEngageSignInDialogOnNativeProvider:(NSString *)provider
+                                      withToken: (NSString *)token
+                                 andTokenSecret: (NSString *)tokenSecret
+                                     mergeToken: (NSString *)mergeToken
+             withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                              forDelegate:(id <JRCaptureDelegate>)delegate
+{
+    [JREngageWrapper startAuthenticationDialogOnProvider:provider
+                                                   withToken:token
+                                          andTokenSecret:tokenSecret
+                            withCustomInterfaceOverrides:customInterfaceOverrides
+                                              mergeToken:mergeToken
+                                             forDelegate:delegate];
+}
+//PB
 + (void)startCaptureTraditionalSignInForUser:(NSString *)user withPassword:(NSString *)password
                               withSignInType:(JRTraditionalSignInType)traditionalSignInTypeSignInType
                                   mergeToken:(NSString *)mergeToken forDelegate:(id <JRCaptureDelegate>)delegate
@@ -954,9 +969,12 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                   extraOnSuccessHandler:successHandler];
 }
 
+//PB
+/*
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     return [JREngage application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
+*/
 
 @end
