@@ -20,11 +20,6 @@ user registration system. For Engage-only (i.e. social-authentication-only) inte
 * Capture account record updates
 * Session refreshing
 
-### Features in the Pipeline
-
-* Profile updates (including password and email address updates)
-* In app forgot-password-flow initiation
-* Social account linking (like the "merge account" sign-in flow, but after a user is signed in.)
 
 ## 10,000' View
 
@@ -340,18 +335,28 @@ Example:
                 {
                     if (cancelled) return;
 
-                    if ([existingAccountProvider isEqualToString:@"capture"]) // Traditional sign-in required
-                    {
-                        [self handleTradMerge:error];
-
+                    if ([existingAccountProvider isEqualToString:@"capture"]){ // Traditional sign-in required
+                        [self performTradAuthWithMergeToken:[error JRMergeToken]];
                     }
-                    else
-                    {
+                    // Optional if you are implementing Native Provider SDK's
+                    // Please read the Native Authentication Guide before implenting these.
+                    /*
+                    else if ([existingAccountProvider isEqualToString:@"facebook"]){
+                        [self startNativeFacebook:[error JRMergeToken]];
+                    }else if ([existingAccountProvider isEqualToString:@"googleplus"]){
+                        self.isMergingAccount = YES;
+                        self.activeMergeToken =[error JRMergeToken];
+                        [self startNativeGoogleplus];
+                    }else if ([existingAccountProvider isEqualToString:@"twitter"]){
+                        [self startNativeTwitter:[error JRMergeToken]];
+                    */ 
+                    }else{
                         // Social sign-in required:
+                    
                         [JRCapture startEngageSignInDialogOnProvider:existingAccountProvider
                                         withCustomInterfaceOverrides:self.customUi
                                                           mergeToken:[error JRMergeToken]
-                                                         forDelegate:self];
+                                                         forDelegate:self.captureDelegate];
                     }
                 };
 
@@ -539,7 +544,36 @@ instance), or a sub-object of that object.
 
 **Warning** When you update an object, the update _does not_ affect plurals inside of that object.
 
-### Replacing Plurals
+### Working with Plurals
+
+Overview:
+
+The Mobile SDK has support for replacing existing plurals when properly configured.
+
+The developer should make sure they have an up-to-date Registration User Model (http://developers.janrain.com/how-to/mobile-apps/sdk/registration/ios/install-with-xcode/configure-xcode-project-for-sdk/#add-the-library-to-your-xcode-project).
+
+WORK HERE
+
+By default any “entity” api calls other than the base “entity” call can NOT be used with a Mobile or Javascript implementation.  The Mobile and Javascript implementations are designed to not have API Client secrets embedded in them.  Additionally Mobile SDK and Javascript implementations are designed to only use API Clients with the “login_client” feature.  
+
+When an end user authenticates through an API Client with the “login_client” feature the access token that it returned is scoped to only permit read-only access to the user’s profile data.  The access token can not be used to make any entity calls that would modify the user’s profile data (i.e. entity.update, entity.replace).  All edits to the user’s profile data must be submitted through the Janrain Registration server using either the Javascript implementation or the Mobile SDK (which uses the OAuth API end points).
+
+Access Schemas:
+
+NOTE: Access Schemas are leveraged by several components in the Janrain Registration system.  Please consult with your Janrain Deployment specialist before modifying an Access Schema.
+
+The Registration API Client filtering of read and write access is implemented through a feature called “Access Schemas”.  Each Registration API Client can only have the following access types:  “read”, “write”, or “write_with_token”.  The “write” access schema will always be used when an API Client ID and Secret combination is provided to any of the editing “entity” api calls. The “write_with_token” access schema will always be used when a valid access token is provided to any of the editing “entity” api calls. 
+
+By default an API Client with the “login_client” feature will have a “read” access schema that provides full read access to their entire user profile, and  “write” and “write_with_token” access schemas that provide no write access to the user profile (Note: reserved attributes (id, uuid, created, lastUpdated) are automatically included in the access schema but are not accessible through the entity calls).
+
+In order for the Mobile SDKs or Javascript Implementations to leverage the editing entity API calls the developer will have to create an “write_with_token” access schema and use the access_token parameter instead of the client_id and client_secret parameters with the API calls.
+Access Schema API Calls:
+Retrieving an Access Schema:
+http://developers.janrain.com/rest-api/methods/user-data/entitytype/getaccessschema/
+
+Setting an Access Schema:
+http://developers.janrain.com/rest-api/methods/user-data/entitytype/setaccessschema/
+
 
 To add or remove the elements of a plural send the `replace_ArrayName_ArrayOnCaptureForDelegate:context:` message to
 the parent-object of the plural, where _ArrayName_ is the name of the plural attribute.

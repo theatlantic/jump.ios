@@ -62,8 +62,11 @@ NSString* const JRDownloadFlowResult = @"JRDownloadFlowResult";
 {
     [JRCaptureData setCaptureConfig:config];
     [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
+    //PB
+    /*
     [JREngage setGooglePlusClientId:config.googlePlusClientId];
     [JREngage setTwitterConsumerKey:config.twitterConsumerKey andSecret:config.twitterConsumerSecret];
+     */
 }
 
 /**
@@ -329,22 +332,22 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                             withCustomInterfaceOverrides:customInterfaceOverrides mergeToken:nil
                                              forDelegate:delegate];
 }
-//PB
-+ (void)startEngageSignInDialogOnNativeProvider:(NSString *)provider
+
++ (void)startEngageSignInWithNativeProviderToken:(NSString *)provider
                                       withToken: (NSString *)token
                                  andTokenSecret: (NSString *)tokenSecret
                                      mergeToken: (NSString *)mergeToken
              withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                               forDelegate:(id <JRCaptureDelegate>)delegate
 {
-    [JREngageWrapper startAuthenticationDialogOnProvider:provider
+    [JREngageWrapper startAuthenticationWithProviderToken:provider
                                                    withToken:token
                                           andTokenSecret:tokenSecret
                             withCustomInterfaceOverrides:customInterfaceOverrides
                                               mergeToken:mergeToken
                                              forDelegate:delegate];
 }
-//PB
+
 + (void)startCaptureTraditionalSignInForUser:(NSString *)user withPassword:(NSString *)password
                               withSignInType:(JRTraditionalSignInType)traditionalSignInTypeSignInType
                                   mergeToken:(NSString *)mergeToken forDelegate:(id <JRCaptureDelegate>)delegate
@@ -842,6 +845,45 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                   extraOnSuccessHandler:nil];
 }
 
++ (void)updateProfileForUserWithForm:(JRCaptureUser *)user
+                            withEditProfileForm:(NSString *) formName
+                            delegate:(id <JRCaptureDelegate>)delegate
+{
+    if (!user && [delegate respondsToSelector:@selector(updateUserProfileDidFailWithError:)]){
+        [delegate updateUserProfileDidFailWithError:[JRCaptureError invalidArgumentErrorWithParameterName:@"user"]];
+    }
+    
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    
+    if (!formName) {
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing editProfileFormName configuration option"];
+    }
+    NSMutableDictionary *params = [user toFormFieldsForForm:formName withFlow:data.captureFlow];
+    
+    [params addEntriesFromDictionary:@{
+                                       @"client_id" : data.clientId,
+                                       @"access_token" : data.accessToken,
+                                       @"locale" : data.captureLocale,
+                                       @"form" : formName,
+                                       @"flow" : data.captureFlowName,
+                                       }];
+    
+    if ([data downloadedFlowVersion]) {
+        [params setObject:[data downloadedFlowVersion] forKey:@"flow_version"];
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/oauth/update_profile_native", data.captureBaseUrl];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:params];
+    
+    [self startURLConnectionWithRequest:request
+                               delegate:delegate
+                              onSuccess:@selector(updateUserProfileDidSucceed)
+                              onFailure:@selector(updateUserProfileDidFailWithError:)
+                                message:[NSString stringWithFormat:@"updating user profile with form name: %@", formName]
+                  extraOnSuccessHandler:nil];
+}
+
 - (void)dealloc
 {
 }
@@ -969,12 +1011,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                   extraOnSuccessHandler:successHandler];
 }
 
-//PB
-/*
-+ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    return [JREngage application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-}
-*/
+
 
 @end

@@ -96,6 +96,8 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
     [GIDSignIn sharedInstance].clientID = kClientID;
     [GIDSignIn sharedInstance].delegate = self;
     [GIDSignIn sharedInstance].uiDelegate = self;
+    [GIDSignIn sharedInstance].scopes = @[ @"email", @"profile" ];
+    
     self.captureDelegate = [[MyCaptureDelegate alloc] initWithRootViewController:self];
     
     self.isMergingAccount = nil;
@@ -257,7 +259,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
             self.twitterToken = [session authToken];
             self.twitterTokenSecret = [session authTokenSecret];
             
-            [JRCapture startEngageSignInDialogOnNativeProvider:@"twitter"
+            [JRCapture startEngageSignInWithNativeProviderToken:@"twitter"
                                                      withToken:[session authToken]
                                                 andTokenSecret:[session authTokenSecret]
                                                     mergeToken:mergeToken
@@ -302,7 +304,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
                 // Do work
                 
             }
-            [JRCapture startEngageSignInDialogOnNativeProvider:@"facebook"
+            [JRCapture startEngageSignInWithNativeProviderToken:@"facebook"
                                                      withToken:[FBSDKAccessToken currentAccessToken].tokenString
                                                 andTokenSecret:nil
                                                     mergeToken:mergeToken
@@ -357,7 +359,7 @@ didSignInForUser:(GIDGoogleUser *)user
         mergeToken = self.activeMergeToken;
     }
     
-    [JRCapture startEngageSignInDialogOnNativeProvider:@"googleplus"
+    [JRCapture startEngageSignInWithNativeProviderToken:@"googleplus"
                                              withToken:user.authentication.accessToken
                                         andTokenSecret:nil
                                             mergeToken:mergeToken
@@ -460,8 +462,19 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 {
     self.currentUserLabel.text = @"No current user";
     self.currentUserProviderIcon.image = nil;
+    
+    //The social provider logout could be made conditional
+    //Sign the user out of Facebook
+    [[FBSDKLoginManager new] logOut];
+    //Sign the user out Google+
+    [[GIDSignIn sharedInstance] signOut];
+    //Sign the user out of Twitter
+    //NOTE:  This only signs them out of the app.  Not the stored credentials on the device.
+    [[Twitter sharedInstance] logOut];
+    
     [self signOutCurrentUser];
     [self configureViewsWithDisableOverride:NO];
+    
 }
 
 - (IBAction)shareButtonPressed:(id)sender

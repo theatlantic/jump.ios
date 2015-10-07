@@ -38,15 +38,13 @@
 #import "JRUserInterfaceMaestro.h"
 #import "JRWebViewController.h"
 #import "debug_log.h"
-//#import "JRNativeAuth.h"
-//#import "JRNativeProvider.h"
 #import "JRCompatibilityUtils.h"
 
 #define frame_w(a) a.frame.size.width
 #define frame_h(a) a.frame.size.height
 
 @interface JRUserLandingController ()
-//@property (nonatomic) JRNativeProvider *nativeProvider;
+
 @end
 
 @implementation JRUserLandingController
@@ -624,28 +622,7 @@ replacementString:(NSString *)string
 {
     DLog(@"");
     DLog(@"user input: %@", textField.text);
-    //PB
-    /*
-    if ([JRNativeAuth canHandleProvider:sessionData.currentProvider.name]) {
-        self.nativeProvider = [JRNativeAuth nativeProviderNamed:sessionData.currentProvider.name
-                                              withConfiguration:[JREngage instance]];
-        [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
-            if (error) {
-                if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
-                    [sessionData triggerAuthenticationDidCancel];
-                } else if ([error.domain isEqualToString:JREngageErrorDomain]
-                           && error.code == JRAuthenticationShouldTryWebViewError) {
-                    [self startWebViewAuthentication:textField];
-                } else {
-                    [sessionData triggerAuthenticationDidFailWithError:error];
-                }
-            }
-        }];
-    } else {
-     */
-        [self startWebViewAuthentication:textField];
-    //}
-    //PB
+    [self startWebViewAuthentication:textField];
 }
 
 - (void)startWebViewAuthentication:(UITextField *)textField {

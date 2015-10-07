@@ -208,8 +208,8 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
 
     [JREngage showAuthenticationDialogForProvider:provider withCustomInterfaceOverrides:customInterfaceOverrides];
 }
-//PB
-+ (void)startAuthenticationDialogOnProvider:(NSString *)provider
+
++ (void)startAuthenticationWithProviderToken:(NSString *)provider
                                   withToken:(NSString *)token
                              andTokenSecret:(NSString *)tokenSecret
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
@@ -223,7 +223,6 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
     
     [JREngage getAuthInfoTokenForNativeProvider:provider withToken:token andTokenSecret:tokenSecret];
 }
-//PB
 
 - (void)tearingDownViewControllers:(NSNotification *)notification {
     DLog();

@@ -33,6 +33,7 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #ifdef CORDOVA_FRAMEWORK
 #import <Cordova/JSONKit.h>

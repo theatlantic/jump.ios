@@ -113,22 +113,25 @@
  */
 @property (nonatomic) NSString *resendEmailVerificationFormName;
 
+//PB
 /**
  *  Your Google+ client id. Must be for the same google application that is configured in Engage.
  */
-@property (nonatomic) NSString *googlePlusClientId;
+//@property (nonatomic) NSString *googlePlusClientId;
 
 /**
  *  Your Twitter consumer secret. Must match the value in your Engage Dashboard.
  *  This is required for native Twitter authentication
  */
-@property (nonatomic) NSString *twitterConsumerSecret;
+//@property (nonatomic) NSString *twitterConsumerSecret;
 
 /**
  *  Your Twitter consumer key. Must match the value in your Engage Dashboard.
  *  This is required for native Twitter authentication
  */
-@property (nonatomic) NSString *twitterConsumerKey;
+//@property (nonatomic) NSString *twitterConsumerKey;
+
+//PB
 
 /**
  *   Get an empty Capture Configuration

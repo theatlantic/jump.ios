@@ -43,6 +43,7 @@
  * are ready to share.
  **/
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 /**

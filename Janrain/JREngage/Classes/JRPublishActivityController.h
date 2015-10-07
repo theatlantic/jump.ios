@@ -64,5 +64,4 @@ typedef enum
 
 - (IBAction)editButtonPressed:(id)sender;
 
-- (IBAction)infoButtonPressed:(id)sender;
 @end

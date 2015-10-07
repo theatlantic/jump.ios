@@ -652,9 +652,11 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                                mergeToken:(NSString *)mergeToken
                               forDelegate:(id <JRCaptureDelegate>)delegate;
 /**
- * Begin authentication for one specific provider. The library will
- * pop up a modal dialog, skipping the list of providers, and take the user straight to the sign-in
- * flow of the passed provider. The user will not be able to return to the list of providers.
+ * Begin authentication for one specific provider when passed a valid oAuth token (and tokenSecret for Twitter)
+ * This method relies on the developer using the supported provider's (ONLY: Facebook, Google+, or Twitter) SDK
+ * to retrieve an oAuth access token with the necessary scopes/permissions.
+ * This method will pass the token to the Social Login server where it will be validated and exchanged for a Social
+ * Login token for use in further authentication or registration calls.
  *
  * @param provider
  *   The name of the provider on which the user will authenticate. For a list of possible strings,
@@ -668,14 +670,14 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  * @param mergeToken
  *   The merge token, retrieved from the merge flow error instance.
  **/
-//PB
-+ (void)startEngageSignInDialogOnNativeProvider:(NSString *)provider
+
++ (void)startEngageSignInWithNativeProviderToken:(NSString *)provider
                                       withToken:(NSString *)token
                                  andTokenSecret:(NSString *)tokenSecret
                                      mergeToken:(NSString *)mergeToken
                    withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                     forDelegate:(id <JRCaptureDelegate>)delegate;
-//PB
+
 /**
  * Begin authentication, adding the option for your users to log directly into Capture through
  * your traditional sign-in mechanism. By using this method to initiate sign-in, the library automatically adds
@@ -785,6 +787,13 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 + (void)updateProfileForUser:(JRCaptureUser *)user delegate:(id <JRCaptureDelegate>)delegate;
 
 /**
+ * Updates the profile for a given user using an update_profile_native compatible form
+ */
++ (void)updateProfileForUserWithForm:(JRCaptureUser *)user
+                 withEditProfileForm:(NSString *) formName
+                            delegate:(id <JRCaptureDelegate>)delegate;
+
+/**
  * Signs the currently-signed-in user, if any, out.
  */
 + (void)clearSignInState __unused;
@@ -844,15 +853,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
 + (void)startActualAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier;
 
-
-/**
- * JRCapture URL handler
- */
-//PB
-/*
-+ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation;
-*/
 
 @end
 

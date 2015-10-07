@@ -90,9 +90,7 @@ AppDelegate *appDelegate = nil;
 @synthesize captureForgottenPasswordFormName;
 @synthesize captureEditProfileFormName;
 @synthesize resendVerificationFormName;
-//PB
-//@synthesize captureDelegate;
-//PB
+
 
 // Demo state machine stuff:
 @synthesize currentProvider;

@@ -36,9 +36,6 @@
 #import "JRSessionData.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JREngageError.h"
-//PB
-//#import "JRNativeAuth.h"
-//#import "JRNativeProvider.h"
 
 @interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
@@ -50,12 +47,6 @@
 /** \internal Array of JREngageDelegate objects */
 @property (nonatomic) NSMutableArray         *delegates;
 
-@property (nonatomic) NSString *googlePlusClientId;
-@property (nonatomic) NSString *twitterConsumerKey;
-@property (nonatomic) NSString *twitterConsumerSecret;
-
-//PB
-//@property (nonatomic) JRNativeProvider *nativeProvider;
 
 @end
 
@@ -68,6 +59,7 @@ NSString *const JRFailedToUpdateEngageConfigurationNotification = @"JRFailedToUp
 @synthesize sessionData;
 @synthesize delegates;
 
+
 static JREngage* singleton = nil;
 
 + (JREngage *)singletonInstance
@@ -78,6 +70,9 @@ static JREngage* singleton = nil;
 
     return singleton;
 }
+
+
+
 
 + (id)allocWithZone:(NSZone *)zone
 {
@@ -119,15 +114,6 @@ static JREngage* singleton = nil;
     [JREngage setEngageAppId:appId tokenUrl:tokenUrl andDelegate:delegate];
 
     return [JREngage singletonInstance];
-}
-
-+ (void)setGooglePlusClientId:(NSString *)clientId {
-    [[JREngage singletonInstance] setGooglePlusClientId:clientId];
-}
-
-+ (void)setTwitterConsumerKey:(NSString *)consumerKey andSecret:(NSString *)consumerSecret {
-    [[JREngage singletonInstance] setTwitterConsumerKey:consumerKey];
-    [[JREngage singletonInstance] setTwitterConsumerSecret:consumerSecret];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
@@ -224,7 +210,12 @@ static JREngage* singleton = nil;
         return;
     }
     
-    //PB
+    // The following commented code was from previous versions of the Mobile SDK.
+    // If a developer wanted to re-introduce Native Provider detection this would be the recommended
+    // location to implement the logic.
+    //
+    // NOTE: simply un-commenting the code below will not work.  The referenced libraries have been
+    // removed from the Mobile SDK as of version 4.x
     /*
     if ([JRNativeAuth canHandleProvider:provider])
     {
@@ -235,29 +226,30 @@ static JREngage* singleton = nil;
      */
         [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
     //}
-    //PB
+    //
 }
 
-//PB
+//PB Work here
 /*
-- (void)startNativeAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
-    self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider withConfiguration:self];
-    [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
+ 
+ /Users/pbaker/GitHub/jump.ios.internal/Janrain/JREngage/Classes/JRProvidersController.m:
+ 526
+ 527          self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider.name withConfiguration:[JREngage instance]];
+ 528:         [self.nativeProvider startAuthenticationWithCompletion:^(NSError *e) {
+ 529              if (e) {
+ 530                  if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
+ 
+ /Users/pbaker/GitHub/jump.ios.internal/Janrain/JREngage/Classes/JRUserLandingController.m:
+ 630          self.nativeProvider = [JRNativeAuth nativeProviderNamed:sessionData.currentProvider.name
+ 631                                                withConfiguration:[JREngage instance]];
+ 632:         [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
+ 633              if (error) {
+ 634                  if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
+ 
+ 
+ */
 
-        if (!error) return;
 
-        if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
-            [self authenticationDidCancel];
-        } else if ([error.domain isEqualToString:JREngageErrorDomain]
-                   && error.code == JRAuthenticationShouldTryWebViewError) {
-            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
-        } else {
-            [self authenticationDidFailWithError:error forProvider:provider];
-        }
-    }];
-}
-*/
-//PB
 + (void)getAuthInfoTokenForNativeProvider:(NSString *)provider
                                 withToken:(NSString *)token
                            andTokenSecret:(NSString *)tokenSecret {
@@ -286,7 +278,6 @@ static JREngage* singleton = nil;
                                                            code:JRAuthenticationNativeAuthError
                                                        userInfo:@{@"result": result_, @"error": error_}];
             DLog(@"Native authentication error: %@", nativeAuthError);
-            //self.completion(nativeAuthError);
             return;
         }
         
@@ -300,11 +291,10 @@ static JREngage* singleton = nil;
                                                                            },
                                                                    }];
         
-        //self.completion(nil);
     };
     [JRConnectionManager jsonRequestToUrl:url params:params completionHandler:responseHandler];
 }
-//PB
+
 
 + (void)showAuthenticationDialogForProvider:(NSString *)provider
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused
@@ -328,11 +318,6 @@ static JREngage* singleton = nil;
     
 }
 
-//- (void)showAuthenticationDialogForProvider:(NSString *)provider
-//{
-//    [self showAuthenticationDialogWithCustomInterfaceOverrides:nil
-//                            orAuthenticatingOnJustThisProvider:provider];
-//}
 
 + (void)showAuthenticationDialogForProvider:(NSString *)provider
 {
@@ -649,13 +634,6 @@ static JREngage* singleton = nil;
     [[JREngage singletonInstance].sessionData setCustomProvidersWithDictionary:customProviders];
 }
 
-//PB
-/*
-+ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    return [JRNativeAuth application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-}
-*/
 
 + (void)applicationDidBecomeActive:(UIApplication *)application {
     Class fbSession = NSClassFromString(@"FBSession");
