@@ -69,7 +69,9 @@
  *  if the object is nil, the FLOW was successfully downloaded.
  *  If the JRCaptureError object is !nil, then the FLOW did not download.
  */
-extern NSString* const JRDownloadFlowResult;
+FOUNDATION_EXPORT NSString* const JRDownloadFlowResult;
+//PB
+//extern NSString* const JRDownloadFlowResult;
 
 
 /**

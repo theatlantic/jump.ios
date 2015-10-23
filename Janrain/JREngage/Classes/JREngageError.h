@@ -108,7 +108,9 @@ typedef enum
     JRPublishErrorLinkedInCharacterExceeded, /* Will be deprecating */
 } JREngageSocialPublishingError;
 
-extern NSString * JREngageErrorDomain;
+FOUNDATION_EXPORT NSString * JREngageErrorDomain;
+//PB
+//extern NSString * JREngageErrorDomain;
 
 @interface JREngageError : NSObject
 + (NSError *)errorWithMessage:(NSString *)message andCode:(NSInteger)code;
