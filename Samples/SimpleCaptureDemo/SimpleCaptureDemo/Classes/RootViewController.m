@@ -100,7 +100,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
     
     self.captureDelegate = [[MyCaptureDelegate alloc] initWithRootViewController:self];
     
-    self.isMergingAccount = nil;
+    self.isMergingAccount = NO;
 
     self.customUi = @{kJRApplicationNavigationController : self.navigationController};
     [self configureUserLabelAndIcon];

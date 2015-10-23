@@ -458,6 +458,9 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
             @"client_id" : [JRCaptureData sharedCaptureData].clientId,
             @"locale" : [JRCaptureData sharedCaptureData].captureLocale,
+            //PB https://github.com/janrain/jump.ios/pull/19/files
+            @"flow" : [JRCaptureData sharedCaptureData].captureFlowName,
+            @"flow_version" : [JRCaptureData sharedCaptureData].downloadedFlowVersion
     };
 
     [JRConnectionManager jsonRequestToUrl:refreshUrl params:params completionHandler:^(id r, NSError *e)
