@@ -26,6 +26,11 @@ static NSMutableDictionary *identifierMap = nil;
     self.captureUser = [JRCaptureUser captureUser];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (void)loadView
 {
     [self buildFormView];
@@ -36,7 +41,7 @@ static NSMutableDictionary *identifierMap = nil;
     self.title = @"DEMO";
     [self setupToolbar];
     self.scrollView = [[UIScrollView alloc] initWithFrame:scrollFrame];
-    //scrollView.contentInset = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height, 0,
+    //self.scrollView.contentInset = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height, 0,
     //        self.navigationController.toolbar.frame.size.height, 0);
     self.scrollView.contentSize = formSize;
     [self.scrollView addSubview:self.formView];
@@ -46,7 +51,8 @@ static NSMutableDictionary *identifierMap = nil;
 
 - (void)buildFormView
 {
-    self.formView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+    CGRect scrollFrame = [[UIScreen mainScreen] applicationFrame];
+    self.formView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, scrollFrame.size.width, scrollFrame.size.height)];
     self.formView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
 
     //"email","displayName","firstName","lastName","password","password_confirm"
@@ -56,14 +62,15 @@ static NSMutableDictionary *identifierMap = nil;
     [self addTextFieldFormLabeled:@"First" forAttrName:@"givenName" view:self.formView];
     [self addTextFieldFormLabeled:@"Last" forAttrName:@"familyName" view:self.formView];
     [self addTextFieldFormLabeled:@"Password" forAttrName:@"password" view:self.formView];
-    NSString *disclaimerText = @"This is just a sample form, it is NOT stock user experience.";
+    [self addTextFieldFormLabeled:@"Confirm" forAttrName:@"password" view:self.formView];
+    
+    NSString *disclaimerText = @"This is just a sample form, it is NOT stock user experience.\n Click \"Register\" at the bottom of the screen to complete the registration";
     self.disclaimer = [self addTitleLabel:disclaimerText view:self.formView];
     self.disclaimer.lineBreakMode = NSLineBreakByWordWrapping;
-    self.disclaimer.numberOfLines = 0;
+    self.disclaimer.numberOfLines = 2;
     [self.disclaimer setContentCompressionResistancePriority:UILayoutPriorityRequired
                                                      forAxis:UILayoutConstraintAxisVertical];
-    //[self addTextFieldFormLabeled:@"Confirm" forAttrName:@"password" view:formView];
-    //CGSize formSize = [formView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];DLog(@"formSize: %@", NSStringFromCGSize(formSize));
+    
     DLog(@"disclaimer: %@", self.disclaimer);
 }
 
@@ -90,9 +97,12 @@ static NSMutableDictionary *identifierMap = nil;
                                                            style:UIBarButtonItemStyleDone
                                                           target:self action:@selector(registerUser)];
     self.toolbarItems = @[flex, self.registerButton, flex];
+    self.navigationController.toolbar.translucent = NO;
     [UIView animateWithDuration:0.3 animations:^(){
         self.navigationController.toolbarHidden = NO;
+        self.navigationController.toolbar.translucent = NO;
     }];
+    
 }
 
 - (void)registerUser
@@ -118,8 +128,7 @@ static NSMutableDictionary *identifierMap = nil;
     {
         NSDictionary *invalidFieldLocalizedFailureMessages = [error JRValidationFailureMessages];
         [Utils handleFailureWithTitle:@"Invalid Form Submission"
-                              message:[invalidFieldLocalizedFailureMessages description]];
-
+                              message: [invalidFieldLocalizedFailureMessages description]];
     }
     else
     {
@@ -172,6 +181,7 @@ static NSMutableDictionary *identifierMap = nil;
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.delegate = self;
+    
     textField.placeholder = hintText;
     [superview addSubview:textField];
     textField.tag = [self intTagForIdentifier:identifier];
@@ -197,7 +207,7 @@ static NSMutableDictionary *identifierMap = nil;
     UIView *lastSubView = [view.subviews lastObject];
     UILabel *label = [self addLabelWithText:labelText toSuperView:view];
     UITextField *field = [self addTextFieldToSuperView:view identifier:attrName hintText:labelText];
-
+   
     NSDictionary *views = NSDictionaryOfVariableBindings(label, field);
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[label(100)]-[field]-|"
                                                                  options:NSLayoutFormatAlignAllBaseline
@@ -205,6 +215,8 @@ static NSMutableDictionary *identifierMap = nil;
 
     [self appendViewToVerticalLayout:field view:view lastSubView:lastSubView];
 }
+
+
 
 - (UILabel *)addLabelWithText:(NSString *)labelText toSuperView:(UIView *)view
 {
@@ -220,9 +232,11 @@ static CGPoint oldContentOffset;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    
     oldContentOffset = [self.scrollView contentOffset];
     CGRect rect = textField.frame;
     [self.scrollView scrollRectToVisible:[self.view convertRect:rect fromView:textField] animated:YES];
+    [textField becomeFirstResponder];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

@@ -93,10 +93,12 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
     //[[GIDSignIn sharedInstance] signInSilently];
     //Setup Google SignIn
     // http://developers.google.com/identity/sign-in/ios/sign-in?configured
+   
     [GIDSignIn sharedInstance].clientID = kClientID;
     [GIDSignIn sharedInstance].delegate = self;
     [GIDSignIn sharedInstance].uiDelegate = self;
     [GIDSignIn sharedInstance].scopes = @[ @"email", @"profile" ];
+    
     
     self.captureDelegate = [[MyCaptureDelegate alloc] initWithRootViewController:self];
     
@@ -251,6 +253,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
 {
     [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
+            
             NSLog(@"Twitter - userName: %@", [session userName]);
             NSLog(@"Twitter - userID: %@", [session userID]);
             NSLog(@"Twitter - authToken: %@", [session authToken]);
@@ -286,12 +289,17 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
 {
     //https://developers.facebook.com/docs/facebook-login/ios/v2.4
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    //[login logInWithPublishPermissions:@[@"publish_actions"]
+    [login logInWithReadPermissions:@[@"email",@"public_profile"]
+                    fromViewController: self
+                               handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         //NSLog(@"%@", result);
         if (error) {
             // Process error
+            DLog(@"Native Facebook Error: %@", [error localizedDescription]);
         } else if (result.isCancelled) {
             // Handle cancellations
+            DLog(@"Native Facebook Auth Cancelled");
         } else {
             NSLog(@"Facebook - Token: %@", [FBSDKAccessToken currentAccessToken].tokenString);
             NSLog(@"Facebook - userID: %@", [FBSDKProfile currentProfile].userID);
@@ -333,6 +341,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
      */
     
     [[GIDSignIn sharedInstance] signIn];
+    
 }
 
 
@@ -348,23 +357,31 @@ didSignInForUser:(GIDGoogleUser *)user
      NSString *email = user.profile.email;
      */
     // ...
-    DLog(@"Google+ Userid: %@", user.userID);
-    DLog(@"Google+ Token: %@", user.authentication.accessToken);
-    DLog(@"Google+ Name: %@", user.profile.name);
-    DLog(@"Google+ email: %@", user.profile.email);
     
-    self.googleplusToken = user.authentication.accessToken;
-    NSString *mergeToken = nil;
-    if(self.isMergingAccount && self.activeMergeToken != nil){
-        mergeToken = self.activeMergeToken;
+    if(user.userID == NULL || user.authentication.accessToken == NULL){
+        DLog(@"No user data or Google+ dialog was closed");
+    }else{
+        
+        DLog(@"Google+ Userid: %@", user.userID);
+        DLog(@"Google+ Token: %@", user.authentication.accessToken);
+        DLog(@"Google+ Name: %@", user.profile.name);
+        DLog(@"Google+ email: %@", user.profile.email);
+        
+        
+        self.googleplusToken = user.authentication.accessToken;
+        NSString *mergeToken = nil;
+        if(self.isMergingAccount && self.activeMergeToken != nil){
+            mergeToken = self.activeMergeToken;
+        }
+        //if user.authentication.accessToken exists then
+        [JRCapture startEngageSignInWithNativeProviderToken:@"googleplus"
+                                                  withToken:user.authentication.accessToken
+                                             andTokenSecret:nil
+                                                 mergeToken:mergeToken
+                               withCustomInterfaceOverrides:self.customUi
+                                                forDelegate:self.captureDelegate];
     }
     
-    [JRCapture startEngageSignInWithNativeProviderToken:@"googleplus"
-                                             withToken:user.authentication.accessToken
-                                        andTokenSecret:nil
-                                            mergeToken:mergeToken
-                          withCustomInterfaceOverrides:self.customUi
-                                           forDelegate:self.captureDelegate];
     
 }
 
@@ -375,7 +392,26 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     // ...
 }
 
+// Implement these methods only if the GIDSignInUIDelegate is not a subclass of
+// UIViewController.
 
+// Stop the UIActivityIndicatorView animation that was started when the user
+// pressed the Sign In button
+- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error {
+    //[myActivityIndicator stopAnimating];
+}
+
+// Present a view that prompts the user to sign in with Google
+- (void)signIn:(GIDSignIn *)signIn
+presentViewController:(UIViewController *)viewController {
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+// Dismiss the "Sign in with Google" view
+- (void)signIn:(GIDSignIn *)signIn
+dismissViewController:(UIViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 -(IBAction)linkAccountButtonPressed:(id)sender
 {
@@ -464,13 +500,54 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     self.currentUserProviderIcon.image = nil;
     
     //The social provider logout could be made conditional
-    //Sign the user out of Facebook
-    [[FBSDKLoginManager new] logOut];
-    //Sign the user out Google+
-    [[GIDSignIn sharedInstance] signOut];
-    //Sign the user out of Twitter
-    //NOTE:  This only signs them out of the app.  Not the stored credentials on the device.
-    [[Twitter sharedInstance] logOut];
+    if([appDelegate.currentProvider  isEqualToString: @"facebook"]){
+        //Sign the user out of Facebook
+        [[FBSDKLoginManager new] logOut];
+    }else if ([appDelegate.currentProvider isEqualToString: @"google"] || [appDelegate.currentProvider isEqualToString: @"googleplus"]){
+        //Sign the user out Google+
+        [[GIDSignIn sharedInstance] disconnect];
+    }else if([appDelegate.currentProvider isEqualToString: @"twitter"]){
+        //Sign the user out of Twitter
+        
+        //The following will delete the user account from the iOS AccountStore.
+        //It is not part of the Twitter SDK.
+        //This will force the user to re-sign in.
+        //At which point the Twitter SDK will store the user account on the device again.
+        ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+        ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        [accountStore requestAccessToAccountsWithType: accountType
+                                              options: nil
+                                           completion:^(BOOL granted,
+                                                         NSError *error) {
+                                     if (granted) {
+                                         NSArray *twitterAccounts = [accountStore
+                                                                     accountsWithAccountType:
+                                                                     accountType];
+                                         
+                                         if ([twitterAccounts count] > 0) {
+                                             ACAccount *account = [twitterAccounts lastObject];
+                                             DLog(@"Deleting Twitter User: %@", [account username]);
+                                             [accountStore removeAccount: account
+                                                   withCompletionHandler:^(BOOL success,
+                                                    NSError *error){
+                                                       DLog(@"Deleted Status: %s", success ? "true" : "false");
+                                                   } ];
+                                         }
+                                         else {
+                                             DLog(@"User gave access, canSendTweet true, "
+                                                   "but user count is 0");
+                                         }
+                                     }
+                                     else {
+                                         DLog(@"User rejected access to Twitter accounts.");
+                                     }
+                                 }];
+        
+        
+        //NOTE:  This only signs them out of the app.  Not the stored credentials on the device.
+        [[Twitter sharedInstance] logOut];
+    }
+    
     
     [self signOutCurrentUser];
     [self configureViewsWithDisableOverride:NO];

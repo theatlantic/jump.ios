@@ -29,7 +29,7 @@
 		484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E21B5ED19200E63266 /* SystemConfiguration.framework */; };
 		484380ED1B5EEC7B00E63266 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */; };
 		484380EF1B5EF6F400E63266 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */; };
-		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; settings = {ASSET_TAGS = (); }; };
+		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
 		4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73971B63045C001D98FF /* StoreKit.framework */; };
 		48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738D1B62AE8A001D98FF /* CoreData.framework */; };
 		48BC73931B62AE8A001D98FF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738E1B62AE8A001D98FF /* Fabric.framework */; };
@@ -61,6 +61,8 @@
 		48CB52F31B7125C20091CD10 /* button_googleplus_135x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52F11B7125C20091CD10 /* button_googleplus_135x40@2x.png */; };
 		48CB52F41B7125C20091CD10 /* button_googleplus_280x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52F21B7125C20091CD10 /* button_googleplus_280x40@2x.png */; };
 		48CB52F81B7125D70091CD10 /* button_googleplus_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */; };
+		48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F27AAF1BDE97E7007D9BC3 /* libz.tbd */; };
+		48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */; };
 		48FE6DC11B6028BD0008DE42 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48FE6DBF1B6028BD0008DE42 /* GoogleSignIn.bundle */; };
 		48FE6DC21B6028BD0008DE42 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FE6DC01B6028BD0008DE42 /* GoogleSignIn.framework */; };
 		48FE6DC61B6029BB0008DE42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48FE6DC51B6029BB0008DE42 /* GoogleService-Info.plist */; };
@@ -387,6 +389,8 @@
 		48CB52F11B7125C20091CD10 /* button_googleplus_135x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_googleplus_135x40@2x.png"; sourceTree = "<group>"; };
 		48CB52F21B7125C20091CD10 /* button_googleplus_280x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_googleplus_280x40@2x.png"; sourceTree = "<group>"; };
 		48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_280x40.png; sourceTree = "<group>"; };
+		48F27AAF1BDE97E7007D9BC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		48FE6DBF1B6028BD0008DE42 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		48FE6DC01B6028BD0008DE42 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
 		48FE6DC51B6029BB0008DE42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -717,6 +721,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
+				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
 				484380E41B5ED19200E63266 /* CoreLocation.framework in Frameworks */,
 				48FE6DC21B6028BD0008DE42 /* GoogleSignIn.framework in Frameworks */,
@@ -851,6 +857,8 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */,
+				48F27AAF1BDE97E7007D9BC3 /* libz.tbd */,
 				48BC73971B63045C001D98FF /* StoreKit.framework */,
 				48BC738D1B62AE8A001D98FF /* CoreData.framework */,
 				48BC738E1B62AE8A001D98FF /* Fabric.framework */,
