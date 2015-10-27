@@ -1986,7 +1986,7 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
@@ -2020,7 +2020,7 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
@@ -2086,7 +2086,7 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
