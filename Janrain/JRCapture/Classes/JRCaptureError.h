@@ -45,8 +45,6 @@
  **/
 
 FOUNDATION_EXPORT NSString *const kJRCaptureErrorDomain;
-//PB
-//extern NSString *const kJRCaptureErrorDomain;
 
 #define GENERIC_ERROR_RANGE 1000
 #define LOCAL_APID_ERROR_RANGE 2000
@@ -60,7 +58,6 @@ FOUNDATION_EXPORT NSString *const kJRCaptureErrorDomain;
 typedef enum
 {
     JRCaptureErrorGeneric            = GENERIC_ERROR_RANGE,         /**< Generic Capture error */
-    //PB - MOB-342
     JRCaptureErrorGenericBadPassword = APID_ERROR_RANGE + 210,
     JRCaptureErrorWhileParsingJson   = JRCaptureErrorGeneric + 101, /**< Error Parsing JSON Flow */
 } JRCaptureGenericError;

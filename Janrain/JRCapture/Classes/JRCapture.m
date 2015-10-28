@@ -61,12 +61,7 @@ NSString* const JRDownloadFlowResult = @"JRDownloadFlowResult";
 + (void)setCaptureConfig:(JRCaptureConfig *)config
 {
     [JRCaptureData setCaptureConfig:config];
-    [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
-    //PB
-    /*
-    [JREngage setGooglePlusClientId:config.googlePlusClientId];
-    [JREngage setTwitterConsumerKey:config.twitterConsumerKey andSecret:config.twitterConsumerSecret];
-     */
+    [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders]
 }
 
 /**
@@ -458,7 +453,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
             @"client_id" : [JRCaptureData sharedCaptureData].clientId,
             @"locale" : [JRCaptureData sharedCaptureData].captureLocale,
-            //PB https://github.com/janrain/jump.ios/pull/19/files
             @"flow" : [JRCaptureData sharedCaptureData].captureFlowName,
             @"flow_version" : [JRCaptureData sharedCaptureData].downloadedFlowVersion
     };

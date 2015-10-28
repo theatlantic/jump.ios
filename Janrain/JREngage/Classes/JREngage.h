@@ -307,11 +307,6 @@
 FOUNDATION_EXPORT NSString *const JRFinishedUpdatingEngageConfigurationNotification;
 FOUNDATION_EXPORT NSString *const JRFailedToUpdateEngageConfigurationNotification;
 
-//PB
-/*
-extern NSString *const JRFinishedUpdatingEngageConfigurationNotification;
-extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
-*/
 
 /**
  * @brief

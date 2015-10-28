@@ -229,25 +229,6 @@ static JREngage* singleton = nil;
     //
 }
 
-//PB Work here
-/*
- 
- /Users/pbaker/GitHub/jump.ios.internal/Janrain/JREngage/Classes/JRProvidersController.m:
- 526
- 527          self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider.name withConfiguration:[JREngage instance]];
- 528:         [self.nativeProvider startAuthenticationWithCompletion:^(NSError *e) {
- 529              if (e) {
- 530                  if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
- 
- /Users/pbaker/GitHub/jump.ios.internal/Janrain/JREngage/Classes/JRUserLandingController.m:
- 630          self.nativeProvider = [JRNativeAuth nativeProviderNamed:sessionData.currentProvider.name
- 631                                                withConfiguration:[JREngage instance]];
- 632:         [self.nativeProvider startAuthenticationWithCompletion:^(NSError *error) {
- 633              if (error) {
- 634                  if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
- 
- 
- */
 
 
 + (void)getAuthInfoTokenForNativeProvider:(NSString *)provider

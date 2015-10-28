@@ -70,9 +70,6 @@
  *  If the JRCaptureError object is !nil, then the FLOW did not download.
  */
 FOUNDATION_EXPORT NSString* const JRDownloadFlowResult;
-//PB
-//extern NSString* const JRDownloadFlowResult;
-
 
 /**
  * @mainpage Janrain Capture for iOS

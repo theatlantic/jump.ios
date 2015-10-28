@@ -109,8 +109,6 @@ typedef enum
 } JREngageSocialPublishingError;
 
 FOUNDATION_EXPORT NSString * JREngageErrorDomain;
-//PB
-//extern NSString * JREngageErrorDomain;
 
 @interface JREngageError : NSObject
 + (NSError *)errorWithMessage:(NSString *)message andCode:(NSInteger)code;

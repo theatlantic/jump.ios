@@ -552,8 +552,6 @@ The Mobile SDK has support for replacing existing plurals when properly configur
 
 The developer should make sure they have an up-to-date Registration User Model (http://developers.janrain.com/how-to/mobile-apps/sdk/registration/ios/install-with-xcode/configure-xcode-project-for-sdk/#add-the-library-to-your-xcode-project).
 
-WORK HERE
-
 By default any “entity” api calls other than the base “entity” call can NOT be used with a Mobile or Javascript implementation.  The Mobile and Javascript implementations are designed to not have API Client secrets embedded in them.  Additionally Mobile SDK and Javascript implementations are designed to only use API Clients with the “login_client” feature.  
 
 When an end user authenticates through an API Client with the “login_client” feature the access token that it returned is scoped to only permit read-only access to the user’s profile data.  The access token can not be used to make any entity calls that would modify the user’s profile data (i.e. entity.update, entity.replace).  All edits to the user’s profile data must be submitted through the Janrain Registration server using either the Javascript implementation or the Mobile SDK (which uses the OAuth API end points).
