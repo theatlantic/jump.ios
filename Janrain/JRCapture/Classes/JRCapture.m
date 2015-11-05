@@ -61,7 +61,7 @@ NSString* const JRDownloadFlowResult = @"JRDownloadFlowResult";
 + (void)setCaptureConfig:(JRCaptureConfig *)config
 {
     [JRCaptureData setCaptureConfig:config];
-    [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders]
+    [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
 }
 
 /**

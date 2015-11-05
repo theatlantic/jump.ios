@@ -53,7 +53,7 @@
 
 // DO NOT USE THIS CLIENT ID. IT WILL NOT WORK FOR YOUR APP.
 // Please use the client ID created for you by Google.
-NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.apps.googleusercontent.com";
+NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.apps.googleusercontent.com";
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate, JRCaptureUserDelegate>
 @property RootViewController *rvc;
@@ -137,6 +137,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
         self.directTwitterAuthButton.hidden = YES;
         self.directGoogleplusAuthButton.hidden = YES;
         self.signOutButton.hidden = NO;
+        self.signOutAllButton.hidden = NO;
         self.shareButton.hidden = NO;
         self.refetchButton.hidden = NO;
         self.forgotPasswordButton.hidden = YES;
@@ -160,6 +161,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
         self.directGoogleplusAuthButton.hidden = NO;
         self.directTwitterAuthButton.hidden = NO;
         self.signOutButton.hidden = YES;
+        self.signOutAllButton.hidden = YES;
         self.shareButton.hidden = YES;
         self.refetchButton.hidden = YES;
         self.forgotPasswordButton.hidden = NO;
@@ -184,7 +186,7 @@ NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.app
 - (void)setAllButtonsEnabled:(BOOL)b
 {
     self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled = self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled = self.shareButton.enabled = self.directFacebookAuthButton.enabled = self.tradAuthButton.enabled = self.directGoogleplusAuthButton.enabled = self.directTwitterAuthButton.enabled = self.signInNavButton.enabled = b;
-    self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha = self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha = self.directFacebookAuthButton.alpha = self.directGoogleplusAuthButton.alpha = self.directTwitterAuthButton.alpha = self.forgotPasswordButton.alpha = self.resendVerificationButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
+    self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha= self.signOutAllButton.alpha = self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha = self.directFacebookAuthButton.alpha = self.directGoogleplusAuthButton.alpha = self.directTwitterAuthButton.alpha = self.forgotPasswordButton.alpha = self.resendVerificationButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -498,6 +500,15 @@ dismissViewController:(UIViewController *)viewController {
 {
     self.currentUserLabel.text = @"No current user";
     self.currentUserProviderIcon.image = nil;
+    [self signOutCurrentUser];
+    [self configureViewsWithDisableOverride:NO];
+    
+}
+
+- (IBAction)signOutAllButtonPressed:(id)sender
+{
+    self.currentUserLabel.text = @"No current user";
+    self.currentUserProviderIcon.image = nil;
     
     //The social provider logout could be made conditional
     if([appDelegate.currentProvider  isEqualToString: @"facebook"]){
@@ -513,39 +524,44 @@ dismissViewController:(UIViewController *)viewController {
         //It is not part of the Twitter SDK.
         //This will force the user to re-sign in.
         //At which point the Twitter SDK will store the user account on the device again.
+        
         ACAccountStore *accountStore = [[ACAccountStore alloc] init];
         ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
         [accountStore requestAccessToAccountsWithType: accountType
                                               options: nil
                                            completion:^(BOOL granted,
-                                                         NSError *error) {
-                                     if (granted) {
-                                         NSArray *twitterAccounts = [accountStore
-                                                                     accountsWithAccountType:
-                                                                     accountType];
-                                         
-                                         if ([twitterAccounts count] > 0) {
-                                             ACAccount *account = [twitterAccounts lastObject];
-                                             DLog(@"Deleting Twitter User: %@", [account username]);
-                                             [accountStore removeAccount: account
-                                                   withCompletionHandler:^(BOOL success,
-                                                    NSError *error){
-                                                       DLog(@"Deleted Status: %s", success ? "true" : "false");
-                                                   } ];
-                                         }
-                                         else {
-                                             DLog(@"User gave access, canSendTweet true, "
-                                                   "but user count is 0");
-                                         }
-                                     }
-                                     else {
-                                         DLog(@"User rejected access to Twitter accounts.");
-                                     }
-                                 }];
+                                                        NSError *error) {
+                                               if (granted) {
+                                                   NSArray *twitterAccounts = [accountStore
+                                                                               accountsWithAccountType:
+                                                                               accountType];
+                                                   
+                                                   if ([twitterAccounts count] > 0) {
+                                                       ACAccount *account = [twitterAccounts lastObject];
+                                                       DLog(@"Deleting Twitter User: %@", [account username]);
+                                                       [accountStore removeAccount: account
+                                                             withCompletionHandler:^(BOOL success,
+                                                                                     NSError *error){
+                                                                 DLog(@"Deleted Status: %s", success ? "true" : "false");
+                                                             } ];
+                                                   }
+                                                   else {
+                                                       DLog(@"User gave access, canSendTweet true, "
+                                                            "but user count is 0");
+                                                   }
+                                               }
+                                               else {
+                                                   DLog(@"User rejected access to Twitter accounts.");
+                                               }
+                                           }];
         
         
         //NOTE:  This only signs them out of the app.  Not the stored credentials on the device.
-        [[Twitter sharedInstance] logOut];
+        NSString *userID = [[[[Twitter sharedInstance] sessionStore] session] userID];
+        
+        if(userID){
+            [[[Twitter sharedInstance] sessionStore] logOutUserID:userID];
+        }
     }
     
     
