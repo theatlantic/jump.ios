@@ -1,5 +1,5 @@
 v4.0
- - Dropped support for iOS 6, now only supports iOS 7+
+ - Dropped support for iOS 6, now only supports iOS 7+ 
  - Removed Native Authentication Provider (Facebook, Google, Twitter) SDK dependencies from the SDK.  
  - Added example code to the SimpleCaptureDemo app for implementing the current releases of Native Authentication Provider's SDK's to retrieve provider authentication tokens and pass them to the SDK.
  - Added/Updated missing images for Instagram, Google+, PayPal OpenID Connect and a future provider.
