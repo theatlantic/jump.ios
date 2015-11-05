@@ -111,7 +111,7 @@ AppDelegate *appDelegate = nil;
     
     //Setup Twitter TwitterKit/Fabric
     // http://docs.fabric.io/ios/twitter/twitterkit-setup.html
-    [[Twitter sharedInstance] startWithConsumerKey:@"oua7S98XSYNdJ8qvMPydQ" consumerSecret:@"uRrDzqH60UXFvRYCglJYEARR0lbp1LyIq5CHRTyOuio"];
+    [[Twitter sharedInstance] startWithConsumerKey:@"xv6nwj4U62sYH09N9zkoUbMqV" consumerSecret:@"vpOS6A3GQQeXxP0QvFGubvxXA1JOnbPzd7C7MrShESxSHF6GeH"];
     [Fabric with:@[TwitterKit]];
     
     BOOL fbDidFinish = [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];

@@ -38,12 +38,8 @@
 
 extern AppDelegate *appDelegate;
 
-//extern NSString *const kClientID;
-
-//@interface AppDelegate : UIResponder <UIApplicationDelegate, GIDSignInDelegate>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-//@property MyCaptureDelegate *captureDelegate;
 @property (nonatomic) UIWindow *window;
 
 @property NSUserDefaults *prefs;

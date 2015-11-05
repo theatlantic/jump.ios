@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi</string>
+				<string>com.googleusercontent.apps.169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb241142639370227</string>
+				<string>fb773409502771506</string>
 			</array>
 		</dict>
 	</array>
@@ -52,16 +52,16 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>c62a7de78181c7889143e54a7a33e92adfd1fa63</string>
+		<string>fbb7bb73de5c88fb8942e7590b7bf60735b59f3d</string>
 		<key>Kits</key>
 		<array>
 			<dict>
 				<key>KitInfo</key>
 				<dict>
 					<key>consumerKey</key>
-					<string>QllsUHHuJAVZmdnWnYRZpd3wS</string>
+					<string>xv6nwj4U62sYH09N9zkoUbMqV</string>
 					<key>consumerSecret</key>
-					<string>lGyWBx0LPF93xq4mN6lyUQ5ZbEpeA8pvyOFsu5XMTzY8mq03uF</string>
+					<string>vpOS6A3GQQeXxP0QvFGubvxXA1JOnbPzd7C7MrShESxSHF6GeH</string>
 				</dict>
 				<key>KitName</key>
 				<string>Twitter</string>
@@ -69,24 +69,31 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>241142639370227</string>
+	<string>773409502771506</string>
 	<key>FacebookDisplayName</key>
-	<string>pbjanrain-dev</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-    </array>
+	<string>jrauthenticate</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
 			<key>d1lqe9temigv1p.cloudfront.net</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
@@ -96,27 +103,20 @@
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
 				<string>TLSv1.2</string>
 			</dict>
-            <key>facebook.com</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <key>fbcdn.net</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <key>akamaihd.net</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
+			<key>facebook.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
 		</dict>
 	</dict>
 	<key>UIMainStoryboardFile</key>

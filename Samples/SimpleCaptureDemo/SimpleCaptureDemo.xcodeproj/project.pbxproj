@@ -31,6 +31,19 @@
 		484380EF1B5EF6F400E63266 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
 		4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73971B63045C001D98FF /* StoreKit.framework */; };
+		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
+		48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */; };
+		48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */; };
+		48A85E7B1BEBD45F004CBA61 /* icon_bw_paypal_openidconnect_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E7A1BEBD45F004CBA61 /* icon_bw_paypal_openidconnect_30x30.png */; };
+		48A85E7D1BEBD46A004CBA61 /* logo_paypal_openidconnect_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E7C1BEBD46A004CBA61 /* logo_paypal_openidconnect_280x65.png */; };
+		48A85E801BEBD499004CBA61 /* button_paypal_openid_connect_135x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E7E1BEBD499004CBA61 /* button_paypal_openid_connect_135x40@2x.png */; };
+		48A85E811BEBD499004CBA61 /* button_paypal_openidconnect_280x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E7F1BEBD499004CBA61 /* button_paypal_openidconnect_280x40@2x.png */; };
+		48A85E831BEBD4A4004CBA61 /* icon_paypal_openidconnect_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E821BEBD4A4004CBA61 /* icon_paypal_openidconnect_30x30@2x.png */; };
+		48A85E851BEBD4B7004CBA61 /* icon_bw_paypal_openidconnect_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E841BEBD4B7004CBA61 /* icon_bw_paypal_openidconnect_30x30@2x.png */; };
+		48A85E871BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E861BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png */; };
+		48A85E8A1BEBD4E5004CBA61 /* button_paypal_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E881BEBD4E5004CBA61 /* button_paypal_135x40.png */; };
+		48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E891BEBD4E5004CBA61 /* button_paypal_280x40.png */; };
+		48A85E8D1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */; };
 		48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738D1B62AE8A001D98FF /* CoreData.framework */; };
 		48BC73931B62AE8A001D98FF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738E1B62AE8A001D98FF /* Fabric.framework */; };
 		48BC73941B62AE8A001D98FF /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738F1B62AE8A001D98FF /* TwitterKit.framework */; };
@@ -358,6 +371,19 @@
 		484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_135x40.png; sourceTree = "<group>"; };
+		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
+		48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_280x40.png; sourceTree = "<group>"; };
+		48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_paypal_openidconnect_30x30.png; sourceTree = "<group>"; };
+		48A85E7A1BEBD45F004CBA61 /* icon_bw_paypal_openidconnect_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_paypal_openidconnect_30x30.png; sourceTree = "<group>"; };
+		48A85E7C1BEBD46A004CBA61 /* logo_paypal_openidconnect_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_paypal_openidconnect_280x65.png; sourceTree = "<group>"; };
+		48A85E7E1BEBD499004CBA61 /* button_paypal_openid_connect_135x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_paypal_openid_connect_135x40@2x.png"; sourceTree = "<group>"; };
+		48A85E7F1BEBD499004CBA61 /* button_paypal_openidconnect_280x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_paypal_openidconnect_280x40@2x.png"; sourceTree = "<group>"; };
+		48A85E821BEBD4A4004CBA61 /* icon_paypal_openidconnect_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_paypal_openidconnect_30x30@2x.png"; sourceTree = "<group>"; };
+		48A85E841BEBD4B7004CBA61 /* icon_bw_paypal_openidconnect_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_paypal_openidconnect_30x30@2x.png"; sourceTree = "<group>"; };
+		48A85E861BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_paypal_30x30@2x.png"; sourceTree = "<group>"; };
+		48A85E881BEBD4E5004CBA61 /* button_paypal_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_135x40.png; sourceTree = "<group>"; };
+		48A85E891BEBD4E5004CBA61 /* button_paypal_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_280x40.png; sourceTree = "<group>"; };
+		48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_paypal_openidconnect_280x65@2x.png"; sourceTree = "<group>"; };
 		48BC738D1B62AE8A001D98FF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		48BC738E1B62AE8A001D98FF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		48BC738F1B62AE8A001D98FF /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
@@ -1152,6 +1178,10 @@
 		DFEFE3F417A9915200760FEE /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				48A85E881BEBD4E5004CBA61 /* button_paypal_135x40.png */,
+				48A85E891BEBD4E5004CBA61 /* button_paypal_280x40.png */,
+				48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */,
+				48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */,
 				485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */,
 				48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */,
 				48CB52C51B71077C0091CD10 /* button_instagram_135x40.png */,
@@ -1183,6 +1213,7 @@
 		DFEFE40717A9915200760FEE /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */,
 				48CB52CD1B7107A00091CD10 /* icon_instagram_30x30.png */,
 				48CB52CE1B7107A00091CD10 /* icon_yahoo_oauth2_30x30.png */,
 				D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */,
@@ -1219,6 +1250,7 @@
 		DFEFE42017A9915200760FEE /* icons_bw */ = {
 			isa = PBXGroup;
 			children = (
+				48A85E7A1BEBD45F004CBA61 /* icon_bw_paypal_openidconnect_30x30.png */,
 				48CB52EF1B7121D70091CD10 /* icon_bw_googleplus_30x30.png */,
 				48CB52D11B7107B50091CD10 /* icon_bw_instagram_30x30.png */,
 				48CB52D21B7107B50091CD10 /* icon_bw_yahoo_oauth2_30x30.png */,
@@ -1239,6 +1271,7 @@
 		DFEFE42917A9915200760FEE /* logos */ = {
 			isa = PBXGroup;
 			children = (
+				48A85E7C1BEBD46A004CBA61 /* logo_paypal_openidconnect_280x65.png */,
 				48CB52D51B7107E60091CD10 /* logo_instagram_280x65.png */,
 				48CB52D61B7107E60091CD10 /* logo_yahoo_oauth2_280x65.png */,
 				D823C6F0189C2FBB00993DAE /* logo_microsoftaccount_280x65.png */,
@@ -1299,6 +1332,8 @@
 		DFEFE44917A9915200760FEE /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				48A85E7E1BEBD499004CBA61 /* button_paypal_openid_connect_135x40@2x.png */,
+				48A85E7F1BEBD499004CBA61 /* button_paypal_openidconnect_280x40@2x.png */,
 				48CB52F11B7125C20091CD10 /* button_googleplus_135x40@2x.png */,
 				48CB52F21B7125C20091CD10 /* button_googleplus_280x40@2x.png */,
 				48CB52D91B7108760091CD10 /* button_instagram_135x40@2x.png */,
@@ -1330,6 +1365,7 @@
 		DFEFE45C17A9915200760FEE /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				48A85E821BEBD4A4004CBA61 /* icon_paypal_openidconnect_30x30@2x.png */,
 				48CB52E11B7108900091CD10 /* icon_instagram_30x30@2x.png */,
 				48CB52E21B7108900091CD10 /* icon_yahoo_oauth2_30x30@2x.png */,
 				D823C6F2189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png */,
@@ -1374,6 +1410,8 @@
 				DFEFE47717A9915200760FEE /* icon_bw_linkedin_30x30@2x.png */,
 				DFEFE47817A9915200760FEE /* icon_bw_mail_30x30@2x.png */,
 				DFEFE47917A9915200760FEE /* icon_bw_mail_sms_30x30@2x.png */,
+				48A85E841BEBD4B7004CBA61 /* icon_bw_paypal_openidconnect_30x30@2x.png */,
+				48A85E861BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png */,
 				DFEFE47A17A9915200760FEE /* icon_bw_myspace_30x30@2x.png */,
 				DFEFE47B17A9915200760FEE /* icon_bw_sms_30x30@2x.png */,
 				DFEFE47C17A9915200760FEE /* icon_bw_twitter_30x30@2x.png */,
@@ -1406,6 +1444,7 @@
 				DFEFE48C17A9915200760FEE /* logo_openid_280x65@2x.png */,
 				DFEFE48D17A9915200760FEE /* logo_orkut_280x65@2x.png */,
 				DFEFE48E17A9915200760FEE /* logo_paypal_280x65@2x.png */,
+				48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */,
 				DFEFE48F17A9915200760FEE /* logo_salesforce_280x65@2x.png */,
 				DFEFE49017A9915200760FEE /* logo_soundcloud_280x65@2x.png */,
 				DFEFE49117A9915200760FEE /* logo_tumblr_280x65@2x.png */,
@@ -1515,8 +1554,11 @@
 				D806D1B616A7638E008EEF96 /* assets in Resources */,
 				C1424221EF003C4A217BE9F5 /* Default.png in Resources */,
 				C1424C2310E295E5506D8FF8 /* Default-568h@2x.png in Resources */,
+				48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */,
 				6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */,
 				D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */,
+				48A85E871BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png in Resources */,
+				48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */,
 				6706F18263DF25C5CAEA8F6C /* Engage Custom Provider Guide.md in Resources */,
 				6706F0DA7F5FA9A15B437997 /* Engage-Only Integration Guide.md in Resources */,
 				6706F2F5D380E2BE1B74B0C3 /* JUMP Integration Guide.md in Resources */,
@@ -1527,13 +1569,16 @@
 				6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */,
 				DF39E03C17A9887300FDA67A /* .gitignore in Resources */,
 				DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */,
+				48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */,
 				DFEFE4B317A9915200760FEE /* JREngage-Info.plist in Resources */,
 				4DB994BD18A3F84B00E4D116 /* JRPublishActivityController.xib in Resources */,
 				DFEFE4B517A9915200760FEE /* button_black_135x40.png in Resources */,
 				DFEFE4B617A9915200760FEE /* button_black_280x40.png in Resources */,
 				48CB52EC1B7108D00091CD10 /* logo_yahoo_oauth2_280x65@2x.png in Resources */,
+				48A85E7B1BEBD45F004CBA61 /* icon_bw_paypal_openidconnect_30x30.png in Resources */,
 				D823C6F7189C2FEA00993DAE /* logo_microsoftaccount_280x65@2x.png in Resources */,
 				D823C6F3189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png in Resources */,
+				48A85E811BEBD499004CBA61 /* button_paypal_openidconnect_280x40@2x.png in Resources */,
 				DFEFE4B717A9915200760FEE /* button_facebook_135x40.png in Resources */,
 				DFEFE4B817A9915200760FEE /* button_facebook_280x40.png in Resources */,
 				DFEFE4B917A9915200760FEE /* button_google_135x40.png in Resources */,
@@ -1544,6 +1589,7 @@
 				D823C6EF189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png in Resources */,
 				48CB52D71B7107E60091CD10 /* logo_instagram_280x65.png in Resources */,
 				DFEFE4BD17A9915200760FEE /* button_janrain_135x40.png in Resources */,
+				48A85E8D1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png in Resources */,
 				DFEFE4BE17A9915200760FEE /* button_janrain_280x40.png in Resources */,
 				DFEFE4BF17A9915200760FEE /* button_linkedin_135x40.png in Resources */,
 				48CB52F01B7121D70091CD10 /* icon_bw_googleplus_30x30.png in Resources */,
@@ -1565,6 +1611,7 @@
 				DFEFE4CB17A9915300760FEE /* icon_foursquare_30x30.png in Resources */,
 				DFEFE4CC17A9915300760FEE /* icon_google_30x30.png in Resources */,
 				DFEFE4CD17A9915300760FEE /* icon_hyves_30x30.png in Resources */,
+				48A85E8A1BEBD4E5004CBA61 /* button_paypal_135x40.png in Resources */,
 				DFEFE4CE17A9915300760FEE /* icon_linkedin_30x30.png in Resources */,
 				DFEFE4CF17A9915300760FEE /* icon_live_id_30x30.png in Resources */,
 				DFEFE4D017A9915300760FEE /* icon_livejournal_30x30.png in Resources */,
@@ -1584,6 +1631,7 @@
 				4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */,
 				DFEFE4D917A9915300760FEE /* icon_tumblr_30x30.png in Resources */,
 				DFEFE4DA17A9915300760FEE /* icon_twitter_30x30.png in Resources */,
+				48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */,
 				DFEFE4DB17A9915300760FEE /* icon_verisign_30x30.png in Resources */,
 				48CB52E01B7108760091CD10 /* button_yahoo_oauth2_280x40@2x.png in Resources */,
 				DFEFE4DC17A9915300760FEE /* icon_vzn_30x30.png in Resources */,
@@ -1605,6 +1653,7 @@
 				DFEFE4EA17A9915300760FEE /* logo_flickr_280x65.png in Resources */,
 				48CB52DE1B7108760091CD10 /* button_instagram_280x40@2x.png in Resources */,
 				DFEFE4EB17A9915300760FEE /* logo_foursquare_280x65.png in Resources */,
+				48A85E801BEBD499004CBA61 /* button_paypal_openid_connect_135x40@2x.png in Resources */,
 				DFEFE4EC17A9915300760FEE /* logo_google_280x65.png in Resources */,
 				DFEFE4ED17A9915300760FEE /* logo_hyves_280x65.png in Resources */,
 				DFEFE4EE17A9915300760FEE /* logo_linkedin_280x65.png in Resources */,
@@ -1626,9 +1675,11 @@
 				DFEFE4FC17A9915300760FEE /* logo_vzn_280x65.png in Resources */,
 				DFEFE4FD17A9915300760FEE /* logo_yahoo_280x65.png in Resources */,
 				DFEFE4FE17A9915300760FEE /* check_mark.png in Resources */,
+				48A85E831BEBD4A4004CBA61 /* icon_paypal_openidconnect_30x30@2x.png in Resources */,
 				DFEFE4FF17A9915300760FEE /* media_view_background_bottom.png in Resources */,
 				DFEFE50017A9915300760FEE /* media_view_background_top.png in Resources */,
 				DFEFE50117A9915300760FEE /* music_note.jpg in Resources */,
+				48A85E851BEBD4B7004CBA61 /* icon_bw_paypal_openidconnect_30x30@2x.png in Resources */,
 				DFEFE50217A9915300760FEE /* profilepic_placeholder.png in Resources */,
 				DFEFE50317A9915300760FEE /* triangle_icon.png in Resources */,
 				DFEFE50417A9915300760FEE /* button_black_135x40@2x.png in Resources */,
@@ -1688,6 +1739,7 @@
 				DFEFE53217A9915300760FEE /* icon_bw_myspace_30x30@2x.png in Resources */,
 				DFEFE53317A9915300760FEE /* icon_bw_sms_30x30@2x.png in Resources */,
 				DFEFE53417A9915300760FEE /* icon_bw_twitter_30x30@2x.png in Resources */,
+				48A85E7D1BEBD46A004CBA61 /* logo_paypal_openidconnect_280x65.png in Resources */,
 				DFEFE53517A9915300760FEE /* icon_bw_yahoo_30x30@2x.png in Resources */,
 				DFEFE53617A9915300760FEE /* logo_aol_280x65@2x.png in Resources */,
 				DFEFE53717A9915300760FEE /* logo_blogger_280x65@2x.png in Resources */,
@@ -1752,7 +1804,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run c62a7de78181c7889143e54a7a33e92adfd1fa63 c62a3e7e9d4e6194adf190cd317db7d8baea2539089f11ffd4722516ce1ae968";
+			shellScript = "./Fabric.framework/run fbb7bb73de5c88fb8942e7590b7bf60735b59f3d 31568a496d012b3d843221e9bd736a7e7764e33aa56092fcda206774011523c9";
 		};
 /* End PBXShellScriptBuildPhase section */
 
