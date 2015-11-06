@@ -1,4 +1,14 @@
-# Configuring the SimpleCaptureDemo application.
+# Configuring the SimpleCaptureDemoNative application.
+
+SimpleCaptureDemoNative demos:
+- Traditional sign-in to Capture
+- Social sign-in (via Engage) to Capture
+- Sign-in session management
+- Registration (traditional and social)
+- Native Authentication using Facebook, Google+, and Twitter
+- REQUIRED: Facebook SDK version 4.7
+- REQUIRED: Google Signin SDK 2.3.2
+- REQUIRED: Fabric.io 2.0.5 with TwitterKit
 
 To run this demo with your own configuration:
 
@@ -6,7 +16,7 @@ To run this demo with your own configuration:
 2. Copy it to janrain-config.plist
 3. Edit the settings in the copy to reflect your Social Login and Registration Settings.
 4. Edit the settings to include the correct form names as found in your flow file.
-5. If you want to support/try the Native Authentication buttons (Facebook, Google+,Twitter) then you will need to follow these steps:
+5. You will need to follow these steps:
   * ###Facebook
     1. Download the Facebook SDK for iOS from this link:  https://developers.facebook.com/docs/ios
     2. Follow *ALL* of the steps on this page *EXCEPT* for Step 2 (Create a Facebook App): https://developers.facebook.com/docs/ios/getting-started/  In order for the Janrain Social Login Server to validate the provided Facebook oAuth token, the token must be provisioned from the same Facebook application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Settings configuration to the existing Facebook App.
