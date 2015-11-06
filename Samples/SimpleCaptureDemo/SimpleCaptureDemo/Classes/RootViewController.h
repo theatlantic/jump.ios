@@ -30,11 +30,9 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #import <UIKit/UIKit.h>
 #import "JRCaptureObject.h"
-#import <GoogleSignIn/GoogleSignIn.h>
 
-extern NSString *const kClientID;
 
-@interface RootViewController : UIViewController <GIDSignInUIDelegate, GIDSignInDelegate>{
+@interface RootViewController : UIViewController{
     BOOL isMergingAccount;
 }
 
@@ -43,12 +41,8 @@ extern NSString *const kClientID;
 - (IBAction)tradRegButtonPressed:(id)sender;
 - (IBAction)refreshButtonPressed:(id)sender;
 - (IBAction)signInButtonPressed:(id)sender;
-- (IBAction)facebookAuthButtonPressed:(id)sender;
-- (IBAction)googleplusAuthButtonPressed:(id)sender;
-- (IBAction)twitterAuthButtonPressed:(id)sender;
 - (IBAction)tradAuthButtonPressed:(id)sender;
 - (IBAction)signOutButtonPressed:(id)sender;
-- (IBAction)signOutAllButtonPressed:(id)sender;
 - (IBAction)shareButtonPressed:(id)sender;
 - (IBAction)refetchButtonPressed:(id)sender;
 - (IBAction)forgotPasswordButtonPressed:(id)sender;
@@ -64,12 +58,8 @@ extern NSString *const kClientID;
 @property (weak) IBOutlet UIButton *refreshButton;
 @property (weak) IBOutlet UIButton *signInButton;
 @property (weak) IBOutlet UIButton *signOutButton;
-@property (weak) IBOutlet UIButton *signOutAllButton;
 @property (weak) IBOutlet UIBarButtonItem *signInNavButton;
 @property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
-@property (weak, nonatomic) IBOutlet UIButton *directFacebookAuthButton;
-@property (weak, nonatomic) IBOutlet UIButton *directGoogleplusAuthButton;
-@property (weak, nonatomic) IBOutlet UIButton *directTwitterAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property (weak, nonatomic) IBOutlet UIButton *linkAccountButton;
@@ -78,10 +68,6 @@ extern NSString *const kClientID;
 @property (weak, nonatomic) IBOutlet UIButton *resendVerificationButton;
 @property(nonatomic) NSDictionary *customUi;
 @property NSString *currentProvider;
-@property NSString *facebookToken;
-@property NSString *googleplusToken;
-@property NSString *twitterToken;
-@property NSString *twitterTokenSecret;
 @property NSString *activeMergeToken;
 @property BOOL isMergingAccount;
 

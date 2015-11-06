@@ -45,15 +45,7 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 
-#import <GoogleSignIn/GoogleSignIn.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <Fabric/Fabric.h>
-#import <TwitterKit/TwitterKit.h>
 
-// DO NOT USE THIS CLIENT ID. IT WILL NOT WORK FOR YOUR APP.
-// Please use the client ID created for you by Google.
-NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.apps.googleusercontent.com";
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate, JRCaptureUserDelegate>
 @property RootViewController *rvc;
@@ -75,11 +67,6 @@ NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.app
 
 @synthesize currentProvider;
 
-//Social Provider Tokens
-@synthesize facebookToken;
-@synthesize googleplusToken;
-@synthesize twitterToken;
-@synthesize twitterTokenSecret;
 
 //Merging variables
 @synthesize activeMergeToken;
@@ -88,18 +75,6 @@ NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.app
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment to automatically sign in the user during app launch.
-    //[[GIDSignIn sharedInstance] signInSilently];
-    //Setup Google SignIn
-    // http://developers.google.com/identity/sign-in/ios/sign-in?configured
-   
-    [GIDSignIn sharedInstance].clientID = kClientID;
-    [GIDSignIn sharedInstance].delegate = self;
-    [GIDSignIn sharedInstance].uiDelegate = self;
-    [GIDSignIn sharedInstance].scopes = @[ @"email", @"profile" ];
-    
-    
     self.captureDelegate = [[MyCaptureDelegate alloc] initWithRootViewController:self];
     
     self.isMergingAccount = NO;
@@ -133,11 +108,7 @@ NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.app
         self.refreshButton.hidden = NO;
         self.signInButton.hidden = YES;
         self.tradAuthButton.hidden = YES;
-        self.directFacebookAuthButton.hidden = YES;
-        self.directTwitterAuthButton.hidden = YES;
-        self.directGoogleplusAuthButton.hidden = YES;
         self.signOutButton.hidden = NO;
-        self.signOutAllButton.hidden = NO;
         self.shareButton.hidden = NO;
         self.refetchButton.hidden = NO;
         self.forgotPasswordButton.hidden = YES;
@@ -157,11 +128,7 @@ NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.app
         self.refreshButton.hidden = YES;
         self.signInButton.hidden = NO;
         self.tradAuthButton.hidden = NO;
-        self.directFacebookAuthButton.hidden = NO;
-        self.directGoogleplusAuthButton.hidden = NO;
-        self.directTwitterAuthButton.hidden = NO;
         self.signOutButton.hidden = YES;
-        self.signOutAllButton.hidden = YES;
         self.shareButton.hidden = YES;
         self.refetchButton.hidden = YES;
         self.forgotPasswordButton.hidden = NO;
@@ -185,8 +152,8 @@ NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.app
 
 - (void)setAllButtonsEnabled:(BOOL)b
 {
-    self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled = self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled = self.shareButton.enabled = self.directFacebookAuthButton.enabled = self.tradAuthButton.enabled = self.directGoogleplusAuthButton.enabled = self.directTwitterAuthButton.enabled = self.signInNavButton.enabled = b;
-    self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha= self.signOutAllButton.alpha = self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha = self.directFacebookAuthButton.alpha = self.directGoogleplusAuthButton.alpha = self.directTwitterAuthButton.alpha = self.forgotPasswordButton.alpha = self.resendVerificationButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
+    self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled = self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled = self.shareButton.enabled =  self.tradAuthButton.enabled =  self.signInNavButton.enabled = b;
+    self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha = self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha = self.forgotPasswordButton.alpha = self.resendVerificationButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -244,177 +211,6 @@ NSString * const kClientID = @"169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.app
 }
 
 
-- (IBAction)twitterAuthButtonPressed:(id)sender
-{
-    //[self startSignInForProvider:@"twitter"];
-    //[JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
-    [self startNativeTwitter:nil];
-}
-
--(void)startNativeTwitter:(NSString *)mergeToken
-{
-    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
-        if (session) {
-            
-            NSLog(@"Twitter - userName: %@", [session userName]);
-            NSLog(@"Twitter - userID: %@", [session userID]);
-            NSLog(@"Twitter - authToken: %@", [session authToken]);
-            NSLog(@"Twitter - authTokenSecret: %@", [session authTokenSecret]);
-            
-            self.twitterToken = [session authToken];
-            self.twitterTokenSecret = [session authTokenSecret];
-            
-            [JRCapture startEngageSignInWithNativeProviderToken:@"twitter"
-                                                     withToken:[session authToken]
-                                                andTokenSecret:[session authTokenSecret]
-                                                    mergeToken:mergeToken
-                                  withCustomInterfaceOverrides:self.customUi
-                                                   forDelegate:self.captureDelegate];
-            
-        } else {
-            NSLog(@"Twitter error: %@", [error localizedDescription]);
-        }
-    }];
-
-    
-}
-
-- (IBAction)facebookAuthButtonPressed:(id)sender
-{
-    //[self startSignInForProvider:@"facebook"];
-    //[JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
-    [self startNativeFacebook:nil];
-    
-}
-
--(void)startNativeFacebook:(NSString *)mergeToken
-{
-    //https://developers.facebook.com/docs/facebook-login/ios/v2.4
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    //[login logInWithPublishPermissions:@[@"publish_actions"]
-    [login logInWithReadPermissions:@[@"email",@"public_profile"]
-                    fromViewController: self
-                               handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        //NSLog(@"%@", result);
-        if (error) {
-            // Process error
-            DLog(@"Native Facebook Error: %@", [error localizedDescription]);
-        } else if (result.isCancelled) {
-            // Handle cancellations
-            DLog(@"Native Facebook Auth Cancelled");
-        } else {
-            NSLog(@"Facebook - Token: %@", [FBSDKAccessToken currentAccessToken].tokenString);
-            NSLog(@"Facebook - userID: %@", [FBSDKProfile currentProfile].userID);
-            
-            self.facebookToken =[FBSDKAccessToken currentAccessToken].tokenString;
-            
-            // If you ask for multiple permissions at once, you
-            // should check if specific permissions missing
-            if ([result.grantedPermissions containsObject:@"email"]) {
-                // Do work
-                
-            }
-            [JRCapture startEngageSignInWithNativeProviderToken:@"facebook"
-                                                     withToken:[FBSDKAccessToken currentAccessToken].tokenString
-                                                andTokenSecret:nil
-                                                    mergeToken:mergeToken
-                                  withCustomInterfaceOverrides:self.customUi
-                                                   forDelegate:self.captureDelegate];
-        }
-        
-    }];
-}
-
-- (IBAction)googleplusAuthButtonPressed:(id)sender
-{
-    //[self startSignInForProvider:@"googleplus"];
-    //[JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
-    [self startNativeGoogleplus];
-}
-
--(void)startNativeGoogleplus
-{
-    //Requesting [additional scopes:
-    //https://developers.google.com/identity/sign-in/ios/additional-scopes
-    /*
-     NSString *driveScope = @"https://www.googleapis.com/auth/drive.readonly";
-     NSArray *currentScopes = [GIDSignIn sharedInstance].scopes;
-     [GIDSignIn sharedInstance].scopes = [currentScopes arrayByAddingObject:driveScope];
-     */
-    
-    [[GIDSignIn sharedInstance] signIn];
-    
-}
-
-
-- (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-    // Perform any operations on signed in user here.
-    //NSLog(@"%@", user);
-    /*
-     NSString *userId = user.userID;                  // For client-side use only!
-     NSString *idToken = user.authentication.idToken; // Safe to send to the server
-     NSString *name = user.profile.name;
-     NSString *email = user.profile.email;
-     */
-    // ...
-    
-    if(user.userID == NULL || user.authentication.accessToken == NULL){
-        DLog(@"No user data or Google+ dialog was closed");
-    }else{
-        
-        DLog(@"Google+ Userid: %@", user.userID);
-        DLog(@"Google+ Token: %@", user.authentication.accessToken);
-        DLog(@"Google+ Name: %@", user.profile.name);
-        DLog(@"Google+ email: %@", user.profile.email);
-        
-        
-        self.googleplusToken = user.authentication.accessToken;
-        NSString *mergeToken = nil;
-        if(self.isMergingAccount && self.activeMergeToken != nil){
-            mergeToken = self.activeMergeToken;
-        }
-        //if user.authentication.accessToken exists then
-        [JRCapture startEngageSignInWithNativeProviderToken:@"googleplus"
-                                                  withToken:user.authentication.accessToken
-                                             andTokenSecret:nil
-                                                 mergeToken:mergeToken
-                               withCustomInterfaceOverrides:self.customUi
-                                                forDelegate:self.captureDelegate];
-    }
-    
-    
-}
-
-- (void)signIn:(GIDSignIn *)signIn
-didDisconnectWithUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-    // Perform any operations when the user disconnects from app here.
-    // ...
-}
-
-// Implement these methods only if the GIDSignInUIDelegate is not a subclass of
-// UIViewController.
-
-// Stop the UIActivityIndicatorView animation that was started when the user
-// pressed the Sign In button
-- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error {
-    //[myActivityIndicator stopAnimating];
-}
-
-// Present a view that prompts the user to sign in with Google
-- (void)signIn:(GIDSignIn *)signIn
-presentViewController:(UIViewController *)viewController {
-    [self presentViewController:viewController animated:YES completion:nil];
-}
-
-// Dismiss the "Sign in with Google" view
-- (void)signIn:(GIDSignIn *)signIn
-dismissViewController:(UIViewController *)viewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 -(IBAction)linkAccountButtonPressed:(id)sender
 {
     void (^completion)(UIAlertView *, BOOL, NSInteger) =
@@ -456,40 +252,9 @@ dismissViewController:(UIViewController *)viewController {
     {
         [JRCapture startEngageSignInDialogWithTraditionalSignIn:JRTraditionalSignInEmailPassword
                                     andCustomInterfaceOverrides:self.customUi forDelegate:self.captureDelegate];
-        //[JRCapture startEngageSignInDialogWithTraditionalSignIn:JRTraditionalSignInEmailPassword
-        //                            andCustomInterfaceOverrides:nil forDelegate:self.captureDelegate];
     }
 }
 
-/*
-+ (BOOL)canHandleNativeAuthenticationForProvider:(NSString *)provider {
-    BOOL result = NO;
-    
-    BOOL haveIntegratedSocialAtAll = ([SLComposeViewController class] != nil);
-    
-    if([provider isEqualToString:@"facebook"]){
-        
-        //Facebook setup on users device.
-        BOOL userHaveIntegratedFacebookAccountSetup = haveIntegratedSocialAtAll && ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]);
-        if(userHaveIntegratedFacebookAccountSetup){
-            result = YES;
-        }
-        
-    }else if([provider isEqualToString:@"googleplus"]){
-        
-        
-    }else if ([provider isEqualToString:@"twitter"]){
-        //Twitter setup on users device.
-        BOOL userHaveIntegratedTwitterAccountSetup = haveIntegratedSocialAtAll && ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]);
-        if(userHaveIntegratedTwitterAccountSetup){
-            result = YES;
-        }
-        
-    }
-    
-    return result;
-}
-*/
 
 - (IBAction)tradAuthButtonPressed:(id)sender
 {
@@ -505,70 +270,6 @@ dismissViewController:(UIViewController *)viewController {
     
 }
 
-- (IBAction)signOutAllButtonPressed:(id)sender
-{
-    self.currentUserLabel.text = @"No current user";
-    self.currentUserProviderIcon.image = nil;
-    
-    //The social provider logout could be made conditional
-    if([appDelegate.currentProvider  isEqualToString: @"facebook"]){
-        //Sign the user out of Facebook
-        [[FBSDKLoginManager new] logOut];
-    }else if ([appDelegate.currentProvider isEqualToString: @"google"] || [appDelegate.currentProvider isEqualToString: @"googleplus"]){
-        //Sign the user out Google+
-        [[GIDSignIn sharedInstance] disconnect];
-    }else if([appDelegate.currentProvider isEqualToString: @"twitter"]){
-        //Sign the user out of Twitter
-        
-        //The following will delete the user account from the iOS AccountStore.
-        //It is not part of the Twitter SDK.
-        //This will force the user to re-sign in.
-        //At which point the Twitter SDK will store the user account on the device again.
-        
-        ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-        ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-        [accountStore requestAccessToAccountsWithType: accountType
-                                              options: nil
-                                           completion:^(BOOL granted,
-                                                        NSError *error) {
-                                               if (granted) {
-                                                   NSArray *twitterAccounts = [accountStore
-                                                                               accountsWithAccountType:
-                                                                               accountType];
-                                                   
-                                                   if ([twitterAccounts count] > 0) {
-                                                       ACAccount *account = [twitterAccounts lastObject];
-                                                       DLog(@"Deleting Twitter User: %@", [account username]);
-                                                       [accountStore removeAccount: account
-                                                             withCompletionHandler:^(BOOL success,
-                                                                                     NSError *error){
-                                                                 DLog(@"Deleted Status: %s", success ? "true" : "false");
-                                                             } ];
-                                                   }
-                                                   else {
-                                                       DLog(@"User gave access, canSendTweet true, "
-                                                            "but user count is 0");
-                                                   }
-                                               }
-                                               else {
-                                                   DLog(@"User rejected access to Twitter accounts.");
-                                               }
-                                           }];
-        
-        
-        //NOTE:  This only signs them out of the app.  Not the stored credentials on the device.
-        NSString *userID = [[[[Twitter sharedInstance] sessionStore] session] userID];
-        
-        if(userID){
-            [[[Twitter sharedInstance] sessionStore] logOutUserID:userID];
-        }
-    }
-    
-    
-    [self signOutCurrentUser];
-    [self configureViewsWithDisableOverride:NO];
-    
-}
 
 - (IBAction)shareButtonPressed:(id)sender
 {
@@ -695,16 +396,6 @@ dismissViewController:(UIViewController *)viewController {
 
                 if ([existingAccountProvider isEqualToString:@"capture"]){ // Traditional sign-in required
                     [self performTradAuthWithMergeToken:[error JRMergeToken]];
-                }
-                else if ([existingAccountProvider isEqualToString:@"facebook"]){
-                    [self startNativeFacebook:[error JRMergeToken]];
-                }else if ([existingAccountProvider isEqualToString:@"googleplus"]){
-                    self.isMergingAccount = YES;
-                    self.activeMergeToken =[error JRMergeToken];
-                    [self startNativeGoogleplus];
-                }else if ([existingAccountProvider isEqualToString:@"twitter"]){
-                    [self startNativeTwitter:[error JRMergeToken]];
-                    
                 }else{
                     // Social sign-in required:
                 
@@ -809,9 +500,6 @@ dismissViewController:(UIViewController *)viewController {
 
 - (void)viewDidUnload {
     [self setTradAuthButton:nil];
-    [self setDirectFacebookAuthButton:nil];
-    [self setDirectGoogleplusAuthButton:nil];
-    [self setDirectTwitterAuthButton:nil];
     [self setRefetchButton:nil];
     [super viewDidUnload];
 }

@@ -27,8 +27,6 @@
 		484380E51B5ED19200E63266 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E01B5ED19200E63266 /* CoreText.framework */; };
 		484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E11B5ED19200E63266 /* MediaPlayer.framework */; };
 		484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E21B5ED19200E63266 /* SystemConfiguration.framework */; };
-		484380ED1B5EEC7B00E63266 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */; };
-		484380EF1B5EF6F400E63266 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
 		4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73971B63045C001D98FF /* StoreKit.framework */; };
 		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
@@ -45,10 +43,6 @@
 		48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E891BEBD4E5004CBA61 /* button_paypal_280x40.png */; };
 		48A85E8D1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */; };
 		48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738D1B62AE8A001D98FF /* CoreData.framework */; };
-		48BC73931B62AE8A001D98FF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738E1B62AE8A001D98FF /* Fabric.framework */; };
-		48BC73941B62AE8A001D98FF /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738F1B62AE8A001D98FF /* TwitterKit.framework */; };
-		48BC73951B62AE8A001D98FF /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BC73901B62AE8A001D98FF /* TwitterKitResources.bundle */; };
-		48BC73961B62AE8A001D98FF /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73911B62AE8A001D98FF /* TwitterCore.framework */; };
 		48CB52C91B71077C0091CD10 /* button_instagram_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52C51B71077C0091CD10 /* button_instagram_135x40.png */; };
 		48CB52CA1B71077C0091CD10 /* button_instagram_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52C61B71077C0091CD10 /* button_instagram_280x40.png */; };
 		48CB52CB1B71077C0091CD10 /* button_yahoo_oauth2_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52C71B71077C0091CD10 /* button_yahoo_oauth2_135x40.png */; };
@@ -76,8 +70,6 @@
 		48CB52F81B7125D70091CD10 /* button_googleplus_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */; };
 		48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F27AAF1BDE97E7007D9BC3 /* libz.tbd */; };
 		48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */; };
-		48FE6DC11B6028BD0008DE42 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48FE6DBF1B6028BD0008DE42 /* GoogleSignIn.bundle */; };
-		48FE6DC21B6028BD0008DE42 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FE6DC01B6028BD0008DE42 /* GoogleSignIn.framework */; };
 		48FE6DC61B6029BB0008DE42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48FE6DC51B6029BB0008DE42 /* GoogleService-Info.plist */; };
 		4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994B918A3F82D00E4D116 /* JRPublishActivityController.xib */; };
 		4DB994BD18A3F84B00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */; };
@@ -368,8 +360,6 @@
 		484380E01B5ED19200E63266 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		484380E11B5ED19200E63266 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		484380E21B5ED19200E63266 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_135x40.png; sourceTree = "<group>"; };
 		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
 		48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_280x40.png; sourceTree = "<group>"; };
@@ -385,10 +375,6 @@
 		48A85E891BEBD4E5004CBA61 /* button_paypal_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_280x40.png; sourceTree = "<group>"; };
 		48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_paypal_openidconnect_280x65@2x.png"; sourceTree = "<group>"; };
 		48BC738D1B62AE8A001D98FF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		48BC738E1B62AE8A001D98FF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		48BC738F1B62AE8A001D98FF /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
-		48BC73901B62AE8A001D98FF /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
-		48BC73911B62AE8A001D98FF /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		48BC73971B63045C001D98FF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		48CB52C51B71077C0091CD10 /* button_instagram_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_instagram_135x40.png; sourceTree = "<group>"; };
 		48CB52C61B71077C0091CD10 /* button_instagram_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_instagram_280x40.png; sourceTree = "<group>"; };
@@ -417,8 +403,6 @@
 		48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_280x40.png; sourceTree = "<group>"; };
 		48F27AAF1BDE97E7007D9BC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		48FE6DBF1B6028BD0008DE42 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
-		48FE6DC01B6028BD0008DE42 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
 		48FE6DC51B6029BB0008DE42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D60E0D0187F1D1F006A6744 /* JRCaptureEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureEnvironment.h; sourceTree = "<group>"; };
 		4DB994B818A3F82D00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JRPublishActivityController.xib; sourceTree = "<group>"; };
@@ -751,16 +735,11 @@
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
 				484380E41B5ED19200E63266 /* CoreLocation.framework in Frameworks */,
-				48FE6DC21B6028BD0008DE42 /* GoogleSignIn.framework in Frameworks */,
-				484380EF1B5EF6F400E63266 /* FBSDKLoginKit.framework in Frameworks */,
-				48BC73961B62AE8A001D98FF /* TwitterCore.framework in Frameworks */,
-				484380ED1B5EEC7B00E63266 /* FBSDKCoreKit.framework in Frameworks */,
 				484380E51B5ED19200E63266 /* CoreText.framework in Frameworks */,
 				484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */,
 				484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */,
 				48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */,
 				C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */,
-				48BC73931B62AE8A001D98FF /* Fabric.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */,
 				484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */,
 				D894366318651F4D004BCF0A /* Accounts.framework in Frameworks */,
@@ -769,7 +748,6 @@
 				90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */,
 				C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */,
 				C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */,
-				48BC73941B62AE8A001D98FF /* TwitterKit.framework in Frameworks */,
 				4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -887,14 +865,6 @@
 				48F27AAF1BDE97E7007D9BC3 /* libz.tbd */,
 				48BC73971B63045C001D98FF /* StoreKit.framework */,
 				48BC738D1B62AE8A001D98FF /* CoreData.framework */,
-				48BC738E1B62AE8A001D98FF /* Fabric.framework */,
-				48BC738F1B62AE8A001D98FF /* TwitterKit.framework */,
-				48BC73901B62AE8A001D98FF /* TwitterKitResources.bundle */,
-				48BC73911B62AE8A001D98FF /* TwitterCore.framework */,
-				48FE6DBF1B6028BD0008DE42 /* GoogleSignIn.bundle */,
-				48FE6DC01B6028BD0008DE42 /* GoogleSignIn.framework */,
-				484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */,
-				484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */,
 				484380DE1B5ED19200E63266 /* AssetsLibrary.framework */,
 				484380DF1B5ED19200E63266 /* CoreLocation.framework */,
 				484380E01B5ED19200E63266 /* CoreText.framework */,
@@ -1549,7 +1519,6 @@
 				9F7B6AAB1533648C002BF452 /* CaptureProfileViewController.xib in Resources */,
 				9F7B6AAC1533648C002BF452 /* InfoPlist.strings in Resources */,
 				9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */,
-				48BC73951B62AE8A001D98FF /* TwitterKitResources.bundle in Resources */,
 				9F7B6AB01533648C002BF452 /* background.png in Resources */,
 				D806D1B616A7638E008EEF96 /* assets in Resources */,
 				C1424221EF003C4A217BE9F5 /* Default.png in Resources */,
@@ -1595,7 +1564,6 @@
 				48CB52F01B7121D70091CD10 /* icon_bw_googleplus_30x30.png in Resources */,
 				DFEFE4C017A9915200760FEE /* button_linkedin_280x40.png in Resources */,
 				DFEFE4C117A9915200760FEE /* button_myspace_135x40.png in Resources */,
-				48FE6DC11B6028BD0008DE42 /* GoogleSignIn.bundle in Resources */,
 				48CB52F41B7125C20091CD10 /* button_googleplus_280x40@2x.png in Resources */,
 				DFEFE4C217A9915200760FEE /* button_myspace_280x40.png in Resources */,
 				DFEFE4C317A9915200760FEE /* button_twitter_135x40.png in Resources */,
@@ -1804,7 +1772,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run fbb7bb73de5c88fb8942e7590b7bf60735b59f3d 31568a496d012b3d843221e9bd736a7e7764e33aa56092fcda206774011523c9";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
