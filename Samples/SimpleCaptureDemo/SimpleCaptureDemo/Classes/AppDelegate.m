@@ -40,25 +40,9 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 
-#import <GoogleSignIn/GoogleSignIn.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <Fabric/Fabric.h>
-#import <TwitterKit/TwitterKit.h>
-
-
-/*
-#ifdef JR_FACEBOOK_SDK_TEST
-#  import <FacebookSDK/FacebookSDK.h>
-#endif
-*/
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate>
 @end
-
-// DO NOT USE THIS CLIENT ID. IT WILL NOT WORK FOR YOUR APP.
-// Please use the client ID created for you by Google.
-//NSString * const kClientID = @"520070855106-qfv1mc0rcueir2nqq3gqs9ivq5rgkadi.apps.googleusercontent.com";
 
 @interface JRSessionData (Internal)
 + (void)setServerUrl:(NSString *)serverUrl_;
@@ -95,7 +79,6 @@ AppDelegate *appDelegate = nil;
 // Demo state machine stuff:
 @synthesize currentProvider;
 @synthesize isNotYetCreated;
-//@synthesize engageSignInWasCanceled;
 
 
 
@@ -104,21 +87,6 @@ AppDelegate *appDelegate = nil;
     appDelegate = self;
     
     
-    //Setup Google SignIn
-    // http://developers.google.com/identity/sign-in/ios/sign-in?configured
-    //[GIDSignIn sharedInstance].clientID = kClientID;
-    //[GIDSignIn sharedInstance].delegate = self;
-    
-    //Setup Twitter TwitterKit/Fabric
-    // http://docs.fabric.io/ios/twitter/twitterkit-setup.html
-    [[Twitter sharedInstance] startWithConsumerKey:@"xv6nwj4U62sYH09N9zkoUbMqV" consumerSecret:@"vpOS6A3GQQeXxP0QvFGubvxXA1JOnbPzd7C7MrShESxSHF6GeH"];
-    [Fabric with:@[TwitterKit]];
-    
-    BOOL fbDidFinish = [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    if(fbDidFinish){
-       NSLog(@"Facebook Started");
-    }
-    [FBSDKLoginManager renewSystemCredentials:^(ACAccountCredentialRenewResult result, NSError *error) {}];
     
     // register for Janrain notification(s)
     [[NSNotificationCenter defaultCenter]
@@ -165,18 +133,9 @@ AppDelegate *appDelegate = nil;
 {
     //NSString *urlScheme = url.scheme;
     NSLog(@"openURL %@", url);
-    if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
-        return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                              openURL:url
-                                                    sourceApplication:sourceApplication
-                                                           annotation:annotation];
-    }else if(url.scheme != nil && [url.scheme hasPrefix:@"gplus"]){
-        //NOTE:  Google SignIn wants this but I never see it get hit so I'm guessing at the url scheme prefix.
-        return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
-    }else{
-        //return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-        return YES;
-    }
+    //return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    return YES;
+
 }
 
 
@@ -203,10 +162,7 @@ AppDelegate *appDelegate = nil;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-//#   ifdef JR_FACEBOOK_SDK_TEST
-        //[FBSession.activeSession handleDidBecomeActive];
-//#   endif
-    [FBSDKAppEvents activateApp];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
