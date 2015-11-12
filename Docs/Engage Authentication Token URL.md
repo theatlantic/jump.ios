@@ -1,6 +1,6 @@
 ## Server-side Authentication
 
-You will also want to implement [Server-side Authentication](http://developers.janrain.com/documentation/mobile-libraries/jump-for-android/engage-for-android/#server-side-authentication).
+You will also want to implement [Server-side Authentication](http://developers.janrain.com/how-to/social-login/deploy-social-login/server-side-authentication/).
 
 If you would like to access any of the extra features available in the Janrain Engage API, or if you would
 like to complete server-side authentication, do so by implementing a token URL as follows:

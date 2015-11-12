@@ -824,7 +824,9 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
 #if JRENGAGE_INCLUDE_EMAIL_SMS
     if (item.tag == [self.sessionData.sharingProviders count])
     {
-        UIActionSheet *action;
+        
+        UIAlertController *alertController;
+        
         switch (self.emailAndOrSmsIndex)
         {
             case JR_EMAIL_ONLY:
@@ -834,17 +836,42 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
                 [self sendSMS];
                 break;
             case JR_EMAIL_AND_SMS:
-                action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Share with Email or SMS", nil)
-                                                     delegate:self
-                                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                       destructiveButtonTitle:nil
-                                            otherButtonTitles:NSLocalizedString(@"Email", nil),
-                                       NSLocalizedString(@"SMS", nil), nil];
-                action.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-                [action showFromTabBar:myTabBar];
+                
+                alertController = [UIAlertController alertControllerWithTitle:@"Share with Email or SMS"
+                                              message:nil
+                                       preferredStyle:UIAlertControllerStyleActionSheet];
+                
+                 [alertController addAction:
+                 [UIAlertAction actionWithTitle:NSLocalizedString(@"SMS", nil)
+                                          style:UIAlertActionStyleDestructive
+                                        handler:^(UIAlertAction *action) {
+                                            NSLog(@"Sending SMS");
+                                            [self sendSMS];
+                                        }]];
+                 
+                [alertController addAction:
+                 [UIAlertAction actionWithTitle:@"Email"
+                                          style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction *action) {
+                                            NSLog(@"Sending Email");
+                                            [self sendEmail];
+                                        }]];
+                [alertController addAction:
+                 [UIAlertAction actionWithTitle:@"Cancel"
+                                          style:UIAlertActionStyleCancel
+                                        handler:^(UIAlertAction *action) {
+                                            NSLog(@"Cancelled");
+                                            // Cancel button tappped.
+                                            [self dismissViewControllerAnimated:YES completion:^{
+                                            }];
+                                            
+                                        }]];
+                
+                [self presentViewController:alertController
+                                   animated:YES
+                                 completion:NULL];
                 break;
-            default:
-                break;
+
         }
     }
     else
@@ -1193,49 +1220,35 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     NSString *title = [NSString stringWithFormat:NSLocalizedString(@"You are currently signed in to %@%@. Would you like to sign out?", nil),
                                                  selectedProvider.friendlyName,
                                                  nameString];
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:title
-                                                         delegate:self
-                                                cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                           destructiveButtonTitle:NSLocalizedString(@"Sign Out",nil)
-                                                otherButtonTitles:nil];
-    action.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-    [action showFromTabBar:myTabBar];
+   
+    UIAlertController *alertController
+    = [UIAlertController alertControllerWithTitle:title
+                                          message:nil
+                                   preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:
+     [UIAlertAction actionWithTitle:@"Sign Out"
+                              style:UIAlertActionStyleDestructive
+                            handler:^(UIAlertAction *action) {
+                                NSLog(@"Signing Out");
+                                [self logUserOutForProvider:selectedProvider.name];
+                            }]];
+    [alertController addAction:
+     [UIAlertAction actionWithTitle:@"Cancel"
+                              style:UIAlertActionStyleCancel
+                            handler:^(UIAlertAction *action) {
+                                NSLog(@"Cancelled");
+                                // Cancel button tappped.
+                                [self dismissViewControllerAnimated:YES completion:^{
+                                }];
+                            }]];
+    
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:NULL];
+    
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex)
-    {
-        case 0:
-            if (!self.userIsAttemptingToSignOut)
-                [self sendEmail];
-            else
-                [self logUserOutForProvider:selectedProvider.name];
-            break;
-        case 1:
-            if (!self.userIsAttemptingToSignOut)
-                [self sendSMS];
-            break;
-        case 2:
-            myTabBar.selectedItem = [myTabBar.items objectAtIndex:self.selectedTab];
-            [self tabBar:myTabBar didSelectItem:[myTabBar.items objectAtIndex:self.selectedTab]];
-        default:
-            break;
-    }
 
-    self.userIsAttemptingToSignOut = NO;
-}
-
-- (void)actionSheetCancel:(UIActionSheet *)actionSheet
-{
-    if (!self.userIsAttemptingToSignOut)
-    {
-        myTabBar.selectedItem = [myTabBar.items objectAtIndex:self.selectedTab];
-        [self tabBar:myTabBar didSelectItem:[myTabBar.items objectAtIndex:self.selectedTab]];
-    }
-
-    self.userIsAttemptingToSignOut = NO;
-}
 
 - (void)setButtonImage:(UIButton *)button toData:(NSData *)data andSetLoading:(UIActivityIndicatorView *)actIndicator
              toLoading:(BOOL)loading
@@ -1671,10 +1684,7 @@ myUserName, mySignOutButton, mySharedCheckMark, mySharedLabel;
     }
 }
 
-- (IBAction)infoButtonPressed:(id)sender
-{
-    [[JRInfoBar getInfoSheet:nil] showFromTabBar:myTabBar];
-}
+
 
 - (void)connectionDidFinishLoadingWithPayload:(NSString *)payload request:(NSURLRequest *)request
                                        andTag:(id)userdata

@@ -47,6 +47,13 @@
                                  mergeToken:(NSString *)mergeToken
                                 forDelegate:(id <JRCaptureDelegate>)delegate;
 
++ (void)startAuthenticationWithProviderToken:(NSString *)provider
+                                  withToken:(NSString *)token
+                             andTokenSecret:(NSString *)tokenSecret
+               withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                 mergeToken:(NSString *)mergeToken
+                                forDelegate:(id <JRCaptureDelegate>)delegate;
+
 + (id)getDelegate;
 + (void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
                            andCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides

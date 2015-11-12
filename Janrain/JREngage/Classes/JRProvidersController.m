@@ -39,9 +39,7 @@
 #import "JRProvidersController.h"
 #import "JRInfoBar.h"
 #import "JRUserLandingController.h"
-#import "JRNativeAuth.h"
 #import "JREngageError.h"
-#import "JRNativeProvider.h"
 #import "JRCompatibilityUtils.h"
 
 
@@ -72,7 +70,7 @@
 
 @property NSMutableArray *providers;
 @property UIView *myTraditionalSignInLoadingView;
-@property(nonatomic) JRNativeProvider *nativeProvider;
+//@property(nonatomic) JRNativeProvider *nativeProvider;
 @end
 
 @implementation JRProvidersController
@@ -509,40 +507,9 @@
 
     // Let sessionData know which provider the user selected
     JRProvider *provider = [sessionData getProviderNamed:[providers objectAtIndex:(NSUInteger) indexPath.row]];
-    if ([JRNativeAuth canHandleProvider:provider.name])
-    {
-        [UIView animateWithDuration:0.3 animations:^() {
-            myTableView.hidden = YES;
-            [myActivitySpinner setHidden:NO];
-            [myLoadingLabel setHidden:NO];
-            [myActivitySpinner startAnimating];
-            myLoadingLabel.text = NSLocalizedString(@"Signing in ...",nil);
-        }];
 
-        [sessionData setCurrentProvider:provider];
-
-        self.nativeProvider = [JRNativeAuth nativeProviderNamed:provider.name withConfiguration:[JREngage instance]];
-        [self.nativeProvider startAuthenticationWithCompletion:^(NSError *e) {
-            if (e) {
-                if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
-                    [sessionData triggerAuthenticationDidCancel];
-                } else if ([e.domain isEqualToString:JREngageErrorDomain]
-                           && e.code == JRAuthenticationShouldTryWebViewError) {
-                    self.myTableView.hidden = NO;
-                    [self stopActivityIndicator];
-                    [self startWebViewAuthOnProvider:provider];
-                } else {
-                    myTableView.hidden = NO;
-                    [self stopActivityIndicator];
-                    [sessionData triggerAuthenticationDidFailWithError:e];
-                }
-            }
-        }];
-    }
-    else
-    {
-        [self startWebViewAuthOnProvider:provider];
-    }
+    [self startWebViewAuthOnProvider:provider];
+     
 }
 
 - (void)startWebViewAuthOnProvider:(JRProvider *)provider

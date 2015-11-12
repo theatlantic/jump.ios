@@ -10,6 +10,16 @@ A less desirable but more reliable and more general upgrade strategy:
 2. Remove generated Capture user model project groups
 3. Follow the process described JUMP Integration Guide
 
+### Upgrading from any version to v4.0 or greater
+
+There are potentially *breaking* changes to the Janrain Mobile SDK with version 4.0.  All dependencies on third-party SDK's and libraries around native Social Provider support (Google+, Facebook, and Twitter) have been removed.
+
+The Mobile SDK no longer integrates third-party SDK's or libraries.  The SimpleCaptureDemo app has been upgraded to demonstrate how to retrieve a native provider's oAuth access token using the current(at the time of the SDK release) native provider's tools in as close a format to the native provider's sample code on their website.  The developer will now retrieve the native provider's oAuth access token using their preferred method and initiate the Janrain authentication process using `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+
+Please refer to the `Native Authentication Guide` for full details on how to implement native authentication with the above changes.
+
+Several provider images and icons were updated in this release.  Please refresh the files in the Resources folder.
+
 ### Upgrading from any version to v3.7 or greater
 The Janrain iOS SDK now requires Automatic Reference Counting (ARC). Follow the generalized upgrade process but do
 *NOT* add the `-fno-objc-arc` compiler flag to the Janrain sources. If your project does not use ARC, be sure to set

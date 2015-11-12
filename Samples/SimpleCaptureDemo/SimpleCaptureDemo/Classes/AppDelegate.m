@@ -37,20 +37,25 @@
 #import "JRCaptureConfig.h"
 #import "JRCaptureError.h"
 #import "JREngage.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
-#ifdef JR_FACEBOOK_SDK_TEST
-#  import <FacebookSDK/FacebookSDK.h>
-#endif
+
+@interface MyCaptureDelegate : NSObject <JRCaptureDelegate>
+@end
 
 @interface JRSessionData (Internal)
 + (void)setServerUrl:(NSString *)serverUrl_;
 @end
+
 
 AppDelegate *appDelegate = nil;
 
 @implementation AppDelegate
 @synthesize window;
 @synthesize prefs;
+
+
 
 // Capture stuff:
 @synthesize captureUser;
@@ -70,21 +75,24 @@ AppDelegate *appDelegate = nil;
 @synthesize captureEditProfileFormName;
 @synthesize resendVerificationFormName;
 
+
 // Demo state machine stuff:
 @synthesize currentProvider;
 @synthesize isNotYetCreated;
-//@synthesize engageSignInWasCanceled;
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     appDelegate = self;
-
+    
+    
+    
     // register for Janrain notification(s)
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(onJRDownLoadFlowResult:)
                    name:JRDownloadFlowResult object:nil];
-
 
     [self loadDemoConfigFromPlist];
 
@@ -119,13 +127,17 @@ AppDelegate *appDelegate = nil;
     return YES;
 }
 
-#   ifdef JR_FACEBOOK_SDK_TEST
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    //NSString *urlScheme = url.scheme;
+    NSLog(@"openURL %@", url);
+    //return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    return YES;
+
 }
-#   endif
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -150,9 +162,7 @@ AppDelegate *appDelegate = nil;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-#   ifdef JR_FACEBOOK_SDK_TEST
-        [FBSession.activeSession handleDidBecomeActive];
-#   endif
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

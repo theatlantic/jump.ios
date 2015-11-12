@@ -61,8 +61,8 @@
  *   JRCapture API</a> documentation.
  **/
 
-#if  __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-#error Incompatible deployment target - should be 5.0 or higher
+#if  __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
+#error Incompatible deployment target - should be 7.0 or higher
 #endif
 
 
@@ -80,8 +80,8 @@
 #define JRENGAGE_INCLUDE_EMAIL_SMS 1
 #endif
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "JRNativeAuthConfig.h"
 
 @class JRActivityObject;
 
@@ -103,6 +103,7 @@
  * Messages sent by JREngage during dialog launch/configuration
  **/
 /*@{*/
+
 
 /**
  * Sent if the application tries to show a JREngage dialog, and JREngage failed to show. May
@@ -227,6 +228,9 @@
  * Sent when the Engage Authentication is completed successfully for Link Account Flow
  */
 - (void)engageAuthenticationDidSucceedForAccountLinking:(NSDictionary *)engageAuthInfo forProvider:(NSString *)provider;
+
+
+
 @end
 
 #define JREngageDelegate JREngageSigninDelegate
@@ -250,6 +254,8 @@
  * Messages sent by JREngage during social publishing
  **/
 /*@{*/
+
+
 
 /**
  * Sent if social sharing was canceled for any reason other than an error. For example, the user hits
@@ -298,8 +304,9 @@
 /**
  * Notification sent when the Engage configuration has been updated.
  */
-extern NSString *const JRFinishedUpdatingEngageConfigurationNotification;
-extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
+FOUNDATION_EXPORT NSString *const JRFinishedUpdatingEngageConfigurationNotification;
+FOUNDATION_EXPORT NSString *const JRFailedToUpdateEngageConfigurationNotification;
+
 
 /**
  * @brief
@@ -317,7 +324,7 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
  * the token URL. Your server can complete authentication, access more of JREngage's API, log the authentication, etc.
  * and the server's response will be passed back through to your iOS application.
  **/
-@interface JREngage : NSObject <JRNativeAuthConfig>
+@interface JREngage : NSObject
 
 /**
  * @name Get the JREngage Instance
@@ -357,24 +364,6 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
                        delegate:(id <JREngageSigninDelegate>)delegate __attribute__((deprecated));
 /*@}*/
 
-/**
- *  Set the Google+ client id for use with native Google+ SSO
- *
- *  @param clientId
- *    Your google+ client id. Should be from the same Google+ app that is registered with Engage.
- */
-+ (void)setGooglePlusClientId:(NSString *)clientId;
-
-/**
- *  Set the Twitter consumer key and secret. This is required for native Twitter SSO.
- *  The values must match the values in your Engage Dashboard.
- *
- *  @param consumerKey
- *    Your Twitter consumer key
- *  @param consumerSecret
- *    Your Twitter consumer secret
- */
-+ (void)setTwitterConsumerKey:(NSString *)consumerKey andSecret:(NSString *)consumerSecret;
 
 /**
  * @name Manage the Delegates
@@ -419,6 +408,7 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
  *   please see the \ref authenticationProviders "List of Providers"
  **/
 + (void)showAuthenticationDialogForProvider:(NSString *)provider __unused;
+
 
 /**
  * Use this function to begin authentication. The JREngage library will pop up a modal dialog,
@@ -476,6 +466,7 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
 **/
 + (void)showAuthenticationDialogForProvider:(NSString *)provider
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides __unused;
+
 
 /**
  * Use this function to begin social sharing. The JREngage library will pop up a modal dialog and
@@ -607,13 +598,28 @@ extern NSString *const JRFailedToUpdateEngageConfigurationNotification;
 /**
  * JREngage URL handler
  */
-+ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation;
 
 /**
  * JREngage application did become active handler
  */
 + (void)applicationDidBecomeActive:(UIApplication *)application;
+
+/**
+ * This method will call the Social Login Server with the passed in provider, token, and token secret (Twitter)
+ * If the token is successfully validated the Social Login Server will return an Auth Info token for use
+ * in the subsequent authentication and registration API calls
+ *
+ * @param provider
+ *   The name of the provider on which the user will authenticate. For a list of possible strings,
+ *   please see the \ref authenticationProviders "List of Providers"
+ *
+ * @param token
+ *  access token
+ * @param tokenSecret
+ *  Twitter secret (nil for all others)
+ **/
++(void)getAuthInfoTokenForNativeProvider:(NSString *)provider withToken:(NSString *)token andTokenSecret:(NSString *)tokenSecret;
+
 
 @end
 
