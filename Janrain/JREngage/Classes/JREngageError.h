@@ -28,6 +28,7 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 /**
@@ -107,7 +108,7 @@ typedef enum
     JRPublishErrorLinkedInCharacterExceeded, /* Will be deprecating */
 } JREngageSocialPublishingError;
 
-extern NSString * JREngageErrorDomain;
+FOUNDATION_EXPORT NSString * JREngageErrorDomain;
 
 @interface JREngageError : NSObject
 + (NSError *)errorWithMessage:(NSString *)message andCode:(NSInteger)code;

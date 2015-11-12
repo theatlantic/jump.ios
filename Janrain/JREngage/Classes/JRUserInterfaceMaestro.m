@@ -355,7 +355,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
     return b;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return [jrChildViewController supportedInterfaceOrientations];
 }
@@ -597,7 +597,7 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 }
 
 // iOS >= 6
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
