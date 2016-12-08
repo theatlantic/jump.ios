@@ -1342,7 +1342,7 @@ sub getObjectPropertiesDocParts {
 sub getObjcKeywords {
   my @keywords = ("auto", "_Bool", "_Complex", "_Imaginery", "atomic", "BOOL", "break", "bycopy", "byref",
                   "case", "char", "Class", "const", "continue", "default", "do", "double", "else", "enum",
-                  "extern", "float", "for", "goto", "id", "if", "IMP", "in", "inline", "inout", "int", "long",
+                  "extern", "FOUNDATION_EXPORT", "float", "for", "goto", "id", "if", "IMP", "in", "inline", "inout", "int", "long",
                   "nil", "NO", "nonatomic", "NULL", "oneway", "out", "Protocol", "register", "restrict",
                   "retain", "return", "SEL", "self", "short", "signed", "sizeof", "static", "struct",
                   "super", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "YES");

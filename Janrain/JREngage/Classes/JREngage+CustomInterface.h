@@ -32,6 +32,7 @@
  Date:   Friday, January 21, 2011
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "JREngage.h"
 

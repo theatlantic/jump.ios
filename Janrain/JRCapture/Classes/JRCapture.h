@@ -54,10 +54,10 @@
 #define startEngageSigninDialogOnProvider startEngageSignInDialogOnProvider
 #define startCaptureConventionalSigninForUser startCaptureTraditionalSignInForUser
 #define startEngageSignInDialogWithConventionalSignIn startEngageSignInDialogWithTraditionalSignIn
-#define startEngageSigninDialogWithConventionalSignin startEngageSignInDialogWithTraditionalSignIn
+//#define startEngageSigninDialogWithConventionalSignin startEngageSignInDialogWithTraditionalSignIn
 #define withSigninType withSignInType
 
-#define startCaptureConventionalSignInForUser startCaptureTraditionalSignInForUser
+//#define startCaptureConventionalSignInForUser startCaptureTraditionalSignInForUser
 
 /**
  *  NSNotifications
@@ -69,8 +69,7 @@
  *  if the object is nil, the FLOW was successfully downloaded.
  *  If the JRCaptureError object is !nil, then the FLOW did not download.
  */
-extern NSString* const JRDownloadFlowResult;
-
+FOUNDATION_EXPORT NSString* const JRDownloadFlowResult;
 
 /**
  * @mainpage Janrain Capture for iOS
@@ -651,6 +650,32 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
              withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                mergeToken:(NSString *)mergeToken
                               forDelegate:(id <JRCaptureDelegate>)delegate;
+/**
+ * Begin authentication for one specific provider when passed a valid oAuth token (and tokenSecret for Twitter)
+ * This method relies on the developer using the supported provider's (ONLY: Facebook, Google+, or Twitter) SDK
+ * to retrieve an oAuth access token with the necessary scopes/permissions.
+ * This method will pass the token to the Social Login server where it will be validated and exchanged for a Social
+ * Login token for use in further authentication or registration calls.
+ *
+ * @param provider
+ *   The name of the provider on which the user will authenticate. For a list of possible strings,
+ *   please see the \ref authenticationProviders "List of Providers"
+ *
+ * @param customInterfaceOverrides
+ *   A dictionary of objects and properties, indexed by the set of
+ *   \link customInterface pre-defined custom interface keys\endlink, to be used by the library to customize the look
+ *   and feel of the user interface and/or add a native login experience
+ *
+ * @param mergeToken
+ *   The merge token, retrieved from the merge flow error instance.
+ **/
+
++ (void)startEngageSignInWithNativeProviderToken:(NSString *)provider
+                                      withToken:(NSString *)token
+                                 andTokenSecret:(NSString *)tokenSecret
+                                     mergeToken:(NSString *)mergeToken
+                   withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                    forDelegate:(id <JRCaptureDelegate>)delegate;
 
 /**
  * Begin authentication, adding the option for your users to log directly into Capture through
@@ -761,6 +786,13 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 + (void)updateProfileForUser:(JRCaptureUser *)user delegate:(id <JRCaptureDelegate>)delegate;
 
 /**
+ * Updates the profile for a given user using an update_profile_native compatible form
+ */
++ (void)updateProfileForUserWithForm:(JRCaptureUser *)user
+                 withEditProfileForm:(NSString *) formName
+                            delegate:(id <JRCaptureDelegate>)delegate;
+
+/**
  * Signs the currently-signed-in user, if any, out.
  */
 + (void)clearSignInState __unused;
@@ -820,12 +852,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 
 + (void)startActualAccountUnLinking:(id <JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier;
 
-
-/**
- * JRCapture URL handler
- */
-+ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation;
 
 @end
 

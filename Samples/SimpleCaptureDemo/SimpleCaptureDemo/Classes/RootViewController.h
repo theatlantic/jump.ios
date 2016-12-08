@@ -31,12 +31,16 @@
 #import <UIKit/UIKit.h>
 #import "JRCaptureObject.h"
 
-@interface RootViewController : UIViewController
+
+@interface RootViewController : UIViewController{
+    BOOL isMergingAccount;
+}
+
+
 - (IBAction)browseButtonPressed:(id)sender;
 - (IBAction)tradRegButtonPressed:(id)sender;
 - (IBAction)refreshButtonPressed:(id)sender;
 - (IBAction)signInButtonPressed:(id)sender;
-- (IBAction)facebookAuthButtonPressed:(id)sender;
 - (IBAction)tradAuthButtonPressed:(id)sender;
 - (IBAction)signOutButtonPressed:(id)sender;
 - (IBAction)shareButtonPressed:(id)sender;
@@ -56,7 +60,6 @@
 @property (weak) IBOutlet UIButton *signOutButton;
 @property (weak) IBOutlet UIBarButtonItem *signInNavButton;
 @property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
-@property (weak, nonatomic) IBOutlet UIButton *directFacebookAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property (weak, nonatomic) IBOutlet UIButton *linkAccountButton;
@@ -64,4 +67,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
 @property (weak, nonatomic) IBOutlet UIButton *resendVerificationButton;
 @property(nonatomic) NSDictionary *customUi;
+@property NSString *currentProvider;
+@property NSString *activeMergeToken;
+@property BOOL isMergingAccount;
+
 @end

@@ -209,6 +209,21 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
     [JREngage showAuthenticationDialogForProvider:provider withCustomInterfaceOverrides:customInterfaceOverrides];
 }
 
++ (void)startAuthenticationWithProviderToken:(NSString *)provider
+                                  withToken:(NSString *)token
+                             andTokenSecret:(NSString *)tokenSecret
+               withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                 mergeToken:(NSString *)mergeToken
+                                forDelegate:(id <JRCaptureDelegate>)delegate
+{
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:mergeToken delegate:delegate]];
+    
+    [[JREngageWrapper singletonInstance] setDelegate:delegate];
+    [[JREngageWrapper singletonInstance] setDialogState:JREngageDialogStateAuthentication];
+    
+    [JREngage getAuthInfoTokenForNativeProvider:provider withToken:token andTokenSecret:tokenSecret];
+}
+
 - (void)tearingDownViewControllers:(NSNotification *)notification {
     DLog();
     self.didTearDownViewControllers = YES;

@@ -42,16 +42,22 @@
 #import "JRActivityObject.h"
 #import "LinkedProfilesViewController.h"
 #import "JRCaptureData.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+
+
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate, JRCaptureUserDelegate>
 @property RootViewController *rvc;
 
 - (id)initWithRootViewController:(RootViewController *)rvc;
+
 @end
 
 @interface RootViewController () <UIAlertViewDelegate, LinkedProfilesDelegate>
 @property(nonatomic, copy) void (^viewDidAppearContinuation)();
 @property(nonatomic) BOOL viewIsApparent;
+
 @property MyCaptureDelegate *captureDelegate;
 
 - (void)configureViewsWithDisableOverride:(BOOL)disableAllButtons;
@@ -59,11 +65,19 @@
 
 @implementation RootViewController
 
+@synthesize currentProvider;
+
+
+//Merging variables
+@synthesize activeMergeToken;
+@synthesize isMergingAccount;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.captureDelegate = [[MyCaptureDelegate alloc] initWithRootViewController:self];
+    
+    self.isMergingAccount = NO;
 
     self.customUi = @{kJRApplicationNavigationController : self.navigationController};
     [self configureUserLabelAndIcon];
@@ -94,7 +108,6 @@
         self.refreshButton.hidden = NO;
         self.signInButton.hidden = YES;
         self.tradAuthButton.hidden = YES;
-        self.directFacebookAuthButton.hidden = YES;
         self.signOutButton.hidden = NO;
         self.shareButton.hidden = NO;
         self.refetchButton.hidden = NO;
@@ -115,7 +128,6 @@
         self.refreshButton.hidden = YES;
         self.signInButton.hidden = NO;
         self.tradAuthButton.hidden = NO;
-        self.directFacebookAuthButton.hidden = NO;
         self.signOutButton.hidden = YES;
         self.shareButton.hidden = YES;
         self.refetchButton.hidden = YES;
@@ -140,14 +152,8 @@
 
 - (void)setAllButtonsEnabled:(BOOL)b
 {
-    self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled =
-                self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled =
-                        self.shareButton.enabled = self.directFacebookAuthButton.enabled = self.tradAuthButton.enabled
-                            = self.signInNavButton.enabled = b;
-    self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha =
-                self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha =
-                self.directFacebookAuthButton.alpha = self.forgotPasswordButton.alpha =
-                self.resendVerificationButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
+    self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled = self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled = self.shareButton.enabled =  self.tradAuthButton.enabled =  self.signInNavButton.enabled = b;
+    self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha = self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha = self.forgotPasswordButton.alpha = self.resendVerificationButton.alpha = self.tradAuthButton.alpha = 0.5 + b * 0.5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -204,11 +210,6 @@
     [self startSignInForProvider:nil];
 }
 
-- (IBAction)facebookAuthButtonPressed:(id)sender
-{
-    [self startSignInForProvider:@"facebook"];
-    //[JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
-}
 
 -(IBAction)linkAccountButtonPressed:(id)sender
 {
@@ -251,10 +252,9 @@
     {
         [JRCapture startEngageSignInDialogWithTraditionalSignIn:JRTraditionalSignInEmailPassword
                                     andCustomInterfaceOverrides:self.customUi forDelegate:self.captureDelegate];
-        //[JRCapture startEngageSignInDialogWithTraditionalSignIn:JRTraditionalSignInEmailPassword
-        //                            andCustomInterfaceOverrides:nil forDelegate:self.captureDelegate];
     }
 }
+
 
 - (IBAction)tradAuthButtonPressed:(id)sender
 {
@@ -267,7 +267,9 @@
     self.currentUserProviderIcon.image = nil;
     [self signOutCurrentUser];
     [self configureViewsWithDisableOverride:NO];
+    
 }
+
 
 - (IBAction)shareButtonPressed:(id)sender
 {
@@ -356,9 +358,17 @@
 - (void)engageSignInDidFailWithError:(NSError *)error
 {
     DLog(@"error: %@", [error description]);
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description]
+    UIAlertView *alertView;
+    if([error code]== 200){
+        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"User cancelled authentication"
+                                              delegate:nil cancelButtonTitle:@"Dismiss"
+                                     otherButtonTitles:nil];
+    }else{
+        //Some non-typical error occurred.  This may not be something to display to an end user.
+        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description]
                                                        delegate:nil cancelButtonTitle:@"Dismiss"
                                               otherButtonTitles:nil];
+    }
     [alertView show];
 }
 
@@ -377,19 +387,18 @@
 
 - (void)handleMergeFlowError:(NSError *)error
 {
+    
     NSString *existingAccountProvider = [error JRMergeFlowExistingProvider];
     void (^mergeAlertCompletion)(UIAlertView *, BOOL, NSInteger) =
             ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex)
             {
                 if (cancelled) return;
 
-                if ([existingAccountProvider isEqualToString:@"capture"]) // Traditional sign-in required
-                {
+                if ([existingAccountProvider isEqualToString:@"capture"]){ // Traditional sign-in required
                     [self performTradAuthWithMergeToken:[error JRMergeToken]];
-                }
-                else
-                {
+                }else{
                     // Social sign-in required:
+                
                     [JRCapture startEngageSignInDialogOnProvider:existingAccountProvider
                                     withCustomInterfaceOverrides:self.customUi
                                                       mergeToken:[error JRMergeToken]
@@ -491,7 +500,6 @@
 
 - (void)viewDidUnload {
     [self setTradAuthButton:nil];
-    [self setDirectFacebookAuthButton:nil];
     [self setRefetchButton:nil];
     [super viewDidUnload];
 }
