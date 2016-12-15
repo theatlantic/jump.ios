@@ -528,6 +528,7 @@ static JRSessionData *singleton = nil;
     if (!isInFlight) {
         stillNeedToShortenUrls = NO;
         _nativeAuthenticationFlowIsInFlight = NO;
+        _googleAppAuthAuthenticationFlowIsInFlight = NO;
     }
 
     authenticationFlowIsInFlight = isInFlight;

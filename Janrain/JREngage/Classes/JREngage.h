@@ -364,6 +364,13 @@ FOUNDATION_EXPORT NSString *const JRFailedToUpdateEngageConfigurationNotificatio
                        delegate:(id <JREngageSigninDelegate>)delegate __attribute__((deprecated));
 /*@}*/
 
+/**
+ *  Set the Google+ client id for use with native Google+ SSO
+ *
+ *  @param clientId
+ *    Your google+ client id. Should be from the same Google+ app that is registered with Engage.
+ */
++ (void)setGooglePlusClientId:(NSString *)clientId;
 
 /**
  * @name Manage the Delegates
