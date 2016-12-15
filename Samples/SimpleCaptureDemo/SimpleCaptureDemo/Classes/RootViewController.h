@@ -31,6 +31,7 @@
 #import <UIKit/UIKit.h>
 #import "JRCaptureObject.h"
 
+#import "AppAuth.h"
 
 @interface RootViewController : UIViewController{
     BOOL isMergingAccount;

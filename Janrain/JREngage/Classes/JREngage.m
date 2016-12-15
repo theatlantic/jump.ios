@@ -36,6 +36,9 @@
 #import "JRSessionData.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JREngageError.h"
+#import "JRGoogleAppAuth.h"
+#import "JRGoogleAppAuthProvider.h"
+
 
 @interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
@@ -47,6 +50,9 @@
 /** \internal Array of JREngageDelegate objects */
 @property (nonatomic) NSMutableArray         *delegates;
 
+@property (nonatomic) NSString *googlePlusClientId;
+
+@property (nonatomic) JRGoogleAppAuthProvider *googleAppAuthProvider;
 
 @end
 
@@ -114,6 +120,10 @@ static JREngage* singleton = nil;
     [JREngage setEngageAppId:appId tokenUrl:tokenUrl andDelegate:delegate];
 
     return [JREngage singletonInstance];
+}
+
++ (void)setGooglePlusClientId:(NSString *)clientId {
+    [[JREngage singletonInstance] setGooglePlusClientId:clientId];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
@@ -209,26 +219,34 @@ static JREngage* singleton = nil;
         [self engageDidFailWithError:[JREngageError errorWithMessage:message andCode:JRProviderNotConfiguredError]];
         return;
     }
-    
-    // The following commented code was from previous versions of the Mobile SDK.
-    // If a developer wanted to re-introduce Native Provider detection this would be the recommended
-    // location to implement the logic.
-    //
-    // NOTE: simply un-commenting the code below will not work.  The referenced libraries have been
-    // removed from the Mobile SDK as of version 4.x
-    /*
-    if ([JRNativeAuth canHandleProvider:provider])
+
+    if ([JRGoogleAppAuth canHandleProvider:provider])
     {
-        [self startNativeAuthOnProvider:provider customInterface:customInterfaceOverrides];
+        [self startGoogleAppAuthOnProvider:provider customInterface:customInterfaceOverrides];
     }
     else
     {
-     */
+    
         [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
-    //}
-    //
+    }
 }
 
+- (void)startGoogleAppAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
+    self.googleAppAuthProvider = [JRGoogleAppAuth googleAppAuthProviderNamed:provider withConfiguration:(id)self];
+    [self.googleAppAuthProvider startAuthenticationWithCompletion:^(NSError *error) {
+        
+        if (!error) return;
+        
+        if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
+            [self authenticationDidCancel];
+        } else if ([error.domain isEqualToString:JREngageErrorDomain]
+                   && error.code == JRAuthenticationShouldTryWebViewError) {
+            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
+        } else {
+            [self authenticationDidFailWithError:error forProvider:provider];
+        }
+    }];
+}
 
 
 + (void)getAuthInfoTokenForNativeProvider:(NSString *)provider
@@ -617,18 +635,7 @@ static JREngage* singleton = nil;
 
 
 + (void)applicationDidBecomeActive:(UIApplication *)application {
-    Class fbSession = NSClassFromString(@"FBSession");
-    if (fbSession) {
-        SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
-        id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
-        id activeSession = getActiveSession(fbSession, activeSessionSelector);
-
-        SEL handleDidBecomeActiveSelector = NSSelectorFromString(@"handleDidBecomeActive");
-        void (*handleDidBecomeActive)(id, SEL, UIApplication *) =
-            (void *)[activeSession methodForSelector:handleDidBecomeActiveSelector];
-        handleDidBecomeActive(activeSession, handleDidBecomeActiveSelector, application);
-    }
-
+    
     if (singleton) {
         [singleton applicationDidBecomeActive:application];
     }
@@ -636,7 +643,7 @@ static JREngage* singleton = nil;
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if (sessionData.nativeAuthenticationFlowIsInFlight) {
+    if (sessionData.googleAppAuthAuthenticationFlowIsInFlight) {
         [interfaceMaestro authenticationCanceled];
     }
 }

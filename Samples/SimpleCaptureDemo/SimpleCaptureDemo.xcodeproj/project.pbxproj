@@ -28,9 +28,11 @@
 		484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E11B5ED19200E63266 /* MediaPlayer.framework */; };
 		484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E21B5ED19200E63266 /* SystemConfiguration.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
+		486B0CD51E02171100B73F4F /* JRGoogleAppAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD41E02171100B73F4F /* JRGoogleAppAuth.m */; };
+		486B0CD71E0218E300B73F4F /* JRGoogleAppAuthGooglePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD61E0218E300B73F4F /* JRGoogleAppAuthGooglePlus.m */; };
+		486B0CDB1E021A1200B73F4F /* JRGoogleAppAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CDA1E021A1200B73F4F /* JRGoogleAppAuthProvider.m */; };
+		486B0CE91E033E2D00B73F4F /* libAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486B0CE41E033D6500B73F4F /* libAppAuth.a */; };
 		4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73971B63045C001D98FF /* StoreKit.framework */; };
-		4898D44B1DFA0D8C007432DB /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4898D44A1DFA0D8C007432DB /* SafariServices.framework */; };
-		4898D44D1DFA1094007432DB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4898D44C1DFA1094007432DB /* WebKit.framework */; };
 		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
 		48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */; };
 		48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */; };
@@ -72,7 +74,6 @@
 		48CB52F81B7125D70091CD10 /* button_googleplus_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */; };
 		48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F27AAF1BDE97E7007D9BC3 /* libz.tbd */; };
 		48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */; };
-		48FE6DC61B6029BB0008DE42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48FE6DC51B6029BB0008DE42 /* GoogleService-Info.plist */; };
 		4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994B918A3F82D00E4D116 /* JRPublishActivityController.xib */; };
 		4DB994BD18A3F84B00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */; };
 		4DFC8F17187E1DD100CE8A83 /* JRAccountsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC8ED6187E1DD100CE8A83 /* JRAccountsElement.m */; };
@@ -333,6 +334,30 @@
 		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		486B0CE31E033D6500B73F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 486B0CDD1E033D6500B73F4F /* AppAuth.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 340E737C1C5D819B0076B1F6;
+			remoteInfo = AppAuth;
+		};
+		486B0CE51E033D6500B73F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 486B0CDD1E033D6500B73F4F /* AppAuth.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 341741F01C5D8283000EF209;
+			remoteInfo = AppAuthTests;
+		};
+		486B0CE71E033D6500B73F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 486B0CDD1E033D6500B73F4F /* AppAuth.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 340DAE4E1D58216A00EC285B;
+			remoteInfo = "AppAuth-macOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		19BC0172346689920F3635B5 /* JRCaptureUIRequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureUIRequestBuilder.h; sourceTree = "<group>"; };
 		19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCompatibilityUtils.m; sourceTree = "<group>"; };
@@ -363,6 +388,14 @@
 		484380E11B5ED19200E63266 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		484380E21B5ED19200E63266 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_135x40.png; sourceTree = "<group>"; };
+		486B0CD31E02169400B73F4F /* JRGoogleAppAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRGoogleAppAuth.h; sourceTree = "<group>"; };
+		486B0CD41E02171100B73F4F /* JRGoogleAppAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRGoogleAppAuth.m; sourceTree = "<group>"; };
+		486B0CD61E0218E300B73F4F /* JRGoogleAppAuthGooglePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRGoogleAppAuthGooglePlus.m; sourceTree = "<group>"; };
+		486B0CD81E02190400B73F4F /* JRGoogleAppAuthGooglePlus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRGoogleAppAuthGooglePlus.h; sourceTree = "<group>"; };
+		486B0CD91E0219CC00B73F4F /* JRGoogleAppAuthProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRGoogleAppAuthProvider.h; sourceTree = "<group>"; };
+		486B0CDA1E021A1200B73F4F /* JRGoogleAppAuthProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRGoogleAppAuthProvider.m; sourceTree = "<group>"; };
+		486B0CDC1E021DE500B73F4F /* JRGoogleAppAuthConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRGoogleAppAuthConfig.h; sourceTree = "<group>"; };
+		486B0CDD1E033D6500B73F4F /* AppAuth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppAuth.xcodeproj; path = "../../../GoogleAppAuth/AppAuth-iOS/AppAuth.xcodeproj"; sourceTree = "<group>"; };
 		4898D44A1DFA0D8C007432DB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		4898D44C1DFA1094007432DB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
@@ -407,7 +440,6 @@
 		48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_280x40.png; sourceTree = "<group>"; };
 		48F27AAF1BDE97E7007D9BC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		48FE6DC51B6029BB0008DE42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D60E0D0187F1D1F006A6744 /* JRCaptureEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureEnvironment.h; sourceTree = "<group>"; };
 		4DB994B818A3F82D00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JRPublishActivityController.xib; sourceTree = "<group>"; };
 		4DB994BC18A3F84B00E4D116 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = JRPublishActivityController.xib; sourceTree = "<group>"; };
@@ -735,8 +767,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4898D44D1DFA1094007432DB /* WebKit.framework in Frameworks */,
-				4898D44B1DFA0D8C007432DB /* SafariServices.framework in Frameworks */,
+				486B0CE91E033E2D00B73F4F /* libAppAuth.a in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
@@ -783,6 +814,16 @@
 				3306C1C76C81D3A8D4ED2232 /* Localizable.strings */,
 			);
 			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		486B0CDE1E033D6500B73F4F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				486B0CE41E033D6500B73F4F /* libAppAuth.a */,
+				486B0CE61E033D6500B73F4F /* AppAuthTests.xctest */,
+				486B0CE81E033D6500B73F4F /* libAppAuth-macOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		4DB994BA18A3F84B00E4D116 /* en.lproj */ = {
@@ -847,6 +888,7 @@
 		90C36B6B7717AA0C893E08DC = {
 			isa = PBXGroup;
 			children = (
+				486B0CDD1E033D6500B73F4F /* AppAuth.xcodeproj */,
 				DFB68871175E8E6C006DFC92 /* Janrain */,
 				90C36B6B7717AA0C893E08DD /* Products */,
 				90C36B6B7717AA0C893E08E8 /* Frameworks */,
@@ -905,7 +947,6 @@
 		90C36B6B7717AA0C893E08F0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				48FE6DC51B6029BB0008DE42 /* GoogleService-Info.plist */,
 				9F7B6A8215336470002BF452 /* InfoPlist.strings */,
 				90C36B6B7717AA0C893E08F5 /* main.m */,
 				90C36B6B7717AA0C893E08F1 /* SimpleCaptureDemo-Info.plist */,
@@ -1126,6 +1167,13 @@
 				DFEFE3EF17A9915200760FEE /* JRWebViewController.m */,
 				19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */,
 				19BC052B6185FEA424AF0113 /* JRCompatibilityUtils.h */,
+				486B0CD31E02169400B73F4F /* JRGoogleAppAuth.h */,
+				486B0CDC1E021DE500B73F4F /* JRGoogleAppAuthConfig.h */,
+				486B0CD41E02171100B73F4F /* JRGoogleAppAuth.m */,
+				486B0CD61E0218E300B73F4F /* JRGoogleAppAuthGooglePlus.m */,
+				486B0CD81E02190400B73F4F /* JRGoogleAppAuthGooglePlus.h */,
+				486B0CD91E0219CC00B73F4F /* JRGoogleAppAuthProvider.h */,
+				486B0CDA1E021A1200B73F4F /* JRGoogleAppAuthProvider.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1510,12 +1558,42 @@
 			mainGroup = 90C36B6B7717AA0C893E08DC;
 			productRefGroup = 90C36B6B7717AA0C893E08DD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 486B0CDE1E033D6500B73F4F /* Products */;
+					ProjectRef = 486B0CDD1E033D6500B73F4F /* AppAuth.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				90C36B6B7717AA0C893E08E1 /* SimpleCaptureDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		486B0CE41E033D6500B73F4F /* libAppAuth.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAppAuth.a;
+			remoteRef = 486B0CE31E033D6500B73F4F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		486B0CE61E033D6500B73F4F /* AppAuthTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AppAuthTests.xctest;
+			remoteRef = 486B0CE51E033D6500B73F4F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		486B0CE81E033D6500B73F4F /* libAppAuth-macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libAppAuth-macOS.a";
+			remoteRef = 486B0CE71E033D6500B73F4F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		90C36B6B7717AA0C893E08E7 /* Resources */ = {
@@ -1603,7 +1681,6 @@
 				48CB52D41B7107B50091CD10 /* icon_bw_yahoo_oauth2_30x30.png in Resources */,
 				48CB52EB1B7108D00091CD10 /* logo_instagram_280x65@2x.png in Resources */,
 				DFEFE4D817A9915300760FEE /* icon_soundcloud_30x30.png in Resources */,
-				48FE6DC61B6029BB0008DE42 /* GoogleService-Info.plist in Resources */,
 				4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */,
 				DFEFE4D917A9915300760FEE /* icon_tumblr_30x30.png in Resources */,
 				DFEFE4DA17A9915300760FEE /* icon_twitter_30x30.png in Resources */,
@@ -1811,8 +1888,11 @@
 				DF39E03F17A9887300FDA67A /* JRCaptureData.m in Sources */,
 				DF39E04017A9887300FDA67A /* JRCaptureError.m in Sources */,
 				DF39E04117A9887300FDA67A /* JRCaptureObject.m in Sources */,
+				486B0CD71E0218E300B73F4F /* JRGoogleAppAuthGooglePlus.m in Sources */,
+				486B0CDB1E021A1200B73F4F /* JRGoogleAppAuthProvider.m in Sources */,
 				DF39E04217A9887300FDA67A /* JRCaptureUser+Extras.m in Sources */,
 				DF39E04317A9887300FDA67A /* JREngageWrapper.m in Sources */,
+				486B0CD51E02171100B73F4F /* JRGoogleAppAuth.m in Sources */,
 				DF39E04417A9887300FDA67A /* JRNSDate+ISO8601_CaptureDateTimeString.m in Sources */,
 				DF39E04517A9887300FDA67A /* JRTraditionalSigninViewController.m in Sources */,
 				DF39E04617A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m in Sources */,
@@ -1939,6 +2019,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: paulbaker@janrain.com (JD6S5J26X6)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1953,6 +2034,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1973,6 +2055,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: paulbaker@janrain.com (JD6S5J26X6)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2010,20 +2093,25 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/pbaker/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"/Users/pbaker/GitHub/GoogleAppAuth/AppAuth-iOS/Source/**",
+					"../Source/**",
+					../../../../../,
+				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.janrain.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2045,20 +2133,25 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/pbaker/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"/Users/pbaker/GitHub/GoogleAppAuth/AppAuth-iOS/Source/**",
+					"../Source/**",
+					../../../../../,
+				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.janrain.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2083,6 +2176,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: paulbaker@janrain.com (JD6S5J26X6)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2097,6 +2191,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -2114,20 +2209,25 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/pbaker/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemo/SimpleCaptureDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"/Users/pbaker/GitHub/GoogleAppAuth/AppAuth-iOS/Source/**",
+					"../Source/**",
+					../../../../../,
+				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.janrain.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

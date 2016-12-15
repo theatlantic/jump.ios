@@ -142,6 +142,7 @@
 @property BOOL socialSharing;
 @property BOOL authenticationFlowIsInFlight;
 @property BOOL nativeAuthenticationFlowIsInFlight;
+@property BOOL googleAppAuthAuthenticationFlowIsInFlight;
 @property BOOL accountLinking;
 @property(readonly) NSError *error;
 
