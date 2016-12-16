@@ -4,7 +4,4 @@
    <FileRef
       location = "group:SimpleCaptureDemo.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:../../../GoogleAppAuth/AppAuth-iOS/AppAuth.xcodeproj">
-   </FileRef>
 </Workspace>
