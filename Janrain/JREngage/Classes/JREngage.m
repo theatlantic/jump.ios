@@ -36,8 +36,8 @@
 #import "JRSessionData.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JREngageError.h"
-#import "JRGoogleAppAuth.h"
-#import "JRGoogleAppAuthProvider.h"
+#import "JROpenIDAppAuth.h"
+#import "JROpenIDAppAuthProvider.h"
 
 
 @interface JREngage () <JRSessionDelegate>
@@ -52,7 +52,7 @@
 
 @property (nonatomic) NSString *googlePlusClientId;
 
-@property (nonatomic) JRGoogleAppAuthProvider *googleAppAuthProvider;
+@property (nonatomic) JROpenIDAppAuthProvider *openIDAppAuthProvider;
 
 @end
 
@@ -85,27 +85,37 @@ static JREngage* singleton = nil;
     return [self singletonInstance];
 }
 
-- (void)setEngageAppID:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
+- (void)setEngageAppID:(NSString *)appId appUrl:(NSString *)appUrl tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
 {
-    ALog (@"Initialize JREngage library with appID: %@, and tokenUrl: %@", appId, tokenUrl);
-
+    ALog (@"Initialize JREngage library with appID: %@, appUrl: %@,and tokenUrl: %@", appId, appUrl, tokenUrl);
+    
     if (!delegates)
         self.delegates = [NSMutableArray arrayWithObjects:delegate, nil];
     else
         [delegates addObject:delegate];
-
+    
     if (!sessionData)
-        self.sessionData = [JRSessionData jrSessionDataWithAppId:appId tokenUrl:tokenUrl andDelegate:self];
+        self.sessionData = [JRSessionData jrSessionDataWithAppId:appId appUrl:appUrl tokenUrl:tokenUrl andDelegate:self];
     else
-        [sessionData reconfigureWithAppId:appId tokenUrl:tokenUrl];
-
+        [sessionData reconfigureWithAppId:appId appUrl:appUrl tokenUrl:tokenUrl];
+    
     if (!interfaceMaestro)
         interfaceMaestro = [JRUserInterfaceMaestro jrUserInterfaceMaestroWithSessionData:sessionData];
 }
 
++ (void)setEngageAppId:(NSString *)appId appUrl:(NSString *)appUrl tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
+{
+    [[JREngage singletonInstance] setEngageAppID:appId appUrl:appUrl tokenUrl:tokenUrl andDelegate:delegate];
+}
+
+- (void)setEngageAppID:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
+{
+    [[JREngage singletonInstance] setEngageAppID:appId appUrl:nil tokenUrl:tokenUrl andDelegate:delegate];
+}
+
 + (void)setEngageAppId:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
 {
-    [[JREngage singletonInstance] setEngageAppID:appId tokenUrl:tokenUrl andDelegate:delegate];
+     [[JREngage singletonInstance] setEngageAppID:appId appUrl:nil tokenUrl:tokenUrl andDelegate:delegate];
 }
 
 + (JREngage *)instance {
@@ -115,9 +125,18 @@ static JREngage* singleton = nil;
     return nil;
 }
 
++ (JREngage *)jrEngageWithAppId:(NSString *)appId
+                         appUrl:(NSString *)appUrl
+                    andTokenUrl:(NSString *)tokenUrl
+                       delegate:(id <JREngageSigninDelegate>)delegate {
+    [JREngage setEngageAppId:appId appUrl:appUrl tokenUrl:tokenUrl andDelegate:delegate];
+    
+    return [JREngage singletonInstance];
+}
+
 + (JREngage *)jrEngageWithAppId:(NSString *)appId andTokenUrl:(NSString *)tokenUrl
                        delegate:(id <JREngageSigninDelegate>)delegate {
-    [JREngage setEngageAppId:appId tokenUrl:tokenUrl andDelegate:delegate];
+    [JREngage setEngageAppId:appId appUrl:nil tokenUrl:tokenUrl andDelegate:delegate];
 
     return [JREngage singletonInstance];
 }
@@ -220,9 +239,9 @@ static JREngage* singleton = nil;
         return;
     }
 
-    if ([JRGoogleAppAuth canHandleProvider:provider])
+    if ([JROpenIDAppAuth canHandleProvider:provider])
     {
-        [self startGoogleAppAuthOnProvider:provider customInterface:customInterfaceOverrides];
+        [self startOpenIDAppAuthOnProvider:provider customInterface:customInterfaceOverrides];
     }
     else
     {
@@ -231,9 +250,9 @@ static JREngage* singleton = nil;
     }
 }
 
-- (void)startGoogleAppAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
-    self.googleAppAuthProvider = [JRGoogleAppAuth googleAppAuthProviderNamed:provider withConfiguration:(id)self];
-    [self.googleAppAuthProvider startAuthenticationWithCompletion:^(NSError *error) {
+- (void)startOpenIDAppAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
+    self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider withConfiguration:(id)self];
+    [self.openIDAppAuthProvider startAuthenticationWithCompletion:^(NSError *error) {
         
         if (!error) return;
         
@@ -248,19 +267,33 @@ static JREngage* singleton = nil;
     }];
 }
 
-
 + (void)getAuthInfoTokenForNativeProvider:(NSString *)provider
                                 withToken:(NSString *)token
                            andTokenSecret:(NSString *)tokenSecret {
+    [self getAuthInfoTokenForNativeProvider:provider withToken:token andTokenSecret:tokenSecret andEngageAppUrl:nil];
+}
+
++ (void)getAuthInfoTokenForNativeProvider:(NSString *)provider
+                                withToken:(NSString *)token
+                           andTokenSecret:(NSString *)tokenSecret
+                          andEngageAppUrl:(NSString *)engageAppUrl{
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"token" : token,
                                                                                   @"provider" : provider
                                                                                   }];
-    NSString *url = [[JRSessionData jrSessionData].baseUrl stringByAppendingString:@"/signin/oauth_token"];
     
-    if (tokenSecret) {
-        // Twitter uses OAuth 1 and requires both a token and a token secret
-        [params setObject:tokenSecret forKey:@"token_secret"];
+    NSString *url = [NSString stringWithFormat: @"https://%@/signin/oauth_token",engageAppUrl];
+    if([provider isEqualToString:@"twitter"]){
+        if (tokenSecret) {
+            // Twitter uses OAuth 1 and requires both a token and a token secret
+            [params setObject:tokenSecret forKey:@"token_secret"];
+        }
+    }
+    if([provider isEqualToString:@"wechat"]){
+        if (tokenSecret) {
+            // WeChat requires the wechat.openid value.
+            [params setObject:tokenSecret forKey:@"wechat.openid"];
+        }
     }
     
     
@@ -643,7 +676,7 @@ static JREngage* singleton = nil;
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if (sessionData.googleAppAuthAuthenticationFlowIsInFlight) {
+    if (sessionData.openIDAppAuthAuthenticationFlowIsInFlight) {
         [interfaceMaestro authenticationCanceled];
     }
 }

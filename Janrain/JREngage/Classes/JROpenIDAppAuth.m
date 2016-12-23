@@ -1,4 +1,3 @@
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Copyright (c) 2016, Janrain, Inc.
  All rights reserved.
@@ -24,8 +23,43 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import <Foundation/Foundation.h>
+#import "JROpenIDAppAuth.h"
+#import "debug_log.h"
+#import "JRConnectionManager.h"
+#import "JROpenIDAppAuthConfig.h"
+#import "JROpenIDAppAuthGoogle.h"
 
-@protocol JRGoogleAppAuthConfig <NSObject>
-- (NSString *)googlePlusClientId;
+@interface JROpenIDAppAuth ()
+@property (nonatomic) JROpenIDAppAuthProvider *openIDAppAuthProvider;
+@end
+
+@implementation JROpenIDAppAuth
+
++ (BOOL)canHandleProvider:(NSString *)provider
+{
+    if ([provider isEqualToString:@"googleplus"]) return YES;
+    return NO;
+}
+
++ (JROpenIDAppAuthProvider *)openIDAppAuthProviderNamed:(NSString *)provider withConfiguration:(id <JROpenIDAppAuthConfig>)config {
+    JROpenIDAppAuthProvider *openIDAppAuthProvider = nil;
+    
+    if ([provider isEqualToString:@"googleplus"]) {
+        openIDAppAuthProvider = [[JROpenIDAppAuthGoogle alloc] init];
+        [(JROpenIDAppAuthGoogle *)openIDAppAuthProvider setGooglePlusClientId:config.googlePlusClientId];
+    } else {
+        [NSException raiseJRDebugException:@"unexpected Google AppAuth provider" format:provider];
+    }
+    
+    return openIDAppAuthProvider;
+}
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    if ([JROpenIDAppAuthGoogle handleURL:url sourceApplication:sourceApplication annotation:annotation]) return YES;
+    
+    return NO;
+}
+
+
 @end

@@ -114,6 +114,17 @@
 @property (nonatomic) NSString *resendEmailVerificationFormName;
 
 /**
+ *   The Engage App Url for non-standard Engage servers.
+ **/
+@property (nonatomic) NSString *engageAppUrl;
+
+/**
+ *   The Url to download the Capture Flow from.
+ **/
+@property (nonatomic) NSString *downloadFlowUrl;
+
+
+/**
  *  Your Google+ client id. Must be for the same google application that is configured in Engage.
  */
 /*! @brief The OAuth client ID.

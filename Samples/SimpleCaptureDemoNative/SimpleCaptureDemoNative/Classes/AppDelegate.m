@@ -87,6 +87,9 @@ AppDelegate *appDelegate = nil;
 @synthesize currentProvider;
 @synthesize isNotYetCreated;
 
+//OpenID AppAuth
+@synthesize googlePlusClientId;
+@synthesize googlePlusRedirectUri;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -132,6 +135,10 @@ AppDelegate *appDelegate = nil;
     config.forgottenPasswordFormName = captureForgottenPasswordFormName;
     config.editProfileFormName = captureEditProfileFormName;
     config.resendEmailVerificationFormName = resendVerificationFormName;
+    //OpenID AppAuth
+    config.googlePlusClientId = googlePlusClientId;
+    config.googlePlusRedirectUri = googlePlusRedirectUri;
+
 
     [JRCapture setCaptureConfig:config];
     self.prefs = [NSUserDefaults standardUserDefaults];
@@ -147,11 +154,30 @@ AppDelegate *appDelegate = nil;
 }
 
 
+/*! @brief Handles inbound URLs. Checks if the URL matches the redirect URI for a pending
+ AppAuth authorization request.
+ */
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    // Sends the URL to the current authorization flow (if any) which will process it if it relates to
+    // an authorization response.
+    if ([_openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
+        _openIDAppAuthAuthorizationFlow = nil;
+        return YES;
+    }
+    
+    // Your additional URL handling (if any) goes here.
+    
+    return NO;
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
     //NSString *urlScheme = url.scheme;
     NSLog(@"openURL %@", url);
+    
     if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
         return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                               openURL:url
@@ -161,8 +187,9 @@ AppDelegate *appDelegate = nil;
         //NOTE:  Google SignIn wants this but I never see it get hit so I'm guessing at the url scheme prefix.
         return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
     }else{
-        //return [JRCapture application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-        return YES;
+        return [self application:application
+                         openURL:url
+                         options:@{}];
     }
 }
 
@@ -259,6 +286,11 @@ AppDelegate *appDelegate = nil;
         BOOL useTestingCdn = [[cfg objectForKey:@"flowUsesTestingCdn"] boolValue];
         [JRCaptureData sharedCaptureData].flowUsesTestingCdn = useTestingCdn;
     }
+    //OpenID AppAuth
+    if ([cfg objectForKey:@"googlePlusClientId"])
+        self.googlePlusClientId = [cfg objectForKey:@"googlePlusClientId"];
+    if ([cfg objectForKey:@"googlePlusRedirectUri"])
+        self.googlePlusRedirectUri = [cfg objectForKey:@"googlePlusRedirectUri"];
 }
 
 - (void)saveCaptureUser
