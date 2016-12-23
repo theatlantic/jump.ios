@@ -23,7 +23,7 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import "JRGoogleAppAuthGooglePlus.h"
+#import "JROpenIDAppAuthGoogle.h"
 #import "debug_log.h"
 #import "AppAuth.h"
 #import "AppDelegate.h"
@@ -37,16 +37,16 @@ static NSString *const kIssuer = @"https://accounts.google.com";
  */
 static NSString *const kAppAuthExampleAuthStateKey = @"authState";
 
-@interface JRGoogleAppAuthGooglePlus () <OIDAuthStateChangeDelegate, OIDAuthStateErrorDelegate>
+@interface JROpenIDAppAuthGoogle () <OIDAuthStateChangeDelegate, OIDAuthStateErrorDelegate>
 @end
 
-@implementation JRGoogleAppAuthGooglePlus
+@implementation JROpenIDAppAuthGoogle
 
 - (NSString *)provider {
     return @"googleplus";
 }
 
-- (void)startAuthenticationWithCompletion:(GoogleAppAuthCompletionBlock)completion {
+- (void)startAuthenticationWithCompletion:(OpenIDAppAuthCompletionBlock)completion {
     [super startAuthenticationWithCompletion:completion];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSURL *issuer = [NSURL URLWithString:kIssuer];
@@ -84,7 +84,7 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
             while (current.presentedViewController) {
                 current = current.presentedViewController;
             }
-            appDelegate.googleAppAuthAuthorizationFlow =
+            appDelegate.openIDAppAuthAuthorizationFlow =
             [OIDAuthState authStateByPresentingAuthorizationRequest:request
                                            presentingViewController:current
                                                            callback:^(OIDAuthState *_Nullable authState,

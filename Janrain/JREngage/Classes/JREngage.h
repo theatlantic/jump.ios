@@ -338,6 +338,9 @@ FOUNDATION_EXPORT NSString *const JRFailedToUpdateEngageConfigurationNotificatio
  *   This is your 20-character application ID. You can find this on your application's Dashboard
  *   on <a href="http://rpxnow.com">http://rpxnow.com</a>. This value cannot be \e nil
  *
+ * @param appUrl
+ *   The URL of the custom Engage Server
+ *
  * @param tokenUrl
  *   The URL on your server where you wish to complete authentication. If provided,
  *   the JREngage library will post the user's authentication token to this URL where it can
@@ -347,6 +350,14 @@ FOUNDATION_EXPORT NSString *const JRFailedToUpdateEngageConfigurationNotificatio
  * @param delegate
  *   The delegate object that implements the JREngageSigninDelegate or JREngageSharingDelegate protocol
  *
+ **/
++ (void)setEngageAppId:(NSString *)appId appUrl:(NSString *)appUrl
+              tokenUrl:(NSString *)tokenUrl
+           andDelegate:(id <JREngageSigninDelegate>)delegate;
+
+
+/**
+ * @deprecated
  **/
 + (void)setEngageAppId:(NSString *)appId tokenUrl:(NSString *)tokenUrl
            andDelegate:(id <JREngageSigninDelegate>)delegate;
@@ -623,9 +634,19 @@ FOUNDATION_EXPORT NSString *const JRFailedToUpdateEngageConfigurationNotificatio
  * @param token
  *  access token
  * @param tokenSecret
- *  Twitter secret (nil for all others)
+ *  Twitter secret or Wechat openid value (nil for all others)
+ * @param engageAppUrl
+ *  used for non-standard Engage Servers (nil for all others)
+ **/
+
++(void)getAuthInfoTokenForNativeProvider:(NSString *)provider withToken:(NSString *)token andTokenSecret:(NSString *)tokenSecret andEngageAppUrl:(NSString *)engageAppUrl;
+
+/**
+ * @deprecated
  **/
 +(void)getAuthInfoTokenForNativeProvider:(NSString *)provider withToken:(NSString *)token andTokenSecret:(NSString *)tokenSecret;
+
+
 
 
 @end

@@ -1,3 +1,4 @@
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Copyright (c) 2016, Janrain, Inc.
  All rights reserved.
@@ -25,14 +26,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JRGoogleAppAuthConfig;
-@class JRGoogleAppAuthProvider;
-
-@interface JRGoogleAppAuth : NSObject
-+ (BOOL)canHandleProvider:(NSString *)provider;
-
-+ (JRGoogleAppAuthProvider *)googleAppAuthProviderNamed:(NSString *)provider withConfiguration:(id <JRGoogleAppAuthConfig>)config;
-
-+ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation;
+@protocol JROpenIDAppAuthConfig <NSObject>
+- (NSString *)googlePlusClientId;
 @end

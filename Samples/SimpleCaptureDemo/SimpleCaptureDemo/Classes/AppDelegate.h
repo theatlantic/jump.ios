@@ -65,7 +65,7 @@ extern AppDelegate *appDelegate;
 @property(nonatomic) NSString *captureForgottenPasswordFormName;
 @property(nonatomic) NSString *captureEditProfileFormName;
 @property(nonatomic) NSString *resendVerificationFormName;
-//Google AppAuth
+//OpenID AppAuth
 @property(nonatomic) NSString *googlePlusClientId;
 @property(nonatomic) NSString *googlePlusRedirectUri;
 
@@ -76,7 +76,7 @@ extern AppDelegate *appDelegate;
  incoming URL on UIApplicationDelegate.application:openURL:options:. This property will be
  nil, except when an authorization flow is in progress.
  */
-@property(nonatomic, strong) id<OIDAuthorizationFlowSession> googleAppAuthAuthorizationFlow;
+@property(nonatomic, strong) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;
 - (void)saveCaptureUser;
 
 @end

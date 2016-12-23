@@ -81,8 +81,7 @@ AppDelegate *appDelegate = nil;
 @synthesize currentProvider;
 @synthesize isNotYetCreated;
 
-//Google AppAuth
-//@synthesize googleAppAuthAuthorizationFlow;
+//OpenID AppAuth
 @synthesize googlePlusClientId;
 @synthesize googlePlusRedirectUri;
 
@@ -142,8 +141,8 @@ AppDelegate *appDelegate = nil;
             options:(NSDictionary<NSString *, id> *)options {
     // Sends the URL to the current authorization flow (if any) which will process it if it relates to
     // an authorization response.
-    if ([_googleAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
-        _googleAppAuthAuthorizationFlow = nil;
+    if ([_openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
+        _openIDAppAuthAuthorizationFlow = nil;
         return YES;
     }
     
@@ -261,7 +260,7 @@ AppDelegate *appDelegate = nil;
         BOOL useTestingCdn = [[cfg objectForKey:@"flowUsesTestingCdn"] boolValue];
         [JRCaptureData sharedCaptureData].flowUsesTestingCdn = useTestingCdn;
     }
-    //Google AppAuth
+    //OpenID AppAuth
     if ([cfg objectForKey:@"googlePlusClientId"])
         self.googlePlusClientId = [cfg objectForKey:@"googlePlusClientId"];
     if ([cfg objectForKey:@"googlePlusRedirectUri"])

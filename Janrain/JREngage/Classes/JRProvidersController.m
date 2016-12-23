@@ -41,8 +41,8 @@
 #import "JRUserLandingController.h"
 #import "JREngageError.h"
 #import "JRCompatibilityUtils.h"
-#import "JRGoogleAppAuth.h"
-#import "JRGoogleAppAuthProvider.h"
+#import "JROpenIDAppAuth.h"
+#import "JROpenIDAppAuthProvider.h"
 
 
 @interface UITableViewCellProviders : UITableViewCell
@@ -72,7 +72,7 @@
 
 @property NSMutableArray *providers;
 @property UIView *myTraditionalSignInLoadingView;
-@property(nonatomic) JRGoogleAppAuthProvider *googleAppAuthProvider;
+@property(nonatomic) JROpenIDAppAuthProvider *openIDAppAuthProvider;
 @end
 
 @implementation JRProvidersController
@@ -509,7 +509,7 @@
     
     // Let sessionData know which provider the user selected
     JRProvider *provider = [sessionData getProviderNamed:[providers objectAtIndex:(NSUInteger) indexPath.row]];
-    if ([JRGoogleAppAuth canHandleProvider:provider.name])
+    if ([JROpenIDAppAuth canHandleProvider:provider.name])
     {
         [UIView animateWithDuration:0.3 animations:^() {
             myTableView.hidden = YES;
@@ -521,8 +521,8 @@
         
         [sessionData setCurrentProvider:provider];
         
-        self.googleAppAuthProvider = [JRGoogleAppAuth googleAppAuthProviderNamed:provider.name withConfiguration:(id)[JREngage instance]];
-        [self.googleAppAuthProvider startAuthenticationWithCompletion:^(NSError *e) {
+        self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider.name withConfiguration:(id)[JREngage instance]];
+        [self.openIDAppAuthProvider startAuthenticationWithCompletion:^(NSError *e) {
             if (e) {
                 if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
                     [sessionData triggerAuthenticationDidCancel];

@@ -1,21 +1,16 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2013, Janrain, Inc.
-
+ Copyright (c) 2016, Janrain, Inc.
  All rights reserved.
-
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-
  * Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+ list of conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation and/or
-   other materials provided with the distribution.
+ this list of conditions and the following disclaimer in the documentation and/or
+ other materials provided with the distribution.
  * Neither the name of the Janrain, Inc. nor the names of its
-   contributors may be used to endorse or promote products derived from this
-   software without specific prior written permission.
-
-
+ contributors may be used to endorse or promote products derived from this
+ software without specific prior written permission.
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -26,14 +21,22 @@
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <Foundation/Foundation.h>
-#import "JRNativeProvider.h"
+#import "JROpenIDAppAuthProvider.h"
+
+@class OIDAuthState;
+@class OIDServiceConfiguration;
 
 
-@interface JRNativeTwitter : JRNativeProvider
-@property (nonatomic) NSString *consumerKey;
-@property (nonatomic) NSString *consumerSecret;
+@interface JROpenIDAppAuthGoogle : JROpenIDAppAuthProvider
+@property (nonatomic) NSString *googlePlusClientId;
+/*! @brief The authorization state. This is the AppAuth object that you should keep around and
+ serialize to disk.
+ */
+@property(nonatomic, readonly) OIDAuthState *authState;
+
+
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(NSString *)annotation;
 @end
