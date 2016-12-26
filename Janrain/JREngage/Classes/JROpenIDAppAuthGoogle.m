@@ -27,7 +27,7 @@
 #import "debug_log.h"
 #import "AppAuth.h"
 #import "AppDelegate.h"
-#import "RootViewController.h"
+
 
 /*! @brief The OIDC issuer from which the configuration will be discovered.
  */
@@ -112,8 +112,6 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
 }
 
 
-//Google AppAuth
-
 /*! @brief Saves the @c OIDAuthState to @c NSUSerDefaults.
  */
 - (void)saveState {
@@ -152,7 +150,7 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
 }
 
 - (void)authState:(OIDAuthState *)state didEncounterAuthorizationError:(nonnull NSError *)error {
-    DLog(@"Google AppAuth Google+ Received authorization error: %@", error);
+    DLog(@"OpenID AppAuth Google+ Received authorization error: %@", error);
 }
 
 

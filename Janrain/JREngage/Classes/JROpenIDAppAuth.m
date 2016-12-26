@@ -48,7 +48,7 @@
         openIDAppAuthProvider = [[JROpenIDAppAuthGoogle alloc] init];
         [(JROpenIDAppAuthGoogle *)openIDAppAuthProvider setGooglePlusClientId:config.googlePlusClientId];
     } else {
-        [NSException raiseJRDebugException:@"unexpected Google AppAuth provider" format:provider];
+        [NSException raiseJRDebugException:@"unexpected OpenID AppAuth provider" format:provider];
     }
     
     return openIDAppAuthProvider;
