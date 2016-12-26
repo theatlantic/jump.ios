@@ -70,7 +70,7 @@ extern AppDelegate *appDelegate;
 @property(nonatomic) NSString *googlePlusRedirectUri;
 
 
-// Google AppAuth property of the app's AppDelegate
+// OpenID AppAuth property of the app's AppDelegate
 /*! @brief The authorization flow session which receives the return URL from \SFSafariViewController.
  @discussion We need to store this in the app delegate as it's that delegate which receives the
  incoming URL on UIApplicationDelegate.application:openURL:options:. This property will be
