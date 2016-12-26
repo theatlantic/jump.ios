@@ -21,7 +21,6 @@
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
 		3306C17245BA3B16978120CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */; };
 		3306C504E4EB30699D49C31F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306C1C76C81D3A8D4ED2232 /* Localizable.strings */; };
-		48117C411E0DD7D1000E3F19 /* libAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48117C3C1E0DC2F5000E3F19 /* libAppAuth.a */; };
 		484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DC1B5ED14100E63266 /* AddressBook.framework */; };
 		484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DE1B5ED19200E63266 /* AssetsLibrary.framework */; };
 		484380E41B5ED19200E63266 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DF1B5ED19200E63266 /* CoreLocation.framework */; };
@@ -335,23 +334,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		48117C3B1E0DC2F5000E3F19 /* PBXContainerItemProxy */ = {
+		48EB76571E11CC6B008F4D0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 48117C351E0DC2F5000E3F19 /* AppAuth.xcodeproj */;
+			containerPortal = 48EB76511E11CC6B008F4D0B /* AppAuth.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 340E737C1C5D819B0076B1F6;
 			remoteInfo = AppAuth;
 		};
-		48117C3D1E0DC2F5000E3F19 /* PBXContainerItemProxy */ = {
+		48EB76591E11CC6B008F4D0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 48117C351E0DC2F5000E3F19 /* AppAuth.xcodeproj */;
+			containerPortal = 48EB76511E11CC6B008F4D0B /* AppAuth.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 341741F01C5D8283000EF209;
 			remoteInfo = AppAuthTests;
 		};
-		48117C3F1E0DC2F5000E3F19 /* PBXContainerItemProxy */ = {
+		48EB765B1E11CC6B008F4D0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 48117C351E0DC2F5000E3F19 /* AppAuth.xcodeproj */;
+			containerPortal = 48EB76511E11CC6B008F4D0B /* AppAuth.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 340DAE4E1D58216A00EC285B;
 			remoteInfo = "AppAuth-macOS";
@@ -381,7 +380,6 @@
 		3306C1D905E80CB37965B544 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
-		48117C351E0DC2F5000E3F19 /* AppAuth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppAuth.xcodeproj; path = "../../../OpenIDAppAuth/AppAuth-iOS/AppAuth.xcodeproj"; sourceTree = "<group>"; };
 		48117E371E11708B000E3F19 /* JROpenIDAppAuthConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthConfig.h; sourceTree = "<group>"; };
 		484380DC1B5ED14100E63266 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		484380DE1B5ED19200E63266 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -438,6 +436,7 @@
 		48CB52F11B7125C20091CD10 /* button_googleplus_135x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_googleplus_135x40@2x.png"; sourceTree = "<group>"; };
 		48CB52F21B7125C20091CD10 /* button_googleplus_280x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_googleplus_280x40@2x.png"; sourceTree = "<group>"; };
 		48CB52F61B7125D70091CD10 /* button_googleplus_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_280x40.png; sourceTree = "<group>"; };
+		48EB76511E11CC6B008F4D0B /* AppAuth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppAuth.xcodeproj; path = "../../../OpenIDAppAuth/AppAuth-iOS/AppAuth.xcodeproj"; sourceTree = "<group>"; };
 		48F27AAF1BDE97E7007D9BC3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4D60E0D0187F1D1F006A6744 /* JRCaptureEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureEnvironment.h; sourceTree = "<group>"; };
@@ -767,7 +766,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48117C411E0DD7D1000E3F19 /* libAppAuth.a in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
@@ -816,12 +814,12 @@
 			path = en.lproj;
 			sourceTree = "<group>";
 		};
-		48117C361E0DC2F5000E3F19 /* Products */ = {
+		48EB76521E11CC6B008F4D0B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48117C3C1E0DC2F5000E3F19 /* libAppAuth.a */,
-				48117C3E1E0DC2F5000E3F19 /* AppAuthTests.xctest */,
-				48117C401E0DC2F5000E3F19 /* libAppAuth-macOS.a */,
+				48EB76581E11CC6B008F4D0B /* libAppAuth.a */,
+				48EB765A1E11CC6B008F4D0B /* AppAuthTests.xctest */,
+				48EB765C1E11CC6B008F4D0B /* libAppAuth-macOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -888,7 +886,7 @@
 		90C36B6B7717AA0C893E08DC = {
 			isa = PBXGroup;
 			children = (
-				48117C351E0DC2F5000E3F19 /* AppAuth.xcodeproj */,
+				48EB76511E11CC6B008F4D0B /* AppAuth.xcodeproj */,
 				DFB68871175E8E6C006DFC92 /* Janrain */,
 				90C36B6B7717AA0C893E08DD /* Products */,
 				90C36B6B7717AA0C893E08E8 /* Frameworks */,
@@ -1554,14 +1552,15 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 90C36B6B7717AA0C893E08DC;
 			productRefGroup = 90C36B6B7717AA0C893E08DD /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 48117C361E0DC2F5000E3F19 /* Products */;
-					ProjectRef = 48117C351E0DC2F5000E3F19 /* AppAuth.xcodeproj */;
+					ProductGroup = 48EB76521E11CC6B008F4D0B /* Products */;
+					ProjectRef = 48EB76511E11CC6B008F4D0B /* AppAuth.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1572,25 +1571,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		48117C3C1E0DC2F5000E3F19 /* libAppAuth.a */ = {
+		48EB76581E11CC6B008F4D0B /* libAppAuth.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libAppAuth.a;
-			remoteRef = 48117C3B1E0DC2F5000E3F19 /* PBXContainerItemProxy */;
+			remoteRef = 48EB76571E11CC6B008F4D0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		48117C3E1E0DC2F5000E3F19 /* AppAuthTests.xctest */ = {
+		48EB765A1E11CC6B008F4D0B /* AppAuthTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AppAuthTests.xctest;
-			remoteRef = 48117C3D1E0DC2F5000E3F19 /* PBXContainerItemProxy */;
+			remoteRef = 48EB76591E11CC6B008F4D0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		48117C401E0DC2F5000E3F19 /* libAppAuth-macOS.a */ = {
+		48EB765C1E11CC6B008F4D0B /* libAppAuth-macOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libAppAuth-macOS.a";
-			remoteRef = 48117C3F1E0DC2F5000E3F19 /* PBXContainerItemProxy */;
+			remoteRef = 48EB765B1E11CC6B008F4D0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

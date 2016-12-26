@@ -283,19 +283,15 @@ static JREngage* singleton = nil;
                                                                                   }];
     
     NSString *url = [NSString stringWithFormat: @"https://%@/signin/oauth_token",engageAppUrl];
-    if([provider isEqualToString:@"twitter"]){
-        if (tokenSecret) {
-            // Twitter uses OAuth 1 and requires both a token and a token secret
+    
+    if (tokenSecret) {
+        if([provider  isEqual: @"twitter"]){
             [params setObject:tokenSecret forKey:@"token_secret"];
         }
-    }
-    if([provider isEqualToString:@"wechat"]){
-        if (tokenSecret) {
-            // WeChat requires the wechat.openid value.
+        if([provider  isEqual: @"wechat"]){
             [params setObject:tokenSecret forKey:@"wechat.openid"];
         }
     }
-    
     
     void (^responseHandler)(id, NSError *) = ^(id result, NSError *error)
     {
