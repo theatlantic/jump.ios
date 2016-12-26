@@ -22,7 +22,7 @@ The sample applications provided as part of the Janrain Mobile Libraries reposit
 
 Once you have added the OpenID AppAuth libraries to your project or workspace the following settings will need to be added/updated in your application if you are planning on using Google as a web-based identity provider in your mobile application.  NOTE: These steps are not necessary if you are using Google Native authentication using the Google iOS SDK.
 
-1.  Create an iOS Google OAuth Client
+####Create an iOS Google OAuth Client####
 
 Visit https://console.developers.google.com/apis/credentials?project=_ and find the project that correlates to the Google Web OAuth client that is being used with the *same* Engage application being used by the Janrain Mobile Libraries. Then tap "Create credentials" and select "OAuth client ID".  Follow the instructions to configure the consent screen (just the Product Name is needed).
 
@@ -30,7 +30,8 @@ Then, complete the OAuth client creation by selecting "iOS" as the Application t
 
 Copy the client ID to the clipboard or a location for future use.
 
-2.  Update your application's configuration (i.e. https://github.com/janrain/jump.ios/blob/master/Samples/SimpleCaptureDemo/assets/janrain-config-default.plist ) by addind the following values:
+####Update Janrain Library configuration####
+Update your application's configuration (i.e. https://github.com/janrain/jump.ios/blob/master/Samples/SimpleCaptureDemo/assets/janrain-config-default.plist ) by addind the following values:
 
 `<key>googlePlusRedirectUri</key>
 <string>com.googleusercontent.apps.YOUR_CLIENT_ID:/oauthredirect</string>
@@ -48,7 +49,8 @@ config.captureFlowName = captureFlowName;
 config.googlePlusClientId = googlePlusClientId;
 config.googlePlusRedirectUri = googlePlusRedirectUri;`
 
-3.  Open your application's' `Info.plist` and fully expand "URL types" (a.k.a. "CFBundleURLTypes") and replace `com.googleusercontent.apps.YOUR_CLIENT_ID` with the reverse DNS notation form of your client id (not including the `:/oauthredirect` path component).
+####Update your applications info.plist####
+Open your application's' `Info.plist` and fully expand "URL types" (a.k.a. "CFBundleURLTypes") and replace `com.googleusercontent.apps.YOUR_CLIENT_ID` with the reverse DNS notation form of your client id (not including the `:/oauthredirect` path component).
 
 Example:
 `<key>CFBundleURLTypes</key>
@@ -64,7 +66,8 @@ Example:
 </array>
 `
 
-4. Add the following to your AppDelegate.h file (see the Sample Application code for additional context):
+####Update your application's AppDelegate.h####
+Add the following to your AppDelegate.h file (see the Sample Application code for additional context):
 `@protocol OIDAuthorizationFlowSession;`
 AND
 `
@@ -81,7 +84,7 @@ AND
 
 ####Update Misconfiguration Errors####
 
-1. *Error*:
+*Error*:
 `Undefined symbols for architecture x86_64:
 "_OBJC_CLASS_$_JROpenIDAppAuth", referenced from:
 objc-class-ref in JREngage.o
@@ -89,38 +92,38 @@ objc-class-ref in JRProvidersController.o`
 
 *Resolution*: Delete the "Janrain" folder reference from your project and re-add the folder reference linking to the latest files.  New files have been added to the Janrain Libraries and they are not being referenced in your project.
 
-2. *Error*:
+*Error*:
 `/jump.ios/Janrain/JREngage/Classes/JROpenIDAppAuthGoogle.m:28:9: 'AppAuth.h' file not found`
 
 *Resolution*: Please follow the steps outlined above and include the OpenID AppAuth library to your workspace.
 
-3. *Error*:
+*Error*:
 `/jump.ios/Janrain/JREngage/Classes/JROpenIDAppAuthGoogle.m:53:59: Property 'googlePlusRedirectUri' not found on object of type 'AppDelegate *`
 
 *Resolution*: Add the following to your AppDelegate.h file (see the Sample Application code for additional context):
 `@property(nonatomic) NSString *googlePlusRedirectUri;`
 
 
-4. *Error*:
+*Error*:
 `/jump.ios/Janrain/JREngage/Classes/JROpenIDAppAuthGoogle.m:74:80: Property 'googlePlusClientId' not found on object of type 'AppDelegate *'`
 
 *Resolution*: Add the following to your AppDelegate.h file (see the Sample Application code for additional context):
 `@property(nonatomic) NSString *googlePlusClientId;`
 
 
-5. *Error*:
+*Error*:
 `/jump.ios/Janrain/JREngage/Classes/JROpenIDAppAuthGoogle.m:87:25: Property 'openIDAppAuthAuthorizationFlow' not found on object of type 'AppDelegate *'`
 
 *Resolution*: Add the following to your AppDelegate.h file (see the Sample Application code for additional context):
 `@property(nonatomic, strong) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;`
 
-6. *Error*:
+*Error*:
 `/jump.ios/Samples/SimpleCaptureDemo/SimpleCaptureDemo/Classes/AppDelegate.h:76:33: No type or protocol named 'OIDAuthorizationFlowSession'`
 
 *Resolution*: Add the following to your AppDelegate.h file (see the Sample Application code for additional context):
 `@protocol OIDAuthorizationFlowSession;`
 
-7. *Errors*:
+*Errors*:
 `(null): "_OBJC_CLASS_$_OIDAuthState", referenced from:`,
 `(null): "_OBJC_CLASS_$_OIDAuthorizationRequest", referenced from:`,
 `(null): "_OIDResponseTypeCode", referenced from:`,
