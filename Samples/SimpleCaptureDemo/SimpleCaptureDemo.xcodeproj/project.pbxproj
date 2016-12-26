@@ -382,6 +382,7 @@
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
 		48117C351E0DC2F5000E3F19 /* AppAuth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppAuth.xcodeproj; path = "../../../OpenIDAppAuth/AppAuth-iOS/AppAuth.xcodeproj"; sourceTree = "<group>"; };
+		48117E371E11708B000E3F19 /* JROpenIDAppAuthConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthConfig.h; sourceTree = "<group>"; };
 		484380DC1B5ED14100E63266 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		484380DE1B5ED19200E63266 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		484380DF1B5ED19200E63266 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -395,7 +396,6 @@
 		486B0CD81E02190400B73F4F /* JROpenIDAppAuthGoogle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogle.h; sourceTree = "<group>"; };
 		486B0CD91E0219CC00B73F4F /* JROpenIDAppAuthProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthProvider.h; sourceTree = "<group>"; };
 		486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROpenIDAppAuthProvider.m; sourceTree = "<group>"; };
-		486B0CDC1E021DE500B73F4F /* JRGoogleAppAuthConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRGoogleAppAuthConfig.h; sourceTree = "<group>"; };
 		4898D44A1DFA0D8C007432DB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		4898D44C1DFA1094007432DB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
@@ -1168,8 +1168,8 @@
 				19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */,
 				19BC052B6185FEA424AF0113 /* JRCompatibilityUtils.h */,
 				486B0CD31E02169400B73F4F /* JROpenIDAppAuth.h */,
-				486B0CDC1E021DE500B73F4F /* JRGoogleAppAuthConfig.h */,
 				486B0CD41E02171100B73F4F /* JROpenIDAppAuth.m */,
+				48117E371E11708B000E3F19 /* JROpenIDAppAuthConfig.h */,
 				486B0CD61E0218E300B73F4F /* JROpenIDAppAuthGoogle.m */,
 				486B0CD81E02190400B73F4F /* JROpenIDAppAuthGoogle.h */,
 				486B0CD91E0219CC00B73F4F /* JROpenIDAppAuthProvider.h */,

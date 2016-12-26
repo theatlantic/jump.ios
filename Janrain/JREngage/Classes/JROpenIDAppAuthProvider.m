@@ -80,8 +80,12 @@
     NSString *url = [[JRSessionData jrSessionData].baseUrl stringByAppendingString:@"/signin/oauth_token"];
     
     if (tokenSecret) {
-        // Twitter uses OAuth 1 and requires both a token and a token secret
-        [params setObject:tokenSecret forKey:@"token_secret"];
+        if([self.provider  isEqual: @"twitter"]){
+            [params setObject:tokenSecret forKey:@"token_secret"];
+        }
+        if([self.provider  isEqual: @"wechat"]){
+            [params setObject:tokenSecret forKey:@"wechat.openid"];
+        }
     }
     
     
@@ -97,7 +101,7 @@
             NSError *nativeAuthError = [NSError errorWithDomain:JREngageErrorDomain
                                                            code:JRAuthenticationNativeAuthError
                                                        userInfo:@{@"result": result_, @"error": error_}];
-            DLog(@"Google AppAuth auth error: %@", nativeAuthError);
+            DLog(@"OpenID AppAuth auth error: %@", nativeAuthError);
             self.completion(nativeAuthError);
             return;
         }
