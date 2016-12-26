@@ -31,7 +31,7 @@ Then, complete the OAuth client creation by selecting "iOS" as the Application t
 Copy the client ID to the clipboard or a location for future use.
 
 ####Update Janrain Library configuration####
-Update your application's configuration (i.e. https://github.com/janrain/jump.ios/blob/master/Samples/SimpleCaptureDemo/assets/janrain-config-default.plist ) by addind the following values:
+Update your application's configuration (i.e. https://github.com/janrain/jump.ios/blob/master/Samples/SimpleCaptureDemo/assets/janrain-config-default.plist ) by adding the following values:
 
 `<key>googlePlusRedirectUri</key>
 <string>com.googleusercontent.apps.YOUR_CLIENT_ID:/oauthredirect</string>
