@@ -95,21 +95,20 @@ AppDelegate *appDelegate = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     appDelegate = self;
-    
-    
+
+
     //Setup Twitter TwitterKit/Fabric
     // http://docs.fabric.io/ios/twitter/twitterkit-setup.html
-    //[[Twitter sharedInstance] startWithConsumerKey:@"UPDATE" consumerSecret:@"UPDATE"];
     [[Twitter sharedInstance] startWithConsumerKey:@"UPDATE" consumerSecret:@"UPDATE"];
-    
+
     [Fabric with:@[TwitterKit]];
-    
+
     BOOL fbDidFinish = [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     if(fbDidFinish){
        NSLog(@"Facebook Started");
     }
     [FBSDKLoginManager renewSystemCredentials:^(ACAccountCredentialRenewResult result, NSError *error) {}];
-    
+
     // register for Janrain notification(s)
     [[NSNotificationCenter defaultCenter]
             addObserver:self
@@ -166,25 +165,23 @@ AppDelegate *appDelegate = nil;
         _openIDAppAuthAuthorizationFlow = nil;
         return YES;
     }
-    
+
     // Your additional URL handling (if any) goes here.
-    
+
     return NO;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    //NSString *urlScheme = url.scheme;
     NSLog(@"openURL %@", url);
-    
+
     if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
         return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                               openURL:url
                                                     sourceApplication:sourceApplication
                                                            annotation:annotation];
-    }else if(url.scheme != nil && [url.scheme hasPrefix:@"gplus"]){
-        //NOTE:  Google SignIn wants this but I never see it get hit so I'm guessing at the url scheme prefix.
+    }else if(url.scheme != nil && [url.scheme hasPrefix:@"com.googleusercontent.apps"]){
         return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
     }else{
         return [self application:application
