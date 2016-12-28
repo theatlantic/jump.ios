@@ -38,7 +38,7 @@ The sample applications provided as part of the Janrain Mobile Libraries reposit
     6.  Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemoNative application.
 
   * ###Google+
-    1. Download the Google+ SDK from this link: https://developers.google.com/+/mobile/ios/getting-started
+    1. Download the Google+ 2.3.2 SDK from this link: https://developers.google.com/identity/sign-in/ios/sdk/google_signin_sdk_2_3_2.zip.  Refer to this link for additional information: https://developers.google.com/+/mobile/ios/getting-started
     2. Follow *ALL* of the steps on this page that involve the XCode project configuration and Google+ app configuration: https://developers.google.com/+/mobile/ios/getting-started  In order for the Janrain Social Login Server to validate the provided Google+ oAuth token, the token must be provisioned from the same Google+ application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Google+ App.
     3. Update the "SimpleCaptureDemoNative-Info.plist" file to use your Google+ App ID in the recommended places.  This should match the Google+ App ID that was used for configuring the Google+ provider in the Social Login Dashboard.
     4. Update the Google+ "GoogleService-Info.plist" file with your Google+ App Client ID and reversed Client ID.
