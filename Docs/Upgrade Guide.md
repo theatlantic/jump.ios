@@ -13,7 +13,7 @@ A less desirable but more reliable and more general upgrade strategy:
 ### Upgrading from any version to v5.0 or greater
 
 There are potentially *breaking* changes to the Janrain Mobile SDK with version 5.0.  Due to Google's decision to not allow web-based authentication through webviews, support for web-based authentication for Google has been implemented using Google's recommended OpenID AppAuth (http://openid.github.io/AppAuth-iOS/) libraries.  These libraries are now a *required* dependency of the Janrain Mobile Libraries.'
-    
+
 The OpenID AppAuth for iOS libraries (version 0.7.1 tested) can be installed using CocoaPods or as an Xcode Workspace library.  Please refer to this link for additional information on installing the OpenID AppAuth for iOS libraries: http://openid.github.io/AppAuth-iOS/ Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
 
 If you are linking to the OpenID AppAuth Library repo and not using CocoaPods you may need to add the OpenID AppAuth library source code location to your Xcode project's Build Settings -> Search Paths -> Header Search Paths value: example: `/GitHub/OpenIDAppAuth/AppAuth-iOS/Source` (use the "recursive" option if needed).
@@ -76,6 +76,22 @@ AND
 @property(nonatomic, strong) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;
 `
 
+####Update your application's AppDelegate.m####
+
+Synthesize the variables:
+`@synthesize googlePlusClientId;` and
+`@synthesize googlePlusRedirectUri;` and
+
+In the `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` method make sure to read in the following values:
+`config.googlePlusClientId = googlePlusClientId;` and `config.googlePlusRedirectUri = googlePlusRedirectUri;`
+
+If you are parsing a config plist make sure you populate the variables - from `- (void)parseConfigNamed:(NSString *)cfgKeyName fromConfigPlist:(NSDictionary *)cfgPlist` in the SimpleDemo app:
+
+`if ([cfg objectForKey:@"googlePlusClientId"])
+        self.googlePlusClientId = [cfg objectForKey:@"googlePlusClientId"];` and
+`if ([cfg objectForKey:@"googlePlusRedirectUri"])
+    self.googlePlusRedirectUri = [cfg objectForKey:@"googlePlusRedirectUri"];`
+
 ####New optional configuration items####
 
 1. `config.engageAppUrl` If this value is set when intializing the Mobile Libraries the libraries will attempt to use the url provided for all Social Login (Engage) communications.  This setting should only be used when advised to do so by a Janrain technical resource.
@@ -133,7 +149,18 @@ objc-class-ref in JRProvidersController.o`
 
 *Resolution*: Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
 
+*Errors*:
+/jump.ios/Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/Classes/AppDelegate.m:135:33: Use of undeclared identifier 'googlePlusClientId'; did you mean '_googlePlusClientId'?
+/jump.ios/Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/Classes/AppDelegate.m:136:36: Use of undeclared identifier 'googlePlusRedirectUri'; did you mean '_googlePlusRedirectUri'?
 
+*Resolution*:
+Make sure you are reading the data from your app's info.plist in your AppDelegate.m file, example:
+`@synthesize googlePlusClientId;` and
+`@synthesize googlePlusRedirectUri;` and
+`if ([cfg objectForKey:@"googlePlusClientId"])
+        self.googlePlusClientId = [cfg objectForKey:@"googlePlusClientId"];
+if ([cfg objectForKey:@"googlePlusRedirectUri"])
+    self.googlePlusRedirectUri = [cfg objectForKey:@"googlePlusRedirectUri"];`
 
 ### Upgrading from any version to v4.0 or greater
 
