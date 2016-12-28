@@ -71,8 +71,8 @@ objc-class-ref in JRProvidersController.o`
 *Resolution*: Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
 
 *Errors*:
-/jump.ios/Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/Classes/AppDelegate.m:135:33: Use of undeclared identifier 'googlePlusClientId'; did you mean '_googlePlusClientId'?
-/jump.ios/Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/Classes/AppDelegate.m:136:36: Use of undeclared identifier 'googlePlusRedirectUri'; did you mean '_googlePlusRedirectUri'?
+`/jump.ios/Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/Classes/AppDelegate.m:135:33: Use of undeclared identifier 'googlePlusClientId'; did you mean '_googlePlusClientId'?` OR
+`/jump.ios/Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/Classes/AppDelegate.m:136:36: Use of undeclared identifier 'googlePlusRedirectUri'; did you mean '_googlePlusRedirectUri'?`
 
 *Resolution*:
 Make sure you are reading the data from your app's info.plist in your AppDelegate.m file, example:
