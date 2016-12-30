@@ -7,15 +7,15 @@
 	<key>prod-demo</key>
 	<dict>
 		<key>googlePlusClientId</key>
-		<string>169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.apps.googleusercontent.com</string>
+		<string>UPDATE_WITH_GOOGLE_CLIENT_ID.apps.googleusercontent.com</string>
 		<key>googlePlusRedirectUri</key>
-		<string>com.googleusercontent.apps.169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7:/oauthredirect</string>
+		<string>com.googleusercontent.apps.UPDATE_WITH_GOOGLE_CLIENT_ID:/oauthredirect</string>
 		<key>engageAppId</key>
-		<string>appcfamhnpkagijaeinl</string>
+		<string>UPDATE</string>
 		<key>captureDomain</key>
-		<string>mobile-dev.janraincapture.com</string>
+		<string>UPDATE.janraincapture.com</string>
 		<key>captureClientId</key>
-		<string>9vt2ej43mxyftkf68c3xthkm2rtweg8w</string>
+		<string>UPDATE</string>
 		<key>captureFlowName</key>
 		<string>standard_flow</string>
 		<key>captureTraditionalSignInFormName</key>
@@ -31,28 +31,13 @@
 		<key>captureFlowVersion</key>
 		<string>HEAD</string>
 		<key>captureAppId</key>
-		<string>rz47skmnm48jpcv3bh4eguv4b8</string>
+		<string>UPDATE</string>
 		<key>captureForgottenPasswordFormName</key>
 		<string>forgotPasswordForm</string>
 		<key>captureEditProfileFormName</key>
 		<string>editProfileForm</string>
 		<key>resendVerificationFormName</key>
 		<string>resendVerificationForm</string>
-	</dict>
-	<key>apitest-rpxtesting</key>
-	<dict>
-		<key>engageAppId</key>
-		<string>gifpkeongnkpdhdlejno</string>
-		<key>rpxDomain</key>
-		<string>rpxtesting.com</string>
-		<key>customProviders</key>
-		<dict>
-			<key>saml_test</key>
-			<dict>
-				<key>saml_provider</key>
-				<string>samltest</string>
-			</dict>
-		</dict>
 	</dict>
 </dict>
 </plist>
