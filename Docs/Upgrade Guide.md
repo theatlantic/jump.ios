@@ -60,7 +60,7 @@ Example:
         <string>Editor</string>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>com.googleusercontent.apps.YOUR_CLIENT_ID:/oauthredirect</string>
+            <string>com.googleusercontent.apps.YOUR_CLIENT_ID</string>
         </array>
         </dict>
 </array>

@@ -24,7 +24,6 @@
 		48117D371E0DDD02000E3F19 /* JROpenIDAppAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 48117D311E0DDD02000E3F19 /* JROpenIDAppAuth.m */; };
 		48117D381E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 48117D341E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.m */; };
 		48117D391E0DDD02000E3F19 /* JROpenIDAppAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 48117D361E0DDD02000E3F19 /* JROpenIDAppAuthProvider.m */; };
-		48117E311E0DDF44000E3F19 /* libAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48117E2C1E0DDF33000E3F19 /* libAppAuth.a */; };
 		484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DC1B5ED14100E63266 /* AddressBook.framework */; };
 		484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DE1B5ED19200E63266 /* AssetsLibrary.framework */; };
 		484380E41B5ED19200E63266 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DF1B5ED19200E63266 /* CoreLocation.framework */; };
@@ -34,6 +33,7 @@
 		484380ED1B5EEC7B00E63266 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */; };
 		484380EF1B5EF6F400E63266 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
+		4869A0DD1E1D725C007F76B1 /* libAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4869A0DC1E1D725C007F76B1 /* libAppAuth.a */; };
 		4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73971B63045C001D98FF /* StoreKit.framework */; };
 		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
 		48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */; };
@@ -343,30 +343,6 @@
 		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		48117E2B1E0DDF33000E3F19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48117E251E0DDF33000E3F19 /* AppAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 340E737C1C5D819B0076B1F6;
-			remoteInfo = AppAuth;
-		};
-		48117E2D1E0DDF33000E3F19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48117E251E0DDF33000E3F19 /* AppAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 341741F01C5D8283000EF209;
-			remoteInfo = AppAuthTests;
-		};
-		48117E2F1E0DDF33000E3F19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48117E251E0DDF33000E3F19 /* AppAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 340DAE4E1D58216A00EC285B;
-			remoteInfo = "AppAuth-macOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		19BC0172346689920F3635B5 /* JRCaptureUIRequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureUIRequestBuilder.h; sourceTree = "<group>"; };
 		19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCompatibilityUtils.m; sourceTree = "<group>"; };
@@ -398,7 +374,6 @@
 		48117D341E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROpenIDAppAuthGoogle.m; sourceTree = "<group>"; };
 		48117D351E0DDD02000E3F19 /* JROpenIDAppAuthProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthProvider.h; sourceTree = "<group>"; };
 		48117D361E0DDD02000E3F19 /* JROpenIDAppAuthProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROpenIDAppAuthProvider.m; sourceTree = "<group>"; };
-		48117E251E0DDF33000E3F19 /* AppAuth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppAuth.xcodeproj; path = "../../../OpenIDAppAuth/AppAuth-iOS/AppAuth.xcodeproj"; sourceTree = "<group>"; };
 		484380DC1B5ED14100E63266 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		484380DE1B5ED19200E63266 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		484380DF1B5ED19200E63266 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -408,6 +383,7 @@
 		484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_135x40.png; sourceTree = "<group>"; };
+		4869A0DC1E1D725C007F76B1 /* libAppAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppAuth.a; path = "../../../../Library/Developer/Xcode/DerivedData/SimpleCaptureDemoNative-cwhqgaglbfvnfsbroxnhocykyfie/Build/Products/Debug-iphonesimulator/libAppAuth.a"; sourceTree = "<group>"; };
 		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
 		48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_280x40.png; sourceTree = "<group>"; };
 		48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_paypal_openidconnect_30x30.png; sourceTree = "<group>"; };
@@ -784,7 +760,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48117E311E0DDF44000E3F19 /* libAppAuth.a in Frameworks */,
+				4869A0DD1E1D725C007F76B1 /* libAppAuth.a in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
@@ -837,16 +813,6 @@
 				3306C1C76C81D3A8D4ED2232 /* Localizable.strings */,
 			);
 			path = en.lproj;
-			sourceTree = "<group>";
-		};
-		48117E261E0DDF33000E3F19 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				48117E2C1E0DDF33000E3F19 /* libAppAuth.a */,
-				48117E2E1E0DDF33000E3F19 /* AppAuthTests.xctest */,
-				48117E301E0DDF33000E3F19 /* libAppAuth-macOS.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4DB994BA18A3F84B00E4D116 /* en.lproj */ = {
@@ -911,7 +877,6 @@
 		90C36B6B7717AA0C893E08DC = {
 			isa = PBXGroup;
 			children = (
-				48117E251E0DDF33000E3F19 /* AppAuth.xcodeproj */,
 				DFB68871175E8E6C006DFC92 /* Janrain */,
 				90C36B6B7717AA0C893E08DD /* Products */,
 				90C36B6B7717AA0C893E08E8 /* Frameworks */,
@@ -932,6 +897,7 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4869A0DC1E1D725C007F76B1 /* libAppAuth.a */,
 				48117C4F1E0DDBA8000E3F19 /* AppAuth.h */,
 				48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */,
 				48F27AAF1BDE97E7007D9BC3 /* libz.tbd */,
@@ -1590,42 +1556,12 @@
 			mainGroup = 90C36B6B7717AA0C893E08DC;
 			productRefGroup = 90C36B6B7717AA0C893E08DD /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 48117E261E0DDF33000E3F19 /* Products */;
-					ProjectRef = 48117E251E0DDF33000E3F19 /* AppAuth.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				90C36B6B7717AA0C893E08E1 /* SimpleCaptureDemoNative */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		48117E2C1E0DDF33000E3F19 /* libAppAuth.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAppAuth.a;
-			remoteRef = 48117E2B1E0DDF33000E3F19 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		48117E2E1E0DDF33000E3F19 /* AppAuthTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AppAuthTests.xctest;
-			remoteRef = 48117E2D1E0DDF33000E3F19 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		48117E301E0DDF33000E3F19 /* libAppAuth-macOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libAppAuth-macOS.a";
-			remoteRef = 48117E2F1E0DDF33000E3F19 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		90C36B6B7717AA0C893E08E7 /* Resources */ = {

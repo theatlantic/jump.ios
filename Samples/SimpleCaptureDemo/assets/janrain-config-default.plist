@@ -7,9 +7,9 @@
 	<key>prod-demo</key>
 	<dict>
 		<key>googlePlusRedirectUri</key>
-		<string>com.googleusercontent.apps.169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7:/oauthredirect</string>
+		<string>com.googleusercontent.apps.169582807084-q6j1vmlas0q26svho9vh6npg4dogn76o:/oauthredirect</string>
 		<key>googlePlusClientId</key>
-		<string>169582807084-ptt8o5g2ioooaotmkihfp9fej7ufmvc7.apps.googleusercontent.com</string>
+		<string>169582807084-q6j1vmlas0q26svho9vh6npg4dogn76o.apps.googleusercontent.com</string>
 		<key>engageAppId</key>
 		<string>appcfamhnpkagijaeinl</string>
 		<key>captureDomain</key>

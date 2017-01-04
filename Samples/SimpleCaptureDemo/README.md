@@ -3,21 +3,60 @@
 ##IMPORTANT##
 Please read the Docs/Upgrade Guide.md and RELEASE_NOTES before attempting to run these applications.  There are important configuration steps that must be taken before these apps will run.
 
+####To run this demo with the provided configuration:####
 
-####To run this demo with your own configuration:####
-
-1. Find janrain-config-default.plist
-2. Copy it to janrain-config.plist
-3. Edit the settings in the copy to reflect your Social Login and Registration Settings.
-4. Edit the settings to include the correct form names as found in your flow file.
-5. Make sure you have the OpenID AppAuth for iOS Libraries implemented/installed:
+Due to Google's decision to not allow web-based authentication through webviews, support for web-based authentication for Google has been implemented using Google's recommended OpenID AppAuth (http://openid.github.io/AppAuth-iOS/) libraries.  These libraries are now a *required* dependency of the Janrain Mobile Libraries.
 
 The OpenID AppAuth for iOS libraries (version 0.7.1 tested) can be installed using CocoaPods or as an Xcode Workspace library.  Please refer to this link for additional information on installing the OpenID AppAuth for iOS libraries: http://openid.github.io/AppAuth-iOS/ Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
 
 If you are linking to the OpenID AppAuth Library repo and not using CocoaPods you may need to add the OpenID AppAuth library source code location to your Xcode project's Build Settings -> Search Paths -> Header Search Paths value: example: `/GitHub/OpenIDAppAuth/AppAuth-iOS/Source` (use the "recursive" option if needed).
 
-The sample applications provided as part of the Janrain Mobile Libraries repository have been updated to use the Xcode Workspace library implementation method.  This may require re-linking of the libraries for your build environement. *NOTE:* You may have to convert your Xcode project to a workspace project if you do not want to use CocoaPods.
+This sample application has been updated to use the Xcode Workspace library implementation method.  This *WILL* require re-linking of the libraries for your build environement. *NOTE:* You may have to convert your Xcode project to a workspace project if you do not want to use CocoaPods.
 
+Once you have added the OpenID AppAuth libraries to your project or workspace the following settings will need to be added/updated in your application if you are planning on using Google as a web-based identity provider in your mobile application.  NOTE: These steps are not necessary if you are using Google Native authentication using the Google iOS SDK.
+
+
+####To run this demo with your own configuration:####
+
+1. Follow the steps above to add the OpenID AppAuth for iOS Libraries
+3. Find janrain-config-default.plist
+4. Copy it to janrain-config.plist
+5. Edit the settings in the copy to reflect your Social Login and Registration Settings.
+6. Edit the settings to include the correct form names as found in your flow file.
+7. Make sure you have the OpenID AppAuth for iOS Libraries implemented/installed.
+8. Update the corresponding Google Client for the AppAuth libraries:
+####Create an iOS Google OAuth Client####
+
+Visit https://console.developers.google.com/apis/credentials?project=_ and find the project that correlates to the Google Web OAuth client that is being used with the *same* Engage application being used by the Janrain Mobile Libraries. Then tap "Create credentials" and select "OAuth client ID".  Follow the instructions to configure the consent screen (just the Product Name is needed).
+
+Then, complete the OAuth client creation by selecting "iOS" as the Application type.  Enter the Bundle ID of the project (`com.janrain.simpledemo.example` for example, but you must change this in the project and use your own Bundle ID).
+
+Copy the client ID to the clipboard or a location for future use.
+
+####Update Janrain Library configuration####
+Update your application's configuration (i.e. https://github.com/janrain/jump.ios/blob/master/Samples/SimpleCaptureDemo/assets/janrain-config-default.plist ) by adding/updating the following values:
+
+`<key>googlePlusRedirectUri</key>
+<string>com.googleusercontent.apps.YOUR_CLIENT_ID:/oauthredirect</string>
+<key>googlePlusClientId</key>
+<string>YOUR_CLIENT_ID.apps.googleusercontent.com</string>`
+
+####Update your applications info.plist####
+Open your application's' `Info.plist` and fully expand "URL types" (a.k.a. "CFBundleURLTypes") and replace `com.googleusercontent.apps.YOUR_CLIENT_ID` with the reverse DNS notation form of your client id (not including the `:/oauthredirect` path component).
+
+Example:
+`<key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>com.googleusercontent.apps.YOUR_CLIENT_ID</string>
+        </array>
+        </dict>
+</array>
+`
 
 ###Typical Misconfiguration Errors###
 
