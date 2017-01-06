@@ -11,7 +11,7 @@ The OpenID AppAuth for iOS libraries (version 0.7.1 tested) can be installed usi
 
 If you are linking to the OpenID AppAuth Library repo and not using CocoaPods you may need to add the OpenID AppAuth library source code location to your Xcode project's Build Settings -> Search Paths -> Header Search Paths value: example: `/GitHub/OpenIDAppAuth/AppAuth-iOS/Source` (use the "recursive" option if needed).
 
-This sample application has been updated to use the Xcode Workspace library implementation method.  This *WILL* require re-linking of the libraries for your build environement. *NOTE:* You may have to convert your Xcode project to a workspace project if you do not want to use CocoaPods.
+This sample application has been updated to use the Xcode Workspace library implementation method.  This *WILL* require re-linking of the libraries for your build environment. *NOTE:* You may have to convert your Xcode project to a workspace project if you do not want to use CocoaPods.
 
 Once you have added the OpenID AppAuth libraries to your project or workspace the following settings will need to be added/updated in your application if you are planning on using Google as a web-based identity provider in your mobile application.  NOTE: These steps are not necessary if you are using Google Native authentication using the Google iOS SDK.
 
