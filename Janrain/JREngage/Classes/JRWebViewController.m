@@ -40,6 +40,7 @@
 #import "JRJsonUtils.h"
 #import "JRCompatibilityUtils.h"
 
+
 @interface JRWebViewController ()
 - (void)loadUrlInWebView:(NSURL *)url;
 @end
@@ -50,7 +51,9 @@
     NSDictionary *customInterface;
 
     UIView *myBackgroundView;
+    //WKWebView *myBackgroundView;
     UIWebView *myWebView;
+    //WKWebView *myWebView;
 
     JRInfoBar *infoBar;
 
@@ -113,7 +116,11 @@
         [self.view addSubview:infoBar];
     }
 }
-
+/*
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+*/
 + (NSString *)getCustomUa
 {
     NSString *customUa = nil;
@@ -157,6 +164,14 @@
     [self maybeAddCancelButton];
 
     DLog(@"%@", [myWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"]);
+    
+    //[myWebView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id __nullable userAgent, NSError * __nullable error) {
+    //DLog(@"%@", userAgent);
+        // iOS 8.3
+        // Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12F70
+        // iOS 9.0
+        // Mozilla/5.0 (iPhone; CPU iPhone OS 9_0 like Mac OS X) AppleWebKit/601.1.32 (KHTML, like Gecko) Mobile/13A4254v
+    //}];
     [super viewDidAppear:animated];
 
     /* We need to figure out if the user canceled authentication by hitting the back button or the cancel button,
@@ -249,6 +264,7 @@
     /* This fixes the UIWebView's display of IDP sign-in pages to make them fit the iPhone sized dialog on the iPad.
      * It's broken up into separate JS injections in case one statement fails (e.g. there is no document element),
      * so that the others execute. */
+    
     [myWebView stringByEvaluatingJavaScriptFromString:@""
             "window.innerHeight = 480; window.innerWidth = 320;"
             "document.documentElement.clientWidth = 320; document.documentElement.clientHeight = 480;"
@@ -257,7 +273,21 @@
             "document.body.style.minHeight = \"0px\";"
             "document.body.style.height = \"auto\";"
             "document.body.children[0].style.minHeight = \"0px\";"];
-
+     
+    /*
+    NSString *jsString = @""
+    "window.innerHeight = 480; window.innerWidth = 320;"
+    "document.documentElement.clientWidth = 320; document.documentElement.clientHeight = 480;"
+    "document.body.style.minWidth = \"320px\";"
+    "document.body.style.width = \"auto\";"
+    "document.body.style.minHeight = \"0px\";"
+    "document.body.style.height = \"auto\";"
+    "document.body.children[0].style.minHeight = \"0px\";";
+    
+    [myWebView evaluateJavaScript:jsString completionHandler:^(id __nullable evalResult, NSError * __nullable error) {
+        DLog(@"%@", evalResult);
+    }];
+     */
     NSString *jsString = [NSString stringWithFormat:@""
             "(function(){"
               "var m = document.querySelector('meta[name=viewport]');"
@@ -268,6 +298,11 @@
             (int) myWebView.frame.size.width,
             (int) myWebView.frame.size.height];
     [myWebView stringByEvaluatingJavaScriptFromString:jsString];
+    /*
+    [myWebView evaluateJavaScript:jsString completionHandler:^(id __nullable evalResult, NSError * __nullable error) {
+         DLog(@"%@", evalResult);
+     }];
+     */
 }
 
 - (void)cancelButtonPressed:(id)sender
@@ -500,7 +535,16 @@
 {
     DLog(@"");
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //UIWebview/WKWebView
     [myWebView loadRequest:request];
+    //Safari - doesn't return to app
+    //[[UIApplication sharedApplication] openURL:[request URL]];
+    //Safari View Controller
+    //SFSafariViewController *svc = [[SFSafariViewController alloc] initWithURL:[request URL]];
+    //svc.delegate = self;
+    //[self presentViewController:svc animated:YES completion:nil];
+    
+    
 }
 
 - (void)userInterfaceWillClose
@@ -516,6 +560,6 @@
     DLog(@"");
     // Must set delegate to nil to avoid this controller being called after
     // it has been freed by the web view.
-    myWebView.delegate = nil;
+    //myWebView.delegate = nil;
 }
 @end

@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>UPDATE</string>
+				<string>com.googleusercontent.apps.169582807084-q6j1vmlas0q26svho9vh6npg4dogn76o</string>
 			</array>
 		</dict>
 		<dict>
@@ -38,40 +38,9 @@
 				<string>com.janrain.simplecapturedemo</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>UPDATE</string>
-			</array>
-		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>UPDATE</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict>
-					<key>consumerKey</key>
-					<string>UPDATE</string>
-					<key>consumerSecret</key>
-					<string>UPDATE</string>
-				</dict>
-				<key>KitName</key>
-				<string>Twitter</string>
-			</dict>
-		</array>
-	</dict>
-	<key>FacebookAppID</key>
-	<string>UPDATE</string>
-	<key>FacebookDisplayName</key>
-	<string>UPDATE</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>

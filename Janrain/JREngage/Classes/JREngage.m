@@ -36,6 +36,9 @@
 #import "JRSessionData.h"
 #import "JRUserInterfaceMaestro.h"
 #import "JREngageError.h"
+#import "JROpenIDAppAuth.h"
+#import "JROpenIDAppAuthProvider.h"
+
 
 @interface JREngage () <JRSessionDelegate>
 /** \internal Class that handles customizations to the library's UI */
@@ -47,6 +50,9 @@
 /** \internal Array of JREngageDelegate objects */
 @property (nonatomic) NSMutableArray         *delegates;
 
+@property (nonatomic) NSString *googlePlusClientId;
+
+@property (nonatomic) JROpenIDAppAuthProvider *openIDAppAuthProvider;
 
 @end
 
@@ -79,27 +85,37 @@ static JREngage* singleton = nil;
     return [self singletonInstance];
 }
 
-- (void)setEngageAppID:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
+- (void)setEngageAppID:(NSString *)appId appUrl:(NSString *)appUrl tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
 {
-    ALog (@"Initialize JREngage library with appID: %@, and tokenUrl: %@", appId, tokenUrl);
-
+    ALog (@"Initialize JREngage library with appID: %@, appUrl: %@,and tokenUrl: %@", appId, appUrl, tokenUrl);
+    
     if (!delegates)
         self.delegates = [NSMutableArray arrayWithObjects:delegate, nil];
     else
         [delegates addObject:delegate];
-
+    
     if (!sessionData)
-        self.sessionData = [JRSessionData jrSessionDataWithAppId:appId tokenUrl:tokenUrl andDelegate:self];
+        self.sessionData = [JRSessionData jrSessionDataWithAppId:appId appUrl:appUrl tokenUrl:tokenUrl andDelegate:self];
     else
-        [sessionData reconfigureWithAppId:appId tokenUrl:tokenUrl];
-
+        [sessionData reconfigureWithAppId:appId appUrl:appUrl tokenUrl:tokenUrl];
+    
     if (!interfaceMaestro)
         interfaceMaestro = [JRUserInterfaceMaestro jrUserInterfaceMaestroWithSessionData:sessionData];
 }
 
++ (void)setEngageAppId:(NSString *)appId appUrl:(NSString *)appUrl tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
+{
+    [[JREngage singletonInstance] setEngageAppID:appId appUrl:appUrl tokenUrl:tokenUrl andDelegate:delegate];
+}
+
+- (void)setEngageAppID:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
+{
+    [[JREngage singletonInstance] setEngageAppID:appId appUrl:nil tokenUrl:tokenUrl andDelegate:delegate];
+}
+
 + (void)setEngageAppId:(NSString *)appId tokenUrl:(NSString *)tokenUrl andDelegate:(id<JREngageSigninDelegate>)delegate
 {
-    [[JREngage singletonInstance] setEngageAppID:appId tokenUrl:tokenUrl andDelegate:delegate];
+     [[JREngage singletonInstance] setEngageAppID:appId appUrl:nil tokenUrl:tokenUrl andDelegate:delegate];
 }
 
 + (JREngage *)instance {
@@ -109,11 +125,24 @@ static JREngage* singleton = nil;
     return nil;
 }
 
++ (JREngage *)jrEngageWithAppId:(NSString *)appId
+                         appUrl:(NSString *)appUrl
+                    andTokenUrl:(NSString *)tokenUrl
+                       delegate:(id <JREngageSigninDelegate>)delegate {
+    [JREngage setEngageAppId:appId appUrl:appUrl tokenUrl:tokenUrl andDelegate:delegate];
+    
+    return [JREngage singletonInstance];
+}
+
 + (JREngage *)jrEngageWithAppId:(NSString *)appId andTokenUrl:(NSString *)tokenUrl
                        delegate:(id <JREngageSigninDelegate>)delegate {
-    [JREngage setEngageAppId:appId tokenUrl:tokenUrl andDelegate:delegate];
+    [JREngage setEngageAppId:appId appUrl:nil tokenUrl:tokenUrl andDelegate:delegate];
 
     return [JREngage singletonInstance];
+}
+
++ (void)setGooglePlusClientId:(NSString *)clientId {
+    [[JREngage singletonInstance] setGooglePlusClientId:clientId];
 }
 
 - (id)copyWithZone:(__unused NSZone *)zone __unused
@@ -209,42 +238,60 @@ static JREngage* singleton = nil;
         [self engageDidFailWithError:[JREngageError errorWithMessage:message andCode:JRProviderNotConfiguredError]];
         return;
     }
-    
-    // The following commented code was from previous versions of the Mobile SDK.
-    // If a developer wanted to re-introduce Native Provider detection this would be the recommended
-    // location to implement the logic.
-    //
-    // NOTE: simply un-commenting the code below will not work.  The referenced libraries have been
-    // removed from the Mobile SDK as of version 4.x
-    /*
-    if ([JRNativeAuth canHandleProvider:provider])
+
+    if ([JROpenIDAppAuth canHandleProvider:provider])
     {
-        [self startNativeAuthOnProvider:provider customInterface:customInterfaceOverrides];
+        [self startOpenIDAppAuthOnProvider:provider customInterface:customInterfaceOverrides];
     }
     else
     {
-     */
+    
         [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
-    //}
-    //
+    }
 }
 
-
+- (void)startOpenIDAppAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
+    self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider withConfiguration:(id)self];
+    [self.openIDAppAuthProvider startAuthenticationWithCompletion:^(NSError *error) {
+        
+        if (!error) return;
+        
+        if ([error.domain isEqualToString:JREngageErrorDomain] && error.code == JRAuthenticationCanceledError) {
+            [self authenticationDidCancel];
+        } else if ([error.domain isEqualToString:JREngageErrorDomain]
+                   && error.code == JRAuthenticationShouldTryWebViewError) {
+            [interfaceMaestro startWebAuthWithCustomInterface:customInterfaceOverrides provider:provider];
+        } else {
+            [self authenticationDidFailWithError:error forProvider:provider];
+        }
+    }];
+}
 
 + (void)getAuthInfoTokenForNativeProvider:(NSString *)provider
                                 withToken:(NSString *)token
                            andTokenSecret:(NSString *)tokenSecret {
+    [self getAuthInfoTokenForNativeProvider:provider withToken:token andTokenSecret:tokenSecret andEngageAppUrl:nil];
+}
+
++ (void)getAuthInfoTokenForNativeProvider:(NSString *)provider
+                                withToken:(NSString *)token
+                           andTokenSecret:(NSString *)tokenSecret
+                          andEngageAppUrl:(NSString *)engageAppUrl{
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"token" : token,
                                                                                   @"provider" : provider
                                                                                   }];
-    NSString *url = [[JRSessionData jrSessionData].baseUrl stringByAppendingString:@"/signin/oauth_token"];
+    
+    NSString *url = [NSString stringWithFormat: @"https://%@/signin/oauth_token",engageAppUrl];
     
     if (tokenSecret) {
-        // Twitter uses OAuth 1 and requires both a token and a token secret
-        [params setObject:tokenSecret forKey:@"token_secret"];
+        if([provider  isEqual: @"twitter"]){
+            [params setObject:tokenSecret forKey:@"token_secret"];
+        }
+        if([provider  isEqual: @"wechat"]){
+            [params setObject:tokenSecret forKey:@"wechat.openid"];
+        }
     }
-    
     
     void (^responseHandler)(id, NSError *) = ^(id result, NSError *error)
     {
@@ -617,18 +664,7 @@ static JREngage* singleton = nil;
 
 
 + (void)applicationDidBecomeActive:(UIApplication *)application {
-    Class fbSession = NSClassFromString(@"FBSession");
-    if (fbSession) {
-        SEL activeSessionSelector = NSSelectorFromString(@"activeSession");
-        id (*getActiveSession)(id, SEL) = (void *)[fbSession methodForSelector:activeSessionSelector];
-        id activeSession = getActiveSession(fbSession, activeSessionSelector);
-
-        SEL handleDidBecomeActiveSelector = NSSelectorFromString(@"handleDidBecomeActive");
-        void (*handleDidBecomeActive)(id, SEL, UIApplication *) =
-            (void *)[activeSession methodForSelector:handleDidBecomeActiveSelector];
-        handleDidBecomeActive(activeSession, handleDidBecomeActiveSelector, application);
-    }
-
+    
     if (singleton) {
         [singleton applicationDidBecomeActive:application];
     }
@@ -636,7 +672,7 @@ static JREngage* singleton = nil;
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if (sessionData.nativeAuthenticationFlowIsInFlight) {
+    if (sessionData.openIDAppAuthAuthenticationFlowIsInFlight) {
         [interfaceMaestro authenticationCanceled];
     }
 }

@@ -142,16 +142,28 @@
 @property BOOL socialSharing;
 @property BOOL authenticationFlowIsInFlight;
 @property BOOL nativeAuthenticationFlowIsInFlight;
+@property BOOL openIDAppAuthAuthenticationFlowIsInFlight;
 @property BOOL accountLinking;
 @property(readonly) NSError *error;
 
 + (JRSessionData *)jrSessionData;
 
++ (JRSessionData *)jrSessionDataWithAppId:(NSString *)newAppId appUrl:(NSString *)newAppUrl
+                                 tokenUrl:(NSString *)newTokenUrl
+                              andDelegate:(id <JRSessionDelegate>)newDelegate;
+/**
+ * @deprecated
+ **/
 + (JRSessionData *)jrSessionDataWithAppId:(NSString *)newAppId tokenUrl:(NSString *)newTokenUrl
                  andDelegate:(id <JRSessionDelegate>)newDelegate;
 
 - (void)tryToReconfigureLibrary;
 
+- (id)reconfigureWithAppId:(NSString *)newAppId appUrl:(NSString *)newAppUrl
+                  tokenUrl:(NSString *)newTokenUrl;
+/**
+ * @deprecated
+ **/
 - (id)reconfigureWithAppId:(NSString *)newAppId tokenUrl:(NSString *)newTokenUrl;
 
 - (void)addDelegate:(id <JRSessionDelegate>)delegateToAdd;

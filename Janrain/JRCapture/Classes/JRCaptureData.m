@@ -95,6 +95,9 @@ static NSString *const FLOW_KEY = @"JR_capture_flow";
 //@property(nonatomic) JRTraditionalSignInType captureTradSignInType;
 @property(nonatomic) BOOL captureEnableThinRegistration;
 
+@property(nonatomic) NSString *downloadFlowUrl;
+@property(nonatomic) NSString *engageAppUrl;
+
 @property(nonatomic) JRCaptureFlow *captureFlow;
 @property(nonatomic) NSArray *linkedProfiles;
 @property(nonatomic) BOOL initialized;
@@ -121,7 +124,8 @@ static JRCaptureData *singleton = nil;
 @synthesize captureAppId;
 @synthesize captureFlow;
 @synthesize captureRedirectUri;
-
+@synthesize downloadFlowUrl;
+@synthesize engageAppUrl;
 
 - (JRCaptureData *)init
 {
@@ -251,6 +255,8 @@ static JRCaptureData *singleton = nil;
     captureDataInstance.captureForgottenPasswordFormName = config.forgottenPasswordFormName;
     captureDataInstance.captureEditProfileFormName = config.editProfileFormName;
     captureDataInstance.resendEmailVerificationFormName = config.resendEmailVerificationFormName;
+    captureDataInstance.downloadFlowUrl = config.downloadFlowUrl;
+    captureDataInstance.engageAppUrl = config.engageAppUrl;
 
     if ([captureDataInstance.captureLocale length] &&
             [captureDataInstance.captureFlowName length] && [captureDataInstance.captureAppId length])
@@ -280,11 +286,20 @@ static JRCaptureData *singleton = nil;
 {
     NSString *flowVersion = self.captureFlowVersion ? self.captureFlowVersion : @"HEAD";
 
-    NSString *flowUrlString =
-            [NSString stringWithFormat:@"https://%@.cloudfront.net/widget_data/flows/%@/%@/%@/%@.json",
-                                       self.flowUsesTestingCdn ? @"dlzjvycct5xka" : @"d1lqe9temigv1p",
-                                       self.captureAppId, self.captureFlowName, flowVersion,
-                                       self.captureLocale];
+    NSString *flowUrlString = @"";
+    
+    if (self.downloadFlowUrl.length > 0){
+        flowUrlString = [NSString stringWithFormat:@"https://%@/widget_data/flows/%@/%@/%@/%@.json",
+                         self.downloadFlowUrl,
+                         self.captureAppId, self.captureFlowName,
+                         flowVersion, self.captureLocale];
+    }else{
+        flowUrlString = [NSString stringWithFormat:@"https://%@.cloudfront.net/widget_data/flows/%@/%@/%@/%@.json",
+                         self.flowUsesTestingCdn ? @"dlzjvycct5xka" : @"d1lqe9temigv1p",
+                         self.captureAppId, self.captureFlowName, flowVersion,
+                         self.captureLocale];
+    }
+    
     NSMutableURLRequest *downloadRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:flowUrlString]];
     [downloadRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 

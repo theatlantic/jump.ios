@@ -439,6 +439,9 @@ FOUNDATION_EXPORT NSString* const JRDownloadFlowResult;
  *   on <a href="http://rpxnow.com">http://rpxnow.com</a>. <em>Please do not use your API key. The API key
  *   should never be stored on the device, in code or otherwise.</em>
  *
+ * @param engageAppUrl
+ *   The domain of your engage app url if it is not an rpxnow.com hosted Engage app
+ *
  * @param captureDomain
  *   The domain of your Capture app instance (e.g., \@"my-name.janraincapture.com")
  *
@@ -483,6 +486,26 @@ FOUNDATION_EXPORT NSString* const JRDownloadFlowResult;
  *   application's dashboard.
  *
  **/
+
++ (void)setEngageAppId:(NSString *)engageAppId
+          engageAppUrl:(NSString *)engageAppUrl
+         captureDomain:(NSString *)captureDomain
+       captureClientId:(NSString *)clientId
+         captureLocale:(NSString *)captureLocale
+       captureFlowName:(NSString *)captureFlowName
+    captureFlowVersion:(NSString *)captureFlowVersion
+captureTraditionalSignInFormName:(NSString *)captureSignInFormName
+captureTraditionalSignInType:(__unused JRTraditionalSignInType)captureTraditionalSignInType
+captureEnableThinRegistration:(BOOL)enableThinRegistration
+customIdentityProviders:(NSDictionary *)customProviders
+captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
+captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
+          captureAppId:(NSString *)captureAppId;
+
+/**
+ * @deprecated
+ */
+
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
        captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
                  captureFlowName:(NSString *)captureFlowName captureFlowVersion:(NSString *)captureFlowVersion
@@ -668,14 +691,30 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  *
  * @param mergeToken
  *   The merge token, retrieved from the merge flow error instance.
+ *
+ * @param engageAppUrl
+ *   Used for non-standard Engage App url's (nil for not used)
  **/
 
++ (void)startEngageSignInWithNativeProviderToken:(NSString *)provider
+                                       withToken:(NSString *)token
+                                  andTokenSecret:(NSString *)tokenSecret
+                                      mergeToken:(NSString *)mergeToken
+                                    engageAppUrl:(NSString *)engageAppUrl
+                    withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                     forDelegate:(id <JRCaptureDelegate>)delegate;
+
+/**
+ * @deprecated
+ **/
 + (void)startEngageSignInWithNativeProviderToken:(NSString *)provider
                                       withToken:(NSString *)token
                                  andTokenSecret:(NSString *)tokenSecret
                                      mergeToken:(NSString *)mergeToken
                    withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                     forDelegate:(id <JRCaptureDelegate>)delegate;
+
+
 
 /**
  * Begin authentication, adding the option for your users to log directly into Capture through

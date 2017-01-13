@@ -74,6 +74,94 @@ Stub out these two delegate message implementations in your delegate:
         NSLog(@"%@", [authInfo description]);
     }
 
+## Implement the OpenID AppAuth Libraries
+
+There are potentially *breaking* changes to the Janrain Mobile SDK with version 5.0.  Due to Google's decision to not allow web-based authentication through webviews, support for web-based authentication for Google has been implemented using Google's recommended OpenID AppAuth (http://openid.github.io/AppAuth-iOS/) libraries.  These libraries are now a *required* dependency of the Janrain Mobile Libraries.'
+
+The OpenID AppAuth for iOS libraries (version 0.7.1 tested) can be installed using CocoaPods or as an Xcode Workspace library.  Please refer to this link for additional information on installing the OpenID AppAuth for iOS libraries: http://openid.github.io/AppAuth-iOS/ Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
+
+If you are linking to the OpenID AppAuth Library repo and not using CocoaPods you may need to add the OpenID AppAuth library source code location to your Xcode project's Build Settings -> Search Paths -> Header Search Paths value: example: `/GitHub/OpenIDAppAuth/AppAuth-iOS/Source` (use the "recursive" option if needed).
+
+The sample applications provided as part of the Janrain Mobile Libraries repository have been updated to use the Xcode Workspace library implementation method.  This may require re-linking of the libraries for your build environement. *NOTE:* You may have to convert your Xcode project to a workspace project if you do not want to use CocoaPods.
+
+Once you have added the OpenID AppAuth libraries to your project or workspace the following settings will need to be added/updated in your application if you are planning on using Google as a web-based identity provider in your mobile application.  NOTE: These steps are not necessary if you are using Google Native authentication using the Google iOS SDK.
+
+###Create an iOS Google OAuth Client
+
+Visit https://console.developers.google.com/apis/credentials?project=_ and find the project that correlates to the Google Web OAuth client that is being used with the *same* Engage application being used by the Janrain Mobile Libraries. Then tap "Create credentials" and select "OAuth client ID".  Follow the instructions to configure the consent screen (just the Product Name is needed).
+
+Then, complete the OAuth client creation by selecting "iOS" as the Application type.  Enter the Bundle ID of the project (`com.janrain.simpledemo.example` for example, but you must change this in the project and use your own Bundle ID).
+
+Copy the client ID to the clipboard or a location for future use.
+
+###Update Janrain Library configuration
+Update your application's configuration (i.e. https://github.com/janrain/jump.ios/blob/master/Samples/SimpleCaptureDemo/assets/janrain-config-default.plist ) by adding the following values:
+
+`<key>googlePlusRedirectUri</key>
+<string>com.googleusercontent.apps.YOUR_CLIENT_ID:/oauthredirect</string>
+<key>googlePlusClientId</key>
+<string>YOUR_CLIENT_ID.apps.googleusercontent.com</string>`
+
+If you are not using the plist format shown in the Sample Applications you will need to make sure that the appropriate values ("googlePlusClientId" and "googlePlusRedirectUri") are passed through when you are initializing the JRCaptureConfig prior to initializing the libraries:
+`JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
+config.engageAppId = engageAppId;
+config.captureDomain = captureDomain;
+config.captureClientId = captureClientId;
+config.captureLocale = captureLocale;
+config.captureFlowName = captureFlowName;
+...
+config.googlePlusClientId = googlePlusClientId;
+config.googlePlusRedirectUri = googlePlusRedirectUri;`
+
+###Update your applications info.plist
+Open your application's' `Info.plist` and fully expand "URL types" (a.k.a. "CFBundleURLTypes") and replace `com.googleusercontent.apps.YOUR_CLIENT_ID` with the reverse DNS notation form of your client id (not including the `:/oauthredirect` path component).
+
+Example:
+`<key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>com.googleusercontent.apps.YOUR_CLIENT_ID</string>
+        </array>
+        </dict>
+</array>
+`
+
+####Update your application's AppDelegate.h####
+Add the following to your AppDelegate.h file (see the Sample Application code for additional context):
+`@protocol OIDAuthorizationFlowSession;`
+AND
+`
+@property(nonatomic) NSString *googlePlusClientId;
+@property(nonatomic) NSString *googlePlusRedirectUri;
+@property(nonatomic, strong) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;
+`
+
+####Update your application's AppDelegate.m####
+
+Synthesize the variables:
+`@synthesize googlePlusClientId;` and
+`@synthesize googlePlusRedirectUri;` and
+
+In the `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` method make sure to read in the following values:
+`config.googlePlusClientId = googlePlusClientId;` and `config.googlePlusRedirectUri = googlePlusRedirectUri;`
+
+If you are parsing a config plist make sure you populate the variables - from `- (void)parseConfigNamed:(NSString *)cfgKeyName fromConfigPlist:(NSDictionary *)cfgPlist` in the SimpleDemo app:
+
+`if ([cfg objectForKey:@"googlePlusClientId"])
+        self.googlePlusClientId = [cfg objectForKey:@"googlePlusClientId"];` and
+`if ([cfg objectForKey:@"googlePlusRedirectUri"])
+    self.googlePlusRedirectUri = [cfg objectForKey:@"googlePlusRedirectUri"];`
+
+####New optional configuration items####
+
+1. `config.engageAppUrl` If this value is set when intializing the Mobile Libraries the libraries will attempt to use the url provided for all Social Login (Engage) communications.  This setting should only be used when advised to do so by a Janrain technical resource.
+
+2. `config.downloadFlowUrl` If this value is set when intializing the Mobile Libraries the libraries will attempt to use the url provided for all download the Registration flow configuration file.  This setting should only be used when advised to do so by a Janrain technical resource.
+
 ## Social Sign-In
 
 An Engage authentication is only meaningful in the context of authenticating your mobile app /to/ something.
