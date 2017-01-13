@@ -1,6 +1,13 @@
+v5.0
+ - Dropped support for iOS 7, now only supports iOS 8+
+ - Implemented OpenID AppAuth Libraries(Required) to support Google WebView Deprecation.
+ - Added support for non-standard Engage server url's
+ - Added support for custom flow download location url's
+ - Added support for Native Authentication using the WeChat application
+ - Updated sample applications as needed to implement new changes.
 v4.0
- - Dropped support for iOS 6, now only supports iOS 7+ 
- - Removed Native Authentication Provider (Facebook, Google, Twitter) SDK dependencies from the SDK.  
+ - Dropped support for iOS 6, now only supports iOS 7+
+ - Removed Native Authentication Provider (Facebook, Google, Twitter) SDK dependencies from the SDK.
  - Added example code to the SimpleCaptureDemo app for implementing the current releases of Native Authentication Provider's SDK's to retrieve provider authentication tokens and pass them to the SDK.
  - Added/Updated missing images for Instagram, Google+, PayPal OpenID Connect and a future provider.
  - Bugfix: Improved error handling in SimpleCaptureDemo app.
@@ -60,7 +67,7 @@ v3.3.8
  - Traditional sign-in APIs now require a Capture app ID and flow name to be
    configured, so that a local copy of the flow can be downloaded by the SDK.
 v3.3.7
- - Fixes a bug in native authentication, which rendered it incompatible with 
+ - Fixes a bug in native authentication, which rendered it incompatible with
    registration
  - Fixes a bug in native authentication flows subsequent to the first
  - Fixes a bug in native authnetication allowing a concurrent web-based auth
@@ -79,10 +86,10 @@ v3.3.2
  - Fixes some UI state transition bugs involving provider-direct authentication flows
 v3.3.1
  - Fixes +[JRCaptureUser fetchCaptureUserFromServerForDelegate:context:], which had been
-   broken in an earlier refactoring 
+   broken in an earlier refactoring
 v3.3.0
  - Adds support for Facebook native authentication, i.e. via the iOS Social and Accounts
-   framework, or via the Facebook SDK. See 'Docs/Native Authentication Guide.md' for 
+   framework, or via the Facebook SDK. See 'Docs/Native Authentication Guide.md' for
    details.
  - Adds support for Key Value Coding to the JRCaptureUser record model.
  - Adds support for users having multiple active sharing sessions across separate iOS
@@ -110,7 +117,7 @@ v3.2.7
  - Fixes a bug related to some IDP session cookies and switching to a different identity
    on the same IDP.
  - Removes JSONkit dependency
- - Fixes a bug relating to new record model objects trying to update unchanged fields 
+ - Fixes a bug relating to new record model objects trying to update unchanged fields
 v3.2.6
  - Fixes Engage library re-initialization bug
 v3.2.5
@@ -135,7 +142,7 @@ v3.0.9
 v3.0.8
  - Bug fix to tweak the UIWebView properties when rendering sign-in pages for Facebook on iPad
    This fix also sets the default modal dialog size to that of an iPhone 5, where it used to be
-   an iPhone 4 
+   an iPhone 4
 v3.0.7
  - Bug fix to add Backplane channel parameter during sign-ins
 v3.0.6
@@ -162,7 +169,7 @@ v3.0.0
  - Paves the way for new two-step social reg, trad reg
 v2.5.2
  - Internal project file cleanup
- - Custom UINavigationController bug fix 
+ - Custom UINavigationController bug fix
 v2.5.1
  - Adds PhoneGap 2.3.0 test project
 v2.5.0

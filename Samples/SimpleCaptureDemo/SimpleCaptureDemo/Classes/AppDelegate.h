@@ -29,9 +29,12 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import <UIKit/UIKit.h>
+#import "AppAuth.h"
 
 #define cJRCurrentProvider  @"simpleCaptureDemo.currentProvider"
 #define cJRCaptureUser      @"simpleCaptureDemo.captureUser"
+
+@protocol OIDAuthorizationFlowSession;
 
 @class AppDelegate;
 @class JRCaptureUser;
@@ -62,7 +65,18 @@ extern AppDelegate *appDelegate;
 @property(nonatomic) NSString *captureForgottenPasswordFormName;
 @property(nonatomic) NSString *captureEditProfileFormName;
 @property(nonatomic) NSString *resendVerificationFormName;
+//OpenID AppAuth
+@property(nonatomic) NSString *googlePlusClientId;
+@property(nonatomic) NSString *googlePlusRedirectUri;
 
+
+// OpenID AppAuth property of the app's AppDelegate
+/*! @brief The authorization flow session which receives the return URL from \SFSafariViewController.
+ @discussion We need to store this in the app delegate as it's that delegate which receives the
+ incoming URL on UIApplicationDelegate.application:openURL:options:. This property will be
+ nil, except when an authorization flow is in progress.
+ */
+@property(nonatomic, strong) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;
 - (void)saveCaptureUser;
 
 @end
