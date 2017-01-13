@@ -109,6 +109,11 @@ objc-class-ref in JRProvidersController.o`
 *Resolution*: Please follow the steps outlined above and include the OpenID AppAuth library to your workspace.
 
 *Error*:
+Linker error: ld: library not found for -lAppAuth
+
+*Resolution*: You may have to remove and re-add the libApp-Auth or libAppAuth-ios library to your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
+
+*Error*:
 `/jump.ios/Janrain/JREngage/Classes/JROpenIDAppAuthGoogle.m:53:59: Property 'googlePlusRedirectUri' not found on object of type 'AppDelegate *`
 
 *Resolution*: Add the following to your AppDelegate.h file (see the Sample Application code for additional context):

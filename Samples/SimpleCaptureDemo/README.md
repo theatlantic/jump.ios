@@ -69,6 +69,11 @@ objc-class-ref in JRProvidersController.o`
 *Resolution*: Delete the "Janrain" folder reference from your project and re-add the folder reference linking to the latest files.  New files have been added to the Janrain Libraries and they are not being referenced in your project.
 
 *Error*:
+Linker error: ld: library not found for -lAppAuth
+
+*Resolution*: You may have to remove and re-add the libApp-Auth or libAppAuth-ios library to your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
+
+*Error*:
 `/jump.ios/Janrain/JREngage/Classes/JROpenIDAppAuthGoogle.m:28:9: 'AppAuth.h' file not found`
 
 *Resolution*: Please follow the steps outlined above and include the OpenID AppAuth library to your workspace.
