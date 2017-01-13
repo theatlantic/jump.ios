@@ -1,10 +1,10 @@
-# Janrain JUMP for iOS library 4.0
+# Janrain JUMP for iOS library 5.0
 
 This library provides a native iOS API to the Janrain user management platform.
 
-NOTICE:  This is a new version with potentially breaking changes from the previous 3.X versions.  
+NOTICE:  This is a new version with potentially breaking changes from the previous 4.X versions.  
 
-Please read the Docs/Upgrade Guide.md and RELEASE_NOTES.
+IMPORTANT: Please read the Docs/Upgrade Guide.md and RELEASE_NOTES.
 
 It supports:
 

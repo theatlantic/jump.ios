@@ -100,14 +100,30 @@ static JREngageWrapper *singleton = nil;
     return [JREngageWrapper singletonInstance].delegate;
 }
 
++ (void)configureEngageWithAppId:(NSString *)appId engageAppUrl:(NSString *)engageAppUrl customIdentityProviders:(NSDictionary *)customProviders
+{
+    [JREngage setEngageAppId:appId appUrl:engageAppUrl tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
+    JREngage.customProviders = customProviders;
+}
+
++ (void)configureEngageWithOutAppId:(NSDictionary *)customProviders engageAppUrl:(NSString *)engageAppUrl
+{
+    [JREngage setEngageAppId:nil appUrl:engageAppUrl tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
+    JREngage.customProviders = customProviders;
+}
+
++ (void)reconfigureEngageWithNewAppId:(NSString *)appId engageAppUrl:(NSString *)engageAppUrl{
+    [JREngage setEngageAppId:appId appUrl:engageAppUrl tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
+}
+
 + (void)configureEngageWithAppId:(NSString *)appId customIdentityProviders:(NSDictionary *)customProviders
 {
-    [JREngage setEngageAppId:appId tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
+    [JREngage setEngageAppId:appId appUrl:nil tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
     JREngage.customProviders = customProviders;
 }
 
 + (void)reconfigureEngageWithNewAppId:(NSString *)appId {
-    [JREngage setEngageAppId:appId tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
+    [JREngage setEngageAppId:appId appUrl:nil tokenUrl:nil andDelegate:[JREngageWrapper singletonInstance]];
 }
 
 + (void)startAuthenticationDialogWithTraditionalSignIn:(JRTraditionalSignInType)nativeSignInType
@@ -210,11 +226,11 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
 }
 
 + (void)startAuthenticationWithProviderToken:(NSString *)provider
-                                  withToken:(NSString *)token
-                             andTokenSecret:(NSString *)tokenSecret
-               withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
-                                 mergeToken:(NSString *)mergeToken
-                                forDelegate:(id <JRCaptureDelegate>)delegate
+                                   withToken:(NSString *)token
+                              andTokenSecret:(NSString *)tokenSecret
+                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                  mergeToken:(NSString *)mergeToken
+                                 forDelegate:(id <JRCaptureDelegate>)delegate
 {
     [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:mergeToken delegate:delegate]];
     
@@ -222,6 +238,22 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
     [[JREngageWrapper singletonInstance] setDialogState:JREngageDialogStateAuthentication];
     
     [JREngage getAuthInfoTokenForNativeProvider:provider withToken:token andTokenSecret:tokenSecret];
+}
+
++ (void)startAuthenticationWithProviderToken:(NSString *)provider
+                                   withToken:(NSString *)token
+                              andTokenSecret:(NSString *)tokenSecret
+                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                  mergeToken:(NSString *)mergeToken
+                                engageAppUrl:(NSString *)engageAppUrl
+                                 forDelegate:(id <JRCaptureDelegate>)delegate
+{
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:mergeToken delegate:delegate]];
+    
+    [[JREngageWrapper singletonInstance] setDelegate:delegate];
+    [[JREngageWrapper singletonInstance] setDialogState:JREngageDialogStateAuthentication];
+    
+    [JREngage getAuthInfoTokenForNativeProvider:provider withToken:token andTokenSecret:tokenSecret andEngageAppUrl:engageAppUrl];
 }
 
 - (void)tearingDownViewControllers:(NSNotification *)notification {

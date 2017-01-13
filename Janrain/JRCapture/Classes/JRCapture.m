@@ -61,7 +61,12 @@ NSString* const JRDownloadFlowResult = @"JRDownloadFlowResult";
 + (void)setCaptureConfig:(JRCaptureConfig *)config
 {
     [JRCaptureData setCaptureConfig:config];
-    [JREngageWrapper configureEngageWithAppId:config.engageAppId customIdentityProviders:config.customProviders];
+    if (config.engageAppId.length > 0){
+        [JREngageWrapper configureEngageWithAppId:config.engageAppId engageAppUrl:config.engageAppUrl customIdentityProviders:config.customProviders];
+    }else{
+        [JREngageWrapper configureEngageWithOutAppId:config.customProviders engageAppUrl:config.engageAppUrl];
+        
+    }
 }
 
 /**
@@ -91,19 +96,24 @@ NSString* const JRDownloadFlowResult = @"JRDownloadFlowResult";
     [JRCaptureData setCaptureBaseUrl:captureDomain];
 }
 
-+ (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
-       captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
-                 captureFlowName:(NSString *)captureFlowName captureFlowVersion:(NSString *)captureFlowVersion
++ (void)setEngageAppId:(NSString *)engageAppId
+          engageAppUrl:(NSString *)engageAppUrl
+         captureDomain:(NSString *)captureDomain
+       captureClientId:(NSString *)clientId
+         captureLocale:(NSString *)captureLocale
+       captureFlowName:(NSString *)captureFlowName
+    captureFlowVersion:(NSString *)captureFlowVersion
 captureTraditionalSignInFormName:(NSString *)captureSignInFormName
-    captureTraditionalSignInType:(__unused JRTraditionalSignInType) tradSignInType
-         captureEnableThinRegistration:(BOOL)enableThinRegistration
-               customIdentityProviders:(NSDictionary *)customProviders
+captureTraditionalSignInType:(__unused JRTraditionalSignInType) tradSignInType
+captureEnableThinRegistration:(BOOL)enableThinRegistration
+customIdentityProviders:(NSDictionary *)customProviders
 captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
-     captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
-                          captureAppId:(NSString *)captureAppId
+captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
+          captureAppId:(NSString *)captureAppId
 {
     JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
     config.engageAppId = engageAppId;
+    config.engageAppUrl = engageAppUrl;
     config.captureDomain = captureDomain;
     config.captureClientId = clientId;
     config.captureLocale = captureLocale;
@@ -115,8 +125,30 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
     config.captureSocialRegistrationFormName = captureSocialRegistrationFormName;
     config.captureFlowVersion = captureFlowVersion;
     config.captureAppId = captureAppId;
-
+    
     [JRCapture setCaptureConfig:config];
+}
+
++ (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
+       captureClientId:(NSString *)clientId captureLocale:(NSString *)captureLocale
+                 captureFlowName:(NSString *)captureFlowName captureFlowVersion:(NSString *)captureFlowVersion
+captureTraditionalSignInFormName:(NSString *)captureSignInFormName
+    captureTraditionalSignInType:(__unused JRTraditionalSignInType) tradSignInType
+         captureEnableThinRegistration:(BOOL)enableThinRegistration
+               customIdentityProviders:(NSDictionary *)customProviders
+captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistrationFormName
+     captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
+                          captureAppId:(NSString *)captureAppId
+{
+    [JRCapture setEngageAppId:engageAppId engageAppUrl:nil captureDomain:captureDomain captureClientId:clientId
+                captureLocale:captureLocale captureFlowName:captureFlowName
+           captureFlowVersion:captureFlowVersion
+captureTraditionalSignInFormName:captureSignInFormName
+ captureTraditionalSignInType:tradSignInType captureEnableThinRegistration:enableThinRegistration
+      customIdentityProviders:customProviders
+captureTraditionalRegistrationFormName:captureTraditionalRegistrationFormName
+captureSocialRegistrationFormName:captureSocialRegistrationFormName
+                 captureAppId:captureAppId];
 }
 
 + (void)setEngageAppId:(NSString *)engageAppId captureDomain:(NSString *)captureDomain
@@ -130,7 +162,7 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
                           captureAppId:(NSString *)captureAppId
                customIdentityProviders:customProviders
 {
-    [JRCapture setEngageAppId:engageAppId captureDomain:captureDomain captureClientId:clientId
+    [JRCapture setEngageAppId:engageAppId engageAppUrl:nil captureDomain:captureDomain captureClientId:clientId
                 captureLocale:captureLocale captureFlowName:captureFlowName
            captureFlowVersion:captureFlowVersion
             captureTraditionalSignInFormName:captureSignInFormName
@@ -151,7 +183,7 @@ captureTraditionalRegistrationFormName:(NSString *)captureTraditionalRegistratio
      captureSocialRegistrationFormName:(NSString *)captureSocialRegistrationFormName
                           captureAppId:(NSString *)captureAppId
 {
-    [JRCapture setEngageAppId:engageAppId captureDomain:captureDomain captureClientId:clientId
+    [JRCapture setEngageAppId:engageAppId engageAppUrl:nil captureDomain:captureDomain captureClientId:clientId
                 captureLocale:captureLocale captureFlowName:captureFlowName
            captureFlowVersion:captureFlowVersion
             captureTraditionalSignInFormName :captureSignInFormName
@@ -228,6 +260,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 {
     JRCaptureConfig *config = [JRCaptureConfig emptyCaptureConfig];
     config.engageAppId = engageAppId;
+    config.engageAppUrl = nil;
     config.captureDomain = captureDomain;
     config.captureClientId = clientId;
     config.captureLocale = captureLocale;
@@ -329,18 +362,35 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 }
 
 + (void)startEngageSignInWithNativeProviderToken:(NSString *)provider
-                                      withToken: (NSString *)token
-                                 andTokenSecret: (NSString *)tokenSecret
-                                     mergeToken: (NSString *)mergeToken
-             withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
-                              forDelegate:(id <JRCaptureDelegate>)delegate
+                                       withToken: (NSString *)token
+                                  andTokenSecret: (NSString *)tokenSecret
+                                      mergeToken: (NSString *)mergeToken
+                    withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                     forDelegate:(id <JRCaptureDelegate>)delegate
 {
     [JREngageWrapper startAuthenticationWithProviderToken:provider
-                                                   withToken:token
-                                          andTokenSecret:tokenSecret
-                            withCustomInterfaceOverrides:customInterfaceOverrides
-                                              mergeToken:mergeToken
-                                             forDelegate:delegate];
+                                                withToken:token
+                                           andTokenSecret:tokenSecret
+                             withCustomInterfaceOverrides:customInterfaceOverrides
+                                               mergeToken:mergeToken
+                                              forDelegate:delegate];
+}
+
++ (void)startEngageSignInWithNativeProviderToken:(NSString *)provider
+                                       withToken: (NSString *)token
+                                  andTokenSecret: (NSString *)tokenSecret
+                                      mergeToken: (NSString *)mergeToken
+                                    engageAppUrl: (NSString *)engageAppUrl
+                    withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                     forDelegate:(id <JRCaptureDelegate>)delegate
+{
+    [JREngageWrapper startAuthenticationWithProviderToken:provider
+                                                withToken:token
+                                           andTokenSecret:tokenSecret
+                             withCustomInterfaceOverrides:customInterfaceOverrides
+                                               mergeToken:mergeToken
+                                             engageAppUrl:engageAppUrl
+                                              forDelegate:delegate];
 }
 
 + (void)startCaptureTraditionalSignInForUser:(NSString *)user withPassword:(NSString *)password
