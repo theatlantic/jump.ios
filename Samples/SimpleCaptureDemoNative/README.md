@@ -155,7 +155,7 @@ Linker error: ld: library not found for -lAppAuth
 *Resolution*: Add ~/Documents/FacebookSDK to the project's Framework Search Paths setting.
 
 *Error*:
-`object file (/Users/pbaker/Documents/FacebookSDK/FBSDKLoginKit.framework/FBSDKLoginKit(FBSDKLoginButton.o)) was built for newer iOS version (8.0) than being linked (7.0)` Or a similar FBSDK file message.
+`object file (/Users/someuser/Documents/FacebookSDK/FBSDKLoginKit.framework/FBSDKLoginKit(FBSDKLoginButton.o)) was built for newer iOS version (8.0) than being linked (7.0)` Or a similar FBSDK file message.
 
 *Resolution*: Either update your application's deployment target to iOS version 8.0 or use and older version of the Facebook SDK (i.e. 4.7.0)
 

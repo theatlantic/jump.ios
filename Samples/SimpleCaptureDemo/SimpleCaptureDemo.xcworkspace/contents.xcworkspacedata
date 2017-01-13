@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../../../OpenIDAppAuth/AppAuth-iOS/AppAuth.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:SimpleCaptureDemo.xcodeproj">
    </FileRef>
 </Workspace>
