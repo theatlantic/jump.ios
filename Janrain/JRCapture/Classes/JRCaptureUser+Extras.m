@@ -143,7 +143,12 @@
             ALog(@"unrecognized field defn: %@", [field description]);
             continue;
         }
-
+        
+        if([(NSDictionary *) field objectForKey:@"schemaId"] == nil) {
+            ALog(@"field defn missing schemaId (skipping): %@", [field description]);
+            continue;
+        }
+        
         id schemaId = [(NSDictionary *) field objectForKey:@"schemaId"];
         NSString *key = [fieldNames objectAtIndex:[fields indexOfObject:field]];
 

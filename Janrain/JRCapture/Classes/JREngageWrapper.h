@@ -34,6 +34,12 @@
 
 @interface JREngageWrapper : NSObject
 
++ (void)configureEngageWithAppId:(NSString *)appId engageAppUrl:(NSString *)engageAppUrl customIdentityProviders:(NSDictionary *)customProviders;
+
++ (void)configureEngageWithOutAppId:(NSDictionary *)customProviders engageAppUrl:(NSString *)engageAppUrl;
+
++ (void)reconfigureEngageWithNewAppId:(NSString *)appId engageAppUrl:(NSString *)engageAppUrl;
+
 + (void)configureEngageWithAppId:(NSString *)appId customIdentityProviders:(NSDictionary *)customProviders;
 
 + (void)reconfigureEngageWithNewAppId:(NSString *)appId;
@@ -46,6 +52,14 @@
                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
                                  mergeToken:(NSString *)mergeToken
                                 forDelegate:(id <JRCaptureDelegate>)delegate;
+
++ (void)startAuthenticationWithProviderToken:(NSString *)provider
+                                   withToken:(NSString *)token
+                              andTokenSecret:(NSString *)tokenSecret
+                withCustomInterfaceOverrides:(NSDictionary *)customInterfaceOverrides
+                                  mergeToken:(NSString *)mergeToken
+                                engageAppUrl:(NSString *)engageAppUrl
+                                 forDelegate:(id <JRCaptureDelegate>)delegate;
 
 + (void)startAuthenticationWithProviderToken:(NSString *)provider
                                   withToken:(NSString *)token

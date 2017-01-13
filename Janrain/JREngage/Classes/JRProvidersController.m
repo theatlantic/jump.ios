@@ -41,6 +41,8 @@
 #import "JRUserLandingController.h"
 #import "JREngageError.h"
 #import "JRCompatibilityUtils.h"
+#import "JROpenIDAppAuth.h"
+#import "JROpenIDAppAuthProvider.h"
 
 
 @interface UITableViewCellProviders : UITableViewCell
@@ -70,7 +72,7 @@
 
 @property NSMutableArray *providers;
 @property UIView *myTraditionalSignInLoadingView;
-//@property(nonatomic) JRNativeProvider *nativeProvider;
+@property(nonatomic) JROpenIDAppAuthProvider *openIDAppAuthProvider;
 @end
 
 @implementation JRProvidersController
@@ -504,14 +506,44 @@
 {
     DLog(@"");
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-
+    
     // Let sessionData know which provider the user selected
     JRProvider *provider = [sessionData getProviderNamed:[providers objectAtIndex:(NSUInteger) indexPath.row]];
-
-    [self startWebViewAuthOnProvider:provider];
-     
+    if ([JROpenIDAppAuth canHandleProvider:provider.name])
+    {
+        [UIView animateWithDuration:0.3 animations:^() {
+            myTableView.hidden = YES;
+            [myActivitySpinner setHidden:NO];
+            [myLoadingLabel setHidden:NO];
+            [myActivitySpinner startAnimating];
+            myLoadingLabel.text = NSLocalizedString(@"Signing in ...",nil);
+        }];
+        
+        [sessionData setCurrentProvider:provider];
+        
+        self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider.name withConfiguration:(id)[JREngage instance]];
+        [self.openIDAppAuthProvider startAuthenticationWithCompletion:^(NSError *e) {
+            if (e) {
+                if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
+                    [sessionData triggerAuthenticationDidCancel];
+                } else if ([e.domain isEqualToString:JREngageErrorDomain]
+                           && e.code == JRAuthenticationShouldTryWebViewError) {
+                    self.myTableView.hidden = NO;
+                    [self stopActivityIndicator];
+                    [self startWebViewAuthOnProvider:provider];
+                } else {
+                    myTableView.hidden = NO;
+                    [self stopActivityIndicator];
+                    [sessionData triggerAuthenticationDidFailWithError:e];
+                }
+            }
+        }];
+    }
+    else
+    {
+        [self startWebViewAuthOnProvider:provider];
+    }
 }
-
 - (void)startWebViewAuthOnProvider:(JRProvider *)provider
 {
     [sessionData setCurrentProvider:provider];
