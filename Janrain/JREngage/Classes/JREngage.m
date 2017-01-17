@@ -251,7 +251,7 @@ static JREngage* singleton = nil;
 }
 
 - (void)startOpenIDAppAuthOnProvider:(NSString *)provider customInterface:(NSDictionary *)customInterfaceOverrides {
-    self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider withConfiguration:(id)self];
+    self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider];
     [self.openIDAppAuthProvider startAuthenticationWithCompletion:^(NSError *error) {
         
         if (!error) return;

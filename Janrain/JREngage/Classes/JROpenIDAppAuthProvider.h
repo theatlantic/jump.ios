@@ -25,6 +25,8 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol OIDAuthorizationFlowSession;
+
 typedef void (^OpenIDAppAuthCompletionBlock)(NSError *);
 
 
@@ -39,3 +41,5 @@ typedef void (^OpenIDAppAuthCompletionBlock)(NSError *);
 - (void)getAuthInfoTokenForAccessToken:(NSString *)token andTokenSecret:(NSString *)tokenSecret;
 - (void)triggerWebViewAuthenticationWithMessage:(NSString *)message;
 @end
+
+

@@ -26,7 +26,6 @@
 #import "JROpenIDAppAuth.h"
 #import "debug_log.h"
 #import "JRConnectionManager.h"
-#import "JROpenIDAppAuthConfig.h"
 #import "JROpenIDAppAuthGoogle.h"
 
 @interface JROpenIDAppAuth ()
@@ -41,12 +40,11 @@
     return NO;
 }
 
-+ (JROpenIDAppAuthProvider *)openIDAppAuthProviderNamed:(NSString *)provider withConfiguration:(id <JROpenIDAppAuthConfig>)config {
++ (JROpenIDAppAuthProvider *)openIDAppAuthProviderNamed:(NSString *)provider {
     JROpenIDAppAuthProvider *openIDAppAuthProvider = nil;
     
     if ([provider isEqualToString:@"googleplus"]) {
         openIDAppAuthProvider = [[JROpenIDAppAuthGoogle alloc] init];
-        [(JROpenIDAppAuthGoogle *)openIDAppAuthProvider setGooglePlusClientId:config.googlePlusClientId];
     } else {
         [NSException raiseJRDebugException:@"unexpected OpenID AppAuth provider" format:provider];
     }

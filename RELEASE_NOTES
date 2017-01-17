@@ -1,3 +1,6 @@
+v5.0.1
+ - Resolved Cocoapods incompatibility.  Implemented JROpenIDAppAuthGoogleDelegate Protocol to remove reference to AppDelegate.h from JROpenIDAppAuthGoogle.m
+ - Updated sample apps and documentation to demonstrate implementation of the JROpenIDAppAuthGoogleelegate protocol.
 v5.0
  - Dropped support for iOS 7, now only supports iOS 8+
  - Implemented OpenID AppAuth Libraries(Required) to support Google WebView Deprecation.

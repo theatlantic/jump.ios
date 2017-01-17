@@ -26,7 +26,6 @@
 #import "JROpenIDAppAuthGoogle.h"
 #import "debug_log.h"
 #import "AppAuth.h"
-#import "AppDelegate.h"
 
 
 /*! @brief The OIDC issuer from which the configuration will be discovered.
@@ -41,24 +40,33 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
 @end
 
 @implementation JROpenIDAppAuthGoogle
+@synthesize jrOpenIDAppAuthGoogleDelegate;
 
 - (NSString *)provider {
     return @"googleplus";
 }
 
+
 - (void)startAuthenticationWithCompletion:(OpenIDAppAuthCompletionBlock)completion {
     [super startAuthenticationWithCompletion:completion];
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if( !jrOpenIDAppAuthGoogleDelegate ) {
+        id appDelegate = [[UIApplication sharedApplication] delegate];
+        if( ![appDelegate conformsToProtocol: @protocol(JROpenIDAppAuthGoogleDelegate)] ) {
+            DLog( @"The JROpenIDAppAuthGoogleDelegate is not set and the AppDelegate does not conform to the JROpenIDAppAuthGoogleDelegate protocol." );
+        } else {
+            jrOpenIDAppAuthGoogleDelegate = appDelegate;
+        }
+    }
+    
     NSURL *issuer = [NSURL URLWithString:kIssuer];
-    NSURL *redirectURI = [NSURL URLWithString:appDelegate.googlePlusRedirectUri];
+    NSURL *redirectURI = [NSURL URLWithString:jrOpenIDAppAuthGoogleDelegate.googlePlusRedirectUri];
     
     DLog(@"Fetching configuration for issuer: %@", issuer);
     
     // discovers endpoints
     [OIDAuthorizationService discoverServiceConfigurationForIssuer:issuer
         completion:^(OIDServiceConfiguration *_Nullable configuration, NSError *_Nullable error) {
-            
-            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             
             if (!configuration) {
                 DLog(@"Error retrieving discovery document: %@", [error localizedDescription]);
@@ -71,7 +79,7 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
             // builds authentication request
             OIDAuthorizationRequest *request =
             [[OIDAuthorizationRequest alloc] initWithConfiguration:configuration
-                                                          clientId:appDelegate.googlePlusClientId
+                                                          clientId:jrOpenIDAppAuthGoogleDelegate.googlePlusClientId
                                                             scopes:@[OIDScopeOpenID, OIDScopeProfile]
                                                        redirectURL:redirectURI
                                                       responseType:OIDResponseTypeCode
@@ -84,7 +92,7 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
             while (current.presentedViewController) {
                 current = current.presentedViewController;
             }
-            appDelegate.openIDAppAuthAuthorizationFlow =
+            jrOpenIDAppAuthGoogleDelegate.openIDAppAuthAuthorizationFlow =
             [OIDAuthState authStateByPresentingAuthorizationRequest:request
                                            presentingViewController:current
                                                            callback:^(OIDAuthState *_Nullable authState,
