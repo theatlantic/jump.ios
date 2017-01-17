@@ -72,6 +72,7 @@
 @synthesize activeMergeToken;
 @synthesize isMergingAccount;
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

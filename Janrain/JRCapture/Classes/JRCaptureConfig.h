@@ -125,25 +125,6 @@
 
 
 /**
- *  Your Google+ client id. Must be for the same google application that is configured in Engage.
- */
-/*! @brief The OAuth client ID.
- @discussion For Google, register your client at
- https://console.developers.google.com/apis/credentials?project=_
- The client should be registered with the "iOS" type.
- */
-@property (nonatomic) NSString *googlePlusClientId;
-
-/*! @brief The OAuth redirect URI for the client googlePlusClientId.
- @discussion With Google, the scheme of the redirect URI is the reverse DNS notation of the
- client ID. This scheme must be registered as a scheme in the project's Info
- property list ("CFBundleURLTypes" plist key). Any path component will work, we use
- 'oauthredirect' here to help disambiguate from any other use of this scheme.
- */
-@property (nonatomic) NSString *googlePlusRedirectUri;
-
-
-/**
  *   Get an empty Capture Configuration
  */
 + (JRCaptureConfig *)emptyCaptureConfig;
