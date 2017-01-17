@@ -521,7 +521,7 @@
         
         [sessionData setCurrentProvider:provider];
         
-        self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider.name withConfiguration:(id)[JREngage instance]];
+        self.openIDAppAuthProvider = [JROpenIDAppAuth openIDAppAuthProviderNamed:provider.name];
         [self.openIDAppAuthProvider startAuthenticationWithCompletion:^(NSError *e) {
             if (e) {
                 if ([e.domain isEqualToString:JREngageErrorDomain] && e.code == JRAuthenticationCanceledError) {
