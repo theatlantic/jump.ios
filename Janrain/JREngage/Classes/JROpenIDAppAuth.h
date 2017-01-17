@@ -25,13 +25,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JROpenIDAppAuthConfig;
 @class JROpenIDAppAuthProvider;
 
 @interface JROpenIDAppAuth : NSObject
 + (BOOL)canHandleProvider:(NSString *)provider;
 
-+ (JROpenIDAppAuthProvider *)openIDAppAuthProviderNamed:(NSString *)provider withConfiguration:(id <JROpenIDAppAuthConfig>)config;
++ (JROpenIDAppAuthProvider *)openIDAppAuthProviderNamed:(NSString *)provider;
 
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation;

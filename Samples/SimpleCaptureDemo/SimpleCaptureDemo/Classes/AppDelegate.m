@@ -84,14 +84,13 @@ AppDelegate *appDelegate = nil;
 //OpenID AppAuth
 @synthesize googlePlusClientId;
 @synthesize googlePlusRedirectUri;
+@synthesize openIDAppAuthAuthorizationFlow;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     appDelegate = self;
-    
-    
-    
+
     // register for Janrain notification(s)
     [[NSNotificationCenter defaultCenter]
             addObserver:self
@@ -117,8 +116,6 @@ AppDelegate *appDelegate = nil;
     config.forgottenPasswordFormName = captureForgottenPasswordFormName;
     config.editProfileFormName = captureEditProfileFormName;
     config.resendEmailVerificationFormName = resendVerificationFormName;
-    config.googlePlusClientId = googlePlusClientId;
-    config.googlePlusRedirectUri = googlePlusRedirectUri;
 
     [JRCapture setCaptureConfig:config];
     self.prefs = [NSUserDefaults standardUserDefaults];
@@ -133,6 +130,7 @@ AppDelegate *appDelegate = nil;
     return YES;
 }
 
+
 /*! @brief Handles inbound URLs. Checks if the URL matches the redirect URI for a pending
  AppAuth authorization request.
  */
@@ -141,13 +139,11 @@ AppDelegate *appDelegate = nil;
             options:(NSDictionary<NSString *, id> *)options {
     // Sends the URL to the current authorization flow (if any) which will process it if it relates to
     // an authorization response.
-    if ([_openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
-        _openIDAppAuthAuthorizationFlow = nil;
+    if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
+        self.openIDAppAuthAuthorizationFlow = nil;
         return YES;
     }
-    
     // Your additional URL handling (if any) goes here.
-    
     return NO;
 }
 
@@ -286,4 +282,6 @@ AppDelegate *appDelegate = nil;
         NSLog(@"THE Janrain FLOW was successfully downloaded");
     }
 }
+
+
 @end
