@@ -28,7 +28,6 @@
 		484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E11B5ED19200E63266 /* MediaPlayer.framework */; };
 		484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E21B5ED19200E63266 /* SystemConfiguration.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
-		4869A0D91E1D6654007F76B1 /* libAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4869A0D81E1D6654007F76B1 /* libAppAuth.a */; };
 		486B0CD51E02171100B73F4F /* JROpenIDAppAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD41E02171100B73F4F /* JROpenIDAppAuth.m */; };
 		486B0CD71E0218E300B73F4F /* JROpenIDAppAuthGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD61E0218E300B73F4F /* JROpenIDAppAuthGoogle.m */; };
 		486B0CDB1E021A1200B73F4F /* JROpenIDAppAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */; };
@@ -357,7 +356,7 @@
 		3306C1D905E80CB37965B544 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
-		48117E371E11708B000E3F19 /* JROpenIDAppAuthConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthConfig.h; sourceTree = "<group>"; };
+		48045EF91E2E7F3C00B4C318 /* JROpenIDAppAuthGoogleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogleDelegate.h; sourceTree = "<group>"; };
 		484380DC1B5ED14100E63266 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		484380DE1B5ED19200E63266 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		484380DF1B5ED19200E63266 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -743,7 +742,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4869A0D91E1D6654007F76B1 /* libAppAuth.a in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
@@ -1135,11 +1133,11 @@
 				19BC052B6185FEA424AF0113 /* JRCompatibilityUtils.h */,
 				486B0CD31E02169400B73F4F /* JROpenIDAppAuth.h */,
 				486B0CD41E02171100B73F4F /* JROpenIDAppAuth.m */,
-				48117E371E11708B000E3F19 /* JROpenIDAppAuthConfig.h */,
-				486B0CD61E0218E300B73F4F /* JROpenIDAppAuthGoogle.m */,
 				486B0CD81E02190400B73F4F /* JROpenIDAppAuthGoogle.h */,
+				486B0CD61E0218E300B73F4F /* JROpenIDAppAuthGoogle.m */,
 				486B0CD91E0219CC00B73F4F /* JROpenIDAppAuthProvider.h */,
 				486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */,
+				48045EF91E2E7F3C00B4C318 /* JROpenIDAppAuthGoogleDelegate.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

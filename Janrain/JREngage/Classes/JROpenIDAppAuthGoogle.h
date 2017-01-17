@@ -25,18 +25,19 @@
 
 #import <Foundation/Foundation.h>
 #import "JROpenIDAppAuthProvider.h"
+#import "JROpenIDAppAuthGoogleDelegate.h"
 
 @class OIDAuthState;
 @class OIDServiceConfiguration;
 
 
 @interface JROpenIDAppAuthGoogle : JROpenIDAppAuthProvider
-@property (nonatomic) NSString *googlePlusClientId;
+
 /*! @brief The authorization state. This is the AppAuth object that you should keep around and
  serialize to disk.
  */
 @property(nonatomic, readonly) OIDAuthState *authState;
-
+@property (nonatomic, weak) IBOutlet id <JROpenIDAppAuthGoogleDelegate> jrOpenIDAppAuthGoogleDelegate;
 
 + (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(NSString *)annotation;
 @end

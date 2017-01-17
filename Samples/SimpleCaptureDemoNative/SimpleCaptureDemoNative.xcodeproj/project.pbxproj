@@ -366,10 +366,10 @@
 		3306C1D905E80CB37965B544 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
+		48045EFA1E2EB5F100B4C318 /* JROpenIDAppAuthGoogleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogleDelegate.h; sourceTree = "<group>"; };
 		48117C4F1E0DDBA8000E3F19 /* AppAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppAuth.h; path = "../../../OpenIDAppAuth/AppAuth-iOS/Source/AppAuth.h"; sourceTree = "<group>"; };
 		48117D301E0DDD02000E3F19 /* JROpenIDAppAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuth.h; sourceTree = "<group>"; };
 		48117D311E0DDD02000E3F19 /* JROpenIDAppAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROpenIDAppAuth.m; sourceTree = "<group>"; };
-		48117D321E0DDD02000E3F19 /* JROpenIDAppAuthConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthConfig.h; sourceTree = "<group>"; };
 		48117D331E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogle.h; sourceTree = "<group>"; };
 		48117D341E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROpenIDAppAuthGoogle.m; sourceTree = "<group>"; };
 		48117D351E0DDD02000E3F19 /* JROpenIDAppAuthProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthProvider.h; sourceTree = "<group>"; };
@@ -1150,9 +1150,9 @@
 				DFEFE3DF17A9915200760FEE /* JRJsonUtils.m */,
 				48117D301E0DDD02000E3F19 /* JROpenIDAppAuth.h */,
 				48117D311E0DDD02000E3F19 /* JROpenIDAppAuth.m */,
-				48117D321E0DDD02000E3F19 /* JROpenIDAppAuthConfig.h */,
 				48117D331E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.h */,
 				48117D341E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.m */,
+				48045EFA1E2EB5F100B4C318 /* JROpenIDAppAuthGoogleDelegate.h */,
 				48117D351E0DDD02000E3F19 /* JROpenIDAppAuthProvider.h */,
 				48117D361E0DDD02000E3F19 /* JROpenIDAppAuthProvider.m */,
 				DFEFE3E217A9915200760FEE /* JRPreviewLabel.h */,

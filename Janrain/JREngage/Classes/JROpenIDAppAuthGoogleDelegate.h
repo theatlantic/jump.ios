@@ -1,4 +1,3 @@
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Copyright (c) 2016, Janrain, Inc.
  All rights reserved.
@@ -24,8 +23,17 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import <Foundation/Foundation.h>
 
-@protocol JROpenIDAppAuthConfig <NSObject>
-- (NSString *)googlePlusClientId;
+#import <Foundation/Foundation.h>
+#import "AppAuth.h"
+
+@protocol JROpenIDAppAuthGoogleDelegate <NSObject>
+
+@required
+
+@property(nonatomic) NSString *googlePlusClientId;
+@property(nonatomic) NSString *googlePlusRedirectUri;
+@property(retain) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;
+
 @end
+

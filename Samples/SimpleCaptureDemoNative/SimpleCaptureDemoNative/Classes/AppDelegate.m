@@ -90,12 +90,11 @@ AppDelegate *appDelegate = nil;
 //OpenID AppAuth
 @synthesize googlePlusClientId;
 @synthesize googlePlusRedirectUri;
-
+@synthesize openIDAppAuthAuthorizationFlow;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     appDelegate = self;
-
 
     //Setup Twitter TwitterKit/Fabric
     // http://docs.fabric.io/ios/twitter/twitterkit-setup.html
@@ -134,10 +133,6 @@ AppDelegate *appDelegate = nil;
     config.forgottenPasswordFormName = captureForgottenPasswordFormName;
     config.editProfileFormName = captureEditProfileFormName;
     config.resendEmailVerificationFormName = resendVerificationFormName;
-    //OpenID AppAuth
-    config.googlePlusClientId = googlePlusClientId;
-    config.googlePlusRedirectUri = googlePlusRedirectUri;
-
 
     [JRCapture setCaptureConfig:config];
     self.prefs = [NSUserDefaults standardUserDefaults];
@@ -161,11 +156,10 @@ AppDelegate *appDelegate = nil;
             options:(NSDictionary<NSString *, id> *)options {
     // Sends the URL to the current authorization flow (if any) which will process it if it relates to
     // an authorization response.
-    if ([_openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
-        _openIDAppAuthAuthorizationFlow = nil;
+    if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
+        self.openIDAppAuthAuthorizationFlow = nil;
         return YES;
     }
-
     // Your additional URL handling (if any) goes here.
 
     return NO;
