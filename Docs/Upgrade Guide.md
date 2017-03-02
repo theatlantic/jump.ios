@@ -77,7 +77,7 @@ You may have to update your initialization code to populate these values in to t
     if ([cfg objectForKey:@"googlePlusOpenIDScopes"])
         self.googlePlusOpenIDScopes = [cfg objectForKey:@"googlePlusOpenIDScopes"];
 
-In general "OIDScopeEmail", "OIDScopeOpenID", and "OIDScopeProfile" should always be requested. Not including or populatng this setting will result in all five scopes being requested.
+In general "OIDScopeEmail", "OIDScopeOpenID", and "OIDScopeProfile" should always be requested. Not including or populating this setting will result in all five scopes being requested.
 
 ### Upgrading from any version PRIOR to v5.0.0 to v5.0.1 or greater
 
