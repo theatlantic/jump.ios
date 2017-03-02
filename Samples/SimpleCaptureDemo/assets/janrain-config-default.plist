@@ -6,6 +6,14 @@
 	<string>prod-demo</string>
 	<key>prod-demo</key>
 	<dict>
+		<key>googlePlusOpenIDScopes</key>
+		<array>
+			<string>OIDScopeAddress</string>
+			<string>OIDScopePhone</string>
+			<string>OIDScopeEmail</string>
+			<string>OIDScopeProfile</string>
+			<string>OIDScopeOpenID</string>
+		</array>
 		<key>googlePlusRedirectUri</key>
 		<string>com.googleusercontent.apps.169582807084-q6j1vmlas0q26svho9vh6npg4dogn76o:/oauthredirect</string>
 		<key>googlePlusClientId</key>

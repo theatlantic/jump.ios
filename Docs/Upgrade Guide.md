@@ -59,12 +59,31 @@ UPDATE the following method so it is as follows:
         return NO;
     }
 
+### Upgrading from v5.0.1 to v5.0.2 or greater
 
-### Upgrading from any version PRIOR to V5.0.0 to v5.0.1 or greater
+There is now an optional janrain-config.plist setting that allows you to define the OpenID Scopes that will be requested during the Google OpenID request process.  The full list of scopes available is as follows:
+
+    <key>googlePlusOpenIDScopes</key>
+    <array>
+        <string>OIDScopeAddress</string>
+        <string>OIDScopePhone</string>
+        <string>OIDScopeEmail</string>
+        <string>OIDScopeProfile</string>
+        <string>OIDScopeOpenID</string>
+    </array>
+
+You may have to update your initialization code to populate these values in to the JROpenIDAppAuthGoogleDelegate's googlePlusOpenIDScopes property:
+
+    if ([cfg objectForKey:@"googlePlusOpenIDScopes"])
+        self.googlePlusOpenIDScopes = [cfg objectForKey:@"googlePlusOpenIDScopes"];
+
+In general "OIDScopeEmail", "OIDScopeOpenID", and "OIDScopeProfile" should always be requested. Not including or populatng this setting will result in all five scopes being requested.
+
+### Upgrading from any version PRIOR to v5.0.0 to v5.0.1 or greater
 
 There are potentially *breaking* changes to the Janrain Mobile SDK with version 5.0.  Due to Google's decision to not allow web-based authentication through webviews, support for web-based authentication for Google has been implemented using Google's recommended OpenID AppAuth (http://openid.github.io/AppAuth-iOS/) libraries.  These libraries are now a *required* dependency of the Janrain Mobile Libraries.'
 
-The OpenID AppAuth for iOS libraries (version 0.7.1 tested) can be installed using CocoaPods or as an Xcode Workspace library.  Please refer to this link for additional information on installing the OpenID AppAuth for iOS libraries: http://openid.github.io/AppAuth-iOS/ Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
+The OpenID AppAuth for iOS libraries (version 0.7.1 tested) can be installed using CocoaPods or as an Xcode Workspace library.  Please refer to this link for additional information on installing the OpenID AppAuth for iOS libraries: http://openid.github.io/AppAuth-iOS/ Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a" or "libAppAuth-iOS.a")
 
 If you are linking to the OpenID AppAuth Library repo and not using CocoaPods you may need to add the OpenID AppAuth library source code location to your Xcode project's Build Settings -> Search Paths -> Header Search Paths value: example: `/GitHub/OpenIDAppAuth/AppAuth-iOS/Source` (use the "recursive" option if needed).
 
@@ -212,7 +231,7 @@ objc-class-ref in JRProvidersController.o`
 `(null): "_OIDScopeOpenID", referenced from:`,
 `(null): "_OIDScopeProfile", referenced from:`
 
-*Resolution*: Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a")
+*Resolution*: Make sure your project's "Linked Frameworks and Libraries" includes a reference to the OpenID AppAuth for iOS Library ("libAppAuth.a" or "libAppAuth-iOS.a")
 
 *Errors*:
 /jump.ios/Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/Classes/AppDelegate.m:135:33: Use of undeclared identifier 'googlePlusClientId'; did you mean '_googlePlusClientId'?
