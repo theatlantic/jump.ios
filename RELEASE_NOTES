@@ -1,3 +1,6 @@
+v5.0.2
+ - Set the default scopes for Google OpenID AppAuth requests to include all available scopes.
+ - Added an optional janrain-config.plist setting that allows you to define the OpenID Scopes that will be requested during the Google OpenID request process. Please refer to the Upgrade Guide for additional information.
 v5.0.1
  - Resolved Cocoapods incompatibility.  Implemented JROpenIDAppAuthGoogleDelegate Protocol to remove reference to AppDelegate.h from JROpenIDAppAuthGoogle.m
  - Updated sample apps and documentation to demonstrate implementation of the JROpenIDAppAuthGoogleelegate protocol.

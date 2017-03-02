@@ -21,6 +21,7 @@
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
 		3306C17245BA3B16978120CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */; };
 		3306C504E4EB30699D49C31F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306C1C76C81D3A8D4ED2232 /* Localizable.strings */; };
+		4825A7801E687EDD009910B4 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */; };
 		484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DC1B5ED14100E63266 /* AddressBook.framework */; };
 		484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DE1B5ED19200E63266 /* AssetsLibrary.framework */; };
 		484380E41B5ED19200E63266 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DF1B5ED19200E63266 /* CoreLocation.framework */; };
@@ -357,6 +358,7 @@
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
 		48045EF91E2E7F3C00B4C318 /* JROpenIDAppAuthGoogleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogleDelegate.h; sourceTree = "<group>"; };
+		4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAppAuth-iOS.a"; path = "../../../../Library/Developer/Xcode/DerivedData/SimpleCaptureDemo-axwcfzztwxtglzbntbtzcbbnswpg/Build/Products/Debug-iphonesimulator/libAppAuth-iOS.a"; sourceTree = "<group>"; };
 		484380DC1B5ED14100E63266 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		484380DE1B5ED19200E63266 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		484380DF1B5ED19200E63266 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -742,6 +744,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4825A7801E687EDD009910B4 /* libAppAuth-iOS.a in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
@@ -872,6 +875,7 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */,
 				4869A0D81E1D6654007F76B1 /* libAppAuth.a */,
 				4898D44C1DFA1094007432DB /* WebKit.framework */,
 				4898D44A1DFA0D8C007432DB /* SafariServices.framework */,

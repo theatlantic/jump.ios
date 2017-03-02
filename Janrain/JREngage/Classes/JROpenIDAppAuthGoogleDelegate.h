@@ -33,6 +33,7 @@
 
 @property(nonatomic) NSString *googlePlusClientId;
 @property(nonatomic) NSString *googlePlusRedirectUri;
+@property(nonatomic) NSArray *googlePlusOpenIDScopes;
 @property(retain) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;
 
 @end
