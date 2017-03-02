@@ -90,6 +90,7 @@ AppDelegate *appDelegate = nil;
 //OpenID AppAuth
 @synthesize googlePlusClientId;
 @synthesize googlePlusRedirectUri;
+@synthesize googlePlusOpenIDScopes;
 @synthesize openIDAppAuthAuthorizationFlow;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -282,6 +283,8 @@ AppDelegate *appDelegate = nil;
         self.googlePlusClientId = [cfg objectForKey:@"googlePlusClientId"];
     if ([cfg objectForKey:@"googlePlusRedirectUri"])
         self.googlePlusRedirectUri = [cfg objectForKey:@"googlePlusRedirectUri"];
+    if ([cfg objectForKey:@"googlePlusOpenIDScopes"])
+        self.googlePlusOpenIDScopes = [cfg objectForKey:@"googlePlusOpenIDScopes"];
 }
 
 - (void)saveCaptureUser

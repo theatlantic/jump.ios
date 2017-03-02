@@ -4,12 +4,12 @@
 
 Pod::Spec.new do |s|
   s.name          = "Janrain"
-  s.version       = "5.0.1"
-  s.summary       = "Janrain JUMP for iOS library"
+  s.version       = "5.0.2"
+  s.summary       = "Janrain iOS Mobile Libraries"
   s.homepage      = "https://github.com/janrain/jump.ios"
   s.license       = { :type => 'BSD', :file => 'LICENSE' }
   s.author        = "Janrain"
-  s.source        = { :git => "https://github.com/janrain/jump.ios.git", :tag => "5.0.1" }
+  s.source        = { :git => "https://github.com/janrain/jump.ios.git", :tag => "5.0.2" }
   s.platform      = :ios, '8.0'
   s.source_files  = "Janrain/**/*.{h,m}"
   s.exclude_files = "Janrain/JRCapture/**/*"
