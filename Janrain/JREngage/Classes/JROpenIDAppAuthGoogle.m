@@ -76,16 +76,40 @@ static NSString *const kAppAuthExampleAuthStateKey = @"authState";
             
             DLog(@"Got configuration: %@", configuration);
             
+            //populate scopes from janrain configuration plist
+            NSArray *openIDScopes;
+            if (jrOpenIDAppAuthGoogleDelegate.googlePlusOpenIDScopes == nil || [jrOpenIDAppAuthGoogleDelegate.googlePlusOpenIDScopes count] == 0) {
+                openIDScopes = @[OIDScopeOpenID, OIDScopeProfile, OIDScopeEmail, OIDScopeAddress, OIDScopePhone];
+            }else{
+                NSMutableArray *tempScopes = [[NSMutableArray alloc] init];
+                for (NSString* scope in jrOpenIDAppAuthGoogleDelegate.googlePlusOpenIDScopes){
+                    if([scope isEqualToString:@"OIDScopeOpenID"]) {
+                        [tempScopes addObject:OIDScopeOpenID];
+                    } else if([scope isEqualToString:@"OIDScopeProfile"]) {
+                        [tempScopes addObject:OIDScopeProfile];
+                    } else if([scope isEqualToString:@"OIDScopeEmail"]) {
+                        [tempScopes addObject:OIDScopeEmail];
+                    } else if([scope isEqualToString:@"OIDScopeAddress"]) {
+                        [tempScopes addObject:OIDScopeAddress];
+                    } else if([scope isEqualToString:@"OIDScopePhone"]) {
+                        [tempScopes addObject:OIDScopePhone];
+                    }
+                }
+                if(tempScopes != nil && [tempScopes count] > 0){
+                    openIDScopes = [tempScopes copy];
+                }
+            }
+            
             // builds authentication request
             OIDAuthorizationRequest *request =
             [[OIDAuthorizationRequest alloc] initWithConfiguration:configuration
                                                           clientId:jrOpenIDAppAuthGoogleDelegate.googlePlusClientId
-                                                            scopes:@[OIDScopeOpenID, OIDScopeProfile]
+                                                            scopes:openIDScopes
                                                        redirectURL:redirectURI
                                                       responseType:OIDResponseTypeCode
                                               additionalParameters:nil];
             // performs authentication request
-            DLog(@"Initiating authorization request with scope: %@", request.scope);
+            DLog(@"Initiating authorization request with scopes: %@", request.scope);
             
             UIViewController *current = [UIApplication sharedApplication].keyWindow.rootViewController;
             
