@@ -53,7 +53,7 @@
 
 // DO NOT USE THIS CLIENT ID. IT WILL NOT WORK FOR YOUR APP.
 // Please use the client ID created for you by Google.
-NSString * const kGoogleClientID = @"169582807084-vd2cpgn80d2fj47e56fnd5bfsjht2vb2.apps.googleusercontent.com";
+NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate, JRCaptureUserDelegate>
 @property RootViewController *rvc;
