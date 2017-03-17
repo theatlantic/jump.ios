@@ -30,11 +30,14 @@
 		484380E51B5ED19200E63266 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E01B5ED19200E63266 /* CoreText.framework */; };
 		484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E11B5ED19200E63266 /* MediaPlayer.framework */; };
 		484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E21B5ED19200E63266 /* SystemConfiguration.framework */; };
-		484380ED1B5EEC7B00E63266 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */; };
-		484380EF1B5EF6F400E63266 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
-		4869A0DD1E1D725C007F76B1 /* libAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4869A0DC1E1D725C007F76B1 /* libAppAuth.a */; };
 		4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73971B63045C001D98FF /* StoreKit.framework */; };
+		488135181E7B3CA50093CC54 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488135151E7B3CA50093CC54 /* SafariServices.framework */; };
+		488135191E7B3CA50093CC54 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488135161E7B3CA50093CC54 /* AVFoundation.framework */; };
+		4881351A1E7B3CA50093CC54 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488135171E7B3CA50093CC54 /* CoreMedia.framework */; };
+		4881351C1E7C465D0093CC54 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4881351B1E7C465D0093CC54 /* FBSDKCoreKit.framework */; };
+		4881351E1E7C46750093CC54 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4881351D1E7C46750093CC54 /* FBSDKLoginKit.framework */; };
+		488135201E7C46BD0093CC54 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4881351F1E7C46BD0093CC54 /* Bolts.framework */; };
 		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
 		48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */; };
 		48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */; };
@@ -367,7 +370,6 @@
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
 		48045EFA1E2EB5F100B4C318 /* JROpenIDAppAuthGoogleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogleDelegate.h; sourceTree = "<group>"; };
-		48117C4F1E0DDBA8000E3F19 /* AppAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppAuth.h; path = "../../../OpenIDAppAuth/AppAuth-iOS/Source/AppAuth.h"; sourceTree = "<group>"; };
 		48117D301E0DDD02000E3F19 /* JROpenIDAppAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuth.h; sourceTree = "<group>"; };
 		48117D311E0DDD02000E3F19 /* JROpenIDAppAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROpenIDAppAuth.m; sourceTree = "<group>"; };
 		48117D331E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogle.h; sourceTree = "<group>"; };
@@ -380,10 +382,13 @@
 		484380E01B5ED19200E63266 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		484380E11B5ED19200E63266 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		484380E21B5ED19200E63266 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_135x40.png; sourceTree = "<group>"; };
-		4869A0DC1E1D725C007F76B1 /* libAppAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppAuth.a; path = "../../../../Library/Developer/Xcode/DerivedData/SimpleCaptureDemoNative-cwhqgaglbfvnfsbroxnhocykyfie/Build/Products/Debug-iphonesimulator/libAppAuth.a"; sourceTree = "<group>"; };
+		488135151E7B3CA50093CC54 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		488135161E7B3CA50093CC54 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		488135171E7B3CA50093CC54 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		4881351B1E7C465D0093CC54 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		4881351D1E7C46750093CC54 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		4881351F1E7C46BD0093CC54 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
 		48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_280x40.png; sourceTree = "<group>"; };
 		48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_paypal_openidconnect_30x30.png; sourceTree = "<group>"; };
@@ -760,16 +765,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4869A0DD1E1D725C007F76B1 /* libAppAuth.a in Frameworks */,
+				488135201E7C46BD0093CC54 /* Bolts.framework in Frameworks */,
+				4881351E1E7C46750093CC54 /* FBSDKLoginKit.framework in Frameworks */,
+				4881351C1E7C465D0093CC54 /* FBSDKCoreKit.framework in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
+				488135181E7B3CA50093CC54 /* SafariServices.framework in Frameworks */,
 				484380E41B5ED19200E63266 /* CoreLocation.framework in Frameworks */,
 				48FE6DC21B6028BD0008DE42 /* GoogleSignIn.framework in Frameworks */,
-				484380EF1B5EF6F400E63266 /* FBSDKLoginKit.framework in Frameworks */,
 				48BC73961B62AE8A001D98FF /* TwitterCore.framework in Frameworks */,
-				484380ED1B5EEC7B00E63266 /* FBSDKCoreKit.framework in Frameworks */,
 				484380E51B5ED19200E63266 /* CoreText.framework in Frameworks */,
+				488135191E7B3CA50093CC54 /* AVFoundation.framework in Frameworks */,
 				484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */,
 				484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */,
 				48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */,
@@ -778,6 +785,7 @@
 				90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */,
 				484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */,
 				D894366318651F4D004BCF0A /* Accounts.framework in Frameworks */,
+				4881351A1E7B3CA50093CC54 /* CoreMedia.framework in Frameworks */,
 				D894366118651F47004BCF0A /* Social.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */,
@@ -869,6 +877,9 @@
 		6706F8B0C97A69C3A2194B76 /* JRCapture */ = {
 			isa = PBXGroup;
 			children = (
+				488135151E7B3CA50093CC54 /* SafariServices.framework */,
+				488135161E7B3CA50093CC54 /* AVFoundation.framework */,
+				488135171E7B3CA50093CC54 /* CoreMedia.framework */,
 				4DFC8ED4187E1DD100CE8A83 /* Generated */,
 			);
 			path = JRCapture;
@@ -897,8 +908,9 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4869A0DC1E1D725C007F76B1 /* libAppAuth.a */,
-				48117C4F1E0DDBA8000E3F19 /* AppAuth.h */,
+				4881351F1E7C46BD0093CC54 /* Bolts.framework */,
+				4881351D1E7C46750093CC54 /* FBSDKLoginKit.framework */,
+				4881351B1E7C465D0093CC54 /* FBSDKCoreKit.framework */,
 				48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */,
 				48F27AAF1BDE97E7007D9BC3 /* libz.tbd */,
 				48BC73971B63045C001D98FF /* StoreKit.framework */,
@@ -909,8 +921,6 @@
 				48BC73911B62AE8A001D98FF /* TwitterCore.framework */,
 				48FE6DBF1B6028BD0008DE42 /* GoogleSignIn.bundle */,
 				48FE6DC01B6028BD0008DE42 /* GoogleSignIn.framework */,
-				484380EE1B5EF6F400E63266 /* FBSDKLoginKit.framework */,
-				484380EC1B5EEC7B00E63266 /* FBSDKCoreKit.framework */,
 				484380DE1B5ED19200E63266 /* AssetsLibrary.framework */,
 				484380DF1B5ED19200E63266 /* CoreLocation.framework */,
 				484380E01B5ED19200E63266 /* CoreText.framework */,
@@ -2060,7 +2070,8 @@
 				DEVELOPMENT_TEAM = 3GSSC5Q8U3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
+					"~/Documents/FacebookSDK/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Prefix.pch";
@@ -2068,15 +2079,23 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/**",
+					"~/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"~/Documents/FacebookSDK/**",
+				);
 				INFOPLIST_FILE = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"~/Documents/FacebookSDK/**",
+				);
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.janrain.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.simplecapturedemonative;
 				PRODUCT_NAME = SimpleCaptureDemoNative;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2095,7 +2114,8 @@
 				DEVELOPMENT_TEAM = 3GSSC5Q8U3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
+					"~/Documents/FacebookSDK/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Prefix.pch";
@@ -2103,15 +2123,23 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/**",
+					"~/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"~/Documents/FacebookSDK/**",
+				);
 				INFOPLIST_FILE = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"~/Documents/FacebookSDK/**",
+				);
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.janrain.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.simplecapturedemonative;
 				PRODUCT_NAME = SimpleCaptureDemoNative;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2164,7 +2192,8 @@
 				DEVELOPMENT_TEAM = 3GSSC5Q8U3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/**",
+					"~/Documents/FacebookSDK/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Prefix.pch";
@@ -2172,15 +2201,23 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/**",
+					"~/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"~/Documents/FacebookSDK/**",
+				);
 				INFOPLIST_FILE = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"~/Documents/FacebookSDK/**",
+				);
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.janrain.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.simplecapturedemonative;
 				PRODUCT_NAME = SimpleCaptureDemoNative;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
