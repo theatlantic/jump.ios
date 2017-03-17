@@ -59,6 +59,10 @@ UPDATE the following method so it is as follows:
         return NO;
     }
 
+NOTE: the SimpleDemoNative app ues the following method instead to ensure compatibility with the Native Provider libraries:
+    - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+
 ### Upgrading from v5.0.1 to v5.0.2 or greater
 
 There is now an optional janrain-config.plist setting that allows you to define the OpenID Scopes that will be requested during the Google OpenID request process.  The full list of scopes available is as follows:

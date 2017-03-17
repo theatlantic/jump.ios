@@ -15,9 +15,9 @@
 			<string>OIDScopeOpenID</string>
 		</array>
 		<key>googlePlusClientId</key>
-		<string>UPDATE_WITH_GOOGLE_CLIENT_ID.apps.googleusercontent.com</string>
+		<string>UPDATE.apps.googleusercontent.com</string>
 		<key>googlePlusRedirectUri</key>
-		<string>com.googleusercontent.apps.UPDATE_WITH_GOOGLE_CLIENT_ID:/oauthredirect</string>
+		<string>com.googleusercontent.apps.UPDATE:/oauthredirect</string>
 		<key>engageAppId</key>
 		<string>UPDATE</string>
 		<key>captureDomain</key>
