@@ -9,9 +9,9 @@ SimpleCaptureDemoNative demos:
 - Sign-in session management
 - Registration (traditional and social)
 - Native Authentication using Facebook, Google+, and Twitter
-- REQUIRED: Facebook SDK version 4.18.0
+- REQUIRED: Facebook SDK version 4.20.2
 - REQUIRED: Google Signin SDK 2.3.2
-- REQUIRED: Fabric.io with TwitterKit 2.7.0
+- REQUIRED: Fabric.io with TwitterKit 2.8.0
 
 To run this demo with your own configuration:
 
@@ -64,6 +64,17 @@ Example:
 </array>
 `
 
+There is now an optional janrain-config.plist setting that allows you to define the OpenID Scopes that will be requested during the Google OpenID request process.  The full list of scopes available is as follows:
+
+    <key>googlePlusOpenIDScopes</key>
+    <array>
+        <string>OIDScopeAddress</string>
+        <string>OIDScopePhone</string>
+        <string>OIDScopeEmail</string>
+        <string>OIDScopeProfile</string>
+        <string>OIDScopeOpenID</string>
+    </array>
+
 6. You will need to follow these steps for each native provider:
   * ###Facebook
     1. Download the Facebook SDK for iOS from this link:  https://developers.facebook.com/docs/ios
@@ -90,8 +101,31 @@ Example:
     4. Edit the "Classes/AppDelegate.m" file to update the application with your Twitter Consumer Key and Consumer Secret. (Line 99)
     5. In the case of the SimpleCaptureDemoNative application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Twitter at this link: http://docs.fabric.io/ios/twitter/authentication.html
     6. NOTE: In most default cases Twitter will not return an email address for an end user. This may cause account merging or linking issues if your Registration user experience relies heavily on merged social profiles.  This use-case is typically addressed by forcing Twitter account holders to use the "Account Linking" functionality of the SDK.  Customer's may choose to work with Twitter to get their application white-listed so it will attempt to return an email address from a user profile.  However, email addresses are not "required" for Twitter accounts, subsequently there is still no guarantee that an email address will be returned.
-    7. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemoNative application.
 
+7. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemoNative application.
+
+8. Make sure to add/update the following method in your AppDelegate.m file accordingly (You may not need to handle all the url scheme variations):
+
+    - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+             annotation:(id)annotation
+    {
+        NSLog(@"openURL %@", url);
+        if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
+            self.openIDAppAuthAuthorizationFlow = nil;
+            return YES;
+        }else if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
+            return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:sourceApplication
+                                                               annotation:annotation];
+        }else if(url.scheme != nil && [url.scheme hasPrefix:@"com.googleusercontent.apps"]){
+            return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+        }else{
+            return [self application:application
+                             openURL:url
+                             options:@{}];
+        }
+    }
 
 ###Typical Misconfiguration Errors###
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="9RN-Pn-CPc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="9RN-Pn-CPc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -221,6 +221,20 @@
                                     <action selector="resendVerificationButtonPressed:" destination="2" eventType="touchUpInside" id="lQG-jz-1dJ"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="fpq-eM-yNK" userLabel="TouchID Switch">
+                                <rect key="frame" x="248" y="423" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="touchIDSwitchChanged:" destination="2" eventType="touchUpInside" id="Vlb-i3-8Ym"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enable Touch ID Verification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="trI-lM-opH" userLabel="TouchID Label">
+                                <rect key="frame" x="50" y="428" width="214" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -235,6 +249,8 @@
                         <outlet property="browseButton" destination="Sdc-xo-ZC1" id="3Sx-RY-vcP"/>
                         <outlet property="currentUserLabel" destination="Hq8-yJ-Rmg" id="hGr-bA-Zvn"/>
                         <outlet property="currentUserProviderIcon" destination="PZq-1X-zH2" id="vdO-gn-iv0"/>
+                        <outlet property="enableTouchIDLabel" destination="trI-lM-opH" id="wl5-oj-bBq"/>
+                        <outlet property="enableTouchIDSwitch" destination="fpq-eM-yNK" id="ySt-IU-xd5"/>
                         <outlet property="forgotPasswordButton" destination="Ghj-Zz-nLl" id="Uf9-AE-5eo"/>
                         <outlet property="formButton" destination="Th5-gz-bhu" id="AQA-YY-VUE"/>
                         <outlet property="linkAccountButton" destination="ObZ-df-gL7" id="YXV-Ln-6w8"/>

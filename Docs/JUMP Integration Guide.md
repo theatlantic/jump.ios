@@ -114,7 +114,8 @@ object that manages your application's state model.
 2. Modify your class's interface declaration to declare conformation to the protocol. (All of the messages of the
    protocol are optional.) So, for example, start your AppDelegate's interface declaration like this:
 
-        @interface AppDelegate : UIResponder <UIApplicationDelegate, JRCaptureDelegate>
+        @interface AppDelegate : UIResponder <UIApplicationDelegate, JROpenIDAppAuthGoogleDelegate>
+
 
 3. Add a `JRCaptureUser *` property to your class's interface declaration:
 
@@ -123,6 +124,35 @@ object that manages your application's state model.
 4. In your class's implementation synthesize that property:
 
         @synthesize captureUser;
+
+5. If you will be using non-native Google to authenticate users you will need to implement the OpenID AppAuth libraries as shown in the sample applications and documented in the Upgrade Guide.  Add the following to your AppDelegate.m file:
+
+        //OpenID AppAuth
+        @synthesize googlePlusClientId;
+        @synthesize googlePlusRedirectUri;
+        @synthesize googlePlusOpenIDScopes;
+        @synthesize openIDAppAuthAuthorizationFlow;
+
+Make sure to populate these variables appropriately during app startup.
+
+Also make sure to add the following (or similar) to your AppDelegate.m file:
+```
+/*! @brief Handles inbound URLs. Checks if the URL matches the redirect URI for a pending
+ AppAuth authorization request.
+ */
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    // Sends the URL to the current authorization flow (if any) which will process it if it relates to
+    // an authorization response.
+    if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
+        self.openIDAppAuthAuthorizationFlow = nil;
+        return YES;
+    }
+    // Your additional URL handling (if any) goes here.
+    return NO;
+}
+```
 
 ## Initialize the Library
 
@@ -190,10 +220,10 @@ complete authentication.
                                       forProvider:(NSString *)provider
     {
         self.currentDisplayName = [self getDisplayNameFromProfile:engageAuthInfo];
-    
+
         // Update the UI to show that authentication is completing...
         [self showCompletingSigninVisualAffordance]; // E.g. a UIActivityIndicator
-    
+
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     }
 
@@ -219,15 +249,15 @@ your delegate. This message delivers the `JRCaptureUser` instance, and also the 
     {
         // Retain a reference to the user object
         myAppDelegate.captureUser = newCaptureUser;
-    
+
         // User records can come back with one of two states
         if (captureRecordStatus == JRCaptureRecordNewlyCreated)
         {
             // The user has not signed in to this Capture instance before and a new record
             // has been automatically created. This is called a "thin registration"
-    
+
             // You may wish to collect additional data from the user and add it
-            // to the user's record, e.g. an avatar image URL, T.O.S. acceptance, etc. 
+            // to the user's record, e.g. an avatar image URL, T.O.S. acceptance, etc.
         }
         else if (captureRecordStatus == JRCaptureRecordExists)
         {
@@ -349,10 +379,10 @@ Example:
                         [self startNativeGoogleplus];
                     }else if ([existingAccountProvider isEqualToString:@"twitter"]){
                         [self startNativeTwitter:[error JRMergeToken]];
-                    */ 
+                    */
                     }else{
                         // Social sign-in required:
-                    
+
                         [JRCapture startEngageSignInDialogOnProvider:existingAccountProvider
                                         withCustomInterfaceOverrides:self.customUi
                                                           mergeToken:[error JRMergeToken]
@@ -397,13 +427,13 @@ method.
 ### Performing Account Linking Flow
 
 There are times when a user want to link another social identity provider to the existing capture account. This flow enables
-user to link other social identity provider accounts to the current capture account. 
+user to link other social identity provider accounts to the current capture account.
 
-- `+[JRCapture startAccountLinkingSignInDialogForDelegate:forAccountLinking:withRedirectUri:]` : Starts the 
+- `+[JRCapture startAccountLinkingSignInDialogForDelegate:forAccountLinking:withRedirectUri:]` : Starts the
    social sign-in process for all currently configured social sign-in providers, displaying a list of them initially,
-   and guiding the user through the authentication. Once the authentication is completed, this new account is linked to the 
+   and guiding the user through the authentication. Once the authentication is completed, this new account is linked to the
    existing capture account.
-   
+
 Parameters :
 - `JRCaptureDelegate` : A capture delegate object.
 - `forAccountLinking` : A `bool` value to indicate whether to perform account linking or not. Set it `"YES` to start account linking.
@@ -418,7 +448,7 @@ Delegates:
 Example:
 Let's call this on the click of a button for Account Linking.
 
-    [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate 
+    [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate
                                         forAccountLinking:YES
                                           withRedirectUri:@"http://your-domain-custom-redirect-url-page.html"]
 
@@ -437,7 +467,7 @@ use this flow. This flow will unlink one account at a time, in a successful exec
    `verifiedEmail`  & `identifier` : Use `identifier` value for unlinking account.
 
 - `+[JRcapture startAccountUnlinking:(id<JRCaptureDelegate>)delegate forProfileIdentifier:(NSString *)identifier`: This will
-   unlink the account identified by the `identifier`, from the existing capture account. Pass any `identifier` value being retrieved from 
+   unlink the account identified by the `identifier`, from the existing capture account. Pass any `identifier` value being retrieved from
    `[JRCaptureData getLinkedProfiles]` array. The `JRCapture` will trigger `accountUnlinkingDidFailWithError` &
    `accountUnlinkingDidSucceed` delegates.
 
@@ -449,13 +479,13 @@ Delegates:
 Example:
 Let's call this on the click of a button for Account Un-linking.
 **Note** This should be called when the user has already signed-in into a capture application.
-    
+
     // store the Linked accounts into your array aobject from JRCaptureData object.
     NSArray *linkedProfiles = [JRCaptureData getLinkedProfiles];
-    
+
     if([linkedProfiles count]) {
     	NSString *selectedProfile = [[linkedProfiles objectAtIndex:0] valueForKey:@"identifier"];
-    	
+
     	// pass the selected  identifier to the unlinking method.
     	[JRCapture startAccountUnlinking:self.captureDelegate forProfileIdentifier:selectedProfile];
     }
@@ -552,7 +582,7 @@ The Mobile SDK has support for replacing existing plurals when properly configur
 
 The developer should make sure they have an up-to-date Registration User Model (http://developers.janrain.com/how-to/mobile-apps/sdk/registration/ios/install-with-xcode/configure-xcode-project-for-sdk/#add-the-library-to-your-xcode-project).
 
-By default any “entity” api calls other than the base “entity” call can NOT be used with a Mobile or Javascript implementation.  The Mobile and Javascript implementations are designed to not have API Client secrets embedded in them.  Additionally Mobile SDK and Javascript implementations are designed to only use API Clients with the “login_client” feature.  
+By default any “entity” api calls other than the base “entity” call can NOT be used with a Mobile or Javascript implementation.  The Mobile and Javascript implementations are designed to not have API Client secrets embedded in them.  Additionally Mobile SDK and Javascript implementations are designed to only use API Clients with the “login_client” feature.
 
 When an end user authenticates through an API Client with the “login_client” feature the access token that it returned is scoped to only permit read-only access to the user’s profile data.  The access token can not be used to make any entity calls that would modify the user’s profile data (i.e. entity.update, entity.replace).  All edits to the user’s profile data must be submitted through the Janrain Registration server using either the Javascript implementation or the Mobile SDK (which uses the OAuth API end points).
 
@@ -560,7 +590,7 @@ Access Schemas:
 
 NOTE: Access Schemas are leveraged by several components in the Janrain Registration system.  Please consult with your Janrain Deployment specialist before modifying an Access Schema.
 
-The Registration API Client filtering of read and write access is implemented through a feature called “Access Schemas”.  Each Registration API Client can only have the following access types:  “read”, “write”, or “write_with_token”.  The “write” access schema will always be used when an API Client ID and Secret combination is provided to any of the editing “entity” api calls. The “write_with_token” access schema will always be used when a valid access token is provided to any of the editing “entity” api calls. 
+The Registration API Client filtering of read and write access is implemented through a feature called “Access Schemas”.  Each Registration API Client can only have the following access types:  “read”, “write”, or “write_with_token”.  The “write” access schema will always be used when an API Client ID and Secret combination is provided to any of the editing “entity” api calls. The “write_with_token” access schema will always be used when a valid access token is provided to any of the editing “entity” api calls.
 
 By default an API Client with the “login_client” feature will have a “read” access schema that provides full read access to their entire user profile, and  “write” and “write_with_token” access schemas that provide no write access to the user profile (Note: reserved attributes (id, uuid, created, lastUpdated) are automatically included in the access schema but are not accessible through the entity calls).
 
@@ -587,14 +617,14 @@ For example:
     // Make a new photos plural element:
     JRPhotosElement *newPhoto = [[JRPhotosElement alloc] init];
     newPhoto.value = @"http://janrain.com/wp-content/uploads/drupal/janrain-logo.png";
-    
+
     // Make a new array with the new element added:
     NSMutableArray *newPhotos = [NSMutableArray  arrayWithArray:captureUser.photos];
     [newPhotos addObject:newPhoto];
-    
+
     // Assign the new array to the photos plural property:
     captureUser.photos = newPhotos;
-    
+
     // ... And update Capture:
     [captureUser replacePhotosArrayOnCaptureForDelegate:self context:nil];
 
@@ -609,7 +639,7 @@ When your application terminates, you should save your active user record to loc
 UIApplicationDelegate:
 
     #define cJRCaptureUser @"jr_capture_user"
-    
+
     - (void)applicationWillTerminate:(UIApplication *)application
     {
         // Store the Capture user record for use when your app restarts;
