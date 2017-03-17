@@ -3,7 +3,7 @@ v5.0.3
 - Updated SimpleDemoNative app's AppDelegate to use
 `- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation` for all URL redirection handlers instead of `- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options`
 - Tested Sample apps with version 0.8.0 of the OpenID AppAuth iOS libraries.
-- Tested the SimpleDemoNative sample app with the FacebookSDK version 4.20.2 and version 2.8.0 of TwitterKit
+- Tested the SimpleDemoNative sample app with the FacebookSDK version 4.20.2 and version 2.8.1 of TwitterKit
 
 v5.0.2
  - Set the default scopes for Google OpenID AppAuth requests to include all available scopes.

@@ -5,6 +5,9 @@ Samples/SimpleCaptureDemoNative/Fabric.framework/*
 Samples/SimpleCaptureDemoNative/GoogleSignIn.bundle/*
 Samples/SimpleCaptureDemoNative/GoogleSignIn.framework/*
 Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative.xcworkspace/xcuserdata/*
+Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/GoogleService-Info.plist
+Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info-WITH_KEYS.plist
+Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info-EMPTY.plist
 
 *.DS_Store
 # Xcode

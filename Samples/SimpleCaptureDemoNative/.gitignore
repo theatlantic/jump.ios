@@ -11,3 +11,4 @@ GoogleSignInframework/*
 .idea/workspace.xml
 .idea/misc.xml
 *.DS_Store
+assets/janrain-config.plist
