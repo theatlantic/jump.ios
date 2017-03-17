@@ -6,6 +6,8 @@
 	<string>prod-demo</string>
 	<key>prod-demo</key>
 	<dict>
+		<key>downloadFlowUrl</key>
+		<string>http://asdasasdasd.asdsada.asdas</string>
 		<key>googlePlusOpenIDScopes</key>
 		<array>
 			<string>OIDScopeAddress</string>
@@ -15,15 +17,15 @@
 			<string>OIDScopeOpenID</string>
 		</array>
 		<key>googlePlusClientId</key>
-		<string>UPDATE_WITH_GOOGLE_CLIENT_ID.apps.googleusercontent.com</string>
+		<string>169582807084-vd2cpgn80d2fj47e56fnd5bfsjht2vb2.apps.googleusercontent.com</string>
 		<key>googlePlusRedirectUri</key>
-		<string>com.googleusercontent.apps.UPDATE_WITH_GOOGLE_CLIENT_ID:/oauthredirect</string>
+		<string>com.googleusercontent.apps.169582807084-vd2cpgn80d2fj47e56fnd5bfsjht2vb2:/oauthredirect</string>
 		<key>engageAppId</key>
-		<string>UPDATE</string>
+		<string>appcfamhnpkagijaeinl</string>
 		<key>captureDomain</key>
-		<string>UPDATE.janraincapture.com</string>
+		<string>mobile-dev.janraincapture.com</string>
 		<key>captureClientId</key>
-		<string>UPDATE</string>
+		<string>9vt2ej43mxyftkf68c3xthkm2rtweg8w</string>
 		<key>captureFlowName</key>
 		<string>standard_flow</string>
 		<key>captureTraditionalSignInFormName</key>
@@ -39,7 +41,7 @@
 		<key>captureFlowVersion</key>
 		<string>HEAD</string>
 		<key>captureAppId</key>
-		<string>UPDATE</string>
+		<string>rz47skmnm48jpcv3bh4eguv4b8</string>
 		<key>captureForgottenPasswordFormName</key>
 		<string>forgotPasswordForm</string>
 		<key>captureEditProfileFormName</key>

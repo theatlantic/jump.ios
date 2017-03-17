@@ -282,7 +282,13 @@ static JREngage* singleton = nil;
                                                                                   @"provider" : provider
                                                                                   }];
     
-    NSString *url = [NSString stringWithFormat: @"https://%@/signin/oauth_token",engageAppUrl];
+    
+    NSString *url;
+    if(engageAppUrl.length > 0){
+        url = [NSString stringWithFormat: @"https://%@/signin/oauth_token",engageAppUrl];
+    }else{
+        url = [[JRSessionData jrSessionData].baseUrl stringByAppendingString:@"/signin/oauth_token"];
+    }
     
     if (tokenSecret) {
         if([provider  isEqual: @"twitter"]){

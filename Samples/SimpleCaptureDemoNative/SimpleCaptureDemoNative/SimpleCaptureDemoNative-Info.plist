@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.UPDATE_WITH_CLIENT_ID</string>
+				<string>com.googleusercontent.apps.169582807084-vd2cpgn80d2fj47e56fnd5bfsjht2vb2</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbUPDATE_WITH_FACEBOOK_APP_ID</string>
+				<string>fb773409502771506</string>
 			</array>
 		</dict>
 	</array>
@@ -52,16 +52,16 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>UPDATE</string>
+		<string>fbb7bb73de5c88fb8942e7590b7bf60735b59f3d</string>
 		<key>Kits</key>
 		<array>
 			<dict>
 				<key>KitInfo</key>
 				<dict>
 					<key>consumerKey</key>
-					<string>UPDATE</string>
+					<string>D8H3uHM6EiyeB4197XiXi0axP</string>
 					<key>consumerSecret</key>
-					<string>UPDATE</string>
+					<string>ojM8mfdoqjx23P8T0nqDcKZdB8yT2wgU01npDrNRH1xRF5rXTu</string>
 				</dict>
 				<key>KitName</key>
 				<string>Twitter</string>
@@ -69,9 +69,9 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>UPDATE</string>
+	<string>773409502771506</string>
 	<key>FacebookDisplayName</key>
-	<string>UPDATE</string>
+	<string>jrauthenticate</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
