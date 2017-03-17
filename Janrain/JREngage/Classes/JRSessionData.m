@@ -576,7 +576,7 @@ static JRSessionData *singleton = nil;
 {
     self.appId = newAppId;
     self.tokenUrl = newTokenUrl;
-    self.appUrl = nil;
+    self.appUrl = serverUrl;
     self.error = [self startGetConfiguration];
 
     return self;
@@ -639,7 +639,11 @@ static JRSessionData *singleton = nil;
                 providersWithIcons = [[NSMutableSet alloc] initWithSet:unarchivedProvidersWithIcons];
         }
         
-        baseUrl = [[NSUserDefaults standardUserDefaults] stringForKey:cJRBaseUrl];
+        if(newAppUrl.length > 0){
+            baseUrl = [NSString stringWithFormat: @"https://%@",newAppUrl];
+        }else{
+            baseUrl = [[NSUserDefaults standardUserDefaults] stringForKey:cJRBaseUrl];
+        }
         hidePoweredBy = !baseUrl ? YES : ([[NSUserDefaults standardUserDefaults] boolForKey:cJRHidePoweredBy]);
         
         returningSharingProvider = [[NSUserDefaults standardUserDefaults] stringForKey:cJRLastUsedSharingProvider];
@@ -657,7 +661,7 @@ static JRSessionData *singleton = nil;
 
 - (id)initWithAppId:(NSString *)newAppId tokenUrl:(NSString *)newTokenUrl andDelegate:(id<JRSessionDelegate>)newDelegate
 {
-    return [self initWithAppId:newAppId appUrl:nil tokenUrl:newTokenUrl andDelegate:newDelegate];
+    return [self initWithAppId:newAppId appUrl:serverUrl tokenUrl:newTokenUrl andDelegate:newDelegate];
 }
 
 + (id)jrSessionDataWithAppId:(NSString *)newAppId tokenUrl:(NSString *)newTokenUrl
@@ -667,7 +671,7 @@ static JRSessionData *singleton = nil;
         return [singleton reconfigureWithAppId:newAppId tokenUrl:newTokenUrl];
 
     return [((JRSessionData *) [super allocWithZone:nil]) initWithAppId:newAppId
-                                                                 appUrl:nil
+                                                                 appUrl:serverUrl
                                                                 tokenUrl:newTokenUrl
                                                              andDelegate:newDelegate];
 }

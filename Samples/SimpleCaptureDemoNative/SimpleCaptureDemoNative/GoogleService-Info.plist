@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>UPDATE</string>
+	<string>UPDATE.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>UPDATE</string>
+	<string>com.googleusercontent.apps.UPDATE</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
