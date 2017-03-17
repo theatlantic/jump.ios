@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.UPDATE_WITH_CLIENT_ID</string>
+				<string>com.googleusercontent.apps.UPDATE</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbUPDATE_WITH_FACEBOOK_APP_ID</string>
+				<string>fbUPDATE</string>
 			</array>
 		</dict>
 	</array>
@@ -71,7 +71,7 @@
 	<key>FacebookAppID</key>
 	<string>UPDATE</string>
 	<key>FacebookDisplayName</key>
-	<string>UPDATE</string>
+	<string>jrauthenticate</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
