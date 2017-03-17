@@ -1,8 +1,8 @@
-# Janrain JUMP for iOS library 5.0
+# Janrain iOS Mobile Libraries 5.0.3
 
-This library provides a native iOS API to the Janrain user management platform.
+This library provides a native iOS API to the Janrain user management platform's RESTful API endpoints.
 
-NOTICE:  This is a new version with potentially breaking changes from the previous 4.X versions.  
+NOTICE:  This is a new version with potentially breaking changes from the previous 5.0.2 and prior versions.
 
 IMPORTANT: Please read the Docs/Upgrade Guide.md and RELEASE_NOTES.
 

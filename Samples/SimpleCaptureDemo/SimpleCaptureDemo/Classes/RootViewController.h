@@ -28,13 +28,15 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-#import <UIKit/UIKit.h>
+@import UIKit;
+#import "JRCapture.h"
 #import "JRCaptureObject.h"
 
 #import "AppAuth.h"
 
 @interface RootViewController : UIViewController{
     BOOL isMergingAccount;
+    BOOL touchIDEnabled;
 }
 
 
@@ -51,6 +53,7 @@
 - (IBAction)unlinkAccountButtonPressed:(id)sender;
 - (IBAction)resendVerificationButtonPressed:(id)sender;
 - (IBAction)signInNavButtonPressed:(id)sender;
+- (IBAction)touchIDSwitchChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak) IBOutlet UILabel *currentUserLabel;
 @property (weak) IBOutlet UIImageView *currentUserProviderIcon;
@@ -59,6 +62,8 @@
 @property (weak) IBOutlet UIButton *refreshButton;
 @property (weak) IBOutlet UIButton *signInButton;
 @property (weak) IBOutlet UIButton *signOutButton;
+@property (weak, nonatomic) IBOutlet UISwitch *enableTouchIDSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *enableTouchIDLabel;
 @property (weak) IBOutlet UIBarButtonItem *signInNavButton;
 @property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;
@@ -71,6 +76,8 @@
 @property NSString *currentProvider;
 @property NSString *activeMergeToken;
 @property BOOL isMergingAccount;
+@property BOOL touchIDEnabled;
 
+//- (void)captureSignInCompletion:(JRCaptureUser *)newCaptureUser status:(JRCaptureRecordStatus)captureRecordStatus;
 
 @end

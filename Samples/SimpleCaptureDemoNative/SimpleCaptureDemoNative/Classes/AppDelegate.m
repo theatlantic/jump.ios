@@ -101,12 +101,9 @@ AppDelegate *appDelegate = nil;
     // http://docs.fabric.io/ios/twitter/twitterkit-setup.html
     [[Twitter sharedInstance] startWithConsumerKey:@"UPDATE" consumerSecret:@"UPDATE"];
 
-    [Fabric with:@[TwitterKit]];
+    [Fabric with:@[[Twitter class]]];
 
-    BOOL fbDidFinish = [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    if(fbDidFinish){
-       NSLog(@"Facebook Started");
-    }
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [FBSDKLoginManager renewSystemCredentials:^(ACAccountCredentialRenewResult result, NSError *error) {}];
 
     // register for Janrain notification(s)
@@ -149,20 +146,9 @@ AppDelegate *appDelegate = nil;
 }
 
 
-/*! @brief Handles inbound URLs. Checks if the URL matches the redirect URI for a pending
- AppAuth authorization request.
- */
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary<NSString *, id> *)options {
-    // Sends the URL to the current authorization flow (if any) which will process it if it relates to
-    // an authorization response.
-    if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
-        self.openIDAppAuthAuthorizationFlow = nil;
-        return YES;
-    }
-    // Your additional URL handling (if any) goes here.
-
     return NO;
 }
 
@@ -170,8 +156,10 @@ AppDelegate *appDelegate = nil;
          annotation:(id)annotation
 {
     NSLog(@"openURL %@", url);
-
-    if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
+    if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
+        self.openIDAppAuthAuthorizationFlow = nil;
+        return YES;
+    }else if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
         return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                               openURL:url
                                                     sourceApplication:sourceApplication

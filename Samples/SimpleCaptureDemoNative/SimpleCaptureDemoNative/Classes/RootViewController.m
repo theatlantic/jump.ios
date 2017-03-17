@@ -53,7 +53,7 @@
 
 // DO NOT USE THIS CLIENT ID. IT WILL NOT WORK FOR YOUR APP.
 // Please use the client ID created for you by Google.
-NSString * const kGoogleClientID = @"UPDATE";
+NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate, JRCaptureUserDelegate>
 @property RootViewController *rvc;
@@ -97,7 +97,7 @@ NSString * const kGoogleClientID = @"UPDATE";
     [GIDSignIn sharedInstance].clientID = kGoogleClientID;
     [GIDSignIn sharedInstance].delegate = self;
     [GIDSignIn sharedInstance].uiDelegate = self;
-    [GIDSignIn sharedInstance].scopes = @[ @"email", @"profile" ];
+    [GIDSignIn sharedInstance].scopes = @[ @"email", @"profile"];
 
 
     self.captureDelegate = [[MyCaptureDelegate alloc] initWithRootViewController:self];
