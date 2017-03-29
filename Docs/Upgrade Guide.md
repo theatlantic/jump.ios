@@ -95,7 +95,6 @@ target 'XYZApp-v3' do
     use_frameworks!
 
     #other pods
-    pod 'GTMAppAuth'
     pod 'AppAuth'
     pod 'Janrain', :git => 'https://github.com/janrain/jump.ios.git', :tag => '5.0.3'
 end
