@@ -54,6 +54,7 @@
 - (IBAction)resendVerificationButtonPressed:(id)sender;
 - (IBAction)signInNavButtonPressed:(id)sender;
 - (IBAction)touchIDSwitchChanged:(id)sender;
+- (IBAction)changePasswordButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak) IBOutlet UILabel *currentUserLabel;
 @property (weak) IBOutlet UIImageView *currentUserProviderIcon;
@@ -68,6 +69,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *tradAuthButton;
 @property (weak, nonatomic) IBOutlet UIButton *refetchButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *changePasswordButton;
 @property (weak, nonatomic) IBOutlet UIButton *linkAccountButton;
 @property (weak, nonatomic) IBOutlet UIButton *unlinkAccountButton;
 @property (weak, nonatomic) IBOutlet UIButton *updateProfileButton;
