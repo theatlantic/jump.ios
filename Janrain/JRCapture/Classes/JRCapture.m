@@ -893,7 +893,7 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 }
 
 + (void)updateProfileForUserWithForm:(JRCaptureUser *)user
-                            withEditProfileForm:(NSString *) formName
+                            withEditProfileForm:(NSString *)formName
                             delegate:(id <JRCaptureDelegate>)delegate
 {
     if (!user && [delegate respondsToSelector:@selector(updateUserProfileDidFailWithError:)]){
@@ -928,6 +928,55 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                               onSuccess:@selector(updateUserProfileDidSucceed)
                               onFailure:@selector(updateUserProfileDidFailWithError:)
                                 message:[NSString stringWithFormat:@"updating user profile with form name: %@", formName]
+                  extraOnSuccessHandler:nil];
+}
+
++ (void)postFormWithFormDataProvided:(JRCaptureUser *)user
+                   toCaptureEndpoint:(NSString *)endpointUrl
+                        withFormName:(NSString *)formName
+                        andFieldData:(NSMutableDictionary *)fieldData
+                            delegate:(id <JRCaptureDelegate>)delegate
+{
+    if (!user && [delegate respondsToSelector:@selector(updateUserProfileDidFailWithError:)]){
+        [delegate updateUserProfileDidFailWithError:[JRCaptureError invalidArgumentErrorWithParameterName:@"user"]];
+    }
+    
+    JRCaptureData *data = [JRCaptureData sharedCaptureData];
+    
+    if (!endpointUrl) {
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing toCaptureEndpoint configuration option"];
+    }
+    
+    if (!formName) {
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"Missing withFormName configuration option"];
+    }
+    
+    if ([fieldData count] == 0) {
+        [NSException raiseJRDebugException:@"JRCaptureMissingParameterException"
+                                    format:@"andFieldData configuration option is empty"];
+    }
+    
+    [fieldData addEntriesFromDictionary:@{
+                                       @"client_id" : data.clientId,
+                                       @"access_token" : data.accessToken,
+                                       @"locale" : data.captureLocale,
+                                       @"form" : formName,
+                                       @"flow" : data.captureFlowName,
+                                       }];
+    
+    if ([data downloadedFlowVersion]) {
+        [fieldData setObject:[data downloadedFlowVersion] forKey:@"flow_version"];
+    }
+    NSString *url = [NSString stringWithFormat:@"%@%@", data.captureBaseUrl, endpointUrl];
+    NSURLRequest *request = [NSMutableURLRequest JR_requestWithURL:[NSURL URLWithString:url] params:fieldData];
+    
+    [self startURLConnectionWithRequest:request
+                               delegate:delegate
+                              onSuccess:@selector(updateUserProfileDidSucceed)
+                              onFailure:@selector(updateUserProfileDidFailWithError:)
+                                message:[NSString stringWithFormat:@"Posting provided form field data to Capture endpoint: %@ form name: %@", url, formName]
                   extraOnSuccessHandler:nil];
 }
 
