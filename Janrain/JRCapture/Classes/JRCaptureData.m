@@ -174,7 +174,7 @@ static JRCaptureData *singleton = nil;
 
 + (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken
                           delegate:(id)delegate {
-    return [self captureTokenUrlWithMergeToken:mergeToken delegate:delegate];
+    return [self captureTokenUrlWithMergeToken:mergeToken forAccountLinking:NO delegate:delegate];
 }
 
 + (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken

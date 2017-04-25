@@ -31,6 +31,7 @@
 		484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E11B5ED19200E63266 /* MediaPlayer.framework */; };
 		484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E21B5ED19200E63266 /* SystemConfiguration.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
+		4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4898D44A1DFA0D8C007432DB /* SafariServices.framework */; };
 		4863F4DE1EAE484500B939D3 /* CaptureChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4863F4DB1EAE484500B939D3 /* CaptureChangePasswordViewController.m */; };
 		4863F4DF1EAE484500B939D3 /* CaptureEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4863F4DD1EAE484500B939D3 /* CaptureEditProfileViewController.m */; };
 		486B0CD51E02171100B73F4F /* JROpenIDAppAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD41E02171100B73F4F /* JROpenIDAppAuth.m */; };
@@ -748,6 +749,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */,
 				4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */,
 				4825A7801E687EDD009910B4 /* libAppAuth-iOS.a in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
