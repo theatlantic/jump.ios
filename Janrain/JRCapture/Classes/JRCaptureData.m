@@ -172,8 +172,16 @@ static JRCaptureData *singleton = nil;
     return self;
 }
 
-+ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken delegate:(id)delegate {
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken
+                          delegate:(id)delegate {
+    return [self captureTokenUrlWithMergeToken:mergeToken delegate:delegate];
+}
+
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken
+                          forAccountLinking:(BOOL)linkAccount
+                                   delegate:(id)delegate {
     JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
+    
     NSString *redirectUri = [singleton redirectUri];
     NSString *thinReg = [JRCaptureData sharedCaptureData].captureEnableThinRegistration ? @"true" : @"false";
     NSMutableDictionary *urlArgs = [NSMutableDictionary dictionaryWithDictionary:
@@ -182,10 +190,10 @@ static JRCaptureData *singleton = nil;
                     @"locale" : captureData.captureLocale,
                     @"response_type" : [captureData responseType:delegate],
                     @"redirect_uri" : redirectUri,
-                    @"thin_registration" : thinReg,
-                    @"refresh_secret" : [self generateAndStoreRefreshSecret],
+                    @"thin_registration" : thinReg
             }];
-
+    
+    if (!linkAccount) [urlArgs setObject:[self generateAndStoreRefreshSecret] forKey:@"refresh_secret"];
     if (captureData.captureFlowName) [urlArgs setObject:captureData.captureFlowName forKey:@"flow"];
     if ([captureData downloadedFlowVersion])
         [urlArgs setObject:[captureData downloadedFlowVersion] forKey:@"flow_version"];
