@@ -485,7 +485,6 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
     NSString *refreshUrl = [NSString stringWithFormat:@"%@/oauth/refresh_access_token", domain];
     NSString *signature = [self base64SignatureForRefreshWithDate:date refreshSecret:refreshSecret
                                                       accessToken:accessToken];
-
     if (!signature || !accessToken || !date)
     {
         if ([delegate respondsToSelector:@selector(refreshAccessTokenDidFailWithError:context:)]){
@@ -1023,8 +1022,8 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
                              @"locale" : data.captureLocale,
                              @"response_type" : @"token",
                              @"redirect_uri" : redirectUri,
-                             @"access_token" : [data accessToken],
-                             @"token" :[authInfo valueForKey:@"token"],
+                             @"access_token" : [data accessToken], //Capture From currently logged in user
+                             @"token" :[authInfo valueForKey:@"token"], //Engage Token From New Linked Account
                              @"flow" :data.captureFlowName,
                              @"flow_version" :data.downloadedFlowVersion
                              };

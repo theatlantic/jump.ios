@@ -73,6 +73,21 @@
                                     <segue destination="asC-IJ-aQE" kind="push" identifier="EditProfileSegue" id="l77-gn-D7E"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Th5-gz-bhu">
+                                <rect key="frame" x="26" y="114" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Traditional Registration">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tradRegButtonPressed:" destination="2" eventType="touchUpInside" id="tc2-JC-1Ci"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9l8-Zj-RBh">
                                 <rect key="frame" x="20" y="166" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -146,21 +161,6 @@
                                     <action selector="changePasswordButtonPressed:" destination="2" eventType="touchUpInside" id="eX3-5v-ed4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ObZ-df-gL7">
-                                <rect key="frame" x="50" y="320" width="114" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Link Account">
-                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="linkAccountButtonPressed:" destination="2" eventType="touchUpInside" id="F8A-oj-YEN"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gDA-4c-m8N">
                                 <rect key="frame" x="173" y="319" width="114" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -232,11 +232,11 @@
                                     <action selector="refetchButtonPressed:" destination="2" eventType="touchUpInside" id="g6G-Ta-tdo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Th5-gz-bhu">
-                                <rect key="frame" x="26" y="114" width="280" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ObZ-df-gL7">
+                                <rect key="frame" x="50" y="319" width="114" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Traditional Registration">
+                                <state key="normal" title="Link Account">
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -244,7 +244,7 @@
                                     <color key="titleColor" red="0.027450980619999999" green="0.27843138579999999" blue="0.39215686919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="tradRegButtonPressed:" destination="2" eventType="touchUpInside" id="tc2-JC-1Ci"/>
+                                    <action selector="linkAccountButtonPressed:" destination="2" eventType="touchUpInside" id="F8A-oj-YEN"/>
                                 </connections>
                             </button>
                         </subviews>
