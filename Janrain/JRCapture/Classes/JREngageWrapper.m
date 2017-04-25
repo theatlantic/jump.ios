@@ -156,7 +156,7 @@ static JREngageWrapper *singleton = nil;
                                          withRedirectUri:(NSString *)redirectUri
                                        forAccountLinking:(BOOL)linkAccount
 {
-    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil delegate:delegate ]];
+    [JREngage updateTokenUrl:[JRCaptureData captureTokenUrlWithMergeToken:nil forAccountLinking:linkAccount delegate:delegate ]];
     
     JREngageWrapper *wrapper = [JREngageWrapper singletonInstance];
     [wrapper setDelegate:delegate];
