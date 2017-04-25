@@ -696,7 +696,7 @@
             [self.rvc configureViewsWithDisableOverride:NO];
         };
 
-        [[[AlertViewWithBlocks alloc] initWithTitle:@"Error" message:[error description]
+        [[[AlertViewWithBlocks alloc] initWithTitle:@"Error" message:[error localizedFailureReason]
                                          completion:t
                                               style:UIAlertViewStyleDefault
                                   cancelButtonTitle:@"Dismiss"
@@ -737,7 +737,7 @@
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
 {
     [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
-                                        message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                                        message:[error localizedFailureReason] delegate:nil
                               cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
@@ -749,7 +749,7 @@
 
 - (void)resendVerificationEmailDidFailWithError:(NSError *)error {
     [[[UIAlertView alloc] initWithTitle:@"Failed to resend verification email"
-                                message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                                message:[error localizedFailureReason] delegate:nil
                       cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
@@ -760,7 +760,7 @@
 
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description]
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedFailureReason]
                                                        delegate:nil cancelButtonTitle:@"Dismiss"
                                               otherButtonTitles:nil];
     [alertView show];
@@ -803,7 +803,7 @@
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:error.localizedFailureReason delegate:nil
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:[error localizedFailureReason] delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
 
@@ -812,7 +812,7 @@
 - (void)accountUnlinkingDidFailWithError:(NSError *)error
 {
     [[[UIAlertView alloc] initWithTitle:@"Account unlinking Failure"
-                                message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                                message:[error localizedFailureReason] delegate:nil
                       cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
