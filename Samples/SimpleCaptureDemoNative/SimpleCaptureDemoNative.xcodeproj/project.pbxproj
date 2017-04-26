@@ -2087,7 +2087,7 @@
 					"$(PROJECT_DIR)/**",
 					"~/Documents/FacebookSDK/**",
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Prefix.pch";
@@ -2098,7 +2098,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 					"~/Documents/FacebookSDK/**",
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
 				);
@@ -2107,7 +2107,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"~/Documents/FacebookSDK/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 				);
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
@@ -2139,7 +2139,7 @@
 					"$(PROJECT_DIR)/**",
 					"~/Documents/FacebookSDK/**",
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Prefix.pch";
@@ -2150,7 +2150,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 					"~/Documents/FacebookSDK/**",
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
 				);
@@ -2159,7 +2159,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"~/Documents/FacebookSDK/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 				);
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -2226,7 +2226,7 @@
 					"$(PROJECT_DIR)/**",
 					"~/Documents/FacebookSDK/**",
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Prefix.pch";
@@ -2237,7 +2237,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 					"~/Documents/FacebookSDK/**",
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
 				);
@@ -2246,7 +2246,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"~/Documents/FacebookSDK/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
 				);
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
