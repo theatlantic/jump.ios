@@ -862,14 +862,14 @@ dismissViewController:(UIViewController *)viewController {
 
 - (void)engageAuthenticationDialogDidFailToShowWithError:(NSError *)error
 {
-    DLog(@"error: %@", [error description]);
+    DLog(@"error: %@", [error localizedFailureReason]);
     [self.rvc engageSignInDidFailWithError:error];
 }
 
 - (void)engageAuthenticationDidFailWithError:(NSError *)error
                                  forProvider:(NSString *)provider
 {
-    DLog(@"error: %@", [error description]);
+    DLog(@"error: %@", [error localizedFailureReason]);
     [self.rvc engageSignInDidFailWithError:error];
 }
 
@@ -890,7 +890,7 @@ dismissViewController:(UIViewController *)viewController {
             [self.rvc configureViewsWithDisableOverride:NO];
         };
 
-        [[[AlertViewWithBlocks alloc] initWithTitle:@"Error" message:[error description]
+        [[[AlertViewWithBlocks alloc] initWithTitle:@"Error" message:[error localizedFailureReason]
                                          completion:t
                                               style:UIAlertViewStyleDefault
                                   cancelButtonTitle:@"Dismiss"
@@ -935,7 +935,7 @@ dismissViewController:(UIViewController *)viewController {
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
 {
     [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
-                                        message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                                        message:[error localizedFailureReason] delegate:nil
                               cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
@@ -947,7 +947,7 @@ dismissViewController:(UIViewController *)viewController {
 
 - (void)resendVerificationEmailDidFailWithError:(NSError *)error {
     [[[UIAlertView alloc] initWithTitle:@"Failed to resend verification email"
-                                message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                                message:[error localizedFailureReason] delegate:nil
                       cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
@@ -958,7 +958,7 @@ dismissViewController:(UIViewController *)viewController {
 
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description]
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedFailureReason]
                                                        delegate:nil cancelButtonTitle:@"Dismiss"
                                               otherButtonTitles:nil];
     [alertView show];
@@ -1001,7 +1001,7 @@ dismissViewController:(UIViewController *)viewController {
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:error.localizedFailureReason delegate:nil
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:[error localizedFailureReason] delegate:nil
                                               cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alertView show];
 
@@ -1010,7 +1010,7 @@ dismissViewController:(UIViewController *)viewController {
 - (void)accountUnlinkingDidFailWithError:(NSError *)error
 {
     [[[UIAlertView alloc] initWithTitle:@"Account unlinking Failure"
-                                message:[NSString stringWithFormat:@"%@", error] delegate:nil
+                                message:[error localizedFailureReason] delegate:nil
                       cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 }
 
