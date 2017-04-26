@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbUPDATE</string>
+				<string>fb773409502771506</string>
 			</array>
 		</dict>
 	</array>
@@ -52,14 +52,14 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>UPDATE</string>
+		<string>fbb7bb73de5c88fb8942e7590b7bf60735b59f3d</string>
 		<key>Kits</key>
 		<array>
 			<dict>
 				<key>KitInfo</key>
 				<dict>
 					<key>consumerKey</key>
-					<string>UPDATE</string>
+					<string>D8H3uHM6EiyeB4197XiXi0axP</string>
 					<key>consumerSecret</key>
 					<string>UPDATE</string>
 				</dict>
@@ -69,7 +69,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>UPDATE</string>
+	<string>773409502771506</string>
 	<key>FacebookDisplayName</key>
 	<string>jrauthenticate</string>
 	<key>LSApplicationCategoryType</key>
