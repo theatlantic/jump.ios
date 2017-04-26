@@ -66,6 +66,8 @@
 
 + (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken delegate:(id)delegate;
 
++ (NSString *)captureTokenUrlWithMergeToken:(NSString *)mergeToken forAccountLinking:(BOOL)linkAccount delegate:(id)delegate;
+
 + (void)clearSignInState;
 
 + (JRCaptureData *)sharedCaptureData;
