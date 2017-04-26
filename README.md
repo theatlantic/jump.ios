@@ -1,4 +1,4 @@
-# Janrain iOS Mobile Libraries 5.0.3
+# Janrain iOS Mobile Libraries 5.0.4
 
 This library provides a native iOS API to the Janrain user management platform's RESTful API endpoints.
 
