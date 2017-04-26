@@ -2054,8 +2054,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2097,8 +2097,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2177,8 +2177,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
