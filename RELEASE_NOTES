@@ -1,3 +1,21 @@
+v5.0.4
+- Added code and examples to support the change password functionality of flow forms.  This includes a new method that allow the developer to build up a simple Map of flow form names and values and submit the form to any Janrain "oauth/" compatible endpoint.  This method does no validation that the submitted data is accurate for the flow form configuration.  All validation of the submitted data and error reporting will be done server-side.
+```
+/**
+ * Posts the provided form data to the provided endpoint with the provided form name.
+ * NOTE: This method does not validate the provided data contents - errors will be returned
+ * from the server-side api and must be handled by the integration developer.
+ */
++(void)postFormWithFormDataProvided:(JRCaptureUser *)user
+                  toCaptureEndpoint: (NSString *)endpointUrl
+                       withFormName:(NSString *)formName
+                       andFieldData:(NSMutableDictionary *)fieldData
+                           delegate:(id <JRCaptureDelegate>)delegate;
+```
+- Resolved bug where initiating the Link Account process would generate and store a new Refresh Secret and subsequently disrupt future token refresh attempts.
+- Improved LinkAccount click behavior in the sample apps.
+- Improved error message parsing in several areas.  NOTE: the `JRCaptureError.m` file's `errorFromResult` method will now initially use the "message" attribute from the Capture response and then fall back to the "error_description" attribute if no "message" data was found.  In general the "message" attribute provides a more user friendly and useful error message.
+
 v5.0.3
 - Resolved issue where optional `engageAppUrl` setting wasn't actually optional during native authentication causing native authentication to fail.
 - Updated SimpleDemoNative app's AppDelegate to use

@@ -1,6 +1,7 @@
 # Configuring the SimpleCaptureDemo application.
 
-##IMPORTANT##
+## IMPORTANT
+
 Please read the Docs/Upgrade Guide.md and RELEASE_NOTES before attempting to run these applications.  There are important configuration steps that must be taken before these apps will run.
 
 ####To run this demo with the provided configuration:####
