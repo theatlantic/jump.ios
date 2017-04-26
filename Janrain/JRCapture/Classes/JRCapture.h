@@ -828,8 +828,20 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
  * Updates the profile for a given user using an update_profile_native compatible form
  */
 + (void)updateProfileForUserWithForm:(JRCaptureUser *)user
-                 withEditProfileForm:(NSString *) formName
+                 withEditProfileForm:(NSString *)formName
                             delegate:(id <JRCaptureDelegate>)delegate;
+
+
+/**
+ * Posts the provided form data to the provided endpoint with the provided form name.
+ * NOTE: This method does not validate the provided data contents - errors will be returned
+ * from the server-side api and must be handled by the integration developer.
+ */
++(void)postFormWithFormDataProvided:(JRCaptureUser *)user
+                  toCaptureEndpoint: (NSString *)endpointUrl
+                       withFormName:(NSString *)formName
+                       andFieldData:(NSMutableDictionary *)fieldData
+                           delegate:(id <JRCaptureDelegate>)delegate;
 
 /**
  * Signs the currently-signed-in user, if any, out.
