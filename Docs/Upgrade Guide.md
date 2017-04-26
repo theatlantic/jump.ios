@@ -91,12 +91,12 @@ If you are using CocoaPods your podfile should include something similar to the 
 
 ```
 platform :ios, '8.0'
-target 'XYZApp-v3' do
+target 'yourappname' do
     use_frameworks!
 
     #other pods
     pod 'AppAuth'
-    pod 'Janrain', :git => 'https://github.com/janrain/jump.ios.git', :tag => '5.0.3'
+    pod 'Janrain', :git => 'https://github.com/janrain/jump.ios.git', :tag => '5.0.4'
 end
 ```
 

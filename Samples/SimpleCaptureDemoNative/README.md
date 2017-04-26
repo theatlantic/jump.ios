@@ -1,6 +1,7 @@
 # Configuring the SimpleCaptureDemoNative application.
 
-##IMPORTANT##
+## IMPORTANT
+
 This sample application is NOT configured with any credentials or provided configuration.  You will need to follow the steps below to configure the relevant settings for your environment.
 
 SimpleCaptureDemoNative demos:
