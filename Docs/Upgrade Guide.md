@@ -14,7 +14,7 @@ A less desirable but more reliable and more general upgrade strategy:
 
 Ensure your Janrain libraries includes a reference to the Janrain/JREngage/Classes/JROpenIDAppAuthGoogleDelegate.h file
 
-####Update your application's AppDelegate.h####
+#### Update your application's AppDelegate.h
 REMOVE the following to your AppDelegate.h file (see the Sample Application code for additional context):
 `@protocol OIDAuthorizationFlowSession;`
 AND REMOVE
@@ -31,7 +31,7 @@ ADD the following import:
 ADD the JROpenIDAppAuthGoogleDelegate Protocol:
 `@interface AppDelegate : UIResponder <UIApplicationDelegate, JROpenIDAppAuthGoogleDelegate>`
 
-####Update your application's AppDelegate.m####
+#### Update your application's AppDelegate.m
 
 Synthesize the variables:
 `@synthesize googlePlusClientId;` and
@@ -108,7 +108,7 @@ The sample applications provided as part of the Janrain Mobile Libraries reposit
 
 Once you have added the OpenID AppAuth libraries to your project or workspace the following settings will need to be added/updated in your application if you are planning on using Google as a web-based identity provider in your mobile application.  NOTE: These steps are not necessary if you are using Google Native authentication using the Google iOS SDK.
 
-####Create an iOS Google OAuth Client####
+#### Create an iOS Google OAuth Client
 
 Visit https://console.developers.google.com/apis/credentials?project=_ and find the project that correlates to the Google Web OAuth client that is being used with the *same* Engage application being used by the Janrain Mobile Libraries. Then tap "Create credentials" and select "OAuth client ID".  Follow the instructions to configure the consent screen (just the Product Name is needed).
 
@@ -116,7 +116,7 @@ Then, complete the OAuth client creation by selecting "iOS" as the Application t
 
 Copy the client ID to the clipboard or a location for future use.
 
-####Update Janrain Library configuration####
+#### Update Janrain Library configuration
 Update your application's configuration (i.e. https://github.com/janrain/jump.ios/blob/master/Samples/SimpleCaptureDemo/assets/janrain-config-default.plist ) by adding the following values:
 
 `<key>googlePlusRedirectUri</key>
@@ -135,7 +135,7 @@ config.captureFlowName = captureFlowName;
 config.googlePlusClientId = googlePlusClientId;
 config.googlePlusRedirectUri = googlePlusRedirectUri;`
 
-####Update your applications info.plist####
+#### Update your applications info.plist
 Open your application's' `Info.plist` and fully expand "URL types" (a.k.a. "CFBundleURLTypes") and replace `com.googleusercontent.apps.YOUR_CLIENT_ID` with the reverse DNS notation form of your client id (not including the `:/oauthredirect` path component).
 
 Example:
@@ -152,14 +152,14 @@ Example:
 </array>
 `
 
-####Update your application's AppDelegate.h####
+#### Update your application's AppDelegate.h
 
 ADD the following import:
 `#import "JROpenIDAppAuthGoogleDelegate.h"`
 ADD the JROpenIDAppAuthGoogleDelegate Protocol:
 `@interface AppDelegate : UIResponder <UIApplicationDelegate, JROpenIDAppAuthGoogleDelegate>`
 
-####Update your application's AppDelegate.m####
+#### Update your application's AppDelegate.m
 
 Synthesize the variables:
 `@synthesize googlePlusClientId;` and
@@ -193,13 +193,13 @@ ADD/UPDATE the `(void)parseConfigNamed:(NSString *)cfgKeyName fromConfigPlist:(N
     if ([cfg objectForKey:@"googlePlusRedirectUri"])
         self.googlePlusRedirectUri = [cfg objectForKey:@"googlePlusRedirectUri"];
 
-####New optional configuration items####
+#### New optional configuration items
 
 1. `config.engageAppUrl` If this value is set when intializing the Mobile Libraries the libraries will attempt to use the url provided for all Social Login (Engage) communications.  This setting should only be used when advised to do so by a Janrain technical resource.
 
 2. `config.downloadFlowUrl` If this value is set when intializing the Mobile Libraries the libraries will attempt to use the url provided for all download the Registration flow configuration file.  This setting should only be used when advised to do so by a Janrain technical resource.
 
-####Update Misconfiguration Errors####
+#### Update Misconfiguration Errors
 
 *Error*:
 `Undefined symbols for architecture x86_64:
