@@ -44,6 +44,14 @@
 		4881351C1E7C465D0093CC54 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4881351B1E7C465D0093CC54 /* FBSDKCoreKit.framework */; };
 		4881351E1E7C46750093CC54 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4881351D1E7C46750093CC54 /* FBSDKLoginKit.framework */; };
 		488135201E7C46BD0093CC54 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4881351F1E7C46BD0093CC54 /* Bolts.framework */; };
+		48994B8B1F3B9B0800F7826F /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B841F3B9B0800F7826F /* background@2x.png */; };
+		48994B8C1F3B9B0800F7826F /* background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B851F3B9B0800F7826F /* background@3x.png */; };
+		48994B8D1F3B9B0800F7826F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B861F3B9B0800F7826F /* Default-568h@2x.png */; };
+		48994B8E1F3B9B0800F7826F /* Default-568h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B871F3B9B0800F7826F /* Default-568h@3x.png */; };
+		48994B8F1F3B9B0800F7826F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B881F3B9B0800F7826F /* Default.png */; };
+		48994B901F3B9B0800F7826F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B891F3B9B0800F7826F /* Default@2x.png */; };
+		48994B911F3B9B0800F7826F /* Default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B8A1F3B9B0800F7826F /* Default@3x.png */; };
+		48994B931F3B9B3D00F7826F /* RELEASE_NOTES.md in Sources */ = {isa = PBXBuildFile; fileRef = 48994B921F3B9B3D00F7826F /* RELEASE_NOTES.md */; };
 		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
 		48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */; };
 		48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */; };
@@ -118,7 +126,6 @@
 		6706F18263DF25C5CAEA8F6C /* Engage Custom Provider Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */; };
 		6706F2F5D380E2BE1B74B0C3 /* JUMP Integration Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FDE35290E73F4513572D /* JUMP Integration Guide.md */; };
 		6706F51EE167DE5FFF64E224 /* CaptureDynamicForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F39D56CA252D2415997F /* CaptureDynamicForm.m */; };
-		6706FC2F6046C3C77964CF99 /* RELEASE_NOTES in Resources */ = {isa = PBXBuildFile; fileRef = 6706FB16669AD7166E82DB51 /* RELEASE_NOTES */; };
 		6706FCE93985E90E4040B262 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F8DC7856E86A423C2108 /* PickerViewController.m */; };
 		6706FDFF6209500B70A5CFFC /* Xcode Project Setup.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */; };
 		6706FF134EDA24E912D2FB82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FE4A749862BF082D2831 /* README.md */; };
@@ -134,10 +141,8 @@
 		9F7B6AAC1533648C002BF452 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6A9F1533648C002BF452 /* InfoPlist.strings */; };
 		9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA11533648C002BF452 /* MainStoryboard.storyboard */; };
 		9F7B6AB01533648C002BF452 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA81533648C002BF452 /* background.png */; };
-		C1424221EF003C4A217BE9F5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C142449C40B6A93FF4E64950 /* Default.png */; };
 		C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C142401A5A8AAAFC251E5853 /* QuartzCore.framework */; };
 		C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14249B9A86322CE1634EA23 /* MessageUI.framework */; };
-		C1424C2310E295E5506D8FF8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1424D0430EBA3E484299DD2 /* Default-568h@2x.png */; };
 		C1424E3B144EDDE0ABA1E0E7 /* AlertViewWithBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */; };
 		C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1424E26376A97DCC6454072 /* Security.framework */; };
 		D806D1B616A7638E008EEF96 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D806D1B516A7638E008EEF96 /* assets */; };
@@ -400,6 +405,14 @@
 		4881351B1E7C465D0093CC54 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		4881351D1E7C46750093CC54 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		4881351F1E7C46BD0093CC54 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		48994B841F3B9B0800F7826F /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		48994B851F3B9B0800F7826F /* background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@3x.png"; sourceTree = "<group>"; };
+		48994B861F3B9B0800F7826F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		48994B871F3B9B0800F7826F /* Default-568h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@3x.png"; sourceTree = "<group>"; };
+		48994B881F3B9B0800F7826F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		48994B891F3B9B0800F7826F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		48994B8A1F3B9B0800F7826F /* Default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@3x.png"; sourceTree = "<group>"; };
+		48994B921F3B9B3D00F7826F /* RELEASE_NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = RELEASE_NOTES.md; sourceTree = "<group>"; };
 		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
 		48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_280x40.png; sourceTree = "<group>"; };
 		48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_paypal_openidconnect_30x30.png; sourceTree = "<group>"; };
@@ -496,7 +509,6 @@
 		6706F8DC7856E86A423C2108 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerViewController.m; path = Classes/PickerViewController.m; sourceTree = "<group>"; };
 		6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Xcode Project Setup.md"; path = "../../Docs/Xcode Project Setup.md"; sourceTree = "<group>"; };
 		6706FA6D8456656D3E398437 /* User Registration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "User Registration Guide.md"; path = "../../Docs/User Registration Guide.md"; sourceTree = "<group>"; };
-		6706FB16669AD7166E82DB51 /* RELEASE_NOTES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RELEASE_NOTES; path = ../../RELEASE_NOTES; sourceTree = "<group>"; };
 		6706FCAB908800A9FF445D4B /* Upgrade Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Upgrade Guide.md"; path = "../../Docs/Upgrade Guide.md"; sourceTree = "<group>"; };
 		6706FDE35290E73F4513572D /* JUMP Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "JUMP Integration Guide.md"; path = "../../Docs/JUMP Integration Guide.md"; sourceTree = "<group>"; };
 		6706FE4A749862BF082D2831 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
@@ -519,10 +531,8 @@
 		9F7B6AA81533648C002BF452 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		9F9506FE14FEA79000335A12 /* SimpleCaptureDemoNative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimpleCaptureDemoNative.entitlements; sourceTree = "<group>"; };
 		C142401A5A8AAAFC251E5853 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C142449C40B6A93FF4E64950 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		C14249B9A86322CE1634EA23 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C1424A4F9A63C7BD1C90EBC0 /* AlertViewWithBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertViewWithBlocks.h; path = Classes/AlertViewWithBlocks.h; sourceTree = "<group>"; };
-		C1424D0430EBA3E484299DD2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		C1424E26376A97DCC6454072 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertViewWithBlocks.m; path = Classes/AlertViewWithBlocks.m; sourceTree = "<group>"; };
 		D806D1B516A7638E008EEF96 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
@@ -1024,8 +1034,13 @@
 			isa = PBXGroup;
 			children = (
 				9F7B6AA81533648C002BF452 /* background.png */,
-				C142449C40B6A93FF4E64950 /* Default.png */,
-				C1424D0430EBA3E484299DD2 /* Default-568h@2x.png */,
+				48994B841F3B9B0800F7826F /* background@2x.png */,
+				48994B851F3B9B0800F7826F /* background@3x.png */,
+				48994B861F3B9B0800F7826F /* Default-568h@2x.png */,
+				48994B871F3B9B0800F7826F /* Default-568h@3x.png */,
+				48994B881F3B9B0800F7826F /* Default.png */,
+				48994B891F3B9B0800F7826F /* Default@2x.png */,
+				48994B8A1F3B9B0800F7826F /* Default@3x.png */,
 			);
 			name = images;
 			path = Resources/images;
@@ -1034,6 +1049,7 @@
 		C1424A8BB874F02EEE6D8982 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
+				48994B921F3B9B3D00F7826F /* RELEASE_NOTES.md */,
 				6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */,
 				6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */,
 				6706F243FF1B1D4DBFCE6B5D /* Engage-Only Integration Guide.md */,
@@ -1041,7 +1057,6 @@
 				6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */,
 				6706FA6D8456656D3E398437 /* User Registration Guide.md */,
 				6706FE4A749862BF082D2831 /* README.md */,
-				6706FB16669AD7166E82DB51 /* RELEASE_NOTES */,
 				6706FCAB908800A9FF445D4B /* Upgrade Guide.md */,
 				19BC041E76784877DC900CFB /* Native Authentication Guide.md */,
 			);
@@ -1595,15 +1610,15 @@
 				48CB52E71B7108AA0091CD10 /* icon_bw_instagram_30x30@2x.png in Resources */,
 				9F7B6AAB1533648C002BF452 /* CaptureProfileViewController.xib in Resources */,
 				9F7B6AAC1533648C002BF452 /* InfoPlist.strings in Resources */,
+				48994B8F1F3B9B0800F7826F /* Default.png in Resources */,
 				9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */,
 				48BC73951B62AE8A001D98FF /* TwitterKitResources.bundle in Resources */,
 				9F7B6AB01533648C002BF452 /* background.png in Resources */,
 				D806D1B616A7638E008EEF96 /* assets in Resources */,
-				C1424221EF003C4A217BE9F5 /* Default.png in Resources */,
-				C1424C2310E295E5506D8FF8 /* Default-568h@2x.png in Resources */,
 				48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */,
 				6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */,
 				D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */,
+				48994B8D1F3B9B0800F7826F /* Default-568h@2x.png in Resources */,
 				48A85E871BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png in Resources */,
 				48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */,
 				6706F18263DF25C5CAEA8F6C /* Engage Custom Provider Guide.md in Resources */,
@@ -1612,7 +1627,6 @@
 				6706FDFF6209500B70A5CFFC /* Xcode Project Setup.md in Resources */,
 				6706F0D47F845F7ECCBE860F /* User Registration Guide.md in Resources */,
 				6706FF134EDA24E912D2FB82 /* README.md in Resources */,
-				6706FC2F6046C3C77964CF99 /* RELEASE_NOTES in Resources */,
 				6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */,
 				DF39E03C17A9887300FDA67A /* .gitignore in Resources */,
 				DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */,
@@ -1628,6 +1642,7 @@
 				48A85E811BEBD499004CBA61 /* button_paypal_openidconnect_280x40@2x.png in Resources */,
 				DFEFE4B717A9915200760FEE /* button_facebook_135x40.png in Resources */,
 				DFEFE4B817A9915200760FEE /* button_facebook_280x40.png in Resources */,
+				48994B911F3B9B0800F7826F /* Default@3x.png in Resources */,
 				DFEFE4B917A9915200760FEE /* button_google_135x40.png in Resources */,
 				48CB52C91B71077C0091CD10 /* button_instagram_135x40.png in Resources */,
 				DFEFE4BA17A9915200760FEE /* button_google_280x40.png in Resources */,
@@ -1656,6 +1671,7 @@
 				DFEFE4CA17A9915300760FEE /* icon_flickr_30x30.png in Resources */,
 				DFEFE4CB17A9915300760FEE /* icon_foursquare_30x30.png in Resources */,
 				DFEFE4CC17A9915300760FEE /* icon_google_30x30.png in Resources */,
+				48994B8B1F3B9B0800F7826F /* background@2x.png in Resources */,
 				DFEFE4CD17A9915300760FEE /* icon_hyves_30x30.png in Resources */,
 				48A85E8A1BEBD4E5004CBA61 /* button_paypal_135x40.png in Resources */,
 				DFEFE4CE17A9915300760FEE /* icon_linkedin_30x30.png in Resources */,
@@ -1709,6 +1725,7 @@
 				DFEFE4F117A9915300760FEE /* logo_myopenid_280x65.png in Resources */,
 				DFEFE4F217A9915300760FEE /* logo_myspace_280x65.png in Resources */,
 				DFEFE4F317A9915300760FEE /* logo_netlog_280x65.png in Resources */,
+				48994B8E1F3B9B0800F7826F /* Default-568h@3x.png in Resources */,
 				48CB52CF1B7107A00091CD10 /* icon_instagram_30x30.png in Resources */,
 				DFEFE4F417A9915300760FEE /* logo_openid_280x65.png in Resources */,
 				DFEFE4F517A9915300760FEE /* logo_orkut_280x65.png in Resources */,
@@ -1803,7 +1820,9 @@
 				DFEFE54317A9915300760FEE /* logo_openid_280x65@2x.png in Resources */,
 				DFEFE54417A9915300760FEE /* logo_orkut_280x65@2x.png in Resources */,
 				DFEFE54517A9915300760FEE /* logo_paypal_280x65@2x.png in Resources */,
+				48994B8C1F3B9B0800F7826F /* background@3x.png in Resources */,
 				DFEFE54617A9915300760FEE /* logo_salesforce_280x65@2x.png in Resources */,
+				48994B901F3B9B0800F7826F /* Default@2x.png in Resources */,
 				DFEFE54717A9915300760FEE /* logo_soundcloud_280x65@2x.png in Resources */,
 				DFEFE54817A9915300760FEE /* logo_tumblr_280x65@2x.png in Resources */,
 				DFEFE54917A9915300760FEE /* logo_twitter_280x65@2x.png in Resources */,
@@ -1901,6 +1920,7 @@
 				DFEFE4A617A9915200760FEE /* JREngage.m in Sources */,
 				4DFC8F1D187E1DD100CE8A83 /* JREmailsElement.m in Sources */,
 				DFEFE4A717A9915200760FEE /* JREngageError.m in Sources */,
+				48994B931F3B9B3D00F7826F /* RELEASE_NOTES.md in Sources */,
 				4DFC8F32187E1DD100CE8A83 /* JRProfile.m in Sources */,
 				48117D381E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.m in Sources */,
 				DFEFE4A817A9915200760FEE /* JREngagePhonegapPlugin.m in Sources */,
