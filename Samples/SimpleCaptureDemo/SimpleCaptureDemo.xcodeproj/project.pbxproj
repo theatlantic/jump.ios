@@ -20,10 +20,11 @@
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
 		3306C17245BA3B16978120CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */; };
 		3306C504E4EB30699D49C31F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306C1C76C81D3A8D4ED2232 /* Localizable.strings */; };
+		48039F1F1F1E7AB2001EF0E1 /* RELEASE_NOTES.md in Sources */ = {isa = PBXBuildFile; fileRef = 48039F1E1F1E7AB2001EF0E1 /* RELEASE_NOTES.md */; };
+		48039F211F1E7B39001EF0E1 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */; };
 		4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4817766B1E7711E300B3187C /* LocalAuthentication.framework */; };
 		4817766E1E7721FE00B3187C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08F5 /* main.m */; };
 		4817766F1E77220D00B3187C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8615336480002BF452 /* AppDelegate.m */; };
-		4825A7801E687EDD009910B4 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */; };
 		484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DC1B5ED14100E63266 /* AddressBook.framework */; };
 		484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DE1B5ED19200E63266 /* AssetsLibrary.framework */; };
 		484380E41B5ED19200E63266 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380DF1B5ED19200E63266 /* CoreLocation.framework */; };
@@ -37,7 +38,13 @@
 		486B0CD51E02171100B73F4F /* JROpenIDAppAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD41E02171100B73F4F /* JROpenIDAppAuth.m */; };
 		486B0CD71E0218E300B73F4F /* JROpenIDAppAuthGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD61E0218E300B73F4F /* JROpenIDAppAuthGoogle.m */; };
 		486B0CDB1E021A1200B73F4F /* JROpenIDAppAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */; };
-		4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73971B63045C001D98FF /* StoreKit.framework */; };
+		48994B7D1F3B99BC00F7826F /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B761F3B99BC00F7826F /* background@2x.png */; };
+		48994B7E1F3B99BC00F7826F /* background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B771F3B99BC00F7826F /* background@3x.png */; };
+		48994B7F1F3B99BC00F7826F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B781F3B99BC00F7826F /* Default-568h@2x.png */; };
+		48994B801F3B99BC00F7826F /* Default-568h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B791F3B99BC00F7826F /* Default-568h@3x.png */; };
+		48994B811F3B99BC00F7826F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B7A1F3B99BC00F7826F /* Default.png */; };
+		48994B821F3B99BC00F7826F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B7B1F3B99BC00F7826F /* Default@2x.png */; };
+		48994B831F3B99BC00F7826F /* Default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B7C1F3B99BC00F7826F /* Default@3x.png */; };
 		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
 		48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */; };
 		48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */; };
@@ -109,7 +116,6 @@
 		6706F18263DF25C5CAEA8F6C /* Engage Custom Provider Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */; };
 		6706F2F5D380E2BE1B74B0C3 /* JUMP Integration Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FDE35290E73F4513572D /* JUMP Integration Guide.md */; };
 		6706F51EE167DE5FFF64E224 /* CaptureDynamicForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F39D56CA252D2415997F /* CaptureDynamicForm.m */; };
-		6706FC2F6046C3C77964CF99 /* RELEASE_NOTES in Resources */ = {isa = PBXBuildFile; fileRef = 6706FB16669AD7166E82DB51 /* RELEASE_NOTES */; };
 		6706FCE93985E90E4040B262 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F8DC7856E86A423C2108 /* PickerViewController.m */; };
 		6706FDFF6209500B70A5CFFC /* Xcode Project Setup.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */; };
 		6706FF134EDA24E912D2FB82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FE4A749862BF082D2831 /* README.md */; };
@@ -122,10 +128,8 @@
 		9F7B6AAC1533648C002BF452 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6A9F1533648C002BF452 /* InfoPlist.strings */; };
 		9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA11533648C002BF452 /* MainStoryboard.storyboard */; };
 		9F7B6AB01533648C002BF452 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA81533648C002BF452 /* background.png */; };
-		C1424221EF003C4A217BE9F5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C142449C40B6A93FF4E64950 /* Default.png */; };
 		C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C142401A5A8AAAFC251E5853 /* QuartzCore.framework */; };
 		C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14249B9A86322CE1634EA23 /* MessageUI.framework */; };
-		C1424C2310E295E5506D8FF8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1424D0430EBA3E484299DD2 /* Default-568h@2x.png */; };
 		C1424E3B144EDDE0ABA1E0E7 /* AlertViewWithBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */; };
 		C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1424E26376A97DCC6454072 /* Security.framework */; };
 		D806D1B616A7638E008EEF96 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D806D1B516A7638E008EEF96 /* assets */; };
@@ -358,6 +362,9 @@
 		3306C1D905E80CB37965B544 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
+		48039F1C1F1E7A2A001EF0E1 /* AppAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppAuth.framework; path = "../../../OpenIDAppAuth/AppAuth-iOS/build/Debug-iphoneos/AppAuth.framework"; sourceTree = "<group>"; };
+		48039F1E1F1E7AB2001EF0E1 /* RELEASE_NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = RELEASE_NOTES.md; path = ../../RELEASE_NOTES.md; sourceTree = "<group>"; };
+		48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAppAuth-iOS.a"; path = "../../../../Library/Developer/Xcode/DerivedData/SimpleCaptureDemo-axwcfzztwxtglzbntbtzcbbnswpg/Build/Products/Debug-iphoneos/libAppAuth-iOS.a"; sourceTree = "<group>"; };
 		48045EF91E2E7F3C00B4C318 /* JROpenIDAppAuthGoogleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogleDelegate.h; sourceTree = "<group>"; };
 		4817766B1E7711E300B3187C /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		4817766D1E7719EE00B3187C /* debug_log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debug_log.h; sourceTree = "<group>"; };
@@ -381,6 +388,13 @@
 		486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROpenIDAppAuthProvider.m; sourceTree = "<group>"; };
 		4898D44A1DFA0D8C007432DB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		4898D44C1DFA1094007432DB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		48994B761F3B99BC00F7826F /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		48994B771F3B99BC00F7826F /* background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@3x.png"; sourceTree = "<group>"; };
+		48994B781F3B99BC00F7826F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		48994B791F3B99BC00F7826F /* Default-568h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@3x.png"; sourceTree = "<group>"; };
+		48994B7A1F3B99BC00F7826F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		48994B7B1F3B99BC00F7826F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		48994B7C1F3B99BC00F7826F /* Default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@3x.png"; sourceTree = "<group>"; };
 		48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_135x40.png; sourceTree = "<group>"; };
 		48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_openidconnect_280x40.png; sourceTree = "<group>"; };
 		48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_paypal_openidconnect_30x30.png; sourceTree = "<group>"; };
@@ -398,7 +412,6 @@
 		48AEB41A1EAB04E400FD4BFB /* CaptureProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureProfileViewController.m; path = Classes/CaptureProfileViewController.m; sourceTree = "<group>"; };
 		48AEB4201EAB060E00FD4BFB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CaptureProfileViewController.xib; sourceTree = "<group>"; };
 		48BC738D1B62AE8A001D98FF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		48BC73971B63045C001D98FF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		48CB52C51B71077C0091CD10 /* button_instagram_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_instagram_135x40.png; sourceTree = "<group>"; };
 		48CB52C61B71077C0091CD10 /* button_instagram_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_instagram_280x40.png; sourceTree = "<group>"; };
 		48CB52C71B71077C0091CD10 /* button_yahoo_oauth2_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_yahoo_oauth2_135x40.png; sourceTree = "<group>"; };
@@ -476,7 +489,6 @@
 		6706F8DC7856E86A423C2108 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerViewController.m; path = Classes/PickerViewController.m; sourceTree = "<group>"; };
 		6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Xcode Project Setup.md"; path = "../../Docs/Xcode Project Setup.md"; sourceTree = "<group>"; };
 		6706FA6D8456656D3E398437 /* User Registration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "User Registration Guide.md"; path = "../../Docs/User Registration Guide.md"; sourceTree = "<group>"; };
-		6706FB16669AD7166E82DB51 /* RELEASE_NOTES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RELEASE_NOTES; path = ../../RELEASE_NOTES; sourceTree = "<group>"; };
 		6706FCAB908800A9FF445D4B /* Upgrade Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Upgrade Guide.md"; path = "../../Docs/Upgrade Guide.md"; sourceTree = "<group>"; };
 		6706FDE35290E73F4513572D /* JUMP Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "JUMP Integration Guide.md"; path = "../../Docs/JUMP Integration Guide.md"; sourceTree = "<group>"; };
 		6706FE4A749862BF082D2831 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
@@ -498,10 +510,8 @@
 		9F7B6AA81533648C002BF452 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		9F9506FE14FEA79000335A12 /* SimpleCaptureDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimpleCaptureDemo.entitlements; sourceTree = "<group>"; };
 		C142401A5A8AAAFC251E5853 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C142449C40B6A93FF4E64950 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		C14249B9A86322CE1634EA23 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C1424A4F9A63C7BD1C90EBC0 /* AlertViewWithBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertViewWithBlocks.h; path = Classes/AlertViewWithBlocks.h; sourceTree = "<group>"; };
-		C1424D0430EBA3E484299DD2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		C1424E26376A97DCC6454072 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertViewWithBlocks.m; path = Classes/AlertViewWithBlocks.m; sourceTree = "<group>"; };
 		D806D1B516A7638E008EEF96 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
@@ -749,9 +759,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48039F211F1E7B39001EF0E1 /* libAppAuth-iOS.a in Frameworks */,
 				4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */,
 				4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */,
-				4825A7801E687EDD009910B4 /* libAppAuth-iOS.a in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
 				48F27AB01BDE97E7007D9BC3 /* libz.tbd in Frameworks */,
 				484380E31B5ED19200E63266 /* AssetsLibrary.framework in Frameworks */,
@@ -769,7 +779,6 @@
 				90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */,
 				C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */,
 				C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */,
-				4875C7631B6306D3007AF0C7 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,13 +891,14 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */,
+				48039F1C1F1E7A2A001EF0E1 /* AppAuth.framework */,
 				4817766B1E7711E300B3187C /* LocalAuthentication.framework */,
 				4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */,
 				4898D44C1DFA1094007432DB /* WebKit.framework */,
 				4898D44A1DFA0D8C007432DB /* SafariServices.framework */,
 				48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */,
 				48F27AAF1BDE97E7007D9BC3 /* libz.tbd */,
-				48BC73971B63045C001D98FF /* StoreKit.framework */,
 				48BC738D1B62AE8A001D98FF /* CoreData.framework */,
 				484380DE1B5ED19200E63266 /* AssetsLibrary.framework */,
 				484380DF1B5ED19200E63266 /* CoreLocation.framework */,
@@ -981,8 +991,13 @@
 			isa = PBXGroup;
 			children = (
 				9F7B6AA81533648C002BF452 /* background.png */,
-				C142449C40B6A93FF4E64950 /* Default.png */,
-				C1424D0430EBA3E484299DD2 /* Default-568h@2x.png */,
+				48994B761F3B99BC00F7826F /* background@2x.png */,
+				48994B771F3B99BC00F7826F /* background@3x.png */,
+				48994B781F3B99BC00F7826F /* Default-568h@2x.png */,
+				48994B791F3B99BC00F7826F /* Default-568h@3x.png */,
+				48994B7A1F3B99BC00F7826F /* Default.png */,
+				48994B7B1F3B99BC00F7826F /* Default@2x.png */,
+				48994B7C1F3B99BC00F7826F /* Default@3x.png */,
 			);
 			name = images;
 			path = Resources/images;
@@ -991,6 +1006,7 @@
 		C1424A8BB874F02EEE6D8982 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
+				48039F1E1F1E7AB2001EF0E1 /* RELEASE_NOTES.md */,
 				6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */,
 				6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */,
 				6706F243FF1B1D4DBFCE6B5D /* Engage-Only Integration Guide.md */,
@@ -998,7 +1014,6 @@
 				6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */,
 				6706FA6D8456656D3E398437 /* User Registration Guide.md */,
 				6706FE4A749862BF082D2831 /* README.md */,
-				6706FB16669AD7166E82DB51 /* RELEASE_NOTES */,
 				6706FCAB908800A9FF445D4B /* Upgrade Guide.md */,
 				19BC041E76784877DC900CFB /* Native Authentication Guide.md */,
 			);
@@ -1519,7 +1534,7 @@
 						DevelopmentTeam = 3GSSC5Q8U3;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1554,8 +1569,6 @@
 				9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */,
 				9F7B6AB01533648C002BF452 /* background.png in Resources */,
 				D806D1B616A7638E008EEF96 /* assets in Resources */,
-				C1424221EF003C4A217BE9F5 /* Default.png in Resources */,
-				C1424C2310E295E5506D8FF8 /* Default-568h@2x.png in Resources */,
 				48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */,
 				6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */,
 				D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */,
@@ -1567,7 +1580,6 @@
 				6706FDFF6209500B70A5CFFC /* Xcode Project Setup.md in Resources */,
 				6706F0D47F845F7ECCBE860F /* User Registration Guide.md in Resources */,
 				6706FF134EDA24E912D2FB82 /* README.md in Resources */,
-				6706FC2F6046C3C77964CF99 /* RELEASE_NOTES in Resources */,
 				6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */,
 				DF39E03C17A9887300FDA67A /* .gitignore in Resources */,
 				DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */,
@@ -1592,6 +1604,7 @@
 				48CB52D71B7107E60091CD10 /* logo_instagram_280x65.png in Resources */,
 				DFEFE4BD17A9915200760FEE /* button_janrain_135x40.png in Resources */,
 				48A85E8D1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png in Resources */,
+				48994B831F3B99BC00F7826F /* Default@3x.png in Resources */,
 				DFEFE4BE17A9915200760FEE /* button_janrain_280x40.png in Resources */,
 				DFEFE4BF17A9915200760FEE /* button_linkedin_135x40.png in Resources */,
 				48CB52F01B7121D70091CD10 /* icon_bw_googleplus_30x30.png in Resources */,
@@ -1631,6 +1644,7 @@
 				4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */,
 				DFEFE4D917A9915300760FEE /* icon_tumblr_30x30.png in Resources */,
 				DFEFE4DA17A9915300760FEE /* icon_twitter_30x30.png in Resources */,
+				48994B7D1F3B99BC00F7826F /* background@2x.png in Resources */,
 				48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */,
 				DFEFE4DB17A9915300760FEE /* icon_verisign_30x30.png in Resources */,
 				48CB52E01B7108760091CD10 /* button_yahoo_oauth2_280x40@2x.png in Resources */,
@@ -1701,7 +1715,9 @@
 				DFEFE51017A9915300760FEE /* button_myspace_135x40@2x.png in Resources */,
 				DFEFE51117A9915300760FEE /* button_myspace_280x40@2x.png in Resources */,
 				DFEFE51217A9915300760FEE /* button_twitter_135x40@2x.png in Resources */,
+				48994B7E1F3B99BC00F7826F /* background@3x.png in Resources */,
 				DFEFE51317A9915300760FEE /* button_twitter_280x40@2x.png in Resources */,
+				48994B811F3B99BC00F7826F /* Default.png in Resources */,
 				DFEFE51417A9915300760FEE /* button_yahoo_135x40@2x.png in Resources */,
 				DFEFE51517A9915300760FEE /* button_yahoo_280x40@2x.png in Resources */,
 				D823C6F1189C2FBB00993DAE /* logo_microsoftaccount_280x65.png in Resources */,
@@ -1722,6 +1738,7 @@
 				DFEFE52317A9915300760FEE /* icon_openid_30x30@2x.png in Resources */,
 				DFEFE52417A9915300760FEE /* icon_orkut_30x30@2x.png in Resources */,
 				DFEFE52517A9915300760FEE /* icon_paypal_30x30@2x.png in Resources */,
+				48994B7F1F3B99BC00F7826F /* Default-568h@2x.png in Resources */,
 				48CB52F81B7125D70091CD10 /* button_googleplus_280x40.png in Resources */,
 				DFEFE52617A9915300760FEE /* icon_salesforce_30x30@2x.png in Resources */,
 				48CB52CC1B71077C0091CD10 /* button_yahoo_oauth2_280x40.png in Resources */,
@@ -1766,12 +1783,14 @@
 				48AEB4221EAB060E00FD4BFB /* CaptureProfileViewController.xib in Resources */,
 				DFEFE54C17A9915300760FEE /* logo_yahoo_280x65@2x.png in Resources */,
 				DFEFE54D17A9915300760FEE /* check_mark@2x.png in Resources */,
+				48994B821F3B99BC00F7826F /* Default@2x.png in Resources */,
 				DFEFE54E17A9915300760FEE /* media_view_background_bottom@2x.png in Resources */,
 				DFEFE54F17A9915300760FEE /* media_view_background_top@2x.png in Resources */,
 				DFEFE55017A9915300760FEE /* music_note@2x.jpg in Resources */,
 				DFEFE55117A9915300760FEE /* profilepic_placeholder@2x.png in Resources */,
 				DFEFE55217A9915300760FEE /* triangle_icon@2x.png in Resources */,
 				DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */,
+				48994B801F3B99BC00F7826F /* Default-568h@3x.png in Resources */,
 				DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */,
 				D823C6F5189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png in Resources */,
 				DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */,
@@ -1858,6 +1877,7 @@
 				DFEFE4A517A9915200760FEE /* JREngage+CustomInterface.m in Sources */,
 				DFEFE4A617A9915200760FEE /* JREngage.m in Sources */,
 				4DFC8F1D187E1DD100CE8A83 /* JREmailsElement.m in Sources */,
+				48039F1F1F1E7AB2001EF0E1 /* RELEASE_NOTES.md in Sources */,
 				DFEFE4A717A9915200760FEE /* JREngageError.m in Sources */,
 				4DFC8F32187E1DD100CE8A83 /* JRProfile.m in Sources */,
 				DFEFE4A817A9915200760FEE /* JREngagePhonegapPlugin.m in Sources */,
@@ -2054,8 +2074,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2097,8 +2117,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2177,8 +2197,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
