@@ -542,23 +542,30 @@
 
 - (void)performTradAuthWithMergeToken:(NSString *)mergeToken
 {
-    void (^signInCompletion)(UIAlertView *, BOOL, NSInteger) =
-            ^(UIAlertView *alertView_, BOOL cancelled_, NSInteger buttonIndex_)
-            {
-                if (cancelled_) {
-                    [self configureViewsWithDisableOverride:NO];
-                    return;
-                }
-                NSString *user = [[alertView_ textFieldAtIndex:0] text];
-                NSString *password = [[alertView_ textFieldAtIndex:1] text];
-                [JRCapture startCaptureTraditionalSignInForUser:user withPassword:password
-                                                     mergeToken:mergeToken
-                                                    forDelegate:self.captureDelegate];
-            };
-
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Sign in" message:nil completion:signInCompletion
-                                          style:UIAlertViewStyleLoginAndPasswordInput cancelButtonTitle:@"Cancel"
-                              otherButtonTitles:@"Sign in", nil] show];
+    __weak __block UIAlertController *alertController;
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self configureViewsWithDisableOverride:NO];
+    }];
+    
+    UIAlertAction *signInAction = [UIAlertAction actionWithTitle:@"Sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *user = [alertController.textFields[0] text];
+        NSString *password = [alertController.textFields[1] text];
+        [JRCapture startCaptureTraditionalSignInForUser:user withPassword:password mergeToken:mergeToken forDelegate:self.captureDelegate];
+    }];
+    
+    alertController = [UIAlertController alertControllerWithTitle:@"Sign in" message:nil alertActions:cancelAction, signInAction, nil];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"User";
+    }];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Password";
+        textField.secureTextEntry = YES;
+    }];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
     [self configureViewsWithDisableOverride:YES];
 }
 
