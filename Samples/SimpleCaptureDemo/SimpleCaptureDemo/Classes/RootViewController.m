@@ -34,7 +34,6 @@
 #import "JREngage+CustomInterface.h"
 #import "CaptureProfileViewController.h"
 #import "CaptureChangePasswordViewController.h"
-#import "AlertViewWithBlocks.h"
 #import "AppDelegate.h"
 #import "CaptureDynamicForm.h"
 #import "JRCaptureError.h"
