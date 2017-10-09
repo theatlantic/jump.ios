@@ -408,7 +408,6 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"Email";
-        textField.secureTextEntry = YES;
     }];
     
     [self presentViewController:alertController animated:YES completion:nil];
@@ -444,20 +443,26 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (IBAction)resendVerificationButtonPressed:(id)sender {
-    void (^completion)(UIAlertView *, BOOL, NSInteger) =
-            ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-                if (buttonIndex != alertView.cancelButtonIndex) {
-                    NSString *emailAddress = [alertView textFieldAtIndex:0].text;
-                    [JRCapture resendVerificationEmail:emailAddress delegate:self.captureDelegate];
-                }
-            };
-
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Please confirm your email"
-                                        message:@"We'll resend your verification email."
-                                     completion:completion
-                                          style:UIAlertViewStylePlainTextInput
-                              cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil] show];
+- (IBAction)resendVerificationButtonPressed:(id)sender
+{
+    __block __weak UIAlertController *alertController;
+    
+    UIAlertAction *sendAction = [UIAlertAction actionWithTitle:@"Send" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *emailTextField = alertController.textFields.firstObject;
+        NSString *emailAddress = emailTextField.text;
+        [JRCapture resendVerificationEmail:emailAddress delegate:self.captureDelegate];
+    }];
+    
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    alertController = [UIAlertController alertControllerWithTitle:@"Please confirm your email" message:@"We'll resend your verification email." alertActions:cancelAction, sendAction, nil];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Email";
+    }];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)unlinkSelectedProfile:(NSString *)selectedProfile {
