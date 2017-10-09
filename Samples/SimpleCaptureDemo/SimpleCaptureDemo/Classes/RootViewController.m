@@ -707,15 +707,13 @@
     } else if ([error isJRTwoStepRegFlowError]) {
         [self.rvc handleTwoStepRegFlowError:error];
     } else {
-        void (^t)(UIAlertView *, BOOL, NSInteger) = ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.rvc configureViewsWithDisableOverride:NO];
-        };
-
-        [[[AlertViewWithBlocks alloc] initWithTitle:@"Error" message:[error localizedFailureReason]
-                                         completion:t
-                                              style:UIAlertViewStyleDefault
-                                  cancelButtonTitle:@"Dismiss"
-                                  otherButtonTitles:nil] show];
+        }];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedFailureReason] alertActions:dismissAction, nil];
+        
+        [self.rvc presentViewController:alertController animated:YES completion:nil];
     }
 }
 
