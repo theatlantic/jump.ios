@@ -518,26 +518,22 @@
 
 - (void)handleMergeFlowError:(NSError *)error
 {
-    
     NSString *existingAccountProvider = [error JRMergeFlowExistingProvider];
-    void (^mergeAlertCompletion)(UIAlertView *, BOOL, NSInteger) =
-            ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex)
-            {
-                if (cancelled) return;
 
-                if ([existingAccountProvider isEqualToString:@"capture"]){ // Traditional sign-in required
-                    [self performTradAuthWithMergeToken:[error JRMergeToken]];
-                }else{
-                    // Social sign-in required:
-                
-                    [JRCapture startEngageSignInDialogOnProvider:existingAccountProvider
-                                    withCustomInterfaceOverrides:self.customUi
-                                                      mergeToken:[error JRMergeToken]
-                                                     forDelegate:self.captureDelegate];
-                }
-            };
+    UIAlertAction *mergeAction = [UIAlertAction actionWithTitle:@"Merge" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if ([existingAccountProvider isEqualToString:@"capture"]){ // Traditional sign-in required
+            [self performTradAuthWithMergeToken:[error JRMergeToken]];
+        }else{
+            // Social sign-in required:
+            
+            [JRCapture startEngageSignInDialogOnProvider:existingAccountProvider
+                            withCustomInterfaceOverrides:self.customUi
+                                              mergeToken:[error JRMergeToken]
+                                             forDelegate:self.captureDelegate];
+        }
 
-    [self showMergeAlertDialog:existingAccountProvider mergeAlertCompletion:mergeAlertCompletion];
+    }];
+    [self showMergeAlertDialog:existingAccountProvider withAlertAction:mergeAction];
 }
 
 - (void)performTradAuthWithMergeToken:(NSString *)mergeToken
@@ -569,8 +565,7 @@
     [self configureViewsWithDisableOverride:YES];
 }
 
-- (void)showMergeAlertDialog:(NSString *)existingAccountProvider
-        mergeAlertCompletion:(void (^)(UIAlertView *, BOOL, NSInteger))mergeAlertCompletion
+- (void)showMergeAlertDialog:(NSString *)existingAccountProvider withAlertAction:(UIAlertAction *)action
 {
     NSString *captureAccountBrandPhrase = @"a SimpleCaptureDemo";
     NSString *existingAccountProviderPhrase = [existingAccountProvider isEqualToString:@"capture"] ?
@@ -581,11 +576,11 @@
                                                    captureAccountBrandPhrase,
                                                    existingAccountProviderPhrase];
 
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Email address in use" message:message
-                                     completion:mergeAlertCompletion
-                                          style:UIAlertViewStyleDefault
-                              cancelButtonTitle:@"Cancel"
-                              otherButtonTitles:@"Merge", nil] show];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Email address in use" message:message alertActions:cancelAction, action, nil];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)handleTwoStepRegFlowError:(NSError *)error
