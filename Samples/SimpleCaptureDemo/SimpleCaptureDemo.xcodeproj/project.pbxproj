@@ -21,7 +21,6 @@
 		3306C17245BA3B16978120CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */; };
 		3306C504E4EB30699D49C31F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306C1C76C81D3A8D4ED2232 /* Localizable.strings */; };
 		48039F1F1F1E7AB2001EF0E1 /* RELEASE_NOTES.md in Sources */ = {isa = PBXBuildFile; fileRef = 48039F1E1F1E7AB2001EF0E1 /* RELEASE_NOTES.md */; };
-		48039F211F1E7B39001EF0E1 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */; };
 		4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4817766B1E7711E300B3187C /* LocalAuthentication.framework */; };
 		4817766E1E7721FE00B3187C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08F5 /* main.m */; };
 		4817766F1E77220D00B3187C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8615336480002BF452 /* AppDelegate.m */; };
@@ -161,6 +160,8 @@
 		DF39E04617A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DF39E02B17A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m */; };
 		DFB6898C175E8E6C006DFC92 /* JRBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB68874175E8E6C006DFC92 /* JRBase64.m */; };
 		DFB68A6B175E8E6C006DFC92 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB6898B175E8E6C006DFC92 /* SFHFKeychainUtils.m */; };
+		DFEA3C331F8BBDD2005ACE97 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEA3C321F8BBDD2005ACE97 /* libAppAuth-iOS.a */; };
+		DFEA3C361F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */; };
 		DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE3CE17A9915200760FEE /* ATTRIBUTION */; };
 		DFEFE4A317A9915200760FEE /* debug_log.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE3D117A9915200760FEE /* debug_log.m */; };
 		DFEFE4A417A9915200760FEE /* JRActivityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE3D317A9915200760FEE /* JRActivityObject.m */; };
@@ -559,6 +560,9 @@
 		DFB68874175E8E6C006DFC92 /* JRBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBase64.m; sourceTree = "<group>"; };
 		DFB6898A175E8E6C006DFC92 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		DFB6898B175E8E6C006DFC92 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		DFEA3C321F8BBDD2005ACE97 /* libAppAuth-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAppAuth-iOS.a"; path = "../../../GithubSourceCode/AppAuth-iOS-master/build/Debug-iphoneos/libAppAuth-iOS.a"; sourceTree = "<group>"; };
+		DFEA3C341F8BBEC2005ACE97 /* UIAlertController+JRAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+JRAlertController.h"; path = "Classes/UIAlertController+JRAlertController.h"; sourceTree = "<group>"; };
+		DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+JRAlertController.m"; path = "Classes/UIAlertController+JRAlertController.m"; sourceTree = "<group>"; };
 		DFEFE3CE17A9915200760FEE /* ATTRIBUTION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ATTRIBUTION; sourceTree = "<group>"; };
 		DFEFE3D117A9915200760FEE /* debug_log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = debug_log.m; sourceTree = "<group>"; };
 		DFEFE3D217A9915200760FEE /* JRActivityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRActivityObject.h; sourceTree = "<group>"; };
@@ -759,7 +763,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48039F211F1E7B39001EF0E1 /* libAppAuth-iOS.a in Frameworks */,
+				DFEA3C331F8BBDD2005ACE97 /* libAppAuth-iOS.a in Frameworks */,
 				4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */,
 				4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
@@ -891,6 +895,7 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DFEA3C321F8BBDD2005ACE97 /* libAppAuth-iOS.a */,
 				48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */,
 				48039F1C1F1E7A2A001EF0E1 /* AppAuth.framework */,
 				4817766B1E7711E300B3187C /* LocalAuthentication.framework */,
@@ -962,6 +967,8 @@
 				6706F39D56CA252D2415997F /* CaptureDynamicForm.m */,
 				4ED8382B17EC307900CA9645 /* LinkedProfilesViewController.h */,
 				4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */,
+				DFEA3C341F8BBEC2005ACE97 /* UIAlertController+JRAlertController.h */,
+				DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1844,6 +1851,7 @@
 				4DFC8F37187E1DD100CE8A83 /* JRUrlsElement.m in Sources */,
 				6706FFA2D57FB31818D60F25 /* Utils.m in Sources */,
 				6706F51EE167DE5FFF64E224 /* CaptureDynamicForm.m in Sources */,
+				DFEA3C361F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m in Sources */,
 				4DFC8F1C187E1DD100CE8A83 /* JRCurrentLocation.m in Sources */,
 				4DFC8F2A187E1DD100CE8A83 /* JRPhotosElement.m in Sources */,
 				DFB6898C175E8E6C006DFC92 /* JRBase64.m in Sources */,
@@ -2074,11 +2082,11 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/roberto.halgravez/Documents/Janrain/GithubSourceCode/AppAuth-iOS-master/Source/**",
+					"/Users/roberto.halgravez/Documents/Janrain/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
@@ -2117,11 +2125,11 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/roberto.halgravez/Documents/Janrain/GithubSourceCode/AppAuth-iOS-master/Source/**",
+					"/Users/roberto.halgravez/Documents/Janrain/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
@@ -2197,11 +2205,11 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/roberto.halgravez/Documents/Janrain/GithubSourceCode/AppAuth-iOS-master/Source/**",
+					"/Users/roberto.halgravez/Documents/Janrain/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
