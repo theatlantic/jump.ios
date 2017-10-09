@@ -43,6 +43,7 @@
 #import "JRActivityObject.h"
 #import "LinkedProfilesViewController.h"
 #import "JRCaptureData.h"
+#import "UIAlertController+JRAlertController.h"
 @import Social;
 @import Accounts;
 @import LocalAuthentication;
@@ -389,21 +390,26 @@
     [JREngage showSharingDialogWithActivity:t];
 }
 
-- (IBAction)forgotPasswordButtonPressed:(id)sender {
-    void (^completion)(UIAlertView *, BOOL, NSInteger) =
-            ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-                if (buttonIndex != alertView.cancelButtonIndex) {
-                    NSString *emailAddress = [alertView textFieldAtIndex:0].text;
-                    [JRCapture startForgottenPasswordRecoveryForField:emailAddress
-                                                             delegate:self.captureDelegate];
-                }
-            };
-
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Please confirm your email"
-                                        message:@"We'll send you a link to create a new password."
-                                     completion:completion
-                                          style:UIAlertViewStylePlainTextInput
-                              cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil] show];
+- (IBAction)forgotPasswordButtonPressed:(id)sender
+{
+    __block __weak UIAlertController *alertController;
+    
+    UIAlertAction *sendAction = [UIAlertAction actionWithTitle:@"Send" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *emailTextField = alertController.textFields.firstObject;
+        NSString *emailAddress = emailTextField.text;
+        [JRCapture startForgottenPasswordRecoveryForField:emailAddress delegate:self.captureDelegate];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    alertController = [UIAlertController alertControllerWithTitle:@"Please confirm your email" message:@"We'll send you a link to create a new password." alertActions:cancelAction, sendAction, nil];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Email";
+        textField.secureTextEntry = YES;
+    }];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)changePasswordButtonPressed:(id)sender
