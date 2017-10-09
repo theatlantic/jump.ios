@@ -654,19 +654,25 @@
 
 - (void)fetchUserDidFailWithError:(NSError *)error context:(NSObject *)context
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description]
-                                                       delegate:nil cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:nil];
-    [alertView show];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[error description] alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
+    
     [self.rvc configureViewsWithDisableOverride:NO];
 }
 
 - (void)fetchUserDidSucceed:(JRCaptureUser *)fetchedUser context:(NSObject *)context
 {
     [self.rvc configureViewsWithDisableOverride:NO];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success" message:nil
-                                                       delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alertView show];
+    
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success" message:nil alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
+    
     appDelegate.captureUser = fetchedUser;
     [appDelegate.prefs setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.captureUser]
                           forKey:cJRCaptureUser];
