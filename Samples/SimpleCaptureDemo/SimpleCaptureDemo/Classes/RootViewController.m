@@ -417,32 +417,31 @@
 - (IBAction)changePasswordButtonPressed:(id)sender
 {
     if(!appDelegate.captureUser.password){
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:@"This user account is social only"
-                                   delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil] show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"This user account is social only" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alertController addAction:dismissAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }else{
         [self performSegueWithIdentifier:@"ChangePasswordSegue" sender:self];
     }
 }
 
--(void)unlinkAccountButtonPressed:(id)sender {
-    void (^completion)(UIAlertView *, BOOL, NSInteger) =
-    ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-        if (buttonIndex != alertView.cancelButtonIndex) {
-            LinkedProfilesViewController *linkedProfilesController = [[LinkedProfilesViewController alloc]init];
-            linkedProfilesController.delegate = self;
-            linkedProfilesController.linkedProfiles = [JRCaptureData getLinkedProfiles];
-            [self.navigationController presentViewController:linkedProfilesController animated:YES completion:nil];
-        }
-    };
-
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Unlink Account"
-                                        message:@"You are going to start account unlinking process."
-                                     completion:completion
-                                          style:UIAlertViewStyleDefault
-                              cancelButtonTitle:@"Cancel" otherButtonTitles:@"Proceed", nil] show];
+-(void)unlinkAccountButtonPressed:(id)sender
+{
+    UIAlertAction *proceedAction = [UIAlertAction actionWithTitle:@"Proceed" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        LinkedProfilesViewController *linkedProfilesController = [[LinkedProfilesViewController alloc]init];
+        linkedProfilesController.delegate = self;
+        linkedProfilesController.linkedProfiles = [JRCaptureData getLinkedProfiles];
+        [self.navigationController presentViewController:linkedProfilesController animated:YES completion:nil];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unlink Account" message:@"You are going to start account unlinking process." alertActions:cancelAction, proceedAction, nil];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)resendVerificationButtonPressed:(id)sender {
