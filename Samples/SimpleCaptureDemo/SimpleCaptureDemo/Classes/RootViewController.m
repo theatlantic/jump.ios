@@ -106,6 +106,7 @@
 
 - (void)configureViewsWithDisableOverride:(BOOL)disableAllButtons
 {
+    NSLog(@"DEMO: configureViewsWithDisableOverride");
     self.title = @"DEMO";
     [self.refreshButton setTitle:@"Refresh Access Token" forState:UIControlStateNormal];
     [self.browseButton setTitle:@"Dump User To Log" forState:UIControlStateNormal];
@@ -510,15 +511,18 @@
 
 - (void)handleBadPasswordError:(NSError *)error
 {
-    void (^t)(UIAlertView *, BOOL, NSInteger) = ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-        [self configureViewsWithDisableOverride:NO];
-    };
-
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Access Denied" message:@"Invalid password for email@address.com"
-                                     completion:t
-                                          style:UIAlertViewStyleDefault
-                              cancelButtonTitle:@"Dismiss"
-                              otherButtonTitles:nil] show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Access Denied"
+                                                                             message:@"Invalid password for email@address.com"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+                                                              [self configureViewsWithDisableOverride:NO];
+                                                          }];
+    
+    [alertController addAction:dismissAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)handleMergeFlowError:(NSError *)error
