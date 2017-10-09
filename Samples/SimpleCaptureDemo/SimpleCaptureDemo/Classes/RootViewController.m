@@ -297,31 +297,22 @@
                                         DLog(@"Authentication Fails");
                                         DLog(@"%@", error.description);
                                         
-                                        appDelegate.currentProvider = nil;
-                                        [self configureProviderIcon];
+                                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                                         
-                                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                                            message:errorMessage
-                                                                                           delegate:self
-                                                                                  cancelButtonTitle:@"OK"
-                                                                                  otherButtonTitles:nil, nil];
-                                        [alertView show];
+                                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage alertActions:okAction, nil];
 
-                                        
+                                        [self presentViewController:alertController animated:YES completion:nil];
                                     });
                                 }
                             }];
     } else {
-        void (^completion)(UIAlertView *, BOOL, NSInteger) =
-        ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self captureSignInCompletion:newCaptureUser status:captureRecordStatus];
-        };
-        [[[AlertViewWithBlocks alloc] initWithTitle:@"Touch ID Error"
-                                            message:@"A Touch ID error occured or it is not available. Authentication will continue for demonstration purposes."
-                                         completion:completion
-                                              style:UIAlertViewStyleDefault
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:Nil, Nil] show];
+        }];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Touch ID Error" message:@"A Touch ID error occured or it is not available. Authentication will continue for demonstration purposes." alertActions:okAction, nil];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
     
 }
