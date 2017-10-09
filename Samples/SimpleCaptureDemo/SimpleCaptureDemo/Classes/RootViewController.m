@@ -234,20 +234,22 @@
 
 -(IBAction)linkAccountButtonPressed:(id)sender
 {
-    void (^completion)(UIAlertView *, BOOL, NSInteger) =
-    ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-        if(buttonIndex != alertView.cancelButtonIndex) {
-            [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate
-                                                forAccountLinking:YES
-                                                  withRedirectUri:@"http://your-domain-custom-redirect-url-page.html"];
-        }
-    };
-    [[[AlertViewWithBlocks alloc] initWithTitle:@"Capture Account Linking"
-                                        message:@"Do you wish to Link a new account to your current account ?"
-                                     completion:completion
-                                          style:UIAlertViewStyleDefault
-                              cancelButtonTitle:@"Cancel"
-                              otherButtonTitles:@"Continue", Nil] show];
+    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"Continue"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                               [JRCapture startAccountLinkingSignInDialogForDelegate:self.captureDelegate
+                                                                                                   forAccountLinking:YES
+                                                                                                     withRedirectUri:@"http://your-domain-custom-redirect-url-page.html"];
+                                                           }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Capture Account Linking"
+                                          message:@"Do you wish to Link a new account to your current account?"
+                                          alertActions:continueAction, cancelAction, nil];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)touchIDSwitchChanged:(id)sender {
