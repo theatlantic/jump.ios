@@ -813,38 +813,41 @@
 - (void)linkNewAccountDidSucceed
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Account Linked Successfully."
-                                                        message:@"Account Linked Successfully"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:nil];
-    [alertView show];
+    
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New Account Linked Successfully." message:@"Account Linked Successfully" alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)accountUnlinkingDidSucceed {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Account unlinking Success"
-                                                        message:@"Account unlinked successfully."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alertView show];
+- (void)accountUnlinkingDidSucceed
+{
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Account unlinking Success" message:@"Account unlinked successfully." alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)linkNewAccountDidFailWithError:(NSError *)error
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failed to link new account." message:[error localizedFailureReason] delegate:nil
-                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alertView show];
-
+    
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Failed to link new account." message:[error localizedFailureReason] alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)accountUnlinkingDidFailWithError:(NSError *)error
 {
-    [[[UIAlertView alloc] initWithTitle:@"Account unlinking Failure"
-                                message:[error localizedFailureReason] delegate:nil
-                      cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Account unlinking Failure" message:[error localizedFailureReason] alertActions:okAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 @end
