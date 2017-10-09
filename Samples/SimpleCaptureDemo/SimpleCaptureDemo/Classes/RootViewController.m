@@ -786,18 +786,23 @@
 
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedFailureReason]
-                                                       delegate:nil cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:nil];
-    [alertView show];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedFailureReason] alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
+    
     [self.rvc configureViewsWithDisableOverride:NO];
 }
 
 - (void)refreshAccessTokenDidSucceedWithContext:(id <NSObject>)context
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success" message:nil delegate:nil
-                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alertView show];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success" message:nil alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
+    
     [self.rvc configureViewsWithDisableOverride:NO];
 }
 
