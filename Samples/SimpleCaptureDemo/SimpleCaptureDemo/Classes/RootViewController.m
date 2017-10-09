@@ -492,18 +492,20 @@
 - (void)engageSignInDidFailWithError:(NSError *)error
 {
     DLog(@"error: %@", [error description]);
-    UIAlertView *alertView;
+    UIAlertController *alertController;
     if([error code]== 200){
-        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"User cancelled authentication"
-                                              delegate:nil cancelButtonTitle:@"Dismiss"
-                                     otherButtonTitles:nil];
+        alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                              message:@"User cancelled authentication"
+                                                       preferredStyle:UIAlertControllerStyleAlert];
     }else{
         //Some non-typical error occurred.  This may not be something to display to an end user.
-        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error description]
-                                                       delegate:nil cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:nil];
+        alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                              message:[error description]
+                                                       preferredStyle:UIAlertControllerStyleAlert];
     }
-    [alertView show];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)handleBadPasswordError:(NSError *)error
