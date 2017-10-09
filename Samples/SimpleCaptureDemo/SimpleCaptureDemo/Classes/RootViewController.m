@@ -744,28 +744,39 @@
 
 
 - (void)forgottenPasswordRecoveryDidSucceed {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Reset Password email Sent" message:@"" delegate:nil
-                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alertView show];
+    
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Reset Password email Sent" message:@"" alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
 {
-    [[[UIAlertView alloc] initWithTitle:@"Forgotten Password Flow Failed"
-                                        message:[error localizedFailureReason] delegate:nil
-                              cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Forgotten Password Flow Failed" message:[error localizedFailureReason] alertActions:okAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)resendVerificationEmailDidSucceed {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Verification email Sent" message:@"" delegate:nil
-                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alertView show];
+- (void)resendVerificationEmailDidSucceed
+{
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Verification email Sent" message:@"" alertActions:dismissAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)resendVerificationEmailDidFailWithError:(NSError *)error {
-    [[[UIAlertView alloc] initWithTitle:@"Failed to resend verification email"
-                                message:[error localizedFailureReason] delegate:nil
-                      cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+- (void)resendVerificationEmailDidFailWithError:(NSError *)error
+{
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Failed to resend verification email" message:[error localizedFailureReason] alertActions:okAction, nil];
+    
+    [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)captureDidSucceedWithCode:(NSString *)code
