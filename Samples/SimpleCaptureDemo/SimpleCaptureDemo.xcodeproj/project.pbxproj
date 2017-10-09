@@ -129,7 +129,6 @@
 		9F7B6AB01533648C002BF452 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA81533648C002BF452 /* background.png */; };
 		C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C142401A5A8AAAFC251E5853 /* QuartzCore.framework */; };
 		C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14249B9A86322CE1634EA23 /* MessageUI.framework */; };
-		C1424E3B144EDDE0ABA1E0E7 /* AlertViewWithBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */; };
 		C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1424E26376A97DCC6454072 /* Security.framework */; };
 		D806D1B616A7638E008EEF96 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D806D1B516A7638E008EEF96 /* assets */; };
 		D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */; };
@@ -512,9 +511,7 @@
 		9F9506FE14FEA79000335A12 /* SimpleCaptureDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimpleCaptureDemo.entitlements; sourceTree = "<group>"; };
 		C142401A5A8AAAFC251E5853 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C14249B9A86322CE1634EA23 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		C1424A4F9A63C7BD1C90EBC0 /* AlertViewWithBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertViewWithBlocks.h; path = Classes/AlertViewWithBlocks.h; sourceTree = "<group>"; };
 		C1424E26376A97DCC6454072 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertViewWithBlocks.m; path = Classes/AlertViewWithBlocks.m; sourceTree = "<group>"; };
 		D806D1B516A7638E008EEF96 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
 		D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_microsoftaccount_30x30.png; sourceTree = "<group>"; };
 		D823C6EE189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_microsoftaccount_30x30.png; sourceTree = "<group>"; };
@@ -957,8 +954,6 @@
 				9F7B6A8615336480002BF452 /* AppDelegate.m */,
 				9F7B6A9115336480002BF452 /* RootViewController.h */,
 				9F7B6A9215336480002BF452 /* RootViewController.m */,
-				C1424FEDA9B53C3B9EE9AB6E /* AlertViewWithBlocks.m */,
-				C1424A4F9A63C7BD1C90EBC0 /* AlertViewWithBlocks.h */,
 				6706FE4C14414AE4B30F1878 /* PickerViewController.h */,
 				6706F8DC7856E86A423C2108 /* PickerViewController.m */,
 				6706F4723D28D385805BF6B3 /* Utils.h */,
@@ -1845,7 +1840,6 @@
 				4DFC8F20187E1DD100CE8A83 /* JRLocation.m in Sources */,
 				4DFC8F33187E1DD100CE8A83 /* JRProfilePhotosElement.m in Sources */,
 				9F7B6A9915336480002BF452 /* RootViewController.m in Sources */,
-				C1424E3B144EDDE0ABA1E0E7 /* AlertViewWithBlocks.m in Sources */,
 				6706FCE93985E90E4040B262 /* PickerViewController.m in Sources */,
 				4DFC8F18187E1DD100CE8A83 /* JRAddressesElement.m in Sources */,
 				4DFC8F37187E1DD100CE8A83 /* JRUrlsElement.m in Sources */,
