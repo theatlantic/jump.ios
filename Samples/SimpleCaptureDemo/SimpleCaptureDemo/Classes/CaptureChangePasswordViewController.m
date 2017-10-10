@@ -30,11 +30,11 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #import "CaptureChangePasswordViewController.h"
-#import "AlertViewWithBlocks.h"
 #import "JRCapture.h"
 #import "AppDelegate.h"
 #import "JRCaptureUser+Extras.h"
 #import "Utils.h"
+#import "UIAlertController+JRAlertController.h"
 
 @interface CaptureChangePasswordViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate>
 @end
@@ -96,29 +96,25 @@
     NSString *errorMessage = [self validateFormFields];
     if(errorMessage.length > 0)
     {
-        void (^completion)(UIAlertView *, BOOL, NSInteger) =
-        ^(UIAlertView *alertView, BOOL cancelled, NSInteger buttonIndex) {
-            if(buttonIndex == alertView.firstOtherButtonIndex) {
-                /**
-                 * Posts the provided form data to the provided endpoint with the provided form name.
-                 * NOTE: This method does not validate the provided data contents - errors will be returned
-                 * from the server-side api and must be handled by the integration developer.
-                 */
-                [JRCapture postFormWithFormDataProvided:user
-                                      toCaptureEndpoint:@"/oauth/update_profile_native"
-                                           withFormName:@"newPasswordFormProfile"
-                                           andFieldData:fieldData
-                                               delegate:self];
-            }else{
-                updateButton.enabled = YES;
-            }
-        };
-        [[[AlertViewWithBlocks alloc] initWithTitle:@"Validation Error"
-                                            message:errorMessage
-                                         completion:completion
-                                              style:UIAlertViewStyleDefault
-                                  cancelButtonTitle:@"Cancel"
-                                  otherButtonTitles:@"Continue", Nil] show];
+        UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            /**
+             * Posts the provided form data to the provided endpoint with the provided form name.
+             * NOTE: This method does not validate the provided data contents - errors will be returned
+             * from the server-side api and must be handled by the integration developer.
+             */
+            [JRCapture postFormWithFormDataProvided:user
+                                  toCaptureEndpoint:@"/oauth/update_profile_native"
+                                       withFormName:@"newPasswordFormProfile"
+                                       andFieldData:fieldData
+                                           delegate:self];
+        }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            updateButton.enabled = YES;
+        }];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Validation Error" message:errorMessage alertActions:cancelAction, continueAction, nil];
+        [self presentViewController:alertController animated:YES completion:nil];
         
     }else{
         /**
