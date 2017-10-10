@@ -111,7 +111,7 @@
 
 - (void)updateUserProfileDidFailWithError:(NSError *)error
 {
-    [Utils handleFailureWithTitle:@"Profile not updated" message:nil];
+    [Utils handleFailureWithTitle:@"Profile not updated" message:nil forVC:self];
     updateButton.enabled = YES;
 }
 
