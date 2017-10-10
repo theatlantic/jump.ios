@@ -157,7 +157,7 @@
 
 - (void)updateUserProfileDidFailWithError:(NSError *)error
 {
-    [Utils handleFailureWithTitle:@"Password not updated" message:error.localizedFailureReason];
+    [Utils handleFailureWithTitle:@"Password not updated" message:error.localizedFailureReason forVC:self];
     updateButton.enabled = YES;
 }
 

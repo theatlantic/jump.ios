@@ -33,5 +33,5 @@ NSString *upcaseFirst(NSString *string);
 @interface Utils : NSObject
 + (void)handleSuccessWithTitle:(NSString *)title message:(NSString *)message forVc:(UIViewController *)forVc;
 
-+ (void)handleFailureWithTitle:(NSString *)title message:(NSString *)message;
++ (void)handleFailureWithTitle:(NSString *)title message:(NSString *)message forVC:(UIViewController *)forVC;
 @end
