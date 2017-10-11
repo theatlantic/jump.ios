@@ -43,14 +43,16 @@ As of SDK release 4.0 the following Google SDK implementation steps were impleme
 
 ### Twitter
 
-As of SDK release 4.0 the following Twitter Fabric, TwitterKit SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Twitter oAuth access token from the iOS device:
+As of SDK release 4.0 the following TwitterKit SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Twitter oAuth access token from the iOS device:
 
-1. Download the Fabric SDK from this link: https://get.fabric.io/ and include TwitterKit 
-2. Configure your Twitter App: http://docs.fabric.io/ios/twitter/configure-twitter-app.html  In order for the Janrain Social Login Server to validate the provided Twitter oAuth token, the token must be provisioned from the same Twitter application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Twitter App. 
-3. In the case of the SimpleCaptureDemo application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Twitter at this link: http://docs.fabric.io/ios/twitter/authentication.html
+1. Download the TwitterKit SDK from this link: https://dev.twitter.com/twitterkit/ios/installation
+2. Configure your Twitter App: https://apps.twitter.com/  In order for the Janrain Social Login Server to validate the provided Twitter oAuth token, the token must be provisioned from the same Twitter application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Twitter App. 
+3. In the case of the SimpleCaptureDemo application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Twitter at this link: https://dev.twitter.com/twitterkit/ios/log-in-with-twitter
 4. NOTE: In most default cases Twitter will not return an email address for an end user. This may cause account merging or linking issues if your Registration user experience relies heavily on merged social profiles.  This use-case is typically addressed by forcing Twitter account holders to use the "Account Linking" functionality of the SDK.  Customer's may choose to work with Twitter to get their application white-listed so it will attempt to return an email address from a user profile.  However, email addresses are not "required" for Twitter accounts, subsequently there is still no guarantee that an email address will be returned.
 5. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
 6. Once you have retrieved the oAuth *access token AND token secret* from the TwitterKit SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+
+NOTE: It is important to note that Twitter Kit 3.0 supports iOS 9+.
 
 
 ## DEPRECATED: Native Authentication implementation for Janrain Mobile SDK versions prior to version 4.0
