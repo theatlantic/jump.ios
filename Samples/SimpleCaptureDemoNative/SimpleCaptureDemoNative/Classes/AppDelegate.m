@@ -163,7 +163,7 @@ AppDelegate *appDelegate = nil;
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    if(url.scheme != nil && [url.scheme hasPrefix:@"com.googleusercontent.apps"]) {
+    if(url.scheme != nil && [url.scheme hasPrefix:@"twitter"]) {
         return [[Twitter sharedInstance] application:app openURL:url options:options];
     }
     return NO;
