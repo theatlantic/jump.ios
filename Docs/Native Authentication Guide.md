@@ -52,7 +52,7 @@ As of SDK release 4.0 the following TwitterKit SDK implementation steps were imp
 5. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
 6. Once you have retrieved the oAuth *access token AND token secret* from the TwitterKit SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
-NOTE: It is important to note that Twitter Kit 3.0 supports iOS 9+.
+NOTE: It is important to note that Twitter Kit 3.0 only supports iOS 9+.
 
 
 ## DEPRECATED: Native Authentication implementation for Janrain Mobile SDK versions prior to version 4.0
