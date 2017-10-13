@@ -66,7 +66,6 @@
 		48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E891BEBD4E5004CBA61 /* button_paypal_280x40.png */; };
 		48A85E8D1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */; };
 		48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738D1B62AE8A001D98FF /* CoreData.framework */; };
-		48BC73931B62AE8A001D98FF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738E1B62AE8A001D98FF /* Fabric.framework */; };
 		48BC73941B62AE8A001D98FF /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738F1B62AE8A001D98FF /* TwitterKit.framework */; };
 		48BC73951B62AE8A001D98FF /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BC73901B62AE8A001D98FF /* TwitterKitResources.bundle */; };
 		48BC73961B62AE8A001D98FF /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC73911B62AE8A001D98FF /* TwitterCore.framework */; };
@@ -427,7 +426,6 @@
 		48A85E891BEBD4E5004CBA61 /* button_paypal_280x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_paypal_280x40.png; sourceTree = "<group>"; };
 		48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_paypal_openidconnect_280x65@2x.png"; sourceTree = "<group>"; };
 		48BC738D1B62AE8A001D98FF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		48BC738E1B62AE8A001D98FF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		48BC738F1B62AE8A001D98FF /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		48BC73901B62AE8A001D98FF /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		48BC73911B62AE8A001D98FF /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
@@ -802,7 +800,6 @@
 				484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */,
 				48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */,
 				C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */,
-				48BC73931B62AE8A001D98FF /* Fabric.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */,
 				484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */,
 				D894366318651F4D004BCF0A /* Accounts.framework in Frameworks */,
@@ -940,7 +937,6 @@
 				48F27AB11BDE97FE007D9BC3 /* libsqlite3.0.tbd */,
 				48F27AAF1BDE97E7007D9BC3 /* libz.tbd */,
 				48BC738D1B62AE8A001D98FF /* CoreData.framework */,
-				48BC738E1B62AE8A001D98FF /* Fabric.framework */,
 				48BC738F1B62AE8A001D98FF /* TwitterKit.framework */,
 				48BC73901B62AE8A001D98FF /* TwitterKitResources.bundle */,
 				48BC73911B62AE8A001D98FF /* TwitterCore.framework */,
@@ -1869,7 +1865,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run fbb7bb73de5c88fb8942e7590b7bf60735b59f3d 31568a496d012b3d843221e9bd736a7e7764e33aa56092fcda206774011523c9";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
