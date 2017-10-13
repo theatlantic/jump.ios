@@ -700,10 +700,10 @@ static JRSessionData *singleton = nil;
 {
     NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
     NSString     *name      = [[[infoPlist objectForKey:@"CFBundleDisplayName"]
-                                stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]
                                 stringByAddingUrlPercentEscapes];
     NSString     *bundle    = [[[infoPlist objectForKey:@"CFBundleIdentifier"]
-                                stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]
                                 stringByAddingUrlPercentEscapes];
 
     infoPlist = [NSDictionary dictionaryWithContentsOfFile:
@@ -711,7 +711,7 @@ static JRSessionData *singleton = nil;
                   stringByAppendingPathComponent:@"/JREngage-Info.plist"]];
 
     NSString *version       = [[[infoPlist objectForKey:@"CFBundleShortVersionString"]
-                                stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]
                                 stringByAddingUrlPercentEscapes];
 
     return [NSString stringWithFormat:@"appName=%@.%@3&version=%@_%@", name, bundle, self.device, version];
