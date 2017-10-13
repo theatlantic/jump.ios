@@ -4,17 +4,17 @@ This guide describes the process of integrating with native iOS authentication s
 
 ## Supported Providers
 - Facebook
-- Google+
+- Google Sign-In
 - Twitter
 
 ## Native Authentication for Janrain Mobile SDK version 4.0 or newer.
 
-There are potentially *breaking* changes to the Janrain Mobile SDK with version 4.0.  All dependencies on third-party SDK's and libraries around native Social Provider support (Google+, Facebook, and Twitter) have been removed.
+There are potentially *breaking* changes to the Janrain Mobile SDK with version 4.0.  All dependencies on third-party SDK's and libraries around native Social Provider support (Google Sign-In, Facebook, and Twitter) have been removed.
 
 The Mobile SDK no longer integrates third-party Social Provider SDK's or libraries.  The SimpleCaptureDemo app has been upgraded to demonstrate how to retrieve a native provider's oAuth access token using the current(at the time of the SDK release) native provider's tools in as close a format to the native provider's sample code on their website.  The developer will now retrieve the native provider's oAuth access token using their preferred method and initiate the Janrain authentication process using `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
 ### 10,000′ View
-1. Configure the native authentication framework for the providers you want to support (Google+, Facebook, or Twitter)
+1. Configure the native authentication framework for the providers you want to support (Google Sign-In, Facebook, or Twitter)
 2. Provide the user the option to sign in with a Native Provider or through a UIWebview Dialog for non-native Providers
 3. If the user selects to login with a Native Provider, initiate the Native Provider's SDK and retrieve a properly scoped oAuth Access Token (and Token Secret for Twitter).
 4. Pass the Native Provider's oAuth access token to the Janrain SDK where it will be posted to the Social Login server for verification and a Social Login access token will be returned.
@@ -30,16 +30,16 @@ As of SDK release 4.0 the following Facebook SDK implementation steps were imple
 5.  Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
 6.  Once you have retrieved the oAuth access token from the Facebook SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
-### Google+
+### Google Sign-In
 
-As of SDK release 4.0 the following Google SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Google+ oAuth access token from the iOS device:
+As of SDK release 4.0 the following Google Sign-In SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Google oAuth access token from the iOS device:
 
-1. Download the Google+ SDK from this link: https://developers.google.com/+/mobile/ios/getting-started
-2. Follow *ALL* of the steps on this page that involve the XCode project configuration and Google+ app configuration: https://developers.google.com/+/mobile/ios/getting-started  In order for the Janrain Social Login Server to validate the provided Google+ oAuth token, the token must be provisioned from the same Google+ application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Google+ App.  
+1. Download the Google Sign-In SDK from this link: https://developers.google.com/identity/sign-in/ios/sdk/
+2. Follow *ALL* of the steps on this page that involve the XCode project configuration: https://developers.google.com/identity/sign-in/ios/sign-in+/mobile/ios/getting-started  In order for the Janrain Social Login Server to validate the provided Google oAuth token, the token must be provisioned from the same Google application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Google App.  
 3. In the case of the SimpleCaptureDemo application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Google at this link: https://developers.google.com/identity/sign-in/ios/sign-in
-4. Make sure that the Scopes requested by the `GPPSignIn` singleton includes the required scopes.  In most cases these scopes need to mirror the Google+ app permissions configuration of the Engage Social Login application that is configured in the Janrain Social Login Dashboard.
+4. Make sure that the Scopes requested by the `GPPSignIn` singleton includes the required scopes.  In most cases these scopes need to mirror the Google app permissions configuration of the Engage Social Login application that is configured in the Janrain Social Login Dashboard.
 5. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
-6. Once you have retrieved the oAuth access token from the Google+ SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+6. Once you have retrieved the oAuth access token from the Google Sign-In SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
 ### Twitter
 
