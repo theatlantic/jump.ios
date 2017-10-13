@@ -62,7 +62,7 @@
    	{
    		[self.view.window addSubview:myPickerViewGroup];
 
-        CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
    		CGSize pickerSize = myPickerViewGroup.frame.size;
    		CGRect startRect = CGRectMake(0.0,
    									  screenRect.origin.y + screenRect.size.height,
@@ -90,7 +90,7 @@
 
 - (void)slidePickerDown
 {
-    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
    	CGRect endFrame = myPickerViewGroup.frame;
    	endFrame.origin.y = screenRect.origin.y + screenRect.size.height;
 
