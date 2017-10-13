@@ -42,7 +42,6 @@
 #import <GoogleSignIn/GoogleSignIn.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 
 
@@ -96,11 +95,8 @@ AppDelegate *appDelegate = nil;
 {
     appDelegate = self;
 
-    //Setup Twitter TwitterKit/Fabric
-    // http://docs.fabric.io/ios/twitter/twitterkit-setup.html
+    //Setup Twitter TwitterKit
     [[Twitter sharedInstance] startWithConsumerKey:@"UPDATE" consumerSecret:@"UPDATE"];
-
-    [Fabric with:@[[Twitter class]]];
 
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [FBSDKLoginManager renewSystemCredentials:^(ACAccountCredentialRenewResult result, NSError *error) {}];
@@ -164,6 +160,14 @@ AppDelegate *appDelegate = nil;
                          openURL:url
                          options:@{}];
     }
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    if(url.scheme != nil && [url.scheme hasPrefix:@"twitter"]) {
+        return [[Twitter sharedInstance] application:app openURL:url options:options];
+    }
+    return NO;
+    
 }
 
 
