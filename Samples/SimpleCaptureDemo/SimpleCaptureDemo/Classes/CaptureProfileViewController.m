@@ -40,7 +40,7 @@
 #import "Utils.h"
 #import "JRCaptureError.h"
 
-@interface CaptureProfileViewController () <UITextViewDelegate, UIAlertViewDelegate, JRCaptureUserDelegate,
+@interface CaptureProfileViewController () <UITextViewDelegate, JRCaptureUserDelegate,
         UITextFieldDelegate, JRCaptureDelegate>
 @property(nonatomic) id firstResponder;
 @property(nonatomic) NSDate *myBirthdate;
