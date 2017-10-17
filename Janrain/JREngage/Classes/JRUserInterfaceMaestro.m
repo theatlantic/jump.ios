@@ -456,7 +456,6 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 }
 @property  CustomAnimationController *animationController;
 @property  UINavigationController *myNavigationController;
-@property  UIPopoverController *myPopoverController;
 @property UIPopoverPresentationController *myPopoverPresentationController;
 @property  UIViewController *vcToPresent;
 @end
@@ -471,7 +470,6 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 @end
 
 @implementation JRModalViewController
-@synthesize myPopoverController;
 @synthesize myNavigationController;
 @synthesize animationController;
 @synthesize vcToPresent;
@@ -502,24 +500,6 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
     shouldUnloadSubviews = NO;
 
     [self setView:view];
-}
-
-- (void)presentPopoverNavigationControllerFromBarButton:(UIBarButtonItem*)barButtonItem
-                                            inDirection:(UIPopoverArrowDirection)direction
-{
-    DLog (@"");
-    [myPopoverController presentPopoverFromBarButtonItem:barButtonItem
-                                permittedArrowDirections:direction animated:YES];
-}
-
-- (void)presentPopoverNavigationControllerFromCGRect:(CGRect)rect inDirection:(UIPopoverArrowDirection)direction
-{
-    DLog (@"");
-    if (![self.view superview]) [getWindow() addSubview:self.view];
-    CGRect popoverPresentationFrame = [self.view convertRect:rect toView:getWindow()];
-
-    [myPopoverController presentPopoverFromRect:popoverPresentationFrame inView:self.view
-                       permittedArrowDirections:direction animated:YES];
 }
 
 - (void)presentModalNavigationController
@@ -893,22 +873,6 @@ static JRUserInterfaceMaestro *singleton = nil;
     return popoverPC;
 }
 
-- (UIPopoverController *)createPopoverControllerWithNavigationController:(UINavigationController *)navigationController
-{
-    // Allocating UIPopoverController with class string allocation so that it compiles for iPhone OS versions < v3.2
-    UIPopoverController *popoverController =
-        [[NSClassFromString(@"UIPopoverController") alloc]
-            initWithContentViewController:navigationController];
-
-    if (popoverController)
-    {
-        popoverController.popoverContentSize = MODAL_SIZE_FRAME.size;
-        popoverController.delegate = self;
-    }
-
-    return popoverController;
-}
-
 - (BOOL)shouldOpenToUserLandingPage
 {
    /* Test to see if we should open the authentication dialog to the returning user landing page.
@@ -969,8 +933,6 @@ static JRUserInterfaceMaestro *singleton = nil;
     }
 
     if (padPopoverMode) {
-//        jrModalViewController.myPopoverController =
-//            [self createPopoverControllerWithNavigationController:jrModalViewController.myNavigationController];
         self.jrModalViewController.myPopoverPresentationController = [self createPopoverPresentationControllerWithController:jrModalViewController.myNavigationController];
         
     }
@@ -999,15 +961,14 @@ static JRUserInterfaceMaestro *singleton = nil;
     {
         [[self.customInterface objectForKey:kJRApplicationNavigationController]
          presentViewController:self.jrModalViewController.myNavigationController animated:YES completion:nil];
-    
-    }
-    else if (padPopoverMode == PadPopoverFromFrame)
-    {
-        CGRect rect = [[customInterface objectForKey:kJRPopoverPresentationFrameValue] CGRectValue];
-        [jrModalViewController presentPopoverNavigationControllerFromCGRect:rect inDirection:arrowDirection];
     }
     else
+    {
         [jrModalViewController presentModalNavigationController];
+//        [self.jrModalViewController presentFormSheetWithinterfaceMaster:self];
+    }
+    
+    
 }
 
 - (void)loadApplicationNavigationControllerWithViewController:(UIViewController *)rootViewController
@@ -1131,17 +1092,6 @@ static JRUserInterfaceMaestro *singleton = nil;
             [self unloadUserInterfaceWithTransitionStyle:UIModalTransitionStyleCoverVertical];
     }
 }
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    DLog (@"");
-    if ([sessionData socialSharing])
-        [sessionData triggerPublishingDidCancel];
-    else
-        [sessionData triggerAuthenticationDidCancel];
-}
-
-
 
 - (void)authenticationRestarted
 {
