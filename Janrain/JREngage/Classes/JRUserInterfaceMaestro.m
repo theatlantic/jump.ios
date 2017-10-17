@@ -457,10 +457,11 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 @property  CustomAnimationController *animationController;
 @property  UINavigationController *myNavigationController;
 @property  UIPopoverController *myPopoverController;
+@property UIPopoverPresentationController *myPopoverPresentationController;
 @property  UIViewController *vcToPresent;
 @end
 
-@interface JRUserInterfaceMaestro ()
+@interface JRUserInterfaceMaestro () <UIPopoverPresentationControllerDelegate>
 @property JRModalViewController *jrModalViewController;
 @property UINavigationController *customModalNavigationController;
 @property UINavigationController *applicationNavigationController;
@@ -581,9 +582,9 @@ static CATransform3D normalizedCATransform3D(CATransform3D d)
 {
     DLog (@"");
 
-    if (myPopoverController)
+    if (self.myPopoverPresentationController)
     {
-        [myPopoverController dismissPopoverAnimated:YES];
+        [self.myNavigationController dismissViewControllerAnimated:YES completion:nil];
     }
     else
     {
@@ -883,6 +884,15 @@ static JRUserInterfaceMaestro *singleton = nil;
     return navigationController;
 }
 
+-(UIPopoverPresentationController *)createPopoverPresentationControllerWithController:(UINavigationController *) navigationController {
+    navigationController.modalPresentationStyle = UIModalPresentationPopover;
+    UIPopoverPresentationController *popoverPC = [navigationController popoverPresentationController];
+    popoverPC.delegate = self;
+    popoverPC.barButtonItem = [self.customInterface objectForKey:kJRPopoverPresentationBarButtonItem];
+    
+    return popoverPC;
+}
+
 - (UIPopoverController *)createPopoverControllerWithNavigationController:(UINavigationController *)navigationController
 {
     // Allocating UIPopoverController with class string allocation so that it compiles for iPhone OS versions < v3.2
@@ -958,15 +968,18 @@ static JRUserInterfaceMaestro *singleton = nil;
                 [self createDefaultNavigationControllerWithRootViewController:rootViewController];
     }
 
-    if (padPopoverMode)
-        jrModalViewController.myPopoverController =
-            [self createPopoverControllerWithNavigationController:jrModalViewController.myNavigationController];
+    if (padPopoverMode) {
+//        jrModalViewController.myPopoverController =
+//            [self createPopoverControllerWithNavigationController:jrModalViewController.myNavigationController];
+        self.jrModalViewController.myPopoverPresentationController = [self createPopoverPresentationControllerWithController:jrModalViewController.myNavigationController];
+        
+    }
 
     /* If the code is used by a universal application and is compiled for versions of iOS that don't
        support UIPopoverControllers (i.e., iOS < v3.2), this will return nil;  If it does, fall back
        to modal dialog presentation. This might never happen, because the above code wouldn't be called
        on the iPhone anyway... */
-    if (!jrModalViewController.myPopoverController)
+    if (!jrModalViewController.myPopoverPresentationController)
         padPopoverMode = PadPopoverModeNone;
 
     UIPopoverArrowDirection arrowDirection = UIPopoverArrowDirectionAny;
@@ -984,8 +997,9 @@ static JRUserInterfaceMaestro *singleton = nil;
 
     if (padPopoverMode == PadPopoverFromBar)
     {
-        UIBarButtonItem *item = [customInterface objectForKey:kJRPopoverPresentationBarButtonItem];
-        [jrModalViewController presentPopoverNavigationControllerFromBarButton:item inDirection:arrowDirection];
+        [[self.customInterface objectForKey:kJRApplicationNavigationController]
+         presentViewController:self.jrModalViewController.myNavigationController animated:YES completion:nil];
+    
     }
     else if (padPopoverMode == PadPopoverFromFrame)
     {
@@ -1127,6 +1141,8 @@ static JRUserInterfaceMaestro *singleton = nil;
         [sessionData triggerAuthenticationDidCancel];
 }
 
+
+
 - (void)authenticationRestarted
 {
     DLog(@"");
@@ -1185,5 +1201,15 @@ static JRUserInterfaceMaestro *singleton = nil;
         [sessionData.currentProvider forceReauth];
     [[viewController navigationController] pushViewController:[JRUserInterfaceMaestro sharedMaestro].myWebViewController
                                                      animated:YES];
+}
+
+#pragma mark - UIPopoverPresentationControllerDelegate
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+    DLog (@"");
+    
+    if ([sessionData socialSharing])
+        [sessionData triggerPublishingDidCancel];
+    else
+        [sessionData triggerAuthenticationDidCancel];
 }
 @end
