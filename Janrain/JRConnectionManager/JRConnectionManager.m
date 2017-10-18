@@ -257,35 +257,36 @@ static JRConnectionManager *singleton = nil;
     NSString *p = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
     NSString *url = [request.URL absoluteString];
     DLog(@"URL: \"%@\" params: \"%@\"", url, p);
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *r, NSData *d, NSError *e)
-                           {
-                               if (e)
-                               {
-                                   ALog(@"Error fetching JSON: %@", e);
-                                   handler(nil, e);
-                               }
-                               else
-                               {
-                                   NSString *bodyString =
-                                           [[NSString alloc] initWithData:d
-                                                                  encoding:NSUTF8StringEncoding];
-                                   NSError *err = nil;
-                                   id parsedJson = [NSJSONSerialization JSONObjectWithData:d
-                                                                                   options:(NSJSONReadingOptions) 0
-                                                                                     error:&err];
-                                   ALog(@"Fetched: \"%@\"", bodyString);
-                                   if (err)
-                                   {
-                                       ALog(@"Parse err: \"%@\"", err);
-                                       handler(nil, e);
-                                   }
-                                   else
-                                   {
-                                       handler(parsedJson, nil);
-                                   }
-                               }
-                           }];
+    
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable e) {
+        if (e)
+        {
+            ALog(@"Error fetching JSON: %@", e);
+            handler(nil, e);
+        }
+        else
+        {
+            NSString *bodyString =
+            [[NSString alloc] initWithData:data
+                                  encoding:NSUTF8StringEncoding];
+            NSError *err = nil;
+            id parsedJson = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:(NSJSONReadingOptions) 0
+                                                              error:&err];
+            ALog(@"Fetched: \"%@\"", bodyString);
+            if (err)
+            {
+                ALog(@"Parse err: \"%@\"", err);
+                handler(nil, e);
+            }
+            else
+            {
+                handler(parsedJson, nil);
+            }
+        }
+    }];
+    
+    [task resume];
 }
 
 
