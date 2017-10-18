@@ -333,6 +333,8 @@ static JRConnectionManager *singleton = nil;
     [self stopActivity];
 }
 
+#pragma mark - NSURLConnectionDataDelegate
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     DLog(@"data=%@", [data jrBase64Encode]);
@@ -400,23 +402,12 @@ static JRConnectionManager *singleton = nil;
     [self stopActivity];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
+ totalBytesWritten:(NSInteger)totalBytesWritten
+totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-    DLog(@"error message: %@", [error localizedDescription]);
-
-    ConnectionData* connectionData  = [JRConnectionManager getConnectionDataFromConnection:connection];
-    NSURLRequest*   request         = [connectionData request];
-    id              userData        = [connectionData tag];
-    
-    id <JRConnectionManagerDelegate> delegate = [connectionData delegate];
-
-    if ([delegate respondsToSelector:@selector(connectionDidFailWithError:request:andTag:)])
-        [delegate connectionDidFailWithError:error request:request andTag:userData];
-
-    JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
-    [[connectionManager connectionBuffers] removeObject:connectionData];
-
-    [self stopActivity];
+    //DLog(@"bytesWritten: %d, totalBytesWritten: %d, totalBytesExpected: %d", bytesWritten, totalBytesWritten,
+    //    totalBytesExpectedToWrite);
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request
@@ -432,6 +423,15 @@ static JRConnectionManager *singleton = nil;
     return request;
 }
 
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
+{
+    /*DLog(@"");*/
+    return cachedResponse;
+}
+
+#pragma mark - NSURLConnectionDelegate
+
 - (void)              connection:(NSURLConnection *)connection
 didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
@@ -444,19 +444,23 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     DLog(@"");
 }
 
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
-                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    /*DLog(@"");*/
-    return cachedResponse;
-}
-
-- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
-        totalBytesWritten:(NSInteger)totalBytesWritten
-totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
-{
-    //DLog(@"bytesWritten: %d, totalBytesWritten: %d, totalBytesExpected: %d", bytesWritten, totalBytesWritten,
-    //    totalBytesExpectedToWrite);
+    DLog(@"error message: %@", [error localizedDescription]);
+    
+    ConnectionData* connectionData  = [JRConnectionManager getConnectionDataFromConnection:connection];
+    NSURLRequest*   request         = [connectionData request];
+    id              userData        = [connectionData tag];
+    
+    id <JRConnectionManagerDelegate> delegate = [connectionData delegate];
+    
+    if ([delegate respondsToSelector:@selector(connectionDidFailWithError:request:andTag:)])
+        [delegate connectionDidFailWithError:error request:request andTag:userData];
+    
+    JRConnectionManager *connectionManager = [JRConnectionManager getJRConnectionManager];
+    [[connectionManager connectionBuffers] removeObject:connectionData];
+    
+    [self stopActivity];
 }
 
 @end
