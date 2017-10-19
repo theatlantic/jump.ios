@@ -259,31 +259,29 @@ static JRConnectionManager *singleton = nil;
     DLog(@"URL: \"%@\" params: \"%@\"", url, p);
     
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable e) {
-        if (e)
-        {
-            ALog(@"Error fetching JSON: %@", e);
-            handler(nil, e);
-        }
-        else
-        {
-            NSString *bodyString =
-            [[NSString alloc] initWithData:data
-                                  encoding:NSUTF8StringEncoding];
-            NSError *err = nil;
-            id parsedJson = [NSJSONSerialization JSONObjectWithData:data
-                                                            options:(NSJSONReadingOptions) 0
-                                                              error:&err];
-            ALog(@"Fetched: \"%@\"", bodyString);
-            if (err)
-            {
-                ALog(@"Parse err: \"%@\"", err);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // do work here
+            if (e) {
+                ALog(@"Error fetching JSON: %@", e);
                 handler(nil, e);
+            }else {
+                NSString *bodyString =
+                [[NSString alloc] initWithData:data
+                                      encoding:NSUTF8StringEncoding];
+                NSError *err = nil;
+                id parsedJson = [NSJSONSerialization JSONObjectWithData:data
+                                                                options:(NSJSONReadingOptions) 0
+                                                                  error:&err];
+                ALog(@"Fetched: \"%@\"", bodyString);
+                if (err) {
+                    ALog(@"Parse err: \"%@\"", err);
+                    handler(nil, e);
+                }
+                else{
+                    handler(parsedJson, nil);
+                }
             }
-            else
-            {
-                handler(parsedJson, nil);
-            }
-        }
+        });
     }];
     
     [task resume];
