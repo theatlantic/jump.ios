@@ -41,13 +41,7 @@
 @implementation NSString (JRString_UrlEscaping)
 - (NSString *)stringByAddingUrlPercentEscapes
 {
-
-    NSString *encodedString = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-            NULL,
-            (CFStringRef) self,
-            NULL,
-            (CFStringRef) @"!*'();:@&=+$,/?%#[]",
-            kCFStringEncodingUTF8));
+    NSString *encodedString = [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     return encodedString;
 }
