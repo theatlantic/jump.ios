@@ -352,6 +352,7 @@
 		DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49E17A9915200760FEE /* JRProvidersController.xib */; };
 		DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */; };
 		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
+		DFFBCBF71F9AB879005B70E5 /* UIAlertController+JRAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFBCBF61F9AB879005B70E5 /* UIAlertController+JRAlertController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -774,6 +775,8 @@
 		DFEFE49E17A9915200760FEE /* JRProvidersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRProvidersController.xib; sourceTree = "<group>"; };
 		DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRUserLandingController.xib; sourceTree = "<group>"; };
 		DFEFE4A117A9915200760FEE /* JRWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRWebViewController.xib; sourceTree = "<group>"; };
+		DFFBCBF51F9AB879005B70E5 /* UIAlertController+JRAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+JRAlertController.h"; path = "Classes/UIAlertController+JRAlertController.h"; sourceTree = "<group>"; };
+		DFFBCBF61F9AB879005B70E5 /* UIAlertController+JRAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+JRAlertController.m"; path = "Classes/UIAlertController+JRAlertController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1005,6 +1008,8 @@
 				4861C9D31EAFFA8800E0BFA2 /* CaptureProfileViewController.m */,
 				4ED8382B17EC307900CA9645 /* LinkedProfilesViewController.h */,
 				4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */,
+				DFFBCBF51F9AB879005B70E5 /* UIAlertController+JRAlertController.h */,
+				DFFBCBF61F9AB879005B70E5 /* UIAlertController+JRAlertController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1891,6 +1896,7 @@
 				6706F51EE167DE5FFF64E224 /* CaptureDynamicForm.m in Sources */,
 				4DFC8F1C187E1DD100CE8A83 /* JRCurrentLocation.m in Sources */,
 				4DFC8F2A187E1DD100CE8A83 /* JRPhotosElement.m in Sources */,
+				DFFBCBF71F9AB879005B70E5 /* UIAlertController+JRAlertController.m in Sources */,
 				DFB6898C175E8E6C006DFC92 /* JRBase64.m in Sources */,
 				48117D391E0DDD02000E3F19 /* JROpenIDAppAuthProvider.m in Sources */,
 				DFB68A6B175E8E6C006DFC92 /* SFHFKeychainUtils.m in Sources */,
