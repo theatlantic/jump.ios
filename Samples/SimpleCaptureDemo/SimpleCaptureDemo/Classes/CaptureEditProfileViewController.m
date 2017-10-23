@@ -45,6 +45,7 @@
     __weak IBOutlet UITextField *lastNameField;
     __weak IBOutlet UITextField *displayNameField;
     __weak IBOutlet UITextField *emailField;
+    __weak IBOutlet UITextField *birthdayField;
     __weak IBOutlet UITextField *genderField;
     __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UIButton *updateButton;
@@ -68,6 +69,8 @@
     displayNameField.delegate = self;
     emailField.delegate = self;
     blurbText.delegate = self;
+    
+    [self setupBirthdayFieldInputAccesoryView];
     
     genders = @[@"Female", @"Male", @"Other"];
     UIPickerView *genderPickerView = [[UIPickerView alloc] init];
@@ -193,6 +196,32 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     scrollView.contentInset = contentInsets;
     scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+#pragma mark Utils
+
+-(void)setupBirthdayFieldInputAccesoryView
+{
+    UIToolbar *birthdayPickerToolbar = [[UIToolbar alloc] init];
+    [birthdayPickerToolbar sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBirthdayPicker)];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    birthdayPickerToolbar.items = @[flexibleSpace, doneButton];
+    birthdayField.inputAccessoryView = birthdayPickerToolbar;
+    
+    UIDatePicker *birthdayPicker = [[UIDatePicker alloc] init];
+    birthdayPicker.datePickerMode = UIDatePickerModeDate;
+    [birthdayPicker addTarget:self action:@selector(birthdayPickerChanged:) forControlEvents:UIControlEventValueChanged];
+    birthdayField.inputView = birthdayPicker;
+}
+
+-(void)birthdayPickerChanged:(UIDatePicker *)sender
+{
+    birthdayField.text = [NSDateFormatter localizedStringFromDate:sender.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+}
+-(void)dismissBirthdayPicker
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - UIPickerViewDataSource
