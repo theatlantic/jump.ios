@@ -51,7 +51,6 @@
 		48994B8F1F3B9B0800F7826F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B881F3B9B0800F7826F /* Default.png */; };
 		48994B901F3B9B0800F7826F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B891F3B9B0800F7826F /* Default@2x.png */; };
 		48994B911F3B9B0800F7826F /* Default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B8A1F3B9B0800F7826F /* Default@3x.png */; };
-		48994B931F3B9B3D00F7826F /* RELEASE_NOTES.md in Sources */ = {isa = PBXBuildFile; fileRef = 48994B921F3B9B3D00F7826F /* RELEASE_NOTES.md */; };
 		48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E741BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png */; };
 		48A85E771BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E751BEBD42F004CBA61 /* button_paypal_openidconnect_280x40.png */; };
 		48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E781BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png */; };
@@ -1920,7 +1919,6 @@
 				DFEFE4A617A9915200760FEE /* JREngage.m in Sources */,
 				4DFC8F1D187E1DD100CE8A83 /* JREmailsElement.m in Sources */,
 				DFEFE4A717A9915200760FEE /* JREngageError.m in Sources */,
-				48994B931F3B9B3D00F7826F /* RELEASE_NOTES.md in Sources */,
 				4DFC8F32187E1DD100CE8A83 /* JRProfile.m in Sources */,
 				48117D381E0DDD02000E3F19 /* JROpenIDAppAuthGoogle.m in Sources */,
 				DFEFE4A817A9915200760FEE /* JREngagePhonegapPlugin.m in Sources */,
