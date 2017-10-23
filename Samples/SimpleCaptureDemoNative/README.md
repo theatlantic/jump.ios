@@ -85,14 +85,14 @@ There is now an optional janrain-config.plist setting that allows you to define 
     5.  Make sure that the Permissions requested in the `logInWithReadPermissions` method include the required permissions.  In most cases these permissions need to mirror the Facebook app permissions configuration of the Engage Social Login application that is configured in the Janrain Social Login Dashboard.
     6.  Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemoNative application.
 
-  * ###Google+
-    1. Download the Google+ 2.3.2 SDK from this link: https://developers.google.com/identity/sign-in/ios/sdk/google_signin_sdk_2_3_2.zip.  Refer to this link for additional information: https://developers.google.com/+/mobile/ios/getting-started
-    2. Follow *ALL* of the steps on this page that involve the XCode project configuration and Google+ app configuration: https://developers.google.com/+/mobile/ios/getting-started  In order for the Janrain Social Login Server to validate the provided Google+ oAuth token, the token must be provisioned from the same Google+ application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Google+ App.
-    3. Update the "SimpleCaptureDemoNative-Info.plist" file to use your Google+ App ID in the recommended places.  This should match the Google+ App ID that was used for configuring the Google+ provider in the Social Login Dashboard.
-    4. Update the Google+ "GoogleService-Info.plist" file with your Google+ App Client ID and reversed Client ID.
+  * ###Google Sign-in
+    1. Download the Google Sign-In SDK 4.1.0 SDK from this link: https://developers.google.com/identity/sign-in/ios/sdk/google_signin_sdk_4_1_0.zip.  Refer to this link for additional information: https://developers.google.com/identity/sign-in/ios/sdk/
+    2. Follow *ALL* of the steps on this page that involve the XCode project configuration and Google app configuration: https://developers.google.com/identity/sign-in/ios/sdk/  In order for the Janrain Social Login Server to validate the provided Google Sign-In oAuth token, the token must be provisioned from the same Google application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Google App.
+    3. Update the "SimpleCaptureDemoNative-Info.plist" file to use your Google App ID in the recommended places.  This should match the Google App ID that was used for configuring the Google provider in the Social Login Dashboard.
+    4. Update the Google "GoogleService-Info.plist" file with your Google App Client ID and reversed Client ID.
     5. Update the "Classes/RootViewController.m" file to use your Google Client ID (Line 56).
     6. In the case of the SimpleCaptureDemoNative application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Google at this link: https://developers.google.com/identity/sign-in/ios/sign-in
-    7. Make sure that the Scopes requested by the `GPPSignIn` singleton includes the required scopes.  In most cases these scopes need to mirror the Google+ app permissions configuration of the Engage Social Login application that is configured in the Janrain Social Login Dashboard.
+    7. Make sure that the Scopes requested by the `GPPSignIn` singleton includes the required scopes.  In most cases these scopes need to mirror the Google app permissions configuration of the Engage Social Login application that is configured in the Janrain Social Login Dashboard.
     8. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemoNative application.
 
   * ###Twitter
