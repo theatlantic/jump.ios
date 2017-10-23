@@ -331,7 +331,7 @@ NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
     }
 }
 
-- (IBAction)googleplusAuthButtonPressed:(id)sender
+- (IBAction)googleSignInAuthButtonPressed:(id)sender
 {
     //[self startSignInForProvider:@"googleplus"];
     //[JRCapture startEngageSignInDialogOnProvider:@"facebook" forDelegate:self.captureDelegate];
