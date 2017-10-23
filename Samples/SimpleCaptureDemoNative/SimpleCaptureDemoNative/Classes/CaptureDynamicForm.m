@@ -35,7 +35,7 @@ static NSMutableDictionary *identifierMap = nil;
 {
     [self buildFormView];
 
-    CGRect scrollFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect scrollFrame = [[UIScreen mainScreen] bounds];
     CGSize formSize = [self.formView sizeThatFits:scrollFrame.size];
     
     self.title = @"DEMO";
@@ -51,7 +51,7 @@ static NSMutableDictionary *identifierMap = nil;
 
 - (void)buildFormView
 {
-    CGRect scrollFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect scrollFrame = [[UIScreen mainScreen] bounds];
     self.formView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, scrollFrame.size.width, scrollFrame.size.height)];
     self.formView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
 
