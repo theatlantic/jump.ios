@@ -35,7 +35,7 @@
 #import "JRCaptureUser+Extras.h"
 #import "Utils.h"
 
-@interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate>
+@interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @end
 
 @implementation CaptureEditProfileViewController {
@@ -45,8 +45,11 @@
     __weak IBOutlet UITextField *lastNameField;
     __weak IBOutlet UITextField *displayNameField;
     __weak IBOutlet UITextField *emailField;
+    __weak IBOutlet UITextField *genderField;
     __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UIButton *updateButton;
+    
+    NSArray *genders;
 
     UIView * activeField;
 }
@@ -65,6 +68,13 @@
     displayNameField.delegate = self;
     emailField.delegate = self;
     blurbText.delegate = self;
+    
+    genders = @[@"Female", @"Male", @"Other"];
+    UIPickerView *genderPickerView = [[UIPickerView alloc] init];
+    genderPickerView.dataSource = self;
+    genderPickerView.delegate = self;
+    
+    genderField.inputView = genderPickerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -185,4 +195,26 @@
     scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+#pragma mark - UIPickerViewDataSource
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return genders.count;
+}
+
+#pragma mark - UIPickerViewDelegate
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return genders[row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    genderField.text = genders[row];
+    [genderField endEditing:NO];
+}
 @end
