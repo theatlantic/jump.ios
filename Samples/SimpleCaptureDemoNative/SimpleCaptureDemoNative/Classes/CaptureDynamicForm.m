@@ -128,11 +128,11 @@ static NSMutableDictionary *identifierMap = nil;
     {
         NSDictionary *invalidFieldLocalizedFailureMessages = [error JRValidationFailureMessages];
         [Utils handleFailureWithTitle:@"Invalid Form Submission"
-                              message: [invalidFieldLocalizedFailureMessages description]];
+                              message: [invalidFieldLocalizedFailureMessages description] foVC:self];
     }
     else
     {
-        [Utils handleFailureWithTitle:@"Registration Failed" message:[error localizedDescription]];
+        [Utils handleFailureWithTitle:@"Registration Failed" message:[error localizedDescription] foVC:self];
     }
 }
 

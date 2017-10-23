@@ -61,7 +61,7 @@ NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
 
 @end
 
-@interface RootViewController () <UIAlertViewDelegate, LinkedProfilesDelegate>
+@interface RootViewController () <LinkedProfilesDelegate>
 @property(nonatomic, copy) void (^viewDidAppearContinuation)();
 @property(nonatomic) BOOL viewIsApparent;
 
