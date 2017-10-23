@@ -47,6 +47,7 @@
     __weak IBOutlet UITextField *emailField;
     __weak IBOutlet UITextField *birthdayField;
     __weak IBOutlet UITextField *genderField;
+    __weak IBOutlet UITextField *phoneField;
     __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UIButton *updateButton;
     
@@ -68,6 +69,7 @@
     lastNameField.delegate = self;
     displayNameField.delegate = self;
     emailField.delegate = self;
+    phoneField.delegate = self;
     blurbText.delegate = self;
     
     [self setupBirthdayFieldInputAccesoryView];
@@ -78,6 +80,7 @@
     genderPickerView.delegate = self;
     
     genderField.inputView = genderPickerView;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
