@@ -1570,7 +1570,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				TargetAttributes = {
 					90C36B6B7717AA0C893E08E1 = {
 						DevelopmentTeam = 3GSSC5Q8U3;
@@ -2093,7 +2093,6 @@
 		90C36B6B7717AA0C893E08E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleCaptureDemoNative/SimpleCaptureDemoNative.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2121,7 +2120,7 @@
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"~/Documents/FacebookSDK/**",
@@ -2145,7 +2144,6 @@
 		90C36B6B7717AA0C893E08E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2173,7 +2171,7 @@
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"~/Documents/FacebookSDK/**",
@@ -2232,7 +2230,6 @@
 		9F95070114FEA81900335A12 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SimpleCaptureDemoNative/SimpleCaptureDemoNative.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2260,7 +2257,7 @@
 					"~/Documents/Google\\ SDK\\'s/google_signin_sdk_4_0_1/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"~/Documents/FacebookSDK/**",
