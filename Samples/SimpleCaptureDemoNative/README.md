@@ -9,10 +9,10 @@ SimpleCaptureDemoNative demos:
 - Social sign-in (via Engage) to Capture
 - Sign-in session management
 - Registration (traditional and social)
-- Native Authentication using Facebook, Google Sign-In, and Twitter
-- REQUIRED: Facebook SDK version 4.20.2
-- REQUIRED: Google Sign-in SDK 4.0.1
-- REQUIRED: Fabric.io with TwitterKit 2.8.0
+- Native Authentication using Facebook, Google+, and Twitter
+- REQUIRED: Facebook SDK version 4.27.0
+- REQUIRED: Google Signin SDK 2.3.2
+- REQUIRED: TwitterKit 3.1.x
 
 To run this demo with your own configuration:
 
@@ -96,36 +96,22 @@ There is now an optional janrain-config.plist setting that allows you to define 
     8. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemoNative application.
 
   * ###Twitter
-    1. Download the Fabric SDK from this link: https://get.fabric.io/ and include TwitterKit
-    2. Configure your Twitter App: http://docs.fabric.io/ios/twitter/configure-twitter-app.html  In order for the Janrain Social Login Server to validate the provided Twitter oAuth token, the token must be provisioned from the same Twitter application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Twitter App.
-    3. Update the "SimpleCaptureDemoNative-Info.plist" file to use your Fabric API Key and Twitter OAuth Client ID and Client Secret in the recommended places.  This should match the Twitter App ID that was used for configuring the Twitter provider in the Social Login Dashboard.
+    1. Download the Twitterkit SDK from this link: https://dev.twitter.com/twitterkit/ios/installation
+    2. Configure your Twitter App: https://apps.twitter.com/ In order for the Janrain Social Login Server to validate the provided Twitter oAuth token, the token must be provisioned from the same Twitter application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Twitter App.
+    3. Update the "SimpleCaptureDemoNative-Info.plist" file to use your Twitter API Key (or consumer key) in the recommended place.  This should match the Twitter App ID that was used for configuring the Twitter provider in the Social Login Dashboard.
     4. Edit the "Classes/AppDelegate.m" file to update the application with your Twitter Consumer Key and Consumer Secret. (Line 99)
-    5. In the case of the SimpleCaptureDemoNative application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Twitter at this link: http://docs.fabric.io/ios/twitter/authentication.html
+    5. In the case of the SimpleCaptureDemoNative application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Twitter at this link: https://dev.twitter.com/twitterkit/ios/log-in-with-twitter
     6. NOTE: In most default cases Twitter will not return an email address for an end user. This may cause account merging or linking issues if your Registration user experience relies heavily on merged social profiles.  This use-case is typically addressed by forcing Twitter account holders to use the "Account Linking" functionality of the SDK.  Customer's may choose to work with Twitter to get their application white-listed so it will attempt to return an email address from a user profile.  However, email addresses are not "required" for Twitter accounts, subsequently there is still no guarantee that an email address will be returned.
 
 7. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemoNative application.
 
-8. Make sure to add/update the following method in your AppDelegate.m file accordingly (You may not need to handle all the url scheme variations):
+8. Make sure to add/update the following method in your AppDelegate.m file accordingly (You may not need to handle the url scheme variations):
 
-    - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-             annotation:(id)annotation
-    {
-        NSLog(@"openURL %@", url);
-        if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
-            self.openIDAppAuthAuthorizationFlow = nil;
-            return YES;
-        }else if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
-            return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                                  openURL:url
-                                                        sourceApplication:sourceApplication
-                                                               annotation:annotation];
-        }else if(url.scheme != nil && [url.scheme hasPrefix:@"com.googleusercontent.apps"]){
-            return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
-        }else{
-            return [self application:application
-                             openURL:url
-                             options:@{}];
+    -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+        if(url.scheme != nil && [url.scheme hasPrefix:@"twitter"]) {
+            return [[Twitter sharedInstance] application:app openURL:url options:options];
         }
+        return NO;
     }
 
 ###Typical Misconfiguration Errors###
@@ -211,13 +197,6 @@ Make sure you are reading the data from your app's info.plist in your AppDelegat
         self.googlePlusClientId = [cfg objectForKey:@"googlePlusClientId"];
 if ([cfg objectForKey:@"googlePlusRedirectUri"])
     self.googlePlusRedirectUri = [cfg objectForKey:@"googlePlusRedirectUri"];`
-
-*Error*:
-
-`SimpleCaptureDemoNative[32777:6293011] [Fabric] failed to download settings Error Domain=FABNetworkError Code=-5 "(null)" UserInfo={status_code=403, type=2, request_id=059be0e232c69cc584b006052cfdc9bb, content_type=application/json; charset=utf-8}
-2016-12-28 10:47:10.994`
-
-*Resolution*:  Follow the steps above on how to configure the Fabric TwitterKit SDK.
 
 *Error*:
 
