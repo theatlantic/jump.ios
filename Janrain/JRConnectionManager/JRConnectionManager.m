@@ -276,7 +276,6 @@ static JRConnectionManager *singleton = nil;
     
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable e) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            // do work here
             if (e) {
                 ALog(@"Error fetching JSON: %@", e);
                 handler(nil, e);

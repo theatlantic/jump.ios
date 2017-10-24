@@ -14,9 +14,9 @@
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
-    va_list alertActionsArgumetns;
-    va_start(alertActionsArgumetns, alertActions);
-    for (UIAlertAction *action = alertActions; action != nil; action = va_arg(alertActionsArgumetns, UIAlertAction*))
+    va_list alertActionsArguments;
+    va_start(alertActionsArguments, alertActions);
+    for (UIAlertAction *action = alertActions; action != nil; action = va_arg(alertActionsArguments, UIAlertAction*))
     {
         [alertController addAction:action];
     }
