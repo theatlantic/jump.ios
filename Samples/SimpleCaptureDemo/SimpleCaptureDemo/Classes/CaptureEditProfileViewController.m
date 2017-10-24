@@ -48,6 +48,12 @@
     __weak IBOutlet UITextField *birthdayField;
     __weak IBOutlet UITextField *genderField;
     __weak IBOutlet UITextField *phoneField;
+    __weak IBOutlet UITextField *addressStreetLine1Field;
+    __weak IBOutlet UITextField *addressStreetLine2Field;
+    __weak IBOutlet UITextField *addresssCiyField;
+    __weak IBOutlet UITextField *addresssStateField;
+    __weak IBOutlet UITextField *addresssCountryField;
+    __weak IBOutlet UITextField *addresssPostalCodeField;
     __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UIButton *updateButton;
     
@@ -70,6 +76,12 @@
     displayNameField.delegate = self;
     emailField.delegate = self;
     phoneField.delegate = self;
+    addressStreetLine1Field.delegate = self;
+    addressStreetLine2Field.delegate = self;
+    addresssCiyField.delegate = self;
+    addresssStateField.delegate = self;
+    addresssCountryField.delegate = self;
+    addresssPostalCodeField.delegate = self;
     blurbText.delegate = self;
     
     [self setupBirthdayFieldInputAccesoryView];
