@@ -85,7 +85,7 @@ typedef enum
 - (void)hideLoading;
 @end
 
-@interface JRUserInterfaceMaestro : NSObject <UIPopoverControllerDelegate>
+@interface JRUserInterfaceMaestro : NSObject
 
 + (JRUserInterfaceMaestro *)jrUserInterfaceMaestroWithSessionData:(JRSessionData *)newSessionData;
 + (JRUserInterfaceMaestro *)sharedMaestro;
