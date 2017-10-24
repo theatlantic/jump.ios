@@ -62,6 +62,8 @@
     UIView * activeField;
 }
 
+#pragma mark - LifeCycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -121,6 +123,25 @@
     [[NSNotificationCenter defaultCenter] removeObserver:UIKeyboardWillHideNotification];
 }
 
+#pragma mark - Helper methods
+
+-(void)setupBirthdayFieldInputAccesoryView
+{
+    UIToolbar *birthdayPickerToolbar = [[UIToolbar alloc] init];
+    [birthdayPickerToolbar sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBirthdayPicker)];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    birthdayPickerToolbar.items = @[flexibleSpace, doneButton];
+    birthdayField.inputAccessoryView = birthdayPickerToolbar;
+    
+    UIDatePicker *birthdayPicker = [[UIDatePicker alloc] init];
+    birthdayPicker.datePickerMode = UIDatePickerModeDate;
+    [birthdayPicker addTarget:self action:@selector(birthdayPickerChanged:) forControlEvents:UIControlEventValueChanged];
+    birthdayField.inputView = birthdayPicker;
+}
+
+#pragma mark - Actions
+
 - (IBAction)updateProfileButtonPressed:(id)sender
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -137,56 +158,16 @@
     [JRCapture updateProfileForUser:user delegate:self];
 }
 
-- (void)updateUserProfileDidFailWithError:(NSError *)error
+-(void)birthdayPickerChanged:(UIDatePicker *)sender
 {
-    [Utils handleFailureWithTitle:@"Profile not updated" message:nil forVC:self];
-    updateButton.enabled = YES;
+    birthdayField.text = [NSDateFormatter localizedStringFromDate:sender.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+}
+-(void)dismissBirthdayPicker
+{
+    [self.view endEditing:YES];
 }
 
-- (void)updateUserProfileDidSucceed
-{
-    [Utils handleSuccessWithTitle:@"Profile Updated" message:nil forVc:self];
-    updateButton.enabled = YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    activeField = textField;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (textField == activeField) activeField = nil;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (textField == activeField) {
-        activeField = nil;
-        [textField resignFirstResponder];
-    }
-    return YES;
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    activeField = textView;
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if (textView == activeField) activeField = nil;
-}
-
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if([text isEqualToString:@"\n"] && textView == activeField) {
-        activeField = nil;
-        [textView resignFirstResponder];
-    }
-
-    return YES;
-}
+#pragma mark - Notifications
 
 - (void)keyboardDidShow:(NSNotification*)aNotification
 {
@@ -213,33 +194,65 @@
     scrollView.scrollIndicatorInsets = contentInsets;
 }
 
-#pragma mark Utils
+#pragma mark - JRCaptureDelegate
 
--(void)setupBirthdayFieldInputAccesoryView
+- (void)updateUserProfileDidFailWithError:(NSError *)error
 {
-    UIToolbar *birthdayPickerToolbar = [[UIToolbar alloc] init];
-    [birthdayPickerToolbar sizeToFit];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBirthdayPicker)];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    birthdayPickerToolbar.items = @[flexibleSpace, doneButton];
-    birthdayField.inputAccessoryView = birthdayPickerToolbar;
+    [Utils handleFailureWithTitle:@"Profile not updated" message:nil forVC:self];
+    updateButton.enabled = YES;
+}
+
+- (void)updateUserProfileDidSucceed
+{
+    [Utils handleSuccessWithTitle:@"Profile Updated" message:nil forVc:self];
+    updateButton.enabled = YES;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activeField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == activeField) activeField = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == activeField) {
+        activeField = nil;
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    activeField = textView;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if (textView == activeField) activeField = nil;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text isEqualToString:@"\n"] && textView == activeField) {
+        activeField = nil;
+        [textView resignFirstResponder];
+    }
     
-    UIDatePicker *birthdayPicker = [[UIDatePicker alloc] init];
-    birthdayPicker.datePickerMode = UIDatePickerModeDate;
-    [birthdayPicker addTarget:self action:@selector(birthdayPickerChanged:) forControlEvents:UIControlEventValueChanged];
-    birthdayField.inputView = birthdayPicker;
-}
-
--(void)birthdayPickerChanged:(UIDatePicker *)sender
-{
-    birthdayField.text = [NSDateFormatter localizedStringFromDate:sender.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
-}
--(void)dismissBirthdayPicker
-{
-    [self.view endEditing:YES];
+    return YES;
 }
 
 #pragma mark - UIPickerViewDataSource
+
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -251,6 +264,7 @@
 }
 
 #pragma mark - UIPickerViewDelegate
+
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return genders[row];
