@@ -965,7 +965,6 @@ static JRUserInterfaceMaestro *singleton = nil;
     else
     {
         [jrModalViewController presentModalNavigationController];
-//        [self.jrModalViewController presentFormSheetWithinterfaceMaster:self];
     }
     
     
