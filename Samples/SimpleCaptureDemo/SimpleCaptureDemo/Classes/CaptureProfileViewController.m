@@ -40,7 +40,7 @@
 #import "Utils.h"
 #import "JRCaptureError.h"
 
-@interface CaptureProfileViewController () <UITextViewDelegate, UIAlertViewDelegate, JRCaptureUserDelegate,
+@interface CaptureProfileViewController () <UITextViewDelegate, JRCaptureUserDelegate,
         UITextFieldDelegate, JRCaptureDelegate>
 @property(nonatomic) id firstResponder;
 @property(nonatomic) NSDate *myBirthdate;
@@ -266,7 +266,7 @@
 
 - (void)updateDidFailForObject:(JRCaptureObject *)object withError:(NSError *)error context:(NSObject *)context
 {
-    [Utils handleFailureWithTitle:@"Profile not updated" message:nil];
+    [Utils handleFailureWithTitle:@"Profile not updated" message:nil forVC:self];
     self.myDoneButton.enabled = YES;
 }
 
@@ -290,12 +290,12 @@
     {
         NSDictionary *invalidFieldLocalizedFailureMessages = [error JRValidationFailureMessages];
         [Utils handleFailureWithTitle:@"Invalid Form Submission"
-                              message:[invalidFieldLocalizedFailureMessages description]];
+                              message:[invalidFieldLocalizedFailureMessages description] forVC:self];
 
     }
     else
     {
-        [Utils handleFailureWithTitle:@"Registration Failed" message:[error localizedDescription]];
+        [Utils handleFailureWithTitle:@"Registration Failed" message:[error localizedDescription] forVC:self];
     }
 
     self.myDoneButton.enabled = YES;
