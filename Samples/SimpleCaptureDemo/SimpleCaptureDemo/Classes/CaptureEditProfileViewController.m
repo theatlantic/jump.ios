@@ -34,6 +34,7 @@
 #import "AppDelegate.h"
 #import "JRCaptureUser+Extras.h"
 #import "Utils.h"
+#import "JRGender.h"
 
 @interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @end
@@ -57,8 +58,7 @@
     __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UIButton *updateButton;
     
-    NSDictionary *genderFlow;
-    NSMutableArray *genderOptions;
+    JRGender *gender;
 
     UIView * activeField;
 }
@@ -89,7 +89,7 @@
     
     [self setupBirthdayFieldInputAccesoryView];
     
-    [self setupGenderFlow];
+    gender = [[JRGender alloc] init];
     
     UIPickerView *genderPickerView = [[UIPickerView alloc] init];
     genderPickerView.dataSource = self;
@@ -115,7 +115,7 @@
     lastNameField.text = user.familyName;
     displayNameField.text = user.displayName;
     emailField.text = user.email;
-    genderField.text = [self genderText:user.gender];
+    genderField.text = [gender textForValue:user.gender];
     blurbText.text = user.aboutMe;
 }
 
@@ -143,50 +143,6 @@
     birthdayField.inputView = birthdayPicker;
 }
 
--(void)setupGenderFlow {
-     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSData *archivedCaptureUser = [delegate.prefs objectForKey:@"JR_capture_flow"];
-    if (archivedCaptureUser) {
-        NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
-        NSDictionary *fields = [captureFlow objectForKey:@"fields"];
-        genderFlow = [fields objectForKey:@"gender"];
-        
-        [self setupGenderOptionsFromFLow:genderFlow];
-    }
-}
-
--(void)setupGenderOptionsFromFLow:(NSDictionary *)flow {
-    genderOptions = [NSMutableArray array];
-    for (NSDictionary *option in [flow objectForKey:@"options"]) {
-        if ([option objectForKey:@"disabled"]) {
-            continue;
-        }
-        [genderOptions addObject:[option objectForKey:@"text"]];
-        
-    }
-}
-
--(NSString *)genderValue {
-    
-    NSArray *options = [genderFlow objectForKey:@"options"];
-    for (NSDictionary *option in options) {
-        if ([genderField.text isEqualToString:[option objectForKey:@"text"]]) {
-            return [option objectForKey:@"value"];
-        }
-    }
-    return @"";
-}
-
--(NSString *)genderText:(NSString *)text {
-    NSArray *options = [genderFlow objectForKey:@"options"];
-    for (NSDictionary *option in options) {
-        if ([text isEqualToString:[option objectForKey:@"value"]]) {
-            return [option objectForKey:@"text"];
-        }
-    }
-    return @"";
-}
-
 #pragma mark - Actions
 
 - (IBAction)updateProfileButtonPressed:(id)sender
@@ -199,7 +155,7 @@
     user.displayName = displayNameField.text;
     user.email = emailField.text;
     user.aboutMe = blurbText.text;
-    user.gender = [self genderValue];
+    user.gender = [gender valueForText:genderField.text];
 
     updateButton.enabled = NO;
 
@@ -308,19 +264,19 @@
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return genderOptions.count;
+    return gender.options.count;
 }
 
 #pragma mark - UIPickerViewDelegate
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return genderOptions[row];
+    return gender.options[row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    genderField.text = genderOptions[row];
+    genderField.text = gender.options[row];
     [genderField endEditing:NO];
 }
 @end
