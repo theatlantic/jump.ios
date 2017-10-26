@@ -142,6 +142,7 @@
 		D8E0218D17D14CFB00013803 /* logo_googleplus_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */; };
 		D8E0218F17D14D0C00013803 /* icon_googleplus_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */; };
 		D8E0219117D14D1800013803 /* logo_googleplus_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0219017D14D1800013803 /* logo_googleplus_280x65@2x.png */; };
+		DF0D06F11FA289C70047B6CE /* JRGender.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0D06F01FA289C70047B6CE /* JRGender.m */; };
 		DF315E8E17A988E100703C83 /* JRConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8917A988E100703C83 /* JRConnectionManager.m */; };
 		DF315E8F17A988E100703C83 /* NSDictionary+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8B17A988E100703C83 /* NSDictionary+JRQueryParams.m */; };
 		DF315E9017A988E100703C83 /* NSMutableURLRequest+JRRequestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8D17A988E100703C83 /* NSMutableURLRequest+JRRequestUtils.m */; };
@@ -524,6 +525,8 @@
 		D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_googleplus_280x65.png; sourceTree = "<group>"; };
 		D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_googleplus_30x30@2x.png"; sourceTree = "<group>"; };
 		D8E0219017D14D1800013803 /* logo_googleplus_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_googleplus_280x65@2x.png"; sourceTree = "<group>"; };
+		DF0D06EF1FA289C70047B6CE /* JRGender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRGender.h; sourceTree = "<group>"; };
+		DF0D06F01FA289C70047B6CE /* JRGender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRGender.m; sourceTree = "<group>"; };
 		DF315E8817A988E100703C83 /* JRConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRConnectionManager.h; sourceTree = "<group>"; };
 		DF315E8917A988E100703C83 /* JRConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRConnectionManager.m; sourceTree = "<group>"; };
 		DF315E8A17A988E100703C83 /* NSDictionary+JRQueryParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JRQueryParams.h"; sourceTree = "<group>"; };
@@ -863,7 +866,9 @@
 		6706F8B0C97A69C3A2194B76 /* JRCapture */ = {
 			isa = PBXGroup;
 			children = (
-				4DFC8ED4187E1DD100CE8A83 /* Generated */,
+				DF0D06A91FA0E7790047B6CE /* Generated */,
+				DF0D06EF1FA289C70047B6CE /* JRGender.h */,
+				DF0D06F01FA289C70047B6CE /* JRGender.m */,
 			);
 			path = JRCapture;
 			sourceTree = "<group>";
@@ -1843,6 +1848,7 @@
 				4DFC8F18187E1DD100CE8A83 /* JRAddressesElement.m in Sources */,
 				4DFC8F37187E1DD100CE8A83 /* JRUrlsElement.m in Sources */,
 				6706FFA2D57FB31818D60F25 /* Utils.m in Sources */,
+				DF0D06F11FA289C70047B6CE /* JRGender.m in Sources */,
 				6706F51EE167DE5FFF64E224 /* CaptureDynamicForm.m in Sources */,
 				DFEA3C361F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m in Sources */,
 				4DFC8F1C187E1DD100CE8A83 /* JRCurrentLocation.m in Sources */,
