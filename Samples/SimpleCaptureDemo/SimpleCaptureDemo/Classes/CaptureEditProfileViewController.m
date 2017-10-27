@@ -59,6 +59,7 @@
     __weak IBOutlet UIButton *updateButton;
     
     JRGender *gender;
+    UIDatePicker *birthdayPicker;
 
     UIView * activeField;
 }
@@ -115,7 +116,14 @@
     lastNameField.text = user.familyName;
     displayNameField.text = user.displayName;
     emailField.text = user.email;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM/dd/yyyy"];
+    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    birthdayField.text = [dateFormatter stringFromDate:user.birthday];
+    [birthdayPicker setDate:user.birthday animated:YES];
     genderField.text = [gender textForValue:user.gender];
+    
     blurbText.text = user.aboutMe;
 }
 
@@ -137,8 +145,9 @@
     birthdayPickerToolbar.items = @[flexibleSpace, doneButton];
     birthdayField.inputAccessoryView = birthdayPickerToolbar;
     
-    UIDatePicker *birthdayPicker = [[UIDatePicker alloc] init];
+    birthdayPicker = [[UIDatePicker alloc] init];
     birthdayPicker.datePickerMode = UIDatePickerModeDate;
+    birthdayPicker.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     [birthdayPicker addTarget:self action:@selector(birthdayPickerChanged:) forControlEvents:UIControlEventValueChanged];
     birthdayField.inputView = birthdayPicker;
 }
@@ -155,6 +164,7 @@
     user.displayName = displayNameField.text;
     user.email = emailField.text;
     user.aboutMe = blurbText.text;
+    user.birthday = birthdayPicker.date;
     user.gender = [gender valueForText:genderField.text];
 
     updateButton.enabled = NO;
