@@ -6,48 +6,49 @@
 //
 //
 
-#import "JRGender.h"
+#import "JRPickerView.h"
 #import "AppDelegate.h"
 
-@implementation JRGender {
-    NSMutableArray *_options;
+@interface JRPickerView ()
+
+@property(nonatomic, strong) NSMutableArray *options;
+
+@end
+
+@implementation JRPickerView {
     NSDictionary *_genderFlow;
 }
 
--(instancetype)init {
+-(instancetype)initWithField:(NSString *)field {
     self = [super init];
     if (self) {
         _options = [NSMutableArray array];
-        
+        self.delegate = self;
+        self.dataSource = self;
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSData *archivedCaptureUser = [delegate.prefs objectForKey:@"JR_capture_flow"];
         if (archivedCaptureUser) {
             NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
             NSDictionary *fields = captureFlow[@"fields"];
-            _genderFlow = fields[@"gender"];
+            _genderFlow = fields[field]; //""gender" or "addressCountry"
             
             _label = _genderFlow[@"label"];
             _placeholder = _genderFlow [@"placeholder"];
             _schemaId = _genderFlow[@"schemeId"];
-
+            
             for (NSDictionary *option in _genderFlow[@"options"]) {
                 if (option[@"disabled"]) {
                     continue;
                 }
-                [_options addObject:option[@"text"]];
+                [_options addObject:option];
             }
         }
     }
     return self;
 }
 
--(NSArray *)options {
-    return _options;
-}
-
 -(NSString *)textForValue:(NSString *)value {
-    NSArray *options = _genderFlow[@"options"];
-    for (NSDictionary *option in options) {
+    for (NSDictionary *option in _options) {
         if ([value isEqualToString:option[@"value"]]) {
             return option[@"text"];
         }
@@ -56,13 +57,41 @@
 }
 
 -(NSString *)valueForText:(NSString *)text {
-    NSArray *options = _genderFlow[@"options"];
-    for (NSDictionary *option in options) {
+    for (NSDictionary *option in _options) {
         if ([text isEqualToString:option[@"text"]]) {
             return option[@"value"];
         }
     }
     return @"";
 }
+
+#pragma mark - UIPickerViewDataSource
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.options.count;
+}
+
+#pragma mark - UIPickerViewDelegate
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSDictionary *option = _options[row];
+    return option[@"text"];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSDictionary *option = self.options[row];
+    _selectedValue = option[@"value"];
+    _selectedText = option[@"text"];
+    [_jrPickerViewDelegate jrPickerView:self didSelectElement:_selectedText];
+}
+
 
 @end

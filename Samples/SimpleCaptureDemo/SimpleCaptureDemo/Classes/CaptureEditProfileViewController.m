@@ -34,9 +34,9 @@
 #import "AppDelegate.h"
 #import "JRCaptureUser+Extras.h"
 #import "Utils.h"
-#import "JRGender.h"
+#import "JRPickerView.h"
 
-@interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate, JRPickerViewDelegate>
 @end
 
 @implementation CaptureEditProfileViewController {
@@ -58,7 +58,8 @@
     __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UIButton *updateButton;
     
-    JRGender *gender;
+    JRPickerView *genderPicker;
+    JRPickerView *addressCountryPicker;
     UIDatePicker *birthdayPicker;
 
     UIView * activeField;
@@ -88,16 +89,17 @@
     addresssPostalCodeField.delegate = self;
     blurbText.delegate = self;
     
-    [self setupBirthdayFieldInputAccesoryView];
+    [self setupBirthdayFieldInputView];
     
-    gender = [[JRGender alloc] init];
+    genderPicker = [[JRPickerView alloc] initWithField:@"gender"];
+    genderPicker.jrPickerViewDelegate = self;
+    genderField.inputAccessoryView = [self setupInputAccessoryView];
+    genderField.inputView = genderPicker;
     
-    UIPickerView *genderPickerView = [[UIPickerView alloc] init];
-    genderPickerView.dataSource = self;
-    genderPickerView.delegate = self;
-    
-    genderField.inputView = genderPickerView;
-    
+    addressCountryPicker = [[JRPickerView alloc] initWithField:@"addressCountry"];
+    addressCountryPicker.jrPickerViewDelegate =self;
+    addresssCountryField.inputAccessoryView = [self setupInputAccessoryView];
+    addresssCountryField.inputView = addressCountryPicker;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -116,13 +118,11 @@
     lastNameField.text = user.familyName;
     displayNameField.text = user.displayName;
     emailField.text = user.email;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMMM/dd/yyyy"];
-    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-    birthdayField.text = [dateFormatter stringFromDate:user.birthday];
+    birthdayField.text = [self stringfromDate:user.birthday];
     [birthdayPicker setDate:user.birthday animated:YES];
-    genderField.text = [gender textForValue:user.gender];
+    genderField.text = [genderPicker textForValue:user.gender];
+    
+    addresssCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
     
     blurbText.text = user.aboutMe;
 }
@@ -136,20 +136,32 @@
 
 #pragma mark - Helper methods
 
--(void)setupBirthdayFieldInputAccesoryView
+-(void)setupBirthdayFieldInputView
 {
-    UIToolbar *birthdayPickerToolbar = [[UIToolbar alloc] init];
-    [birthdayPickerToolbar sizeToFit];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissBirthdayPicker)];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    birthdayPickerToolbar.items = @[flexibleSpace, doneButton];
-    birthdayField.inputAccessoryView = birthdayPickerToolbar;
+    birthdayField.inputAccessoryView = [self setupInputAccessoryView];
     
     birthdayPicker = [[UIDatePicker alloc] init];
     birthdayPicker.datePickerMode = UIDatePickerModeDate;
     birthdayPicker.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     [birthdayPicker addTarget:self action:@selector(birthdayPickerChanged:) forControlEvents:UIControlEventValueChanged];
     birthdayField.inputView = birthdayPicker;
+}
+
+-(UIView *)setupInputAccessoryView {
+    UIToolbar *birthdayPickerToolbar = [[UIToolbar alloc] init];
+    [birthdayPickerToolbar sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPicker)];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    birthdayPickerToolbar.items = @[flexibleSpace, doneButton];
+    
+    return birthdayPickerToolbar;
+}
+
+-(NSString *)stringfromDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM/dd/yyyy"];
+    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    return [dateFormatter stringFromDate:date];
 }
 
 #pragma mark - Actions
@@ -165,7 +177,8 @@
     user.email = emailField.text;
     user.aboutMe = blurbText.text;
     user.birthday = birthdayPicker.date;
-    user.gender = [gender valueForText:genderField.text];
+    user.gender = genderPicker.selectedValue;
+    user.primaryAddress.country = addressCountryPicker.selectedValue;
 
     updateButton.enabled = NO;
 
@@ -176,7 +189,7 @@
 {
     birthdayField.text = [NSDateFormatter localizedStringFromDate:sender.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
 }
--(void)dismissBirthdayPicker
+-(void)dismissPicker
 {
     [self.view endEditing:YES];
 }
@@ -265,28 +278,16 @@
     return YES;
 }
 
-#pragma mark - UIPickerViewDataSource
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+#pragma mark - JRPickerViewDelegate
+-(void)jrPickerView:(JRPickerView *)jrPickerView didSelectElement:(NSString *)element
 {
-    return 1;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return gender.options.count;
-}
-
-#pragma mark - UIPickerViewDelegate
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return gender.options[row];
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    genderField.text = gender.options[row];
-    [genderField endEditing:NO];
+    UITextField *textField;
+    if ([jrPickerView isEqual:genderPicker]) {
+        textField = genderField;
+    } else {
+        textField = addresssCountryField;
+    }
+    
+    textField.text = element;
 }
 @end
