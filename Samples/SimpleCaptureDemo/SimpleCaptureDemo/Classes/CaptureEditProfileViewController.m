@@ -121,8 +121,13 @@
     birthdayField.text = [self stringfromDate:user.birthday];
     [birthdayPicker setDate:user.birthday animated:YES];
     genderField.text = [genderPicker textForValue:user.gender];
-    
+    phoneField.text = user.primaryAddress.phone;
+    addressStreetLine1Field.text = user.primaryAddress.address1;
+    addressStreetLine2Field.text = user.primaryAddress.address2;
+    addresssCiyField.text = user.primaryAddress.city;
+    addresssStateField.text = user.primaryAddress.stateAbbreviation; //este tambien es picker
     addresssCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
+    addresssPostalCodeField.text = user.primaryAddress.zip;
     
     blurbText.text = user.aboutMe;
 }
@@ -178,7 +183,13 @@
     user.aboutMe = blurbText.text;
     user.birthday = birthdayPicker.date;
     user.gender = genderPicker.selectedValue;
+    user.primaryAddress.phone = phoneField.text;
+    user.primaryAddress.address1 = addressStreetLine1Field.text;
+    user.primaryAddress.address2 = addressStreetLine2Field.text;
+    user.primaryAddress.city = addresssCiyField.text;
+    user.primaryAddress.stateAbbreviation = addresssStateField.text; //Need review (maybe is better the pickerView
     user.primaryAddress.country = addressCountryPicker.selectedValue;
+    user.primaryAddress.zip = addresssPostalCodeField.text;
 
     updateButton.enabled = NO;
 
@@ -187,7 +198,7 @@
 
 -(void)birthdayPickerChanged:(UIDatePicker *)sender
 {
-    birthdayField.text = [NSDateFormatter localizedStringFromDate:sender.date dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+    birthdayField.text = [self stringfromDate:sender.date];
 }
 -(void)dismissPicker
 {
