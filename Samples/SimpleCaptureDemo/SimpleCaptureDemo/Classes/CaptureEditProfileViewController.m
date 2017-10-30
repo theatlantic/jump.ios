@@ -51,7 +51,7 @@
     __weak IBOutlet UITextField *phoneField;
     __weak IBOutlet UITextField *addressStreetLine1Field;
     __weak IBOutlet UITextField *addressStreetLine2Field;
-    __weak IBOutlet UITextField *addressCiyField;
+    __weak IBOutlet UITextField *addressCityField;
     __weak IBOutlet UITextField *addressStateField;
     __weak IBOutlet UITextField *addressCountryField;
     __weak IBOutlet UITextField *addressPostalCodeField;
@@ -84,7 +84,7 @@
     phoneField.delegate = self;
     addressStreetLine1Field.delegate = self;
     addressStreetLine2Field.delegate = self;
-    addressCiyField.delegate = self;
+    addressCityField.delegate = self;
     addressStateField.delegate = self;
     addressCountryField.delegate = self;
     addressPostalCodeField.delegate = self;
@@ -130,7 +130,7 @@
     phoneField.text = user.primaryAddress.phone;
     addressStreetLine1Field.text = user.primaryAddress.address1;
     addressStreetLine2Field.text = user.primaryAddress.address2;
-    addressCiyField.text = user.primaryAddress.city;
+    addressCityField.text = user.primaryAddress.city;
     addressStateField.text = [addressStatePicker textForValue:user.primaryAddress.stateAbbreviation];
     addressStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
     addressCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
@@ -200,7 +200,7 @@
     user.primaryAddress.phone = phoneField.text;
     user.primaryAddress.address1 = addressStreetLine1Field.text;
     user.primaryAddress.address2 = addressStreetLine2Field.text;
-    user.primaryAddress.city = addressCiyField.text;
+    user.primaryAddress.city = addressCityField.text;
     user.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
     user.primaryAddress.country = addressCountryPicker.selectedValue;
     user.primaryAddress.zip = addressPostalCodeField.text;
