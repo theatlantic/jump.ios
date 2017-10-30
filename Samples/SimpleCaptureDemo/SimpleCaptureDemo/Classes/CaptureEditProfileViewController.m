@@ -51,10 +51,10 @@
     __weak IBOutlet UITextField *phoneField;
     __weak IBOutlet UITextField *addressStreetLine1Field;
     __weak IBOutlet UITextField *addressStreetLine2Field;
-    __weak IBOutlet UITextField *addresssCiyField;
-    __weak IBOutlet UITextField *addresssStateField;
-    __weak IBOutlet UITextField *addresssCountryField;
-    __weak IBOutlet UITextField *addresssPostalCodeField;
+    __weak IBOutlet UITextField *addressCiyField;
+    __weak IBOutlet UITextField *addressStateField;
+    __weak IBOutlet UITextField *addressCountryField;
+    __weak IBOutlet UITextField *addressPostalCodeField;
     __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UIButton *updateButton;
     
@@ -84,10 +84,10 @@
     phoneField.delegate = self;
     addressStreetLine1Field.delegate = self;
     addressStreetLine2Field.delegate = self;
-    addresssCiyField.delegate = self;
-    addresssStateField.delegate = self;
-    addresssCountryField.delegate = self;
-    addresssPostalCodeField.delegate = self;
+    addressCiyField.delegate = self;
+    addressStateField.delegate = self;
+    addressCountryField.delegate = self;
+    addressPostalCodeField.delegate = self;
     blurbText.delegate = self;
     
     [self setupBirthdayFieldInputView];
@@ -99,13 +99,13 @@
     
     addressStatePicker = [[JRPickerView alloc] initWithField:@"addressState"];
     addressStatePicker.jrPickerViewDelegate = self;
-    addresssStateField.inputAccessoryView = [self setupInputAccessoryView];
-    addresssStateField.inputView = addressStatePicker;
+    addressStateField.inputAccessoryView = [self setupInputAccessoryView];
+    addressStateField.inputView = addressStatePicker;
     
     addressCountryPicker = [[JRPickerView alloc] initWithField:@"addressCountry"];
     addressCountryPicker.jrPickerViewDelegate = self;
-    addresssCountryField.inputAccessoryView = [self setupInputAccessoryView];
-    addresssCountryField.inputView = addressCountryPicker;
+    addressCountryField.inputAccessoryView = [self setupInputAccessoryView];
+    addressCountryField.inputView = addressCountryPicker;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -130,11 +130,11 @@
     phoneField.text = user.primaryAddress.phone;
     addressStreetLine1Field.text = user.primaryAddress.address1;
     addressStreetLine2Field.text = user.primaryAddress.address2;
-    addresssCiyField.text = user.primaryAddress.city;
-    addresssStateField.text = [addressStatePicker textForValue:user.primaryAddress.stateAbbreviation];
-    addresssStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
-    addresssCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
-    addresssPostalCodeField.text = user.primaryAddress.zip;
+    addressCiyField.text = user.primaryAddress.city;
+    addressStateField.text = [addressStatePicker textForValue:user.primaryAddress.stateAbbreviation];
+    addressStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
+    addressCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
+    addressPostalCodeField.text = user.primaryAddress.zip;
     
     blurbText.text = user.aboutMe;
 }
@@ -160,13 +160,13 @@
 }
 
 -(UIView *)setupInputAccessoryView {
-    UIToolbar *birthdayPickerToolbar = [[UIToolbar alloc] init];
-    [birthdayPickerToolbar sizeToFit];
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+    [toolbar sizeToFit];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPicker)];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    birthdayPickerToolbar.items = @[flexibleSpace, doneButton];
+    toolbar.items = @[flexibleSpace, doneButton];
     
-    return birthdayPickerToolbar;
+    return toolbar;
 }
 
 -(NSString *)stringfromDate:(NSDate *)date{
@@ -200,10 +200,10 @@
     user.primaryAddress.phone = phoneField.text;
     user.primaryAddress.address1 = addressStreetLine1Field.text;
     user.primaryAddress.address2 = addressStreetLine2Field.text;
-    user.primaryAddress.city = addresssCiyField.text;
+    user.primaryAddress.city = addressCiyField.text;
     user.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
     user.primaryAddress.country = addressCountryPicker.selectedValue;
-    user.primaryAddress.zip = addresssPostalCodeField.text;
+    user.primaryAddress.zip = addressPostalCodeField.text;
 
     updateButton.enabled = NO;
 
@@ -310,15 +310,15 @@
     if ([jrPickerView isEqual:genderPicker]) {
         textField = genderField;
     } else if ([jrPickerView isEqual:addressStatePicker ]) {
-        textField = addresssStateField;
+        textField = addressStateField;
     } else if([jrPickerView isEqual:addressCountryPicker]){
-        textField = addresssCountryField;
+        textField = addressCountryField;
         if (![jrPickerView.selectedValue isEqualToString:@"US"]) {
-            addresssStateField.text = @"";
-            addresssStateField.enabled = NO;
-            addressStatePicker.selectedValue = addresssStateField.text = @"";;
+            addressStateField.text = @"";
+            addressStateField.enabled = NO;
+            addressStatePicker.selectedValue = addressStateField.text = @"";;
         } else {
-            addresssStateField.enabled = YES;
+            addressStateField.enabled = YES;
         }
     }
     
