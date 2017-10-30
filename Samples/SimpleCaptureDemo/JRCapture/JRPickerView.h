@@ -18,7 +18,7 @@
 @property(nonatomic, strong, readonly) NSString *label;
 @property(nonatomic, strong, readonly) NSString *placeholder;
 @property(nonatomic, strong, readonly) NSString *schemaId;
-@property(nonatomic, strong, readonly) NSString *selectedValue;
+@property(nonatomic, strong) NSString *selectedValue;
 @property(nonatomic, strong, readonly) NSString *selectedText;
 @property(nonatomic, weak) id<JRPickerViewDelegate> jrPickerViewDelegate;
 
