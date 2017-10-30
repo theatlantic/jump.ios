@@ -59,6 +59,7 @@
     __weak IBOutlet UIButton *updateButton;
     
     JRPickerView *genderPicker;
+    JRPickerView *addressStatePicker;
     JRPickerView *addressCountryPicker;
     UIDatePicker *birthdayPicker;
 
@@ -96,8 +97,13 @@
     genderField.inputAccessoryView = [self setupInputAccessoryView];
     genderField.inputView = genderPicker;
     
+    addressStatePicker = [[JRPickerView alloc] initWithField:@"addressState"];
+    addressStatePicker.jrPickerViewDelegate = self;
+    addresssStateField.inputAccessoryView = [self setupInputAccessoryView];
+    addresssStateField.inputView = addressStatePicker;
+    
     addressCountryPicker = [[JRPickerView alloc] initWithField:@"addressCountry"];
-    addressCountryPicker.jrPickerViewDelegate =self;
+    addressCountryPicker.jrPickerViewDelegate = self;
     addresssCountryField.inputAccessoryView = [self setupInputAccessoryView];
     addresssCountryField.inputView = addressCountryPicker;
 }
@@ -125,7 +131,7 @@
     addressStreetLine1Field.text = user.primaryAddress.address1;
     addressStreetLine2Field.text = user.primaryAddress.address2;
     addresssCiyField.text = user.primaryAddress.city;
-    addresssStateField.text = user.primaryAddress.stateAbbreviation; //este tambien es picker
+    addresssStateField.text = [addressStatePicker textForValue:user.primaryAddress.stateAbbreviation];
     addresssCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
     addresssPostalCodeField.text = user.primaryAddress.zip;
     
@@ -187,7 +193,7 @@
     user.primaryAddress.address1 = addressStreetLine1Field.text;
     user.primaryAddress.address2 = addressStreetLine2Field.text;
     user.primaryAddress.city = addresssCiyField.text;
-    user.primaryAddress.stateAbbreviation = addresssStateField.text; //Need review (maybe is better the pickerView
+    user.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
     user.primaryAddress.country = addressCountryPicker.selectedValue;
     user.primaryAddress.zip = addresssPostalCodeField.text;
 
@@ -295,6 +301,8 @@
     UITextField *textField;
     if ([jrPickerView isEqual:genderPicker]) {
         textField = genderField;
+    } else if ([jrPickerView isEqual:addressStatePicker ]) {
+        textField = addresssStateField;
     } else {
         textField = addresssCountryField;
     }
