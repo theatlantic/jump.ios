@@ -56,6 +56,8 @@
     __weak IBOutlet UITextField *addressCountryField;
     __weak IBOutlet UITextField *addressPostalCodeField;
     __weak IBOutlet UITextView *blurbText;
+    __weak IBOutlet UISwitch *optInSwitch;
+    __weak IBOutlet UILabel *optInLabel;
     __weak IBOutlet UIButton *updateButton;
     
     JRPickerView *genderPicker;
@@ -135,7 +137,10 @@
     addressStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
     addressCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
     addressPostalCodeField.text = user.primaryAddress.zip;
+    [optInSwitch setOn:user.optIn.status animated:YES];
+    optInLabel.text = [self textForOptInLabel];
     
+
     blurbText.text = user.aboutMe;
 }
 
@@ -181,6 +186,20 @@
         return NO;
     }
     return YES;
+}
+
+-(NSString *)textForOptInLabel {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSData *archivedCaptureUser = [delegate.prefs objectForKey:@"JR_capture_flow"];
+    if (archivedCaptureUser) {
+        NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
+        NSDictionary *fields = captureFlow[@"fields"];
+        NSDictionary *optIn = fields[@"optIn"];
+        
+        return optIn[@"label"];
+    }
+    optInSwitch.hidden = YES;
+    return @"";
 }
 
 #pragma mark - Actions
