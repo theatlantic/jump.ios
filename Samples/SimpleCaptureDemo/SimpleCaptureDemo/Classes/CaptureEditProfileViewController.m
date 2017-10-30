@@ -132,6 +132,7 @@
     addressStreetLine2Field.text = user.primaryAddress.address2;
     addresssCiyField.text = user.primaryAddress.city;
     addresssStateField.text = [addressStatePicker textForValue:user.primaryAddress.stateAbbreviation];
+    addresssStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
     addresssCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
     addresssPostalCodeField.text = user.primaryAddress.zip;
     
@@ -173,6 +174,13 @@
     [dateFormatter setDateFormat:@"MMMM/dd/yyyy"];
     dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     return [dateFormatter stringFromDate:date];
+}
+
+-(BOOL)isValidStateAbbreviation:(NSString *)abbreviation {
+    if ([abbreviation isEqualToString:@""] || abbreviation == nil) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Actions
@@ -303,8 +311,15 @@
         textField = genderField;
     } else if ([jrPickerView isEqual:addressStatePicker ]) {
         textField = addresssStateField;
-    } else {
+    } else if([jrPickerView isEqual:addressCountryPicker]){
         textField = addresssCountryField;
+        if (![jrPickerView.selectedValue isEqualToString:@"US"]) {
+            addresssStateField.text = @"";
+            addresssStateField.enabled = NO;
+            addressStatePicker.selectedValue = addresssStateField.text = @"";;
+        } else {
+            addresssStateField.enabled = YES;
+        }
     }
     
     textField.text = element;
