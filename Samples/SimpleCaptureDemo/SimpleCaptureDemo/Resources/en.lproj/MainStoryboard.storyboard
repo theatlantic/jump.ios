@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -503,12 +502,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="96d-Eo-4IW"/>
                     <connections>
+                        <outlet property="addressCityField" destination="Pr7-bx-Yv6" id="CcB-eD-n1o"/>
+                        <outlet property="addressCountryField" destination="ZvZ-N9-d6U" id="phy-Nf-MDC"/>
+                        <outlet property="addressPostalCodeField" destination="Dt9-0g-94q" id="5mM-Rb-3ga"/>
+                        <outlet property="addressStateField" destination="yj8-jI-qfT" id="ntx-Ew-vsQ"/>
                         <outlet property="addressStreetLine1Field" destination="7V1-ec-T62" id="hax-cc-Mhv"/>
                         <outlet property="addressStreetLine2Field" destination="xEZ-9S-F19" id="Fbp-gN-o37"/>
-                        <outlet property="addresssCiyField" destination="Pr7-bx-Yv6" id="IMQ-Wk-Wl6"/>
-                        <outlet property="addresssCountryField" destination="ZvZ-N9-d6U" id="vDZ-ek-SBW"/>
-                        <outlet property="addresssPostalCodeField" destination="Dt9-0g-94q" id="Yws-rT-w9F"/>
-                        <outlet property="addresssStateField" destination="yj8-jI-qfT" id="HkX-PR-BJg"/>
                         <outlet property="birthdayField" destination="7OX-uM-Bwr" id="wku-i5-kdZ"/>
                         <outlet property="blurbText" destination="QnY-J3-t9B" id="bfb-Uk-8bc"/>
                         <outlet property="displayNameField" destination="GOF-Pa-17J" id="Kos-Yw-BRm"/>
