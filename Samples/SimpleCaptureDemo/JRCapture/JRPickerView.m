@@ -50,7 +50,9 @@
 -(NSString *)textForValue:(NSString *)value {
     for (NSDictionary *option in _options) {
         if ([value isEqualToString:option[@"value"]]) {
-            return option[@"text"];
+            _selectedValue = value;
+            _selectedText = option[@"text"];
+            return _selectedText;
         }
     }
     return @"";
@@ -59,7 +61,9 @@
 -(NSString *)valueForText:(NSString *)text {
     for (NSDictionary *option in _options) {
         if ([text isEqualToString:option[@"text"]]) {
-            return option[@"value"];
+            _selectedText = text;
+            _selectedValue = option[@"value"];
+            return _selectedValue;
         }
     }
     return @"";
