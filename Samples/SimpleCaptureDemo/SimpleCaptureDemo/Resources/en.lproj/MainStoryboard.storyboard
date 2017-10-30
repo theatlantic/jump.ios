@@ -331,7 +331,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cbq-Ga-TxU">
-                                        <rect key="frame" x="60" y="652" width="200" height="44"/>
+                                        <rect key="frame" x="60" y="688" width="200" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Update">
@@ -495,6 +495,17 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Tce-jG-UtI">
+                                        <rect key="frame" x="20" y="665" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" id="MFC-MY-xdC">
+                                        <rect key="frame" x="77" y="662" width="235" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -515,6 +526,8 @@
                         <outlet property="firstNameField" destination="5Ik-Oz-tsD" id="ADq-S7-bxJ"/>
                         <outlet property="genderField" destination="lT0-PH-OLJ" id="Ji1-y5-9CH"/>
                         <outlet property="lastNameField" destination="HCn-Ao-Ndw" id="Ow6-7X-cXJ"/>
+                        <outlet property="optInLabel" destination="MFC-MY-xdC" id="7ae-cN-GHa"/>
+                        <outlet property="optInSwitch" destination="Tce-jG-UtI" id="igA-Ka-QYV"/>
                         <outlet property="phoneField" destination="7hg-fa-cOm" id="AWc-kt-wfw"/>
                         <outlet property="scrollView" destination="JW4-Ks-0nd" id="cPS-49-Zvy"/>
                         <outlet property="updateButton" destination="cbq-Ga-TxU" id="S7j-FS-Hw3"/>
