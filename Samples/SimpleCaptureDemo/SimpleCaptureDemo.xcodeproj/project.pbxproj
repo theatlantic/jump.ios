@@ -142,6 +142,7 @@
 		D8E0218D17D14CFB00013803 /* logo_googleplus_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */; };
 		D8E0218F17D14D0C00013803 /* icon_googleplus_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */; };
 		D8E0219117D14D1800013803 /* logo_googleplus_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0219017D14D1800013803 /* logo_googleplus_280x65@2x.png */; };
+		DF0087B51FA8CF9D00D7E946 /* JRStandardFlowKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0087B41FA8CF9D00D7E946 /* JRStandardFlowKeys.m */; };
 		DF0D06F11FA289C70047B6CE /* JRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0D06F01FA289C70047B6CE /* JRPickerView.m */; };
 		DF315E8E17A988E100703C83 /* JRConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8917A988E100703C83 /* JRConnectionManager.m */; };
 		DF315E8F17A988E100703C83 /* NSDictionary+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8B17A988E100703C83 /* NSDictionary+JRQueryParams.m */; };
@@ -525,6 +526,8 @@
 		D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_googleplus_280x65.png; sourceTree = "<group>"; };
 		D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_googleplus_30x30@2x.png"; sourceTree = "<group>"; };
 		D8E0219017D14D1800013803 /* logo_googleplus_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_googleplus_280x65@2x.png"; sourceTree = "<group>"; };
+		DF0087B31FA8C92A00D7E946 /* JRStandardFlowKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRStandardFlowKeys.h; sourceTree = "<group>"; };
+		DF0087B41FA8CF9D00D7E946 /* JRStandardFlowKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStandardFlowKeys.m; sourceTree = "<group>"; };
 		DF0D06EF1FA289C70047B6CE /* JRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPickerView.h; sourceTree = "<group>"; };
 		DF0D06F01FA289C70047B6CE /* JRPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPickerView.m; sourceTree = "<group>"; };
 		DF315E8817A988E100703C83 /* JRConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRConnectionManager.h; sourceTree = "<group>"; };
@@ -869,6 +872,8 @@
 				DF0D06A91FA0E7790047B6CE /* Generated */,
 				DF0D06EF1FA289C70047B6CE /* JRPickerView.h */,
 				DF0D06F01FA289C70047B6CE /* JRPickerView.m */,
+				DF0087B31FA8C92A00D7E946 /* JRStandardFlowKeys.h */,
+				DF0087B41FA8CF9D00D7E946 /* JRStandardFlowKeys.m */,
 			);
 			path = JRCapture;
 			sourceTree = "<group>";
@@ -1892,6 +1897,7 @@
 				DFEFE4AA17A9915200760FEE /* JRJsonUtils.m in Sources */,
 				DFEFE4AC17A9915200760FEE /* JRPreviewLabel.m in Sources */,
 				4DFC8F1F187E1DD100CE8A83 /* JRImsElement.m in Sources */,
+				DF0087B51FA8CF9D00D7E946 /* JRStandardFlowKeys.m in Sources */,
 				DFEFE4AD17A9915200760FEE /* JRProvidersController.m in Sources */,
 				4DFC8F31187E1DD100CE8A83 /* JRPrimaryAddress.m in Sources */,
 				4DFC8F29187E1DD100CE8A83 /* JRPhoneNumbersElement.m in Sources */,
