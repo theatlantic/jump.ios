@@ -56,7 +56,6 @@
     __weak IBOutlet UITextField *addressStateField;
     __weak IBOutlet UITextField *addressCountryField;
     __weak IBOutlet UITextField *addressPostalCodeField;
-    __weak IBOutlet UITextView *blurbText;
     __weak IBOutlet UISwitch *optInSwitch;
     __weak IBOutlet UILabel *optInLabel;
     __weak IBOutlet UIButton *updateButton;
@@ -91,7 +90,6 @@
     addressStateField.delegate = self;
     addressCountryField.delegate = self;
     addressPostalCodeField.delegate = self;
-    blurbText.delegate = self;
     
     [self setupBirthdayFieldInputView];
     
@@ -140,9 +138,6 @@
     addressPostalCodeField.text = user.primaryAddress.zip;
     [optInSwitch setOn:user.optIn.status animated:YES];
     optInLabel.text = [self textForOptInLabel];
-    
-
-    blurbText.text = user.aboutMe;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -214,7 +209,6 @@
     user.familyName = lastNameField.text;
     user.displayName = displayNameField.text;
     user.email = emailField.text;
-    user.aboutMe = blurbText.text;
     user.birthday = birthdayPicker.date;
     user.gender = genderPicker.selectedValue;
     user.primaryAddress.phone = phoneField.text;
