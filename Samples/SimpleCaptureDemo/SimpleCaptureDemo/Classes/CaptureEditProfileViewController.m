@@ -35,6 +35,7 @@
 #import "JRCaptureUser+Extras.h"
 #import "Utils.h"
 #import "JRPickerView.h"
+#import "JRStandardFlowKeys.h"
 
 @interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate, JRPickerViewDelegate>
 @end
@@ -190,13 +191,13 @@
 
 -(NSString *)textForOptInLabel {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSData *archivedCaptureUser = [delegate.prefs objectForKey:@"JR_capture_flow"];
+    NSData *archivedCaptureUser = [delegate.prefs objectForKey:kJRCaptureFlowKey];
     if (archivedCaptureUser) {
         NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
-        NSDictionary *fields = captureFlow[@"fields"];
+        NSDictionary *fields = captureFlow[kFieldsKey];
         NSDictionary *optIn = fields[@"optIn"];
         
-        return optIn[@"label"];
+        return optIn[kLabelKey];
     }
     optInSwitch.hidden = YES;
     return @"";
