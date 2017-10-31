@@ -8,6 +8,7 @@
 
 #import "JRPickerView.h"
 #import "AppDelegate.h"
+#import "JRStandardFlowKeys.h"
 
 @interface JRPickerView ()
 
@@ -16,7 +17,7 @@
 @end
 
 @implementation JRPickerView {
-    NSDictionary *_genderFlow;
+    NSDictionary *_flow;
 }
 
 -(instancetype)initWithField:(NSString *)field {
@@ -26,18 +27,18 @@
         self.delegate = self;
         self.dataSource = self;
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        NSData *archivedCaptureUser = [delegate.prefs objectForKey:@"JR_capture_flow"];
+        NSData *archivedCaptureUser = [delegate.prefs objectForKey:kJRCaptureFlowKey];
         if (archivedCaptureUser) {
             NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
-            NSDictionary *fields = captureFlow[@"fields"];
-            _genderFlow = fields[field]; //""gender" or "addressCountry"
+            NSDictionary *fields = captureFlow[kFieldsKey];
+            _flow = fields[field];
             
-            _label = _genderFlow[@"label"];
-            _placeholder = _genderFlow [@"placeholder"];
-            _schemaId = _genderFlow[@"schemeId"];
+            _label = _flow[kLabelKey];
+            _placeholder = _flow [kPlaceholderKey];
+            _schemaId = _flow[kSchemeIdKey];
             
-            for (NSDictionary *option in _genderFlow[@"options"]) {
-                if (option[@"disabled"]) {
+            for (NSDictionary *option in _flow[kOptionsKey]) {
+                if (option[kDisabledKey]) {
                     continue;
                 }
                 [_options addObject:option];
@@ -49,9 +50,9 @@
 
 -(NSString *)textForValue:(NSString *)value {
     for (NSDictionary *option in _options) {
-        if ([value isEqualToString:option[@"value"]]) {
+        if ([value isEqualToString:option[kValueKey]]) {
             _selectedValue = value;
-            _selectedText = option[@"text"];
+            _selectedText = option[kTextKey];
             return _selectedText;
         }
     }
@@ -60,9 +61,9 @@
 
 -(NSString *)valueForText:(NSString *)text {
     for (NSDictionary *option in _options) {
-        if ([text isEqualToString:option[@"text"]]) {
+        if ([text isEqualToString:option[kTextKey]]) {
             _selectedText = text;
-            _selectedValue = option[@"value"];
+            _selectedValue = option[kValueKey];
             return _selectedValue;
         }
     }
@@ -86,14 +87,14 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSDictionary *option = _options[row];
-    return option[@"text"];
+    return option[kTextKey];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     NSDictionary *option = self.options[row];
-    _selectedValue = option[@"value"];
-    _selectedText = option[@"text"];
+    _selectedValue = option[kValueKey];
+    _selectedText = option[kTextKey];
     [_jrPickerViewDelegate jrPickerView:self didSelectElement:_selectedText];
 }
 
