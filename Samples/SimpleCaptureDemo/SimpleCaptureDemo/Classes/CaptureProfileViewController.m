@@ -40,8 +40,8 @@
 #import "Utils.h"
 #import "JRCaptureError.h"
 
-@interface CaptureProfileViewController () <UITextViewDelegate, JRCaptureUserDelegate,
-        UITextFieldDelegate, JRCaptureDelegate>
+@interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate>
+
 @property(nonatomic) id firstResponder;
 @property(nonatomic) NSDate *myBirthdate;
 @end
@@ -53,7 +53,6 @@
 @synthesize myLastNameTextField;
 @synthesize myGenderIdentitySegControl;
 @synthesize myBirthdayButton;
-@synthesize myAboutMeTextView;
 @synthesize myScrollView;
 @synthesize myKeyboardToolbar;
 @synthesize firstResponder;
@@ -80,7 +79,6 @@
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
 
-    [myAboutMeTextView setInputAccessoryView:myKeyboardToolbar];
     [myEmailTextField setInputAccessoryView:myKeyboardToolbar];
     [myDisplayNameTextField setInputAccessoryView:myKeyboardToolbar];
     [myFirstNameTextField setInputAccessoryView:myKeyboardToolbar];
@@ -88,9 +86,6 @@
 
     if (appDelegate.captureUser.email)
         myEmailTextField.text  = appDelegate.captureUser.email;
-
-    if (appDelegate.captureUser.aboutMe)
-        myAboutMeTextView.text = appDelegate.captureUser.aboutMe;
 
     if (appDelegate.captureUser.displayName)
         myDisplayNameTextField.text = appDelegate.captureUser.displayName;
@@ -196,7 +191,6 @@
 
 - (IBAction)doneButtonPressed:(id)sender
 {
-    appDelegate.captureUser.aboutMe  = myAboutMeTextView.text;
     appDelegate.captureUser.birthday = myBirthdate;
     appDelegate.captureUser.email    = myEmailTextField.text;
     appDelegate.captureUser.displayName = myDisplayNameTextField.text;
@@ -234,29 +228,6 @@
 {
     self.firstResponder = textField;
 }
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    self.firstResponder = textView;
-    if (textView.tag == ABOUT_ME_TEXT_VIEW_TAG)
-    {
-        [self scrollUpBy:210];
-    }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    [self scrollBack];
-}
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    return YES;
-}
-- (void)textViewDidChange:(UITextView *)textView { }
-- (void)textViewDidChangeSelection:(UITextView *)textView { }
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView { return YES; }
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView { return YES; }
 
 - (void)updateDidSucceedForObject:(JRCaptureObject *)object context:(NSObject *)context
 {
