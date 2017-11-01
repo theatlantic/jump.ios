@@ -75,17 +75,10 @@
     myFirstNameTextField.delegate = self;
     myLastNameTextField.delegate = self;
 
-    if (appDelegate.captureUser.email)
-        myEmailTextField.text  = appDelegate.captureUser.email;
-
-    if (appDelegate.captureUser.displayName)
-        myDisplayNameTextField.text = appDelegate.captureUser.displayName;
-
-    if (appDelegate.captureUser.givenName)
-        myFirstNameTextField.text = appDelegate.captureUser.givenName;
-
-    if (appDelegate.captureUser.familyName)
-        myLastNameTextField.text = appDelegate.captureUser.familyName;
+    myEmailTextField.text  = appDelegate.captureUser.email;
+    myDisplayNameTextField.text = appDelegate.captureUser.displayName;
+    myFirstNameTextField.text = appDelegate.captureUser.givenName;
+    myLastNameTextField.text = appDelegate.captureUser.familyName;
 
     char genderSegment = ([self isFemaleGender:[appDelegate.captureUser.gender lowercaseString]]) ? 0 : 1;
     [myGenderIdentitySegControl setSelectedSegmentIndex:genderSegment];
