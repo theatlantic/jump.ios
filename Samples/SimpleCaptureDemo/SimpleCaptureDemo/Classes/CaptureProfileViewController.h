@@ -47,20 +47,10 @@
 @property(nonatomic) IBOutlet UIToolbar *myPickerToolbar;
 @property(nonatomic) IBOutlet UIView *myPickerView;
 @property(nonatomic) IBOutlet UIScrollView *myScrollView;
-@property(nonatomic) IBOutlet UIToolbar *myKeyboardToolbar;
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *myDoneButton;
-
-- (IBAction)emailTextFieldClicked:(id)sender;
-
-- (IBAction)displayNameFieldClicked:(id)sender;
-
-- (IBAction)firstNameFieldClicked:(id)sender;
-
-- (IBAction)lastNameFieldClicked:(id)sender;
 
 - (IBAction)birthdayButtonClicked:(id)sender;
 
 - (IBAction)doneButtonPressed:(id)sender;
 
-- (IBAction)doneEditingButtonPressed:(id)sender;
 @end
