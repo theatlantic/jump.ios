@@ -42,11 +42,11 @@
 
 @interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate>
 
-@property(nonatomic) id firstResponder;
 @property(nonatomic) NSDate *myBirthdate;
 @end
 
 @implementation CaptureProfileViewController
+
 @synthesize myEmailTextField;
 @synthesize myDisplayNameTextField;
 @synthesize myFirstNameTextField;
@@ -54,8 +54,6 @@
 @synthesize myGenderIdentitySegControl;
 @synthesize myBirthdayButton;
 @synthesize myScrollView;
-@synthesize myKeyboardToolbar;
-@synthesize firstResponder;
 @synthesize myBirthdate;
 
 - (void)loadView {
@@ -72,10 +70,10 @@
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
 
-    [myEmailTextField setInputAccessoryView:myKeyboardToolbar];
-    [myDisplayNameTextField setInputAccessoryView:myKeyboardToolbar];
-    [myFirstNameTextField setInputAccessoryView:myKeyboardToolbar];
-    [myLastNameTextField setInputAccessoryView:myKeyboardToolbar];
+    myEmailTextField.delegate = self;
+    myDisplayNameTextField.delegate = self;
+    myFirstNameTextField.delegate = self;
+    myLastNameTextField.delegate = self;
 
     if (appDelegate.captureUser.email)
         myEmailTextField.text  = appDelegate.captureUser.email;
@@ -128,27 +126,10 @@
     [myScrollView setContentSize:CGSizeMake(320, self.view.frame.size.height)];
 }
 
-- (IBAction)emailTextFieldClicked:(id)sender
-{
-    [myEmailTextField becomeFirstResponder];
-}
-
 - (IBAction)birthdayButtonClicked:(id)sender
 {
     [self slidePickerUp];
     [self scrollUpBy:40];
-}
-
-- (IBAction)displayNameFieldClicked:(id)sender {
-    [myDisplayNameTextField becomeFirstResponder];
-}
-
-- (IBAction)firstNameFieldClicked:(id)sender {
-    [myFirstNameTextField becomeFirstResponder];
-}
-
-- (IBAction)lastNameFieldClicked:(id)sender {
-    [myLastNameTextField becomeFirstResponder];
 }
 
 - (void)pickerDone
@@ -174,12 +155,6 @@
     [myBirthdayButton setTitle:dateString forState:UIControlStateNormal];
 
     self.myBirthdate = pickerDate;
-}
-
-- (IBAction)doneEditingButtonPressed:(id)sender
-{
-    [firstResponder resignFirstResponder];
-    [self setFirstResponder:nil];
 }
 
 - (IBAction)doneButtonPressed:(id)sender
@@ -215,11 +190,12 @@
     }
 }
 
+#pragma mark - UITextFieldDelegate
 #define ABOUT_ME_TEXT_VIEW_TAG 20
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    self.firstResponder = textField;
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)updateDidSucceedForObject:(JRCaptureObject *)object context:(NSObject *)context
