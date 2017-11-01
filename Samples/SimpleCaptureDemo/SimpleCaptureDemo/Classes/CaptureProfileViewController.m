@@ -43,6 +43,8 @@
 @interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate>
 
 @property(nonatomic) NSDate *myBirthdate;
+@property(weak, nonatomic) IBOutlet UITextField *middleNameTextField;
+
 @end
 
 @implementation CaptureProfileViewController
@@ -50,6 +52,7 @@
 @synthesize myEmailTextField;
 @synthesize myDisplayNameTextField;
 @synthesize myFirstNameTextField;
+@synthesize middleNameTextField;
 @synthesize myLastNameTextField;
 @synthesize myGenderIdentitySegControl;
 @synthesize myBirthdayButton;
@@ -73,11 +76,13 @@
     myEmailTextField.delegate = self;
     myDisplayNameTextField.delegate = self;
     myFirstNameTextField.delegate = self;
+    middleNameTextField.delegate = self;
     myLastNameTextField.delegate = self;
 
     myEmailTextField.text  = appDelegate.captureUser.email;
     myDisplayNameTextField.text = appDelegate.captureUser.displayName;
     myFirstNameTextField.text = appDelegate.captureUser.givenName;
+    middleNameTextField.text = appDelegate.captureUser.middleName;
     myLastNameTextField.text = appDelegate.captureUser.familyName;
 
     char genderSegment = ([self isFemaleGender:[appDelegate.captureUser.gender lowercaseString]]) ? 0 : 1;
@@ -156,6 +161,7 @@
     appDelegate.captureUser.email    = myEmailTextField.text;
     appDelegate.captureUser.displayName = myDisplayNameTextField.text;
     appDelegate.captureUser.givenName = myFirstNameTextField.text;
+    appDelegate.captureUser.middleName = middleNameTextField.text;
     appDelegate.captureUser.familyName = myLastNameTextField.text;
 
     if (myGenderIdentitySegControl.selectedSegmentIndex == 0)
