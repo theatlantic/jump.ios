@@ -45,7 +45,6 @@
 @property(nonatomic) IBOutlet UIButton *myBirthdayButton;
 @property(nonatomic) IBOutlet UIDatePicker *myBirthdayPicker;
 @property(nonatomic) IBOutlet UIToolbar *myPickerToolbar;
-@property(nonatomic) IBOutlet UITextView *myAboutMeTextView;
 @property(nonatomic) IBOutlet UIView *myPickerView;
 @property(nonatomic) IBOutlet UIScrollView *myScrollView;
 @property(nonatomic) IBOutlet UIToolbar *myKeyboardToolbar;
