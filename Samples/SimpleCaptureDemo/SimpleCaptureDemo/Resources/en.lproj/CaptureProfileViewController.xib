@@ -17,7 +17,6 @@
                 <outlet property="myFirstNameTextField" destination="0Vw-mA-1HD" id="YBN-Mo-b6s"/>
                 <outlet property="myFormTitle" destination="16" id="72"/>
                 <outlet property="myGenderIdentitySegControl" destination="12" id="28"/>
-                <outlet property="myKeyboardToolbar" destination="54" id="62"/>
                 <outlet property="myLastNameTextField" destination="iPz-Dv-oW8" id="ZKH-sP-qcG"/>
                 <outlet property="myScrollView" destination="1" id="61"/>
                 <outlet property="view" destination="56" id="57"/>
@@ -57,10 +56,6 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
-                            <connections>
-                                <action selector="emailTextFieldClicked:" destination="-1" eventType="touchUpInside" id="69"/>
-                                <outlet property="delegate" destination="-1" id="68"/>
-                            </connections>
                         </textField>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Display Name:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="lwI-8e-8Bh">
                             <rect key="frame" x="6" y="100" width="112" height="21"/>
@@ -76,10 +71,6 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
-                            <connections>
-                                <action selector="displayNameFieldClicked:" destination="-1" eventType="touchUpInside" id="je7-4b-ElX"/>
-                                <outlet property="delegate" destination="-1" id="3Sw-Wo-dIe"/>
-                            </connections>
                         </textField>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="First Name:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="Dfa-S9-qiP">
                             <rect key="frame" x="20" y="138" width="98" height="21"/>
@@ -95,10 +86,6 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
-                            <connections>
-                                <action selector="firstNameFieldClicked:" destination="-1" eventType="touchUpInside" id="GwW-X0-Goq"/>
-                                <outlet property="delegate" destination="-1" id="ma9-rn-GOc"/>
-                            </connections>
                         </textField>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Last Name:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="BFH-3c-Xqa">
                             <rect key="frame" x="20" y="176" width="98" height="21"/>
@@ -114,10 +101,6 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
-                            <connections>
-                                <action selector="lastNameFieldClicked:" destination="-1" eventType="touchUpInside" id="nMZ-tO-IU0"/>
-                                <outlet property="delegate" destination="-1" id="3rW-PK-Pl6"/>
-                            </connections>
                         </textField>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="12">
                             <rect key="frame" x="68" y="228" width="184" height="29"/>
@@ -180,17 +163,6 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
-        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="54">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-            <items>
-                <barButtonItem title="Done Editing" id="55">
-                    <connections>
-                        <action selector="doneEditingButtonPressed:" destination="-1" id="63"/>
-                    </connections>
-                </barButtonItem>
-            </items>
-        </toolbar>
     </objects>
     <resources>
         <image name="background.png" width="160" height="230"/>
