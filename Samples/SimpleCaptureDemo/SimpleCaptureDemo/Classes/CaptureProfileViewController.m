@@ -39,11 +39,13 @@
 #import "JRCapture.h"
 #import "Utils.h"
 #import "JRCaptureError.h"
+#import "JRPickerView.h"
 
-@interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate>
+@interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate, JRPickerViewDelegate>
 
 @property(nonatomic) NSDate *myBirthdate;
 @property(weak, nonatomic) IBOutlet UITextField *middleNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *address1TextField;
@@ -55,19 +57,22 @@
 @end
 
 @implementation CaptureProfileViewController
+{
+    JRPickerView *genderPicker;
+}
 
 @synthesize myEmailTextField;
 @synthesize myDisplayNameTextField;
 @synthesize myFirstNameTextField;
 @synthesize middleNameTextField;
 @synthesize myLastNameTextField;
+@synthesize genderTextField;
 @synthesize mobileTextField;
 @synthesize phoneTextField;
 @synthesize address1TextField;
 @synthesize address2TextField;
 @synthesize addressCityTextField;
 @synthesize addressPostalCode;
-@synthesize myGenderIdentitySegControl;
 @synthesize myBirthdayButton;
 @synthesize myScrollView;
 @synthesize myBirthdate;
@@ -97,21 +102,24 @@
     address2TextField.delegate = self;
     addressCityTextField.delegate = self;
     addressPostalCode.delegate = self;
+    
+    genderPicker = [[JRPickerView alloc] initWithField:@"gender"];
+    genderPicker.jrPickerViewDelegate = self;
+    genderTextField.inputAccessoryView = [self setupInputAccessoryView];
+    genderTextField.inputView = genderPicker;
 
     myEmailTextField.text  = appDelegate.captureUser.email;
     myDisplayNameTextField.text = appDelegate.captureUser.displayName;
     myFirstNameTextField.text = appDelegate.captureUser.givenName;
     middleNameTextField.text = appDelegate.captureUser.middleName;
     myLastNameTextField.text = appDelegate.captureUser.familyName;
+    genderTextField.text = [genderPicker textForValue:appDelegate.captureUser.gender];
     mobileTextField.text = appDelegate.captureUser.primaryAddress.mobile;
     phoneTextField.text = appDelegate.captureUser.primaryAddress.phone;
     address1TextField.text = appDelegate.captureUser.primaryAddress.address1;
     address1TextField.text = appDelegate.captureUser.primaryAddress.address2;
     addressCityTextField.text = appDelegate.captureUser.primaryAddress.city;
     addressPostalCode.text = appDelegate.captureUser.primaryAddress.zip;
-
-    char genderSegment = ([self isFemaleGender:[appDelegate.captureUser.gender lowercaseString]]) ? 0 : 1;
-    [myGenderIdentitySegControl setSelectedSegmentIndex:genderSegment];
 
     if (appDelegate.captureUser.birthday)
     {
@@ -127,14 +135,6 @@
     {
         self.myDoneButton.title = @"Update";
     }
-}
-
-- (BOOL)isFemaleGender:(NSString *)gender
-{
-    return [gender isEqualToString:[@"F" lowercaseString]] ||
-        [gender isEqualToString:[@"female" lowercaseString]] ||
-        [gender isEqualToString:[@"girl" lowercaseString]] ||
-        [gender isEqualToString:[@"woman" lowercaseString]];
 }
 
 - (void)scrollUpBy:(NSInteger)scrollOffset
@@ -180,6 +180,16 @@
     self.myBirthdate = pickerDate;
 }
 
+-(UIView *)setupInputAccessoryView {
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+    [toolbar sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPicker)];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    toolbar.items = @[flexibleSpace, doneButton];
+    
+    return toolbar;
+}
+
 - (IBAction)doneButtonPressed:(id)sender
 {
     appDelegate.captureUser.birthday = myBirthdate;
@@ -188,7 +198,7 @@
     appDelegate.captureUser.givenName = myFirstNameTextField.text;
     appDelegate.captureUser.middleName = middleNameTextField.text;
     appDelegate.captureUser.familyName = myLastNameTextField.text;
-    
+    appDelegate.captureUser.gender = genderPicker.selectedValue;
     JRPrimaryAddress *address = [[JRPrimaryAddress alloc] init];
     address.mobile =  mobileTextField.text;;
     address.phone = phoneTextField.text;
@@ -199,11 +209,6 @@
     
     appDelegate.captureUser.primaryAddress = address;
 
-    if (myGenderIdentitySegControl.selectedSegmentIndex == 0)
-        appDelegate.captureUser.gender = @"female";
-    else if (myGenderIdentitySegControl.selectedSegmentIndex == 1)
-        appDelegate.captureUser.gender = @"male";
-
     if (appDelegate.isNotYetCreated)
     {
         [JRCapture registerNewUser:appDelegate.captureUser socialRegistrationToken:appDelegate.registrationToken
@@ -211,6 +216,11 @@
     }
 
     self.myDoneButton.enabled = NO;
+}
+
+-(void)dismissPicker
+{
+    [self.view endEditing:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -232,6 +242,7 @@
     return YES;
 }
 
+#pragma mark - JRCaptureObjectDelegate
 - (void)updateDidSucceedForObject:(JRCaptureObject *)object context:(NSObject *)context
 {
     [Utils handleSuccessWithTitle:@"Profile updated" message:nil forVc:self];
@@ -242,11 +253,6 @@
 {
     [Utils handleFailureWithTitle:@"Profile not updated" message:nil forVC:self];
     self.myDoneButton.enabled = YES;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)registerUserDidSucceed:(JRCaptureUser *)registeredUser
@@ -265,14 +271,25 @@
         NSDictionary *invalidFieldLocalizedFailureMessages = [error JRValidationFailureMessages];
         [Utils handleFailureWithTitle:@"Invalid Form Submission"
                               message:[invalidFieldLocalizedFailureMessages description] forVC:self];
-
+        
     }
     else
     {
         [Utils handleFailureWithTitle:@"Registration Failed" message:[error localizedDescription] forVC:self];
     }
-
+    
     self.myDoneButton.enabled = YES;
 }
+#pragma mark -
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation //deprecado y no creo necesitarlo
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - JRPickerViewDelegate
+-(void)jrPickerView:(JRPickerView *)jrPickerView didSelectElement:(NSString *)element
+{
+    genderTextField.text = element;
+}
 @end
