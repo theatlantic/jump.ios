@@ -45,6 +45,7 @@
 
 @property(nonatomic) NSDate *myBirthdate;
 @property(weak, nonatomic) IBOutlet UITextField *middleNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UITextField *genderTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -60,6 +61,7 @@
 
 @implementation CaptureProfileViewController
 {
+    UIDatePicker *birthdayPicker;
     JRPickerView *genderPicker;
     JRPickerView *statePicker;
     JRPickerView *countryPicker;
@@ -70,6 +72,7 @@
 @synthesize myFirstNameTextField;
 @synthesize middleNameTextField;
 @synthesize myLastNameTextField;
+@synthesize birthdayTextField;
 @synthesize genderTextField;
 @synthesize mobileTextField;
 @synthesize phoneTextField;
@@ -77,7 +80,6 @@
 @synthesize address2TextField;
 @synthesize addressCityTextField;
 @synthesize addressPostalCodeTextField;
-@synthesize myBirthdayButton;
 @synthesize myScrollView;
 @synthesize myBirthdate;
 @synthesize addressStateTextField;
@@ -109,6 +111,8 @@
     addressCityTextField.delegate = self;
     addressPostalCodeTextField.delegate = self;
     
+    [self setupBirthdayFieldInputView];
+    
     genderPicker = [[JRPickerView alloc] initWithField:@"gender"];
     genderPicker.jrPickerViewDelegate = self;
     genderTextField.inputAccessoryView = [self setupInputAccessoryView];
@@ -130,6 +134,14 @@
     myFirstNameTextField.text = appDelegate.captureUser.givenName;
     middleNameTextField.text = appDelegate.captureUser.middleName;
     myLastNameTextField.text = appDelegate.captureUser.familyName;
+    
+    birthdayTextField.text = [self stringfromDate:appDelegate.captureUser.birthday];
+    [birthdayPicker setDate:[NSDate date] animated:YES];
+    if (appDelegate.captureUser.birthday) {
+        [birthdayPicker setDate:appDelegate.captureUser.birthday animated:YES];
+    }
+    
+    
     genderTextField.text = [genderPicker textForValue:appDelegate.captureUser.gender];
     mobileTextField.text = appDelegate.captureUser.primaryAddress.mobile;
     phoneTextField.text = appDelegate.captureUser.primaryAddress.phone;
@@ -140,11 +152,7 @@
     addressStateTextField.text = [statePicker textForValue:appDelegate.captureUser.primaryAddress.stateAbbreviation];
     addressCountryTextField.text = [countryPicker textForValue:appDelegate.captureUser.primaryAddress.country];
 
-    if (appDelegate.captureUser.birthday)
-    {
-        [myDatePicker setDate:appDelegate.captureUser.birthday];
         [self pickerChanged];
-    }
 
     if (appDelegate.isNotYetCreated || !appDelegate.captureUser)
     {
@@ -168,37 +176,6 @@
     [myScrollView setContentSize:CGSizeMake(320, self.view.frame.size.height)];
 }
 
-- (IBAction)birthdayButtonClicked:(id)sender
-{
-    [self slidePickerUp];
-    [self scrollUpBy:40];
-}
-
-- (void)pickerDone
-{
-    [self slidePickerDown];
-    [self scrollBack];
-}
-
-- (void)pickerChanged
-{
-    DLog(@"");
-    [myBirthdayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-
-    NSDateFormatter *dateFormatter = nil;
-    dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-
-    NSDate *pickerDate = myDatePicker.date;
-    NSString *dateString = [dateFormatter stringFromDate:pickerDate];
-
-    [myBirthdayButton setTitle:dateString forState:UIControlStateNormal];
-
-    self.myBirthdate = pickerDate;
-}
-
 -(UIView *)setupInputAccessoryView {
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar sizeToFit];
@@ -209,6 +186,24 @@
     return toolbar;
 }
 
+-(void)setupBirthdayFieldInputView
+{
+    birthdayTextField.inputAccessoryView = [self setupInputAccessoryView];
+    
+    birthdayPicker = [[UIDatePicker alloc] init];
+    birthdayPicker.datePickerMode = UIDatePickerModeDate;
+    birthdayPicker.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    [birthdayPicker addTarget:self action:@selector(birthdayPickerChanged:) forControlEvents:UIControlEventValueChanged];
+    birthdayTextField.inputView = birthdayPicker;
+}
+
+-(NSString *)stringfromDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM/dd/yyyy"];
+    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    return [dateFormatter stringFromDate:date];
+}
+
 - (IBAction)doneButtonPressed:(id)sender
 {
     appDelegate.captureUser.birthday = myBirthdate;
@@ -217,6 +212,7 @@
     appDelegate.captureUser.givenName = myFirstNameTextField.text;
     appDelegate.captureUser.middleName = middleNameTextField.text;
     appDelegate.captureUser.familyName = myLastNameTextField.text;
+    appDelegate.captureUser.birthday = birthdayPicker.date;
     appDelegate.captureUser.gender = genderPicker.selectedValue;
     JRPrimaryAddress *address = [[JRPrimaryAddress alloc] init];
     address.mobile =  mobileTextField.text;;
@@ -239,6 +235,11 @@
     self.myDoneButton.enabled = NO;
 }
 
+-(void)birthdayPickerChanged:(UIDatePicker *)sender
+{
+    birthdayTextField.text = [self stringfromDate:sender.date];
+}
+
 -(void)dismissPicker
 {
     [self.view endEditing:YES];
@@ -256,8 +257,6 @@
 }
 
 #pragma mark - UITextFieldDelegate
-#define ABOUT_ME_TEXT_VIEW_TAG 20
-
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
@@ -299,12 +298,6 @@
     }
     
     self.myDoneButton.enabled = YES;
-}
-#pragma mark -
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation //deprecado y no creo necesitarlo
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - JRPickerViewDelegate
