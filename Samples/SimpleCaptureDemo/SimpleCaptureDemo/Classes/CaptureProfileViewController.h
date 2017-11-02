@@ -41,7 +41,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *myDisplayNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myFirstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myLastNameTextField;
-@property(nonatomic) IBOutlet UISegmentedControl *myGenderIdentitySegControl;
 @property(nonatomic) IBOutlet UIButton *myBirthdayButton;
 @property(nonatomic) IBOutlet UIDatePicker *myBirthdayPicker;
 @property(nonatomic) IBOutlet UIToolbar *myPickerToolbar;
