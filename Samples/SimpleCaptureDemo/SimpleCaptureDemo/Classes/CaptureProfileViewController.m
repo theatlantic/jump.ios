@@ -44,6 +44,13 @@
 
 @property(nonatomic) NSDate *myBirthdate;
 @property(weak, nonatomic) IBOutlet UITextField *middleNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *address1TextField;
+@property (weak, nonatomic) IBOutlet UITextField *address2TextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressCityTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressPostalCode;
+
 
 @end
 
@@ -54,6 +61,12 @@
 @synthesize myFirstNameTextField;
 @synthesize middleNameTextField;
 @synthesize myLastNameTextField;
+@synthesize mobileTextField;
+@synthesize phoneTextField;
+@synthesize address1TextField;
+@synthesize address2TextField;
+@synthesize addressCityTextField;
+@synthesize addressPostalCode;
 @synthesize myGenderIdentitySegControl;
 @synthesize myBirthdayButton;
 @synthesize myScrollView;
@@ -78,12 +91,24 @@
     myFirstNameTextField.delegate = self;
     middleNameTextField.delegate = self;
     myLastNameTextField.delegate = self;
+    mobileTextField.delegate = self;
+    phoneTextField.delegate = self;
+    address1TextField.delegate = self;
+    address2TextField.delegate = self;
+    addressCityTextField.delegate = self;
+    addressPostalCode.delegate = self;
 
     myEmailTextField.text  = appDelegate.captureUser.email;
     myDisplayNameTextField.text = appDelegate.captureUser.displayName;
     myFirstNameTextField.text = appDelegate.captureUser.givenName;
     middleNameTextField.text = appDelegate.captureUser.middleName;
     myLastNameTextField.text = appDelegate.captureUser.familyName;
+    mobileTextField.text = appDelegate.captureUser.primaryAddress.mobile;
+    phoneTextField.text = appDelegate.captureUser.primaryAddress.phone;
+    address1TextField.text = appDelegate.captureUser.primaryAddress.address1;
+    address1TextField.text = appDelegate.captureUser.primaryAddress.address2;
+    addressCityTextField.text = appDelegate.captureUser.primaryAddress.city;
+    addressPostalCode.text = appDelegate.captureUser.primaryAddress.zip;
 
     char genderSegment = ([self isFemaleGender:[appDelegate.captureUser.gender lowercaseString]]) ? 0 : 1;
     [myGenderIdentitySegControl setSelectedSegmentIndex:genderSegment];
@@ -163,6 +188,16 @@
     appDelegate.captureUser.givenName = myFirstNameTextField.text;
     appDelegate.captureUser.middleName = middleNameTextField.text;
     appDelegate.captureUser.familyName = myLastNameTextField.text;
+    
+    JRPrimaryAddress *address = [[JRPrimaryAddress alloc] init];
+    address.mobile =  mobileTextField.text;;
+    address.phone = phoneTextField.text;
+    address.address1 =  address1TextField.text;
+    address.address2 = address2TextField.text;
+    address.city = addressCityTextField.text;
+    address.zip = addressPostalCode.text;
+    
+    appDelegate.captureUser.primaryAddress = address;
 
     if (myGenderIdentitySegControl.selectedSegmentIndex == 0)
         appDelegate.captureUser.gender = @"female";
