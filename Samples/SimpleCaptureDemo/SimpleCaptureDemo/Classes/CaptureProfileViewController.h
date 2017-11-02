@@ -41,14 +41,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *myDisplayNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myFirstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *myLastNameTextField;
-@property(nonatomic) IBOutlet UIButton *myBirthdayButton;
-@property(nonatomic) IBOutlet UIDatePicker *myBirthdayPicker;
 @property(nonatomic) IBOutlet UIToolbar *myPickerToolbar;
 @property(nonatomic) IBOutlet UIView *myPickerView;
 @property(nonatomic) IBOutlet UIScrollView *myScrollView;
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *myDoneButton;
-
-- (IBAction)birthdayButtonClicked:(id)sender;
 
 - (IBAction)doneButtonPressed:(id)sender;
 
