@@ -51,7 +51,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *address1TextField;
 @property (weak, nonatomic) IBOutlet UITextField *address2TextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressCityTextField;
-@property (weak, nonatomic) IBOutlet UITextField *addressPostalCode;
+@property (weak, nonatomic) IBOutlet UITextField *addressPostalCodeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressCountryTextField;
 
 
 @end
@@ -59,6 +60,7 @@
 @implementation CaptureProfileViewController
 {
     JRPickerView *genderPicker;
+    JRPickerView *countryPicker;
 }
 
 @synthesize myEmailTextField;
@@ -72,15 +74,16 @@
 @synthesize address1TextField;
 @synthesize address2TextField;
 @synthesize addressCityTextField;
-@synthesize addressPostalCode;
+@synthesize addressPostalCodeTextField;
 @synthesize myBirthdayButton;
 @synthesize myScrollView;
 @synthesize myBirthdate;
+@synthesize addressCountryTextField;
 
 - (void)loadView {
     [super loadView];
 
-    myScrollView.contentSize = CGSizeMake(320, 500);
+    myScrollView.contentSize = CGSizeMake(320, 700);
 }
 
 - (void)viewDidLoad
@@ -101,12 +104,18 @@
     address1TextField.delegate = self;
     address2TextField.delegate = self;
     addressCityTextField.delegate = self;
-    addressPostalCode.delegate = self;
+    addressPostalCodeTextField.delegate = self;
     
     genderPicker = [[JRPickerView alloc] initWithField:@"gender"];
     genderPicker.jrPickerViewDelegate = self;
     genderTextField.inputAccessoryView = [self setupInputAccessoryView];
     genderTextField.inputView = genderPicker;
+    
+    countryPicker = [[JRPickerView alloc] initWithField:@"addressCountry"];
+    countryPicker.jrPickerViewDelegate = self;
+    addressCountryTextField.inputAccessoryView = [self setupInputAccessoryView];
+    addressCountryTextField.inputView = countryPicker;
+    
 
     myEmailTextField.text  = appDelegate.captureUser.email;
     myDisplayNameTextField.text = appDelegate.captureUser.displayName;
@@ -119,7 +128,8 @@
     address1TextField.text = appDelegate.captureUser.primaryAddress.address1;
     address1TextField.text = appDelegate.captureUser.primaryAddress.address2;
     addressCityTextField.text = appDelegate.captureUser.primaryAddress.city;
-    addressPostalCode.text = appDelegate.captureUser.primaryAddress.zip;
+    addressPostalCodeTextField.text = appDelegate.captureUser.primaryAddress.zip;
+    addressCountryTextField.text = [countryPicker textForValue:appDelegate.captureUser.primaryAddress.country];
 
     if (appDelegate.captureUser.birthday)
     {
@@ -205,7 +215,8 @@
     address.address1 =  address1TextField.text;
     address.address2 = address2TextField.text;
     address.city = addressCityTextField.text;
-    address.zip = addressPostalCode.text;
+    address.zip = addressPostalCodeTextField.text;
+    address.country = countryPicker.selectedValue;
     
     appDelegate.captureUser.primaryAddress = address;
 
@@ -242,7 +253,6 @@
     return YES;
 }
 
-#pragma mark - JRCaptureObjectDelegate
 - (void)updateDidSucceedForObject:(JRCaptureObject *)object context:(NSObject *)context
 {
     [Utils handleSuccessWithTitle:@"Profile updated" message:nil forVc:self];
@@ -290,6 +300,13 @@
 #pragma mark - JRPickerViewDelegate
 -(void)jrPickerView:(JRPickerView *)jrPickerView didSelectElement:(NSString *)element
 {
-    genderTextField.text = element;
+    UITextField *textField;
+    if ([jrPickerView isEqual:genderPicker]) {
+        textField = genderTextField;
+    } else if([jrPickerView isEqual:countryPicker]){
+        textField = addressCountryTextField;
+    }
+    
+    textField.text = element;
 }
 @end
