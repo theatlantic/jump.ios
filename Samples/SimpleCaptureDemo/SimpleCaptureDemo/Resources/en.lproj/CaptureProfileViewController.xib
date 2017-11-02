@@ -15,6 +15,7 @@
                 <outlet property="addressCityTextField" destination="qUx-dz-l1x" id="1L8-4w-Dmq"/>
                 <outlet property="addressCountryTextField" destination="7UE-oI-cfh" id="Evf-pa-Iwh"/>
                 <outlet property="addressPostalCodeTextField" destination="M6B-hq-YDd" id="OCv-4q-ONY"/>
+                <outlet property="addressStateTextField" destination="j6b-RA-NIz" id="kjz-Zy-eyP"/>
                 <outlet property="genderTextField" destination="YU1-uL-eub" id="mam-Bh-XK3"/>
                 <outlet property="middleNameTextField" destination="Rlz-4L-g6i" id="o9A-Ia-6nv"/>
                 <outlet property="mobileTextField" destination="ex9-M3-T9Y" id="kqc-zZ-QDF"/>
@@ -111,14 +112,14 @@
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                         </textField>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Birthday:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="22">
-                            <rect key="frame" x="6" y="567" width="112" height="21"/>
+                            <rect key="frame" x="4" y="595" width="112" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="40">
-                            <rect key="frame" x="126" y="556" width="174" height="44"/>
+                            <rect key="frame" x="124" y="584" width="174" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
@@ -241,14 +242,28 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country" textAlignment="right" minimumFontSize="17" id="7UE-oI-cfh">
-                            <rect key="frame" x="126" y="508" width="174" height="30"/>
+                            <rect key="frame" x="124" y="546" width="174" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Country:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zo6-2y-Yf9">
-                            <rect key="frame" x="48" y="511" width="70" height="21"/>
+                            <rect key="frame" x="46" y="549" width="70" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="right" minimumFontSize="17" id="j6b-RA-NIz">
+                            <rect key="frame" x="125" y="508" width="174" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="State:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tN3-n3-nU0">
+                            <rect key="frame" x="73" y="511" width="45" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>

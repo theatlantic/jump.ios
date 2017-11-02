@@ -52,6 +52,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *address2TextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressCityTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressPostalCodeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressStateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressCountryTextField;
 
 
@@ -60,6 +61,7 @@
 @implementation CaptureProfileViewController
 {
     JRPickerView *genderPicker;
+    JRPickerView *statePicker;
     JRPickerView *countryPicker;
 }
 
@@ -78,12 +80,13 @@
 @synthesize myBirthdayButton;
 @synthesize myScrollView;
 @synthesize myBirthdate;
+@synthesize addressStateTextField;
 @synthesize addressCountryTextField;
 
 - (void)loadView {
     [super loadView];
 
-    myScrollView.contentSize = CGSizeMake(320, 700);
+    myScrollView.contentSize = CGSizeMake(320, 900);
 }
 
 - (void)viewDidLoad
@@ -111,6 +114,11 @@
     genderTextField.inputAccessoryView = [self setupInputAccessoryView];
     genderTextField.inputView = genderPicker;
     
+    statePicker = [[JRPickerView alloc] initWithField:@"addressState"];
+    statePicker.jrPickerViewDelegate = self;
+    addressStateTextField.inputAccessoryView = [self setupInputAccessoryView];
+    addressStateTextField.inputView = statePicker;
+    
     countryPicker = [[JRPickerView alloc] initWithField:@"addressCountry"];
     countryPicker.jrPickerViewDelegate = self;
     addressCountryTextField.inputAccessoryView = [self setupInputAccessoryView];
@@ -129,6 +137,7 @@
     address1TextField.text = appDelegate.captureUser.primaryAddress.address2;
     addressCityTextField.text = appDelegate.captureUser.primaryAddress.city;
     addressPostalCodeTextField.text = appDelegate.captureUser.primaryAddress.zip;
+    addressStateTextField.text = [statePicker textForValue:appDelegate.captureUser.primaryAddress.stateAbbreviation];
     addressCountryTextField.text = [countryPicker textForValue:appDelegate.captureUser.primaryAddress.country];
 
     if (appDelegate.captureUser.birthday)
@@ -216,6 +225,7 @@
     address.address2 = address2TextField.text;
     address.city = addressCityTextField.text;
     address.zip = addressPostalCodeTextField.text;
+    address.stateAbbreviation = statePicker.selectedValue;
     address.country = countryPicker.selectedValue;
     
     appDelegate.captureUser.primaryAddress = address;
@@ -303,8 +313,17 @@
     UITextField *textField;
     if ([jrPickerView isEqual:genderPicker]) {
         textField = genderTextField;
+    } else if ([jrPickerView isEqual:statePicker ]) {
+        textField = addressStateTextField;
     } else if([jrPickerView isEqual:countryPicker]){
         textField = addressCountryTextField;
+        if (![jrPickerView.selectedValue isEqualToString:@"US"]) {
+            addressStateTextField.text = @"";
+            addressStateTextField.enabled = NO;
+            statePicker.selectedValue = addressStateTextField.text = @"";;
+        } else {
+            addressStateTextField.enabled = YES;
+        }
     }
     
     textField.text = element;
