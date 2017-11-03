@@ -42,7 +42,7 @@
 #import "JRPickerView.h"
 #import "JRStandardFlowKeys.h"
 
-@interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate, JRPickerViewDelegate>
+@interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureObjectDelegate, JRCaptureDelegate, JRPickerViewDelegate>
 
 @property(nonatomic) IBOutlet UIScrollView *scrollView;
 @property(nonatomic) IBOutlet UITextField *emailTextField;
@@ -73,6 +73,8 @@
     JRPickerView *genderPicker;
     JRPickerView *statePicker;
     JRPickerView *countryPicker;
+    
+    UIView *activeField;
 }
 
 @synthesize emailTextField;
@@ -94,15 +96,11 @@
 @synthesize optInRegistrationSwitch;
 @synthesize optInRegistrationLabel;
 
-- (void)loadView {
-    [super loadView];
-
-    scrollView.contentSize = CGSizeMake(320, 900);
-}
-
+#pragma mark - LifeCycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    scrollView.contentSize = CGSizeMake(320, optInRegistrationLabel.frame.origin.y + (optInRegistrationLabel.frame.size.height) + 40);
 
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
@@ -137,7 +135,6 @@
     addressCountryTextField.inputAccessoryView = [self setupInputAccessoryView];
     addressCountryTextField.inputView = countryPicker;
     
-
     emailTextField.text  = appDelegate.captureUser.email;
     displayNameTextField.text = appDelegate.captureUser.displayName;
     firstNameTextField.text = appDelegate.captureUser.givenName;
@@ -162,8 +159,6 @@
     addressCountryTextField.text = [countryPicker textForValue:appDelegate.captureUser.primaryAddress.country];
     optInRegistrationLabel.text = [self textForOptInLabel];
 
-        [self pickerChanged];
-
     if (appDelegate.isNotYetCreated || !appDelegate.captureUser)
     {
         self.doneButton.title = @"Register";
@@ -172,20 +167,25 @@
     {
         self.doneButton.title = @"Update";
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)scrollUpBy:(NSInteger)scrollOffset
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [scrollView setContentOffset:CGPointMake(0, scrollOffset)];
-    [scrollView setContentSize:CGSizeMake(320, self.view.frame.size.height + scrollOffset)];
+    [super viewWillDisappear:animated];
+    if (appDelegate.isNotYetCreated == YES)
+    {
+        appDelegate.isNotYetCreated = NO;
+        appDelegate.captureUser = nil;
+        appDelegate.registrationToken = nil;
+    }
 }
 
-- (void)scrollBack
-{
-    [scrollView setContentOffset:CGPointZero];
-    [scrollView setContentSize:CGSizeMake(320, self.view.frame.size.height)];
-}
-
+#pragma mark - Helper methods
 -(UIView *)setupInputAccessoryView {
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar sizeToFit];
@@ -228,6 +228,7 @@
     return [dateFormatter stringFromDate:date];
 }
 
+#pragma mark - Actions
 - (IBAction)doneButtonPressed:(id)sender
 {
     appDelegate.captureUser.email    = emailTextField.text;
@@ -274,23 +275,53 @@
     [self.view endEditing:YES];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+#pragma mark - Notifications
+- (void)keyboardDidShow:(NSNotification*)aNotification
 {
-    [super viewWillDisappear:animated];
-    if (appDelegate.isNotYetCreated == YES)
-    {
-        appDelegate.isNotYetCreated = NO;
-        appDelegate.captureUser = nil;
-        appDelegate.registrationToken = nil;
+    NSDictionary* info = [aNotification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    CGRect frame = self.view.frame;
+    frame.size.height -= keyboardSize.height;
+    CGPoint origin = activeField.frame.origin;
+    CGPoint bottom = CGPointMake(origin.x, origin.y + activeField.frame.size.height);
+    if (!CGRectContainsPoint(frame, origin) || !CGRectContainsPoint(frame, bottom )) {
+        [scrollView scrollRectToVisible:activeField.frame animated:YES];
     }
 }
 
+- (void)keyboardWillHide:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+}
+
 #pragma mark - UITextFieldDelegate
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activeField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == activeField) activeField = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == activeField) {
+        activeField = nil;
+        [textField resignFirstResponder];
+    }
     return YES;
 }
 
+#pragma mark - JRCaptureObjectDelegate
 - (void)updateDidSucceedForObject:(JRCaptureObject *)object context:(NSObject *)context
 {
     [Utils handleSuccessWithTitle:@"Profile updated" message:nil forVc:self];
@@ -303,6 +334,7 @@
     self.doneButton.enabled = YES;
 }
 
+#pragma mark - JRCaptureDelegate
 - (void)registerUserDidSucceed:(JRCaptureUser *)registeredUser
 {
     appDelegate.isNotYetCreated = NO;
