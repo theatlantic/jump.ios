@@ -36,16 +36,4 @@
 
 @interface CaptureProfileViewController : PickerViewController
 
-@property(nonatomic) IBOutlet UILabel *myFormTitle;
-@property(nonatomic) IBOutlet UITextField *myEmailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *myDisplayNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *myFirstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *myLastNameTextField;
-@property(nonatomic) IBOutlet UIToolbar *myPickerToolbar;
-@property(nonatomic) IBOutlet UIView *myPickerView;
-@property(nonatomic) IBOutlet UIScrollView *myScrollView;
-@property(weak, nonatomic) IBOutlet UIBarButtonItem *myDoneButton;
-
-- (IBAction)doneButtonPressed:(id)sender;
-
 @end

@@ -17,19 +17,18 @@
                 <outlet property="addressPostalCodeTextField" destination="M6B-hq-YDd" id="OCv-4q-ONY"/>
                 <outlet property="addressStateTextField" destination="j6b-RA-NIz" id="kjz-Zy-eyP"/>
                 <outlet property="birthdayTextField" destination="MqJ-fP-FXT" id="OA6-9y-Neq"/>
+                <outlet property="displayNameTextField" destination="BaC-pb-mLc" id="e3K-Mp-0IF"/>
+                <outlet property="doneButton" destination="6" id="zne-XO-v6T"/>
+                <outlet property="emailTextField" destination="66" id="eVJ-uK-Fa0"/>
+                <outlet property="firstNameTextField" destination="0Vw-mA-1HD" id="jHy-gO-39I"/>
                 <outlet property="genderTextField" destination="YU1-uL-eub" id="mam-Bh-XK3"/>
+                <outlet property="lastNameTextField" destination="iPz-Dv-oW8" id="0GJ-qA-Xds"/>
                 <outlet property="middleNameTextField" destination="Rlz-4L-g6i" id="o9A-Ia-6nv"/>
                 <outlet property="mobileTextField" destination="ex9-M3-T9Y" id="kqc-zZ-QDF"/>
-                <outlet property="myDisplayNameTextField" destination="BaC-pb-mLc" id="Xbh-cy-wsu"/>
-                <outlet property="myDoneButton" destination="6" id="71"/>
-                <outlet property="myEmailTextField" destination="66" id="67"/>
-                <outlet property="myFirstNameTextField" destination="0Vw-mA-1HD" id="YBN-Mo-b6s"/>
-                <outlet property="myFormTitle" destination="16" id="72"/>
-                <outlet property="myLastNameTextField" destination="iPz-Dv-oW8" id="ZKH-sP-qcG"/>
-                <outlet property="myScrollView" destination="1" id="61"/>
                 <outlet property="optInRegistrationLabel" destination="XRH-oq-ueJ" id="so2-6h-qDv"/>
                 <outlet property="optInRegistrationSwitch" destination="6T8-ws-lBi" id="0LV-qP-E0D"/>
                 <outlet property="phoneTextField" destination="pQ5-Ha-K5y" id="Kjy-Ar-Ic1"/>
+                <outlet property="scrollView" destination="1" id="9yL-ee-st2"/>
                 <outlet property="view" destination="56" id="57"/>
             </connections>
         </placeholder>
