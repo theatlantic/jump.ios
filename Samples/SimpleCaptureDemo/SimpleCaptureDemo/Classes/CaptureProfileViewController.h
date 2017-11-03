@@ -34,6 +34,6 @@
 #import <UIKit/UIKit.h>
 #import "PickerViewController.h"
 
-@interface CaptureProfileViewController : PickerViewController
+@interface CaptureProfileViewController : UIViewController
 
 @end
