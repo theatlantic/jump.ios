@@ -140,9 +140,10 @@
     middleNameTextField.text = appDelegate.captureUser.middleName;
     myLastNameTextField.text = appDelegate.captureUser.familyName;
     
-    birthdayTextField.text = [self stringfromDate:appDelegate.captureUser.birthday];
+    birthdayTextField.text = [self stringfromDate:[NSDate date]];
     [birthdayPicker setDate:[NSDate date] animated:YES];
     if (appDelegate.captureUser.birthday) {
+        birthdayTextField.text = [self stringfromDate:appDelegate.captureUser.birthday];
         [birthdayPicker setDate:appDelegate.captureUser.birthday animated:YES];
     }
     
