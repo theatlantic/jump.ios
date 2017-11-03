@@ -345,6 +345,7 @@
 		DFFAB79C1FACCF68005BA6D1 /* JRProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7831FACCF68005BA6D1 /* JRProperties.m */; };
 		DFFAB79D1FACCF68005BA6D1 /* JRStatusesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7851FACCF68005BA6D1 /* JRStatusesElement.m */; };
 		DFFAB79E1FACCF68005BA6D1 /* JRUrlsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7871FACCF68005BA6D1 /* JRUrlsElement.m */; };
+		DFFAB7A11FAD2B77005BA6D1 /* CaptureDynamicForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFAB79F1FAD2B77005BA6D1 /* CaptureDynamicForm.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -773,6 +774,7 @@
 		DFFAB7851FACCF68005BA6D1 /* JRStatusesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRStatusesElement.m; path = Generated/JRStatusesElement.m; sourceTree = "<group>"; };
 		DFFAB7861FACCF68005BA6D1 /* JRUrlsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRUrlsElement.h; path = Generated/JRUrlsElement.h; sourceTree = "<group>"; };
 		DFFAB7871FACCF68005BA6D1 /* JRUrlsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRUrlsElement.m; path = Generated/JRUrlsElement.m; sourceTree = "<group>"; };
+		DFFAB7A01FAD2B77005BA6D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CaptureDynamicForm.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -965,6 +967,7 @@
 				48AEB41F1EAB060E00FD4BFB /* CaptureProfileViewController.xib */,
 				9F7B6A9F1533648C002BF452 /* InfoPlist.strings */,
 				9F7B6AA11533648C002BF452 /* MainStoryboard.storyboard */,
+				DFFAB79F1FAD2B77005BA6D1 /* CaptureDynamicForm.xib */,
 			);
 			name = en.lproj;
 			path = Resources/en.lproj;
@@ -1811,6 +1814,7 @@
 				DFEFE54417A9915300760FEE /* logo_orkut_280x65@2x.png in Resources */,
 				DFEFE54517A9915300760FEE /* logo_paypal_280x65@2x.png in Resources */,
 				DFEFE54617A9915300760FEE /* logo_salesforce_280x65@2x.png in Resources */,
+				DFFAB7A11FAD2B77005BA6D1 /* CaptureDynamicForm.xib in Resources */,
 				DFEFE54717A9915300760FEE /* logo_soundcloud_280x65@2x.png in Resources */,
 				DFEFE54817A9915300760FEE /* logo_tumblr_280x65@2x.png in Resources */,
 				DFEFE54917A9915300760FEE /* logo_twitter_280x65@2x.png in Resources */,
@@ -2011,6 +2015,14 @@
 				9F7B6AA21533648C002BF452 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		DFFAB79F1FAD2B77005BA6D1 /* CaptureDynamicForm.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFFAB7A01FAD2B77005BA6D1 /* en */,
+			);
+			name = CaptureDynamicForm.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
