@@ -248,7 +248,9 @@
     
     JROptIn *optIn = [JROptIn optIn];
     [optIn setStatusWithBool:optInRegistrationSwitch.isOn];
-    appDelegate.captureUser.optIn = optIn;
+    if ([optIn getStatusBoolValue]) {
+        appDelegate.captureUser.optIn = optIn;
+    }
 
     if (appDelegate.isNotYetCreated)
     {
