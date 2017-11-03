@@ -183,6 +183,9 @@
         appDelegate.captureUser = nil;
         appDelegate.registrationToken = nil;
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:UIKeyboardDidShowNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:UIKeyboardWillHideNotification];
 }
 
 #pragma mark - Helper methods
