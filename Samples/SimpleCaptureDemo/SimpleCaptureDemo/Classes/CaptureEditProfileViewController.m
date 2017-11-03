@@ -125,8 +125,12 @@
     lastNameField.text = user.familyName;
     displayNameField.text = user.displayName;
     emailField.text = user.email;
-    birthdayField.text = [self stringfromDate:user.birthday];
-    [birthdayPicker setDate:user.birthday animated:YES];
+    birthdayField.text = [self stringfromDate:[NSDate date]];
+    [birthdayPicker setDate:[NSDate date] animated:YES];
+    if (user.birthday) {
+        birthdayField.text = [self stringfromDate:user.birthday];
+        [birthdayPicker setDate:user.birthday animated:YES];
+    }
     genderField.text = [genderPicker textForValue:user.gender];
     phoneField.text = user.primaryAddress.phone;
     addressStreetLine1Field.text = user.primaryAddress.address1;
