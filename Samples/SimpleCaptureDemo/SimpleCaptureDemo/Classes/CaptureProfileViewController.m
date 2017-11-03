@@ -40,6 +40,7 @@
 #import "Utils.h"
 #import "JRCaptureError.h"
 #import "JRPickerView.h"
+#import "JRStandardFlowKeys.h"
 
 @interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate, JRPickerViewDelegate>
 
@@ -55,6 +56,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressPostalCodeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressStateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressCountryTextField;
+@property (weak, nonatomic) IBOutlet UISwitch *optInRegistrationSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *optInRegistrationLabel;
 
 
 @end
@@ -84,6 +87,8 @@
 @synthesize myBirthdate;
 @synthesize addressStateTextField;
 @synthesize addressCountryTextField;
+@synthesize optInRegistrationSwitch;
+@synthesize optInRegistrationLabel;
 
 - (void)loadView {
     [super loadView];
@@ -141,7 +146,6 @@
         [birthdayPicker setDate:appDelegate.captureUser.birthday animated:YES];
     }
     
-    
     genderTextField.text = [genderPicker textForValue:appDelegate.captureUser.gender];
     mobileTextField.text = appDelegate.captureUser.primaryAddress.mobile;
     phoneTextField.text = appDelegate.captureUser.primaryAddress.phone;
@@ -151,6 +155,7 @@
     addressPostalCodeTextField.text = appDelegate.captureUser.primaryAddress.zip;
     addressStateTextField.text = [statePicker textForValue:appDelegate.captureUser.primaryAddress.stateAbbreviation];
     addressCountryTextField.text = [countryPicker textForValue:appDelegate.captureUser.primaryAddress.country];
+    optInRegistrationLabel.text = [self textForOptInLabel];
 
         [self pickerChanged];
 
@@ -184,6 +189,20 @@
     toolbar.items = @[flexibleSpace, doneButton];
     
     return toolbar;
+}
+
+-(NSString *)textForOptInLabel {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSData *archivedCaptureUser = [delegate.prefs objectForKey:kJRCaptureFlowKey];
+    if (archivedCaptureUser) {
+        NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
+        NSDictionary *fields = captureFlow[kFieldsKey];
+        NSDictionary *optIn = fields[@"optInRegistration"];
+        
+        return optIn[kLabelKey];
+    }
+//    optInSwitch.hidden = YES;
+    return @"";
 }
 
 -(void)setupBirthdayFieldInputView
@@ -225,6 +244,10 @@
     address.country = countryPicker.selectedValue;
     
     appDelegate.captureUser.primaryAddress = address;
+    
+    JROptIn *optIn = [JROptIn optIn];
+    [optIn setStatusWithBool:optInRegistrationSwitch.isOn];
+    appDelegate.captureUser.optIn = optIn;
 
     if (appDelegate.isNotYetCreated)
     {

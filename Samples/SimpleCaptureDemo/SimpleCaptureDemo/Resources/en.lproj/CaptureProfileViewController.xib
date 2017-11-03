@@ -27,6 +27,8 @@
                 <outlet property="myFormTitle" destination="16" id="72"/>
                 <outlet property="myLastNameTextField" destination="iPz-Dv-oW8" id="ZKH-sP-qcG"/>
                 <outlet property="myScrollView" destination="1" id="61"/>
+                <outlet property="optInRegistrationLabel" destination="XRH-oq-ueJ" id="so2-6h-qDv"/>
+                <outlet property="optInRegistrationSwitch" destination="6T8-ws-lBi" id="0LV-qP-E0D"/>
                 <outlet property="phoneTextField" destination="pQ5-Ha-K5y" id="Kjy-Ar-Ic1"/>
                 <outlet property="view" destination="56" id="57"/>
             </connections>
@@ -40,8 +42,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <view autoresizesSubviews="NO" contentMode="scaleToFill" id="1" customClass="UIScrollView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                <view autoresizesSubviews="NO" contentMode="scaleToFill" misplaced="YES" id="1" customClass="UIScrollView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DEMO Capture Form" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="16">
@@ -111,6 +113,13 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                         </textField>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Birthday:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="22">
+                            <rect key="frame" x="4" y="291" width="112" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Middle Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Whu-3l-GhO">
                             <rect key="frame" x="12" y="175" width="106" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -253,17 +262,21 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Birthday:" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="22">
-                            <rect key="frame" x="4" y="291" width="112" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XRH-oq-ueJ">
+                            <rect key="frame" x="124" y="623" width="174" height="36"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="6T8-ws-lBi">
+                            <rect key="frame" x="67" y="623" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </switch>
                     </subviews>
                 </view>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="5">
-                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="5">
+                    <rect key="frame" x="0.0" y="624" width="375" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7"/>
