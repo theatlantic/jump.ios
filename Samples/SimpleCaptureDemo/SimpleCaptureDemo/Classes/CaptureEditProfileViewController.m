@@ -140,7 +140,7 @@
     addressStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
     addressCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
     addressPostalCodeField.text = user.primaryAddress.zip;
-    [optInSwitch setOn:user.optIn.status animated:YES];
+    [optInSwitch setOn:[user.optIn getStatusBoolValue] animated:YES];
     optInLabel.text = [self textForOptInLabel];
 }
 
