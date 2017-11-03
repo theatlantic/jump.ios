@@ -37,7 +37,7 @@
 #import "JRPickerView.h"
 #import "JRStandardFlowKeys.h"
 
-@interface CaptureEditProfileViewController () <UITextFieldDelegate, UITextViewDelegate, JRCaptureDelegate, JRPickerViewDelegate>
+@interface CaptureEditProfileViewController () <UITextFieldDelegate, JRCaptureDelegate, JRPickerViewDelegate>
 @end
 
 @implementation CaptureEditProfileViewController {
@@ -296,28 +296,6 @@
         activeField = nil;
         [textField resignFirstResponder];
     }
-    return YES;
-}
-
-#pragma mark - UITextViewDelegate
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    activeField = textView;
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if (textView == activeField) activeField = nil;
-}
-
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if([text isEqualToString:@"\n"] && textView == activeField) {
-        activeField = nil;
-        [textView resignFirstResponder];
-    }
-    
     return YES;
 }
 
