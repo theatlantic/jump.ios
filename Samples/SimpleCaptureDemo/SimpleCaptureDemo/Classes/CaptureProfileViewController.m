@@ -44,10 +44,14 @@
 
 @interface CaptureProfileViewController () <UITextFieldDelegate, JRCaptureDelegate, JRPickerViewDelegate>
 
-@property(nonatomic) NSDate *myBirthdate;
+@property(nonatomic) IBOutlet UIScrollView *scrollView;
+@property(nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *displayNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property(weak, nonatomic) IBOutlet UITextField *middleNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *genderTextField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *address1TextField;
@@ -58,6 +62,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressCountryTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *optInRegistrationSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *optInRegistrationLabel;
+@property(weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 
 @end
@@ -70,11 +75,11 @@
     JRPickerView *countryPicker;
 }
 
-@synthesize myEmailTextField;
-@synthesize myDisplayNameTextField;
-@synthesize myFirstNameTextField;
+@synthesize emailTextField;
+@synthesize displayNameTextField;
+@synthesize firstNameTextField;
 @synthesize middleNameTextField;
-@synthesize myLastNameTextField;
+@synthesize lastNameTextField;
 @synthesize birthdayTextField;
 @synthesize genderTextField;
 @synthesize mobileTextField;
@@ -83,8 +88,7 @@
 @synthesize address2TextField;
 @synthesize addressCityTextField;
 @synthesize addressPostalCodeTextField;
-@synthesize myScrollView;
-@synthesize myBirthdate;
+@synthesize scrollView;
 @synthesize addressStateTextField;
 @synthesize addressCountryTextField;
 @synthesize optInRegistrationSwitch;
@@ -93,7 +97,7 @@
 - (void)loadView {
     [super loadView];
 
-    myScrollView.contentSize = CGSizeMake(320, 900);
+    scrollView.contentSize = CGSizeMake(320, 900);
 }
 
 - (void)viewDidLoad
@@ -104,11 +108,11 @@
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
 
-    myEmailTextField.delegate = self;
-    myDisplayNameTextField.delegate = self;
-    myFirstNameTextField.delegate = self;
+    emailTextField.delegate = self;
+    displayNameTextField.delegate = self;
+    firstNameTextField.delegate = self;
     middleNameTextField.delegate = self;
-    myLastNameTextField.delegate = self;
+    lastNameTextField.delegate = self;
     mobileTextField.delegate = self;
     phoneTextField.delegate = self;
     address1TextField.delegate = self;
@@ -134,11 +138,11 @@
     addressCountryTextField.inputView = countryPicker;
     
 
-    myEmailTextField.text  = appDelegate.captureUser.email;
-    myDisplayNameTextField.text = appDelegate.captureUser.displayName;
-    myFirstNameTextField.text = appDelegate.captureUser.givenName;
+    emailTextField.text  = appDelegate.captureUser.email;
+    displayNameTextField.text = appDelegate.captureUser.displayName;
+    firstNameTextField.text = appDelegate.captureUser.givenName;
     middleNameTextField.text = appDelegate.captureUser.middleName;
-    myLastNameTextField.text = appDelegate.captureUser.familyName;
+    lastNameTextField.text = appDelegate.captureUser.familyName;
     
     birthdayTextField.text = [self stringfromDate:[NSDate date]];
     [birthdayPicker setDate:[NSDate date] animated:YES];
@@ -162,24 +166,24 @@
 
     if (appDelegate.isNotYetCreated || !appDelegate.captureUser)
     {
-        self.myDoneButton.title = @"Register";
+        self.doneButton.title = @"Register";
     }
     else
     {
-        self.myDoneButton.title = @"Update";
+        self.doneButton.title = @"Update";
     }
 }
 
 - (void)scrollUpBy:(NSInteger)scrollOffset
 {
-    [myScrollView setContentOffset:CGPointMake(0, scrollOffset)];
-    [myScrollView setContentSize:CGSizeMake(320, self.view.frame.size.height + scrollOffset)];
+    [scrollView setContentOffset:CGPointMake(0, scrollOffset)];
+    [scrollView setContentSize:CGSizeMake(320, self.view.frame.size.height + scrollOffset)];
 }
 
 - (void)scrollBack
 {
-    [myScrollView setContentOffset:CGPointZero];
-    [myScrollView setContentSize:CGSizeMake(320, self.view.frame.size.height)];
+    [scrollView setContentOffset:CGPointZero];
+    [scrollView setContentSize:CGSizeMake(320, self.view.frame.size.height)];
 }
 
 -(UIView *)setupInputAccessoryView {
@@ -226,12 +230,11 @@
 
 - (IBAction)doneButtonPressed:(id)sender
 {
-    appDelegate.captureUser.birthday = myBirthdate;
-    appDelegate.captureUser.email    = myEmailTextField.text;
-    appDelegate.captureUser.displayName = myDisplayNameTextField.text;
-    appDelegate.captureUser.givenName = myFirstNameTextField.text;
+    appDelegate.captureUser.email    = emailTextField.text;
+    appDelegate.captureUser.displayName = displayNameTextField.text;
+    appDelegate.captureUser.givenName = firstNameTextField.text;
     appDelegate.captureUser.middleName = middleNameTextField.text;
-    appDelegate.captureUser.familyName = myLastNameTextField.text;
+    appDelegate.captureUser.familyName = lastNameTextField.text;
     appDelegate.captureUser.birthday = birthdayPicker.date;
     appDelegate.captureUser.gender = genderPicker.selectedValue;
     JRPrimaryAddress *address = [[JRPrimaryAddress alloc] init];
@@ -258,7 +261,7 @@
                        forDelegate:self];
     }
 
-    self.myDoneButton.enabled = NO;
+    self.doneButton.enabled = NO;
 }
 
 -(void)birthdayPickerChanged:(UIDatePicker *)sender
@@ -291,13 +294,13 @@
 - (void)updateDidSucceedForObject:(JRCaptureObject *)object context:(NSObject *)context
 {
     [Utils handleSuccessWithTitle:@"Profile updated" message:nil forVc:self];
-    self.myDoneButton.enabled = YES;
+    self.doneButton.enabled = YES;
 }
 
 - (void)updateDidFailForObject:(JRCaptureObject *)object withError:(NSError *)error context:(NSObject *)context
 {
     [Utils handleFailureWithTitle:@"Profile not updated" message:nil forVC:self];
-    self.myDoneButton.enabled = YES;
+    self.doneButton.enabled = YES;
 }
 
 - (void)registerUserDidSucceed:(JRCaptureUser *)registeredUser
@@ -323,7 +326,7 @@
         [Utils handleFailureWithTitle:@"Registration Failed" message:[error localizedDescription] forVC:self];
     }
     
-    self.myDoneButton.enabled = YES;
+    self.doneButton.enabled = YES;
 }
 
 #pragma mark - JRPickerViewDelegate
