@@ -13,6 +13,28 @@ static NSMutableDictionary *identifierMap = nil;
 @property(nonatomic) UIScrollView *scrollView;
 @property(nonatomic) UILabel *disclaimer;
 @property(nonatomic) UIView *formView;
+
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+@property(weak, nonatomic) IBOutlet UITextField *middleNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+@property(nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *displayNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdateTextField;
+@property (weak, nonatomic) IBOutlet UITextField *address1TextField;
+@property (weak, nonatomic) IBOutlet UITextField *address2TextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressCityTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressPostalCodeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressStateTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressCountryTextField;
+@property (weak, nonatomic) IBOutlet UISwitch *optInRegistrationSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *optInRegistrationLabel;
+
+
 @end
 
 /**

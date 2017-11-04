@@ -8,7 +8,29 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CaptureDynamicForm">
+            <connections>
+                <outlet property="address1TextField" destination="w07-nG-5Dy" id="clL-zV-spb"/>
+                <outlet property="address2TextField" destination="KYj-c8-WbL" id="4Z4-2T-e03"/>
+                <outlet property="addressCityTextField" destination="Uq5-cw-YG1" id="Yvr-7E-D8R"/>
+                <outlet property="addressCountryTextField" destination="GZf-RP-QCI" id="TQm-jn-jDQ"/>
+                <outlet property="addressPostalCodeTextField" destination="uF1-N6-We0" id="tuf-rK-jqV"/>
+                <outlet property="addressStateTextField" destination="TwU-AO-WgU" id="9KN-a6-uxD"/>
+                <outlet property="birthdateTextField" destination="1Zm-fo-YHQ" id="ddw-Kw-prw"/>
+                <outlet property="confirmPasswordTextField" destination="BQ1-eB-Bzc" id="cE5-2b-4Ua"/>
+                <outlet property="displayNameTextField" destination="M2G-z0-M3k" id="fik-E9-W3u"/>
+                <outlet property="emailTextField" destination="Xdj-Ef-IR5" id="MtZ-Bw-XmT"/>
+                <outlet property="firstNameTextField" destination="q0L-AQ-lWl" id="049-UO-6Dx"/>
+                <outlet property="genderTextField" destination="p1l-S4-fcg" id="ado-fB-0oz"/>
+                <outlet property="lastNameTextField" destination="Rhp-AM-Nm3" id="lT7-0d-69A"/>
+                <outlet property="middleNameTextField" destination="6Ri-XP-gmc" id="nAa-Sm-q7l"/>
+                <outlet property="mobileTextField" destination="ZJx-rk-pbV" id="rMf-IQ-86y"/>
+                <outlet property="optInRegistrationLabel" destination="hMO-DV-u5Z" id="IpQ-vg-qRm"/>
+                <outlet property="optInRegistrationSwitch" destination="38I-M4-Oqj" id="TPG-XF-ih4"/>
+                <outlet property="passwordTextField" destination="H3M-TB-5Rm" id="KBf-Go-3O2"/>
+                <outlet property="phoneTextField" destination="gSV-DS-mcr" id="e6M-EZ-0Td"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
