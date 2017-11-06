@@ -56,7 +56,7 @@ static NSMutableDictionary *identifierMap = nil;
 {
     [super viewDidLoad];
     
-    self.scrollView.contentSize = CGSizeMake(320, self.optInRegistrationSwitch.frame.origin.y + (self.optInRegistrationSwitch.frame.size.height) + 40);
+    self.scrollView.contentSize = CGSizeMake(320, self.optInRegistrationSwitch.frame.origin.y + (self.optInRegistrationSwitch.frame.size.height) + 48);
     
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
@@ -75,6 +75,7 @@ static NSMutableDictionary *identifierMap = nil;
     self.emailTextField.delegate             = self;
     self.displayNameTextField.delegate       = self;
     self.passwordTextField.delegate          = self;
+    self.confirmPasswordTextField.delegate   = self;
     self.mobileTextField.delegate            = self;
     self.phoneTextField.delegate             = self;
     self.address1TextField.delegate          = self;
@@ -83,6 +84,9 @@ static NSMutableDictionary *identifierMap = nil;
     self.addressPostalCodeTextField.delegate = self;
     
     [self setupBirthdateFieldInputView];
+    
+    [birthdatePicker setDate:[NSDate date] animated:YES];
+    self.birthdateTextField.text = [self stringfromDate:birthdatePicker.date];
     
     genderPicker         = [self jrPickerViewForTextField:self.genderTextField andFlowField:@"gender"];
     addressStatePicker   = [self jrPickerViewForTextField:self.addressStateTextField andFlowField:@"addressState"];
