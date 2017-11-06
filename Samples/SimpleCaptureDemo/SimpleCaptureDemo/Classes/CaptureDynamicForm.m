@@ -5,6 +5,7 @@
 #import "JRCaptureUser+Extras.h"
 #import "debug_log.h"
 #import "JRPickerView.h"
+#import "JRStandardFlowKeys.h"
 
 static NSMutableDictionary *identifierMap = nil;
 
@@ -91,6 +92,8 @@ static NSMutableDictionary *identifierMap = nil;
     genderPicker         = [self jrPickerViewForTextField:self.genderTextField andFlowField:@"gender"];
     addressStatePicker   = [self jrPickerViewForTextField:self.addressStateTextField andFlowField:@"addressState"];
     addressCountryPicker = [self jrPickerViewForTextField:self.addressCountryTextField andFlowField:@"addressCountry"];
+    
+    self.optInRegistrationLabel.text = [self textForOptInLabel];
 }
 
 #pragma mark - Helper methods
@@ -130,6 +133,19 @@ static NSMutableDictionary *identifierMap = nil;
     return jrPickerView;
 }
 
+-(NSString *)textForOptInLabel {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSData *archivedCaptureUser = [delegate.prefs objectForKey:kJRCaptureFlowKey];
+    if (archivedCaptureUser) {
+        NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
+        NSDictionary *fields = captureFlow[kFieldsKey];
+        NSDictionary *optIn = fields[@"optInRegistration"];
+        
+        return optIn[kLabelKey];
+    }
+    return @"";
+}
+
 #pragma mark - Action
 - (IBAction)registerButtonPressed:(id)sender
 {
@@ -149,6 +165,10 @@ static NSMutableDictionary *identifierMap = nil;
     self.captureUser.primaryAddress.zip      = self.addressPostalCodeTextField.text;
     self.captureUser.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
     self.captureUser.primaryAddress.country  = addressCountryPicker.selectedValue;
+    
+    if ([self.optInRegistrationSwitch isOn]) {
+        [self.captureUser.optIn setStatusWithBool:self.optInRegistrationSwitch.isOn];
+    }
     
     [JRCapture registerNewUser:self.captureUser socialRegistrationToken:nil forDelegate:self];
     self.registerButton.enabled = NO;
