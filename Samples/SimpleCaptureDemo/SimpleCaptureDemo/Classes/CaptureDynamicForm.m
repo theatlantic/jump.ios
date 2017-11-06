@@ -8,7 +8,7 @@
 
 static NSMutableDictionary *identifierMap = nil;
 
-@interface CaptureDynamicForm () <UITextFieldDelegate ,JRCaptureDelegate>
+@interface CaptureDynamicForm () <UITextFieldDelegate ,JRCaptureDelegate, JRPickerViewDelegate>
 
 @property(strong, nonatomic) JRCaptureUser *captureUser;
 
@@ -43,7 +43,10 @@ static NSMutableDictionary *identifierMap = nil;
 @implementation CaptureDynamicForm
 {
     UIView *activeField;
+    
     UIDatePicker *birthdatePicker;
+    
+    JRPickerView *genderPicker;
 }
 
 #pragma mark - Lifecycle
@@ -78,6 +81,8 @@ static NSMutableDictionary *identifierMap = nil;
     self.addressPostalCodeTextField.delegate = self;
     
     [self setupBirthdateFieldInputView];
+    
+    genderPicker = [self jrPickerViewForTextField:self.genderTextField andFlowField:@"gender"];
 }
 
 #pragma mark - Helper methods
@@ -109,6 +114,14 @@ static NSMutableDictionary *identifierMap = nil;
     return [dateFormatter stringFromDate:date];
 }
 
+-(JRPickerView *)jrPickerViewForTextField:(UITextField *)textField andFlowField:(NSString *)field {
+    JRPickerView *jrPickerView = [[JRPickerView alloc] initWithField:field];
+    jrPickerView.jrPickerViewDelegate = self;
+    textField.inputAccessoryView = [self setupInputAccessoryView];
+    textField.inputView = jrPickerView;
+    return jrPickerView;
+}
+
 #pragma mark - Action
 - (IBAction)registerButtonPressed:(id)sender
 {
@@ -120,7 +133,7 @@ static NSMutableDictionary *identifierMap = nil;
     self.captureUser.password                = self.passwordTextField.text;
     self.captureUser.primaryAddress.mobile   = self.mobileTextField.text;
     self.captureUser.primaryAddress.phone    = self.phoneTextField.text;
-//    self.captureUser.gender = self.genderTextField.text;
+    self.captureUser.gender                  = genderPicker.selectedValue;
     self.captureUser.birthday                = birthdatePicker.date;
     self.captureUser.primaryAddress.address1 = self.address1TextField.text;
     self.captureUser.primaryAddress.address2 = self.address2TextField.text;
@@ -214,6 +227,17 @@ static NSMutableDictionary *identifierMap = nil;
         [textField resignFirstResponder];
     }
     return YES;
+}
+
+#pragma mark - JRPickerViewDelegate
+-(void)jrPickerView:(JRPickerView *)jrPickerView didSelectElement:(NSString *)element
+{
+    UITextField *textField;
+    if ([jrPickerView isEqual:genderPicker]) {
+        textField = self.genderTextField;
+    }
+    
+    textField.text = element;
 }
 
 @end
