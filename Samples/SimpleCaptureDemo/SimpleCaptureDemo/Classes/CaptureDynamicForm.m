@@ -43,6 +43,7 @@ static NSMutableDictionary *identifierMap = nil;
 @implementation CaptureDynamicForm
 {
     UIView *activeField;
+    UIDatePicker *birthdatePicker;
 }
 
 #pragma mark - Lifecycle
@@ -75,6 +76,37 @@ static NSMutableDictionary *identifierMap = nil;
     self.address2TextField.delegate          = self;
     self.addressCityTextField.delegate       = self;
     self.addressPostalCodeTextField.delegate = self;
+    
+    [self setupBirthdateFieldInputView];
+}
+
+#pragma mark - Helper methods
+-(UIView *)setupInputAccessoryView {
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+    [toolbar sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPicker)];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    toolbar.items = @[flexibleSpace, doneButton];
+    
+    return toolbar;
+}
+
+-(void)setupBirthdateFieldInputView
+{
+    self.birthdateTextField.inputAccessoryView = [self setupInputAccessoryView];
+    
+    birthdatePicker = [[UIDatePicker alloc] init];
+    birthdatePicker.datePickerMode = UIDatePickerModeDate;
+    birthdatePicker.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    [birthdatePicker addTarget:self action:@selector(birthdayPickerChanged:) forControlEvents:UIControlEventValueChanged];
+    self.birthdateTextField.inputView = birthdatePicker;
+}
+
+-(NSString *)stringfromDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM/dd/yyyy"];
+    dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    return [dateFormatter stringFromDate:date];
 }
 
 #pragma mark - Action
@@ -89,7 +121,7 @@ static NSMutableDictionary *identifierMap = nil;
     self.captureUser.primaryAddress.mobile   = self.mobileTextField.text;
     self.captureUser.primaryAddress.phone    = self.phoneTextField.text;
 //    self.captureUser.gender = self.genderTextField.text;
-//    self.captureUser.birthday = self.birthdateTextField.text;
+    self.captureUser.birthday                = birthdatePicker.date;
     self.captureUser.primaryAddress.address1 = self.address1TextField.text;
     self.captureUser.primaryAddress.address2 = self.address2TextField.text;
     self.captureUser.primaryAddress.city     = self.addressCityTextField.text;
@@ -99,6 +131,16 @@ static NSMutableDictionary *identifierMap = nil;
     
     [JRCapture registerNewUser:self.captureUser socialRegistrationToken:nil forDelegate:self];
     self.registerButton.enabled = NO;
+}
+
+-(void)birthdayPickerChanged:(UIDatePicker *)sender
+{
+    self.birthdateTextField.text = [self stringfromDate:sender.date];
+}
+
+-(void)dismissPicker
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Notifications
