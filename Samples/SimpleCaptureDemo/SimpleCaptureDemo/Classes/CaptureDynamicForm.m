@@ -47,6 +47,7 @@ static NSMutableDictionary *identifierMap = nil;
     UIDatePicker *birthdatePicker;
     
     JRPickerView *genderPicker;
+    JRPickerView *addressStatePicker;
 }
 
 #pragma mark - Lifecycle
@@ -83,6 +84,7 @@ static NSMutableDictionary *identifierMap = nil;
     [self setupBirthdateFieldInputView];
     
     genderPicker = [self jrPickerViewForTextField:self.genderTextField andFlowField:@"gender"];
+    addressStatePicker = [self jrPickerViewForTextField:self.addressStateTextField andFlowField:@"addressState"];
 }
 
 #pragma mark - Helper methods
@@ -139,7 +141,7 @@ static NSMutableDictionary *identifierMap = nil;
     self.captureUser.primaryAddress.address2 = self.address2TextField.text;
     self.captureUser.primaryAddress.city     = self.addressCityTextField.text;
     self.captureUser.primaryAddress.zip      = self.addressPostalCodeTextField.text;
-//    self.captureUser.primaryAddress.stateAbbreviation = self.addressStateTextField.text;
+    self.captureUser.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
 //    self.captureUser.primaryAddress.country = self.addressCountryTextField.text;
     
     [JRCapture registerNewUser:self.captureUser socialRegistrationToken:nil forDelegate:self];
@@ -235,6 +237,8 @@ static NSMutableDictionary *identifierMap = nil;
     UITextField *textField;
     if ([jrPickerView isEqual:genderPicker]) {
         textField = self.genderTextField;
+    } else if ([jrPickerView isEqual:addressStatePicker]) {
+        textField = self.addressStateTextField;
     }
     
     textField.text = element;
