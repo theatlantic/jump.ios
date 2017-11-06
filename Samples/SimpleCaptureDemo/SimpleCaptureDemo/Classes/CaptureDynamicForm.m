@@ -48,6 +48,7 @@ static NSMutableDictionary *identifierMap = nil;
     
     JRPickerView *genderPicker;
     JRPickerView *addressStatePicker;
+    JRPickerView *addressCountryPicker;
 }
 
 #pragma mark - Lifecycle
@@ -83,8 +84,9 @@ static NSMutableDictionary *identifierMap = nil;
     
     [self setupBirthdateFieldInputView];
     
-    genderPicker = [self jrPickerViewForTextField:self.genderTextField andFlowField:@"gender"];
-    addressStatePicker = [self jrPickerViewForTextField:self.addressStateTextField andFlowField:@"addressState"];
+    genderPicker         = [self jrPickerViewForTextField:self.genderTextField andFlowField:@"gender"];
+    addressStatePicker   = [self jrPickerViewForTextField:self.addressStateTextField andFlowField:@"addressState"];
+    addressCountryPicker = [self jrPickerViewForTextField:self.addressCountryTextField andFlowField:@"addressCountry"];
 }
 
 #pragma mark - Helper methods
@@ -142,7 +144,7 @@ static NSMutableDictionary *identifierMap = nil;
     self.captureUser.primaryAddress.city     = self.addressCityTextField.text;
     self.captureUser.primaryAddress.zip      = self.addressPostalCodeTextField.text;
     self.captureUser.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
-//    self.captureUser.primaryAddress.country = self.addressCountryTextField.text;
+    self.captureUser.primaryAddress.country  = addressCountryPicker.selectedValue;
     
     [JRCapture registerNewUser:self.captureUser socialRegistrationToken:nil forDelegate:self];
     self.registerButton.enabled = NO;
@@ -239,6 +241,15 @@ static NSMutableDictionary *identifierMap = nil;
         textField = self.genderTextField;
     } else if ([jrPickerView isEqual:addressStatePicker]) {
         textField = self.addressStateTextField;
+    } else if([jrPickerView isEqual:addressCountryPicker]){
+        textField = self.addressCountryTextField;
+        if (![jrPickerView.selectedValue isEqualToString:@"US"]) {
+            self.addressStateTextField.text = @"";
+            self.addressStateTextField.enabled = NO;
+            addressStatePicker.selectedValue = self.addressStateTextField.text = @"";;
+        } else {
+            self.addressStateTextField.enabled = YES;
+        }
     }
     
     textField.text = element;
