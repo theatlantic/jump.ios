@@ -30,6 +30,7 @@
                 <outlet property="passwordTextField" destination="H3M-TB-5Rm" id="KBf-Go-3O2"/>
                 <outlet property="phoneTextField" destination="gSV-DS-mcr" id="e6M-EZ-0Td"/>
                 <outlet property="registerButton" destination="IZe-sh-tIU" id="paj-Mg-wU9"/>
+                <outlet property="scrollView" destination="Z2o-rs-ZBA" id="mMq-cI-GjZ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="70h-F7-RqK"/>
             </connections>
         </placeholder>
@@ -44,7 +45,7 @@
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Z2o-rs-ZBA">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="First Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UX2-ES-Tmy">
                             <rect key="frame" x="1" y="59" width="100" height="21"/>
