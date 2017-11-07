@@ -59,6 +59,7 @@
     __weak IBOutlet UISwitch *optInSwitch;
     __weak IBOutlet UILabel *optInLabel;
     __weak IBOutlet UIButton *updateButton;
+    __weak IBOutlet UITextField *mobileField;
     
     JRPickerView *genderPicker;
     JRPickerView *addressStatePicker;
@@ -90,6 +91,7 @@
     addressStateField.delegate = self;
     addressCountryField.delegate = self;
     addressPostalCodeField.delegate = self;
+    mobileField.delegate = self;
     
     [self setupBirthdayFieldInputView];
     
@@ -140,6 +142,7 @@
     addressStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
     addressCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
     addressPostalCodeField.text = user.primaryAddress.zip;
+    mobileField.text = user.primaryAddress.mobile;
     [optInSwitch setOn:[user.optIn getStatusBoolValue] animated:YES];
     optInLabel.text = [self textForOptInLabel];
 }
@@ -222,7 +225,8 @@
     user.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
     user.primaryAddress.country = addressCountryPicker.selectedValue;
     user.primaryAddress.zip = addressPostalCodeField.text;
-
+    user.primaryAddress.mobile = mobileField.text;
+    
     updateButton.enabled = NO;
 
     [JRCapture updateProfileForUser:user delegate:self];
