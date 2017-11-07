@@ -117,7 +117,6 @@
 		9F7B6A8415336470002BF452 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8215336470002BF452 /* InfoPlist.strings */; };
 		9F7B6A9315336480002BF452 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8615336480002BF452 /* AppDelegate.m */; };
 		9F7B6A9915336480002BF452 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A9215336480002BF452 /* RootViewController.m */; };
-		9F7B6AAB1533648C002BF452 /* CaptureProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6A9D1533648C002BF452 /* CaptureProfileViewController.xib */; };
 		9F7B6AAC1533648C002BF452 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6A9F1533648C002BF452 /* InfoPlist.strings */; };
 		9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA11533648C002BF452 /* MainStoryboard.storyboard */; };
 		9F7B6AB01533648C002BF452 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA81533648C002BF452 /* background.png */; };
@@ -153,6 +152,7 @@
 		DF39E04617A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DF39E02B17A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m */; };
 		DF568D981FB12C5E00FEFF00 /* JRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF568D951FB12C5E00FEFF00 /* JRPickerView.m */; };
 		DF568D991FB12C5E00FEFF00 /* JRStandardFlowKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = DF568D971FB12C5E00FEFF00 /* JRStandardFlowKeys.m */; };
+		DF568D9C1FB218FA00FEFF00 /* CaptureProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF568D9A1FB218FA00FEFF00 /* CaptureProfileViewController.xib */; };
 		DFB6898C175E8E6C006DFC92 /* JRBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB68874175E8E6C006DFC92 /* JRBase64.m */; };
 		DFB68A6B175E8E6C006DFC92 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB6898B175E8E6C006DFC92 /* SFHFKeychainUtils.m */; };
 		DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE3CE17A9915200760FEE /* ATTRIBUTION */; };
@@ -494,7 +494,6 @@
 		9F7B6A8615336480002BF452 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		9F7B6A9115336480002BF452 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = Classes/RootViewController.h; sourceTree = "<group>"; };
 		9F7B6A9215336480002BF452 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = Classes/RootViewController.m; sourceTree = "<group>"; };
-		9F7B6A9E1533648C002BF452 /* CaptureProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptureProfileViewController.xib; sourceTree = "<group>"; };
 		9F7B6AA01533648C002BF452 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		9F7B6AA21533648C002BF452 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9F7B6AA81533648C002BF452 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -547,6 +546,7 @@
 		DF568D951FB12C5E00FEFF00 /* JRPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPickerView.m; sourceTree = "<group>"; };
 		DF568D961FB12C5E00FEFF00 /* JRStandardFlowKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRStandardFlowKeys.h; sourceTree = "<group>"; };
 		DF568D971FB12C5E00FEFF00 /* JRStandardFlowKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStandardFlowKeys.m; sourceTree = "<group>"; };
+		DF568D9B1FB218FA00FEFF00 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CaptureProfileViewController.xib; sourceTree = "<group>"; };
 		DFB68873175E8E6C006DFC92 /* JRBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBase64.h; sourceTree = "<group>"; };
 		DFB68874175E8E6C006DFC92 /* JRBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBase64.m; sourceTree = "<group>"; };
 		DFB6898A175E8E6C006DFC92 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
@@ -1793,6 +1793,7 @@
 				48CB52E81B7108AA0091CD10 /* icon_bw_yahoo_oauth2_30x30@2x.png in Resources */,
 				DFEFE50D17A9915300760FEE /* button_janrain_280x40@2x.png in Resources */,
 				DFEFE50E17A9915300760FEE /* button_linkedin_135x40@2x.png in Resources */,
+				DF568D9C1FB218FA00FEFF00 /* CaptureProfileViewController.xib in Resources */,
 				DFEFE50F17A9915300760FEE /* button_linkedin_280x40@2x.png in Resources */,
 				DFEFE51017A9915300760FEE /* button_myspace_135x40@2x.png in Resources */,
 				DFEFE51117A9915300760FEE /* button_myspace_280x40@2x.png in Resources */,
@@ -2031,14 +2032,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		9F7B6A9D1533648C002BF452 /* CaptureProfileViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F7B6A9E1533648C002BF452 /* CaptureProfileViewController.xib */,
-			);
-			name = CaptureProfileViewController.xib;
-			sourceTree = "<group>";
-		};
 		9F7B6A9F1533648C002BF452 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2053,6 +2046,14 @@
 				9F7B6AA21533648C002BF452 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		DF568D9A1FB218FA00FEFF00 /* CaptureProfileViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF568D9B1FB218FA00FEFF00 /* en */,
+			);
+			name = CaptureProfileViewController.xib;
 			sourceTree = "<group>";
 		};
 		DFF3AA411FB129A90004CF6D /* CaptureDynamicForm.xib */ = {
