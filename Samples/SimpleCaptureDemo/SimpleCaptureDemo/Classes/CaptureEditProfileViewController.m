@@ -139,7 +139,7 @@
     addressStreetLine2Field.text = user.primaryAddress.address2;
     addressCityField.text = user.primaryAddress.city;
     addressStateField.text = [addressStatePicker textForValue:user.primaryAddress.stateAbbreviation];
-    addressStateField.enabled = [self isValidStateAbbreviation:user.primaryAddress.stateAbbreviation];
+    addressStateField.enabled = [self enableStateForCountry:user.primaryAddress.country];
     addressCountryField.text = [addressCountryPicker textForValue:user.primaryAddress.country];
     addressPostalCodeField.text = user.primaryAddress.zip;
     mobileField.text = user.primaryAddress.mobile;
@@ -184,11 +184,11 @@
     return [dateFormatter stringFromDate:date];
 }
 
--(BOOL)isValidStateAbbreviation:(NSString *)abbreviation {
-    if ([abbreviation isEqualToString:@""] || abbreviation == nil) {
-        return NO;
+-(BOOL)enableStateForCountry:(NSString *)country {
+    if ([country isEqualToString:@""] || [country isEqualToString:@"US"] || country == nil) {
+        return YES;
     }
-    return YES;
+    return NO;
 }
 
 -(NSString *)textForOptInLabel {
