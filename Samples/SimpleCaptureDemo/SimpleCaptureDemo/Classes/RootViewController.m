@@ -208,7 +208,7 @@
 
 - (void)showRegistrationForm
 {
-    CaptureDynamicForm *viewController = [[CaptureDynamicForm alloc] initWithNibName:nil
+    CaptureDynamicForm *viewController = [[CaptureDynamicForm alloc] initWithNibName:@"CaptureDynamicForm"
                                                                               bundle:[NSBundle mainBundle]];
 
     [self.navigationController pushViewController:viewController animated:YES];

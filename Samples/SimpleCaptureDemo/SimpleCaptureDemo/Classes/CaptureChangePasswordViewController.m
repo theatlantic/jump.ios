@@ -88,9 +88,9 @@
     JRCaptureUser *user = delegate.captureUser;
     
     NSMutableDictionary *fieldData = [[ NSMutableDictionary alloc] init];
-    [fieldData setObject:oldPasswordField.text forKey:@"oldpassword"];
-    [fieldData setObject:newPasswordField.text forKey:@"newpassword"];
-    [fieldData setObject:confirmPasswordField.text forKey:@"newpasswordConfirm"];
+    [fieldData setObject:oldPasswordField.text forKey:@"currentPassword"];
+    [fieldData setObject:newPasswordField.text forKey:@"newPassword"];
+    [fieldData setObject:confirmPasswordField.text forKey:@"newPasswordConfirm"];
     
     updateButton.enabled = NO;
     NSString *errorMessage = [self validateFormFields];
@@ -104,7 +104,7 @@
              */
             [JRCapture postFormWithFormDataProvided:user
                                   toCaptureEndpoint:@"/oauth/update_profile_native"
-                                       withFormName:@"newPasswordFormProfile"
+                                       withFormName:@"changePasswordForm"
                                        andFieldData:fieldData
                                            delegate:self];
         }];
@@ -124,7 +124,7 @@
          */
         [JRCapture postFormWithFormDataProvided:user
                               toCaptureEndpoint:@"/oauth/update_profile_native"
-                                   withFormName:@"newPasswordFormProfile"
+                                   withFormName:@"changePasswordForm"
                                    andFieldData:fieldData
                                        delegate:self];
     }

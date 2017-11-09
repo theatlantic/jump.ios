@@ -116,7 +116,7 @@
 @property (nonatomic, copy)     JRStringArray *quotes; /**< Person's favorite quotes @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c quote */ 
 @property (nonatomic, copy)     NSString *relationshipStatus; /**< Person's relationship status. */ 
 @property (nonatomic, copy)     JRStringArray *relationships; /**< A bi-directionally asserted relationship type that was established between the user and this contact by the Service Provider. @note  A ::JRStringArray property is a plural (array) that holds a list of \e NSStrings. As it is an array, it is therefore a typedef of \e NSArray. This array of \c NSStrings represents a list of \c relationship */ 
-@property (nonatomic, copy)     NSString *religion; /**< Person's relgion or religious views. */ 
+@property (nonatomic, copy)     NSString *religion; /**< Person's religion or religious views. */ 
 @property (nonatomic, copy)     NSString *romance; /**< Person's comments about romance. */ 
 @property (nonatomic, copy)     NSString *scaredOf; /**< What the person is scared of. */ 
 @property (nonatomic, copy)     NSString *sexualOrientation; /**< Person's sexual orientation. */ 
