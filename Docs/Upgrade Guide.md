@@ -10,6 +10,12 @@ A less desirable but more reliable and more general upgrade strategy:
 2. Remove generated Capture user model project groups
 3. Follow the process described JUMP Integration Guide
 
+### Upgrading from v5.0.4 (ONLY) to v5.1 or greater
+
+If you are using CocoaPods, the CocoaPods `Janrain.podspec` file will now include a set of reference 'Generated' classes in order to resolve dependency warnings and issues.  Developers that are using CocoaPods will have to manually remove the classes imported into the `Pods/Development Pods/Janrain/JRCapture/Generated` folder (in the XCode Project files folder view) and replace them with the Generated class files for their schema as described in the `Xcode Project Setup Guide` (found in the same folder as this document).  Please see the section titled: `Generating the Capture User Model`.
+
+
+
 ### Upgrading from v5.0.0 (ONLY) to v5.0.1 or greater
 
 Ensure your Janrain libraries includes a reference to the Janrain/JREngage/Classes/JROpenIDAppAuthGoogleDelegate.h file
