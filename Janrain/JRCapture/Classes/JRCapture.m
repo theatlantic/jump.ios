@@ -61,7 +61,12 @@ NSString* const JRDownloadFlowResult = @"JRDownloadFlowResult";
 
 static id ObjectOrNull(id object)
 {
-    return object ?: [NSNull null];
+    if (object)
+    {
+        return object;
+    } else {
+        return [NSNull null];
+    }
 }
 
 + (void)setCaptureConfig:(JRCaptureConfig *)config
