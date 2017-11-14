@@ -36,6 +36,7 @@
 		486B0CD51E02171100B73F4F /* JROpenIDAppAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD41E02171100B73F4F /* JROpenIDAppAuth.m */; };
 		486B0CD71E0218E300B73F4F /* JROpenIDAppAuthGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD61E0218E300B73F4F /* JROpenIDAppAuthGoogle.m */; };
 		486B0CDB1E021A1200B73F4F /* JROpenIDAppAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */; };
+		4892E0261FBB3F1C003EC925 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */; };
 		48994B7D1F3B99BC00F7826F /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B761F3B99BC00F7826F /* background@2x.png */; };
 		48994B7E1F3B99BC00F7826F /* background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B771F3B99BC00F7826F /* background@3x.png */; };
 		48994B7F1F3B99BC00F7826F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B781F3B99BC00F7826F /* Default-568h@2x.png */; };
@@ -142,7 +143,6 @@
 		DF39E04617A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DF39E02B17A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m */; };
 		DFB6898C175E8E6C006DFC92 /* JRBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB68874175E8E6C006DFC92 /* JRBase64.m */; };
 		DFB68A6B175E8E6C006DFC92 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB6898B175E8E6C006DFC92 /* SFHFKeychainUtils.m */; };
-		DFEA3C331F8BBDD2005ACE97 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEA3C321F8BBDD2005ACE97 /* libAppAuth-iOS.a */; };
 		DFEA3C361F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */; };
 		DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE3CE17A9915200760FEE /* ATTRIBUTION */; };
 		DFEFE4A317A9915200760FEE /* debug_log.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEFE3D117A9915200760FEE /* debug_log.m */; };
@@ -782,7 +782,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFEA3C331F8BBDD2005ACE97 /* libAppAuth-iOS.a in Frameworks */,
+				4892E0261FBB3F1C003EC925 /* libAppAuth-iOS.a in Frameworks */,
 				4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */,
 				4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
@@ -2128,8 +2128,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/roberto.halgravez/Documents/Janrain/GithubSourceCode/AppAuth-iOS-master/Source/**",
-					"/Users/roberto.halgravez/Documents/Janrain/jump.ios.internal/Janrain/**",
+					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2171,8 +2171,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/roberto.halgravez/Documents/Janrain/GithubSourceCode/AppAuth-iOS-master/Source/**",
-					"/Users/roberto.halgravez/Documents/Janrain/jump.ios.internal/Janrain/**",
+					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2251,8 +2251,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/roberto.halgravez/Documents/Janrain/GithubSourceCode/AppAuth-iOS-master/Source/**",
-					"/Users/roberto.halgravez/Documents/Janrain/jump.ios.internal/Janrain/**",
+					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
