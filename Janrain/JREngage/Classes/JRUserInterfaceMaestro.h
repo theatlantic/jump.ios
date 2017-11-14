@@ -107,7 +107,7 @@ typedef enum
 
 - (void)pushWebViewFromViewController:(UIViewController *)viewController;
 
-@property(copy) NSMutableDictionary *customInterfaceDefaults;
+@property(nonatomic, strong) NSMutableDictionary *customInterfaceDefaults;
 @property(readonly) JRProvidersController *myProvidersController;
 @property(readonly) JRUserLandingController *myUserLandingController;
 @property(readonly) JRWebViewController *myWebViewController;

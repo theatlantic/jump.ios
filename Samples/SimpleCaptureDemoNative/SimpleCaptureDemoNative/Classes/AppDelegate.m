@@ -45,7 +45,6 @@
 #import <TwitterKit/TwitterKit.h>
 
 
-
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate>
 @end
 

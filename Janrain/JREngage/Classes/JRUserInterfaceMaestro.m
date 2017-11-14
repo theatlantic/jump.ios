@@ -714,7 +714,8 @@ static JRUserInterfaceMaestro *singleton = nil;
     if ([customInterface objectForKey:kJRCustomModalNavigationController])
         self.customModalNavigationController = [customInterface objectForKey:kJRCustomModalNavigationController];
 
-    usingAppNav = NO, usingCustomNav = NO;
+    usingAppNav = NO;
+    usingCustomNav = NO;
     if (IS_IPAD) {
         if ([customInterface objectForKey:kJRPopoverPresentationBarButtonItem])
             padPopoverMode = PadPopoverFromBar;
@@ -752,7 +753,8 @@ static JRUserInterfaceMaestro *singleton = nil;
 - (void)tearDownDialogPresentation
 {
     padPopoverMode = PadPopoverModeNone;
-    usingAppNav = NO, usingCustomNav = NO;
+    usingAppNav = NO;
+    usingCustomNav = NO;
 
     viewControllerToPopTo = nil;
     self.applicationNavigationController = nil;
@@ -944,12 +946,16 @@ static JRUserInterfaceMaestro *singleton = nil;
     if (!jrModalViewController.myPopoverPresentationController)
         padPopoverMode = PadPopoverModeNone;
 
+    
+    // Deprecated - value not used
+    /*
     UIPopoverArrowDirection arrowDirection = UIPopoverArrowDirectionAny;
     if ([customInterface objectForKey:kJRPopoverPresentationArrowDirection])
     {
         arrowDirection = (UIPopoverArrowDirection)
                 [[customInterface objectForKey:kJRPopoverPresentationArrowDirection] intValue];
     }
+    */
 
     if ([self shouldOpenToUserLandingPage])
     {
