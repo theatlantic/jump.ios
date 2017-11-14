@@ -61,7 +61,7 @@ NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
 @end
 
 @interface RootViewController () <LinkedProfilesDelegate>
-@property(nonatomic, copy) void (^viewDidAppearContinuation)();
+@property(nonatomic, copy) void (^viewDidAppearContinuation)(void);
 @property(nonatomic) BOOL viewIsApparent;
 
 @property MyCaptureDelegate *captureDelegate;
@@ -112,6 +112,7 @@ NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
     [self configureViewsWithDisableOverride:NO ];
 }
 
@@ -198,6 +199,7 @@ NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
         self.viewDidAppearContinuation();
         self.viewDidAppearContinuation = nil;
     }
+    [super viewDidAppear:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
