@@ -190,6 +190,7 @@ NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:YES];
     DLog();
     self.viewIsApparent = YES;
     [self configureUserLabelAndIcon];
@@ -199,7 +200,6 @@ NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
         self.viewDidAppearContinuation();
         self.viewDidAppearContinuation = nil;
     }
-    [super viewDidAppear:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
