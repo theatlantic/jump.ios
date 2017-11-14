@@ -370,6 +370,11 @@
     {
         errorMessage = [error.userInfo objectForKey:NSLocalizedFailureReasonErrorKey];
     }
+    
+    if ([errorMessage length] > 0)
+    {
+        DLog(@"Forgot Password Recovery error: %@", errorMessage);
+    }
 
     // read the localized error string from JRCaptureError.
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Dismiss", nil) style:UIAlertActionStyleDefault handler:nil];
