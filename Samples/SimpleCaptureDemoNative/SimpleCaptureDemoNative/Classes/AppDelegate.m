@@ -139,34 +139,18 @@ AppDelegate *appDelegate = nil;
     return YES;
 }
 
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    NSLog(@"openURL %@", url);
-    if ([self.openIDAppAuthAuthorizationFlow resumeAuthorizationFlowWithURL:url ]) {
-        self.openIDAppAuthAuthorizationFlow = nil;
-        return YES;
-    }else if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
-        return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                              openURL:url
-                                                    sourceApplication:sourceApplication
-                                                           annotation:annotation];
-    }else if(url.scheme != nil && [url.scheme hasPrefix:@"com.googleusercontent.apps"]){
-        return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
-    }else{
-        return [self application:application
-                         openURL:url
-                         options:@{}];
-    }
-}
-
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
     if(url.scheme != nil && [url.scheme hasPrefix:@"twitter"]) {
         return [[Twitter sharedInstance] application:app openURL:url options:options];
+    } else if(url.scheme != nil && [url.scheme hasPrefix:@"fb"] && [url.host isEqualToString:@"authorize"]){
+        return [[FBSDKApplicationDelegate sharedInstance] application:app
+                                                              openURL:url
+                                                    options:options];
+    } else if(url.scheme != nil && [url.scheme hasPrefix:@"com.googleusercontent.apps"]){
+        return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    }else{
+        return NO;
     }
-    return NO;
-    
 }
 
 
