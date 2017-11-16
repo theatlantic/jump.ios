@@ -27,7 +27,7 @@
 		<key>captureFlowName</key>
 		<string>standard</string>
 		<key>captureTraditionalSignInFormName</key>
-		<string>userInformationForm</string>
+		<string>signInForm</string>
 		<key>captureLocale</key>
 		<string>en-US</string>
 		<key>captureEnableThinRegistration</key>
