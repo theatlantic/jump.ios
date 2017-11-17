@@ -44,6 +44,7 @@
 
     __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UITextField *firstNameField;
+    __weak IBOutlet UITextField *middleNameField;
     __weak IBOutlet UITextField *lastNameField;
     __weak IBOutlet UITextField *displayNameField;
     __weak IBOutlet UITextField *emailField;
@@ -81,6 +82,7 @@
     }
 
     firstNameField.delegate = self;
+    middleNameField.delegate = self;
     lastNameField.delegate = self;
     displayNameField.delegate = self;
     emailField.delegate = self;
@@ -124,6 +126,7 @@
     JRCaptureUser *user = delegate.captureUser;
 
     firstNameField.text = user.givenName;
+    middleNameField.text = user.middleName;
     lastNameField.text = user.familyName;
     displayNameField.text = user.displayName;
     emailField.text = user.email;
@@ -213,6 +216,7 @@
     JRCaptureUser *user = delegate.captureUser;
 
     user.givenName = firstNameField.text;
+    user.middleName = middleNameField.text;
     user.familyName = lastNameField.text;
     user.displayName = displayNameField.text;
     user.email = emailField.text;

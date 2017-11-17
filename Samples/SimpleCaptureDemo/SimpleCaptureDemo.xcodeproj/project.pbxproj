@@ -36,7 +36,6 @@
 		486B0CD51E02171100B73F4F /* JROpenIDAppAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD41E02171100B73F4F /* JROpenIDAppAuth.m */; };
 		486B0CD71E0218E300B73F4F /* JROpenIDAppAuthGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CD61E0218E300B73F4F /* JROpenIDAppAuthGoogle.m */; };
 		486B0CDB1E021A1200B73F4F /* JROpenIDAppAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */; };
-		4892E0261FBB3F1C003EC925 /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */; };
 		48994B7D1F3B99BC00F7826F /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B761F3B99BC00F7826F /* background@2x.png */; };
 		48994B7E1F3B99BC00F7826F /* background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B771F3B99BC00F7826F /* background@3x.png */; };
 		48994B7F1F3B99BC00F7826F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48994B781F3B99BC00F7826F /* Default-568h@2x.png */; };
@@ -59,6 +58,7 @@
 		48A85E8D1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */; };
 		48AEB41C1EAB04E400FD4BFB /* CaptureProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AEB41A1EAB04E400FD4BFB /* CaptureProfileViewController.m */; };
 		48AEB4221EAB060E00FD4BFB /* CaptureProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48AEB41F1EAB060E00FD4BFB /* CaptureProfileViewController.xib */; };
+		48AECE7D1FBF5163003BBC6A /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */; };
 		48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738D1B62AE8A001D98FF /* CoreData.framework */; };
 		48CB52C91B71077C0091CD10 /* button_instagram_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52C51B71077C0091CD10 /* button_instagram_135x40.png */; };
 		48CB52CA1B71077C0091CD10 /* button_instagram_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52C61B71077C0091CD10 /* button_instagram_280x40.png */; };
@@ -782,7 +782,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4892E0261FBB3F1C003EC925 /* libAppAuth-iOS.a in Frameworks */,
+				48AECE7D1FBF5163003BBC6A /* libAppAuth-iOS.a in Frameworks */,
 				4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */,
 				4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
@@ -1567,7 +1567,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0910;
 				TargetAttributes = {
 					90C36B6B7717AA0C893E08E1 = {
 						DevelopmentTeam = 3GSSC5Q8U3;
@@ -2033,12 +2033,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2069,12 +2075,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2128,8 +2140,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2171,8 +2183,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2197,12 +2209,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2251,8 +2269,8 @@
 				HEADER_SEARCH_PATHS = (
 					../../../../../,
 					"../Source/**",
-					"/Users/pbaker/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/pbaker/GitHub/jump.ios.internal/Janrain/**",
+					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
