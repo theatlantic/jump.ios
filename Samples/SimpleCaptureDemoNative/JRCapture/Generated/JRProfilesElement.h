@@ -46,8 +46,8 @@
 @property (nonatomic, copy)     NSString *identifier; /**< Profile provider unique identifier */ 
 @property (nonatomic,strong)    JRProfile *profile; /**< The object's \e profile property */ 
 @property (nonatomic, copy)     JRJsonObject *provider; /**< Provider for this profile @note A ::JRJsonObject property is a property of type \ref typesTable "json", which can be an \e NSDictionary, \e NSArray, \e NSString, etc., and is therefore is a typedef of \e NSObject */ 
+@property (nonatomic, copy)     NSString *providerSpecifier; /**< Internal text field for identifying the provider in a unique and normalized manner. */ 
 @property (nonatomic, copy)     NSString *remote_key; /**< PrimaryKey field from Engage */ 
-@property (nonatomic, copy)     JRJsonObject *verifiedEmail; /**< The object's \e verifiedEmail property @note A ::JRJsonObject property is a property of type \ref typesTable "json", which can be an \e NSDictionary, \e NSArray, \e NSString, etc., and is therefore is a typedef of \e NSObject */ 
 
 /**
  * @name Constructors
