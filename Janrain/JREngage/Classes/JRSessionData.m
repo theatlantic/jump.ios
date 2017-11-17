@@ -700,10 +700,10 @@ static JRSessionData *singleton = nil;
 {
     NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
     NSString     *name      = [[[infoPlist objectForKey:@"CFBundleDisplayName"]
-                                stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]
                                 stringByAddingUrlPercentEscapes];
     NSString     *bundle    = [[[infoPlist objectForKey:@"CFBundleIdentifier"]
-                                stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]
                                 stringByAddingUrlPercentEscapes];
 
     infoPlist = [NSDictionary dictionaryWithContentsOfFile:
@@ -711,7 +711,7 @@ static JRSessionData *singleton = nil;
                   stringByAppendingPathComponent:@"/JREngage-Info.plist"]];
 
     NSString *version       = [[[infoPlist objectForKey:@"CFBundleShortVersionString"]
-                                stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]
                                 stringByAddingUrlPercentEscapes];
 
     return [NSString stringWithFormat:@"appName=%@.%@3&version=%@_%@", name, bundle, self.device, version];
@@ -1053,7 +1053,7 @@ static JRSessionData *singleton = nil;
 
             return [[[NSString stringWithFormat:NSLocalizedString(@"Sign in as %@?", nil), (NSString *) [strArr objectAtIndex:5]]
                      stringByReplacingOccurrencesOfString:@"+" withString:@" "]
-                        stringByReplacingPercentEscapesUsingEncoding:NSUnicodeStringEncoding];
+                        stringByRemovingPercentEncoding];
         }
     }
 
@@ -1451,7 +1451,7 @@ static JRSessionData *singleton = nil;
     if (theActivity.sms.urls)   [urls setObject:theActivity.sms.urls forKey:@"sms"];
     if (theActivity.url)        [urls setObject:[NSArray arrayWithObject:theActivity.url] forKey:@"activity"];
 
-    NSString *urlsArg = [[urls JR_jsonString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlsArg = [[urls JR_jsonString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSString *urlString = [NSString stringWithFormat:@"%@/openid/get_urls?urls=%@&app_name=%@&device=%@",
                                                      baseUrl, urlsArg, [self appNameAndVersion], [self device]];
 

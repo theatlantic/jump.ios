@@ -27,9 +27,9 @@
 		<key>captureClientId</key>
 		<string>9vt2ej43mxyftkf68c3xthkm2rtweg8w</string>
 		<key>captureFlowName</key>
-		<string>standard_flow</string>
+		<string>standard</string>
 		<key>captureTraditionalSignInFormName</key>
-		<string>userInformationForm</string>
+		<string>signInForm</string>
 		<key>captureLocale</key>
 		<string>en-US</string>
 		<key>captureEnableThinRegistration</key>
