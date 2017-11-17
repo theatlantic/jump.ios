@@ -12,8 +12,20 @@ A less desirable but more reliable and more general upgrade strategy:
 
 ### Upgrading from v5.0.4 (ONLY) to v5.1 or greater
 
-If you are using CocoaPods, the CocoaPods `Janrain.podspec` file will now include a set of reference 'Generated' classes in order to resolve dependency warnings and issues.  Developers that are using CocoaPods will have to manually remove the classes imported into the `Pods/Development Pods/Janrain/JRCapture/Generated` folder (in the XCode Project files folder view) and replace them with the Generated class files for their schema as described in the `Xcode Project Setup Guide` (found in the same folder as this document).  Please see the section titled: `Generating the Capture User Model`.
+iOS 8.x support has been deprecated. All code has been updated to support iOS 9.x and newer.
 
+*NOTE:* Due to the large amount of code modifications required to address iOS 9.x deprecations it is important to test any integrations thoroughly.
+
+Tested with the following supporting libraries/frameworks:
+
+* OpenID AppAuth iOS 0.90.0 (both sample apps)
+* TwitterKit 3.2.1 (Native Sample App only)
+* Google SignIn 4.1.0 (Native Sample App only) - Note as of 11/17/17 there were missing framework files in the Google download zip file.  Use the missing framework files (GoogleAppUtilities.framework and GoogleSymbolUtilities.framework) from the 4.0.1 SDK download.
+* Facebook 4.28.0
+
+The demo applications have been heavily refactored to support the latest Janrain "standard" flow and "user" schema.  The registration and profile pages have been updated to match the form configurations in the standard flow.  These pages now demonstrate how to use date pickers, scroll/spinner selectors, and switches for boolean fields.
+
+If you are using CocoaPods, the CocoaPods `Janrain.podspec` file will now include a set of reference 'Generated' classes in order to resolve dependency warnings and issues.  Developers that are using CocoaPods will have to manually remove the classes imported into the `Pods/Development Pods/Janrain/JRCapture/Generated` folder (in the XCode Project files folder view) and replace them with the Generated class files for their schema as described in the `Xcode Project Setup Guide` (found in the same folder as this document).  Please see the section titled: `Generating the Capture User Model`.
 
 
 ### Upgrading from v5.0.0 (ONLY) to v5.0.1 or greater
