@@ -8,5 +8,5 @@
 #import <Foundation/Foundation.h>
 #import "JRCapture.h"
 
-@interface CaptureDynamicForm : UIViewController <UITextFieldDelegate, JRCaptureDelegate>
+@interface CaptureDynamicForm : UIViewController 
 @end

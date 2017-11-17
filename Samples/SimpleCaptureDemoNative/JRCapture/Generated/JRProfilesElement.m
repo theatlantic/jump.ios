@@ -59,8 +59,8 @@
     NSString *_identifier;
     JRProfile *_profile;
     JRJsonObject *_provider;
+    NSString *_providerSpecifier;
     NSString *_remote_key;
-    JRJsonObject *_verifiedEmail;
 }
 @synthesize canBeUpdatedOnCapture;
 
@@ -156,6 +156,18 @@
     _provider = [newProvider copy];
 }
 
+- (NSString *)providerSpecifier
+{
+    return _providerSpecifier;
+}
+
+- (void)setProviderSpecifier:(NSString *)newProviderSpecifier
+{
+    [self.dirtyPropertySet addObject:@"providerSpecifier"];
+
+    _providerSpecifier = [newProviderSpecifier copy];
+}
+
 - (NSString *)remote_key
 {
     return _remote_key;
@@ -166,18 +178,6 @@
     [self.dirtyPropertySet addObject:@"remote_key"];
 
     _remote_key = [newRemote_key copy];
-}
-
-- (JRJsonObject *)verifiedEmail
-{
-    return _verifiedEmail;
-}
-
-- (void)setVerifiedEmail:(JRJsonObject *)newVerifiedEmail
-{
-    [self.dirtyPropertySet addObject:@"verifiedEmail"];
-
-    _verifiedEmail = [newVerifiedEmail copy];
 }
 
 - (id)init
@@ -246,10 +246,10 @@
                    forKey:@"profile"];
     [dictionary setObject:(self.provider ? self.provider : [NSNull null])
                    forKey:@"provider"];
+    [dictionary setObject:(self.providerSpecifier ? self.providerSpecifier : [NSNull null])
+                   forKey:@"providerSpecifier"];
     [dictionary setObject:(self.remote_key ? self.remote_key : [NSNull null])
                    forKey:@"remote_key"];
-    [dictionary setObject:(self.verifiedEmail ? self.verifiedEmail : [NSNull null])
-                   forKey:@"verifiedEmail"];
 
     if (forEncoder)
     {
@@ -317,13 +317,13 @@
         [dictionary objectForKey:@"provider"] != [NSNull null] ? 
         [dictionary objectForKey:@"provider"] : nil;
 
+    profilesElement.providerSpecifier =
+        [dictionary objectForKey:@"providerSpecifier"] != [NSNull null] ? 
+        [dictionary objectForKey:@"providerSpecifier"] : nil;
+
     profilesElement.remote_key =
         [dictionary objectForKey:@"remote_key"] != [NSNull null] ? 
         [dictionary objectForKey:@"remote_key"] : nil;
-
-    profilesElement.verifiedEmail =
-        [dictionary objectForKey:@"verifiedEmail"] != [NSNull null] ? 
-        [dictionary objectForKey:@"verifiedEmail"] : nil;
 
     if (fromDecoder)
         [profilesElement.dirtyPropertySet setSet:dirtyPropertySetCopy];
@@ -382,20 +382,20 @@
         [dictionary objectForKey:@"provider"] != [NSNull null] ? 
         [dictionary objectForKey:@"provider"] : nil;
 
+    self.providerSpecifier =
+        [dictionary objectForKey:@"providerSpecifier"] != [NSNull null] ? 
+        [dictionary objectForKey:@"providerSpecifier"] : nil;
+
     self.remote_key =
         [dictionary objectForKey:@"remote_key"] != [NSNull null] ? 
         [dictionary objectForKey:@"remote_key"] : nil;
-
-    self.verifiedEmail =
-        [dictionary objectForKey:@"verifiedEmail"] != [NSNull null] ? 
-        [dictionary objectForKey:@"verifiedEmail"] : nil;
 
     [self.dirtyPropertySet setSet:dirtyPropertySetCopy];
 }
 
 - (NSSet *)updatablePropertySet
 {
-    return [NSSet setWithObjects:@"accessCredentials", @"domain", @"identifier", @"profile", @"provider", @"remote_key", @"verifiedEmail", nil];
+    return [NSSet setWithObjects:@"accessCredentials", @"domain", @"identifier", @"profile", @"provider", @"providerSpecifier", @"remote_key", nil];
 }
 
 - (void)setAllPropertiesToDirty
@@ -455,11 +455,11 @@
     if ([self.dirtyPropertySet containsObject:@"provider"])
         [dictionary setObject:(self.provider ? self.provider : [NSNull null]) forKey:@"provider"];
 
+    if ([self.dirtyPropertySet containsObject:@"providerSpecifier"])
+        [dictionary setObject:(self.providerSpecifier ? self.providerSpecifier : [NSNull null]) forKey:@"providerSpecifier"];
+
     if ([self.dirtyPropertySet containsObject:@"remote_key"])
         [dictionary setObject:(self.remote_key ? self.remote_key : [NSNull null]) forKey:@"remote_key"];
-
-    if ([self.dirtyPropertySet containsObject:@"verifiedEmail"])
-        [dictionary setObject:(self.verifiedEmail ? self.verifiedEmail : [NSNull null]) forKey:@"verifiedEmail"];
 
     [self.dirtyPropertySet removeAllObjects];
     return [NSDictionary dictionaryWithDictionary:dictionary];
@@ -499,8 +499,8 @@
                           [[JRProfile profile] toUpdateDictionary]) /* Use the default constructor to create an empty object */
                    forKey:@"profile"];
     [dictionary setObject:(self.provider ? self.provider : [NSNull null]) forKey:@"provider"];
+    [dictionary setObject:(self.providerSpecifier ? self.providerSpecifier : [NSNull null]) forKey:@"providerSpecifier"];
     [dictionary setObject:(self.remote_key ? self.remote_key : [NSNull null]) forKey:@"remote_key"];
-    [dictionary setObject:(self.verifiedEmail ? self.verifiedEmail : [NSNull null]) forKey:@"verifiedEmail"];
 
     [self.dirtyPropertySet removeAllObjects];
     return [NSDictionary dictionaryWithDictionary:dictionary];
@@ -573,13 +573,13 @@
     else if ((self.provider == nil) ^ (otherProfilesElement.provider == nil)) return NO; // xor
     else if (![self.provider isEqual:otherProfilesElement.provider]) return NO;
 
+    if (!self.providerSpecifier && !otherProfilesElement.providerSpecifier) /* Keep going... */;
+    else if ((self.providerSpecifier == nil) ^ (otherProfilesElement.providerSpecifier == nil)) return NO; // xor
+    else if (![self.providerSpecifier isEqualToString:otherProfilesElement.providerSpecifier]) return NO;
+
     if (!self.remote_key && !otherProfilesElement.remote_key) /* Keep going... */;
     else if ((self.remote_key == nil) ^ (otherProfilesElement.remote_key == nil)) return NO; // xor
     else if (![self.remote_key isEqualToString:otherProfilesElement.remote_key]) return NO;
-
-    if (!self.verifiedEmail && !otherProfilesElement.verifiedEmail) /* Keep going... */;
-    else if ((self.verifiedEmail == nil) ^ (otherProfilesElement.verifiedEmail == nil)) return NO; // xor
-    else if (![self.verifiedEmail isEqual:otherProfilesElement.verifiedEmail]) return NO;
 
     return YES;
 }
@@ -597,8 +597,8 @@
     [dictionary setObject:@"NSString" forKey:@"identifier"];
     [dictionary setObject:@"JRProfile" forKey:@"profile"];
     [dictionary setObject:@"JRJsonObject" forKey:@"provider"];
+    [dictionary setObject:@"NSString" forKey:@"providerSpecifier"];
     [dictionary setObject:@"NSString" forKey:@"remote_key"];
-    [dictionary setObject:@"JRJsonObject" forKey:@"verifiedEmail"];
 
     return [NSDictionary dictionaryWithDictionary:dictionary];
 }

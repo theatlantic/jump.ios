@@ -6,6 +6,7 @@
 
 
 #import "AppDelegate.h"
+#import "UIAlertController+JRAlertController.h"
 #import "Utils.h"
 
 Class getPluralClassFromKey(NSString *key)
@@ -33,22 +34,22 @@ NSString *upcaseFirst(NSString *string)
 @implementation Utils
 + (void)handleSuccessWithTitle:(NSString *)title message:(NSString *)message forVc:(UIViewController *)forVc
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:message
-                                                   delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alert show];
-
-    [forVc.navigationController popViewControllerAnimated:YES];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [forVc.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message alertActions:okAction, nil];
+    [forVc presentViewController:alertController animated:YES completion:nil];
 
     [appDelegate saveCaptureUser];
 }
 
-+ (void)handleFailureWithTitle:(NSString *)title message:(NSString *)message
++ (void)handleFailureWithTitle:(NSString *)title message:(NSString *)message forVC:(UIViewController *)forVC
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:message
-                                                   delegate:nil cancelButtonTitle:@"Dismiss"
-                                          otherButtonTitles:nil];
-    [alert show];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message alertActions:dismissAction, nil];
+    
+    [forVC presentViewController:alertController animated:YES completion:nil];
 }
 @end

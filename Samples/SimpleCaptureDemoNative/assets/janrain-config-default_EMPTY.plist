@@ -25,7 +25,7 @@
 		<key>captureClientId</key>
 		<string>UPDATE</string>
 		<key>captureFlowName</key>
-		<string>standard_flow</string>
+		<string>standard</string>
 		<key>captureTraditionalSignInFormName</key>
 		<string>userInformationForm</string>
 		<key>captureLocale</key>
@@ -33,7 +33,7 @@
 		<key>captureEnableThinRegistration</key>
 		<false/>
 		<key>captureTraditionalRegistrationFormName</key>
-		<string>registrationForm</string>
+		<string>signInForm</string>
 		<key>captureSocialRegistrationFormName</key>
 		<string>socialRegistrationForm</string>
 		<key>captureFlowVersion</key>
