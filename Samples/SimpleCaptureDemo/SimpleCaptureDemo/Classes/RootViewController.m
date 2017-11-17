@@ -59,7 +59,7 @@
 
 @interface RootViewController () <LinkedProfilesDelegate>
 
-@property(nonatomic, copy) void (^viewDidAppearContinuation)();
+@property(nonatomic, copy) void (^viewDidAppearContinuation)(void);
 @property(nonatomic) BOOL viewIsApparent;
 
 @property MyCaptureDelegate *captureDelegate;
