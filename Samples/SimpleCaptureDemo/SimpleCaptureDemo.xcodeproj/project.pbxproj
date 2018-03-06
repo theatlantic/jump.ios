@@ -20,6 +20,7 @@
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
 		3306C17245BA3B16978120CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306CCC7DCB13B4D32B7F1EB /* Localizable.strings */; };
 		3306C504E4EB30699D49C31F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3306C1C76C81D3A8D4ED2232 /* Localizable.strings */; };
+		4816D7E4204F03EC00D5DA1C /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4816D7E5204F03EC00D5DA1C /* libAppAuth-iOS.a */; };
 		4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4817766B1E7711E300B3187C /* LocalAuthentication.framework */; };
 		4817766E1E7721FE00B3187C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08F5 /* main.m */; };
 		4817766F1E77220D00B3187C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8615336480002BF452 /* AppDelegate.m */; };
@@ -58,7 +59,6 @@
 		48A85E8D1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48A85E8C1BEBD50C004CBA61 /* logo_paypal_openidconnect_280x65@2x.png */; };
 		48AEB41C1EAB04E400FD4BFB /* CaptureProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AEB41A1EAB04E400FD4BFB /* CaptureProfileViewController.m */; };
 		48AEB4221EAB060E00FD4BFB /* CaptureProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48AEB41F1EAB060E00FD4BFB /* CaptureProfileViewController.xib */; };
-		48AECE7D1FBF5163003BBC6A /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */; };
 		48BC73921B62AE8A001D98FF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BC738D1B62AE8A001D98FF /* CoreData.framework */; };
 		48CB52C91B71077C0091CD10 /* button_instagram_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52C51B71077C0091CD10 /* button_instagram_135x40.png */; };
 		48CB52CA1B71077C0091CD10 /* button_instagram_280x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CB52C61B71077C0091CD10 /* button_instagram_280x40.png */; };
@@ -373,6 +373,7 @@
 		48039F1E1F1E7AB2001EF0E1 /* RELEASE_NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = RELEASE_NOTES.md; path = ../../RELEASE_NOTES.md; sourceTree = "<group>"; };
 		48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAppAuth-iOS.a"; path = "../../../../Library/Developer/Xcode/DerivedData/SimpleCaptureDemo-axwcfzztwxtglzbntbtzcbbnswpg/Build/Products/Debug-iphoneos/libAppAuth-iOS.a"; sourceTree = "<group>"; };
 		48045EF91E2E7F3C00B4C318 /* JROpenIDAppAuthGoogleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogleDelegate.h; sourceTree = "<group>"; };
+		4816D7E5204F03EC00D5DA1C /* libAppAuth-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAppAuth-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4817766B1E7711E300B3187C /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		4817766D1E7719EE00B3187C /* debug_log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = debug_log.h; sourceTree = "<group>"; };
 		4825A77F1E687EDD009910B4 /* libAppAuth-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAppAuth-iOS.a"; path = "../../../../Library/Developer/Xcode/DerivedData/SimpleCaptureDemo-axwcfzztwxtglzbntbtzcbbnswpg/Build/Products/Debug-iphonesimulator/libAppAuth-iOS.a"; sourceTree = "<group>"; };
@@ -782,7 +783,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48AECE7D1FBF5163003BBC6A /* libAppAuth-iOS.a in Frameworks */,
+				4816D7E4204F03EC00D5DA1C /* libAppAuth-iOS.a in Frameworks */,
 				4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */,
 				4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
@@ -875,6 +876,7 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4816D7E5204F03EC00D5DA1C /* libAppAuth-iOS.a */,
 				DFEA3C321F8BBDD2005ACE97 /* libAppAuth-iOS.a */,
 				48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */,
 				48039F1C1F1E7A2A001EF0E1 /* AppAuth.framework */,
@@ -2138,10 +2140,8 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
-					../../../../../,
-					"../Source/**",
-					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
+					"$(PROJECT_DIR)/../../../OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"$(PROJECT_DIR)/../../Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2181,10 +2181,8 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
-					../../../../../,
-					"../Source/**",
-					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
+					"$(PROJECT_DIR)/../../../OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"$(PROJECT_DIR)/../../Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2267,10 +2265,8 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
-					../../../../../,
-					"../Source/**",
-					"/Users/UPDATE/GitHub/OpenIDAppAuth/AppAuth-iOS/Source/**",
-					"/Users/UPDATE/GitHub/jump.ios.internal/Janrain/**",
+					"$(PROJECT_DIR)/../../../OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"$(PROJECT_DIR)/../../Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
