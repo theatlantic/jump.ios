@@ -532,8 +532,8 @@
 		DFB6898A175E8E6C006DFC92 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		DFB6898B175E8E6C006DFC92 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		DFEA3C321F8BBDD2005ACE97 /* libAppAuth-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAppAuth-iOS.a"; path = "../../../GithubSourceCode/AppAuth-iOS-master/build/Debug-iphoneos/libAppAuth-iOS.a"; sourceTree = "<group>"; };
-		DFEA3C341F8BBEC2005ACE97 /* UIAlertController+JRAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+JRAlertController.h"; path = "Classes/UIAlertController+JRAlertController.h"; sourceTree = "<group>"; };
-		DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+JRAlertController.m"; path = "Classes/UIAlertController+JRAlertController.m"; sourceTree = "<group>"; };
+		DFEA3C341F8BBEC2005ACE97 /* UIAlertController+JRAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+JRAlertController.h"; sourceTree = "<group>"; };
+		DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+JRAlertController.m"; sourceTree = "<group>"; };
 		DFEFE3CE17A9915200760FEE /* ATTRIBUTION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ATTRIBUTION; sourceTree = "<group>"; };
 		DFEFE3D117A9915200760FEE /* debug_log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = debug_log.m; sourceTree = "<group>"; };
 		DFEFE3D217A9915200760FEE /* JRActivityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRActivityObject.h; sourceTree = "<group>"; };
@@ -936,8 +936,6 @@
 				6706F39D56CA252D2415997F /* CaptureDynamicForm.m */,
 				4ED8382B17EC307900CA9645 /* LinkedProfilesViewController.h */,
 				4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */,
-				DFEA3C341F8BBEC2005ACE97 /* UIAlertController+JRAlertController.h */,
-				DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1143,6 +1141,8 @@
 				486B0CD91E0219CC00B73F4F /* JROpenIDAppAuthProvider.h */,
 				486B0CDA1E021A1200B73F4F /* JROpenIDAppAuthProvider.m */,
 				48045EF91E2E7F3C00B4C318 /* JROpenIDAppAuthGoogleDelegate.h */,
+				DFEA3C341F8BBEC2005ACE97 /* UIAlertController+JRAlertController.h */,
+				DFEA3C351F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
