@@ -850,7 +850,6 @@
 				90C36B6B7717AA0C893E08E8 /* Frameworks */,
 				90C36B6B7717AA0C893E08EF /* SimpleCaptureDemo */,
 				C1424A8BB874F02EEE6D8982 /* Docs */,
-				6706F8B0C97A69C3A2194B76 /* JRCapture */,
 			);
 			sourceTree = "<group>";
 		};
@@ -918,6 +917,7 @@
 		9F7B6A8015336443002BF452 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6706F8B0C97A69C3A2194B76 /* JRCapture */,
 				4863F4DA1EAE484500B939D3 /* CaptureChangePasswordViewController.h */,
 				4863F4DB1EAE484500B939D3 /* CaptureChangePasswordViewController.m */,
 				4863F4DC1EAE484500B939D3 /* CaptureEditProfileViewController.h */,

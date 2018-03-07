@@ -2,6 +2,7 @@ v5.1.1
 
 * Added support for future changes to the Social Login platform
 * Keychain storage now uses the kSecAttrAccessibleWhenUnlockedThisDeviceOnly global variable.  https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlockedthisdeviceonly
+* Updated Cocoapods support.
 * Tested with the following supporting libraries/frameworks:
 
   * OpenID AppAuth iOS 0.90.0 (both sample apps)
