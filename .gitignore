@@ -4,6 +4,7 @@ Samples/SimpleCaptureDemoNative/TwitterCore.framework/*
 Samples/SimpleCaptureDemoNative/Fabric.framework/*
 Samples/SimpleCaptureDemoNative/GoogleSignIn.bundle/*
 Samples/SimpleCaptureDemoNative/GoogleSignIn.framework/*
+Samples/SimpleCaptureDemoNative/SimpleCaptureDemo.xcworkspace/xcuserdata/*
 Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative.xcworkspace/xcuserdata/*
 Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/GoogleService-Info.plist
 Samples/SimpleCaptureDemoNative/SimpleCaptureDemoNative/SimpleCaptureDemoNative-Info-WITH_KEYS.plist
