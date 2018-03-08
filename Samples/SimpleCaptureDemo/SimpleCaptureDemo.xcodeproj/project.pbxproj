@@ -89,16 +89,8 @@
 		4DB994B718A3F82D00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994B918A3F82D00E4D116 /* JRPublishActivityController.xib */; };
 		4DB994BD18A3F84B00E4D116 /* JRPublishActivityController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */; };
 		4ED8382D17EC307900CA9645 /* LinkedProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */; };
-		6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FCAB908800A9FF445D4B /* Upgrade Guide.md */; };
-		6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */; };
-		6706F0D47F845F7ECCBE860F /* User Registration Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FA6D8456656D3E398437 /* User Registration Guide.md */; };
-		6706F0DA7F5FA9A15B437997 /* Engage-Only Integration Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706F243FF1B1D4DBFCE6B5D /* Engage-Only Integration Guide.md */; };
-		6706F18263DF25C5CAEA8F6C /* Engage Custom Provider Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */; };
-		6706F2F5D380E2BE1B74B0C3 /* JUMP Integration Guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FDE35290E73F4513572D /* JUMP Integration Guide.md */; };
 		6706F51EE167DE5FFF64E224 /* CaptureDynamicForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F39D56CA252D2415997F /* CaptureDynamicForm.m */; };
 		6706FCE93985E90E4040B262 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F8DC7856E86A423C2108 /* PickerViewController.m */; };
-		6706FDFF6209500B70A5CFFC /* Xcode Project Setup.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */; };
-		6706FF134EDA24E912D2FB82 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6706FE4A749862BF082D2831 /* README.md */; };
 		6706FFA2D57FB31818D60F25 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706F1A44624C7575D0E75DA /* Utils.m */; };
 		90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08E9 /* UIKit.framework */; };
 		90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08EB /* Foundation.framework */; };
@@ -350,7 +342,6 @@
 /* Begin PBXFileReference section */
 		19BC0172346689920F3635B5 /* JRCaptureUIRequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureUIRequestBuilder.h; sourceTree = "<group>"; };
 		19BC0257924E51E62204AD0C /* JRCompatibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCompatibilityUtils.m; sourceTree = "<group>"; };
-		19BC041E76784877DC900CFB /* Native Authentication Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Native Authentication Guide.md"; path = "../../Docs/Native Authentication Guide.md"; sourceTree = "<group>"; };
 		19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_amazon_280x65@2x.png"; sourceTree = "<group>"; };
 		19BC047CA4CD50E9D20AE817 /* JRCaptureConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureConfig.m; sourceTree = "<group>"; };
 		19BC04C4EF4D04199F0988AB /* JRCaptureUIRequestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureUIRequestBuilder.m; sourceTree = "<group>"; };
@@ -368,7 +359,6 @@
 		3306C4925175C8478CBDD523 /* en */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		3306C685196702F83187B421 /* JRCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCapture.h; sourceTree = "<group>"; };
 		48039F1C1F1E7A2A001EF0E1 /* AppAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppAuth.framework; path = "../../../OpenIDAppAuth/AppAuth-iOS/build/Debug-iphoneos/AppAuth.framework"; sourceTree = "<group>"; };
-		48039F1E1F1E7AB2001EF0E1 /* RELEASE_NOTES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = RELEASE_NOTES.md; path = ../../RELEASE_NOTES.md; sourceTree = "<group>"; };
 		48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAppAuth-iOS.a"; path = "../../../../Library/Developer/Xcode/DerivedData/SimpleCaptureDemo-axwcfzztwxtglzbntbtzcbbnswpg/Build/Products/Debug-iphoneos/libAppAuth-iOS.a"; sourceTree = "<group>"; };
 		48045EF91E2E7F3C00B4C318 /* JROpenIDAppAuthGoogleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JROpenIDAppAuthGoogleDelegate.h; sourceTree = "<group>"; };
 		4816D7E5204F03EC00D5DA1C /* libAppAuth-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAppAuth-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,18 +442,10 @@
 		4ED8382C17EC307900CA9645 /* LinkedProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedProfilesViewController.m; path = Classes/LinkedProfilesViewController.m; sourceTree = "<group>"; };
 		6706F177967F38CF7CA5D0FC /* CaptureDynamicForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureDynamicForm.h; path = Classes/CaptureDynamicForm.h; sourceTree = "<group>"; };
 		6706F1A44624C7575D0E75DA /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Classes/Utils.m; sourceTree = "<group>"; };
-		6706F243FF1B1D4DBFCE6B5D /* Engage-Only Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Engage-Only Integration Guide.md"; path = "../../Docs/Engage-Only Integration Guide.md"; sourceTree = "<group>"; };
 		6706F39D56CA252D2415997F /* CaptureDynamicForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureDynamicForm.m; path = Classes/CaptureDynamicForm.m; sourceTree = "<group>"; };
 		6706F4723D28D385805BF6B3 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Classes/Utils.h; sourceTree = "<group>"; };
-		6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Engage Custom Provider Guide.md"; path = "../../Docs/Engage Custom Provider Guide.md"; sourceTree = "<group>"; };
 		6706F8DC7856E86A423C2108 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerViewController.m; path = Classes/PickerViewController.m; sourceTree = "<group>"; };
-		6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Xcode Project Setup.md"; path = "../../Docs/Xcode Project Setup.md"; sourceTree = "<group>"; };
-		6706FA6D8456656D3E398437 /* User Registration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "User Registration Guide.md"; path = "../../Docs/User Registration Guide.md"; sourceTree = "<group>"; };
-		6706FCAB908800A9FF445D4B /* Upgrade Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Upgrade Guide.md"; path = "../../Docs/Upgrade Guide.md"; sourceTree = "<group>"; };
-		6706FDE35290E73F4513572D /* JUMP Integration Guide.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "JUMP Integration Guide.md"; path = "../../Docs/JUMP Integration Guide.md"; sourceTree = "<group>"; };
-		6706FE4A749862BF082D2831 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		6706FE4C14414AE4B30F1878 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerViewController.h; path = Classes/PickerViewController.h; sourceTree = "<group>"; };
-		6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; name = "Engage Authentication Token URL.md"; path = "../../Docs/Engage Authentication Token URL.md"; sourceTree = "<group>"; };
 		90C36B6B7717AA0C893E08E0 /* SimpleCaptureDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCaptureDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C36B6B7717AA0C893E08E9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90C36B6B7717AA0C893E08EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -849,7 +831,6 @@
 				90C36B6B7717AA0C893E08DD /* Products */,
 				90C36B6B7717AA0C893E08E8 /* Frameworks */,
 				90C36B6B7717AA0C893E08EF /* SimpleCaptureDemo */,
-				C1424A8BB874F02EEE6D8982 /* Docs */,
 			);
 			sourceTree = "<group>";
 		};
@@ -976,23 +957,6 @@
 			);
 			name = images;
 			path = Resources/images;
-			sourceTree = "<group>";
-		};
-		C1424A8BB874F02EEE6D8982 /* Docs */ = {
-			isa = PBXGroup;
-			children = (
-				48039F1E1F1E7AB2001EF0E1 /* RELEASE_NOTES.md */,
-				6706FFEFEE62C8F93EAA251B /* Engage Authentication Token URL.md */,
-				6706F619E4BB76864B478610 /* Engage Custom Provider Guide.md */,
-				6706F243FF1B1D4DBFCE6B5D /* Engage-Only Integration Guide.md */,
-				6706FDE35290E73F4513572D /* JUMP Integration Guide.md */,
-				6706FA6C5C02B18DD67416C4 /* Xcode Project Setup.md */,
-				6706FA6D8456656D3E398437 /* User Registration Guide.md */,
-				6706FE4A749862BF082D2831 /* README.md */,
-				6706FCAB908800A9FF445D4B /* Upgrade Guide.md */,
-				19BC041E76784877DC900CFB /* Native Authentication Guide.md */,
-			);
-			name = Docs;
 			sourceTree = "<group>";
 		};
 		DF315E8717A988E100703C83 /* JRConnectionManager */ = {
@@ -1600,17 +1564,9 @@
 				9F7B6AB01533648C002BF452 /* background.png in Resources */,
 				D806D1B616A7638E008EEF96 /* assets in Resources */,
 				48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */,
-				6706F04CB24F25B6607F53A5 /* Engage Authentication Token URL.md in Resources */,
 				D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */,
 				48A85E871BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png in Resources */,
 				48A85E791BEBD446004CBA61 /* icon_paypal_openidconnect_30x30.png in Resources */,
-				6706F18263DF25C5CAEA8F6C /* Engage Custom Provider Guide.md in Resources */,
-				6706F0DA7F5FA9A15B437997 /* Engage-Only Integration Guide.md in Resources */,
-				6706F2F5D380E2BE1B74B0C3 /* JUMP Integration Guide.md in Resources */,
-				6706FDFF6209500B70A5CFFC /* Xcode Project Setup.md in Resources */,
-				6706F0D47F845F7ECCBE860F /* User Registration Guide.md in Resources */,
-				6706FF134EDA24E912D2FB82 /* README.md in Resources */,
-				6706F04035DB1BCCDCDF58CF /* Upgrade Guide.md in Resources */,
 				DF39E03C17A9887300FDA67A /* .gitignore in Resources */,
 				DFEFE4A217A9915200760FEE /* ATTRIBUTION in Resources */,
 				48A85E761BEBD42F004CBA61 /* button_paypal_openidconnect_135x40.png in Resources */,
