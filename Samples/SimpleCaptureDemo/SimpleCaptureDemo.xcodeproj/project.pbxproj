@@ -30,6 +30,33 @@
 		484380E61B5ED19200E63266 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E11B5ED19200E63266 /* MediaPlayer.framework */; };
 		484380E71B5ED19200E63266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484380E21B5ED19200E63266 /* SystemConfiguration.framework */; };
 		485D28561BDA9A4B002372DB /* button_googleplus_135x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */; };
+		485FFED72051ECDD006126DC /* janrain-config-default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 485FFED52051ECDD006126DC /* janrain-config-default.plist */; };
+		485FFED82051ECDD006126DC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 485FFED62051ECDD006126DC /* .gitignore */; };
+		485FFF0D2051ED12006126DC /* JRCurrentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEDB2051ED12006126DC /* JRCurrentLocation.m */; };
+		485FFF0E2051ED12006126DC /* JRPrimaryAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEDC2051ED12006126DC /* JRPrimaryAddress.m */; };
+		485FFF0F2051ED12006126DC /* JROrganizationsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEDD2051ED12006126DC /* JROrganizationsElement.m */; };
+		485FFF102051ED12006126DC /* JRLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEE02051ED12006126DC /* JRLocation.m */; };
+		485FFF112051ED12006126DC /* JRPhoneNumbersElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEE22051ED12006126DC /* JRPhoneNumbersElement.m */; };
+		485FFF122051ED12006126DC /* JRProfilePhotosElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEE32051ED12006126DC /* JRProfilePhotosElement.m */; };
+		485FFF132051ED12006126DC /* JRCaptureUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEE52051ED12006126DC /* JRCaptureUser.m */; };
+		485FFF142051ED12006126DC /* JRCloudsearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEEA2051ED12006126DC /* JRCloudsearch.m */; };
+		485FFF152051ED12006126DC /* JRAccountsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEEB2051ED12006126DC /* JRAccountsElement.m */; };
+		485FFF162051ED12006126DC /* JRAddressesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEEC2051ED12006126DC /* JRAddressesElement.m */; };
+		485FFF172051ED12006126DC /* JRClientsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEEE2051ED12006126DC /* JRClientsElement.m */; };
+		485FFF182051ED12006126DC /* JRBodyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEF12051ED12006126DC /* JRBodyType.m */; };
+		485FFF192051ED12006126DC /* JRJanrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEF22051ED12006126DC /* JRJanrain.m */; };
+		485FFF1A2051ED12006126DC /* JRUrlsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEF32051ED12006126DC /* JRUrlsElement.m */; };
+		485FFF1B2051ED12006126DC /* JRStatusesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEF82051ED12006126DC /* JRStatusesElement.m */; };
+		485FFF1C2051ED12006126DC /* JRProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEF92051ED12006126DC /* JRProperties.m */; };
+		485FFF1D2051ED12006126DC /* JRProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEFC2051ED12006126DC /* JRProfile.m */; };
+		485FFF1E2051ED12006126DC /* JRName.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFEFF2051ED12006126DC /* JRName.m */; };
+		485FFF1F2051ED12006126DC /* JROptIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFF002051ED12006126DC /* JROptIn.m */; };
+		485FFF202051ED12006126DC /* JRPhotosElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFF012051ED12006126DC /* JRPhotosElement.m */; };
+		485FFF212051ED12006126DC /* JREmailsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFF032051ED12006126DC /* JREmailsElement.m */; };
+		485FFF222051ED13006126DC /* JRProfilesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFF042051ED12006126DC /* JRProfilesElement.m */; };
+		485FFF232051ED13006126DC /* JRImsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFF062051ED12006126DC /* JRImsElement.m */; };
+		485FFF242051ED13006126DC /* JRStandardFlowKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFF092051ED12006126DC /* JRStandardFlowKeys.m */; };
+		485FFF252051ED13006126DC /* JRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 485FFF0A2051ED12006126DC /* JRPickerView.m */; };
 		4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4898D44A1DFA0D8C007432DB /* SafariServices.framework */; };
 		4863F4DE1EAE484500B939D3 /* CaptureChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4863F4DB1EAE484500B939D3 /* CaptureChangePasswordViewController.m */; };
 		4863F4DF1EAE484500B939D3 /* CaptureEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4863F4DD1EAE484500B939D3 /* CaptureEditProfileViewController.m */; };
@@ -103,7 +130,6 @@
 		C142424E43DA098E32674AE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C142401A5A8AAAFC251E5853 /* QuartzCore.framework */; };
 		C1424348AA5C311E306A242D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14249B9A86322CE1634EA23 /* MessageUI.framework */; };
 		C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1424E26376A97DCC6454072 /* Security.framework */; };
-		D806D1B616A7638E008EEF96 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D806D1B516A7638E008EEF96 /* assets */; };
 		D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */; };
 		D823C6EF189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6EE189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png */; };
 		D823C6F1189C2FBB00993DAE /* logo_microsoftaccount_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = D823C6F0189C2FBB00993DAE /* logo_microsoftaccount_280x65.png */; };
@@ -116,8 +142,6 @@
 		D8E0218D17D14CFB00013803 /* logo_googleplus_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */; };
 		D8E0218F17D14D0C00013803 /* icon_googleplus_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */; };
 		D8E0219117D14D1800013803 /* logo_googleplus_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E0219017D14D1800013803 /* logo_googleplus_280x65@2x.png */; };
-		DF0087B51FA8CF9D00D7E946 /* JRStandardFlowKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0087B41FA8CF9D00D7E946 /* JRStandardFlowKeys.m */; };
-		DF0D06F11FA289C70047B6CE /* JRPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0D06F01FA289C70047B6CE /* JRPickerView.m */; };
 		DF315E8E17A988E100703C83 /* JRConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8917A988E100703C83 /* JRConnectionManager.m */; };
 		DF315E8F17A988E100703C83 /* NSDictionary+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8B17A988E100703C83 /* NSDictionary+JRQueryParams.m */; };
 		DF315E9017A988E100703C83 /* NSMutableURLRequest+JRRequestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DF315E8D17A988E100703C83 /* NSMutableURLRequest+JRRequestUtils.m */; };
@@ -313,29 +337,6 @@
 		DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49E17A9915200760FEE /* JRProvidersController.xib */; };
 		DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */; };
 		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
-		DFFAB7881FACCF68005BA6D1 /* JRAccountsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB75B1FACCF68005BA6D1 /* JRAccountsElement.m */; };
-		DFFAB7891FACCF68005BA6D1 /* JRAddressesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB75D1FACCF68005BA6D1 /* JRAddressesElement.m */; };
-		DFFAB78A1FACCF68005BA6D1 /* JRBodyType.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB75F1FACCF68005BA6D1 /* JRBodyType.m */; };
-		DFFAB78B1FACCF68005BA6D1 /* JRCaptureUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7611FACCF68005BA6D1 /* JRCaptureUser.m */; };
-		DFFAB78C1FACCF68005BA6D1 /* JRClientsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7631FACCF68005BA6D1 /* JRClientsElement.m */; };
-		DFFAB78D1FACCF68005BA6D1 /* JRCloudsearch.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7651FACCF68005BA6D1 /* JRCloudsearch.m */; };
-		DFFAB78E1FACCF68005BA6D1 /* JRCurrentLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7671FACCF68005BA6D1 /* JRCurrentLocation.m */; };
-		DFFAB78F1FACCF68005BA6D1 /* JREmailsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7691FACCF68005BA6D1 /* JREmailsElement.m */; };
-		DFFAB7901FACCF68005BA6D1 /* JRImsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB76B1FACCF68005BA6D1 /* JRImsElement.m */; };
-		DFFAB7911FACCF68005BA6D1 /* JRJanrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB76D1FACCF68005BA6D1 /* JRJanrain.m */; };
-		DFFAB7921FACCF68005BA6D1 /* JRLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB76F1FACCF68005BA6D1 /* JRLocation.m */; };
-		DFFAB7931FACCF68005BA6D1 /* JRName.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7711FACCF68005BA6D1 /* JRName.m */; };
-		DFFAB7941FACCF68005BA6D1 /* JROptIn.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7731FACCF68005BA6D1 /* JROptIn.m */; };
-		DFFAB7951FACCF68005BA6D1 /* JROrganizationsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7751FACCF68005BA6D1 /* JROrganizationsElement.m */; };
-		DFFAB7961FACCF68005BA6D1 /* JRPhoneNumbersElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7771FACCF68005BA6D1 /* JRPhoneNumbersElement.m */; };
-		DFFAB7971FACCF68005BA6D1 /* JRPhotosElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7791FACCF68005BA6D1 /* JRPhotosElement.m */; };
-		DFFAB7981FACCF68005BA6D1 /* JRPrimaryAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB77B1FACCF68005BA6D1 /* JRPrimaryAddress.m */; };
-		DFFAB7991FACCF68005BA6D1 /* JRProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB77D1FACCF68005BA6D1 /* JRProfile.m */; };
-		DFFAB79A1FACCF68005BA6D1 /* JRProfilePhotosElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB77F1FACCF68005BA6D1 /* JRProfilePhotosElement.m */; };
-		DFFAB79B1FACCF68005BA6D1 /* JRProfilesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7811FACCF68005BA6D1 /* JRProfilesElement.m */; };
-		DFFAB79C1FACCF68005BA6D1 /* JRProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7831FACCF68005BA6D1 /* JRProperties.m */; };
-		DFFAB79D1FACCF68005BA6D1 /* JRStatusesElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7851FACCF68005BA6D1 /* JRStatusesElement.m */; };
-		DFFAB79E1FACCF68005BA6D1 /* JRUrlsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFAB7871FACCF68005BA6D1 /* JRUrlsElement.m */; };
 		DFFAB7A11FAD2B77005BA6D1 /* CaptureDynamicForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFAB79F1FAD2B77005BA6D1 /* CaptureDynamicForm.xib */; };
 /* End PBXBuildFile section */
 
@@ -372,6 +373,58 @@
 		484380E11B5ED19200E63266 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		484380E21B5ED19200E63266 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		485D28551BDA9A4B002372DB /* button_googleplus_135x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_googleplus_135x40.png; sourceTree = "<group>"; };
+		485FFED52051ECDD006126DC /* janrain-config-default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "janrain-config-default.plist"; sourceTree = "<group>"; };
+		485FFED62051ECDD006126DC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		485FFEDB2051ED12006126DC /* JRCurrentLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCurrentLocation.m; sourceTree = "<group>"; };
+		485FFEDC2051ED12006126DC /* JRPrimaryAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPrimaryAddress.m; sourceTree = "<group>"; };
+		485FFEDD2051ED12006126DC /* JROrganizationsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROrganizationsElement.m; sourceTree = "<group>"; };
+		485FFEDE2051ED12006126DC /* JRJanrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRJanrain.h; sourceTree = "<group>"; };
+		485FFEDF2051ED12006126DC /* JRUrlsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRUrlsElement.h; sourceTree = "<group>"; };
+		485FFEE02051ED12006126DC /* JRLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRLocation.m; sourceTree = "<group>"; };
+		485FFEE12051ED12006126DC /* JRProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProfile.h; sourceTree = "<group>"; };
+		485FFEE22051ED12006126DC /* JRPhoneNumbersElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPhoneNumbersElement.m; sourceTree = "<group>"; };
+		485FFEE32051ED12006126DC /* JRProfilePhotosElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRProfilePhotosElement.m; sourceTree = "<group>"; };
+		485FFEE42051ED12006126DC /* JRProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProperties.h; sourceTree = "<group>"; };
+		485FFEE52051ED12006126DC /* JRCaptureUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCaptureUser.m; sourceTree = "<group>"; };
+		485FFEE62051ED12006126DC /* JRStatusesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRStatusesElement.h; sourceTree = "<group>"; };
+		485FFEE72051ED12006126DC /* JRPhotosElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPhotosElement.h; sourceTree = "<group>"; };
+		485FFEE82051ED12006126DC /* JRName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRName.h; sourceTree = "<group>"; };
+		485FFEE92051ED12006126DC /* JROptIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROptIn.h; sourceTree = "<group>"; };
+		485FFEEA2051ED12006126DC /* JRCloudsearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCloudsearch.m; sourceTree = "<group>"; };
+		485FFEEB2051ED12006126DC /* JRAccountsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAccountsElement.m; sourceTree = "<group>"; };
+		485FFEEC2051ED12006126DC /* JRAddressesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAddressesElement.m; sourceTree = "<group>"; };
+		485FFEED2051ED12006126DC /* JRImsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRImsElement.h; sourceTree = "<group>"; };
+		485FFEEE2051ED12006126DC /* JRClientsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRClientsElement.m; sourceTree = "<group>"; };
+		485FFEEF2051ED12006126DC /* JRProfilesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProfilesElement.h; sourceTree = "<group>"; };
+		485FFEF02051ED12006126DC /* JREmailsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JREmailsElement.h; sourceTree = "<group>"; };
+		485FFEF12051ED12006126DC /* JRBodyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBodyType.m; sourceTree = "<group>"; };
+		485FFEF22051ED12006126DC /* JRJanrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRJanrain.m; sourceTree = "<group>"; };
+		485FFEF32051ED12006126DC /* JRUrlsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRUrlsElement.m; sourceTree = "<group>"; };
+		485FFEF42051ED12006126DC /* JRPrimaryAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPrimaryAddress.h; sourceTree = "<group>"; };
+		485FFEF52051ED12006126DC /* JROrganizationsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JROrganizationsElement.h; sourceTree = "<group>"; };
+		485FFEF62051ED12006126DC /* JRCurrentLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCurrentLocation.h; sourceTree = "<group>"; };
+		485FFEF72051ED12006126DC /* JRCaptureUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCaptureUser.h; sourceTree = "<group>"; };
+		485FFEF82051ED12006126DC /* JRStatusesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStatusesElement.m; sourceTree = "<group>"; };
+		485FFEF92051ED12006126DC /* JRProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRProperties.m; sourceTree = "<group>"; };
+		485FFEFA2051ED12006126DC /* JRProfilePhotosElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRProfilePhotosElement.h; sourceTree = "<group>"; };
+		485FFEFB2051ED12006126DC /* JRPhoneNumbersElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPhoneNumbersElement.h; sourceTree = "<group>"; };
+		485FFEFC2051ED12006126DC /* JRProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRProfile.m; sourceTree = "<group>"; };
+		485FFEFD2051ED12006126DC /* JRLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRLocation.h; sourceTree = "<group>"; };
+		485FFEFE2051ED12006126DC /* JRCloudsearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCloudsearch.h; sourceTree = "<group>"; };
+		485FFEFF2051ED12006126DC /* JRName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRName.m; sourceTree = "<group>"; };
+		485FFF002051ED12006126DC /* JROptIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JROptIn.m; sourceTree = "<group>"; };
+		485FFF012051ED12006126DC /* JRPhotosElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPhotosElement.m; sourceTree = "<group>"; };
+		485FFF022051ED12006126DC /* JRBodyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBodyType.h; sourceTree = "<group>"; };
+		485FFF032051ED12006126DC /* JREmailsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JREmailsElement.m; sourceTree = "<group>"; };
+		485FFF042051ED12006126DC /* JRProfilesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRProfilesElement.m; sourceTree = "<group>"; };
+		485FFF052051ED12006126DC /* JRClientsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRClientsElement.h; sourceTree = "<group>"; };
+		485FFF062051ED12006126DC /* JRImsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRImsElement.m; sourceTree = "<group>"; };
+		485FFF072051ED12006126DC /* JRAddressesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAddressesElement.h; sourceTree = "<group>"; };
+		485FFF082051ED12006126DC /* JRAccountsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAccountsElement.h; sourceTree = "<group>"; };
+		485FFF092051ED12006126DC /* JRStandardFlowKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStandardFlowKeys.m; sourceTree = "<group>"; };
+		485FFF0A2051ED12006126DC /* JRPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPickerView.m; sourceTree = "<group>"; };
+		485FFF0B2051ED12006126DC /* JRStandardFlowKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRStandardFlowKeys.h; sourceTree = "<group>"; };
+		485FFF0C2051ED12006126DC /* JRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPickerView.h; sourceTree = "<group>"; };
 		4863F4DA1EAE484500B939D3 /* CaptureChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureChangePasswordViewController.h; path = Classes/CaptureChangePasswordViewController.h; sourceTree = "<group>"; };
 		4863F4DB1EAE484500B939D3 /* CaptureChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureChangePasswordViewController.m; path = Classes/CaptureChangePasswordViewController.m; sourceTree = "<group>"; };
 		4863F4DC1EAE484500B939D3 /* CaptureEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureEditProfileViewController.h; path = Classes/CaptureEditProfileViewController.h; sourceTree = "<group>"; };
@@ -464,7 +517,6 @@
 		C142401A5A8AAAFC251E5853 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C14249B9A86322CE1634EA23 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C1424E26376A97DCC6454072 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		D806D1B516A7638E008EEF96 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
 		D823C6EC189C2FA200993DAE /* icon_microsoftaccount_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_microsoftaccount_30x30.png; sourceTree = "<group>"; };
 		D823C6EE189C2FAE00993DAE /* icon_bw_microsoftaccount_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw_microsoftaccount_30x30.png; sourceTree = "<group>"; };
 		D823C6F0189C2FBB00993DAE /* logo_microsoftaccount_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_microsoftaccount_280x65.png; sourceTree = "<group>"; };
@@ -477,10 +529,6 @@
 		D8E0218C17D14CFB00013803 /* logo_googleplus_280x65.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_googleplus_280x65.png; sourceTree = "<group>"; };
 		D8E0218E17D14D0C00013803 /* icon_googleplus_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_googleplus_30x30@2x.png"; sourceTree = "<group>"; };
 		D8E0219017D14D1800013803 /* logo_googleplus_280x65@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_googleplus_280x65@2x.png"; sourceTree = "<group>"; };
-		DF0087B31FA8C92A00D7E946 /* JRStandardFlowKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRStandardFlowKeys.h; sourceTree = "<group>"; };
-		DF0087B41FA8CF9D00D7E946 /* JRStandardFlowKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStandardFlowKeys.m; sourceTree = "<group>"; };
-		DF0D06EF1FA289C70047B6CE /* JRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPickerView.h; sourceTree = "<group>"; };
-		DF0D06F01FA289C70047B6CE /* JRPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPickerView.m; sourceTree = "<group>"; };
 		DF315E8817A988E100703C83 /* JRConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRConnectionManager.h; sourceTree = "<group>"; };
 		DF315E8917A988E100703C83 /* JRConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRConnectionManager.m; sourceTree = "<group>"; };
 		DF315E8A17A988E100703C83 /* NSDictionary+JRQueryParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JRQueryParams.h"; sourceTree = "<group>"; };
@@ -709,52 +757,6 @@
 		DFEFE49E17A9915200760FEE /* JRProvidersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRProvidersController.xib; sourceTree = "<group>"; };
 		DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRUserLandingController.xib; sourceTree = "<group>"; };
 		DFEFE4A117A9915200760FEE /* JRWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRWebViewController.xib; sourceTree = "<group>"; };
-		DFFAB75A1FACCF68005BA6D1 /* JRAccountsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRAccountsElement.h; path = Generated/JRAccountsElement.h; sourceTree = "<group>"; };
-		DFFAB75B1FACCF68005BA6D1 /* JRAccountsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRAccountsElement.m; path = Generated/JRAccountsElement.m; sourceTree = "<group>"; };
-		DFFAB75C1FACCF68005BA6D1 /* JRAddressesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRAddressesElement.h; path = Generated/JRAddressesElement.h; sourceTree = "<group>"; };
-		DFFAB75D1FACCF68005BA6D1 /* JRAddressesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRAddressesElement.m; path = Generated/JRAddressesElement.m; sourceTree = "<group>"; };
-		DFFAB75E1FACCF68005BA6D1 /* JRBodyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRBodyType.h; path = Generated/JRBodyType.h; sourceTree = "<group>"; };
-		DFFAB75F1FACCF68005BA6D1 /* JRBodyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRBodyType.m; path = Generated/JRBodyType.m; sourceTree = "<group>"; };
-		DFFAB7601FACCF68005BA6D1 /* JRCaptureUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRCaptureUser.h; path = Generated/JRCaptureUser.h; sourceTree = "<group>"; };
-		DFFAB7611FACCF68005BA6D1 /* JRCaptureUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRCaptureUser.m; path = Generated/JRCaptureUser.m; sourceTree = "<group>"; };
-		DFFAB7621FACCF68005BA6D1 /* JRClientsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRClientsElement.h; path = Generated/JRClientsElement.h; sourceTree = "<group>"; };
-		DFFAB7631FACCF68005BA6D1 /* JRClientsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRClientsElement.m; path = Generated/JRClientsElement.m; sourceTree = "<group>"; };
-		DFFAB7641FACCF68005BA6D1 /* JRCloudsearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRCloudsearch.h; path = Generated/JRCloudsearch.h; sourceTree = "<group>"; };
-		DFFAB7651FACCF68005BA6D1 /* JRCloudsearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRCloudsearch.m; path = Generated/JRCloudsearch.m; sourceTree = "<group>"; };
-		DFFAB7661FACCF68005BA6D1 /* JRCurrentLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRCurrentLocation.h; path = Generated/JRCurrentLocation.h; sourceTree = "<group>"; };
-		DFFAB7671FACCF68005BA6D1 /* JRCurrentLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRCurrentLocation.m; path = Generated/JRCurrentLocation.m; sourceTree = "<group>"; };
-		DFFAB7681FACCF68005BA6D1 /* JREmailsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JREmailsElement.h; path = Generated/JREmailsElement.h; sourceTree = "<group>"; };
-		DFFAB7691FACCF68005BA6D1 /* JREmailsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JREmailsElement.m; path = Generated/JREmailsElement.m; sourceTree = "<group>"; };
-		DFFAB76A1FACCF68005BA6D1 /* JRImsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRImsElement.h; path = Generated/JRImsElement.h; sourceTree = "<group>"; };
-		DFFAB76B1FACCF68005BA6D1 /* JRImsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRImsElement.m; path = Generated/JRImsElement.m; sourceTree = "<group>"; };
-		DFFAB76C1FACCF68005BA6D1 /* JRJanrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRJanrain.h; path = Generated/JRJanrain.h; sourceTree = "<group>"; };
-		DFFAB76D1FACCF68005BA6D1 /* JRJanrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRJanrain.m; path = Generated/JRJanrain.m; sourceTree = "<group>"; };
-		DFFAB76E1FACCF68005BA6D1 /* JRLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRLocation.h; path = Generated/JRLocation.h; sourceTree = "<group>"; };
-		DFFAB76F1FACCF68005BA6D1 /* JRLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRLocation.m; path = Generated/JRLocation.m; sourceTree = "<group>"; };
-		DFFAB7701FACCF68005BA6D1 /* JRName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRName.h; path = Generated/JRName.h; sourceTree = "<group>"; };
-		DFFAB7711FACCF68005BA6D1 /* JRName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRName.m; path = Generated/JRName.m; sourceTree = "<group>"; };
-		DFFAB7721FACCF68005BA6D1 /* JROptIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JROptIn.h; path = Generated/JROptIn.h; sourceTree = "<group>"; };
-		DFFAB7731FACCF68005BA6D1 /* JROptIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JROptIn.m; path = Generated/JROptIn.m; sourceTree = "<group>"; };
-		DFFAB7741FACCF68005BA6D1 /* JROrganizationsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JROrganizationsElement.h; path = Generated/JROrganizationsElement.h; sourceTree = "<group>"; };
-		DFFAB7751FACCF68005BA6D1 /* JROrganizationsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JROrganizationsElement.m; path = Generated/JROrganizationsElement.m; sourceTree = "<group>"; };
-		DFFAB7761FACCF68005BA6D1 /* JRPhoneNumbersElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRPhoneNumbersElement.h; path = Generated/JRPhoneNumbersElement.h; sourceTree = "<group>"; };
-		DFFAB7771FACCF68005BA6D1 /* JRPhoneNumbersElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRPhoneNumbersElement.m; path = Generated/JRPhoneNumbersElement.m; sourceTree = "<group>"; };
-		DFFAB7781FACCF68005BA6D1 /* JRPhotosElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRPhotosElement.h; path = Generated/JRPhotosElement.h; sourceTree = "<group>"; };
-		DFFAB7791FACCF68005BA6D1 /* JRPhotosElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRPhotosElement.m; path = Generated/JRPhotosElement.m; sourceTree = "<group>"; };
-		DFFAB77A1FACCF68005BA6D1 /* JRPrimaryAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRPrimaryAddress.h; path = Generated/JRPrimaryAddress.h; sourceTree = "<group>"; };
-		DFFAB77B1FACCF68005BA6D1 /* JRPrimaryAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRPrimaryAddress.m; path = Generated/JRPrimaryAddress.m; sourceTree = "<group>"; };
-		DFFAB77C1FACCF68005BA6D1 /* JRProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRProfile.h; path = Generated/JRProfile.h; sourceTree = "<group>"; };
-		DFFAB77D1FACCF68005BA6D1 /* JRProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRProfile.m; path = Generated/JRProfile.m; sourceTree = "<group>"; };
-		DFFAB77E1FACCF68005BA6D1 /* JRProfilePhotosElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRProfilePhotosElement.h; path = Generated/JRProfilePhotosElement.h; sourceTree = "<group>"; };
-		DFFAB77F1FACCF68005BA6D1 /* JRProfilePhotosElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRProfilePhotosElement.m; path = Generated/JRProfilePhotosElement.m; sourceTree = "<group>"; };
-		DFFAB7801FACCF68005BA6D1 /* JRProfilesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRProfilesElement.h; path = Generated/JRProfilesElement.h; sourceTree = "<group>"; };
-		DFFAB7811FACCF68005BA6D1 /* JRProfilesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRProfilesElement.m; path = Generated/JRProfilesElement.m; sourceTree = "<group>"; };
-		DFFAB7821FACCF68005BA6D1 /* JRProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRProperties.h; path = Generated/JRProperties.h; sourceTree = "<group>"; };
-		DFFAB7831FACCF68005BA6D1 /* JRProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRProperties.m; path = Generated/JRProperties.m; sourceTree = "<group>"; };
-		DFFAB7841FACCF68005BA6D1 /* JRStatusesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRStatusesElement.h; path = Generated/JRStatusesElement.h; sourceTree = "<group>"; };
-		DFFAB7851FACCF68005BA6D1 /* JRStatusesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRStatusesElement.m; path = Generated/JRStatusesElement.m; sourceTree = "<group>"; };
-		DFFAB7861FACCF68005BA6D1 /* JRUrlsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRUrlsElement.h; path = Generated/JRUrlsElement.h; sourceTree = "<group>"; };
-		DFFAB7871FACCF68005BA6D1 /* JRUrlsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRUrlsElement.m; path = Generated/JRUrlsElement.m; sourceTree = "<group>"; };
 		DFFAB7A01FAD2B77005BA6D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CaptureDynamicForm.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -804,24 +806,88 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		485FFED42051ECDD006126DC /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				485FFED52051ECDD006126DC /* janrain-config-default.plist */,
+				485FFED62051ECDD006126DC /* .gitignore */,
+			);
+			name = assets;
+			path = Resources/assets;
+			sourceTree = "<group>";
+		};
+		485FFED92051ED12006126DC /* JRCapture */ = {
+			isa = PBXGroup;
+			children = (
+				485FFEDA2051ED12006126DC /* Generated */,
+				485FFF092051ED12006126DC /* JRStandardFlowKeys.m */,
+				485FFF0A2051ED12006126DC /* JRPickerView.m */,
+				485FFF0B2051ED12006126DC /* JRStandardFlowKeys.h */,
+				485FFF0C2051ED12006126DC /* JRPickerView.h */,
+			);
+			name = JRCapture;
+			path = Classes/JRCapture;
+			sourceTree = "<group>";
+		};
+		485FFEDA2051ED12006126DC /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				485FFEDB2051ED12006126DC /* JRCurrentLocation.m */,
+				485FFEDC2051ED12006126DC /* JRPrimaryAddress.m */,
+				485FFEDD2051ED12006126DC /* JROrganizationsElement.m */,
+				485FFEDE2051ED12006126DC /* JRJanrain.h */,
+				485FFEDF2051ED12006126DC /* JRUrlsElement.h */,
+				485FFEE02051ED12006126DC /* JRLocation.m */,
+				485FFEE12051ED12006126DC /* JRProfile.h */,
+				485FFEE22051ED12006126DC /* JRPhoneNumbersElement.m */,
+				485FFEE32051ED12006126DC /* JRProfilePhotosElement.m */,
+				485FFEE42051ED12006126DC /* JRProperties.h */,
+				485FFEE52051ED12006126DC /* JRCaptureUser.m */,
+				485FFEE62051ED12006126DC /* JRStatusesElement.h */,
+				485FFEE72051ED12006126DC /* JRPhotosElement.h */,
+				485FFEE82051ED12006126DC /* JRName.h */,
+				485FFEE92051ED12006126DC /* JROptIn.h */,
+				485FFEEA2051ED12006126DC /* JRCloudsearch.m */,
+				485FFEEB2051ED12006126DC /* JRAccountsElement.m */,
+				485FFEEC2051ED12006126DC /* JRAddressesElement.m */,
+				485FFEED2051ED12006126DC /* JRImsElement.h */,
+				485FFEEE2051ED12006126DC /* JRClientsElement.m */,
+				485FFEEF2051ED12006126DC /* JRProfilesElement.h */,
+				485FFEF02051ED12006126DC /* JREmailsElement.h */,
+				485FFEF12051ED12006126DC /* JRBodyType.m */,
+				485FFEF22051ED12006126DC /* JRJanrain.m */,
+				485FFEF32051ED12006126DC /* JRUrlsElement.m */,
+				485FFEF42051ED12006126DC /* JRPrimaryAddress.h */,
+				485FFEF52051ED12006126DC /* JROrganizationsElement.h */,
+				485FFEF62051ED12006126DC /* JRCurrentLocation.h */,
+				485FFEF72051ED12006126DC /* JRCaptureUser.h */,
+				485FFEF82051ED12006126DC /* JRStatusesElement.m */,
+				485FFEF92051ED12006126DC /* JRProperties.m */,
+				485FFEFA2051ED12006126DC /* JRProfilePhotosElement.h */,
+				485FFEFB2051ED12006126DC /* JRPhoneNumbersElement.h */,
+				485FFEFC2051ED12006126DC /* JRProfile.m */,
+				485FFEFD2051ED12006126DC /* JRLocation.h */,
+				485FFEFE2051ED12006126DC /* JRCloudsearch.h */,
+				485FFEFF2051ED12006126DC /* JRName.m */,
+				485FFF002051ED12006126DC /* JROptIn.m */,
+				485FFF012051ED12006126DC /* JRPhotosElement.m */,
+				485FFF022051ED12006126DC /* JRBodyType.h */,
+				485FFF032051ED12006126DC /* JREmailsElement.m */,
+				485FFF042051ED12006126DC /* JRProfilesElement.m */,
+				485FFF052051ED12006126DC /* JRClientsElement.h */,
+				485FFF062051ED12006126DC /* JRImsElement.m */,
+				485FFF072051ED12006126DC /* JRAddressesElement.h */,
+				485FFF082051ED12006126DC /* JRAccountsElement.h */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		4DB994BA18A3F84B00E4D116 /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
 				4DB994BB18A3F84B00E4D116 /* JRPublishActivityController.xib */,
 			);
 			path = en.lproj;
-			sourceTree = "<group>";
-		};
-		6706F8B0C97A69C3A2194B76 /* JRCapture */ = {
-			isa = PBXGroup;
-			children = (
-				DFFAB7591FACCF4D005BA6D1 /* Generated */,
-				DF0D06EF1FA289C70047B6CE /* JRPickerView.h */,
-				DF0D06F01FA289C70047B6CE /* JRPickerView.m */,
-				DF0087B31FA8C92A00D7E946 /* JRStandardFlowKeys.h */,
-				DF0087B41FA8CF9D00D7E946 /* JRStandardFlowKeys.m */,
-			);
-			path = JRCapture;
 			sourceTree = "<group>";
 		};
 		90C36B6B7717AA0C893E08DC = {
@@ -898,7 +964,7 @@
 		9F7B6A8015336443002BF452 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6706F8B0C97A69C3A2194B76 /* JRCapture */,
+				485FFED92051ED12006126DC /* JRCapture */,
 				4863F4DA1EAE484500B939D3 /* CaptureChangePasswordViewController.h */,
 				4863F4DB1EAE484500B939D3 /* CaptureChangePasswordViewController.m */,
 				4863F4DC1EAE484500B939D3 /* CaptureEditProfileViewController.h */,
@@ -924,7 +990,7 @@
 		9F7B6A811533644A002BF452 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D806D1B516A7638E008EEF96 /* assets */,
+				485FFED42051ECDD006126DC /* assets */,
 				9F7B6A9A1533648C002BF452 /* en.lproj */,
 				9F7B6AA71533648C002BF452 /* images */,
 			);
@@ -1441,59 +1507,6 @@
 			path = xibs;
 			sourceTree = "<group>";
 		};
-		DFFAB7591FACCF4D005BA6D1 /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				DFFAB75A1FACCF68005BA6D1 /* JRAccountsElement.h */,
-				DFFAB75B1FACCF68005BA6D1 /* JRAccountsElement.m */,
-				DFFAB75C1FACCF68005BA6D1 /* JRAddressesElement.h */,
-				DFFAB75D1FACCF68005BA6D1 /* JRAddressesElement.m */,
-				DFFAB75E1FACCF68005BA6D1 /* JRBodyType.h */,
-				DFFAB75F1FACCF68005BA6D1 /* JRBodyType.m */,
-				DFFAB7601FACCF68005BA6D1 /* JRCaptureUser.h */,
-				DFFAB7611FACCF68005BA6D1 /* JRCaptureUser.m */,
-				DFFAB7621FACCF68005BA6D1 /* JRClientsElement.h */,
-				DFFAB7631FACCF68005BA6D1 /* JRClientsElement.m */,
-				DFFAB7641FACCF68005BA6D1 /* JRCloudsearch.h */,
-				DFFAB7651FACCF68005BA6D1 /* JRCloudsearch.m */,
-				DFFAB7661FACCF68005BA6D1 /* JRCurrentLocation.h */,
-				DFFAB7671FACCF68005BA6D1 /* JRCurrentLocation.m */,
-				DFFAB7681FACCF68005BA6D1 /* JREmailsElement.h */,
-				DFFAB7691FACCF68005BA6D1 /* JREmailsElement.m */,
-				DFFAB76A1FACCF68005BA6D1 /* JRImsElement.h */,
-				DFFAB76B1FACCF68005BA6D1 /* JRImsElement.m */,
-				DFFAB76C1FACCF68005BA6D1 /* JRJanrain.h */,
-				DFFAB76D1FACCF68005BA6D1 /* JRJanrain.m */,
-				DFFAB76E1FACCF68005BA6D1 /* JRLocation.h */,
-				DFFAB76F1FACCF68005BA6D1 /* JRLocation.m */,
-				DFFAB7701FACCF68005BA6D1 /* JRName.h */,
-				DFFAB7711FACCF68005BA6D1 /* JRName.m */,
-				DFFAB7721FACCF68005BA6D1 /* JROptIn.h */,
-				DFFAB7731FACCF68005BA6D1 /* JROptIn.m */,
-				DFFAB7741FACCF68005BA6D1 /* JROrganizationsElement.h */,
-				DFFAB7751FACCF68005BA6D1 /* JROrganizationsElement.m */,
-				DFFAB7761FACCF68005BA6D1 /* JRPhoneNumbersElement.h */,
-				DFFAB7771FACCF68005BA6D1 /* JRPhoneNumbersElement.m */,
-				DFFAB7781FACCF68005BA6D1 /* JRPhotosElement.h */,
-				DFFAB7791FACCF68005BA6D1 /* JRPhotosElement.m */,
-				DFFAB77A1FACCF68005BA6D1 /* JRPrimaryAddress.h */,
-				DFFAB77B1FACCF68005BA6D1 /* JRPrimaryAddress.m */,
-				DFFAB77C1FACCF68005BA6D1 /* JRProfile.h */,
-				DFFAB77D1FACCF68005BA6D1 /* JRProfile.m */,
-				DFFAB77E1FACCF68005BA6D1 /* JRProfilePhotosElement.h */,
-				DFFAB77F1FACCF68005BA6D1 /* JRProfilePhotosElement.m */,
-				DFFAB7801FACCF68005BA6D1 /* JRProfilesElement.h */,
-				DFFAB7811FACCF68005BA6D1 /* JRProfilesElement.m */,
-				DFFAB7821FACCF68005BA6D1 /* JRProperties.h */,
-				DFFAB7831FACCF68005BA6D1 /* JRProperties.m */,
-				DFFAB7841FACCF68005BA6D1 /* JRStatusesElement.h */,
-				DFFAB7851FACCF68005BA6D1 /* JRStatusesElement.m */,
-				DFFAB7861FACCF68005BA6D1 /* JRUrlsElement.h */,
-				DFFAB7871FACCF68005BA6D1 /* JRUrlsElement.m */,
-			);
-			name = Generated;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1562,7 +1575,6 @@
 				9F7B6AAC1533648C002BF452 /* InfoPlist.strings in Resources */,
 				9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */,
 				9F7B6AB01533648C002BF452 /* background.png in Resources */,
-				D806D1B616A7638E008EEF96 /* assets in Resources */,
 				48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */,
 				D823C6ED189C2FA200993DAE /* icon_microsoftaccount_30x30.png in Resources */,
 				48A85E871BEBD4BF004CBA61 /* icon_bw_paypal_30x30@2x.png in Resources */,
@@ -1580,6 +1592,7 @@
 				D823C6F3189C2FD200993DAE /* icon_microsoftaccount_30x30@2x.png in Resources */,
 				48A85E811BEBD499004CBA61 /* button_paypal_openidconnect_280x40@2x.png in Resources */,
 				DFEFE4B717A9915200760FEE /* button_facebook_135x40.png in Resources */,
+				485FFED82051ECDD006126DC /* .gitignore in Resources */,
 				DFEFE4B817A9915200760FEE /* button_facebook_280x40.png in Resources */,
 				DFEFE4B917A9915200760FEE /* button_google_135x40.png in Resources */,
 				48CB52C91B71077C0091CD10 /* button_instagram_135x40.png in Resources */,
@@ -1648,6 +1661,7 @@
 				DFEFE4E617A9915300760FEE /* icon_bw_yahoo_30x30.png in Resources */,
 				DFEFE4E717A9915300760FEE /* logo_aol_280x65.png in Resources */,
 				DFEFE4E817A9915300760FEE /* logo_blogger_280x65.png in Resources */,
+				485FFED72051ECDD006126DC /* janrain-config-default.plist in Resources */,
 				DFEFE4E917A9915300760FEE /* logo_facebook_280x65.png in Resources */,
 				48CB52E41B7108900091CD10 /* icon_yahoo_oauth2_30x30@2x.png in Resources */,
 				DFEFE4EA17A9915300760FEE /* logo_flickr_280x65.png in Resources */,
@@ -1819,78 +1833,78 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFFAB7881FACCF68005BA6D1 /* JRAccountsElement.m in Sources */,
 				4817766F1E77220D00B3187C /* AppDelegate.m in Sources */,
-				DFFAB7921FACCF68005BA6D1 /* JRLocation.m in Sources */,
-				DFFAB79A1FACCF68005BA6D1 /* JRProfilePhotosElement.m in Sources */,
-				DFFAB79B1FACCF68005BA6D1 /* JRProfilesElement.m in Sources */,
 				4817766E1E7721FE00B3187C /* main.m in Sources */,
 				9F7B6A9915336480002BF452 /* RootViewController.m in Sources */,
+				485FFF202051ED12006126DC /* JRPhotosElement.m in Sources */,
+				485FFF222051ED13006126DC /* JRProfilesElement.m in Sources */,
+				485FFF192051ED12006126DC /* JRJanrain.m in Sources */,
+				485FFF212051ED12006126DC /* JREmailsElement.m in Sources */,
 				6706FCE93985E90E4040B262 /* PickerViewController.m in Sources */,
 				6706FFA2D57FB31818D60F25 /* Utils.m in Sources */,
-				DF0D06F11FA289C70047B6CE /* JRPickerView.m in Sources */,
+				485FFF182051ED12006126DC /* JRBodyType.m in Sources */,
 				6706F51EE167DE5FFF64E224 /* CaptureDynamicForm.m in Sources */,
 				DFEA3C361F8BBEC2005ACE97 /* UIAlertController+JRAlertController.m in Sources */,
 				DFB6898C175E8E6C006DFC92 /* JRBase64.m in Sources */,
-				DFFAB78E1FACCF68005BA6D1 /* JRCurrentLocation.m in Sources */,
+				485FFF112051ED12006126DC /* JRPhoneNumbersElement.m in Sources */,
 				DFB68A6B175E8E6C006DFC92 /* SFHFKeychainUtils.m in Sources */,
+				485FFF1A2051ED12006126DC /* JRUrlsElement.m in Sources */,
 				4ED8382D17EC307900CA9645 /* LinkedProfilesViewController.m in Sources */,
 				DF39E03D17A9887300FDA67A /* JRCapture.m in Sources */,
 				DF39E03E17A9887300FDA67A /* JRCaptureApidInterface.m in Sources */,
-				DFFAB7991FACCF68005BA6D1 /* JRProfile.m in Sources */,
-				DFFAB7891FACCF68005BA6D1 /* JRAddressesElement.m in Sources */,
+				485FFF0D2051ED12006126DC /* JRCurrentLocation.m in Sources */,
 				4863F4DE1EAE484500B939D3 /* CaptureChangePasswordViewController.m in Sources */,
 				DF39E03F17A9887300FDA67A /* JRCaptureData.m in Sources */,
+				485FFF1D2051ED12006126DC /* JRProfile.m in Sources */,
 				DF39E04017A9887300FDA67A /* JRCaptureError.m in Sources */,
-				DFFAB7971FACCF68005BA6D1 /* JRPhotosElement.m in Sources */,
+				485FFF232051ED13006126DC /* JRImsElement.m in Sources */,
 				DF39E04117A9887300FDA67A /* JRCaptureObject.m in Sources */,
 				486B0CD71E0218E300B73F4F /* JROpenIDAppAuthGoogle.m in Sources */,
-				DFFAB7911FACCF68005BA6D1 /* JRJanrain.m in Sources */,
+				485FFF162051ED12006126DC /* JRAddressesElement.m in Sources */,
 				486B0CDB1E021A1200B73F4F /* JROpenIDAppAuthProvider.m in Sources */,
 				4863F4DF1EAE484500B939D3 /* CaptureEditProfileViewController.m in Sources */,
+				485FFF252051ED13006126DC /* JRPickerView.m in Sources */,
 				DF39E04217A9887300FDA67A /* JRCaptureUser+Extras.m in Sources */,
+				485FFF1E2051ED12006126DC /* JRName.m in Sources */,
+				485FFF152051ED12006126DC /* JRAccountsElement.m in Sources */,
 				DF39E04317A9887300FDA67A /* JREngageWrapper.m in Sources */,
 				486B0CD51E02171100B73F4F /* JROpenIDAppAuth.m in Sources */,
 				DF39E04417A9887300FDA67A /* JRNSDate+ISO8601_CaptureDateTimeString.m in Sources */,
+				485FFF132051ED12006126DC /* JRCaptureUser.m in Sources */,
+				485FFF242051ED13006126DC /* JRStandardFlowKeys.m in Sources */,
+				485FFF1C2051ED12006126DC /* JRProperties.m in Sources */,
 				DF39E04517A9887300FDA67A /* JRTraditionalSigninViewController.m in Sources */,
-				DFFAB7981FACCF68005BA6D1 /* JRPrimaryAddress.m in Sources */,
-				DFFAB78A1FACCF68005BA6D1 /* JRBodyType.m in Sources */,
 				DF39E04617A9887300FDA67A /* NSMutableDictionary+JRDictionaryUtils.m in Sources */,
 				DF315E8E17A988E100703C83 /* JRConnectionManager.m in Sources */,
-				DFFAB78B1FACCF68005BA6D1 /* JRCaptureUser.m in Sources */,
-				DFFAB7931FACCF68005BA6D1 /* JRName.m in Sources */,
+				485FFF102051ED12006126DC /* JRLocation.m in Sources */,
 				DF315E8F17A988E100703C83 /* NSDictionary+JRQueryParams.m in Sources */,
-				DFFAB7951FACCF68005BA6D1 /* JROrganizationsElement.m in Sources */,
 				48AEB41C1EAB04E400FD4BFB /* CaptureProfileViewController.m in Sources */,
-				DFFAB78F1FACCF68005BA6D1 /* JREmailsElement.m in Sources */,
 				DF315E9017A988E100703C83 /* NSMutableURLRequest+JRRequestUtils.m in Sources */,
 				DFEFE4A317A9915200760FEE /* debug_log.m in Sources */,
+				485FFF122051ED12006126DC /* JRProfilePhotosElement.m in Sources */,
 				DFEFE4A417A9915200760FEE /* JRActivityObject.m in Sources */,
 				DFEFE4A517A9915200760FEE /* JREngage+CustomInterface.m in Sources */,
-				DFFAB7941FACCF68005BA6D1 /* JROptIn.m in Sources */,
 				DFEFE4A617A9915200760FEE /* JREngage.m in Sources */,
-				DFFAB79C1FACCF68005BA6D1 /* JRProperties.m in Sources */,
 				DFEFE4A717A9915200760FEE /* JREngageError.m in Sources */,
 				DFEFE4A817A9915200760FEE /* JREngagePhonegapPlugin.m in Sources */,
 				DFEFE4A917A9915200760FEE /* JRInfoBar.m in Sources */,
 				DFEFE4AA17A9915200760FEE /* JRJsonUtils.m in Sources */,
-				DFFAB78D1FACCF68005BA6D1 /* JRCloudsearch.m in Sources */,
+				485FFF142051ED12006126DC /* JRCloudsearch.m in Sources */,
+				485FFF1B2051ED12006126DC /* JRStatusesElement.m in Sources */,
 				DFEFE4AC17A9915200760FEE /* JRPreviewLabel.m in Sources */,
-				DF0087B51FA8CF9D00D7E946 /* JRStandardFlowKeys.m in Sources */,
 				DFEFE4AD17A9915200760FEE /* JRProvidersController.m in Sources */,
-				DFFAB7901FACCF68005BA6D1 /* JRImsElement.m in Sources */,
 				DFEFE4AE17A9915200760FEE /* JRPublishActivityController.m in Sources */,
 				DFEFE4AF17A9915200760FEE /* JRSessionData.m in Sources */,
-				DFFAB7961FACCF68005BA6D1 /* JRPhoneNumbersElement.m in Sources */,
+				485FFF172051ED12006126DC /* JRClientsElement.m in Sources */,
 				DFEFE4B017A9915200760FEE /* JRUserInterfaceMaestro.m in Sources */,
+				485FFF1F2051ED12006126DC /* JROptIn.m in Sources */,
 				DFEFE4B117A9915200760FEE /* JRUserLandingController.m in Sources */,
 				DFEFE4B217A9915200760FEE /* JRWebViewController.m in Sources */,
 				19BC043CB32C3615A713D687 /* JRCompatibilityUtils.m in Sources */,
-				DFFAB79D1FACCF68005BA6D1 /* JRStatusesElement.m in Sources */,
 				19BC0273946224097507522B /* JRCaptureConfig.m in Sources */,
 				19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */,
-				DFFAB79E1FACCF68005BA6D1 /* JRUrlsElement.m in Sources */,
-				DFFAB78C1FACCF68005BA6D1 /* JRClientsElement.m in Sources */,
+				485FFF0E2051ED12006126DC /* JRPrimaryAddress.m in Sources */,
+				485FFF0F2051ED12006126DC /* JROrganizationsElement.m in Sources */,
 				19BC03A4F7837E9320636958 /* JRCaptureFlow.m in Sources */,
 				19BC03D72B24CB34F6581A24 /* JRCaptureUIRequestBuilder.m in Sources */,
 			);
