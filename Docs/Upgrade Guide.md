@@ -10,7 +10,7 @@ A less desirable but more reliable and more general upgrade strategy:
 2. Remove generated Capture user model project groups
 3. Follow the process described JUMP Integration Guide
 
-### Upgrading from v5.0.4 (ONLY) to v5.1 or greater
+### Upgrading from v5.0.4 (ONLY) to v5.1.1 or greater
 
 iOS 8.x support has been deprecated. All code has been updated to support iOS 9.x and newer.
 

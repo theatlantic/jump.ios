@@ -29,22 +29,15 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-#import "UIAlertController+JRAlertController.h"
+#import <Foundation/Foundation.h>
+#import "JRStandardFlowKeys.h"
 
-@implementation UIAlertController (JRAlertController)
-
-+(id)alertControllerWithTitle:(NSString *)title message:(NSString *)message alertActions:(UIAlertAction *)alertActions, ...
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-
-    va_list alertActionsArgumetns;
-    va_start(alertActionsArgumetns, alertActions);
-    for (UIAlertAction *action = alertActions; action != nil; action = va_arg(alertActionsArgumetns, UIAlertAction*))
-    {
-        [alertController addAction:action];
-    }
-
-    return alertController;
-}
-
-@end
+NSString *const kJRCaptureFlowKey = @"JR_capture_flow";
+NSString *const kFieldsKey = @"fields";
+NSString *const kLabelKey = @"label";
+NSString *const kPlaceholderKey = @"placeholder";
+NSString *const kSchemeIdKey = @"schemeId";
+NSString *const kOptionsKey = @"options";
+NSString *const kDisabledKey = @"disabled";
+NSString *const kTextKey = @"text";
+NSString *const kValueKey = @"value";
