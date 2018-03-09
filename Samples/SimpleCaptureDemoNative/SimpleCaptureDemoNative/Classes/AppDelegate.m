@@ -95,7 +95,7 @@ AppDelegate *appDelegate = nil;
     appDelegate = self;
 
     //Setup Twitter TwitterKit
-    [[Twitter sharedInstance] startWithConsumerKey:@"9zNqwAUNpaJ1FtZZm2ckmx13K" consumerSecret:@"fjFmsFSjtJI3p2rNtweh8Tc9SlPwyxjnOT8F46N7v5OZGvZVML"];
+    [[Twitter sharedInstance] startWithConsumerKey:@"UPDATE" consumerSecret:@"UPDATE"];
 
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [FBSDKLoginManager renewSystemCredentials:^(ACAccountCredentialRenewResult result, NSError *error) {}];

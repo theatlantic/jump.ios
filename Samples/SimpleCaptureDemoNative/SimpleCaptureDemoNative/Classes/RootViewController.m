@@ -51,7 +51,7 @@
 
 // DO NOT USE THIS CLIENT ID. IT WILL NOT WORK FOR YOUR APP.
 // Please use the client ID created for you by Google.
-NSString * const kGoogleClientID = @"169582807084-vd2cpgn80d2fj47e56fnd5bfsjht2vb2.apps.googleusercontent.com";
+NSString * const kGoogleClientID = @"UPDATE.apps.googleusercontent.com";
 
 @interface MyCaptureDelegate : NSObject <JRCaptureDelegate, JRCaptureUserDelegate>
 @property RootViewController *rvc;
@@ -431,14 +431,14 @@ dismissViewController:(UIViewController *)viewController {
                                                                                                    forAccountLinking:YES
                                                                                                      withRedirectUri:@"http://your-domain-custom-redirect-url-page.html"];
                                                            }];
-    
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController
                                           alertControllerWithTitle:@"Capture Account Linking"
                                           message:@"Do you wish to Link a new account to your current account?"
                                           alertActions:continueAction, cancelAction, nil];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -590,21 +590,21 @@ dismissViewController:(UIViewController *)viewController {
 
 - (IBAction)forgotPasswordButtonPressed:(id)sender {
     __block __weak UIAlertController *alertController;
-    
+
     UIAlertAction *sendAction = [UIAlertAction actionWithTitle:@"Send" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *emailTextField = alertController.textFields.firstObject;
         NSString *emailAddress = emailTextField.text;
         [JRCapture startForgottenPasswordRecoveryForField:emailAddress delegate:self.captureDelegate];
     }];
-    
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
+
     alertController = [UIAlertController alertControllerWithTitle:@"Please confirm your email" message:@"We'll send you a link to create a new password." alertActions:cancelAction, sendAction, nil];
-    
+
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"Email";
     }];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -615,32 +615,32 @@ dismissViewController:(UIViewController *)viewController {
         linkedProfilesController.linkedProfiles = [JRCaptureData getLinkedProfiles];
         [self.navigationController presentViewController:linkedProfilesController animated:YES completion:nil];
     }];
-    
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unlink Account" message:@"You are going to start account unlinking process." alertActions:cancelAction, proceedAction, nil];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)resendVerificationButtonPressed:(id)sender {
     __block __weak UIAlertController *alertController;
-    
+
     UIAlertAction *sendAction = [UIAlertAction actionWithTitle:@"Send" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *emailTextField = alertController.textFields.firstObject;
         NSString *emailAddress = emailTextField.text;
         [JRCapture resendVerificationEmail:emailAddress delegate:self.captureDelegate];
     }];
-    
-    
+
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
+
     alertController = [UIAlertController alertControllerWithTitle:@"Please confirm your email" message:@"We'll resend your verification email." alertActions:cancelAction, sendAction, nil];
-    
+
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"Email";
     }];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -682,7 +682,7 @@ dismissViewController:(UIViewController *)viewController {
                                                               message:[error description]
                                                        preferredStyle:UIAlertControllerStyleAlert];
     }
-    
+
     [alertController addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -692,13 +692,13 @@ dismissViewController:(UIViewController *)viewController {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Access Denied"
                                                                              message:@"Invalid password for email@address.com"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss"
                                                             style:UIAlertActionStyleCancel
                                                           handler:^(UIAlertAction * _Nonnull action) {
                                                               [self configureViewsWithDisableOverride:NO];
                                                           }];
-    
+
     [alertController addAction:dismissAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -706,7 +706,7 @@ dismissViewController:(UIViewController *)viewController {
 - (void)handleMergeFlowError:(NSError *)error
 {
     NSString *existingAccountProvider = [error JRMergeFlowExistingProvider];
-    
+
     UIAlertAction *mergeAction = [UIAlertAction actionWithTitle:@"Merge" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 if ([existingAccountProvider isEqualToString:@"capture"]){ // Traditional sign-in required
                     [self performTradAuthWithMergeToken:[error JRMergeToken]];
@@ -736,19 +736,19 @@ dismissViewController:(UIViewController *)viewController {
 - (void)performTradAuthWithMergeToken:(NSString *)mergeToken
 {
     __weak __block UIAlertController *alertController;
-    
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [self configureViewsWithDisableOverride:NO];
     }];
-    
+
     UIAlertAction *signInAction = [UIAlertAction actionWithTitle:@"Sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *user = [alertController.textFields[0] text];
         NSString *password = [alertController.textFields[1] text];
         [JRCapture startCaptureTraditionalSignInForUser:user withPassword:password mergeToken:mergeToken forDelegate:self.captureDelegate];
     }];
-    
+
     alertController = [UIAlertController alertControllerWithTitle:@"Sign in" message:nil alertActions:cancelAction, signInAction, nil];
-    
+
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"User";
     }];
@@ -756,9 +756,9 @@ dismissViewController:(UIViewController *)viewController {
         textField.placeholder = @"Password";
         textField.secureTextEntry = YES;
     }];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
-    
+
     [self configureViewsWithDisableOverride:YES];
 }
 
@@ -774,9 +774,9 @@ dismissViewController:(UIViewController *)viewController {
                                                    existingAccountProviderPhrase];
 
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Email address in use" message:message alertActions:cancelAction, action, nil];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -854,9 +854,9 @@ dismissViewController:(UIViewController *)viewController {
 - (void)fetchUserDidFailWithError:(NSError *)error context:(NSObject *)context
 {
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[error description] alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
     [self.rvc configureViewsWithDisableOverride:NO];
 }
@@ -865,9 +865,9 @@ dismissViewController:(UIViewController *)viewController {
 {
     [self.rvc configureViewsWithDisableOverride:NO];
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success" message:nil alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
     appDelegate.captureUser = fetchedUser;
     [appDelegate.prefs setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.captureUser]
@@ -906,9 +906,9 @@ dismissViewController:(UIViewController *)viewController {
         UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.rvc configureViewsWithDisableOverride:NO];
         }];
-        
+
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedFailureReason] alertActions:dismissAction, nil];
-        
+
         [self.rvc presentViewController:alertController animated:YES completion:nil];
     }
 }
@@ -943,34 +943,34 @@ dismissViewController:(UIViewController *)viewController {
 
 - (void)forgottenPasswordRecoveryDidSucceed {
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Reset Password email Sent" message:@"" alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)forgottenPasswordRecoveryDidFailWithError:(NSError *)error
 {
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Forgotten Password Flow Failed" message:[error localizedFailureReason] alertActions:okAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)resendVerificationEmailDidSucceed {
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Verification email Sent" message:@"" alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)resendVerificationEmailDidFailWithError:(NSError *)error {
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Failed to resend verification email" message:[error localizedFailureReason] alertActions:okAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -982,9 +982,9 @@ dismissViewController:(UIViewController *)viewController {
 - (void)refreshAccessTokenDidFailWithError:(NSError *)error context:(id <NSObject>)context
 {
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[error localizedFailureReason] alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
     [self.rvc configureViewsWithDisableOverride:NO];
 }
@@ -992,9 +992,9 @@ dismissViewController:(UIViewController *)viewController {
 - (void)refreshAccessTokenDidSucceedWithContext:(id <NSObject>)context
 {
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success" message:nil alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
     [self.rvc configureViewsWithDisableOverride:NO];
 }
@@ -1008,17 +1008,17 @@ dismissViewController:(UIViewController *)viewController {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New Account Linked Successfully." message:@"Account Linked Successfully" alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)accountUnlinkingDidSucceed {
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Account unlinking Success" message:@"Account unlinked successfully." alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -1027,9 +1027,9 @@ dismissViewController:(UIViewController *)viewController {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Failed to link new account." message:[error localizedFailureReason] alertActions:dismissAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 
 }
@@ -1037,9 +1037,9 @@ dismissViewController:(UIViewController *)viewController {
 - (void)accountUnlinkingDidFailWithError:(NSError *)error
 {
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Account unlinking Failure" message:[error localizedFailureReason] alertActions:okAction, nil];
-    
+
     [self.rvc presentViewController:alertController animated:YES completion:nil];
 }
 
