@@ -1,3 +1,34 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ Copyright (c) 2016, Janrain, Inc.
+
+ All rights reserved.
+
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+
+ * Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation and/or
+   other materials provided with the distribution.
+ * Neither the name of the Janrain, Inc. nor the names of its
+   contributors may be used to endorse or promote products derived from this
+   software without specific prior written permission.
+
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
 #import "CaptureDynamicForm.h"
 #import "AppDelegate.h"
 #import "Utils.h"
@@ -42,9 +73,9 @@
 @implementation CaptureDynamicForm
 {
     UIView *activeField;
-    
+
     UIDatePicker *birthdatePicker;
-    
+
     JRPickerView *genderPicker;
     JRPickerView *addressStatePicker;
     JRPickerView *addressCountryPicker;
@@ -54,20 +85,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.scrollView.contentSize = CGSizeMake(320, self.optInRegistrationSwitch.frame.origin.y + (self.optInRegistrationSwitch.frame.size.height) + 48);
-    
+
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    
+
     self.captureUser = [JRCaptureUser captureUser];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:)
                                                  name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    
+
     self.firstNameTextField.delegate         = self;
     self.middleNameTextField.delegate        = self;
     self.lastNameTextField.delegate          = self;
@@ -81,16 +112,16 @@
     self.address2TextField.delegate          = self;
     self.addressCityTextField.delegate       = self;
     self.addressPostalCodeTextField.delegate = self;
-    
+
     [self setupBirthdateFieldInputView];
-    
+
     [birthdatePicker setDate:[NSDate date] animated:YES];
     self.birthdateTextField.text = [self stringfromDate:birthdatePicker.date];
-    
+
     genderPicker         = [self jrPickerViewForTextField:self.genderTextField andFlowField:@"gender"];
     addressStatePicker   = [self jrPickerViewForTextField:self.addressStateTextField andFlowField:@"addressState"];
     addressCountryPicker = [self jrPickerViewForTextField:self.addressCountryTextField andFlowField:@"addressCountry"];
-    
+
     self.optInRegistrationLabel.text = [self textForOptInLabel];
 }
 
@@ -101,14 +132,14 @@
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissPicker)];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     toolbar.items = @[flexibleSpace, doneButton];
-    
+
     return toolbar;
 }
 
 -(void)setupBirthdateFieldInputView
 {
     self.birthdateTextField.inputAccessoryView = [self setupInputAccessoryView];
-    
+
     birthdatePicker = [[UIDatePicker alloc] init];
     birthdatePicker.datePickerMode = UIDatePickerModeDate;
     birthdatePicker.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
@@ -138,7 +169,7 @@
         NSDictionary *captureFlow = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCaptureUser];
         NSDictionary *fields = captureFlow[kFieldsKey];
         NSDictionary *optIn = fields[@"optInRegistration"];
-        
+
         return optIn[kLabelKey];
     }
     return @"";
@@ -163,11 +194,11 @@
     self.captureUser.primaryAddress.zip      = self.addressPostalCodeTextField.text;
     self.captureUser.primaryAddress.stateAbbreviation = addressStatePicker.selectedValue;
     self.captureUser.primaryAddress.country  = addressCountryPicker.selectedValue;
-    
+
     if ([self.optInRegistrationSwitch isOn]) {
         [self.captureUser.optIn setStatusWithBool:self.optInRegistrationSwitch.isOn];
     }
-    
+
     [JRCapture registerNewUser:self.captureUser socialRegistrationToken:nil forDelegate:self];
     self.registerButton.enabled = NO;
 }
@@ -187,11 +218,11 @@
 {
     NSDictionary* info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
+
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
-    
+
     CGRect frame = self.view.frame;
     frame.size.height -= keyboardSize.height;
     CGPoint origin = activeField.frame.origin;
@@ -272,7 +303,7 @@
             self.addressStateTextField.enabled = YES;
         }
     }
-    
+
     textField.text = element;
 }
 
