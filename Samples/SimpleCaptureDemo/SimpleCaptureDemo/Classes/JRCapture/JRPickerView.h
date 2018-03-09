@@ -29,22 +29,25 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-#import "UIAlertController+JRAlertController.h"
+#import <Foundation/Foundation.h>
+@class JRPickerView;
 
-@implementation UIAlertController (JRAlertController)
+@protocol JRPickerViewDelegate <NSObject>
+-(void)jrPickerView:(JRPickerView *)jrPickerView didSelectElement:(NSString *)element;
+@end
 
-+(id)alertControllerWithTitle:(NSString *)title message:(NSString *)message alertActions:(UIAlertAction *)alertActions, ...
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+@interface JRPickerView : UIPickerView <UIPickerViewDataSource, UIPickerViewDelegate>
 
-    va_list alertActionsArgumetns;
-    va_start(alertActionsArgumetns, alertActions);
-    for (UIAlertAction *action = alertActions; action != nil; action = va_arg(alertActionsArgumetns, UIAlertAction*))
-    {
-        [alertController addAction:action];
-    }
+@property(nonatomic, strong, readonly) NSString *label;
+@property(nonatomic, strong, readonly) NSString *placeholder;
+@property(nonatomic, strong, readonly) NSString *schemaId;
+@property(nonatomic, strong) NSString *selectedValue;
+@property(nonatomic, strong, readonly) NSString *selectedText;
+@property(nonatomic, weak) id<JRPickerViewDelegate> jrPickerViewDelegate;
 
-    return alertController;
-}
+-(instancetype)initWithField:(NSString *)field;
+
+-(NSString *)textForValue:(NSString *)value;
+-(NSString *)valueForText:(NSString *)text;
 
 @end
