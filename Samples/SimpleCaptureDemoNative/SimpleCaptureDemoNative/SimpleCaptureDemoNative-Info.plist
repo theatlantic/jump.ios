@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-9zNqwAUNpaJ1FtZZm2ckmx13K</string>
+				<string>twitterkit-UPDATE</string>
 			</array>
 		</dict>
 		<dict>
@@ -35,7 +35,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.169582807084-vd2cpgn80d2fj47e56fnd5bfsjht2vb2</string>
+				<string>com.googleusercontent.apps.UPDATE</string>
 			</array>
 		</dict>
 		<dict>
@@ -51,14 +51,14 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1407945459352253</string>
+				<string>fbUPDATE</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>FacebookAppID</key>
-	<string>1407945459352253</string>
+	<string>UPDATE</string>
 	<key>FacebookDisplayName</key>
 	<string>jrauthenticate</string>
 	<key>LSApplicationCategoryType</key>
