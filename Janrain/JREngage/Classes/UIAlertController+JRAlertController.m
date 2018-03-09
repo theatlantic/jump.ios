@@ -24,21 +24,22 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-#import <Foundation/Foundation.h>
-#ifdef COCOAPODS
-    #import <AppAuth/AppAuth.h>
-#else
-    #import <AppAuth.h>
-#endif
+#import "UIAlertController+JRAlertController.h"
 
-@protocol JROpenIDAppAuthGoogleDelegate <NSObject>
+@implementation UIAlertController (JRAlertController)
 
-@required
-
-@property(nonatomic) NSString *googlePlusClientId;
-@property(nonatomic) NSString *googlePlusRedirectUri;
-@property(nonatomic) NSArray *googlePlusOpenIDScopes;
-@property(retain) id<OIDAuthorizationFlowSession> openIDAppAuthAuthorizationFlow;
++(id)alertControllerWithTitle:(NSString *)title message:(NSString *)message alertActions:(UIAlertAction *)alertActions, ...
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    va_list alertActionsArguments;
+    va_start(alertActionsArguments, alertActions);
+    for (UIAlertAction *action = alertActions; action != nil; action = va_arg(alertActionsArguments, UIAlertAction*))
+    {
+        [alertController addAction:action];
+    }
+    
+    return alertController;
+}
 
 @end
-
