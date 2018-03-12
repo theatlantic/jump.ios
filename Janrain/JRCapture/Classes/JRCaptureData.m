@@ -238,7 +238,7 @@ static JRCaptureData *singleton = nil;
 - (NSString *)redirectUri
 {
     if (captureRedirectUri) return captureRedirectUri;
-    return [NSString stringWithFormat:@"%@/cmeu", singleton.captureBaseUrl];
+    return [NSString stringWithFormat:@"%@", singleton.captureBaseUrl];
 }
 
 + (void)setCaptureConfig:(JRCaptureConfig *)config
