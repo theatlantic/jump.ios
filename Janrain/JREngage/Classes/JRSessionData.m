@@ -1505,15 +1505,12 @@ static JRSessionData *singleton = nil;
 #pragma mark token_url
 - (void)startMakeCallToTokenUrl:(NSString *)_tokenUrl withToken:(NSString *)token forProvider:(NSString *)providerName
 {
+    _tokenUrl = [_tokenUrl stringByAppendingString:[NSString stringWithFormat:@"&token=%@", token]];
     ALog (@"Calling token URL for %@:\n%@", providerName, _tokenUrl);
-
-    NSMutableData *body = [NSMutableData data];
-    [body appendData:[[NSString stringWithFormat:@"token=%@", token] dataUsingEncoding:NSUTF8StringEncoding]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_tokenUrl]];
 
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:body];
-
+    
     NSDictionary *tag = [NSDictionary dictionaryWithObjectsAndKeys:_tokenUrl, @"tokenUrl",
                                                                    providerName, @"providerName",
                                                                    @"callTokenUrl", @"action", nil];
