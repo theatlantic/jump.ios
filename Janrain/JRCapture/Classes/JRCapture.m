@@ -739,10 +739,10 @@ captureRegistrationFormName:(NSString *)captureRegistrationFormName
 {
     if (!refreshSecret) return nil;
     NSString *stringToSign = [NSString stringWithFormat:@"refresh_access_token\n%@\n%@\n", dateString, accessToken];
-
-    const char *cKey  = [refreshSecret cStringUsingEncoding:NSASCIIStringEncoding];
-    const char *cData = [stringToSign cStringUsingEncoding:NSASCIIStringEncoding];
-
+    
+    const char *cKey  = [refreshSecret cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *cData = [stringToSign cStringUsingEncoding:NSUTF8StringEncoding];
+    
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
 
     CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
