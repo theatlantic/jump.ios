@@ -58,8 +58,8 @@ You will need the [JSON](http://search.cpan.org/~makamaka/JSON-2.53/lib/JSON.pm 
 install the perl JSON module:
 
 1. Make sure that perl is installed on your system. If it is not, consider using MacPorts or Homebrew to install perl.
-2. With perl installed, install cpanm: `sudo cpan App::cpanminus`
-3. Install the JSON perl module by running `sudo cpanm Module::JSON`
+2. With Perl installed, install cpanm: *sudo cpan App::cpanminus*
+3. Install the JSON perl module by running: *sudo cpanm  --with-recommends JSON*
 
 Once you have the perl JSON module installed you will run the schema parsing perl script to generate the Capture user
 model:
