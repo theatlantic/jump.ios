@@ -10,7 +10,7 @@ SimpleCaptureDemoNative demos:
 - Sign-in session management
 - Registration (traditional and social)
 - Native Authentication using Facebook, Google+, and Twitter
-- REQUIRED: Facebook SDK version 4.31.0
+- REQUIRED: Facebook SDK version 4.31.1
 - REQUIRED: Google Signin SDK 4.1.2
 - REQUIRED: TwitterKit 3.3.0
 
