@@ -1,21 +1,16 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Copyright (c) 2010, Janrain, Inc.
-
+ Copyright (c) 2016, Janrain, Inc.
  All rights reserved.
-
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
-
  * Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+ list of conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation and/or
-   other materials provided with the distribution.
+ this list of conditions and the following disclaimer in the documentation and/or
+ other materials provided with the distribution.
  * Neither the name of the Janrain, Inc. nor the names of its
-   contributors may be used to endorse or promote products derived from this
-   software without specific prior written permission.
-
-
+ contributors may be used to endorse or promote products derived from this
+ software without specific prior written permission.
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -28,23 +23,23 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#import "NSMutableURLRequest+JRRequestUtils.h"
-#import "NSDictionary+JRQueryParams.h"
-#import "debug_log.h"
 
-@implementation NSMutableURLRequest (JRRequestUtils)
-+ (NSMutableURLRequest *)JR_requestWithURL:(NSURL *)url params:(NSDictionary *)params {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request JR_setBodyWithParams:params];
+#import "UIAlertController+JRAlertController.h"
 
-    return request;
-}
+@implementation UIAlertController (JRAlertController)
 
-- (void)JR_setBodyWithParams:(NSDictionary *)dictionary
++(id)alertControllerWithTitle:(NSString *)title message:(NSString *)message alertActions:(UIAlertAction *)alertActions, ...
 {
-    [self setHTTPMethod:@"POST"];
-    NSString *paramString = [dictionary asJRURLParamString];
-    DLog(@"Adding params to %@: %@", self, paramString);
-    [self setHTTPBody:[paramString dataUsingEncoding:NSUTF8StringEncoding]];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    va_list alertActionsArguments;
+    va_start(alertActionsArguments, alertActions);
+    for (UIAlertAction *action = alertActions; action != nil; action = va_arg(alertActionsArguments, UIAlertAction*))
+    {
+        [alertController addAction:action];
+    }
+    
+    return alertController;
 }
+
 @end
