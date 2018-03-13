@@ -8,7 +8,7 @@ v5.1.1
   * OpenID AppAuth iOS 0.90.0 (both sample apps)
   * TwitterKit 3.3.0 (Native Sample App only)
   * Google SignIn 4.1.2 (Native Sample App only) * Note as of 11/17/17 there were missing framework files in the Google download zip file.  Use the missing framework files (GoogleAppUtilities.framework and GoogleSymbolUtilities.framework) from the 4.0.1 SDK download.
-  * Facebook 4.31.1
+  * Facebook 4.31.1 (Native Sample App only)
 
 v5.1
 
