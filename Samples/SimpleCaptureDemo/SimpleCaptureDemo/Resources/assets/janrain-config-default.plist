@@ -20,6 +20,8 @@
 		<string>169582807084-q6j1vmlas0q26svho9vh6npg4dogn76o.apps.googleusercontent.com</string>
 		<key>engageAppId</key>
 		<string>appcfamhnpkagijaeinl</string>
+        <key>engageWhitelistedDomain</key>
+        <string>jrmsampleapp1://SimpleCaptureDemo</string>
 		<key>captureDomain</key>
 		<string>mobile-dev.janraincapture.com</string>
 		<key>captureClientId</key>

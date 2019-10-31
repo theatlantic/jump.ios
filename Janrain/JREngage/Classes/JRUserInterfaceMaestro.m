@@ -724,9 +724,7 @@ static JRUserInterfaceMaestro *singleton = nil;
                                                                             bundle:[NSBundle mainBundle]
                                                                 andCustomInterface:customInterface];
 
-    myWebViewController         = [[JRWebViewController alloc] initWithNibName:@"JRWebViewController"
-                                                                        bundle:[NSBundle mainBundle]
-                                                            andCustomInterface:customInterface];
+    myWebViewController         = [[JRWebViewController alloc] initWithCustomInterface:customInterface];
 
     myPublishActivityController = [[JRPublishActivityController alloc] initWithNibName:@"JRPublishActivityController"
                                                                                 bundle:[NSBundle mainBundle]

@@ -193,13 +193,19 @@ static JRCaptureData *singleton = nil;
                     @"thin_registration" : thinReg
             }];
     
-    if (!linkAccount) [urlArgs setObject:[self generateAndStoreRefreshSecret] forKey:@"refresh_secret"];
-    if (captureData.captureFlowName) [urlArgs setObject:captureData.captureFlowName forKey:@"flow"];
-    if ([captureData downloadedFlowVersion])
+    if (!linkAccount) {
+        [urlArgs setObject:[self generateAndStoreRefreshSecret] forKey:@"refresh_secret"];
+    }
+    if (captureData.captureFlowName) {
+        [urlArgs setObject:captureData.captureFlowName forKey:@"flow"];
+    }
+    if ([captureData downloadedFlowVersion]) {
         [urlArgs setObject:[captureData downloadedFlowVersion] forKey:@"flow_version"];
-    if (mergeToken) [urlArgs setObject:mergeToken forKey:@"merge_token"];
-    if (captureData.captureSocialRegistrationFormName)
-    {
+    }
+    if (mergeToken) {
+        [urlArgs setObject:mergeToken forKey:@"merge_token"];
+    }
+    if (captureData.captureSocialRegistrationFormName) {
         [urlArgs setObject:captureData.captureSocialRegistrationFormName forKey:@"registration_form"];
     }
 

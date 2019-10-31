@@ -40,7 +40,8 @@
 #import "JRJsonUtils.h"
 #import "JRCompatibilityUtils.h"
 #import "UIAlertController+JRAlertController.h"
-
+#import "JRCaptureData.h"
+#import "JREngage.h"
 
 @interface JRWebViewController ()
 - (void)loadUrlInWebView:(NSURL *)url;
@@ -51,10 +52,7 @@
     JRSessionData *sessionData;
     NSDictionary *customInterface;
 
-    UIView *myBackgroundView;
-    //WKWebView *myBackgroundView;
-    UIWebView *myWebView;
-    //WKWebView *myWebView;
+    WKWebView *myWebView;
 
     JRInfoBar *infoBar;
 
@@ -62,7 +60,6 @@
     BOOL userHitTheBackButton;
 }
 
-@synthesize myBackgroundView;
 @synthesize myWebView;
 @synthesize originalCustomUserAgent;
 
@@ -80,12 +77,26 @@
     return self;
 }
 
+- (id)initWithCustomInterface:(NSDictionary *)theCustomInterface {
+    
+    if (self = [super init]) {
+        sessionData = [JRSessionData jrSessionData];
+        customInterface = theCustomInterface;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     DLog(@"");
     [super viewDidLoad];
+    myWebView = [[WKWebView alloc] initWithFrame:CGRectZero];
 
     myWebView.backgroundColor = [UIColor clearColor];
+    myWebView.navigationDelegate = self;
+    self.view = myWebView;
+    myWebView.UIDelegate = self;
 
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
@@ -108,11 +119,12 @@
         CGRect infoFrame = CGRectMake(0, self.view.frame.size.height - 30, self.view.frame.size.width, 30);
         infoBar = [[JRInfoBar alloc] initWithFrame:infoFrame andStyle:(JRInfoBarStyle) [sessionData hidePoweredBy]];
 
-        if ([sessionData hidePoweredBy] == JRInfoBarStyleShowPoweredBy)
+        if ([sessionData hidePoweredBy] == JRInfoBarStyleShowPoweredBy) {
             [myWebView setFrame:CGRectMake(myWebView.frame.origin.x,
-                    myWebView.frame.origin.y,
-                    myWebView.frame.size.width,
-                    myWebView.frame.size.height - infoBar.frame.size.height)];
+                                           myWebView.frame.origin.y,
+                                           myWebView.frame.size.width,
+                                           myWebView.frame.size.height - infoBar.frame.size.height)];
+        }
 
         [self.view addSubview:infoBar];
     }
@@ -164,7 +176,7 @@
 {
     [self maybeAddCancelButton];
 
-    DLog(@"%@", [myWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"]);
+    [myWebView evaluateJavaScript:@"navigator.userAgent" completionHandler:nil];
     
     //[myWebView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id __nullable userAgent, NSError * __nullable error) {
     //DLog(@"%@", userAgent);
@@ -255,6 +267,18 @@
     [super viewDidDisappear:animated];
 }
 
+-(JRSessionData *)sessionData {
+    return sessionData;
+}
+
+- (void)dealloc
+{
+    DLog(@"");
+    // Must set delegate to nil to avoid this controller being called after
+    // it has been freed by the web view.
+    //myWebView.delegate = nil;
+}
+
 #pragma mark custom implementation
 
 - (void)fixPadWindowSize
@@ -268,14 +292,15 @@
      * It's broken up into separate JS injections in case one statement fails (e.g. there is no document element),
      * so that the others execute. */
     
-    [myWebView stringByEvaluatingJavaScriptFromString:@""
-            "window.innerHeight = 480; window.innerWidth = 320;"
-            "document.documentElement.clientWidth = 320; document.documentElement.clientHeight = 480;"
-            "document.body.style.minWidth = \"320px\";"
-            "document.body.style.width = \"auto\";"
-            "document.body.style.minHeight = \"0px\";"
-            "document.body.style.height = \"auto\";"
-            "document.body.children[0].style.minHeight = \"0px\";"];
+    [myWebView evaluateJavaScript:@""
+     "window.innerHeight = 480; window.innerWidth = 320;"
+     "document.documentElement.clientWidth = 320; document.documentElement.clientHeight = 480;"
+     "document.body.style.minWidth = \"320px\";"
+     "document.body.style.width = \"auto\";"
+     "document.body.style.minHeight = \"0px\";"
+     "document.body.style.height = \"auto\";"
+     "document.body.children[0].style.minHeight = \"0px\";"
+                completionHandler:nil];
      
     /*
     NSString *jsString = @""
@@ -300,7 +325,7 @@
             "})()",
             (int) myWebView.frame.size.width,
             (int) myWebView.frame.size.height];
-    [myWebView stringByEvaluatingJavaScriptFromString:jsString];
+    [myWebView evaluateJavaScript:jsString completionHandler:nil];
     /*
     [myWebView evaluateJavaScript:jsString completionHandler:^(id __nullable evalResult, NSError * __nullable error) {
          DLog(@"%@", evalResult);
@@ -360,14 +385,14 @@
             userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
             [sessionData triggerAuthenticationDidFailWithError:error];
         }
-        else if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"stat"] isEqualToString:@"ok"])
+        else if ([[payloadDict objectForKey:@"stat"] isEqualToString:@"ok"] || [[payloadDict objectForKey:@"code"] isEqualToNumber:@310] || [[payloadDict objectForKey:@"code"] isEqualToNumber:@380])
         {
             userHitTheBackButton = NO; /* Because authentication completed successfully. */
-            [sessionData triggerAuthenticationDidCompleteWithPayload:payloadDict];
+            [sessionData triggerAuthenticationDidCompleteWithCaptureUserInPayload:payloadDict];
         }
         else
         {
-            if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"error"]
+            if ([[payloadDict  objectForKey:@"error"]
                     isEqualToString:@"Discovery failed for the OpenID you entered"])
             {
                 NSString *alertMessage;
@@ -390,7 +415,7 @@
                 userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
                 [self presentViewController:alertController animated:YES completion:nil];
             }
-            else if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"error"]
+            else if ([[payloadDict objectForKey:@"error"]
                     isEqualToString:@"The URL you entered does not appear to be an OpenID"])
             {
                 NSString *alertMessage;
@@ -412,7 +437,7 @@
                 [self presentViewController:alertController animated:YES completion:nil];
                 userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
             }
-            else if ([[[payloadDict objectForKey:@"rpx_result"] objectForKey:@"error"]
+            else if ([[payloadDict objectForKey:@"error"]
                     isEqualToString:@"Please enter your OpenID"])
             {
                 NSError *error = [JREngageError errorWithMessage:errorMessage andCode:JRAuthenticationFailedError];
@@ -466,60 +491,129 @@
 
 #pragma mark UIWebViewDelegate implementation
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    DLog(@"request: %@", [[request URL] absoluteString]);
-
+    DLog(@"request: %@", [[navigationAction.request URL] absoluteString]);
+    
+    NSMutableURLRequest *request = (NSMutableURLRequest *) navigationAction.request;
+    // This won't work because navigationAction.request is readonly
     NSString *customUa = [JRWebViewController getCustomUa];
     if (customUa)
     {
         if ([request respondsToSelector:@selector(setValue:forHTTPHeaderField:)])
         {
-            [((NSMutableURLRequest *) request) setValue:customUa forHTTPHeaderField:@"User-Agent"];
+            [request setValue:customUa forHTTPHeaderField:@"User-Agent"];
         }
     }
-
-    NSString *mobileEndpointUrl = [NSString stringWithFormat:@"%@/signin/device", [sessionData baseUrl]];
+    
+        NSString *mobileEndpointUrl = [NSString stringWithFormat:@"%@/?token=", [sessionData engageWhitelistedDomain]];
     if ([[[request URL] absoluteString] hasPrefix:mobileEndpointUrl])
+
     {
         DLog(@"request url has prefix: %@", [sessionData baseUrl]);
-
-        [JRConnectionManager createConnectionFromRequest:request forDelegate:self withTag:MEU_CONNECTION_TAG];
+                
+        NSString *token = [self getValueForParameter:@"token" fromURL:request.URL];
+        JRCaptureData *captureData = [JRCaptureData sharedCaptureData];
+        NSString *baseURL = captureData.captureBaseUrl;
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/auth_native", baseURL]];
+        NSMutableURLRequest *newSocialAuthRequest = [NSMutableURLRequest requestWithURL:url];
+        newSocialAuthRequest.HTTPMethod = @"POST";
+        [newSocialAuthRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        
+        NSMutableDictionary *mutableParameters = [@{
+            @"client_id": captureData.clientId,
+            @"flow": captureData.captureFlowName,
+            @"flow_version": captureData.downloadedFlowVersion,
+            @"locale": captureData.captureLocale,
+            @"redirect_uri": captureData.redirectUri,
+            @"registration_form": @"socialRegistrationForm",
+            @"response_type": @"token",
+            @"token": token
+        } mutableCopy];
+        
+        NSString *mergeToken =
+       [self getValueForParameter:@"merge_token" fromURL:[NSURL URLWithString:[JREngage tokenUrl]]];
+        if (mergeToken) {
+            mutableParameters[@"merge_token"] = mergeToken;
+        }
+        
+        NSData *parametersData = [[self asJRMURLParamString:mutableParameters] dataUsingEncoding:NSUTF8StringEncoding];
+        newSocialAuthRequest.HTTPBody = parametersData;
+    
+         NSDictionary *tagDictionary = @{
+             @"action": @"callTokenUrl",
+             @"providerName": sessionData.currentProvider.name,
+             @"tokenUrl": token,
+             @"isSocialAuthentication": @YES
+         };
+         [JRConnectionManager createConnectionFromRequest:newSocialAuthRequest forDelegate:self withTag:tagDictionary];
 
         keepProgress = YES;
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
-
-    return YES;
+    
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+-(NSString *)getValueForParameter:(NSString *)parameter fromURL:(NSURL *)url {
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+    NSArray *queryItems = urlComponents.queryItems;
+    for (NSURLQueryItem *queryItem in queryItems) {
+        if ([queryItem.name isEqualToString:parameter]) {
+            return queryItem.value;
+        }
+    }
+    
+    return nil;
+}
+
+- (NSString *)asJRMURLParamString:(NSDictionary *)dictionary
 {
-    DLog(@"");
+    NSMutableString *parametersEncoded = [NSMutableString string];
+    
+    for (id key in [dictionary allKeys])
+    {
+        if ([parametersEncoded length] > 0) {
+            [parametersEncoded appendString:@"&"];
+        }
+        NSString *value = [dictionary objectForKey:key];
+        NSString *valueEncoded = [value stringByAddingUrlPercentEscapes];
+        [parametersEncoded appendFormat:@"%@=%@", key, valueEncoded];
+    }
+    
+    return parametersEncoded;
+}
+
+
+
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
+{
     [self fixPadWindowSize];
     [self startProgress];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     DLog(@"");
     [self fixPadWindowSize];
-    if (!keepProgress)
+    if (!keepProgress) {
         [self stopProgress];
+    }
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     DLog(@"");
     DLog(@"error message: %@", [error localizedDescription]);
-
+    
     if (error.code != NSURLErrorCancelled) /* Error code -999 */
     {
         [self stopProgress];
-
+        
         NSError *newError = [JREngageError errorWithMessage:[NSString stringWithFormat:@"Authentication failed: %@",
-                                                                                       [error localizedDescription]]
+                                                             [error localizedDescription]]
                                                     andCode:JRAuthenticationFailedError];
         
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK",nil) style:UIAlertActionStyleCancel handler:nil];
@@ -528,11 +622,12 @@
                                                                                  message:NSLocalizedString(@"An error occurred while attempting to sign you in.  Please try again.", nil)
                                                                             alertActions:okAction, nil];
         [self presentViewController:alertController animated:YES completion:nil];
-
+        
         userHitTheBackButton = NO; /* Because authentication failed for whatever reason. */
         
         [sessionData triggerAuthenticationDidFailWithError:newError];
     }
+    
 }
 
 - (void)loadUrlInWebView:(NSURL *)url
@@ -551,19 +646,12 @@
     
 }
 
+#pragma mark JRUserInterfaceDelegate
 - (void)userInterfaceWillClose
 {
 }
 
 - (void)userInterfaceDidClose
 {
-}
-
-- (void)dealloc
-{
-    DLog(@"");
-    // Must set delegate to nil to avoid this controller being called after
-    // it has been freed by the web view.
-    //myWebView.delegate = nil;
 }
 @end

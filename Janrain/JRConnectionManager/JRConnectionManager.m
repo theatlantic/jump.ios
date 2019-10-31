@@ -37,6 +37,9 @@
 #import "JRConnectionManager.h"
 #import "debug_log.h"
 #import "JRCompatibilityUtils.h"
+#import "JRWebViewController.h"
+#import "JRSessionData.h"
+#import "JRJsonUtils.h"
 
 @implementation NSString (JRString_UrlEscaping)
 - (NSString *)stringByAddingUrlPercentEscapes
@@ -198,8 +201,6 @@ static JRConnectionManager *singleton = nil;
 
             if (error) {
                 [connectionManager taskDidFailWithError:error forConnectionData:connectionData];
-
-
             } else {
                 [connectionManager taskDidFinishLoadingWith:connectionData];
             }
@@ -351,9 +352,20 @@ static JRConnectionManager *singleton = nil;
 
     id <JRConnectionManagerDelegate> delegate = [connectionData delegate];
 
-    if (![connectionData fullResponse])
+    if ([userData isKindOfClass:[NSDictionary class]] && userData[@"isSocialAuthentication"]) {
+        if ([delegate respondsToSelector:@selector(connectionDidFinishLoadingWithPayload:request:andTag:)]){
+            NSString *payload = [[NSString alloc] initWithData:responseBody encoding:encoding];
+            [delegate connectionDidFinishLoadingWithPayload:payload request:request andTag:@"capture_user"];
+        }
+        JRSessionData *sessionData = [(JRWebViewController *)delegate sessionData];
+        [sessionData connectionDidFinishLoadingWithFullResponse:fullResponse unencodedPayload:responseBody
+                                                        request:request andTag:userData];
+    }
+    else
+        if (![connectionData fullResponse])
     {
         NSString *payload = [[NSString alloc] initWithData:responseBody encoding:encoding];
+        NSLog(@"PAYLOAD!: %@", payload);
 
         if ([delegate respondsToSelector:@selector(connectionDidFinishLoadingWithPayload:request:andTag:)])
             [delegate connectionDidFinishLoadingWithPayload:payload request:request andTag:userData];
