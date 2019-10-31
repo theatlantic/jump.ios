@@ -18,7 +18,6 @@
 		19BC04A025012377EE30F823 /* logo_amazon_280x65@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC042C5F11B806015E987F /* logo_amazon_280x65@2x.png */; };
 		19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC0C00FB7E872C8CEF5A91 /* logo_amazon_280x65.png */; };
 		19BC0FA9A0E7BE30978FA073 /* NSURLRequest+JRQueryParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC0F1DDACA94695932BBC0 /* NSURLRequest+JRQueryParams.m */; };
-		4816D7E4204F03EC00D5DA1C /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4816D7E5204F03EC00D5DA1C /* libAppAuth-iOS.a */; };
 		4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4817766B1E7711E300B3187C /* LocalAuthentication.framework */; };
 		4817766E1E7721FE00B3187C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08F5 /* main.m */; };
 		4817766F1E77220D00B3187C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A8615336480002BF452 /* AppDelegate.m */; };
@@ -120,6 +119,7 @@
 		90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08E9 /* UIKit.framework */; };
 		90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08EB /* Foundation.framework */; };
 		90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */; };
+		9EF8BEC8236A59C3008BB92A /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF8BEC7236A59C3008BB92A /* libAppAuth-iOS.a */; };
 		9F7B6A9915336480002BF452 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A9215336480002BF452 /* RootViewController.m */; };
 		9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA11533648C002BF452 /* MainStoryboard.storyboard */; };
 		9F7B6AB01533648C002BF452 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA81533648C002BF452 /* background.png */; };
@@ -332,7 +332,6 @@
 		DFEFE55217A9915300760FEE /* triangle_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49C17A9915200760FEE /* triangle_icon@2x.png */; };
 		DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49E17A9915200760FEE /* JRProvidersController.xib */; };
 		DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */; };
-		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
 		DFFAB7A11FAD2B77005BA6D1 /* CaptureDynamicForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFAB79F1FAD2B77005BA6D1 /* CaptureDynamicForm.xib */; };
 /* End PBXBuildFile section */
 
@@ -499,6 +498,7 @@
 		90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		90C36B6B7717AA0C893E08F1 /* SimpleCaptureDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "SimpleCaptureDemo-Info.plist"; sourceTree = "<group>"; };
 		90C36B6B7717AA0C893E08F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9EF8BEC7236A59C3008BB92A /* libAppAuth-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAppAuth-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7B6A8315336470002BF452 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F7B6A8515336480002BF452 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		9F7B6A8615336480002BF452 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
@@ -749,7 +749,6 @@
 		DFEFE49C17A9915200760FEE /* triangle_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangle_icon@2x.png"; sourceTree = "<group>"; };
 		DFEFE49E17A9915200760FEE /* JRProvidersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRProvidersController.xib; sourceTree = "<group>"; };
 		DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRUserLandingController.xib; sourceTree = "<group>"; };
-		DFEFE4A117A9915200760FEE /* JRWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRWebViewController.xib; sourceTree = "<group>"; };
 		DFFAB7A01FAD2B77005BA6D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CaptureDynamicForm.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -758,7 +757,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4816D7E4204F03EC00D5DA1C /* libAppAuth-iOS.a in Frameworks */,
 				4861C9851EAFC77A00E0BFA2 /* SafariServices.framework in Frameworks */,
 				4817766C1E7711E300B3187C /* LocalAuthentication.framework in Frameworks */,
 				48F27AB21BDE97FE007D9BC3 /* libsqlite3.0.tbd in Frameworks */,
@@ -772,6 +770,7 @@
 				C1424EE3FA47A4163FC6BB09 /* Security.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */,
 				484380DD1B5ED14100E63266 /* AddressBook.framework in Frameworks */,
+				9EF8BEC8236A59C3008BB92A /* libAppAuth-iOS.a in Frameworks */,
 				D894366318651F4D004BCF0A /* Accounts.framework in Frameworks */,
 				D894366118651F47004BCF0A /* Social.framework in Frameworks */,
 				90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */,
@@ -895,6 +894,7 @@
 		90C36B6B7717AA0C893E08E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9EF8BEC7236A59C3008BB92A /* libAppAuth-iOS.a */,
 				4816D7E5204F03EC00D5DA1C /* libAppAuth-iOS.a */,
 				DFEA3C321F8BBDD2005ACE97 /* libAppAuth-iOS.a */,
 				48039F201F1E7B39001EF0E1 /* libAppAuth-iOS.a */,
@@ -1484,7 +1484,6 @@
 				48C379D221C9A0B500286354 /* JRPublishActivityController.xib */,
 				DFEFE49E17A9915200760FEE /* JRProvidersController.xib */,
 				DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */,
-				DFEFE4A117A9915200760FEE /* JRWebViewController.xib */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -1534,6 +1533,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1773,7 +1773,6 @@
 				48994B801F3B99BC00F7826F /* Default-568h@3x.png in Resources */,
 				DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */,
 				D823C6F5189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png in Resources */,
-				DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */,
 				19BC00CC7CE1407ECD3FCEA9 /* icon_amazon_30x30.png in Resources */,
 				19BC038695E3F63ED3DAF62B /* icon_bw_amazon_30x30.png in Resources */,
 				19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */,
@@ -2048,7 +2047,7 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../../../OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"$(PROJECT_DIR)/../../submodules/AppAuth-iOS/Source/**",
 					"$(PROJECT_DIR)/../../Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
@@ -2089,7 +2088,7 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../../../OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"$(PROJECT_DIR)/../../submodules/AppAuth-iOS/Source/**",
 					"$(PROJECT_DIR)/../../Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";
@@ -2175,7 +2174,7 @@
 				GCC_VERSION = "";
 				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../../../OpenIDAppAuth/AppAuth-iOS/Source/**",
+					"$(PROJECT_DIR)/../../submodules/AppAuth-iOS/Source/**",
 					"$(PROJECT_DIR)/../../Janrain/**",
 				);
 				INFOPLIST_FILE = "SimpleCaptureDemo/SimpleCaptureDemo-Info.plist";

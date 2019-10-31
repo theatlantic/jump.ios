@@ -40,6 +40,7 @@
 #import "JRJsonUtils.h"
 
 static NSString *serverUrl = @"https://rpxnow.com";
+static NSString *engageWhitelistedDomain = @"";
 
 #pragma mark consts
 static NSString *const GET_CONFIGURATION_TAG = @"getConfiguration";
@@ -147,7 +148,7 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
 @synthesize welcomeString     = _welcomeString;
 
 - (id)initUserWithDictionary:(NSDictionary *)dictionary andWelcomeString:(NSString *)welcomeString
-            forProviderNamed:(NSString *)providerName
+            forProviderNamed:(NSString *)providerName __deprecated
 {
     if (dictionary == nil || providerName == nil || ([dictionary objectForKey:@"device_token"] == nil))
     {
@@ -178,6 +179,36 @@ static void deleteWebViewCookiesForDomains(NSArray *domains)
 
     return self;
 }
+
+- (id)initUserWitCaptureUserhDictionary:(NSDictionary *)dictionary andWelcomeString:(NSString *)welcomeString
+            forProviderNamed:(NSString *)providerName //REvisar si acá lo usa también para traditional login
+{
+    if (dictionary == nil || providerName == nil)
+    {
+        return nil;
+    }
+
+    if ((self = [super init]))
+    {
+        _deviceToken  = nil;
+        _providerName = providerName;
+        _photo = nil;
+        _displayName = [NSString stringWithFormat:@"%@ %@", [dictionary  objectForKey:@"givenName"], [dictionary  objectForKey:@"familyName"]];
+        _preferredUsername = [dictionary  objectForKey:@"displayName"];
+
+        if (welcomeString && ![welcomeString isEqualToString:@""]) {
+            _welcomeString = welcomeString;
+        } else if (_preferredUsername) {
+            _welcomeString = [NSString stringWithFormat:NSLocalizedString(@"Sign in as %@?", nil), _preferredUsername];
+        } else {
+            _welcomeString = NSLocalizedString(@"Sign back in?", nil);
+        }
+    }
+
+    return self;
+}
+
+
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
@@ -975,6 +1006,10 @@ static JRSessionData *singleton = nil;
     return result;
 }
 
+-(NSString *)engageWhitelistedDomain {
+    return engageWhitelistedDomain;
+}
+
 - (NSArray *)authenticationProviders
 {
     NSArray *allProviders = [engageAuthenticationProviders arrayByAddingObjectsFromArray:[_customProviders allKeys]];
@@ -1081,7 +1116,7 @@ static JRSessionData *singleton = nil;
             openIdIdentifier = [NSString stringWithFormat:provider.openIdIdentifier, userInput];
         }
         extraParamString = [NSString stringWithFormat:@"openid_identifier=%@&", openIdIdentifier];
-        if (provider.opxBlob) 
+        if (provider.opxBlob)
         {
             NSString *blobParam = [NSString stringWithFormat:@"opx_blob=%@&", provider.opxBlob];
             extraParamString = [extraParamString stringByAppendingString:blobParam];
@@ -1098,11 +1133,15 @@ static JRSessionData *singleton = nil;
 
     if (forceReauthFlag)
         deleteWebViewCookiesForDomains(provider.cookieDomains);
-
+//    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSString *whitlistedDomain = delegates.engage
     NSString *urlString = [NSString stringWithFormat:@"%@%@?%@%@device=%@&extended=true&installation_id=%@",
                                                      baseUrl, provider.relativeUrl, extraParamString,
                                                      forceReauthFlag ? @"force_reauth=true&" : @"",
                                                      [self device], uuid];
+    urlString = [NSString stringWithFormat:@"%@%@?token_url=%@/", baseUrl, provider.relativeUrl, engageWhitelistedDomain];
+//    urlString = @"https://jrauthenticate.rpxnow.com/twitter/start?token_url=jrmsampleapp1://jrmsampleapp1/";
+
 
     provider.forceReauthStartUrlFlag = NO;
     ALog (@"Starting authentication for %@:\n%@", provider.name, urlString);
@@ -1582,6 +1621,11 @@ static JRSessionData *singleton = nil;
                                       object:self
                                     userInfo:@{@"error" : self.error}];
             }
+        } else if ([(NSString *) tag isEqualToString:@"capture_user"]) {
+            [self finishMakeCallToTokenUrl:nil
+            withResponse:fullResponse
+              andPayload:payload
+             forProvider:nil];
         }
     }
 }
@@ -1718,7 +1762,7 @@ static JRSessionData *singleton = nil;
     // application issues the cancelAuthentication command.
     if (!currentProvider)
         return;
-
+    
     NSDictionary *rpxResult = [payloadDict objectForKey:@"rpx_result"];
     NSString *token = [rpxResult objectForKey:@"token"];
     NSMutableDictionary *authInfo = [[rpxResult objectForKey:@"auth_info"] mutableCopy];
@@ -1727,12 +1771,13 @@ static JRSessionData *singleton = nil;
 
     DLog (@"Authentication completed for user: %@", [rpxResult description]);
 
+    
     JRAuthenticatedUser *user = nil;
     if ([authInfo count] > 0) // native auth only provides an empty auth_info blob
     {
         user = [[JRAuthenticatedUser alloc] initUserWithDictionary:rpxResult
-                                                   andWelcomeString:[self getWelcomeMessageFromCookie]
-                                                   forProviderNamed:currentProvider.name];
+                                                  andWelcomeString:[self getWelcomeMessageFromCookie]
+                                                  forProviderNamed:currentProvider.name];
     }
 
     if (user)
@@ -1755,6 +1800,7 @@ static JRSessionData *singleton = nil;
         if(accountLinking) {
             if([delegate respondsToSelector:@selector(authenticationDidSucceedForAccountLinking:forProvider:)])
                 [delegate authenticationDidSucceedForAccountLinking:authInfo forProvider:currentProvider.name];
+
         }else{
             if ([delegate respondsToSelector:@selector(authenticationDidCompleteForUser:forProvider:)])
                 [delegate authenticationDidCompleteForUser:authInfo forProvider:currentProvider.name];
@@ -1770,6 +1816,65 @@ static JRSessionData *singleton = nil;
     if (tokenUrl)
         [self startMakeCallToTokenUrl:tokenUrl withToken:token forProvider:currentProvider.name];
 
+    self.currentProvider = nil;
+}
+
+- (void)triggerAuthenticationDidCompleteWithCaptureUserInPayload:(NSDictionary *)payloadDict {
+    
+    if (!currentProvider)
+        return;
+    
+    NSMutableDictionary *captureUser = [[payloadDict objectForKey:@"capture_user"] mutableCopy];
+    NSString *token = [payloadDict objectForKey:@"access_token"];
+    
+    [captureUser setObject:token forKey:@"token"];
+    
+    DLog (@"Authentication completed for user: %@", [captureUser description]);
+    
+    JRAuthenticatedUser *user = nil;
+    if ([captureUser count] > 0) {
+        user = [[JRAuthenticatedUser alloc] initUserWitCaptureUserhDictionary:captureUser
+                                                             andWelcomeString:[self getWelcomeMessageFromCookie]
+                                                             forProviderNamed:currentProvider.name];
+    }
+    
+    if (user) {
+        [authenticatedUsersByProvider setObject:user forKey:currentProvider.name];
+        NSData *usersData = [NSKeyedArchiver archivedDataWithRootObject:authenticatedUsersByProvider];
+        [[NSUserDefaults standardUserDefaults] setObject:usersData forKey:cJRAuthenticatedUsersByProvider];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    if ([self.authenticationProviders containsObject:currentProvider.name] && !socialSharing) {
+        [self saveLastUsedAuthenticationProvider:currentProvider.name];
+    }
+    
+    
+    if ([self.sharingProviders containsObject:currentProvider.name]) {
+        [self saveLastUsedSharingProvider:currentProvider.name];
+    }
+        
+    
+    NSArray *delegatesCopy = [NSArray arrayWithArray:delegates];
+    for (id <JRSessionDelegate> delegate in delegatesCopy)
+    {
+        if(accountLinking) {
+            if([delegate respondsToSelector:@selector(authenticationDidSucceedForAccountLinking:forProvider:)]) {
+                [delegate authenticationDidSucceedForAccountLinking:captureUser forProvider:currentProvider.name];
+            }
+                
+        }else{
+            if ([delegate respondsToSelector:@selector(authenticationDidCompleteForUser:forProvider:)]) {
+                [delegate authenticationDidCompleteForUser:captureUser forProvider:currentProvider.name];
+            }
+        }
+    }
+    
+    if(accountLinking) {
+        accountLinking = NO;
+        return;
+    }
+    
     self.currentProvider = nil;
 }
 
@@ -1980,5 +2085,10 @@ static JRSessionData *singleton = nil;
 + (void)setServerUrl:(NSString *)serverUrl_
 {
     serverUrl = serverUrl_;
+}
+
++ (void)setengageWhitelistedDomain:(NSString *)whitlistedDomain
+{
+    engageWhitelistedDomain = whitlistedDomain;
 }
 @end

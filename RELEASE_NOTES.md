@@ -1,3 +1,26 @@
+v5.2
+
+* Refactor `JRWebViewController` class, to use WKWebView (goodbye UIWebView). 
+* Now you need to add, in your configuration `.plist` file, a new key called `engageWhitelistedDomain` with the white listed domain that you registered in your Engage's app. (See the SimpleCaptureDemo project for this).
+  * To add a whitelisted domain, go to your [janrain dashboard](https://dashboard.janrain.com/) and select the Engage App that you are using in your project. Select *Domains* in the Settings section.
+  * Add the domain in *Domain Whitelist*. The domain format added should be `[WhitelistedDomain]://*` with the `://*` at the end. 
+  * Assign this new whitlestied domain to the `engageWhitelistedDomain` key with a path after the `://`. Like this `[WhitelistedDomain]]://[Path]`.
+  
+    The whitelisted domain in your configuration file should look like this:
+            
+    ```xml
+    <key>engageWhitelistedDomain</key>
+    <string>[WhitelistedDomain]]://[Path]</string>
+    ```
+
+* Add submodules to the repository, now in *SimpleCaptureDemo* you don't need to add the AppAuth library to the project, every time. The *submodules* folder is located at the root of this repository.
+  * To make sure you are using AppAuth from the *submodule* folder in the project, don't forget to run the next command in your terminal.
+  ```
+   $ git submodule update --init --recursive
+   ```
+* Tested Sample app with version 1.0.0beta of the OpenID AppAuth iOS libraries.
+
+
 v5.1.2
 
 * Merged PR: Removed Semaphores to make requests asynchronous (https://github.com/janrain/jump.ios/pull/57/files)

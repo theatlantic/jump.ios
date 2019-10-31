@@ -318,8 +318,14 @@ expandedCustomInterfaceOverrides:(NSMutableDictionary *)expandedCustomInterfaceO
 
     if (![[payloadDict objectForKey:@"stat"] isEqual:@"ok"])
     {
-        JRCaptureError *error = [JRCaptureError errorFromResult:payloadDict onProvider:provider
-                                                    engageToken:engageToken];
+        JRCaptureError *error;
+        if (!engageToken) {
+            error = [JRCaptureError errorFromResult:payloadDict onProvider:provider
+            engageToken:tokenUrl];
+        } else {
+            error = [JRCaptureError errorFromResult:payloadDict onProvider:provider
+            engageToken:engageToken];
+        }
         [self authenticationCallToTokenUrl:tokenUrl didFailWithError:error forProvider:provider];
         return;
     }

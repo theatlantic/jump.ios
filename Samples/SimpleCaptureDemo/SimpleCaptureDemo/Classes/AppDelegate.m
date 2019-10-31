@@ -47,6 +47,7 @@
 
 @interface JRSessionData (Internal)
 + (void)setServerUrl:(NSString *)serverUrl_;
++ (void)setengageWhitelistedDomain:(NSString *)whitlistedDomain;
 @end
 
 
@@ -229,6 +230,8 @@ AppDelegate *appDelegate = nil;
         self.captureAppId = [cfg objectForKey:@"captureAppId"];
     if ([cfg objectForKey:@"engageAppId"])
         self.engageAppId = [cfg objectForKey:@"engageAppId"];
+    if ([cfg objectForKey:@"engageWhitelistedDomain"])
+        [JRSessionData setengageWhitelistedDomain:[cfg objectForKey:@"engageWhitelistedDomain"]];
     if ([cfg objectForKey:@"captureForgottenPasswordFormName"])
         self.captureForgottenPasswordFormName = [cfg objectForKey:@"captureForgottenPasswordFormName"];
     if ([cfg objectForKey:@"captureEditProfileFormName"])

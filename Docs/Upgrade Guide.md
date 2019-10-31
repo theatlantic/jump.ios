@@ -10,6 +10,37 @@ A less desirable but more reliable and more general upgrade strategy:
 2. Remove generated Capture user model project groups
 3. Follow the process described JUMP Integration Guide
 
+### Upgrading from v5.1.1 to v5.2
+Ensure  your Janrain libraries do not have a reference to the Janrain⁩/JREngage⁩/Resources⁩/xibs/JRWebViewController⁩.xib file. Now the JRWebViewController class is created only by code.
+To make sure the Social Authentication is working propertly with the WKWebView do the following:
+* Go to your [janrain dashboard](https://dashboard.janrain.com/) and select the Engage App that you are using in your project. Select *Domains* in the Settings section. 
+* Add the domain in *Domain Whitelist*  section. The domain format added should be `[WhitelistedDomain]://*` (don't forget the `://*` at the end).
+* Add a new key called `engageWhitelistedDomain` in your configuration `.plist` file. (See the `janrain-config-default.plist` file in the SimpleCaptureDemo as an example).
+* Assign the whitelisted domain value (that you previously registered) to this new key with a path after the `://`.
+ 
+ At the end, the whitelisted domain in your configuration file should look like this:
+            
+```xml
+    <key>engageWhitelistedDomain</key>
+    <string>[WhitelistedDomain]]://[Path]</string>
+```
+Example from the SimpleCaptureDemo:
+```xml
+     <key>engageWhitelistedDomain</key>
+    <string>jrmsampleapp1://SimpleCaptureDemo</string> 
+```
+If you don't use this format in your whitlisted domain, you could get an error message like this, when the app opens the browser:
+```json
+{
+    message: "Missing and malformed token_url in query"
+}
+```
+
+Add git submodules to the *SimpleCaptureDemo*. You don't need to add the AppAuth library to the project every time.
+  
+Tested Sample app with version 1.0.0beta of the OpenID AppAuth iOS libraries.
+
+
 ### Upgrading from v5.0.4 (ONLY) to v5.1.1 or greater
 
 iOS 8.x support has been deprecated. All code has been updated to support iOS 9.x and newer.

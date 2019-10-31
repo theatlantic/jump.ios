@@ -182,6 +182,8 @@
 
 - (NSDictionary *)allProviders;
 
+-(NSString *)engageWhitelistedDomain;
+
 - (void)forgetAllAuthenticatedUsers;
 
 - (BOOL)weShouldBeFirstResponder;
@@ -191,6 +193,8 @@
 - (void)setStatusForUser:(JRAuthenticatedUser *)user;
 
 - (void)triggerAuthenticationDidCompleteWithPayload:(NSDictionary *)payloadDict;
+
+- (void)triggerAuthenticationDidCompleteWithCaptureUserInPayload:(NSDictionary *)payloadDict;
 
 - (void)triggerAuthenticationDidStartOver:(id)sender;
 
