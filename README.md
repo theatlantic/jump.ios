@@ -1,4 +1,4 @@
-# Janrain iOS Mobile Libraries 5.1.2
+# Janrain iOS Mobile Libraries 5.2
 
 This library provides a native iOS API to the Janrain user management platform's RESTful API endpoints.
 
@@ -7,7 +7,7 @@ OS 8.x support has been deprecated. All code has been updated to support iOS 9.x
 *NOTE:* Due to the large amount of code modifications required to address iOS 9.x deprecations it is important to test any integrations thoroughly.
 
 
-IMPORTANT: Please read the Docs/Upgrade Guide.md and RELEASE_NOTES.
+**IMPORTANT**: Please read the Docs/Upgrade Guide.md and RELEASE_NOTES.
 
 It supports:
 

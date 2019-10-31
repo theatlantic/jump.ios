@@ -332,7 +332,6 @@
 		DFEFE55217A9915300760FEE /* triangle_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49C17A9915200760FEE /* triangle_icon@2x.png */; };
 		DFEFE55317A9915300760FEE /* JRProvidersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE49E17A9915200760FEE /* JRProvidersController.xib */; };
 		DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */; };
-		DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFEFE4A117A9915200760FEE /* JRWebViewController.xib */; };
 		DFFAB7A11FAD2B77005BA6D1 /* CaptureDynamicForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFAB79F1FAD2B77005BA6D1 /* CaptureDynamicForm.xib */; };
 /* End PBXBuildFile section */
 
@@ -750,7 +749,6 @@
 		DFEFE49C17A9915200760FEE /* triangle_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangle_icon@2x.png"; sourceTree = "<group>"; };
 		DFEFE49E17A9915200760FEE /* JRProvidersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRProvidersController.xib; sourceTree = "<group>"; };
 		DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRUserLandingController.xib; sourceTree = "<group>"; };
-		DFEFE4A117A9915200760FEE /* JRWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRWebViewController.xib; sourceTree = "<group>"; };
 		DFFAB7A01FAD2B77005BA6D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CaptureDynamicForm.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1486,7 +1484,6 @@
 				48C379D221C9A0B500286354 /* JRPublishActivityController.xib */,
 				DFEFE49E17A9915200760FEE /* JRProvidersController.xib */,
 				DFEFE4A017A9915200760FEE /* JRUserLandingController.xib */,
-				DFEFE4A117A9915200760FEE /* JRWebViewController.xib */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -1776,7 +1773,6 @@
 				48994B801F3B99BC00F7826F /* Default-568h@3x.png in Resources */,
 				DFEFE55517A9915300760FEE /* JRUserLandingController.xib in Resources */,
 				D823C6F5189C2FDF00993DAE /* icon_bw_microsoftaccount_30x30@2x.png in Resources */,
-				DFEFE55617A9915300760FEE /* JRWebViewController.xib in Resources */,
 				19BC00CC7CE1407ECD3FCEA9 /* icon_amazon_30x30.png in Resources */,
 				19BC038695E3F63ED3DAF62B /* icon_bw_amazon_30x30.png in Resources */,
 				19BC0C107B9375D96974BA14 /* logo_amazon_280x65.png in Resources */,
