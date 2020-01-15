@@ -43,6 +43,7 @@
 #import "LinkedProfilesViewController.h"
 #import "JRCaptureData.h"
 #import "UIAlertController+JRAlertController.h"
+#import <AuthenticationServices/AuthenticationServices.h>
 @import Social;
 @import Accounts;
 @import LocalAuthentication;
@@ -57,12 +58,14 @@
 
 @end
 
-@interface RootViewController () <LinkedProfilesDelegate>
+@interface RootViewController () <LinkedProfilesDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
 
 @property(nonatomic, copy) void (^viewDidAppearContinuation)(void);
 @property(nonatomic) BOOL viewIsApparent;
 
 @property MyCaptureDelegate *captureDelegate;
+
+@property (nonatomic) ASAuthorizationAppleIDButton *appleLoginButton API_AVAILABLE(ios(13.0));
 
 - (void)configureViewsWithDisableOverride:(BOOL)disableAllButtons;
 
@@ -95,6 +98,16 @@
 
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+    
+    if (@available(iOS 13, *)) {
+        self.appleLoginButton = [[ASAuthorizationAppleIDButton alloc] init];
+        [self.appleLoginButton addTarget:self action:@selector(appleSignInButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        self.appleLoginButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.view addSubview:self.appleLoginButton];
+        [self.appleLoginButton.topAnchor constraintEqualToAnchor:self.tradAuthButton.bottomAnchor constant:8].active = YES;
+        [self.appleLoginButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        self.appleLoginButton.alpha = 0.5 + YES * 0.5;
     }
 }
 
@@ -140,6 +153,9 @@
         self.enableTouchIDSwitch.hidden = YES;
         self.enableTouchIDLabel.hidden = YES;
         
+        if (@available(iOS 13.0, *)) {
+            self.appleLoginButton.hidden = YES;
+        }
     }
     else
     {
@@ -164,6 +180,10 @@
         
         self.enableTouchIDSwitch.hidden = NO;
         self.enableTouchIDLabel.hidden = NO;
+        
+        if (@available(iOS 13.0, *)) {
+            self.appleLoginButton.hidden = NO;
+        }
     }
 
     if (disableAllButtons)
@@ -172,10 +192,40 @@
     }
 }
 
-- (void)setAllButtonsEnabled:(BOOL)b
+- (void)setAllButtonsEnabled:(BOOL)value
 {
-    self.refreshButton.enabled = self.signInButton.enabled = self.browseButton.enabled = self.signOutButton.enabled = self.formButton.enabled = self.refetchButton.enabled = self.shareButton.enabled = self.changePasswordButton.enabled = self.tradAuthButton.enabled = self.signInNavButton.enabled = self.enableTouchIDSwitch.enabled = self.enableTouchIDLabel.enabled = b;
-    self.refreshButton.alpha = self.signInButton.alpha = self.browseButton.alpha = self.signOutButton.alpha = self.formButton.alpha = self.refetchButton.alpha = self.shareButton.alpha = self.changePasswordButton.alpha = self.resendVerificationButton.alpha = self.tradAuthButton.alpha = self.enableTouchIDSwitch.alpha = self.enableTouchIDLabel.alpha = 0.5 + b * 0.5;
+    self.refreshButton.enabled = value;
+    self.signInButton.enabled = value;
+    self.browseButton.enabled = value;
+    self.signOutButton.enabled = value;
+    self.formButton.enabled = value;
+    self.refetchButton.enabled = value;
+    self.shareButton.enabled = value;
+    self.changePasswordButton.enabled = value;
+    self.tradAuthButton.enabled = value;
+    self.signInNavButton.enabled = value;
+    self.enableTouchIDSwitch.enabled = value;
+    self.enableTouchIDLabel.enabled = value;
+    if (@available(iOS 13.0, *)) {
+        self.appleLoginButton.enabled = value;
+    }
+    
+    CGFloat alphaValue = 0.5 + (value * 0.5);
+    self.refreshButton.alpha = alphaValue;
+    self.signInButton.alpha = alphaValue;
+    self.browseButton.alpha = alphaValue;
+    self.signOutButton.alpha = alphaValue;
+    self.formButton.alpha = alphaValue;
+    self.refetchButton.alpha = alphaValue;
+    self.shareButton.alpha = alphaValue;
+    self.changePasswordButton.alpha = alphaValue;
+    self.resendVerificationButton.alpha = alphaValue;
+    self.tradAuthButton.alpha = alphaValue;
+    self.enableTouchIDSwitch.alpha = alphaValue;
+    self.enableTouchIDLabel.alpha = alphaValue;
+    if (@available(iOS 13.0, *)) {
+        self.appleLoginButton.alpha = alphaValue;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -251,6 +301,19 @@
                                           alertActions:continueAction, cancelAction, nil];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)appleSignInButtonPressed API_AVAILABLE(ios(13)) {
+    ASAuthorizationAppleIDProvider *provider = [[ASAuthorizationAppleIDProvider alloc] init];
+    
+    
+    ASAuthorizationAppleIDRequest *request = [provider createRequest];
+    request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+    
+    ASAuthorizationController *controller = [[ASAuthorizationController alloc] initWithAuthorizationRequests:@[request]];
+    controller.delegate = self;
+    controller.presentationContextProvider = self;
+    [controller performRequests];
 }
 
 - (IBAction)touchIDSwitchChanged:(id)sender {
@@ -641,9 +704,41 @@
     [self setTradAuthButton:nil];
     [self setRefetchButton:nil];
 }
+
+#pragma mark - ASAuthorizationControllerDelegate
+- (void)authorizationController:(ASAuthorizationController *)controller didCompleteWithAuthorization:(ASAuthorization *)authorization API_AVAILABLE(ios(13)){
+    if ([authorization.credential isKindOfClass:[ASAuthorizationAppleIDCredential class]]) {
+        ASAuthorizationAppleIDCredential *appleIDCredential = authorization.credential;
+        NSString *user = appleIDCredential.user;
+        NSString *givenName = appleIDCredential.fullName.givenName;
+        NSString *familyName = appleIDCredential.fullName.familyName;
+        NSString *email = appleIDCredential.email;
+        NSLog(@"Sign in with Apple: %@, %@, %@, %@", user, givenName, familyName, email);
+        NSString *identityToken = [[NSString alloc] initWithData:appleIDCredential.identityToken encoding:NSUTF8StringEncoding];
+        NSLog(@"Sign in with Apple Identity Token (jwt: %@", identityToken);
+        
+        [JRCapture startEngageSignInWithNativeProviderToken:@"apple"
+                                                  withToken:identityToken
+                                             andTokenSecret:nil
+                                                 mergeToken:nil
+                               withCustomInterfaceOverrides:self.customUi
+                                                forDelegate:self.captureDelegate];
+    }
+}
+
+- (void)authorizationController:(ASAuthorizationController *)controller didCompleteWithError:(NSError *)error  API_AVAILABLE(ios(13)) {
+    
+    NSLog(@"Sign in with apple Error: %@", error.localizedDescription);
+}
+
+#pragma mark - ASAuthorizationControllerPresentationContextProviding
+-(ASPresentationAnchor)presentationAnchorForAuthorizationController:(ASAuthorizationController *)controller API_AVAILABLE(ios(13)) {
+    return self.view.window;
+}
     
 @end
 
+#pragma mark - MyCaptureDelegate Implementation
 @implementation MyCaptureDelegate
 
 

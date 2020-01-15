@@ -290,7 +290,10 @@ static JREngage* singleton = nil;
         url = [[JRSessionData jrSessionData].baseUrl stringByAppendingString:@"/signin/oauth_token"];
     }
     
-    if(provider.length > 0){
+    if ([provider isEqualToString:@"apple"]) {
+        url = [url stringByAppendingString:[NSString stringWithFormat: @"?id_token=%@&provider=%@", token, provider]];
+    }
+    else if(provider.length > 0){
         url = [url stringByAppendingString:[NSString stringWithFormat: @"?providername=%@", provider]];
     }
     

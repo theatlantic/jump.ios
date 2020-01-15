@@ -119,6 +119,8 @@
 		90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08E9 /* UIKit.framework */; };
 		90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08EB /* Foundation.framework */; };
 		90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */; };
+		9E95612323CFD784009E04CC /* icon_apple_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E95612223CFD784009E04CC /* icon_apple_30x30@2x.png */; };
+		9E95612523CFD7BA009E04CC /* icon_bw_apple_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E95612423CFD7B9009E04CC /* icon_bw_apple_30x30@2x.png */; };
 		9EF8BEC8236A59C3008BB92A /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF8BEC7236A59C3008BB92A /* libAppAuth-iOS.a */; };
 		9F7B6A9915336480002BF452 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B6A9215336480002BF452 /* RootViewController.m */; };
 		9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7B6AA11533648C002BF452 /* MainStoryboard.storyboard */; };
@@ -498,6 +500,8 @@
 		90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		90C36B6B7717AA0C893E08F1 /* SimpleCaptureDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "SimpleCaptureDemo-Info.plist"; sourceTree = "<group>"; };
 		90C36B6B7717AA0C893E08F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9E95612223CFD784009E04CC /* icon_apple_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_apple_30x30@2x.png"; sourceTree = "<group>"; };
+		9E95612423CFD7B9009E04CC /* icon_bw_apple_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_apple_30x30@2x.png"; sourceTree = "<group>"; };
 		9EF8BEC7236A59C3008BB92A /* libAppAuth-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAppAuth-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7B6A8315336470002BF452 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F7B6A8515336480002BF452 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
@@ -1403,6 +1407,7 @@
 				DFEFE47317A9915200760FEE /* icon_wordpress_30x30@2x.png */,
 				DFEFE47417A9915200760FEE /* icon_yahoo_30x30@2x.png */,
 				19BC083F88EC65DB6CE88AED /* icon_amazon_30x30@2x.png */,
+				9E95612223CFD784009E04CC /* icon_apple_30x30@2x.png */,
 			);
 			path = "icons-2x";
 			sourceTree = "<group>";
@@ -1425,6 +1430,7 @@
 				DFEFE47C17A9915200760FEE /* icon_bw_twitter_30x30@2x.png */,
 				DFEFE47D17A9915200760FEE /* icon_bw_yahoo_30x30@2x.png */,
 				19BC062CD8DCEB18DCCE2E36 /* icon_bw_amazon_30x30@2x.png */,
+				9E95612423CFD7B9009E04CC /* icon_bw_apple_30x30@2x.png */,
 			);
 			path = "icons_bw-2x";
 			sourceTree = "<group>";
@@ -1554,6 +1560,7 @@
 			files = (
 				48C379CF21C99F9B00286354 /* Localizable.strings in Resources */,
 				48CB52E71B7108AA0091CD10 /* icon_bw_instagram_30x30@2x.png in Resources */,
+				9E95612323CFD784009E04CC /* icon_apple_30x30@2x.png in Resources */,
 				9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */,
 				9F7B6AB01533648C002BF452 /* background.png in Resources */,
 				48A85E8B1BEBD4E5004CBA61 /* button_paypal_280x40.png in Resources */,
@@ -1689,6 +1696,7 @@
 				48CB52E81B7108AA0091CD10 /* icon_bw_yahoo_oauth2_30x30@2x.png in Resources */,
 				DFEFE50D17A9915300760FEE /* button_janrain_280x40@2x.png in Resources */,
 				DFEFE50E17A9915300760FEE /* button_linkedin_135x40@2x.png in Resources */,
+				9E95612523CFD7BA009E04CC /* icon_bw_apple_30x30@2x.png in Resources */,
 				DFEFE50F17A9915300760FEE /* button_linkedin_280x40@2x.png in Resources */,
 				DFEFE51017A9915300760FEE /* button_myspace_135x40@2x.png in Resources */,
 				DFEFE51117A9915300760FEE /* button_myspace_280x40@2x.png in Resources */,
@@ -2058,7 +2066,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.simplecapturedemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.mobiledev.DemoApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2073,7 +2081,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = SimpleCaptureDemo/SimpleCaptureDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3GSSC5Q8U3;
@@ -2099,7 +2107,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.simplecapturedemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.mobiledev.DemoApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2185,7 +2193,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.simplecapturedemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.janrain.mobiledev.DemoApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
