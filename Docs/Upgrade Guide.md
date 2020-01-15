@@ -10,10 +10,23 @@ A less desirable but more reliable and more general upgrade strategy:
 2. Remove generated Capture user model project groups
 3. Follow the process described JUMP Integration Guide
 
+### Upgrading from v5.2 to v5.3
+You can use Sign in with Apple in your application, but you need to create a couple of IDs in the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal to make an app work with Sign in with Apple.   
+**Important**. Before you begin, keep in mind that Apple charges for its developer accounts, or at for least accounts that have the permissions required for creating a Sign In with Apple app. In order to use Sign In with Apple, you’ll need to spend $99 and enroll in the Apple Developer Program.
+1. Manually create an App Identifier (App ID) in the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal, this one will work as the Primary App ID for your application and website. Enable its Sign in with Apple capability and set this App ID as a *primary App ID*.
+2. Create a second App ID (this one is the one that will use the application's Bundle Identifier). You can let Xcode do it for you with the *Automatically manage signin* checkbox. And adding the Sign in with Apple capability in your Xcode project. Or manually create the App ID in the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal and enable there the Sign in with Apple capability.
+3. In the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal, edit the Sign in with Apple capability from this second App ID. Set the Sign In with Apple Configuration as a *Group with an existing primary App ID* and select from the drop down the first App ID that you created.
+4. In the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal, create a Service ID for your web site. Enable Sign in with Apple and click configure.
+5. In the configuration screen, select the first App ID as your primary App ID (the App ID for your application should not appear here because is part of a group). Under Domains provide your web domain and your return URLs.
+6. In the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal go to the *Keys* section and create a new Key, and also enable the Sign in with Apple checkbox.
+7. Press the *Configure* button from the Sign  in with Apple and in the new screen, choose the first App ID that you created in previous steps.
+8. After you register the Key, you need to download it. Remember what apple says: *Be sure to save a backup of your key in a secure place.*
+9. With the App ID, Service ID and Key  you can add this information in the Apple provider configuration in Engage website. In the key section you need to paste all the key (including the *-----BEGIN PRIVATE KEY-----* and *-----END PRIVATE KEY-----* text).
+
 ### Upgrading from v5.1.1 to v5.2
 Ensure  your Janrain libraries do not have a reference to the Janrain⁩/JREngage⁩/Resources⁩/xibs/JRWebViewController⁩.xib file. Now the JRWebViewController class is created only by code.
-To make sure the Social Authentication is working propertly with the WKWebView do the following:
-* Go to your [janrain dashboard](https://dashboard.janrain.com/) and select the Engage App that you are using in your project. Select *Domains* in the Settings section. 
+To make sure the Social Authentication is working properly with the WKWebView do the following:
+* Go to your [Social Login dashboard](https://dashboard.janrain.com/) and select the Engage App that you are using in your project. Select *Domains* in the Settings section. 
 * Add the domain in *Domain Whitelist*  section. The domain format added should be `[WhitelistedDomain]://*` (don't forget the `://*` at the end).
 * Add a new key called `engageWhitelistedDomain` in your configuration `.plist` file. (See the `janrain-config-default.plist` file in the SimpleCaptureDemo as an example).
 * Assign the whitelisted domain value (that you previously registered) to this new key with a path after the `://`.
@@ -29,7 +42,7 @@ Example from the SimpleCaptureDemo:
      <key>engageWhitelistedDomain</key>
     <string>jrmsampleapp1://SimpleCaptureDemo</string> 
 ```
-If you don't use this format in your whitlisted domain, you could get an error message like this, when the app opens the browser:
+If you don't use this format in your whitelisted domain, you could get an error message like this, when the app opens the browser:
 ```json
 {
     message: "Missing and malformed token_url in query"
@@ -54,7 +67,7 @@ Tested with the following supporting libraries/frameworks:
 * Google SignIn 4.1.0 (Native Sample App only) - Note as of 11/17/17 there were missing framework files in the Google download zip file.  Use the missing framework files (GoogleAppUtilities.framework and GoogleSymbolUtilities.framework) from the 4.0.1 SDK download.
 * Facebook 4.28.0
 
-The demo applications have been heavily refactored to support the latest Janrain "standard" flow and "user" schema.  The registration and profile pages have been updated to match the form configurations in the standard flow.  These pages now demonstrate how to use date pickers, scroll/spinner selectors, and switches for boolean fields.
+The demo applications have been heavily refactored to support the latest Identity Cloud "standard" flow and "user" schema.  The registration and profile pages have been updated to match the form configurations in the standard flow.  These pages now demonstrate how to use date pickers, scroll/spinner selectors, and switches for boolean fields.
 
 If you are using CocoaPods, the CocoaPods `Janrain.podspec` file will now include a set of reference 'Generated' classes in order to resolve dependency warnings and issues.  Developers that are using CocoaPods will have to manually remove the classes imported into the `Pods/Development Pods/Janrain/JRCapture/Generated` folder (in the XCode Project files folder view) and replace them with the Generated class files for their schema as described in the `Xcode Project Setup Guide` (found in the same folder as this document).  Please see the section titled: `Generating the Capture User Model`.
 
@@ -83,8 +96,7 @@ ADD the JROpenIDAppAuthGoogleDelegate Protocol:
 #### Update your application's AppDelegate.m
 
 Synthesize the variables:
-`@synthesize googlePlusClientId;` and
-`@synthesize googlePlusRedirectUri;` and
+`@synthesize googlePlusClientId;`, `@synthesize googlePlusRedirectUri;` and
 `@synthesize openIDAppAuthAuthorizationFlow;`
 
 In the `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` method make sure to REMOVE the following values:
@@ -108,7 +120,7 @@ UPDATE the following method so it is as follows:
         return NO;
     }
 
-NOTE: the SimpleDemoNative app ues the following method instead to ensure compatibility with the Native Provider libraries:
+NOTE: the SimpleDemoNative app uses the following method instead to ensure compatibility with the Native Provider libraries:
     - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 
@@ -153,7 +165,7 @@ The OpenID AppAuth for iOS libraries (version 0.7.1 tested) can be installed usi
 
 If you are linking to the OpenID AppAuth Library repo and not using CocoaPods you may need to add the OpenID AppAuth library source code location to your Xcode project's Build Settings -> Search Paths -> Header Search Paths value: example: `/GitHub/OpenIDAppAuth/AppAuth-iOS/Source` (use the "recursive" option if needed).
 
-The sample applications provided as part of the Janrain Mobile Libraries repository have been updated to use the Xcode Workspace library implementation method.  This may require re-linking of the libraries for your build environement. *NOTE:* You may have to convert your Xcode project to a workspace project if you do not want to use CocoaPods.
+The sample applications provided as part of the Janrain Mobile Libraries repository have been updated to use the Xcode Workspace library implementation method.  This may require re-linking of the libraries for your build environment. *NOTE:* You may have to convert your Xcode project to a workspace project if you do not want to use CocoaPods.
 
 Once you have added the OpenID AppAuth libraries to your project or workspace the following settings will need to be added/updated in your application if you are planning on using Google as a web-based identity provider in your mobile application.  NOTE: These steps are not necessary if you are using Google Native authentication using the Google iOS SDK.
 
@@ -211,9 +223,7 @@ ADD the JROpenIDAppAuthGoogleDelegate Protocol:
 #### Update your application's AppDelegate.m
 
 Synthesize the variables:
-`@synthesize googlePlusClientId;` and
-`@synthesize googlePlusRedirectUri;` and
-`@synthesize openIDAppAuthAuthorizationFlow;`
+`@synthesize googlePlusClientId;`, `@synthesize googlePlusRedirectUri;` and `@synthesize openIDAppAuthAuthorizationFlow;`
 
 
 UPDATE/ADD the following method so it is as follows:
@@ -244,7 +254,7 @@ ADD/UPDATE the `(void)parseConfigNamed:(NSString *)cfgKeyName fromConfigPlist:(N
 
 #### New optional configuration items
 
-1. `config.engageAppUrl` If this value is set when intializing the Mobile Libraries the libraries will attempt to use the url provided for all Social Login (Engage) communications.  This setting should only be used when advised to do so by a Janrain technical resource.
+1. `config.engageAppUrl` If this value is set when initializing the Mobile Libraries the libraries will attempt to use the url provided for all Social Login (Engage) communications.  This setting should only be used when advised to do so by an Identity Cloud representative.
 
 2. `config.downloadFlowUrl` If this value is set when intializing the Mobile Libraries the libraries will attempt to use the url provided for all download the Registration flow configuration file.  This setting should only be used when advised to do so by a Janrain technical resource.
 
@@ -316,7 +326,7 @@ if ([cfg objectForKey:@"googlePlusRedirectUri"])
 
 There are potentially *breaking* changes to the Janrain Mobile SDK with version 4.0.  All dependencies on third-party SDK's and libraries around native Social Provider support (Google+, Facebook, and Twitter) have been removed.
 
-The Mobile SDK no longer integrates third-party SDK's or libraries.  The SimpleCaptureDemo app has been upgraded to demonstrate how to retrieve a native provider's oAuth access token using the current(at the time of the SDK release) native provider's tools in as close a format to the native provider's sample code on their website.  The developer will now retrieve the native provider's oAuth access token using their preferred method and initiate the Janrain authentication process using `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+The Mobile SDK no longer integrates third-party SDK's or libraries.  The SimpleCaptureDemo app has been upgraded to demonstrate how to retrieve a native provider's OAuth access token using the current(at the time of the SDK release) native provider's tools in as close a format to the native provider's sample code on their website.  The developer will now retrieve the native provider's OAuth access token using their preferred method and initiate the Identity Cloud authentication process using `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
 Please refer to the `Native Authentication Guide` for full details on how to implement native authentication with the above changes.
 

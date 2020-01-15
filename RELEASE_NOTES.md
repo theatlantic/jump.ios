@@ -1,10 +1,13 @@
+v5.3
+* Add Sign in with Apple. Now you can sign in with Apple as a provider in your applications. You can do the sign in by web (for any iOS version) or with the native button `ASAUthorizationAppleIDButton` (for iOS 13+).
+
 v5.2
 
-* Refactor `JRWebViewController` class, to use WKWebView (goodbye UIWebView). 
+* Refactored `JRWebViewController` class, now it uses WKWebView (goodbye UIWebView). 
 * Now you need to add, in your configuration `.plist` file, a new key called `engageWhitelistedDomain` with the white listed domain that you registered in your Engage's app. (See the SimpleCaptureDemo project for this).
-  * To add a whitelisted domain, go to your [janrain dashboard](https://dashboard.janrain.com/) and select the Engage App that you are using in your project. Select *Domains* in the Settings section.
-  * Add the domain in *Domain Whitelist*. The domain format added should be `[WhitelistedDomain]://*` with the `://*` at the end. 
-  * Assign this new whitlestied domain to the `engageWhitelistedDomain` key with a path after the `://`. Like this `[WhitelistedDomain]]://[Path]`.
+  * To add a whitelisted domain, go to your [Social Login dashboard](https://dashboard.janrain.com/) and select the Engage App that you are using in your project. Select *Domains* in the Settings section.
+  * Add the domain name (no protocol is needed) in *Domain Whitelist*. The domain format added should be `[WhitelistedDomain]://*` with the `://*` at the end. 
+  * In Xcode, assign this new whitlestied domain to the `engageWhitelistedDomain` key with a path after the `://`. Like this `[WhitelistedDomain]]://[Path]` in your configuration .plist file.
   
     The whitelisted domain in your configuration file should look like this:
             
@@ -37,7 +40,7 @@ v5.1.1
 
 * Added support for future changes to the Social Login platform
 * Keychain storage now uses the kSecAttrAccessibleWhenUnlockedThisDeviceOnly global variable.  https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlockedthisdeviceonly
-* Updated Cocoapods support and resolved some file naming conflicts for XCode 9's new build system(preview)
+* Updated CocoaPods support and resolved some file naming conflicts for XCode 9's new build system(preview)
 * Tested with the following supporting libraries/frameworks:
 
   * OpenID AppAuth iOS 0.90.0 (both sample apps)
@@ -105,8 +108,8 @@ v5.0
 
  * Dropped support for iOS 7, now only supports iOS 8+
  * Implemented OpenID AppAuth Libraries(Required) to support Google WebView Deprecation.
- * Added support for non-standard Engage server url's
- * Added support for custom flow download location url's
+ * Added support for non-standard Engage server URLs
+ * Added support for custom flow download location URLs
  * Added support for Native Authentication using the WeChat application
  * Updated sample applications as needed to implement new changes.
 
