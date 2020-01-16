@@ -8,7 +8,7 @@ user registration system. For Engage-only (i.e. social-authentication-only) inte
 
 ## JUMP SDK Features
 
-* Engage social sign-in (includes OpenID, and many OAuth identity providers, e.g. Google, Facebook, etc.)
+* Engage social sign-in (includes OpenID, and many OAuth identity providers, e.g. Google, Facebook, Apple, etc.)
 * Sign-in to Capture accounts
     * Either via Engage social sign-in or via traditional username/password sign-in
     * Including the Capture "merge account flow" (which links two social accounts by verified email address at sign-in
@@ -48,41 +48,10 @@ The demo shows:
 ## Gather your Configuration Details
 
 1. Sign in to your Engage Dashboard - https://rpxnow.com
-    1. Configure the social providers you wish to use for authentication ("Deployment" drop down menu -> "Engage for
-       iOS").
-    2. Retrieve your 20-character Engage application ID from the Engage Dashboard (In the right column of the "Home"
-       page on the Engage dashboard.)
-2. Ask your deployment engineer or account manager for your Capture domain.
-3. Create a new Capture API client for your mobile app:
-    1. Sign in to the Capture dashboard and provision a new API client for your mobile app (https://janraincapture.com)
-       (Copy down the new API client's client ID, you will need this.)
-    2. Use the dashboard to add the "login_client" feature to your new API client.
-
-       **Warning** `login_client` is mutually exclusive with all other API client features, which means only login
-       clients can be used to sign users in, and only non-login-clients can perform client_id and client_secret
-       authenticated Capture API calls. This means that you cannot use the owner client as a login client.
-    3. Use the
-       [setAccessSchema API](http://developers.janrain.com/documentation/api-methods/capture/entitytype/setaccessschema/)
-       API to set the subset of the schema you wish your mobile app to be able to update.
-       You must use the "write_with_token" schema type.
-
-       **Warning** If you do set the write_with_token access schema for your API client to include the attributes your
-       client will write to in its write access schema you will receive `missing attribute` errors when attempting
-       to update attributes.
-
-       **Warning** Do not use the "write" schema type with login clients, use "write_with_token"
-
-       **Warning** This cannot be done from the dashboard, it must be done with the API.
-
-       It is assumed that you are integrating the JUMP SDK into your app in order to update attributes of the user's
-       record on Capture. In order to update attributes the `write_with_token` access schema must be set for your
-       app's API client.
-
-       Because record updates from the iOS SDK use the `entity` API, they are not suitable for security sensitive
-       attributes (such as the user's email address, password, and display name.) You should restrict the write access
-       schema to those attributes you want the user to have direct control over. E.g. app data such as "favorites,"
-       usage history, and user generated content.
-4. Discover your flow settings:
+2. Configure the social providers you wish to use for authentication (In your engage application at "Widgets and SDKs" -> "iOS").
+3. In *Social Login and Sharing for iOS* screen select the "Sign-in Providers" tab.
+4. Now you can configure and add the providers you want to use. 
+5. Discover your flow settings:
     Ask your deployment engineer for:
         * The name of the Capture "flow" you should use
         * The name of the flow's traditional sign-in form
@@ -90,11 +59,6 @@ The demo shows:
         * The name of the flow's traditional registration form
         * The name of the "locale" in the flow your app should use
           The commonly used value for US English is "en-US".
-5. Determine whether your app should use "thin" social registration, or "two-step" social registration.
-6. Determine the name of the traditional sign-in key attribute (e.g. `email` or `username`)
-
-**Warning** You _must_ create a new API client with the correct login_client feature for operation of the JUMP for iOS
-SDK.
 
 ## Xcode Project Setup
 
@@ -212,8 +176,7 @@ The `JRCaptureDelegate` protocol defines a set of (optional) messages your Captu
 flow proceeds, a series of delegate messages will be sent to your delegate.
 
 First, your delegate will receive `engageAuthenticationDidSucceedForUser:forProvider:` when Engage authentication is
-complete. At this point, the library will close the authentication dialog and then complete sign-in to Capture
-headlessly. This message contains limited data which can be used to update UI while your app waits for Capture to
+complete. At this point, the library will close the authentication dialog and then complete sign-in to Capture. This message contains limited data which can be used to update UI while your app waits for Capture to
 complete authentication.
 
     - (void)engageAuthenticationDidSucceedForUser:(NSDictionary *)engageAuthInfo
@@ -231,7 +194,7 @@ Once the authentication token reaches Capture, Capture automatically adds the pr
 
 ## Finish the User Sign-In Flow
 
-Once the the user record is retrieved from Capture, the `captureSignInDidSucceedForUser:status:` message is sent to
+Once the user record is retrieved from Capture, the `captureSignInDidSucceedForUser:status:` message is sent to
 your delegate. This message delivers the `JRCaptureUser` instance, and also the state of the record.
 
 
@@ -295,8 +258,7 @@ The Capture part of the SDK supports both social sign-in via Engage (e.g. Facebo
   the traditional sign-in flow headlessly.
 
 The first two methods start social sign-in only (either by presenting a list of configured providers, or by starting
-the sign-in flow directly on a configured provider.) The fourth method performs a headless traditional sign-in -
-useful if your host app wishes to present it's own traditional sign-in UI. The third method combines social sign-in
+the sign-in flow directly on a configured provider.) The fourth method performs a traditional sign-in -useful if your host app wishes to present its own traditional sign-in UI. The third method combines social sign-in
 with a stock traditional sign-in UI.
 
 The merge token parameters are used in the second part of the Merge Account Flow, described below.
@@ -312,9 +274,7 @@ identity, and the email address from the identity is already in use.
 Before being able to sign-in with the social identity, the user must merge the identity into their existing record.
 This is called the "Merge Account Flow."
 
-The merge is achieved at the conclusion of a second sign-in flow authenticated by the record's existing associated
-identity. The second sign-in is initiated upon the failure of the first sign-in flow, and also includes a merge token
-which Capture uses to merge the identity from the first (failed) sign-in into the record.
+The merge is achieved at the conclusion of a second sign-in flow, authenticated by the existing associated account. The second sign-in is initiated upon the failure of the first sign-in, including a merge token which Capture uses to merge the identity from the first sign-in into the record.
 
 Capture SDK event sequence for Merge Account Flow:
 
@@ -500,8 +460,7 @@ either a primitive value (a number, a string, a date, or similar) an object, or 
 Primitive attribute values are the actual data that make up your user record. For example, they are your user's
 identifier, or their email address, or birthday.
 
-Objects and plurals make up the structure of your user record. For example, in the default Capture schema, the user's
-name is represented by an object with six primitive values (strings) used to contain the different parts of the name.
+Objects and plurals make up the structure of your user record. For example, in the default Capture schema, the user's name is represented by an object with six primitive values (strings) used to contain the different parts of the name.
 (The six values are `familyName`, `formatted`, `givenName`, `honorificPrefix`, `honorificSuffix`, `middleName`.)
 Objects can contain primitive values, sub-objects, or plurals, and those attributes are defined in the schema.
 
@@ -582,9 +541,9 @@ The Mobile SDK has support for replacing existing plurals when properly configur
 
 The developer should make sure they have an up-to-date Registration User Model (http://developers.janrain.com/how-to/mobile-apps/sdk/registration/ios/install-with-xcode/configure-xcode-project-for-sdk/#add-the-library-to-your-xcode-project).
 
-By default any “entity” api calls other than the base “entity” call can NOT be used with a Mobile or Javascript implementation.  The Mobile and Javascript implementations are designed to not have API Client secrets embedded in them.  Additionally Mobile SDK and Javascript implementations are designed to only use API Clients with the “login_client” feature.
+By default any “entity” api calls other than the base “entity” call can NOT be used with a Mobile or JavaScript implementation.  The Mobile and JavaScript implementations are designed to not have API Client secrets embedded in them.  Additionally Mobile SDK and JavaScript implementations are designed to only use API Clients with the “login_client” feature.
 
-When an end user authenticates through an API Client with the “login_client” feature the access token that it returned is scoped to only permit read-only access to the user’s profile data.  The access token can not be used to make any entity calls that would modify the user’s profile data (i.e. entity.update, entity.replace).  All edits to the user’s profile data must be submitted through the Janrain Registration server using either the Javascript implementation or the Mobile SDK (which uses the OAuth API end points).
+When an end user authenticates through an API Client with the “login_client” feature the access token that it returned is scoped to only permit read-only access to the user’s profile data.  The access token cannot be used to make any entity calls that would modify the user’s profile data (i.e. entity.update, entity.replace).  All edits to the user’s profile data must be submitted through the Janrain Registration server using either the JavaScript implementation or the Mobile SDK (which uses the OAuth API end points).
 
 Access Schemas:
 
@@ -594,7 +553,7 @@ The Registration API Client filtering of read and write access is implemented th
 
 By default an API Client with the “login_client” feature will have a “read” access schema that provides full read access to their entire user profile, and  “write” and “write_with_token” access schemas that provide no write access to the user profile (Note: reserved attributes (id, uuid, created, lastUpdated) are automatically included in the access schema but are not accessible through the entity calls).
 
-In order for the Mobile SDKs or Javascript Implementations to leverage the editing entity API calls the developer will have to create an “write_with_token” access schema and use the access_token parameter instead of the client_id and client_secret parameters with the API calls.
+In order for the Mobile SDKs or JavaScript Implementations to leverage the editing entity API calls the developer will have to create an “write_with_token” access schema and use the access_token parameter instead of the client_id and client_secret parameters with the API calls.
 Access Schema API Calls:
 Retrieving an Access Schema:
 http://developers.janrain.com/rest-api/methods/user-data/entitytype/getaccessschema/
@@ -651,7 +610,7 @@ UIApplicationDelegate:
     }
 
 Likewise, load the saved user record state when your application launches. For example, from your
-`UIApplicationDelegate`:
+`AppDelegate`:
 
     - (BOOL)          application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -667,7 +626,7 @@ automatically save and restore the session token.
 ### Refreshing the User's Access Token
 
 Call `+[JRCapture refreshAccessTokenForDelegate:context:]` to refresh the signed-in-user's access token. Access tokens
-last one hour. They may be refreshed after expiration. The underlying refreshing system lasts "a long time".
+last one hour. They may be refreshed after expiration.
 
 ## Next: Registration
 

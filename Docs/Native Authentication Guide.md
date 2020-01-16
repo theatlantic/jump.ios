@@ -8,58 +8,74 @@ This guide describes the process of integrating with native iOS authentication s
 * TwitterKit 3.4.0 (Native Sample App only)
 * Google SignIn 4.4.0 (Native Sample App only)
 * Facebook 4.39.0 (Native Sample App only)
+* Apple (SimpleCaptureDemo)
 
 ## Native Authentication for Janrain Mobile SDK version 4.0 or newer.
 
 There are potentially *breaking* changes to the Janrain Mobile SDK with version 4.0.  All dependencies on third-party SDK's and libraries around native Social Provider support (Google Sign-In, Facebook, and Twitter) have been removed.
 
-The Mobile SDK no longer integrates third-party Social Provider SDK's or libraries.  The SimpleCaptureDemo app has been upgraded to demonstrate how to retrieve a native provider's oAuth access token using the current(at the time of the SDK release) native provider's tools in as close a format to the native provider's sample code on their website.  The developer will now retrieve the native provider's oAuth access token using their preferred method and initiate the Janrain authentication process using `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+The Mobile SDK no longer integrates third-party Social Provider SDK's or libraries.  The SimpleCaptureDemo app has been upgraded to demonstrate how to retrieve a native provider's OAuth access token using the current(at the time of the SDK release) native provider's tools in as close a format to the native provider's sample code on their website.  The developer will now retrieve the native provider's OAuth access token using their preferred method and initiate the Janrain authentication process using `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
 ### 10,000′ View
-1. Configure the native authentication framework for the providers you want to support (Google Sign-In, Facebook, or Twitter)
+1. Configure the native authentication framework for the providers you want to support (Google Sign-In, Facebook, Twitter or Apple)
 1. Provide the user the option to sign in with a Native Provider or through a UIWebview Dialog for non-native Providers
-1. If the user selects to login with a Native Provider, initiate the Native Provider's SDK and retrieve a properly scoped oAuth Access Token (and Token Secret for Twitter).
-1. Pass the Native Provider's oAuth access token to the Janrain SDK where it will be posted to the Social Login server for verification and a Social Login access token will be returned.
+2. If the user selects to login with a Native Provider, initiate the Native Provider's SDK and retrieve a properly scoped OAuth
+3.  Access Token (and Token Secret for Twitter).
+4. Pass the Native Provider's OAuth access token to the Janrain SDK where it will be posted to the Social Login server for verification and a Social Login access token will be returned.
 
 ### Facebook
 
-As of SDK release 4.x the following Facebook SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Facebook oAuth access token from the iOS device:
+As of SDK release 4.x the following Facebook SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Facebook OAuth access token from the iOS device:
 
 1. Download the Facebook SDK for iOS from this link:  https://developers.facebook.com/docs/ios
-1. Follow *ALL* of the steps on this page *EXCEPT* for Step 2 (Create a Facebook App): https://developers.facebook.com/docs/ios/getting-started/  In order for the Janrain Social Login Server to validate the provided Facebook oAuth token, the token must be provisioned from the same Facebook application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Settings configuration to the existing Facebook App.
-1.  Use this page as a starting point for implementing native Facebook Login:  https://developers.facebook.com/docs/ios/getting-started
-1.  Make sure that the Permissions requested in the `logInWithReadPermissions` method include the required permissions.  In most cases these permissions need to mirror the Facebook app permissions configuration of the Engage Social Login application that is configured in the Janrain Social Login Dashboard.
-1.  Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
-1.  Once you have retrieved the oAuth access token from the Facebook SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+2. Follow *ALL* of the steps on this page *EXCEPT* for Step 2 (Create a Facebook App): https://developers.facebook.com/docs/ios/getting-started/  In order for the Identity Cloud Social Login Server to validate the provided Facebook OAuth token, the token must be provisioned from the same Facebook application that is configured for the Identity Cloud Social Login application.  In most cases, the developer would simply add an iOS App Settings configuration to the existing Facebook App.
+3.  Use this page as a starting point for implementing native Facebook Login:  https://developers.facebook.com/docs/ios/getting-started
+4.  Make sure that the Permissions requested in the `logInWithReadPermissions` method include the required permissions.  In most cases these permissions need to mirror the Facebook app permissions configuration of the Engage Social Login application that is configured in the Identity Cloud Social Login Dashboard.
+5.  Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
+6.  Once you have retrieved the OAuth access token from the Facebook SDK you can initiate the Identity Cloud authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
 ### Google Sign-In
 
-As of Janrain mobile libraries release 4.0 the following Google Sign-In SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Google oAuth access token from the iOS device:
+As of Janrain mobile libraries release 4.0 the following Google Sign-In SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Google OAuth access token from the iOS device:
 
 1. Download the Google Sign-In SDK from this link: https://developers.google.com/identity/sign-in/ios/sdk/
-1. Follow *ALL* of the steps on this page that involve the XCode project configuration: https://developers.google.com/identity/sign-in/ios/sign-in+/mobile/ios/getting-started  In order for the Janrain Social Login Server to validate the provided Google oAuth token, the token must be provisioned from the same Google application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Google App.
+1. Follow *ALL* of the steps on this page that involve the XCode project configuration: https://developers.google.com/identity/sign-in/ios/sign-in+/mobile/ios/getting-started  In order for the Identity Cloud Social Login Server to validate the provided Google OAuth token, the token must be provisioned from the same Google application that is configured for the Identity Cloud Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Google App.
 1. In the case of the SimpleCaptureDemo application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Google at this link: https://developers.google.com/identity/sign-in/ios/sign-in
-1. Make sure that the Scopes requested by the `GPPSignIn` singleton includes the required scopes.  In most cases these scopes need to mirror the Google app permissions configuration of the Engage Social Login application that is configured in the Janrain Social Login Dashboard.
+1. Make sure that the Scopes requested by the `GPPSignIn` singleton includes the required scopes.  In most cases these scopes need to mirror the Google app permissions configuration of the Engage Social Login application that is configured in the Identity Cloud Social Login Dashboard.
 1. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
-1. Once you have retrieved the oAuth access token from the Google Sign-In SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+1. Once you have retrieved the OAuth access token from the Google Sign-In SDK you can initiate the Identity Cloud authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
 ### Twitter
 
-As of Janrain mobile libraries release 4.0 the following TwitterKit SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Twitter oAuth access token from the iOS device:
+As of Janrain mobile libraries release 4.0 the following TwitterKit SDK implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Twitter OAuth access token from the iOS device:
 
 1. Download the TwitterKit SDK from this link: https://dev.twitter.com/twitterkit/ios/installation
-1. Configure your Twitter App: https://apps.twitter.com/  In order for the Janrain Social Login Server to validate the provided Twitter oAuth token, the token must be provisioned from the same Twitter application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Twitter App.
+1. Configure your Twitter App: https://apps.twitter.com/  In order for the Identity Cloud Social Login Server to validate the provided Twitter OAuth token, the token must be provisioned from the same Twitter application that is configured for the Janrain Social Login application.  In most cases, the developer would simply add an iOS App Client ID configuration to the existing Twitter App.
 1. In the case of the SimpleCaptureDemo application the integration steps were implemented in the `RootViewControoler` files with minimal changes from the examples provided by Twitter at this link: https://dev.twitter.com/twitterkit/ios/log-in-with-twitter
 1. NOTE: In most default cases Twitter will not return an email address for an end user. This may cause account merging or linking issues if your Registration user experience relies heavily on merged social profiles.  This use-case is typically addressed by forcing Twitter account holders to use the "Account Linking" functionality of the SDK.  Customer's may choose to work with Twitter to get their application white-listed so it will attempt to return an email address from a user profile.  However, email addresses are not "required" for Twitter accounts, subsequently there is still no guarantee that an email address will be returned.
 1. Refer to the `RootViewControoler.m` file for an example of how this was done with the SimpleCaptureDemo application.
-1. Once you have retrieved the oAuth *access token AND token secret* from the TwitterKit SDK you can initiate the Janrain authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
+1. Once you have retrieved the OAuth *access token AND token secret* from the TwitterKit SDK you can initiate the Identity Cloud authentication process with `startEngageSignInWithNativeProviderToken:provider:withToken:andTokenSecret:withCustomInterfaceOverrides:mergeToken:forDelegate:`
 
 NOTE: It is important to note that Twitter Kit 3.0 only supports iOS 9+.
 
+### Apple
+
+As of Janrain mobile libraries release 5.3 the following Sign in with Apple implementation steps were implemented in the SimpleCaptureDemo sample application in order to retrieve the Apple OAuth access token from the iOS device: 
+1. Manually create an App Identifier (App ID) in the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal, this one will work as the Primary App ID for your application and website. Enable its Sign in with Apple capability and set this App ID as a *primary App ID*.
+2. Create a second App ID (this one is the one that will use the application's Bundle Identifier). You can let Xcode do it for you with the *Automatically manage signin* checkbox. And adding the Sign in with Apple capability in your Xcode project. Or manually create the App ID in the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal and enable there the Sign in with Apple capability.
+3. In the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal, edit the Sign in with Apple capability from this second App ID. Set the Sign In with Apple Configuration as a *Group with an existing primary App ID* and select from the drop down the first App ID that you created.
+4. In the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal, create a Service ID for your web site. Enable Sign in with Apple and click configure.
+5. In the configuration screen, select the first App ID as your primary App ID (the App ID for your application should not appear here because is part of a group). Under Domains provide your web domain and your return URLs.
+6. In the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal go to the *Keys* section and create a new Key, and also enable the Sign in with Apple checkbox.
+7. Press the *Configure* button from the Sign  in with Apple and in the new screen choose the first App ID that you created in previous steps.
+8. After you register the Key, you need to download the key. Remember what apple says: *Be sure to save a backup of your key in a secure place.*
+9. With the App ID, Service ID and Key  you can add this information in the Apple provider configuration in Engage website. In the key section you need to paste all the key (including the *-----BEGIN PRIVATE KEY-----* and *-----END PRIVATE KEY-----* text).
+
+NOTE: You’ll need to use Certificates, Identifiers & Profiles to set up identifiers and keys in your Apple Developer account before you can implement Sign in with Apple. Here you can read the official Sign in with Apple [configuration](https://help.apple.com/developer-account/?lang=en#/devde676e696).
 
 ## DEPRECATED: Native Authentication implementation for Janrain Mobile SDK versions prior to version 4.0
 
-Prior versions (before version 4.0) of the Janrain Mobile SDK attempted to use reflection to call the native provider SDK's and retrieve the oAuth access token.  This presented a maintenance and compatibility issue with the Janrain SDK only able to support specific versions of the native provider sdk's.  The following documentation will be removed in a subsequent release but is preserved for customer's using older versions of the Janrain Mobile SDK.
+Prior versions (before version 4.0) of the Janrain Mobile SDK attempted to use reflection to call the native provider SDK's and retrieve the OAuth access token.  This presented a maintenance and compatibility issue with the Janrain SDK only able to support specific versions of the native provider sdk's.  The following documentation will be removed in a subsequent release but is preserved for customer's using older versions of the Janrain Mobile SDK.
 
 Native Authentication is supported by the library, and is compatible with both Social Sign-in only and User Registration deployments.
 At this time, native-authentication is available for authentication only, and not for social-identity-resource authorization (e.g. sharing.)
@@ -71,11 +87,34 @@ The SDK is not currently able to request the same scopes that are configured in 
 3. The library will delegate the authentication to the native authentication framework
 4. The library delegate message will fire when native authentication completes
 
+### Apple
+
+#### Configure the Native Authentication Framework
+
+Follow the official Sign in with Apple [configuration](https://help.apple.com/developer-account/?lang=en#/devde676e696) for browser or native authentication. Make sure to use the same App ID as your Bundle Identifier for native sign in.
+
+#### Handle the Apple sign in
+Follow the Apple [documentation](https://developer.apple.com/documentation/authenticationservices).
+Use the classes `ASAuthorizationAppleIDProvider`, `ASAuthorizationController`, `ASAuthorizationAppleIDCredential`, `ASAuthorizationAppleIDButton`. 
+In the `ASAuthorizationControllerDelegate` method `authorizationController:didCompleteWithAuthorization:` check if the authorization parameter has an `ASAuthorizationAppleIDCredential` object.
+In this object you will need the `identityToken` property.
+Convert this property to a string and send it as the toke for the method
+```ObjC
+[JRCapture startEngageSignInWithNativeProviderToken:@"apple"
+                                          withToken:identityToken 
+                                     andTokenSecret:nil 
+                                         mergeToken:nil 
+                       withCustomInterfaceOverrides:customUi
+                                   forDelegate:captureDelegate];
+```
+You can see a Sign in With Apple example in sample project *SimpleCaptureDemo*, this project can handle native sign in for iOS 13 or web authentication for iOS 12 or less.
+
+
 ### Facebook
 
 #### Configure the Native Authentication Framework
 
-Follow the Facebook iOS SDK integration instructions. For native Facebook authentication to work via Social Sign-in both Janrain and the Facebook iOS SDK must be configured to use the same Facebook application.
+Follow the Facebook iOS SDK integration instructions. For native Facebook authentication to work via Social Sign-in both Janrain and the Facebook iOS SDKs must be configured to use the same Facebook application.
 Make sure that you use the same Facebook app ID as is configured in your application's dashboard.
 
 #### Ensure that the Facebook sources are linked
@@ -127,7 +166,7 @@ device's Settings app it will continue to be used to sign in without asking to b
 ### Google+
 
 #### Configure the Native Authentication Framework
-Follow the Google+ platform getting started guide. For native Google+ authentication to work via Social Sign-in both Janrain and the Google+ iOS SDK must be configured to use the same Google+ project in the Google Cloud Console.
+Follow the Google+ platform getting started guide. For native Google+ authentication to work via Social Sign-in both Janrain and the Google+ iOS SDKs must be configured to use the same Google+ project in the Google Cloud Console.
 
 #### Configure the Janrain SDK
 

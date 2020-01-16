@@ -465,8 +465,7 @@ enum
 
     // Add first SubView
     UIView *firstSubView = [[UIView alloc] initWithFrame:newSubViewFrameRect];
-    [firstSubView setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin |
-            UIViewAutoresizingFlexibleLeftMargin];
+    [firstSubView setAutoresizingMask:UIViewAutoresizingNone];
 
     [firstSubView addSubview:logo];
     [firstSubView addSubview:label];

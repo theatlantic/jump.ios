@@ -10,6 +10,7 @@ SimpleCaptureDemo demos:
 - Sign-in session management
 - Registration (traditional and social)
 - Native client record-updates
+- Native Authentication for Apple provider
 
 SimpleCaptureDemoNative demos:
 - Traditional sign-in to Capture
