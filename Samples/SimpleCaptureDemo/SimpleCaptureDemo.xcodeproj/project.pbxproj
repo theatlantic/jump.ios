@@ -119,6 +119,8 @@
 		90C36B6B7717AA0C893E08EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08E9 /* UIKit.framework */; };
 		90C36B6B7717AA0C893E08EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08EB /* Foundation.framework */; };
 		90C36B6B7717AA0C893E08EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */; };
+		9E1E833A243FBB49007E1275 /* icon_line_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1E8339243FBB48007E1275 /* icon_line_30x30@2x.png */; };
+		9E1E833C243FBB63007E1275 /* icon_bw_line_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E1E833B243FBB63007E1275 /* icon_bw_line_30x30@2x.png */; };
 		9E95612323CFD784009E04CC /* icon_apple_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E95612223CFD784009E04CC /* icon_apple_30x30@2x.png */; };
 		9E95612523CFD7BA009E04CC /* icon_bw_apple_30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E95612423CFD7B9009E04CC /* icon_bw_apple_30x30@2x.png */; };
 		9EF8BEC8236A59C3008BB92A /* libAppAuth-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF8BEC7236A59C3008BB92A /* libAppAuth-iOS.a */; };
@@ -500,6 +502,8 @@
 		90C36B6B7717AA0C893E08ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		90C36B6B7717AA0C893E08F1 /* SimpleCaptureDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "SimpleCaptureDemo-Info.plist"; sourceTree = "<group>"; };
 		90C36B6B7717AA0C893E08F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9E1E8339243FBB48007E1275 /* icon_line_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_line_30x30@2x.png"; sourceTree = "<group>"; };
+		9E1E833B243FBB63007E1275 /* icon_bw_line_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_line_30x30@2x.png"; sourceTree = "<group>"; };
 		9E95612223CFD784009E04CC /* icon_apple_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_apple_30x30@2x.png"; sourceTree = "<group>"; };
 		9E95612423CFD7B9009E04CC /* icon_bw_apple_30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bw_apple_30x30@2x.png"; sourceTree = "<group>"; };
 		9EF8BEC7236A59C3008BB92A /* libAppAuth-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAppAuth-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1377,6 +1381,7 @@
 		DFEFE45C17A9915200760FEE /* icons-2x */ = {
 			isa = PBXGroup;
 			children = (
+				9E1E8339243FBB48007E1275 /* icon_line_30x30@2x.png */,
 				48A85E821BEBD4A4004CBA61 /* icon_paypal_openidconnect_30x30@2x.png */,
 				48CB52E11B7108900091CD10 /* icon_instagram_30x30@2x.png */,
 				48CB52E21B7108900091CD10 /* icon_yahoo_oauth2_30x30@2x.png */,
@@ -1415,6 +1420,7 @@
 		DFEFE47517A9915200760FEE /* icons_bw-2x */ = {
 			isa = PBXGroup;
 			children = (
+				9E1E833B243FBB63007E1275 /* icon_bw_line_30x30@2x.png */,
 				48CB52ED1B7121C00091CD10 /* icon_bw_googleplus_30x30@2x.png */,
 				48CB52E51B7108AA0091CD10 /* icon_bw_instagram_30x30@2x.png */,
 				48CB52E61B7108AA0091CD10 /* icon_bw_yahoo_oauth2_30x30@2x.png */,
@@ -1560,6 +1566,7 @@
 			files = (
 				48C379CF21C99F9B00286354 /* Localizable.strings in Resources */,
 				48CB52E71B7108AA0091CD10 /* icon_bw_instagram_30x30@2x.png in Resources */,
+				9E1E833A243FBB49007E1275 /* icon_line_30x30@2x.png in Resources */,
 				9E95612323CFD784009E04CC /* icon_apple_30x30@2x.png in Resources */,
 				9F7B6AAD1533648C002BF452 /* MainStoryboard.storyboard in Resources */,
 				9F7B6AB01533648C002BF452 /* background.png in Resources */,
@@ -1728,6 +1735,7 @@
 				48CB52F81B7125D70091CD10 /* button_googleplus_280x40.png in Resources */,
 				DFEFE52617A9915300760FEE /* icon_salesforce_30x30@2x.png in Resources */,
 				48C379D321C9A0B600286354 /* JRPublishActivityController.xib in Resources */,
+				9E1E833C243FBB63007E1275 /* icon_bw_line_30x30@2x.png in Resources */,
 				48CB52CC1B71077C0091CD10 /* button_yahoo_oauth2_280x40.png in Resources */,
 				DFEFE52717A9915300760FEE /* icon_soundcloud_30x30@2x.png in Resources */,
 				DFEFE52817A9915300760FEE /* icon_tumblr_30x30@2x.png in Resources */,
