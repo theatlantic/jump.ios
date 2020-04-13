@@ -1,3 +1,7 @@
+v5.4
+* Now you can use Line as a provider for your application in the social sign in.
+
+
 v5.3
 * Add Sign in with Apple. Now you can sign in with Apple as a provider in your applications. You can do the sign in by web (for any iOS version) or with the native button `ASAUthorizationAppleIDButton` (for iOS 13+).
 

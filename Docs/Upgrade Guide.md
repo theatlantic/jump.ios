@@ -10,6 +10,10 @@ A less desirable but more reliable and more general upgrade strategy:
 2. Remove generated Capture user model project groups
 3. Follow the process described JUMP Integration Guide
 
+### Upgrading from v5.3 to v5.4
+Now you can use Line as a provider for you application. Remember to configure Line in the [Line Developer website](https://account.line.biz/login) and the [Akamai Identity Cloud Social Login Dashboard](https://dashboard.janrain.com/signin).
+
+
 ### Upgrading from v5.2 to v5.3
 You can use Sign in with Apple in your application, but you need to create a couple of IDs in the [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources) portal to make an app work with Sign in with Apple.   
 **Important**. Before you begin, keep in mind that Apple charges for its developer accounts, or at for least accounts that have the permissions required for creating a Sign In with Apple app. In order to use Sign In with Apple, you’ll need to spend $99 and enroll in the Apple Developer Program.
