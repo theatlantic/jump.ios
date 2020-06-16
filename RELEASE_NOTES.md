@@ -1,3 +1,6 @@
+v5.4.1
+* Fix url encoding for special characters like ?,+,=,&.
+
 v5.4
 * Now you can use Line as a provider for your application in the social sign in.
 
