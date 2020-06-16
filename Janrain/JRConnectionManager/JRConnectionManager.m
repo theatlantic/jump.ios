@@ -44,7 +44,16 @@
 @implementation NSString (JRString_UrlEscaping)
 - (NSString *)stringByAddingUrlPercentEscapes
 {
-    NSString *encodedString = [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    static NSCharacterSet *allowed = nil;
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+        NSMutableCharacterSet *tmp = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
+        [tmp removeCharactersInString:@"?+=&"];
+        allowed = [tmp copy];
+    });
+
+    NSString *encodedString = [self stringByAddingPercentEncodingWithAllowedCharacters:allowed];
 
     return encodedString;
 }
